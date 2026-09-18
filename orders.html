@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders & Live Tracking – Campus Mart</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <span>Campus<span>Mart</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="menu.html" class="nav-link"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="orders.html" class="nav-link active"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
+                <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="cart-btn-wrap">
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
+
+                <div id="nav-auth-actions">
+                    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Orders Page Container -->
+    <main class="container container-narrow" style="flex: 1; padding: 2.5rem 1.25rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+            <div>
+                <h2><i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i> My Pre-Orders</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Live tracking & history of your mart & food orders</p>
+            </div>
+            <a href="menu.html" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> New Order
+            </a>
+        </div>
+
+        <!-- Orders List (Dynamically populated by js/orders.js with onSnapshot) -->
+        <div id="my-orders-list" class="orders-list">
+            <!-- Populated via Firestore Listener -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Mart Pre-Order System | BCA 2nd Year Project Demonstration</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="menu.html" class="mobile-nav-item">
+            <i class="fa-solid fa-burger"></i>
+            <span>Menu</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="mobile-cart-badge cart-badge">0</span>
+            <span>Cart</span>
+        </a>
+        <a href="orders.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Orders</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Backend API & Orders Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/orders.js"></script>
+</body>
+</html>

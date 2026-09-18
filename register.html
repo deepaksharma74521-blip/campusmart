@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration – Campus Mart</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Minimal Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <span>Campus<span>Mart</span></span>
+            </a>
+            <div>
+                <a href="login.html" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-arrow-left"></i> Already have account?
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Container -->
+    <main class="auth-wrapper">
+        <div class="auth-card" style="max-width: 520px;">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h2>Create Student Account</h2>
+                <p>Register your student profile for fast, queue-free campus pre-orders</p>
+            </div>
+
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label class="form-label" for="reg-name">Full Name</label>
+                    <div class="input-group">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="reg-name" class="form-input" placeholder="e.g. Rahul Sharma" required autocomplete="name">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-roll">Roll / Student ID</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-id-card input-icon"></i>
+                            <input type="text" id="reg-roll" class="form-input" placeholder="e.g. BCA-2024-042" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="reg-dept">Department</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-building-columns input-icon"></i>
+                            <select id="reg-dept" class="form-select" required>
+                                <option value="BCA" selected>BCA (Computer App)</option>
+                                <option value="B.Sc CS">B.Sc Computer Science</option>
+                                <option value="B.Tech CS/IT">B.Tech CS / IT</option>
+                                <option value="BBA">BBA</option>
+                                <option value="B.Com">B.Com</option>
+                                <option value="MCA">MCA</option>
+                                <option value="Other">Other Department</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-phone">Mobile Phone Number</label>
+                    <div class="input-group">
+                        <i class="fa-solid fa-phone input-icon"></i>
+                        <input type="tel" id="reg-phone" class="form-input" placeholder="e.g. 9876543210" required autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-email">Email Address</label>
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="email" id="reg-email" class="form-input" placeholder="student@college.edu" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-password">Password</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock input-icon"></i>
+                            <input type="password" id="reg-password" class="form-input" placeholder="Min. 6 chars" required autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="reg-confirm-password">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-shield-halved input-icon"></i>
+                            <input type="password" id="reg-confirm-password" class="form-input" placeholder="Re-enter password" required autocomplete="new-password">
+                        </div>
+                    </div>
+                <!-- Admin / Staff Application Toggle -->
+                <div style="margin: 0.85rem 0; padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #1e293b;">
+                        <input type="checkbox" id="is-admin-checkbox" onchange="toggleAdminKeyField(this)" style="accent-color: var(--primary);">
+                        <span><i class="fa-solid fa-user-shield" style="color: var(--primary);"></i> Apply for Campus Mart Staff / Admin Access</span>
+                    </label>
+                    <div id="admin-key-container" style="display: none; margin-top: 0.75rem; background: #fffbeb; border: 1px solid #fef3c7; padding: 0.75rem; border-radius: 6px;">
+                        <div style="font-size: 0.8rem; color: #92400e; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
+                            <i class="fa-solid fa-shield-halved"></i> 
+                            <strong>Approval Protected:</strong> Requires Super Admin Deepak's approval.
+                        </div>
+                        <label class="form-label" for="reg-staff-role" style="font-size: 0.82rem; color: #475569;">Staff Designation / Role:</label>
+                        <div class="input-group">
+                            <i class="fa-solid fa-id-badge input-icon"></i>
+                            <select id="reg-staff-role" class="form-select">
+                                <option value="Counter & Billing Manager" selected>Counter & Billing Manager</option>
+                                <option value="Mart & Inventory Manager">Mart & Inventory Manager</option>
+                                <option value="Mart Supervisor">Mart Supervisor</option>
+                                <option value="Kitchen Head Chef">Kitchen Head Chef</option>
+                                <option value="Order Dispatch Staff">Order Dispatch Staff</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-block btn-lg" style="margin-top: 0.5rem;">
+                    <i class="fa-solid fa-user-plus"></i> Create Account
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already registered? <a href="login.html">Sign In Here</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Backend API & Auth Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

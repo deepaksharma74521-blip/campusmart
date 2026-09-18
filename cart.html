@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart – Campus Mart</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <span>Campus<span>Mart</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="menu.html" class="nav-link"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="orders.html" class="nav-link"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
+                <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="cart-btn-wrap">
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
+
+                <div id="nav-auth-actions">
+                    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Main Content -->
+    <main class="container" style="flex: 1; padding: 2rem 1.25rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <h2><i class="fa-solid fa-cart-shopping" style="color: var(--primary);"></i> Your Pre-Order Cart</h2>
+            <button onclick="clearCart()" class="btn btn-outline btn-sm" style="color: #ef4444; border-color: #fca5a5;">
+                <i class="fa-solid fa-trash-can"></i> Clear Cart
+            </button>
+        </div>
+
+        <!-- Empty Cart View -->
+        <div id="cart-empty-view" class="empty-state" style="display: none;">
+            <i class="fa-solid fa-bag-shopping empty-icon"></i>
+            <h3>Your Campus Mart Cart is Empty</h3>
+            <p>You haven't added any snacks, meals, stationery, or drinks to your cart yet.</p>
+            <a href="menu.html" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-bag-shopping"></i> Browse Mart & Menu
+            </a>
+        </div>
+
+        <!-- Cart Grid Layout -->
+        <div id="cart-content-layout" class="cart-layout">
+            <!-- Left: Items list -->
+            <div class="cart-items-card">
+                <h3 style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--secondary);">Selected Items</h3>
+                <div id="cart-items-list">
+                    <!-- Populated dynamically by cart.js -->
+                </div>
+            </div>
+
+            <!-- Right: Pre-order Checkout Form & Summary -->
+            <div class="order-summary-card">
+                <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem; color: var(--secondary);">Order Summary</h3>
+
+                <div class="summary-row">
+                    <span>Items Subtotal</span>
+                    <span id="summary-subtotal" style="font-weight: 600;">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Packaging & Prep Fee</span>
+                    <span id="summary-packaging" style="font-weight: 600;">₹5</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Grand Total</span>
+                    <span id="summary-total" class="total-amount">₹0</span>
+                </div>
+
+                <!-- Checkout Form Inputs -->
+                <form id="checkout-form" onsubmit="handlePlaceOrder(event)" style="margin-top: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label" for="pickup-slot">
+                            <i class="fa-solid fa-clock" style="color: var(--primary);"></i> Select Pickup Slot
+                        </label>
+                        <select id="pickup-slot" class="form-select no-icon" required>
+                            <option value="Ready in 15 Minutes" selected>Immediate / In 15 Mins</option>
+                            <option value="Ready in 30 Minutes">In 30 Minutes</option>
+                            <option value="Morning Break (11:00 AM)">Morning Break (11:00 AM)</option>
+                            <option value="Lunch Break (1:15 PM)">Lunch Break (1:15 PM)</option>
+                            <option value="Evening Break (3:45 PM)">Evening Break (3:45 PM)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="special-notes">
+                            <i class="fa-solid fa-pen" style="color: var(--primary);"></i> Cooking / Dietary Notes (Optional)
+                        </label>
+                        <textarea id="special-notes" class="form-textarea no-icon" rows="2" placeholder="e.g. Less spicy, extra ketchup, no mayo..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fa-solid fa-wallet" style="color: var(--primary);"></i> Payment Mode
+                        </label>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; background: var(--bg-main); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
+                                <input type="radio" name="payment_method" value="Pay on Pickup Counter" checked style="accent-color: var(--primary);">
+                                <span><i class="fa-solid fa-hand-holding-dollar" style="color: var(--veg-color);"></i> Pay Cash / UPI at Counter</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
+                                <input type="radio" name="payment_method" value="Campus Digital Wallet" style="accent-color: var(--primary);">
+                                <span><i class="fa-solid fa-id-card-clip" style="color: var(--primary);"></i> Student Campus Wallet</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="place-order-btn" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
+                        <i class="fa-solid fa-circle-check"></i> Place Pre-Order Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Success Modal -->
+    <div id="order-success-modal" class="modal-backdrop">
+        <div class="modal-card" style="text-align: center;">
+            <div class="modal-body" style="padding: 2.5rem 2rem;">
+                <div style="width: 70px; height: 70px; border-radius: 50%; background: #dcfce7; color: #16a34a; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem auto;">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.5rem;">Pre-Order Placed!</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Your pre-order has been forwarded to the mart counter.</p>
+
+                <div style="background: var(--bg-main); border: 1px dashed var(--border-color); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; text-align: left;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="color: var(--text-muted); font-size: 0.88rem;">Order Token ID:</span>
+                        <strong id="modal-order-id" style="font-family: var(--font-heading); color: var(--primary); font-size: 1.1rem;">ORD-000000</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="color: var(--text-muted); font-size: 0.88rem;">Total Payable:</span>
+                        <strong id="modal-order-amount">₹0</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-muted); font-size: 0.88rem;">Pickup Slot:</span>
+                        <strong id="modal-order-slot" style="color: var(--secondary);">In 15 Mins</strong>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem;">
+                    <a href="orders.html" class="btn btn-primary btn-block">
+                        <i class="fa-solid fa-receipt"></i> View Live Order Status
+                    </a>
+                    <a href="menu.html" class="btn btn-outline btn-block">
+                        Order More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Mart Pre-Order System | BCA 2nd Year Project Demonstration</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="menu.html" class="mobile-nav-item">
+            <i class="fa-solid fa-burger"></i>
+            <span>Menu</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="mobile-cart-badge cart-badge">0</span>
+            <span>Cart</span>
+        </a>
+        <a href="orders.html" class="mobile-nav-item">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Orders</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Backend API & Cart Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

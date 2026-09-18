@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Mart – Visual Presentation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-dark: #9a3412;
+            --primary-light: #ffedd5;
+            --navy: #0f172a;
+            --slate: #1e293b;
+            --bg-body: #090d16;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Bar */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .slide-counter {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #c2410c;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Viewport */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 2rem;
+            position: relative;
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 1240px;
+            height: 79vh;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: none;
+            flex-direction: column;
+            padding: 2.5rem 3rem;
+            position: relative;
+            animation: fadeIn 0.35s ease forwards;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .category-tag {
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .slide-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* Layout with Image Sidebar */
+        .two-col-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: center;
+            height: 100%;
+        }
+
+        .slide-photo-card {
+            width: 100%;
+            height: 100%;
+            max-height: 440px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .slide-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .simple-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.15rem 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .simple-card:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .simple-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .simple-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* 4 Product Showcase Grid */
+        .product-showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .showcase-item {
+            display: flex;
+            gap: 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 0.85rem;
+            align-items: center;
+        }
+
+        .showcase-item img {
+            width: 95px;
+            height: 95px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .showcase-item h4 {
+            font-size: 1.05rem;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .showcase-item p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* 3-Step Flow */
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .step-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem auto;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 0.6rem;
+        }
+
+        .step-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* 4-Stage Tracker */
+        .tracker-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tracker-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .tracker-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tracker-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .tracker-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* Bottom Controls */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid var(--card-border);
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-btn {
+            background: #334155;
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+        }
+
+        .progress-bar-wrap {
+            flex: 1;
+            max-width: 400px;
+            height: 6px;
+            background: #334155;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 1.5rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 10%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-store"></i>
+            <span>Campus<span>Mart</span></span>
+        </a>
+        <div class="slide-counter" id="slide-indicator">Slide 1 / 10</div>
+        <div class="header-actions">
+            <a href="Campus_Mart_Presentation.pptx" download class="btn btn-outline" title="Download PPTX">
+                <i class="fa-solid fa-file-powerpoint" style="color: #ea580c;"></i> Download .PPTX
+            </a>
+            <a href="index.html" class="btn">
+                <i class="fa-solid fa-play"></i> Live Web App
+            </a>
+        </div>
+    </header>
+
+    <!-- Slides Viewport -->
+    <main>
+
+        <!-- SLIDE 1: COVER -->
+        <div class="slide-container active" id="slide-1">
+            <div class="two-col-layout">
+                <div>
+                    <div style="background: rgba(234, 88, 12, 0.15); color: var(--primary); border: 1px solid var(--primary); padding: 0.35rem 0.9rem; border-radius: 20px; font-weight: 700; font-size: 0.85rem; display: inline-block; margin-bottom: 1rem;">
+                        ★ BCA 2nd Year Minor Project
+                    </div>
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 3.4rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.8rem; background: linear-gradient(135deg, #ffffff 40%, #fdba74); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        Campus Mart
+                    </h1>
+                    <p style="font-size: 1.25rem; color: #fed7aa; margin-bottom: 0.5rem; font-weight: 600;">
+                        Smart Food & Daily Essentials Pre-Order System
+                    </p>
+                    <p style="font-size: 0.95rem; color: #94a3b8; margin-bottom: 1.75rem;">
+                        "Order on phone • Skip the queue • Pick up on time!"
+                    </p>
+
+                    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--card-border); padding: 1rem 1.25rem; border-radius: 12px;">
+                        <div style="font-weight: 700; color: white; font-size: 1.05rem;">👤 Presented By: Deepak Sharma</div>
+                        <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem;">Roll No: TCA2568124 | BCA Department</div>
+                        <div style="color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-top: 0.3rem;">Python Flask REST API + MongoDB NoSQL Database</div>
+                    </div>
+                </div>
+                <div class="slide-photo-card">
+                    <img src="assets/ppt_images/hero.jpg" alt="Campus Mart Hero">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: PROBLEM -->
+        <div class="slide-container" id="slide-2">
+            <div class="category-tag"><i class="fa-solid fa-circle-exclamation"></i> Current Scenario</div>
+            <h2 class="slide-title">The Problem: Canteen Rush & Time Loss</h2>
+            <div class="two-col-layout">
+                <div>
+                    <div class="simple-card">
+                        <h3 style="color: #ef4444;"><i class="fa-solid fa-hourglass-half"></i> 15-Minute Break Rush</h3>
+                        <p>During short 15-minute lecture breaks, huge rushes at the canteen counter cause massive delays.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #ef4444;"><i class="fa-solid fa-person-running"></i> Missed Lectures</h3>
+                        <p>Students often arrive late to class while waiting in line for simple snacks or practical files.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #ef4444;"><i class="fa-solid fa-coins"></i> Cash & Paper Token Confusion</h3>
+                        <p>Handling loose cash change and losing paper receipts creates frustration for students and staff.</p>
+                    </div>
+                </div>
+                <div class="slide-photo-card">
+                    <img src="assets/ppt_images/queue.jpg" alt="Crowded Canteen Queue">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: SOLUTION -->
+        <div class="slide-container" id="slide-3">
+            <div class="category-tag"><i class="fa-solid fa-lightbulb"></i> Project Objective</div>
+            <h2 class="slide-title">The Solution: Smart Pre-Ordering Ecosystem</h2>
+            <div class="two-col-layout">
+                <div>
+                    <div class="simple-card">
+                        <h3 style="color: #10b981;"><i class="fa-solid fa-mobile-screen"></i> Order from Classroom</h3>
+                        <p>Select your meals, snacks, or stationery right from your phone before the class break begins.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #0284c7;"><i class="fa-solid fa-clock"></i> Choose Your Pickup Slot</h3>
+                        <p>Pick an exact time (e.g. 'In 15 Mins', 'Lunch Break 1:15 PM') that fits your schedule.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #ea580c;"><i class="fa-solid fa-bolt"></i> Zero-Wait Express Pickup</h3>
+                        <p>Walk up to the express counter, show your digital Token ID, collect packed items, and go!</p>
+                    </div>
+                </div>
+                <div class="slide-photo-card">
+                    <img src="assets/ppt_images/mobile_pickup.jpg" alt="Express Mobile Pickup">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: CATALOG SHOWCASE -->
+        <div class="slide-container" id="slide-4">
+            <div class="category-tag"><i class="fa-solid fa-boxes-stacked"></i> Catalog Showcase</div>
+            <h2 class="slide-title">What Can Students Buy? (48+ Items)</h2>
+            <div class="product-showcase-grid">
+                <div class="showcase-item">
+                    <img src="assets/ppt_images/food.jpg" alt="Canteen Food">
+                    <div>
+                        <h4 style="color: #ea580c;">🍔 Canteen Fresh Food</h4>
+                        <p>Masala Dosa, Samosa, Veg Sandwich, Chowmein, Special Thali, Chicken Biryani Box</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/ppt_images/chocolate.jpg" alt="Chocolates">
+                    <div>
+                        <h4 style="color: #c084fc;">🍫 Chocolates & Snacks</h4>
+                        <p>Dairy Milk Silk, KitKat, Snickers, Lay's (Magic Masala & Cream Onion), Kurkure, Oreo</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/ppt_images/drinks.jpg" alt="Drinks">
+                    <div>
+                        <h4 style="color: #38bdf8;">🥤 Cold Drinks & Juices</h4>
+                        <p>Red Bull Energy, Sting, Coca-Cola Cans, Frooti Mango, Cold Coffee with Ice Cream</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/ppt_images/stationery.jpg" alt="Stationery">
+                    <div>
+                        <h4 style="color: #4ade80;">📚 Stationery & Essentials</h4>
+                        <p>Classmate Spiral Registers, Gel Pens, Practical Files, Highlighters, Dettol Sanitizer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: 3 EASY STEPS -->
+        <div class="slide-container" id="slide-5">
+            <div class="category-tag"><i class="fa-solid fa-route"></i> User Workflow</div>
+            <h2 class="slide-title">How It Works: In 3 Easy Steps</h2>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Browse & Add to Cart</h3>
+                    <p>Open Campus Mart on your phone, choose your favorite food, chocolates, or stationery, and add them to cart.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num" style="background: #0284c7;">2</div>
+                    <h3>Pick Time Slot & Order</h3>
+                    <p>Select your pickup slot (e.g. 'In 15 Mins' or 'Lunch Break') and get your unique Order Token ID.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num" style="background: #10b981;">3</div>
+                    <h3>Express Pickup</h3>
+                    <p>Staff packs your order in advance. When the status turns Green (Ready), collect it without waiting in line!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: LIVE TRACKER -->
+        <div class="slide-container" id="slide-6">
+            <div class="category-tag"><i class="fa-solid fa-satellite-dish"></i> Real-Time Visibility</div>
+            <h2 class="slide-title">Live 4-Stage Order Tracking System</h2>
+            
+            <div class="tracker-grid">
+                <div class="tracker-card">
+                    <div class="tracker-icon" style="color: #eab308;"><i class="fa-solid fa-receipt"></i></div>
+                    <h4 style="color: #eab308;">1. Placed</h4>
+                    <p>Order received by the kitchen and inventory staff.</p>
+                </div>
+                <div class="tracker-card">
+                    <div class="tracker-icon" style="color: #ea580c;"><i class="fa-solid fa-fire-burner"></i></div>
+                    <h4 style="color: #ea580c;">2. Preparing</h4>
+                    <p>Staff is cooking your food or packing your items.</p>
+                </div>
+                <div class="tracker-card">
+                    <div class="tracker-icon" style="color: #10b981;"><i class="fa-solid fa-bell-concierge"></i></div>
+                    <h4 style="color: #10b981;">3. Ready for Pickup</h4>
+                    <p>Packed on counter. Collect instantly with Token ID!</p>
+                </div>
+                <div class="tracker-card">
+                    <div class="tracker-icon" style="color: #0284c7;"><i class="fa-solid fa-circle-check"></i></div>
+                    <h4 style="color: #0284c7;">4. Completed</h4>
+                    <p>Order handed over and finished successfully.</p>
+                </div>
+            </div>
+
+            <div class="simple-card" style="background: rgba(15, 23, 42, 0.8);">
+                <h3 style="color: white; font-size: 1.15rem;"><i class="fa-solid fa-bolt" style="color: var(--primary);"></i> How It Works Under the Hood:</h3>
+                <p style="margin-top: 0.35rem;">
+                    The web application performs automatic background polling every 4 seconds. When staff updates the order status in their dashboard, the student's screen turns <strong>green in real time</strong> without page reload.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: ADMIN & SECURITY -->
+        <div class="slide-container" id="slide-7">
+            <div class="category-tag"><i class="fa-solid fa-shield-halved"></i> Owner Protection & Control</div>
+            <h2 class="slide-title">Staff Dashboard & Super Admin Approval</h2>
+            <div class="two-col-layout">
+                <div>
+                    <div class="simple-card">
+                        <h3 style="color: #ea580c;"><i class="fa-solid fa-user-shield"></i> Super Admin Approval (Deepak)</h3>
+                        <p>Nobody can access the Admin portal without Super Admin Deepak's manual approval.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #0284c7;"><i class="fa-solid fa-kitchen-set"></i> 1-Click Order Fulfillment</h3>
+                        <p>Staff can mark orders as Preparing, Ready, or Completed with a single button tap.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #10b981;"><i class="fa-solid fa-camera"></i> Device Photo Upload & Live Stats</h3>
+                        <p>Upload product photos directly from phone camera/gallery and view real-time revenue analytics.</p>
+                    </div>
+                </div>
+                <div class="slide-photo-card">
+                    <img src="assets/ppt_images/admin.jpg" alt="Admin Dashboard Mockup">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: TECH STACK -->
+        <div class="slide-container" id="slide-8">
+            <div class="category-tag"><i class="fa-solid fa-code"></i> Engineering</div>
+            <h2 class="slide-title">Technologies Used (Clean & Fast)</h2>
+            <div class="two-col-layout">
+                <div>
+                    <div class="simple-card">
+                        <h3 style="color: #ea580c;"><i class="fa-brands fa-html5"></i> Frontend: HTML5 + CSS3 + Vanilla JS</h3>
+                        <p>Super fast, responsive mobile-first UI that runs on any smartphone browser without downloading apps.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #0284c7;"><i class="fa-brands fa-python"></i> Backend: Python Flask REST API</h3>
+                        <p>Handles user authentication, order token generation, and RESTful API endpoints cleanly.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3 style="color: #10b981;"><i class="fa-solid fa-database"></i> Database: MongoDB NoSQL</h3>
+                        <p>Stores flexible JSON documents for students, multi-item orders, and product catalog.</p>
+                    </div>
+                </div>
+                <div class="slide-photo-card">
+                    <img src="assets/ppt_images/tech.jpg" alt="Clean Code Tech Stack">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: BENEFITS & FUTURE -->
+        <div class="slide-container" id="slide-9">
+            <div class="category-tag"><i class="fa-solid fa-star"></i> Advantages & Roadmap</div>
+            <h2 class="slide-title">Key Benefits & Future Scope</h2>
+            <div class="two-col-layout" style="grid-template-columns: 1fr 1fr;">
+                <div class="simple-card" style="height: 100%;">
+                    <h3 style="color: #10b981; margin-bottom: 0.75rem;"><i class="fa-solid fa-circle-check"></i> Key Student Benefits</h3>
+                    <p style="margin-bottom: 0.5rem;">• <strong>Saves 15-20 minutes</strong> during every lecture break.</p>
+                    <p style="margin-bottom: 0.5rem;">• <strong>Zero wait time</strong> at food & stationery counters.</p>
+                    <p style="margin-bottom: 0.5rem;">• <strong>Never miss class</strong> due to lunch queues.</p>
+                    <p>• <strong>One-stop shopping</strong> for breakfast, snacks, pens & registers.</p>
+                </div>
+                <div class="simple-card" style="height: 100%;">
+                    <h3 style="color: #0284c7; margin-bottom: 0.75rem;"><i class="fa-solid fa-rocket"></i> Future Enhancements</h3>
+                    <p style="margin-bottom: 0.5rem;">★ <strong>QR Code Scanner</strong> at pickup counters for instant verification.</p>
+                    <p style="margin-bottom: 0.5rem;">★ <strong>Direct UPI Payments</strong> via GPay, PhonePe, Paytm (Razorpay).</p>
+                    <p style="margin-bottom: 0.5rem;">★ <strong>WhatsApp / SMS Notifications</strong> when food is packed.</p>
+                    <p>★ <strong>AI-Based Combo Suggestions</strong> based on ordering habits.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: CONCLUSION -->
+        <div class="slide-container" id="slide-10">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                <div style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid #10b981; padding: 0.4rem 1.2rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                    <i class="fa-solid fa-circle-check"></i> Project Conclusion
+                </div>
+                <h1 style="font-family: 'Poppins', sans-serif; font-size: 3.5rem; font-weight: 800; color: white; margin-bottom: 0.75rem;">
+                    Thank You!
+                </h1>
+                <p style="font-size: 1.2rem; color: #cbd5e1; max-width: 750px; margin-bottom: 2rem;">
+                    Campus Mart delivers a fast, secure, and hassle-free digital pre-ordering experience for college campuses.
+                </p>
+
+                <div style="background: rgba(234, 88, 12, 0.1); border: 2px dashed var(--primary); padding: 1.5rem 3rem; border-radius: 16px; max-width: 700px;">
+                    <h3 style="color: var(--primary); font-size: 1.4rem; margin-bottom: 0.4rem;"><i class="fa-solid fa-comments"></i> Questions & Live Demonstration</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Ready for live app demo, code walkthrough, and Viva examination.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Controls -->
+    <footer>
+        <div class="nav-btn-group">
+            <button class="nav-btn" onclick="prevSlide()" title="Previous (Left Arrow)"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="nav-btn" onclick="nextSlide()" title="Next (Right Arrow)"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-outline" onclick="toggleFullscreen()"><i class="fa-solid fa-expand"></i> Fullscreen</button>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function updateSlide() {
+            document.querySelectorAll('.slide-container').forEach((el, idx) => {
+                el.classList.toggle('active', idx + 1 === currentSlide);
+            });
+            document.getElementById('slide-indicator').textContent = `Slide ${currentSlide} / ${totalSlides}`;
+            document.getElementById('progress-fill').style.width = `${(currentSlide / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

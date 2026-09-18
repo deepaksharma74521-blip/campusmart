@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Mart – Smart Food & Essentials Pre-Order System</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <span>Campus<span>Mart</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="menu.html" class="nav-link"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="orders.html" class="nav-link"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
+                <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="cart-btn-wrap">
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
+
+                <div id="nav-auth-actions">
+                    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="section-subtitle"><i class="fa-solid fa-bolt"></i> Skip The Rush & Queue</span>
+                    <h1>Pre-Order Your Favorite <span class="highlight">Food & Essentials</span> Instantly!</h1>
+                    <p>Order fresh canteen meals, chocolates, snacks, stationery, and hostel essentials right from your phone before class breaks. Everything ready for pickup when you arrive.</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                        <a href="menu.html" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-bag-shopping"></i> Explore Mart & Menu
+                        </a>
+                        <a href="orders.html" class="btn btn-outline btn-lg">
+                            <i class="fa-solid fa-clock-rotate-left"></i> Track My Orders
+                        </a>
+                    </div>
+
+                    <div class="hero-badges">
+                        <div class="hero-badge-item">
+                            <i class="fa-solid fa-clock"></i> Zero Wait Time
+                        </div>
+                        <div class="hero-badge-item">
+                            <i class="fa-solid fa-leaf"></i> Fresh & Hygienic
+                        </div>
+                        <div class="hero-badge-item">
+                            <i class="fa-solid fa-qrcode"></i> Easy Digital Ordering
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-card-preview">
+                    <div class="hero-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80" alt="College Canteen Food" loading="lazy">
+                    </div>
+                    <div class="hero-floating-badge">
+                        <div class="floating-badge-icon">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Fresh & Steaming</div>
+                            <div style="font-weight: 800; color: var(--secondary); font-size: 1.05rem;">Ready in 15 Minutes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Features -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">How It Works</span>
+                <h2 class="section-title">Smart Campus Dining in 3 Easy Steps</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h3>1. Select Food & Slot</h3>
+                    <p>Browse the digital canteen menu, choose your favorite dishes and pick your preferred pickup time slot.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                    </div>
+                    <h3>2. Live Kitchen Prep</h3>
+                    <p>Canteen staff receives your order instantly on their dashboard and begins preparing your hot meal.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <h3>3. Fast Express Pickup</h3>
+                    <p>Get notified when your meal is ready. Flash your unique Order ID at the counter and enjoy your food!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories Banner -->
+    <section style="background: white; padding: 4rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Diverse Offerings</span>
+                <h2 class="section-title">Satisfy Every Campus Craving</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                    <div style="font-size: 2.5rem; color: #f59e0b; margin-bottom: 0.75rem;"><i class="fa-solid fa-egg"></i></div>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Breakfast</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Dosas, Idlis, Poha, Sandwiches</p>
+                </a>
+                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                    <div style="font-size: 2.5rem; color: #ea580c; margin-bottom: 0.75rem;"><i class="fa-solid fa-bowl-rice"></i></div>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Lunch Meals</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Special Thalis, Biryanis, Fried Rice</p>
+                </a>
+                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                    <div style="font-size: 2.5rem; color: #10b981; margin-bottom: 0.75rem;"><i class="fa-solid fa-cookie-bite"></i></div>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Evening Snacks</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Samosas, Rolls, Maggi, Fries</p>
+                </a>
+                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                    <div style="font-size: 2.5rem; color: #0284c7; margin-bottom: 0.75rem;"><i class="fa-solid fa-mug-hot"></i></div>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Beverages</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Masala Chai, Cold Coffee, Juices</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand-logo" style="color: white; margin-bottom: 1rem;">
+                        <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                        <span>Campus<span style="color: var(--primary-light);">Mart</span></span>
+                    </div>
+                    <p>Designed for college students and faculty to eliminate campus queues and streamline food, snacks, and daily essentials pre-orders with modern cloud technology.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Mart & Menu</a></li>
+                        <li><a href="cart.html">Shopping Cart</a></li>
+                        <li><a href="orders.html">Track Orders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Student Portal</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Login</a></li>
+                        <li><a href="register.html">Student Sign Up</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="admin.html">Admin Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Mart & Canteen Hours</h4>
+                    <p style="margin-bottom: 0.5rem;"><i class="fa-regular fa-clock" style="color: var(--accent);"></i> Mon – Sat: 8:00 AM – 8:00 PM</p>
+                    <p><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Central Campus Mart & Food Court, Ground Floor</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Mart Pre-Order System | BCA 2nd Year Project Demonstration</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="menu.html" class="mobile-nav-item">
+            <i class="fa-solid fa-burger"></i>
+            <span>Menu</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="mobile-cart-badge cart-badge">0</span>
+            <span>Cart</span>
+        </a>
+        <a href="orders.html" class="mobile-nav-item">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Orders</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Backend API & Auth Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Mart – Products & Food Menu</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <span>Campus<span>Mart</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="menu.html" class="nav-link active"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="orders.html" class="nav-link"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
+                <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="cart-btn-wrap">
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
+
+                <div id="nav-auth-actions">
+                    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Search & Filter Header -->
+    <section class="menu-header-bar">
+        <div class="container">
+            <div class="menu-search-filter">
+                <!-- Search Input -->
+                <div class="search-box-wrap">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="menu-search" class="search-input" placeholder="Search dishes, snacks, shakes, tea...">
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="category-filter-pills" style="overflow-x: auto; padding-bottom: 0.35rem; display: flex; flex-wrap: nowrap; gap: 0.5rem;">
+                    <button class="filter-pill active" data-category="all">
+                        <i class="fa-solid fa-border-all"></i> All Items
+                    </button>
+                    <button class="filter-pill" data-category="Canteen Food">
+                        <i class="fa-solid fa-utensils"></i> Canteen Food
+                    </button>
+                    <button class="filter-pill" data-category="Chocolates & Candies">
+                        <i class="fa-solid fa-cookie"></i> Chocolates
+                    </button>
+                    <button class="filter-pill" data-category="Snacks & Chips">
+                        <i class="fa-solid fa-box-open"></i> Snacks & Chips
+                    </button>
+                    <button class="filter-pill" data-category="Drinks & Juices">
+                        <i class="fa-solid fa-bottle-water"></i> Drinks & Juices
+                    </button>
+                    <button class="filter-pill" data-category="Stationery">
+                        <i class="fa-solid fa-book-open"></i> Stationery
+                    </button>
+                    <button class="filter-pill" data-category="Hostel Essentials">
+                        <i class="fa-solid fa-pump-soap"></i> Hostel Essentials
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Catalog Grid Container -->
+    <main class="container" style="flex: 1;">
+        <div class="food-grid" id="food-grid">
+            <!-- Dynamically populated by js/menu.js -->
+        </div>
+    </main>
+
+    <!-- Floating Quick Cart Drawer for Mobile/Tablet -->
+    <div style="position: fixed; bottom: 85px; right: 20px; z-index: 90;" class="mobile-only">
+        <a href="cart.html" class="btn btn-primary" style="border-radius: var(--radius-full); box-shadow: var(--shadow-lg); padding: 0.8rem 1.25rem;">
+            <i class="fa-solid fa-cart-shopping"></i> View Cart (<span class="cart-badge" style="position: static; display: inline-flex; border: none; min-width: auto; height: auto;">0</span>)
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Mart Pre-Order System | BCA 2nd Year Project Demonstration</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="menu.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-burger"></i>
+            <span>Menu</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="mobile-cart-badge cart-badge">0</span>
+            <span>Cart</span>
+        </a>
+        <a href="orders.html" class="mobile-nav-item">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Orders</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Backend API & Menu Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>
