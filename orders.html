@@ -2,16 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>My Orders & Live Tracking – Campus Mart</title>
-    <!-- Google Fonts -->
+    <!-- Instant Startup Critical CSS & DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Custom CSS -->
+    <style>
+        /* Instant Cold Boot Paint (0ms White-Screen Eliminator) */
+        :root { --primary: #ea580c; --bg-main: #f8fafc; }
+        html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
+        .navbar { background: #ffffff; min-height: 64px; }
+    </style>
+    <!-- Google Fonts with Swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-blocking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+    <!-- Custom Core CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 </head>
 <body>
 
@@ -19,18 +39,28 @@
     <header class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="brand-logo">
-                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <img src="assets/icons/logo.png" alt="Campus Mart Logo" class="brand-img">
                 <span>Campus<span>Mart</span></span>
             </a>
 
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="menu.html" class="nav-link"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="parcel.html" class="nav-link"><i class="fa-solid fa-box-open"></i> Gate 2 Parcel <span class="badge-soon">Coming Soon</span></a></li>
+                <li><a href="javascript:void(0)" onclick="openSalonComingSoonModal()" class="nav-link"><i class="fa-solid fa-scissors"></i> Men's Salon <span class="badge-soon">Coming Soon</span></a></li>
                 <li><a href="orders.html" class="nav-link active"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
                 <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
             </ul>
 
             <div class="nav-actions">
+                <a href="/download/apk" download="CampusMart.apk" class="btn btn-outline btn-sm" style="border-color: #10b981; color: #047857; background: #ecfdf5; font-weight: 700; padding: 0.4rem 0.75rem; display: inline-flex; align-items: center; gap: 0.35rem;" title="Download Android App APK" onclick="triggerApkDownloadFeedback()">
+                    <i class="fa-brands fa-android"></i> App APK
+                </a>
+
+                <button type="button" class="cart-icon-btn" onclick="playWelcomeSoundAndVoice(true)" title="Play Campus Mart Welcome Chime & Greeting" style="background: #fff7ed; border-color: #fed7aa; color: #ea580c; cursor: pointer;">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+
                 <div class="cart-btn-wrap">
                     <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -47,21 +77,95 @@
 
     <!-- Orders Page Container -->
     <main class="container container-narrow" style="flex: 1; padding: 2.5rem 1.25rem;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
             <div>
                 <h2><i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i> My Pre-Orders</h2>
                 <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Live tracking & history of your mart & food orders</p>
             </div>
-            <a href="menu.html" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-plus"></i> New Order
-            </a>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <button type="button" onclick="unlockAudioEngine(); playOrderReadyChime(); triggerDeviceVibration(); showToast('🔔 Playing bell chime & vibration alert!', 'success', 'Sound Test');" class="btn btn-outline btn-sm" title="Test Order Ready Sound" style="background: white;">
+                    <i class="fa-solid fa-volume-high" style="color: var(--primary);"></i> Test Bell Sound 🔔
+                </button>
+                <a href="menu.html" class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-plus"></i> New Order
+                </a>
+            </div>
         </div>
+
+
 
         <!-- Orders List (Dynamically populated by js/orders.js with onSnapshot) -->
         <div id="my-orders-list" class="orders-list">
-            <!-- Populated via Firestore Listener -->
+            <!-- Populated via API polling -->
         </div>
     </main>
+
+    <!-- Modal: Rate & Review Order -->
+    <div id="feedback-modal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 480px;">
+            <div class="modal-header">
+                <div>
+                    <h3 style="font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; color: var(--secondary);">
+                        <i class="fa-solid fa-star" style="color: #f59e0b;"></i> Rate Your Order Experience
+                    </h3>
+                    <div id="feedback-modal-order-id" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+                        Order #ORD-123456
+                    </div>
+                </div>
+                <button class="modal-close-btn" onclick="closeFeedbackModal()">&times;</button>
+            </div>
+            
+            <form onsubmit="handleFeedbackSubmit(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="feedback-form-order-id">
+                    
+                    <div style="text-align: center; margin-bottom: 0.5rem;">
+                        <label style="font-size: 0.9rem; font-weight: 600; color: var(--secondary);">
+                            How was your food & express pickup experience?
+                        </label>
+                    </div>
+
+                    <!-- 5 Star Interactive Selector -->
+                    <div class="star-rating-box">
+                        <button type="button" class="star-rate-btn" data-val="1" onmouseover="hoverRating(1)" onmouseleave="resetRatingHover()" onclick="setRating(1)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-rate-btn" data-val="2" onmouseover="hoverRating(2)" onmouseleave="resetRatingHover()" onclick="setRating(2)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-rate-btn" data-val="3" onmouseover="hoverRating(3)" onmouseleave="resetRatingHover()" onclick="setRating(3)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-rate-btn" data-val="4" onmouseover="hoverRating(4)" onmouseleave="resetRatingHover()" onclick="setRating(4)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-rate-btn" data-val="5" onmouseover="hoverRating(5)" onmouseleave="resetRatingHover()" onclick="setRating(5)"><i class="fa-solid fa-star"></i></button>
+                    </div>
+                    <div class="rating-score-label" id="rating-score-label">Tap a star to rate</div>
+
+                    <!-- Quick Impression Tags -->
+                    <div style="margin-bottom: 0.5rem;">
+                        <label style="font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 0.5rem; display: block;">
+                            What did you like the most? (Optional)
+                        </label>
+                        <div class="feedback-tags-grid">
+                            <span class="feedback-tag-pill" onclick="toggleFeedbackTag('⚡ Fast Pickup', this)"><i class="fa-solid fa-bolt"></i> Fast Pickup</span>
+                            <span class="feedback-tag-pill" onclick="toggleFeedbackTag('🍲 Delicious Taste', this)"><i class="fa-solid fa-utensils"></i> Delicious Taste</span>
+                            <span class="feedback-tag-pill" onclick="toggleFeedbackTag('📦 Good Packaging', this)"><i class="fa-solid fa-box"></i> Good Packaging</span>
+                            <span class="feedback-tag-pill" onclick="toggleFeedbackTag('✨ Hygienic & Fresh', this)"><i class="fa-solid fa-sparkles"></i> Hygienic & Fresh</span>
+                            <span class="feedback-tag-pill" onclick="toggleFeedbackTag('💰 Great Value', this)"><i class="fa-solid fa-tag"></i> Great Value</span>
+                            <span class="feedback-tag-pill" onclick="toggleFeedbackTag('👍 Polite Staff', this)"><i class="fa-solid fa-thumbs-up"></i> Polite Staff</span>
+                        </div>
+                    </div>
+
+                    <!-- Written Comments -->
+                    <div class="form-group" style="margin-bottom: 0.5rem;">
+                        <label class="form-label" for="feedback-form-comment">Write a review / comment (Optional)</label>
+                        <textarea id="feedback-form-comment" class="form-textarea no-icon" rows="3" placeholder="Tell us what you loved or how we can improve Campus Mart..."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="closeFeedbackModal()">Cancel</button>
+                    <button type="submit" id="submit-feedback-btn" class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -101,5 +205,7 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/orders.js"></script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js"></script>
 </body>
 </html>

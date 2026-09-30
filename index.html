@@ -2,16 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Campus Mart – Smart Food & Essentials Pre-Order System</title>
-    <!-- Google Fonts -->
+    <!-- Instant Startup Critical CSS & DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Custom CSS -->
+    <style>
+        /* Instant Cold Boot Paint (0ms White-Screen Eliminator) */
+        :root { --primary: #ea580c; --bg-main: #f8fafc; }
+        html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
+        .navbar { background: #ffffff; min-height: 64px; }
+    </style>
+    <!-- Google Fonts with Swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-blocking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+    <!-- Custom Core CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 </head>
 <body>
 
@@ -19,18 +40,28 @@
     <header class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="brand-logo">
-                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <img src="assets/icons/logo.png" alt="Campus Mart Logo" class="brand-img">
                 <span>Campus<span>Mart</span></span>
             </a>
 
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="menu.html" class="nav-link"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="parcel.html" class="nav-link"><i class="fa-solid fa-box-open"></i> Gate 2 Parcel <span class="badge-soon">Coming Soon</span></a></li>
+                <li><a href="javascript:void(0)" onclick="openSalonComingSoonModal()" class="nav-link"><i class="fa-solid fa-scissors"></i> Men's Salon <span class="badge-soon">Coming Soon</span></a></li>
                 <li><a href="orders.html" class="nav-link"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
                 <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
             </ul>
 
             <div class="nav-actions">
+                <a href="/download/apk" download="CampusMart.apk" class="btn btn-outline btn-sm" style="border-color: #10b981; color: #047857; background: #ecfdf5; font-weight: 700; padding: 0.4rem 0.75rem; display: inline-flex; align-items: center; gap: 0.35rem;" title="Download Android App APK" onclick="triggerApkDownloadFeedback()">
+                    <i class="fa-brands fa-android"></i> App APK
+                </a>
+
+                <button type="button" class="cart-icon-btn" onclick="playWelcomeSoundAndVoice(true)" title="Play Campus Mart Welcome Chime & Greeting" style="background: #fff7ed; border-color: #fed7aa; color: #ea580c; cursor: pointer;">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+
                 <div class="cart-btn-wrap">
                     <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -55,12 +86,15 @@
                     <h1>Pre-Order Your Favorite <span class="highlight">Food & Essentials</span> Instantly!</h1>
                     <p>Order fresh canteen meals, chocolates, snacks, stationery, and hostel essentials right from your phone before class breaks. Everything ready for pickup when you arrive.</p>
                     
-                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center;">
                         <a href="menu.html" class="btn btn-primary btn-lg">
-                            <i class="fa-solid fa-bag-shopping"></i> Explore Mart & Menu
+                            <i class="fa-solid fa-bag-shopping"></i> Explore Mart &amp; Menu
                         </a>
                         <a href="orders.html" class="btn btn-outline btn-lg">
-                            <i class="fa-solid fa-clock-rotate-left"></i> Track My Orders
+                            <i class="fa-solid fa-clock-rotate-left"></i> Track Orders
+                        </a>
+                        <a href="/download/apk" download="CampusMart.apk" class="btn btn-outline btn-lg" style="border-color: #10b981; color: #047857; background: #ecfdf5; font-weight: 700;" onclick="triggerApkDownloadFeedback()">
+                            <i class="fa-brands fa-android"></i> Download Android APK
                         </a>
                     </div>
 
@@ -69,10 +103,10 @@
                             <i class="fa-solid fa-clock"></i> Zero Wait Time
                         </div>
                         <div class="hero-badge-item">
-                            <i class="fa-solid fa-leaf"></i> Fresh & Hygienic
+                            <i class="fa-solid fa-leaf"></i> 100% Pure Veg
                         </div>
                         <div class="hero-badge-item">
-                            <i class="fa-solid fa-qrcode"></i> Easy Digital Ordering
+                            <i class="fa-solid fa-qrcode"></i> Digital Express Pickup
                         </div>
                     </div>
                 </div>
@@ -86,7 +120,7 @@
                             <i class="fa-solid fa-fire-flame-curved"></i>
                         </div>
                         <div>
-                            <div style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Fresh & Steaming</div>
+                            <div style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Fresh &amp; Steaming</div>
                             <div style="font-weight: 800; color: var(--secondary); font-size: 1.05rem;">Ready in 15 Minutes</div>
                         </div>
                     </div>
@@ -108,7 +142,7 @@
                     <div class="feature-icon-wrap">
                         <i class="fa-solid fa-mobile-screen"></i>
                     </div>
-                    <h3>1. Select Food & Slot</h3>
+                    <h3>1. Select Food &amp; Slot</h3>
                     <p>Browse the digital canteen menu, choose your favorite dishes and pick your preferred pickup time slot.</p>
                 </div>
 
@@ -125,14 +159,121 @@
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
                     <h3>3. Fast Express Pickup</h3>
-                    <p>Get notified when your meal is ready. Flash your unique Order ID at the counter and enjoy your food!</p>
+                    <p>Get notified with harmonic chime &amp; voice alert when your meal is ready. Show token &amp; collect in 10s!</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Future Goals & Upcoming Innovations Showcase Banner -->
+    <section style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 3.5rem 0; border-top: 3px solid var(--primary); border-bottom: 1px solid #334155;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; align-items: center;">
+                <div>
+                    <span style="background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.82rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-rocket"></i> Strategic Roadmap &amp; Future Vision
+                    </span>
+                    <h2 style="color: white; font-size: 2rem; font-weight: 800; line-height: 1.25; margin-bottom: 1rem;">
+                        Upcoming Campus <span style="color: #f97316;">Innovations &amp; Goals</span>
+                    </h2>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        Campus Mart is expanding beyond food pre-orders into a unified campus lifestyle super-app. Discover the high-impact services on our development roadmap.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                        <a href="presentation.html" class="btn btn-primary btn-lg" style="box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);">
+                            <i class="fa-solid fa-eye"></i> View Full Future Roadmap
+                        </a>
+                        <a href="menu.html" class="btn btn-outline btn-lg" style="border-color: #94a3b8; color: #f1f5f9;">
+                            <i class="fa-solid fa-utensils"></i> Order Current Food Menu
+                        </a>
+                    </div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 1.75rem; backdrop-filter: blur(10px);">
+                    <h3 style="color: white; font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-sparkles" style="color: #fbbf24;"></i> Upcoming High-Impact Modules
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                        <div style="display: flex; gap: 0.8rem; align-items: flex-start;">
+                            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(249,115,22,0.2); color: #fb923c; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">📦</div>
+                            <div>
+                                <div style="font-weight: 700; color: #f8fafc; font-size: 0.92rem;">Gate No. 2 Smart Parcel Locker Hub</div>
+                                <div style="font-size: 0.82rem; color: #94a3b8;">Automated locker compartments &amp; 4-digit PIN verification for Amazon/Flipkart deliveries</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.8rem; align-items: flex-start;">
+                            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(59,130,246,0.2); color: #60a5fa; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">💈</div>
+                            <div>
+                                <div style="font-weight: 700; color: #f8fafc; font-size: 0.92rem;">New Look Men's Salon Virtual Queue</div>
+                                <div style="font-size: 0.82rem; color: #94a3b8;">Zero-wait chair reservation &amp; AI hairstyle simulator before salon visits</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.8rem; align-items: flex-start;">
+                            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(34,197,94,0.2); color: #4ade80; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">⚡</div>
+                            <div>
+                                <div style="font-weight: 700; color: #f8fafc; font-size: 0.92rem;">Handheld QR Pickups &amp; WhatsApp Bots</div>
+                                <div style="font-size: 0.82rem; color: #94a3b8;">2-second counter handover with automated WhatsApp status alerts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Shops & Outlets Showcase Section -->
+    <section style="background: #f8fafc; padding: 4.5rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 2rem;">
+                <span class="section-subtitle"><i class="fa-solid fa-store"></i> 23 Verified Campus Outlets</span>
+                <h2 class="section-title">Explore by Campus Shop & Counter</h2>
+                <p style="color: var(--text-muted); max-width: 680px; margin: 0.5rem auto 0 auto;">
+                    Order directly from all 23 official TMU canteens, cafes, stationery stores, juice centers, and daily essentials shops.
+                </p>
+            </div>
+
+            <!-- Smart Search & Category Filter Controls -->
+            <div style="max-width: 900px; margin: 0 auto 2.5rem auto;">
+                <div style="position: relative; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.1rem;"></i>
+                    <input type="text" id="shop-search-input" oninput="filterHomeShops()" placeholder="🔍 Search by Shop Name (e.g., Chole Kulcha, Royal Cafe), Owner Name, or Counter..." style="width: 100%; padding: 0.95rem 1rem 0.95rem 3.1rem; border-radius: 12px; border: 1.5px solid #cbd5e1; font-size: 0.98rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#cbd5e1'">
+                </div>
+
+                <div id="shop-category-pills" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
+                    <button type="button" class="btn btn-sm shop-filter-pill active" onclick="selectShopCategory('all', this)" style="border-radius: 20px; font-weight: 700; padding: 0.4rem 1.1rem; border: 1.5px solid var(--primary); background: var(--primary); color: white; cursor: pointer;">
+                        🏪 All Outlets (23)
+                    </button>
+                    <button type="button" class="btn btn-sm shop-filter-pill" onclick="selectShopCategory('Canteen Food', this)" style="border-radius: 20px; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid #cbd5e1; background: white; color: #475569; cursor: pointer;">
+                        🍔 Canteens & Meals (12)
+                    </button>
+                    <button type="button" class="btn btn-sm shop-filter-pill" onclick="selectShopCategory('Drinks & Juices', this)" style="border-radius: 20px; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid #cbd5e1; background: white; color: #475569; cursor: pointer;">
+                        🫖 Chai, Cafes & Juices (5)
+                    </button>
+                    <button type="button" class="btn btn-sm shop-filter-pill" onclick="selectShopCategory('Stationery', this)" style="border-radius: 20px; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid #cbd5e1; background: white; color: #475569; cursor: pointer;">
+                        📚 Stationery & Xerox (3)
+                    </button>
+                    <button type="button" class="btn btn-sm shop-filter-pill" onclick="selectShopCategory('Hostel Essentials', this)" style="border-radius: 20px; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid #cbd5e1; background: white; color: #475569; cursor: pointer;">
+                        🏪 Daily Marts & Essentials (2)
+                    </button>
+                    <button type="button" class="btn btn-sm shop-filter-pill" onclick="selectShopCategory('Snacks & Chips', this)" style="border-radius: 20px; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid #cbd5e1; background: white; color: #475569; cursor: pointer;">
+                        🍿 Bakery & Desserts (1)
+                    </button>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; font-size: 0.85rem; color: #64748b;">
+                    <span id="shop-count-label">Showing <strong>23</strong> campus outlets</span>
+                    <span style="font-weight: 600; color: #16a34a;"><i class="fa-solid fa-circle" style="font-size: 0.65rem;"></i> Live Campus Ordering Active</span>
+                </div>
+            </div>
+
+            <div id="home-shops-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem;">
+                <!-- Dynamically loaded via api.getShops() -->
+            </div>
+        </div>
+    </section>
+
     <!-- Popular Categories Banner -->
-    <section style="background: white; padding: 4rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section style="background: white; padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">Diverse Offerings</span>
@@ -140,25 +281,25 @@
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
-                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                <a href="menu.html?category=Canteen+Food" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
                     <div style="font-size: 2.5rem; color: #f59e0b; margin-bottom: 0.75rem;"><i class="fa-solid fa-egg"></i></div>
-                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Breakfast</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Dosas, Idlis, Poha, Sandwiches</p>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Breakfast & Meals</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Dosas, Idlis, Thalis, Biryani</p>
                 </a>
-                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
-                    <div style="font-size: 2.5rem; color: #ea580c; margin-bottom: 0.75rem;"><i class="fa-solid fa-bowl-rice"></i></div>
-                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Lunch Meals</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Special Thalis, Biryanis, Fried Rice</p>
+                <a href="menu.html?category=Chocolates+%26+Candies" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                    <div style="font-size: 2.5rem; color: #ea580c; margin-bottom: 0.75rem;"><i class="fa-solid fa-cookie-bite"></i></div>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Sweets & Chocolates</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Dairy Milk Silk, KitKat, 5-Star</p>
                 </a>
-                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
-                    <div style="font-size: 2.5rem; color: #10b981; margin-bottom: 0.75rem;"><i class="fa-solid fa-cookie-bite"></i></div>
-                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Evening Snacks</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Samosas, Rolls, Maggi, Fries</p>
-                </a>
-                <a href="menu.html" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                <a href="menu.html?category=Drinks+%26+Juices" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
                     <div style="font-size: 2.5rem; color: #0284c7; margin-bottom: 0.75rem;"><i class="fa-solid fa-mug-hot"></i></div>
-                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Beverages</h3>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Drinks & Juices</h3>
                     <p style="font-size: 0.85rem; color: var(--text-muted);">Masala Chai, Cold Coffee, Juices</p>
+                </a>
+                <a href="menu.html?category=Stationery" class="card card-hover" style="text-align: center; padding: 2rem 1.5rem;">
+                    <div style="font-size: 2.5rem; color: #8b5cf6; margin-bottom: 0.75rem;"><i class="fa-solid fa-book-open"></i></div>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Stationery & Supplies</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Registers, Gel Pens, Files, Xerox</p>
                 </a>
             </div>
         </div>
@@ -173,13 +314,15 @@
                         <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
                         <span>Campus<span style="color: var(--primary-light);">Mart</span></span>
                     </div>
-                    <p>Designed for college students and faculty to eliminate campus queues and streamline food, snacks, and daily essentials pre-orders with modern cloud technology.</p>
+                    <p>Designed for college students and faculty to eliminate campus queues and streamline food, snacks, daily essentials pre-orders and Gate 2 courier deliveries.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="menu.html">Mart & Menu</a></li>
+                        <li><a href="parcel.html">Gate 2 Parcel <span class="badge-soon">Coming Soon</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="openSalonComingSoonModal()">Men's Salon <span class="badge-soon">Coming Soon</span></a></li>
                         <li><a href="cart.html">Shopping Cart</a></li>
                         <li><a href="orders.html">Track Orders</a></li>
                     </ul>
@@ -234,9 +377,181 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script>
+        let allCampusShops = [];
+        let activeShopCategory = 'all';
+
+        function getShopEmoji(cat) {
+            switch (cat) {
+                case 'Canteen Food': return '🍔';
+                case 'Snacks & Chips': return '🍿';
+                case 'Chocolates & Candies': return '🍫';
+                case 'Drinks & Juices': return '🫖';
+                case 'Stationery': return '📚';
+                case 'Hostel Essentials': return '🏪';
+                default: return '🏬';
+            }
+        }
+
+        async function loadHomeShops() {
+            const grid = document.getElementById('home-shops-grid');
+            if (!grid) return;
+
+            try {
+                const res = await api.getShops();
+                if (res.success && res.shops && res.shops.length > 0) {
+                    allCampusShops = res.shops;
+                    renderShops(allCampusShops);
+                }
+            } catch (err) {
+                console.error('Error loading home shops:', err);
+            }
+        }
+
+        function selectShopCategory(cat, btn) {
+            activeShopCategory = cat;
+            document.querySelectorAll('.shop-filter-pill').forEach(p => {
+                p.classList.remove('active');
+                p.style.background = 'white';
+                p.style.color = '#475569';
+                p.style.borderColor = '#cbd5e1';
+                p.style.fontWeight = '600';
+            });
+
+            if (btn) {
+                btn.classList.add('active');
+                btn.style.background = 'var(--primary)';
+                btn.style.color = 'white';
+                btn.style.borderColor = 'var(--primary)';
+                btn.style.fontWeight = '700';
+            }
+
+            filterHomeShops();
+        }
+
+        function filterHomeShops() {
+            const query = (document.getElementById('shop-search-input')?.value || '').toLowerCase().trim();
+            
+            const filtered = allCampusShops.filter(shop => {
+                const matchesCat = (activeShopCategory === 'all') || (shop.category === activeShopCategory);
+                const sName = (shop.name || '').toLowerCase();
+                const sOwner = (shop.ownerName || '').toLowerCase();
+                const sMgr = (shop.managerName || '').toLowerCase();
+                const sLoc = (shop.location || '').toLowerCase();
+                const sDesc = (shop.description || '').toLowerCase();
+                const sId = (shop.shopId || '').toLowerCase();
+
+                const matchesSearch = !query || 
+                    sName.includes(query) || 
+                    sOwner.includes(query) || 
+                    sMgr.includes(query) || 
+                    sLoc.includes(query) || 
+                    sDesc.includes(query) ||
+                    sId.includes(query);
+
+                return matchesCat && matchesSearch;
+            });
+
+            const countLabel = document.getElementById('shop-count-label');
+            if (countLabel) {
+                countLabel.innerHTML = `Showing <strong>${filtered.length}</strong> of ${allCampusShops.length} campus outlets`;
+            }
+
+            renderShops(filtered);
+        }
+
+        function renderShops(shops) {
+            const grid = document.getElementById('home-shops-grid');
+            if (!grid) return;
+
+            if (shops.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1rem; background: white; border-radius: 16px; border: 1.5px dashed #cbd5e1;">
+                        <i class="fa-solid fa-store-slash" style="font-size: 3rem; color: #94a3b8; margin-bottom: 1rem;"></i>
+                        <h3 style="font-size: 1.25rem; font-weight: 800; color: #1e293b; margin-bottom: 0.5rem;">No Campus Shops Found</h3>
+                        <p style="color: #64748b; font-size: 0.92rem;">Try clearing your search term or selecting 'All Outlets'.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = shops.map((shop, idx) => {
+                const sid = shop.shopId || shop._id;
+                const isOpen = shop.isOpen !== false;
+                const emoji = getShopEmoji(shop.category);
+                const shopNumMatch = sid.match(/\d+/);
+                const shopNum = shopNumMatch ? shopNumMatch[0] : (idx + 1);
+
+                return `
+                    <div class="card card-hover" style="display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; border: 1.5px solid ${isOpen ? '#e2e8f0' : '#fecaca'}; border-radius: 16px; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.25s ease, box-shadow 0.25s ease;">
+                        <div style="height: 140px; overflow: hidden; position: relative;">
+                            <img src="${shop.image || 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600'}" alt="${shop.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                            
+                            <!-- Shop Number Pill -->
+                            <div style="position: absolute; top: 10px; left: 10px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px); color: #fb923c; padding: 3px 9px; border-radius: 8px; font-size: 0.76rem; font-weight: 800; border: 1px solid rgba(251, 146, 60, 0.4);">
+                                <i class="fa-solid fa-store"></i> Shop #${shopNum}
+                            </div>
+
+                            <!-- Open Status -->
+                            <div style="position: absolute; top: 10px; right: 10px;">
+                                <span class="shop-pill-status ${isOpen ? 'status-open' : 'status-closed'}" style="padding: 3px 9px; font-size: 0.72rem; font-weight: 800; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+                                    ${isOpen ? '● OPEN' : '● CLOSED'}
+                                </span>
+                            </div>
+
+                            <!-- Category Pill -->
+                            <div style="position: absolute; bottom: 8px; left: 10px; background: rgba(0,0,0,0.72); backdrop-filter: blur(4px); color: white; padding: 3px 9px; border-radius: 6px; font-size: 0.74rem; font-weight: 700;">
+                                ${emoji} ${shop.category}
+                            </div>
+
+                            <!-- Rating Pill -->
+                            <div style="position: absolute; bottom: 8px; right: 10px; background: rgba(255,255,255,0.92); color: #b45309; padding: 2px 7px; border-radius: 6px; font-size: 0.74rem; font-weight: 800;">
+                                ⭐ ${shop.rating || '4.8'}
+                            </div>
+                        </div>
+
+                        <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column;">
+                            <h3 style="font-size: 1.12rem; margin-bottom: 0.4rem; color: #0f172a; font-weight: 800; line-height: 1.3;">${shop.name}</h3>
+                            <p style="font-size: 0.84rem; color: #64748b; margin-bottom: 0.85rem; flex: 1; line-height: 1.5;">${shop.description || 'Verified TMU campus counter serving students & faculty.'}</p>
+                            
+                            <!-- Owner & Manager Details Badge -->
+                            <div style="margin-bottom: 0.75rem; background: #fff7ed; border: 1px solid #fed7aa; padding: 0.5rem 0.75rem; border-radius: 8px; font-size: 0.78rem;">
+                                <div style="font-weight: 700; color: #9a3412; display: flex; align-items: center; gap: 0.35rem;">
+                                    <i class="fa-solid fa-user-tie" style="color: #ea580c;"></i> 
+                                    Owner: <span>${shop.ownerName || 'Campus Merchant'}</span>
+                                </div>
+                                ${shop.managerName && shop.managerName.toLowerCase() !== 'self' ? `
+                                    <div style="color: #78350f; font-size: 0.74rem; margin-top: 2px; display: flex; align-items: center; gap: 0.35rem;">
+                                        <i class="fa-solid fa-id-badge" style="color: #d97706;"></i> Manager: ${shop.managerName}
+                                    </div>
+                                ` : ''}
+                                ${shop.phone && shop.phone.startsWith('+91 8') ? `
+                                    <div style="color: #0369a1; font-size: 0.74rem; margin-top: 2px; font-weight: 600;">
+                                        <i class="fa-solid fa-phone"></i> ${shop.phone}
+                                    </div>
+                                ` : ''}
+                            </div>
+
+                            <!-- Location & Timings -->
+                            <div style="font-size: 0.78rem; color: #475569; display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1rem; background: #f8fafc; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid #f1f5f9;">
+                                <div><i class="fa-solid fa-location-dot" style="color: var(--primary); width: 16px;"></i> ${shop.location || 'Campus Center'}</div>
+                                <div><i class="fa-regular fa-clock" style="color: #6366f1; width: 16px;"></i> ${shop.timing || '8:00 AM - 9:00 PM'}</div>
+                            </div>
+
+                            <a href="menu.html?shop=${sid}" class="btn ${isOpen ? 'btn-primary' : 'btn-outline'} btn-sm" style="width: 100%; justify-content: center; font-weight: 700; border-radius: 8px;">
+                                <i class="fa-solid fa-utensils"></i> ${isOpen ? 'Explore Menu & Order' : 'View Catalog (Closed)'}
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             checkAuth();
+            loadHomeShops();
         });
     </script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js"></script>
 </body>
 </html>

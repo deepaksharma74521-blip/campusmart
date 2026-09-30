@@ -4,9 +4,6 @@
    Modern, Clean, Responsive Mobile-First Design System
    ========================================================================== */
 
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
-
 /* --- Root CSS Variables --- */
 :root {
     --primary: #ea580c;
@@ -55,8 +52,8 @@
     --radius-lg: 16px;
     --radius-full: 9999px;
 
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 
     --transition: all 0.25s ease-in-out;
 }
@@ -177,6 +174,14 @@ button {
     justify-content: center;
     font-size: 1.2rem;
     box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
+}
+
+.brand-logo .brand-img {
+    height: 38px;
+    width: auto;
+    max-width: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(234, 88, 12, 0.25));
 }
 
 .brand-logo span span {
@@ -808,12 +813,14 @@ button {
     box-shadow: 0 2px 8px rgba(234, 88, 12, 0.25);
 }
 
-/* --- Food Items Grid --- */
+/* --- Food Items Grid (GPU Accelerated & Responsive) --- */
 .food-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem;
     margin-bottom: 3rem;
+    contain: layout style;
+    -webkit-overflow-scrolling: touch;
 }
 
 .food-card {
@@ -823,13 +830,18 @@ button {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: var(--transition);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
     box-shadow: var(--shadow-xs);
     position: relative;
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: 340px;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .food-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px) translateZ(0);
     box-shadow: var(--shadow-md);
     border-color: var(--border-hover);
 }
@@ -840,17 +852,19 @@ button {
     height: 180px;
     background: #f1f5f9;
     overflow: hidden;
+    contain: strict;
 }
 
 .food-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
+    transform: translateZ(0);
 }
 
 .food-card:hover .food-img {
-    transform: scale(1.06);
+    transform: scale(1.05) translateZ(0);
 }
 
 .food-type-tag {
@@ -1679,5 +1693,735 @@ button {
     border-color: var(--primary) !important;
     background: #fff7ed !important;
 }
+
+/* ==========================================================================
+   Feedback & Star Rating System Styles
+   ========================================================================== */
+
+/* Interactive Star Rating Selector */
+.star-rating-box {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 1.25rem 0 0.5rem 0;
+}
+
+.star-rate-btn {
+    background: transparent;
+    border: none;
+    font-size: 2.2rem;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: transform 0.15s ease, color 0.15s ease;
+    padding: 0.2rem;
+}
+
+.star-rate-btn:hover {
+    transform: scale(1.2);
+}
+
+.star-rate-btn.active,
+.star-rate-btn.hover {
+    color: #f59e0b;
+    text-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.rating-score-label {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--secondary);
+    min-height: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Feedback Tag Pills */
+.feedback-tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.feedback-tag-pill {
+    background: #f1f5f9;
+    border: 1.5px solid #e2e8f0;
+    border-radius: var(--radius-full);
+    padding: 0.4rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    user-select: none;
+}
+
+.feedback-tag-pill:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: #fff7ed;
+}
+
+.feedback-tag-pill.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 2px 6px rgba(234, 88, 12, 0.3);
+}
+
+/* Feedback Badge on Order Cards */
+.feedback-rated-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    border: 1px solid #fde68a;
+}
+
+/* Admin Feedback Statistics Summary */
+.feedback-overview-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+}
+
+@media (max-width: 768px) {
+    .feedback-overview-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.feedback-score-card {
+    background: white;
+    padding: 1.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback-score-big {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--secondary);
+    line-height: 1;
+    font-family: var(--font-heading);
+}
+
+.feedback-stars-display {
+    color: #f59e0b;
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    display: flex;
+    gap: 0.2rem;
+}
+
+.feedback-breakdown-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rating-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.85rem;
+}
+
+.rating-bar-row:last-child {
+    margin-bottom: 0;
+}
+
+.rating-bar-label {
+    width: 45px;
+    font-weight: 600;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.rating-bar-track {
+    flex: 1;
+    height: 9px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.rating-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b, #ea580c);
+    border-radius: 6px;
+    transition: width 0.4s ease;
+}
+
+.rating-bar-count {
+    width: 35px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Feedback Tag Display Pill (Read Only) */
+.feedback-tag-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    margin: 0.15rem;
+}
+
+/* ==========================================================================
+   Order Ready Real-time Pop-up Modal & Sound Alerts
+   ========================================================================== */
+@keyframes orderReadyPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.6);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 16px rgba(22, 163, 74, 0);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+        transform: scale(1);
+    }
+}
+
+@keyframes popInBounce {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+    70% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.04);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.order-ready-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.order-ready-modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.order-ready-modal-card {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    border: 2px solid #86efac;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-align: center;
+}
+
+.order-ready-modal-backdrop.active .order-ready-modal-card {
+    animation: popInBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.order-ready-modal-header {
+    background: linear-gradient(135deg, #15803d, #16a34a);
+    color: white;
+    padding: 2rem 1.5rem 1.25rem 1.5rem;
+    position: relative;
+}
+
+.order-ready-icon-wrap {
+    width: 76px;
+    height: 76px;
+    background: white;
+    color: #16a34a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin: 0 auto 0.85rem auto;
+    animation: orderReadyPulse 2s infinite;
+}
+
+.order-ready-modal-body {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.order-ready-token-box {
+    background: #f0fdf4;
+    border: 2px dashed #86efac;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-ready-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 480px) {
+    .order-ready-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Multi-Shop Outlets & Pill Buttons Styling
+   ========================================================================== */
+.shop-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    border: 1.5px solid #cbd5e1;
+    background: #ffffff;
+    color: var(--secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.shop-filter-pill:hover {
+    border-color: var(--primary);
+    background: #fff7ed;
+}
+
+.shop-filter-pill.active {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.25);
+}
+
+.shop-filter-pill.active .shop-pill-status {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    border-color: transparent;
+}
+
+.shop-pill-icon {
+    font-size: 0.95rem;
+}
+
+.shop-pill-status {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.shop-pill-status.status-open {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+}
+
+.shop-pill-status.status-closed {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+.shop-pill-closed {
+    opacity: 0.8;
+}
+
+.shop-item-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 2px 7px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* --- Real-Time Shop Owner Order Alert Modal & Sound Animations --- */
+.order-alert-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.order-alert-modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.order-alert-card {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 25px 50px -12px rgba(234, 88, 12, 0.45), 0 0 0 2.5px #ea580c;
+    overflow: hidden;
+    transform: scale(0.88) translateY(20px);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(234, 88, 12, 0.25);
+    animation: orderPulseGlow 2s infinite alternate;
+}
+
+.order-alert-modal-backdrop.active .order-alert-card {
+    transform: scale(1) translateY(0);
+}
+
+@keyframes orderPulseGlow {
+    0% { box-shadow: 0 20px 45px -10px rgba(234, 88, 12, 0.4), 0 0 0 2px #ea580c; }
+    100% { box-shadow: 0 25px 60px -5px rgba(234, 88, 12, 0.75), 0 0 0 4px #f97316; }
+}
+
+.order-alert-header {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    color: white;
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-alert-badge {
+    background: #fff;
+    color: #c2410c;
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 0.35rem 0.8rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.order-alert-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.order-alert-close:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.1);
+}
+
+.order-alert-body {
+    padding: 1.35rem;
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.order-alert-token-box {
+    background: linear-gradient(135deg, #fff7ed, #ffedd5);
+    border: 2px dashed #f97316;
+    border-radius: 14px;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.order-alert-token-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9a3412;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.order-alert-token-val {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #c2410c;
+    line-height: 1.15;
+    margin: 0.25rem 0;
+}
+
+.order-alert-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.88rem;
+}
+
+.order-alert-items-list {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.85rem;
+    margin: 1rem 0;
+}
+
+.order-alert-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.order-alert-item-row:last-child {
+    border-bottom: none;
+}
+
+.order-alert-footer {
+    background: #f8fafc;
+    padding: 1rem 1.4rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+/* Sound Indicator Badge */
+.sound-badge-active {
+    background: #dcfce7 !important;
+    color: #15803d !important;
+    border-color: #86efac !important;
+}
+
+.sound-badge-muted {
+    background: #fee2e2 !important;
+    color: #b91c1c !important;
+    border-color: #fca5a5 !important;
+}
+
+/* Coming Soon Badges & Modals */
+.badge-soon {
+    background: linear-gradient(135deg, #ea580c, #f59e0b);
+    color: #ffffff !important;
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0 2px 6px rgba(234, 88, 12, 0.35);
+    animation: pulseBadgeSoon 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseBadgeSoon {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.88; }
+}
+
+.coming-soon-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.coming-soon-modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.coming-soon-modal-card {
+    background: #ffffff;
+    border-radius: 20px;
+    max-width: 520px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1.5px solid #fed7aa;
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.coming-soon-modal-backdrop.active .coming-soon-modal-card {
+    transform: translateY(0) scale(1);
+}
+
+/* Automatic Smart App Download & Install Banner */
+.auto-apk-banner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    max-width: 400px;
+    width: calc(100% - 48px);
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.22), 0 0 0 1.5px #fed7aa;
+    z-index: 99998;
+    padding: 1.15rem;
+    transform: translateY(140%);
+    opacity: 0;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auto-apk-banner.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .auto-apk-banner {
+        bottom: 76px;
+        right: 14px;
+        left: 14px;
+        width: auto;
+    }
+}
+
+/* Food Freshness & Temperature Timer */
+.freshness-timer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.65rem 0.95rem;
+    border-radius: var(--radius-md);
+    font-size: 0.84rem;
+    font-weight: 600;
+    margin: 0.75rem 0;
+    line-height: 1.4;
+}
+
+.freshness-timer.hot {
+    background: linear-gradient(135deg, #fff7ed, #ffedd5);
+    border: 1.5px solid #fdba74;
+    color: #9a3412;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.12);
+}
+
+.freshness-timer.hot .timer-tick {
+    background: #ea580c;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-weight: 800;
+    font-size: 0.92rem;
+    animation: pulseTimer 1.5s infinite;
+}
+
+.freshness-timer.cold {
+    background: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    color: #475569;
+}
+
+.freshness-timer.prep {
+    background: #eff6ff;
+    border: 1.5px solid #bfdbfe;
+    color: #1e40af;
+}
+
+@keyframes pulseTimer {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.88; transform: scale(1.04); }
+}
+
+
+
+
+
+
 
 

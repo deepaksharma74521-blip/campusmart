@@ -2,16 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Admin Dashboard – Campus Mart</title>
-    <!-- Google Fonts -->
+    <!-- Instant Startup Critical CSS & DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        /* Instant Cold Boot Paint (0ms White-Screen Eliminator) */
+        :root { --primary: #ea580c; --bg-main: #f8fafc; }
+        html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
+        .navbar { background: #ffffff; min-height: 64px; }
+    </style>
+    <!-- Google Fonts with Swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-blocking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+    <!-- Tesseract OCR for client-side Menu Card scanning (Deferred) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 </head>
 <body style="background-color: #f1f5f9;">
 
@@ -28,12 +50,20 @@
                 </span>
             </div>
 
-            <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <!-- Live Order Sound & Popup Alert Controls -->
+                <button id="admin-sound-toggle-btn" type="button" onclick="toggleAdminOrderSound()" class="btn btn-sm" style="background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10b981; color: #a7f3d0; font-weight: 700; border-radius: 20px; padding: 0.35rem 0.8rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem;" title="Toggle Order Chime & Voice Alert">
+                    <i class="fa-solid fa-bell fa-shake"></i> <span id="admin-sound-status-text">Alerts: ON 🔊</span>
+                </button>
+                <button type="button" onclick="testNewOrderAlertPopup()" class="btn btn-sm" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; padding: 0.35rem 0.75rem; font-size: 0.8rem;" title="Test Sound & Modal Alert">
+                    <i class="fa-solid fa-volume-high"></i> Test Alert
+                </button>
                 <a href="menu.html" class="btn btn-outline btn-sm" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255,255,255,0.3); color: white;">
                     <i class="fa-solid fa-eye"></i> Student View
                 </a>
-                <div style="font-size: 0.88rem; font-weight: 600; color: #e2e8f0; display: none;" class="desktop-only" id="admin-user-info">
+                <div style="font-size: 0.88rem; font-weight: 600; color: #e2e8f0;" id="admin-user-info">
                     <i class="fa-solid fa-user-gear"></i> <span id="admin-user-name">Admin</span>
+                    <span id="admin-counter-badge" style="background: rgba(234, 88, 12, 0.3); border: 1px solid var(--primary-light); color: #ffedd5; padding: 2px 8px; border-radius: 12px; font-size: 0.72rem; margin-left: 0.4rem; font-weight: 700;">🏪 All Shops</span>
                 </div>
                 <button onclick="handleLogout()" class="btn btn-primary btn-sm">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
@@ -44,6 +74,37 @@
 
     <!-- Admin Main Body -->
     <main class="container" style="flex: 1; padding-bottom: 3rem;">
+
+        <!-- Active Shop / Counter Scope Banner -->
+        <div id="shop-scope-banner" style="background: white; border: 1.5px solid #cbd5e1; padding: 0.9rem 1.25rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 42px; height: 42px; border-radius: 10px; background: #fff7ed; border: 1px solid #fed7aa; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.25rem;">
+                    <i class="fa-solid fa-store" id="shop-scope-icon"></i>
+                </div>
+                <div>
+                    <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px;">
+                        Active Shop / Counter View:
+                    </div>
+                    <div style="font-size: 1.05rem; font-weight: 800; color: var(--secondary);" id="shop-scope-title">
+                        All Shops & Counters (Master View)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Dropdown for Super Admin / Multi-shop Staff -->
+            <div id="shop-switcher-wrap" style="display: flex; align-items: center; gap: 0.6rem;">
+                <label for="admin-active-shop-select" style="font-size: 0.85rem; font-weight: 700; color: #475569;">Switch Counter:</label>
+                <select id="admin-active-shop-select" class="form-select no-icon" style="padding: 0.45rem 0.9rem; font-size: 0.88rem; font-weight: 600; border-radius: 8px; border: 1.5px solid var(--primary); cursor: pointer;" onchange="handleShopScopeChange(this.value)">
+                    <option value="All" selected>🏪 All Shops & Counters (Master View)</option>
+                    <option value="Canteen Food">🍔 Canteen Food & Hot Meals</option>
+                    <option value="Stationery">📚 Stationery & Study Supplies</option>
+                    <option value="Chocolates & Candies">🍫 Chocolates & Sweets</option>
+                    <option value="Snacks & Chips">🍿 Packaged Snacks & Chips</option>
+                    <option value="Drinks & Juices">🥤 Cold Drinks & Juices</option>
+                    <option value="Hostel Essentials">🧴 Daily / Hostel Essentials</option>
+                </select>
+            </div>
+        </div>
 
         <!-- 1-Click Sample Dishes Demo Helper -->
         <div style="background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 1.5px solid #fed7aa; padding: 1rem 1.25rem; border-radius: var(--radius-lg); margin-bottom: 1.75rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: var(--shadow-sm);">
@@ -113,15 +174,34 @@
 
         <!-- Admin Navigation Tabs -->
         <div class="admin-tabs">
-            <button class="admin-tab-btn active" data-tab="orders">
+            <button class="admin-tab-btn active" data-tab="orders" id="tab-btn-orders">
                 <i class="fa-solid fa-bell-concierge"></i> Live Orders Management
             </button>
-            <button class="admin-tab-btn" data-tab="menu">
+            <button class="admin-tab-btn" data-tab="menu" id="tab-btn-menu">
                 <i class="fa-solid fa-boxes-stacked"></i> Products & Menu Items (CRUD)
             </button>
-            <button class="admin-tab-btn" data-tab="staff">
+            <button class="admin-tab-btn" data-tab="shop" id="tab-btn-shop">
+                <i class="fa-solid fa-store"></i> My Shop Profile
+            </button>
+            <button class="admin-tab-btn" data-tab="staff" id="tab-btn-staff">
                 <i class="fa-solid fa-user-shield"></i> Staff Approvals
                 <span id="pending-staff-badge" style="display: none; background: #ef4444; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
+            </button>
+            <button class="admin-tab-btn" data-tab="parcels" id="tab-btn-parcels">
+                <i class="fa-solid fa-truck-ramp-box" style="color: #f97316;"></i> Gate 2 Parcel Tasks
+                <span id="admin-parcels-badge" style="display: none; background: #ea580c; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
+            </button>
+            <button class="admin-tab-btn" data-tab="feedbacks" id="tab-btn-feedbacks">
+                <i class="fa-solid fa-star" style="color: #f59e0b;"></i> Student Feedbacks & Ratings
+                <span id="feedback-count-badge" style="background: #f59e0b; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
+            </button>
+            <button class="admin-tab-btn" data-tab="commissions" id="tab-btn-commissions">
+                <i class="fa-solid fa-coins" style="color: #10b981;"></i> Revenue & Split Ledger
+                <span id="admin-commissions-badge" style="background: #10b981; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">₹2.50 Split</span>
+            </button>
+            <button class="admin-tab-btn" data-tab="delivery" id="tab-btn-delivery">
+                <i class="fa-solid fa-person-biking" style="color: #0284c7;"></i> Delivery Partners & Fleet
+                <span id="admin-delivery-badge" style="display: none; background: #0284c7; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
             </button>
         </div>
 
@@ -129,13 +209,22 @@
         <section id="admin-orders-section">
             <div class="card" style="margin-bottom: 1.5rem;">
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
-                    <div class="search-box-wrap" style="max-width: 380px;">
+                    <div class="search-box-wrap" style="max-width: 320px;">
                         <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" id="admin-order-search" class="search-input" placeholder="Search by Order ID or Student...">
+                        <input type="text" id="admin-order-search" class="search-input" placeholder="Search Order ID, Name, Roll...">
                     </div>
 
+                    <!-- Faculty vs Student Filter -->
+                    <div class="category-filter-pills" style="display: flex; gap: 0.3rem; align-items: center; background: #f8fafc; padding: 0.25rem 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                        <span style="font-size: 0.76rem; font-weight: 700; color: #64748b; margin-right: 0.2rem;"><i class="fa-solid fa-users"></i> Role:</span>
+                        <button class="filter-pill user-type-filter-pill active" data-type="all" style="padding: 0.25rem 0.6rem; font-size: 0.8rem;">All</button>
+                        <button class="filter-pill user-type-filter-pill" data-type="Student" style="padding: 0.25rem 0.6rem; font-size: 0.8rem;">🎓 Students</button>
+                        <button class="filter-pill user-type-filter-pill" data-type="Faculty" style="padding: 0.25rem 0.6rem; font-size: 0.8rem;">👨‍🏫 Faculty</button>
+                    </div>
+
+                    <!-- Status Filter Pills -->
                     <div class="category-filter-pills">
-                        <button class="filter-pill order-filter-pill active" data-filter="all">All</button>
+                        <button class="filter-pill order-filter-pill active" data-filter="all">All Status</button>
                         <button class="filter-pill order-filter-pill" data-filter="Pending">Pending</button>
                         <button class="filter-pill order-filter-pill" data-filter="Preparing">Preparing</button>
                         <button class="filter-pill order-filter-pill" data-filter="Ready">Ready</button>
@@ -150,8 +239,9 @@
                     <thead>
                         <tr>
                             <th>Order ID & Time</th>
-                            <th>Student Info</th>
-                            <th>Items & Slot</th>
+                            <th>Customer & Receiving Mode</th>
+                            <th>Items & Customer Slot</th>
+                            <th>Kitchen Prep Time</th>
                             <th>Total & Pay</th>
                             <th>Status</th>
                             <th>Update Status</th>
@@ -174,19 +264,34 @@
                         <input type="text" id="admin-food-search" class="search-input" placeholder="Search product or dish name...">
                     </div>
 
-                    <div class="category-filter-pills" style="overflow-x: auto; display: flex; flex-wrap: nowrap; gap: 0.4rem;">
+                    <div class="category-filter-pills" style="overflow-x: auto; display: flex; flex-wrap: nowrap; gap: 0.4rem; padding-bottom: 0.3rem; scrollbar-width: thin;">
                         <button class="filter-pill admin-food-filter-pill active" data-category="all">All</button>
-                        <button class="filter-pill admin-food-filter-pill" data-category="Canteen Food">Food</button>
-                        <button class="filter-pill admin-food-filter-pill" data-category="Chocolates & Candies">Chocolates</button>
-                        <button class="filter-pill admin-food-filter-pill" data-category="Snacks & Chips">Snacks</button>
-                        <button class="filter-pill admin-food-filter-pill" data-category="Drinks & Juices">Drinks</button>
-                        <button class="filter-pill admin-food-filter-pill" data-category="Stationery">Stationery</button>
-                        <button class="filter-pill admin-food-filter-pill" data-category="Hostel Essentials">Essentials</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="drinks">Drinks & Shakes</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="rolls">Rolls & Wraps</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="sandwiches">Burgers & Subs</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="pizzas">Pizzas & Breads</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="chinese">Pastas & Chinese</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="momos">Momos</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="curries">Main Course</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="breads">Naan & Rotis</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="thalis">Thalis</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="desserts">Waffles & Sweets</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="south_indian">South Indian</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="snacks">Snacks & Maggi</button>
+                        <button class="filter-pill admin-food-filter-pill" data-category="stationery">Stationery & Mart</button>
                     </div>
 
-                    <button onclick="openAddFoodModal()" class="btn btn-primary btn-sm">
-                        <i class="fa-solid fa-plus"></i> Add New Product / Item
-                    </button>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button onclick="openBulkAddModal()" class="btn btn-sm" style="background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; font-weight: 700; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-layer-group"></i> 📦 Bulk Add Items (+ Photos)
+                        </button>
+                        <button onclick="openMenuScannerModal()" class="btn btn-sm" style="background: linear-gradient(135deg, #7c3aed, #ec4899); color: white; border: none; font-weight: 700; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);">
+                            <i class="fa-solid fa-camera"></i> 📸 Smart Scan Menu Card (AI / OCR)
+                        </button>
+                        <button onclick="openAddFoodModal()" class="btn btn-primary btn-sm">
+                            <i class="fa-solid fa-plus"></i> Add Single Item
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -234,7 +339,8 @@
                                 <th>Applicant Name</th>
                                 <th>College Email & Phone</th>
                                 <th>Roll No & Dept</th>
-                                <th>Requested Designation</th>
+                                <th>Designation</th>
+                                <th>Assigned Shop Counter</th>
                                 <th>Applied Time</th>
                                 <th>Action (Super Admin Decision)</th>
                             </tr>
@@ -252,7 +358,7 @@
                     <i class="fa-solid fa-user-check"></i> Approved Active Campus Mart Staff
                 </h3>
                 <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.25rem;">
-                    Staff members who currently have full access to manage orders, products, and catalog.
+                    Staff members who currently have access to manage their assigned shop counters and orders.
                 </p>
 
                 <div class="table-responsive">
@@ -260,6 +366,7 @@
                         <thead>
                             <tr>
                                 <th>Staff Name</th>
+                                <th>Assigned Counter / Shop</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Designation / Role</th>
@@ -274,7 +381,782 @@
                 </div>
             </div>
         </section>
+
+        <!-- TAB 4: STUDENT FEEDBACKS & RATINGS SECTION -->
+        <section id="admin-feedbacks-section" style="display: none;">
+            <!-- Feedback Overview Stats & Rating Bars -->
+            <div class="feedback-overview-grid">
+                <!-- Average Score Card -->
+                <div class="feedback-score-card">
+                    <div class="feedback-score-big" id="feedback-avg-display">4.8</div>
+                    <div class="feedback-stars-display" id="feedback-stars-summary">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <div style="font-weight: 700; color: var(--secondary); font-size: 0.95rem;">Overall Student Satisfaction</div>
+                    <div style="color: var(--text-muted); font-size: 0.82rem; margin-top: 0.25rem;">
+                        Based on <span id="feedback-total-reviews-label" style="font-weight: 700; color: var(--primary);">0</span> verified reviews
+                    </div>
+                </div>
+
+                <!-- 5-Star Breakdown Card -->
+                <div class="feedback-breakdown-card">
+                    <div style="font-weight: 700; font-size: 0.95rem; color: var(--secondary); margin-bottom: 0.75rem;">
+                        Rating Distribution Breakdown
+                    </div>
+                    
+                    <div class="rating-bar-row">
+                        <div class="rating-bar-label">5 <i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.75rem;"></i></div>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" id="bar-star-5" style="width: 0%;"></div></div>
+                        <div class="rating-bar-count" id="count-star-5">0</div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <div class="rating-bar-label">4 <i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.75rem;"></i></div>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" id="bar-star-4" style="width: 0%;"></div></div>
+                        <div class="rating-bar-count" id="count-star-4">0</div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <div class="rating-bar-label">3 <i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.75rem;"></i></div>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" id="bar-star-3" style="width: 0%;"></div></div>
+                        <div class="rating-bar-count" id="count-star-3">0</div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <div class="rating-bar-label">2 <i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.75rem;"></i></div>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" id="bar-star-2" style="width: 0%;"></div></div>
+                        <div class="rating-bar-count" id="count-star-2">0</div>
+                    </div>
+                    <div class="rating-bar-row">
+                        <div class="rating-bar-label">1 <i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.75rem;"></i></div>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" id="bar-star-1" style="width: 0%;"></div></div>
+                        <div class="rating-bar-count" id="count-star-1">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedbacks Filter Bar -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+                    <div class="search-box-wrap" style="max-width: 360px;">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="admin-feedback-search" class="search-input" placeholder="Search feedback comment, student or order ID...">
+                    </div>
+
+                    <div class="category-filter-pills">
+                        <button class="filter-pill feedback-filter-pill active" data-star="all">All Stars</button>
+                        <button class="filter-pill feedback-filter-pill" data-star="5">5 ⭐</button>
+                        <button class="filter-pill feedback-filter-pill" data-star="4">4 ⭐</button>
+                        <button class="filter-pill feedback-filter-pill" data-star="3">3 ⭐</button>
+                        <button class="filter-pill feedback-filter-pill" data-star="2">2 ⭐</button>
+                        <button class="filter-pill feedback-filter-pill" data-star="1">1 ⭐</button>
+                    </div>
+
+                    <button onclick="loadFeedbackData()" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-arrows-rotate"></i> Refresh Reviews
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedbacks Table -->
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Student & Roll No</th>
+                            <th>Order ID</th>
+                            <th>Rating</th>
+                            <th>Impression Tags</th>
+                            <th style="min-width: 260px;">Review / Feedback Comment</th>
+                            <th>Date & Time</th>
+                            <th>Moderation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-feedback-table-body">
+                        <!-- Populated by admin.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TAB 5: MY SHOP PROFILE MANAGEMENT SECTION -->
+        <section id="admin-shop-section" style="display: none;">
+            <div class="card" style="margin-bottom: 2rem; border-left: 4px solid var(--primary);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h3 style="font-size: 1.25rem; color: var(--secondary); display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-store" style="color: var(--primary);"></i> Shop & Counter Profile Management
+                        </h3>
+                        <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.2rem;">
+                            Manage your shop information, operating status (Open/Closed), counter location, and contact details shown to students.
+                        </p>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span id="shop-open-status-badge" style="background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.82rem; border: 1px solid #86efac;">
+                            🟢 OPEN FOR PRE-ORDERS
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Quick Action Banner for Shop Owners: Upload Menu Photo -->
+                <div style="background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 12px; padding: 1.25rem 1.5rem; color: white; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);">
+                    <div>
+                        <div style="font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-wand-magic-sparkles" style="color: #fbbf24;"></i> 📸 Auto-Add Menu by Uploading Rate Card Photo
+                        </div>
+                        <div style="font-size: 0.85rem; opacity: 0.92; margin-top: 0.25rem;">
+                            Bas apne counter ke Menu Card ya Rate list ka photo khincho ya select karo — saare items, prices & pictures automatic add ho jayenge!
+                        </div>
+                    </div>
+                    <button type="button" class="btn" onclick="openMenuScannerModal()" style="background: #ffffff; color: #4338ca; font-weight: 800; border: none; padding: 0.65rem 1.25rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-camera"></i> Scan Menu Photo Now
+                    </button>
+                </div>
+
+                <!-- Shop Selector & Register New Shop Bar -->
+                <div style="background: #f1f5f9; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label class="form-label" for="shop-profile-select" style="font-weight: 700; color: #1e293b; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-store" style="color: var(--primary);"></i> Choose Shop to Edit / Update:
+                        </label>
+                        <select id="shop-profile-select" class="form-select no-icon" onchange="onShopProfileSelectChange(this.value)" style="font-weight: 700; font-size: 0.95rem; background: white;">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="startAddNewShop()" style="font-weight: 700; padding: 0.6rem 1rem;">
+                            <i class="fa-solid fa-plus"></i> + Add / Register New Shop
+                        </button>
+                    </div>
+                </div>
+
+                <form id="shop-profile-form" onsubmit="handleSaveShopProfile(event)">
+                    <input type="hidden" id="shop-form-id" value="shop-1">
+                    <h4 id="shop-form-heading" style="font-size: 1.1rem; color: var(--secondary); font-weight: 800; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1.5px solid #e2e8f0;">
+                        🏪 Edit Shop Profile
+                    </h4>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="shop-form-name">
+                                <i class="fa-solid fa-store" style="color: var(--primary);"></i> Shop / Brand Name *
+                            </label>
+                            <input type="text" id="shop-form-name" class="form-input no-icon" placeholder="e.g. TMU Central Food Court" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="shop-form-owner">
+                                <i class="fa-solid fa-user-tie" style="color: var(--primary);"></i> Owner / Manager Name *
+                            </label>
+                            <input type="text" id="shop-form-owner" class="form-input no-icon" placeholder="e.g. Ramesh Sharma" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="shop-form-phone">
+                                <i class="fa-solid fa-phone" style="color: var(--primary);"></i> Contact Phone Number
+                            </label>
+                            <input type="tel" id="shop-form-phone" class="form-input no-icon" placeholder="+91 98765 43210">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="shop-form-location">
+                                <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Counter / Campus Location *
+                            </label>
+                            <input type="text" id="shop-form-location" class="form-input no-icon" placeholder="e.g. Food Court, Ground Floor, Counter #1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="shop-form-timing">
+                                <i class="fa-solid fa-clock" style="color: var(--primary);"></i> Mart / Canteen Hours
+                            </label>
+                            <input type="text" id="shop-form-timing" class="form-input no-icon" placeholder="e.g. 8:00 AM - 8:30 PM">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="shop-form-category">
+                                <i class="fa-solid fa-tags" style="color: var(--primary);"></i> Primary Category / Specialty
+                            </label>
+                            <select id="shop-form-category" class="form-select no-icon">
+                                <option value="Canteen Food">🍔 Canteen Food & Hot Meals</option>
+                                <option value="Snacks & Chips">🍿 Bakery & Packaged Snacks</option>
+                                <option value="Chocolates & Candies">🍫 Chocolates & Sweets</option>
+                                <option value="Drinks & Juices">🥤 Chai, Shakes & Juices</option>
+                                <option value="Stationery">📚 Stationery & Study Items</option>
+                                <option value="Hostel Essentials">🧴 Daily / Hostel Essentials</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label class="form-label" for="shop-form-image">
+                            <i class="fa-solid fa-image" style="color: var(--primary);"></i> Shop Banner / Photo Image URL
+                        </label>
+                        <input type="url" id="shop-form-image" class="form-input no-icon" placeholder="https://images.unsplash.com/..." oninput="updateShopBannerPreview(this.value)">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label class="form-label" for="shop-form-desc">
+                            <i class="fa-solid fa-pen-nib" style="color: var(--primary);"></i> Shop Description & Specialties
+                        </label>
+                        <textarea id="shop-form-desc" class="form-textarea no-icon" rows="2" placeholder="Tell students what makes your counter special..."></textarea>
+                    </div>
+
+                    <!-- Payment & UPI QR Code Settings Section -->
+                    <div style="background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border: 1.5px solid #86efac; border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px dashed #93c5fd; padding-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 800; color: #166534; display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+                                    <i class="fa-solid fa-qrcode" style="font-size: 1.25rem; color: #0284c7;"></i>
+                                    Shop UPI & Payment QR Code Settings
+                                </h4>
+                                <p style="font-size: 0.8rem; color: #0369a1; margin: 0.2rem 0 0 0;">
+                                    Upload your counter's Google Pay / PhonePe / Paytm QR code. Students will scan this at checkout to pay directly to you!
+                                </p>
+                            </div>
+                            <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700;">
+                                <i class="fa-solid fa-shield-halved"></i> Direct Vendor Payout
+                            </span>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 180px; gap: 1.25rem; align-items: start;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label class="form-label" for="shop-form-upi-id" style="color: #166534; font-weight: 700; font-size: 0.84rem;">
+                                        <i class="fa-solid fa-at" style="color: #0284c7;"></i> Shop UPI ID (VPA) *
+                                    </label>
+                                    <input type="text" id="shop-form-upi-id" class="form-input no-icon" placeholder="e.g. yummycounter@okicici or 9876543210@paytm" style="background: white; border-color: #86efac; font-weight: 600;" oninput="onShopUpiChanged()">
+                                </div>
+
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label class="form-label" for="shop-form-payee-name" style="color: #166534; font-weight: 700; font-size: 0.84rem;">
+                                        <i class="fa-solid fa-id-card" style="color: #0284c7;"></i> Payee / Business Name *
+                                    </label>
+                                    <input type="text" id="shop-form-payee-name" class="form-input no-icon" placeholder="e.g. Yummy Fast Food Counter" style="background: white; border-color: #86efac; font-weight: 600;">
+                                </div>
+
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label class="form-label" for="shop-form-qr-note" style="color: #166534; font-weight: 700; font-size: 0.84rem;">
+                                        <i class="fa-solid fa-comment-dots" style="color: #0284c7;"></i> Payment Instructions for Students (Optional)
+                                    </label>
+                                    <input type="text" id="shop-form-qr-note" class="form-input no-icon" placeholder="e.g. Please mention Order ID in payment remarks & collect token." style="background: white; border-color: #86efac; font-size: 0.85rem;">
+                                </div>
+
+                                <div class="form-group" style="grid-column: span 2; margin-bottom: 0;">
+                                    <label class="form-label" style="color: #166534; font-weight: 700; font-size: 0.84rem;">
+                                        <i class="fa-solid fa-cloud-arrow-up" style="color: #0284c7;"></i> Upload QR Code Image (Screenshot / Photo)
+                                    </label>
+                                    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                        <input type="file" id="shop-qr-file-input" accept="image/*" style="display: none;" onchange="handleShopQrFileUpload(event)">
+                                        <button type="button" class="btn btn-sm btn-outline" onclick="document.getElementById('shop-qr-file-input').click()" style="background: white; border-color: #0284c7; color: #0369a1; font-weight: 700;">
+                                            <i class="fa-solid fa-image"></i> Choose QR Image File
+                                        </button>
+                                        <button type="button" class="btn btn-sm" onclick="generateAutoUpiQr()" style="background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 600;">
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Generate from UPI ID
+                                        </button>
+                                        <button type="button" id="shop-qr-remove-btn" class="btn btn-sm btn-outline" onclick="removeShopQrImage()" style="color: #dc2626; border-color: #fca5a5; display: none;">
+                                            <i class="fa-solid fa-trash-can"></i> Remove QR
+                                        </button>
+                                    </div>
+                                    <input type="hidden" id="shop-form-qr-image" value="">
+                                </div>
+                            </div>
+
+                            <!-- Live QR Preview Card -->
+                            <div style="background: white; border: 2px solid #93c5fd; border-radius: 12px; padding: 0.75rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #0369a1; margin-bottom: 0.4rem; letter-spacing: 0.5px;">
+                                    Student Checkout View
+                                </div>
+                                <div id="shop-qr-preview-box" style="width: 140px; height: 140px; margin: 0 auto; background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                                    <img id="shop-qr-preview-img" src="" alt="UPI QR Preview" style="width: 100%; height: 100%; object-fit: contain; display: none;">
+                                    <div id="shop-qr-placeholder" style="color: #94a3b8; font-size: 0.75rem; padding: 0.5rem;">
+                                        <i class="fa-solid fa-qrcode" style="font-size: 2.5rem; margin-bottom: 0.25rem; color: #cbd5e1; display: block;"></i>
+                                        No QR Uploaded
+                                    </div>
+                                </div>
+                                <div id="shop-qr-preview-vpa" style="font-size: 0.72rem; font-weight: 700; color: #334155; margin-top: 0.4rem; word-break: break-all;">
+                                    campusmart@upi
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shop Status Toggle Switch -->
+                    <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <div style="font-weight: 700; color: var(--secondary); font-size: 0.95rem;">
+                                <i class="fa-solid fa-door-open" style="color: var(--primary);"></i> Pre-Order Taking Status
+                            </div>
+                            <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.2rem;">
+                                When turned OFF, students will see "Shop Currently Closed" and won't be able to place new orders.
+                            </div>
+                        </div>
+                        <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-weight: 700;">
+                            <input type="checkbox" id="shop-form-isopen" checked style="width: 20px; height: 20px; accent-color: #16a34a;" onchange="updateShopStatusBadge(this.checked)">
+                            <span id="shop-form-status-label" style="font-size: 0.95rem; color: #166534;">Open for Orders</span>
+                        </label>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                        <button type="submit" id="save-shop-btn" class="btn btn-primary">
+                            <i class="fa-solid fa-floppy-disk"></i> <span id="save-shop-btn-text">Update & Save Shop Profile</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- TAB: GATE 2 PARCEL RUNNER MANAGEMENT SECTION -->
+        <section id="admin-parcels-section" style="display: none;">
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+                    <div class="search-box-wrap" style="max-width: 320px;">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="admin-parcel-search" class="search-input" placeholder="Search Parcel ID, Student, Room...">
+                    </div>
+
+                    <!-- Parcel Status Filter Pills -->
+                    <div class="category-filter-pills">
+                        <button class="filter-pill parcel-filter-pill active" data-filter="all" onclick="filterAdminParcels('all', this)">All Tasks</button>
+                        <button class="filter-pill parcel-filter-pill" data-filter="Requested" onclick="filterAdminParcels('Requested', this)">🟡 Requested</button>
+                        <button class="filter-pill parcel-filter-pill" data-filter="Runner Assigned" onclick="filterAdminParcels('Runner Assigned', this)">🟣 Runner Assigned</button>
+                        <button class="filter-pill parcel-filter-pill" data-filter="Collected at Gate 2" onclick="filterAdminParcels('Collected at Gate 2', this)">🔵 At Gate 2</button>
+                        <button class="filter-pill parcel-filter-pill" data-filter="Out for Delivery" onclick="filterAdminParcels('Out for Delivery', this)">🛵 On Way</button>
+                        <button class="filter-pill parcel-filter-pill" data-filter="Delivered" onclick="filterAdminParcels('Delivered', this)">🟢 Delivered</button>
+                    </div>
+
+                    <a href="parcel.html" target="_blank" class="btn btn-outline btn-sm" style="color: var(--primary); border-color: var(--primary);">
+                        <i class="fa-solid fa-plus"></i> New Parcel Booking Page
+                    </a>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Parcel ID & Time</th>
+                            <th>Student & Destination</th>
+                            <th>App & Pickup Gate</th>
+                            <th>Timing & Instructions</th>
+                            <th>Assigned Runner</th>
+                            <th>Runner Fee</th>
+                            <th>Status</th>
+                            <th>Update Status & Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-parcels-table-body">
+                        <!-- Populated by admin.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TAB 7: PLATFORM REVENUE, INSTANT SPLIT & CASH LEDGER SECTION -->
+        <section id="admin-commissions-section" style="display: none;">
+            <!-- Split Overview Header Banner -->
+            <div style="background: linear-gradient(135deg, #064e3b, #047857); color: white; border-radius: var(--radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                            <span style="background: #10b981; color: white; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase;">
+                                👑 Super Admin Platform Revenue Hub
+                            </span>
+                            <span style="background: rgba(255,255,255,0.2); font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">
+                                Option A: Instant Split Gateway
+                            </span>
+                        </div>
+                        <h2 style="font-size: 1.5rem; font-weight: 900; margin: 0; color: white;">
+                            Platform Commission & Auto-Deduction Cash Ledger
+                        </h2>
+                        <p style="font-size: 0.88rem; color: #a7f3d0; margin: 0.3rem 0 0 0;">
+                            ✨ Rule: <strong>₹2.50 Platform Profit (Deepak)</strong> + <strong>₹2.50 Material Cost (Shopkeeper)</strong> per ₹5.00 packaging fee.
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                        <button type="button" class="btn btn-sm" onclick="openGatewaySettingsModal()" style="background: white; color: #065f46; font-weight: 800; border: none; padding: 0.6rem 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                            <i class="fa-solid fa-sliders"></i> Gateway Settings & API Keys
+                        </button>
+                        <button type="button" class="btn btn-sm" onclick="exportCommissionsLedgerCsv()" style="background: #059669; color: white; font-weight: 700; border: 1.5px solid #34d399; padding: 0.6rem 1rem; border-radius: 8px;">
+                            <i class="fa-solid fa-file-csv"></i> Download Settlement CSV
+                        </button>
+                        <button type="button" class="btn btn-sm" onclick="loadCommissionsLedger()" style="background: rgba(255,255,255,0.15); color: white; font-weight: 700; border: 1px solid rgba(255,255,255,0.3); padding: 0.6rem 0.85rem; border-radius: 8px;">
+                            <i class="fa-solid fa-rotate"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top KPI Metrics Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="card" style="background: white; border-left: 4px solid #10b981; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        👑 Total Platform Profit
+                    </div>
+                    <div id="comm-stat-total-admin" style="font-size: 1.75rem; font-weight: 900; color: #059669; margin: 0.25rem 0;">
+                        ₹0.00
+                    </div>
+                    <div style="font-size: 0.74rem; color: #10b981; font-weight: 600;">
+                        ₹2.50 &times; <span id="comm-stat-total-orders">0</span> Total Orders
+                    </div>
+                </div>
+
+                <div class="card" style="background: white; border-left: 4px solid #0284c7; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        ⚡ Instant Online Splits
+                    </div>
+                    <div id="comm-stat-online-admin" style="font-size: 1.75rem; font-weight: 900; color: #0284c7; margin: 0.25rem 0;">
+                        ₹0.00
+                    </div>
+                    <div style="font-size: 0.74rem; color: #0369a1; font-weight: 600;">
+                        <span id="comm-stat-online-count">0</span> Online Gateway Transfers
+                    </div>
+                </div>
+
+                <div class="card" style="background: white; border-left: 4px solid #8b5cf6; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        🔄 Auto-Deductions Adjusted
+                    </div>
+                    <div id="comm-stat-auto-deducted" style="font-size: 1.75rem; font-weight: 900; color: #7c3aed; margin: 0.25rem 0;">
+                        ₹0.00
+                    </div>
+                    <div style="font-size: 0.74rem; color: #6d28d9; font-weight: 600;">
+                        Deducted from Online Payouts
+                    </div>
+                </div>
+
+                <div class="card" style="background: white; border-left: 4px solid #f59e0b; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        💵 Cash Fees Pending
+                    </div>
+                    <div id="comm-stat-cash-pending" style="font-size: 1.75rem; font-weight: 900; color: #d97706; margin: 0.25rem 0;">
+                        ₹0.00
+                    </div>
+                    <div style="font-size: 0.74rem; color: #b45309; font-weight: 600;">
+                        From <span id="comm-stat-cash-count">0</span> Counter Cash Orders
+                    </div>
+                </div>
+
+                <div class="card" style="background: white; border-left: 4px solid #ea580c; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        🏪 Total Net Shop Payouts
+                    </div>
+                    <div id="comm-stat-vendor-net" style="font-size: 1.75rem; font-weight: 900; color: #c2410c; margin: 0.25rem 0;">
+                        ₹0.00
+                    </div>
+                    <div style="font-size: 0.74rem; color: #9a3412; font-weight: 600;">
+                        Food + ₹2.50 Packing Share
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopwise Settlement Ledger Table Card -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+                    <div>
+                        <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin: 0;">
+                            🏪 Campus Shops Settlement & Auto-Deduction Ledger (23 Counters)
+                        </h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">
+                            Real-time tracking of food GMV, packaging split, online gateway splits, and cash fee auto-deductions.
+                        </p>
+                    </div>
+
+                    <div class="search-box-wrap" style="max-width: 280px;">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="comm-ledger-search" class="search-input" placeholder="Search Shop Name or ID..." oninput="renderCommissionsLedgerTable()">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Shop & Manager</th>
+                                <th>Orders (Online / Cash)</th>
+                                <th>Food Sales (₹)</th>
+                                <th>Shop Packing Share (₹2.50)</th>
+                                <th>Deepak Admin Profit (₹2.50)</th>
+                                <th>Online Gross (₹)</th>
+                                <th>Cash Auto-Deduction (₹)</th>
+                                <th>Net Vendor Payout (₹)</th>
+                                <th>Ledger Status</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="commissions-ledger-tbody">
+                            <!-- Populated dynamically by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: DELIVERY PARTNER & RUNNER FLEET DASHBOARD -->
+        <section id="admin-delivery-section" style="display: none;">
+            <!-- Header Banner -->
+            <div style="background: linear-gradient(135deg, #0284c7, #0369a1); color: white; border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: var(--shadow-sm);">
+                <div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: white; margin: 0 0 0.35rem 0; display: flex; align-items: center; gap: 0.6rem;">
+                        <i class="fa-solid fa-person-biking"></i> Campus Delivery Fleet & Hand-Off Dashboard
+                    </h3>
+                    <p style="font-size: 0.88rem; color: #e0f2fe; margin: 0; line-height: 1.4;">
+                        Super Admin control center for monitoring live room deliveries, cash-in-hand collected by delivery boys, and instant online reconciliations.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.6rem;">
+                    <a href="delivery.html" target="_blank" class="btn btn-sm" style="background: white; color: #0369a1; font-weight: 700; border: none; padding: 0.55rem 1rem;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Runner App
+                    </a>
+                    <button onclick="loadAdminDeliveryDashboard()" class="btn btn-sm" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); font-weight: 700;">
+                        <i class="fa-solid fa-rotate-right"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4 Metric Cards for Delivery Fleet -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="card" style="background: white; border-left: 4px solid #10b981; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        📦 Deliveries Completed
+                    </div>
+                    <div id="admin-delivery-stat-completed" style="font-size: 1.85rem; font-weight: 900; color: #059669; margin: 0.25rem 0;">
+                        0
+                    </div>
+                    <div style="font-size: 0.74rem; color: #047857; font-weight: 600;">
+                        Orders Successfully Delivered
+                    </div>
+                </div>
+
+                <div class="card" style="background: white; border-left: 4px solid #f59e0b; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        💵 Cash in Hand with Boys
+                    </div>
+                    <div id="admin-delivery-stat-cash" style="font-size: 1.85rem; font-weight: 900; color: #d97706; margin: 0.25rem 0;">
+                        ₹0.00
+                    </div>
+                    <div style="font-size: 0.74rem; color: #b45309; font-weight: 600;">
+                        Cash on Delivery Collected
+                    </div>
+                </div>
+
+                <div class="card" style="background: white; border-left: 4px solid #6366f1; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        📲 Online / UPI Received
+                    </div>
+                    <div id="admin-delivery-stat-online" style="font-size: 1.85rem; font-weight: 900; color: #4f46e5; margin: 0.25rem 0;">
+                        ₹0.00
+                    </div>
+                    <div style="font-size: 0.74rem; color: #4338ca; font-weight: 600;">
+                        Direct QR & Gateway Payments
+                    </div>
+                </div>
+
+                <div class="card" style="background: white; border-left: 4px solid #0ea5e9; padding: 1.25rem;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+                        ⏳ Active Deliveries Out
+                    </div>
+                    <div id="admin-delivery-stat-pending" style="font-size: 1.85rem; font-weight: 900; color: #0284c7; margin: 0.25rem 0;">
+                        0
+                    </div>
+                    <div style="font-size: 0.74rem; color: #0369a1; font-weight: 600;">
+                        Cooking / In Transit to Campus
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Partner Runners Fleet Cards -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin: 0 0 1rem 0;">
+                    🚴 Delivery Partner Profiles & Cash Reconciliation
+                </h3>
+                <div id="admin-delivery-runners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                    <!-- Populated dynamically by admin.js -->
+                </div>
+            </div>
+
+            <!-- Live Delivery Logs & Audit Table -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+                    <div>
+                        <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin: 0;">
+                            📋 Real-Time Campus Delivery Audit Logs
+                        </h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">
+                            Every completed delivery with runner name, room location, timestamp, and payment method (Cash vs Online).
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center;">
+                        <div class="category-filter-pills" style="display: flex; gap: 0.25rem;">
+                            <button class="filter-pill admin-delivery-filter-pill active" data-paymode="all" onclick="filterAdminDeliveryLogs('all', this)" style="padding: 0.25rem 0.65rem; font-size: 0.8rem;">All Modes</button>
+                            <button class="filter-pill admin-delivery-filter-pill" data-paymode="cash" onclick="filterAdminDeliveryLogs('cash', this)" style="padding: 0.25rem 0.65rem; font-size: 0.8rem;">💵 Cash Only</button>
+                            <button class="filter-pill admin-delivery-filter-pill" data-paymode="online" onclick="filterAdminDeliveryLogs('online', this)" style="padding: 0.25rem 0.65rem; font-size: 0.8rem;">📲 Online Only</button>
+                        </div>
+                        <div class="search-box-wrap" style="max-width: 250px;">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="admin-delivery-search" class="search-input" placeholder="Search Order, Runner, Room..." oninput="renderAdminDeliveryLogsTable()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order Token</th>
+                                <th>Delivery Destination / Room</th>
+                                <th>Customer Name</th>
+                                <th>Delivery Partner</th>
+                                <th>Delivered Time</th>
+                                <th>Payment Mode</th>
+                                <th>Amount Collected</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-delivery-logs-tbody">
+                            <!-- Populated dynamically by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Modal: Instant Split Gateway Settings -->
+    <div id="gateway-settings-modal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 650px; width: 95%;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #064e3b, #047857); color: white;">
+                <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem;">
+                    <i class="fa-solid fa-shield-halved"></i> Instant Split Gateway & API Keys Configuration
+                </h3>
+                <button class="modal-close-btn" style="color: white;" onclick="closeModal('gateway-settings-modal')">&times;</button>
+            </div>
+            
+            <form onsubmit="handleSaveGatewaySettings(event)">
+                <div class="modal-body" style="padding: 1.5rem;">
+                    <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 1.25rem; font-size: 0.85rem;">
+                        <div style="font-weight: 800; color: #166534; margin-bottom: 0.2rem;">
+                            ⚡ Option A Real-Time Instant Split Architecture Active
+                        </div>
+                        <div style="color: #15803d; line-height: 1.4;">
+                            On every order, ₹2.50 admin platform fee credits Deepak's bank account, and remaining food + ₹2.50 packaging credits the shopkeeper's account immediately.
+                        </div>
+                    </div>
+
+                    <!-- Split Parameters -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" style="font-size: 0.82rem; font-weight: 700; color: #065f46;">
+                                👑 Deepak Platform Profit / Order (₹)
+                            </label>
+                            <input type="number" id="gw-admin-commission" class="form-input no-icon" value="2.50" step="0.5" min="0" required style="font-weight: 800; color: #059669;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" style="font-size: 0.82rem; font-weight: 700; color: #065f46;">
+                                🏪 Shop Packaging Share / Order (₹)
+                            </label>
+                            <input type="number" id="gw-vendor-packaging" class="form-input no-icon" value="2.50" step="0.5" min="0" required style="font-weight: 800; color: #0369a1;">
+                        </div>
+                    </div>
+
+                    <!-- Mode Selector -->
+                    <div class="form-group">
+                        <label class="form-label" style="font-size: 0.84rem; font-weight: 700; color: var(--secondary);">
+                            <i class="fa-solid fa-server" style="color: var(--primary);"></i> Execution Gateway Mode
+                        </label>
+                        <select id="gw-mode" class="form-select no-icon" style="font-weight: 700;">
+                            <option value="test_simulator" selected>⚡ Smart Instant Simulator Mode (Ready out-of-the-box, 0% Gateway charges)</option>
+                            <option value="live">🟢 Live Production Gateway (Razorpay Route / Cashfree Split)</option>
+                        </select>
+                    </div>
+
+                    <!-- Gateway Provider -->
+                    <div class="form-group">
+                        <label class="form-label" style="font-size: 0.84rem; font-weight: 700; color: var(--secondary);">
+                            <i class="fa-solid fa-credit-card" style="color: #0284c7;"></i> Gateway Provider
+                        </label>
+                        <select id="gw-provider" class="form-select no-icon" style="font-weight: 600;">
+                            <option value="Razorpay Route" selected>Razorpay Route (Official Indian Marketplace Split)</option>
+                            <option value="Cashfree Split">Cashfree Easy Split API</option>
+                        </select>
+                    </div>
+
+                    <!-- Deepak Master Account Credentials -->
+                    <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
+                        <h4 style="font-size: 0.92rem; font-weight: 800; color: #1e293b; margin: 0 0 0.75rem 0;">
+                            👑 Deepak Master Bank / UPI Account for Commission Payouts
+                        </h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                            <div>
+                                <label class="form-label" style="font-size: 0.78rem; font-weight: 700; color: #475569;">Admin UPI ID / VPA *</label>
+                                <input type="text" id="gw-admin-vpa" class="form-input no-icon" placeholder="deepaksharma74521@okaxis" style="font-size: 0.85rem; font-weight: 700;" required>
+                            </div>
+                            <div>
+                                <label class="form-label" style="font-size: 0.78rem; font-weight: 700; color: #475569;">Payee Name *</label>
+                                <input type="text" id="gw-admin-payee" class="form-input no-icon" placeholder="Deepak Sharma (Admin)" style="font-size: 0.85rem; font-weight: 700;" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- API Keys (For Live Mode) -->
+                    <div style="background: #faf5ff; border: 1.5px solid #f3e8ff; border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
+                        <h4 style="font-size: 0.92rem; font-weight: 800; color: #6b21a8; margin: 0 0 0.75rem 0;">
+                            🔑 Live Gateway API Keys (Optional - Required only in Live Production Mode)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                            <div>
+                                <label class="form-label" style="font-size: 0.78rem; font-weight: 700; color: #7e22ce;">Razorpay Key ID</label>
+                                <input type="text" id="gw-rzp-key" class="form-input no-icon" placeholder="rzp_live_..." style="font-size: 0.85rem; font-family: monospace;">
+                            </div>
+                            <div>
+                                <label class="form-label" style="font-size: 0.78rem; font-weight: 700; color: #7e22ce;">Razorpay Key Secret</label>
+                                <input type="password" id="gw-rzp-secret" class="form-input no-icon" placeholder="••••••••••••" style="font-size: 0.85rem; font-family: monospace;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('gateway-settings-modal')">Cancel</button>
+                    <button type="submit" id="gw-save-btn" class="btn btn-primary btn-sm" style="background: #059669; border-color: #059669; font-weight: 700; padding: 0.5rem 1.25rem;">
+                        <i class="fa-solid fa-floppy-disk"></i> Save Gateway Settings
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Verify Parcel Handover PIN -->
+    <div id="admin-parcel-pin-modal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 420px; text-align: center;">
+            <div class="modal-header">
+                <h3 style="display: flex; align-items: center; gap: 0.5rem; justify-content: center; width: 100%; font-size: 1.15rem;">
+                    <i class="fa-solid fa-shield-halved" style="color: #16a34a;"></i> Verify Handover PIN
+                </h3>
+                <button class="modal-close-btn" onclick="closeModal('admin-parcel-pin-modal')">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <input type="hidden" id="verify-parcel-id-hidden">
+                <div style="font-size: 0.95rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.35rem;" id="verify-parcel-title">
+                    Parcel Handover
+                </div>
+                <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                    Ask the student for their secret <strong>4-Digit Handover PIN</strong> to complete delivery:
+                </p>
+                <div style="margin-bottom: 1.25rem;">
+                    <input type="text" id="verify-parcel-pin-input" class="form-input no-icon" placeholder="----" maxlength="4" style="text-align: center; font-size: 2rem; letter-spacing: 10px; font-weight: 800; color: #1e40af; background: #eff6ff; border: 2px solid #3b82f6;">
+                </div>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button type="button" class="btn btn-outline btn-block" onclick="closeModal('admin-parcel-pin-modal')">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-block" onclick="submitVerifyParcelPin()" style="background: #16a34a; border-color: #16a34a; font-weight: 700;">
+                        <i class="fa-solid fa-check"></i> Verify & Deliver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal: Add / Edit Food Item -->
     <div id="admin-food-modal" class="modal-backdrop">
@@ -287,9 +1169,30 @@
                 <div class="modal-body">
                     <input type="hidden" id="food-form-id">
 
+                    <!-- Assign to Shop Dropdown -->
+                    <div class="form-group" style="background: #fff7ed; padding: 0.75rem; border-radius: 8px; border: 1px solid #fed7aa; margin-bottom: 1rem;">
+                        <label class="form-label" for="food-form-shop" style="color: #9a3412; font-weight: 700; margin-bottom: 0.3rem;">
+                            <i class="fa-solid fa-store" style="color: var(--primary);"></i> Assign to Shop / Counter *
+                        </label>
+                        <select id="food-form-shop" class="form-select no-icon" style="font-weight: 600;" required onchange="onFoodShopSelectChange(this.value)">
+                            <!-- Populated dynamically by admin.js -->
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label class="form-label" for="food-form-name">Item Name *</label>
                         <input type="text" id="food-form-name" class="form-input no-icon" placeholder="e.g. Masala Dosa, Dairy Milk Silk, Classmate Notebook..." required>
+                    </div>
+
+                    <!-- Half & Full Pricing Option Toggle -->
+                    <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <label for="food-form-has-halffull" style="cursor: pointer; font-weight: 700; color: #166534; display: flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; margin-bottom: 0;">
+                                <input type="checkbox" id="food-form-has-halffull" onchange="toggleFoodFormHalfFull(this.checked)" style="width: 18px; height: 18px; accent-color: #16a34a;">
+                                <span>🍲 Has Half & Full Options? (Half / Full Rate)</span>
+                            </label>
+                            <span style="font-size: 0.75rem; background: #dcfce7; color: #15803d; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Optional</span>
+                        </div>
                     </div>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -305,9 +1208,24 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="food-form-single-price-group">
                             <label class="form-label" for="food-form-price">Price (₹) *</label>
-                            <input type="number" id="food-form-price" class="form-input no-icon" min="1" step="1" placeholder="50" required>
+                            <input type="number" id="food-form-price" class="form-input no-icon" min="1" step="1" placeholder="50">
+                        </div>
+                    </div>
+
+                    <div id="food-form-halffull-price-group" style="display: none; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="food-form-price-half" style="color: #0369a1; font-weight: 700;">
+                                🥣 Half Price (₹) *
+                            </label>
+                            <input type="number" id="food-form-price-half" class="form-input no-icon" min="1" step="1" placeholder="120" style="border-color: #7dd3fc;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="food-form-price-full" style="color: #15803d; font-weight: 700;">
+                                🍲 Full Price (₹) *
+                            </label>
+                            <input type="number" id="food-form-price-full" class="form-input no-icon" min="1" step="1" placeholder="180" style="border-color: #86efac;">
                         </div>
                     </div>
 
@@ -409,6 +1327,286 @@
         </div>
     </div>
 
+    <!-- Modal: Bulk Add Multiple Items with Photos -->
+    <div id="admin-bulk-add-modal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 980px; width: 96%; max-height: 90vh; display: flex; flex-direction: column;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #059669, #10b981); color: white;">
+                <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem;">
+                    <i class="fa-solid fa-layer-group"></i> 📦 Bulk Add Items with Photos
+                </h3>
+                <button class="modal-close-btn" style="color: white;" onclick="closeModal('admin-bulk-add-modal')">&times;</button>
+            </div>
+            
+            <div class="modal-body" style="padding: 1.25rem; overflow-y: auto; flex: 1;">
+                <!-- Target Shop Selector Header -->
+                <div style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <label class="form-label" for="bulk-target-shop" style="color: #065f46; font-weight: 700; margin-bottom: 0.35rem;">
+                                <i class="fa-solid fa-store" style="color: #10b981;"></i> Target Shop / Counter (Items will be added ONLY to this shop):
+                            </label>
+                            <select id="bulk-target-shop" class="form-select no-icon" style="font-weight: 700; border-color: #6ee7b7; background: white;" onchange="onBulkTargetShopChange(this.value)">
+                                <!-- Populated dynamically by admin.js -->
+                            </select>
+                        </div>
+                        <div style="background: white; border: 1px solid #a7f3d0; padding: 0.5rem 0.85rem; border-radius: 8px; font-size: 0.82rem; color: #047857; font-weight: 600;">
+                            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Strict Scope: Items will belong strictly to selected shop.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fast Batch Photos Upload Banner -->
+                <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; text-align: center; cursor: pointer; transition: all 0.2s ease;"
+                     onclick="document.getElementById('bulk-batch-file-input').click()">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+                        <i class="fa-solid fa-images" style="font-size: 2rem; color: #10b981;"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; color: #1e293b; font-size: 0.95rem;">
+                                📸 1-Click Multi-Photo Auto Add (Select 5, 10 or 20 photos at once)
+                            </div>
+                            <div style="font-size: 0.78rem; color: #64748b;">
+                                Click here to select multiple food photos from your phone gallery/PC. System will auto-create rows with photos attached!
+                            </div>
+                        </div>
+                    </div>
+                    <input type="file" id="bulk-batch-file-input" multiple accept="image/*" style="display: none;" onchange="handleBatchPhotosSelected(event)">
+                </div>
+
+                <!-- Table Controls Toolbar -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <div style="display: flex; gap: 0.4rem; align-items: center;">
+                        <button type="button" class="btn btn-outline btn-sm" onclick="addBulkRow(1)" style="font-weight: 700;">
+                            <i class="fa-solid fa-plus"></i> + Add 1 Row
+                        </button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="addBulkRow(5)" style="font-weight: 700;">
+                            <i class="fa-solid fa-plus"></i> + Add 5 Rows
+                        </button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="clearEmptyBulkRows()" style="color: #64748b; border-color: #cbd5e1;">
+                            <i class="fa-solid fa-eraser"></i> Clear Empty
+                        </button>
+                    </div>
+                    <div style="font-size: 0.85rem; font-weight: 700; color: #065f46;">
+                        Total Items in List: <span id="bulk-items-counter" style="background: #10b981; color: white; padding: 2px 8px; border-radius: 9999px;">0</span>
+                    </div>
+                </div>
+
+                <!-- Bulk Table -->
+                <div class="table-responsive" style="max-height: 380px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <table class="data-table" style="margin-bottom: 0; font-size: 0.85rem;">
+                        <thead style="position: sticky; top: 0; background: #f8fafc; z-index: 10;">
+                            <tr>
+                                <th style="width: 40px; text-align: center;">#</th>
+                                <th style="width: 90px; text-align: center;">📸 Photo</th>
+                                <th style="min-width: 200px;">Item / Dish Name *</th>
+                                <th style="width: 140px;">Category</th>
+                                <th style="width: 110px;">Type</th>
+                                <th style="min-width: 210px;">Price (₹) *</th>
+                                <th style="width: 50px; text-align: center;">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bulk-table-tbody">
+                            <!-- Populated dynamically by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer" style="background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('admin-bulk-add-modal')">Cancel</button>
+                <button type="button" id="save-bulk-btn" class="btn btn-primary btn-sm" onclick="submitBulkAddItems()" style="background: #059669; border-color: #059669; font-weight: 700; padding: 0.5rem 1.25rem;">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Save All Items to Selected Shop
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: AI Menu Card / Rate Chart Photo Scanner -->
+    <div id="admin-scanner-modal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 820px; width: 95%;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white;">
+                <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 📸 Smart Menu Photo Scanner (AI / OCR)
+                </h3>
+                <button class="modal-close-btn" style="color: white;" onclick="closeModal('admin-scanner-modal')">&times;</button>
+            </div>
+            
+            <div class="modal-body" style="padding: 1.5rem;">
+                <!-- Step 1: Upload / Drop Menu Card Image or Try Sample Photo -->
+                <div id="scanner-step-upload">
+                    <div style="text-align: center; margin-bottom: 1.25rem;">
+                        <h4 style="font-size: 1.1rem; color: var(--secondary); margin-bottom: 0.35rem;">
+                            Upload Your Rate Card or Menu Photo
+                        </h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">
+                            Our AI OCR reads all dish names, prices & categories and creates neat items automatically!
+                        </p>
+                    </div>
+
+                    <!-- Target Shop Selector -->
+                    <div class="form-group" style="background: #f8fafc; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 1rem;">
+                        <label class="form-label" for="scanner-target-shop" style="font-weight: 700; color: #334155; margin-bottom: 0.3rem;">
+                            <i class="fa-solid fa-store" style="color: var(--primary);"></i> Import Items Directly Into Shop / Counter:
+                        </label>
+                        <select id="scanner-target-shop" class="form-select no-icon" style="font-weight: 600;">
+                            <!-- Populated dynamically by admin.js -->
+                        </select>
+                    </div>
+
+                    <!-- Scanner Mode Switcher Tabs -->
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; background: #e2e8f0; padding: 0.3rem; border-radius: 8px;">
+                        <button type="button" id="scanner-tab-btn-photo" class="img-source-tab active" onclick="switchScannerMode('photo')" style="flex: 1; padding: 0.5rem 0.75rem;">
+                            <i class="fa-solid fa-camera"></i> 📸 Upload Rate Card Photo
+                        </button>
+                        <button type="button" id="scanner-tab-btn-text" class="img-source-tab" onclick="switchScannerMode('text')" style="flex: 1; padding: 0.5rem 0.75rem;">
+                            <i class="fa-solid fa-file-lines"></i> ✍️ Paste / Type Menu Text
+                        </button>
+                    </div>
+
+                    <!-- MODE 1: PHOTO DROPZONE -->
+                    <div id="scanner-mode-photo" style="display: block;">
+                        <div id="scanner-dropzone" onclick="document.getElementById('scanner-file-input').click()"
+                             style="border: 2.5px dashed #6366f1; border-radius: 12px; padding: 2rem 1.5rem; text-align: center; background: #eef2ff; cursor: pointer; transition: all 0.2s ease;">
+                            <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.75rem; color: #4f46e5; margin-bottom: 0.75rem; display: block;"></i>
+                            <div style="font-size: 1.05rem; font-weight: 700; color: #312e81;">
+                                Click to Select / Drag & Drop Menu Photo
+                            </div>
+                            <div style="font-size: 0.82rem; color: #6366f1; margin-top: 0.35rem;">
+                                Supports JPG, PNG, WebP photo of rate list board, printed menu, or handwritten card
+                            </div>
+                            <input type="file" id="scanner-file-input" accept="image/*" style="display: none;" onchange="handleMenuPhotoUploaded(event)">
+                        </div>
+                    </div>
+
+                    <!-- MODE 2: TEXT PASTE BOX -->
+                    <div id="scanner-mode-text" style="display: none;">
+                        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 1rem;">
+                            <label class="form-label" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.4rem;">
+                                Paste your menu list (e.g. from WhatsApp or Word):
+                            </label>
+                            <textarea id="scanner-text-input" class="form-textarea no-icon" rows="6" placeholder="Example:
+Masala Dosa - Rs 60
+Paneer Butter Masala 180
+Cold Coffee 80
+Butter Naan 35
+Veg Hakka Noodles 110
+Chai 15"></textarea>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 0.75rem;">
+                                <button type="button" onclick="handleScanTextPasted()" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); border: none;">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Extract & Add Items
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sample 1-Click Menu Cards for Instant Demo -->
+                    <div style="margin-top: 1.25rem;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: #475569; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-sparkles" style="color: #f59e0b;"></i> Or Test with Instant 1-Click Sample Rate Lists:
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.6rem;">
+                            <button type="button" class="btn btn-outline btn-sm" onclick="testScannerSample('canteen')" style="text-align: left; padding: 0.6rem 0.8rem; border-color: #cbd5e1; font-size: 0.82rem;">
+                                🍔 <strong>Fast Food & Meals List</strong><br>
+                                <span style="font-size: 0.72rem; color: var(--text-muted);">Samosa, Dosa, Paratha, Biryani...</span>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="testScannerSample('chai')" style="text-align: left; padding: 0.6rem 0.8rem; border-color: #cbd5e1; font-size: 0.82rem;">
+                                ☕ <strong>Chai & Shakes Chart</strong><br>
+                                <span style="font-size: 0.72rem; color: var(--text-muted);">Masala Chai, Cold Coffee, Juices...</span>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="testScannerSample('stationery')" style="text-align: left; padding: 0.6rem 0.8rem; border-color: #cbd5e1; font-size: 0.82rem;">
+                                📚 <strong>Stationery Price Sheet</strong><br>
+                                <span style="font-size: 0.72rem; color: var(--text-muted);">Spiral Registers, Pens, Folders...</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Live Processing OCR Scanner Animation -->
+                <div id="scanner-step-loading" style="display: none; text-align: center; padding: 3rem 1rem;">
+                    <div class="loader-spinner" style="width: 48px; height: 48px; border-width: 4px; margin: 0 auto 1.25rem auto;"></div>
+                    <h4 style="color: #4f46e5; font-size: 1.15rem; margin-bottom: 0.4rem;">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> AI OCR Scanning in Progress...
+                    </h4>
+                    <p style="color: var(--text-muted); font-size: 0.88rem;" id="scanner-status-text">
+                        Detecting dish names, numbers, prices and matching HD pictures...
+                    </p>
+                    <div style="max-width: 320px; height: 8px; background: #e2e8f0; border-radius: 9999px; margin: 1.25rem auto 0 auto; overflow: hidden;">
+                        <div id="scanner-progress-bar" style="width: 30%; height: 100%; background: linear-gradient(90deg, #4f46e5, #ec4899); transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Editable Review Table & Bulk Import -->
+                <div id="scanner-step-review" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="color: #15803d; font-size: 1.1rem; display: flex; align-items: center; gap: 0.4rem;">
+                                <i class="fa-solid fa-circle-check"></i> <span id="scanner-detected-count">0</span> Items Extracted Cleanly!
+                            </h4>
+                            <p style="font-size: 0.82rem; color: var(--text-muted);">
+                                Review the extracted items below. You can tweak names, categories or prices before importing.
+                            </p>
+                        </div>
+                        <button type="button" onclick="resetScannerModal()" class="btn btn-outline btn-sm">
+                            <i class="fa-solid fa-arrow-rotate-left"></i> Scan Another Photo
+                        </button>
+                    </div>
+
+                    <div style="max-height: 340px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 1.25rem;">
+                        <table class="data-table" style="font-size: 0.85rem;">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>Type</th>
+                                    <th style="min-width: 220px;">Pricing & Variants (Half / Full / Single)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scanner-preview-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 0.85rem 1rem; border-radius: 8px; flex-wrap: wrap; gap: 0.75rem;">
+                        <div>
+                            <div style="font-size: 0.85rem; color: #166534; font-weight: 600;">
+                                Ready to import into: <strong id="scanner-review-shop-name">TMU Central Food Court</strong>
+                            </div>
+                            <label style="display: flex; align-items: center; gap: 0.45rem; cursor: pointer; font-size: 0.82rem; color: #991b1b; margin-top: 0.35rem; font-weight: 600;">
+                                <input type="checkbox" id="scanner-replace-menu-checkbox" style="accent-color: #dc2626; width: 16px; height: 16px;">
+                                <span><i class="fa-solid fa-rotate"></i> <strong>Replace Old Menu:</strong> Delete previous items and keep ONLY these newly scanned items</span>
+                            </label>
+                        </div>
+                        <button type="button" id="scanner-bulk-import-btn" onclick="executeBulkImport()" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #16a34a, #15803d); border: none; font-weight: 700;">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Import All Items to Shop Menu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE NEW ORDER INCOMING POPUP MODAL FOR SHOP OWNER -->
+    <div id="new-order-alert-modal" class="order-alert-modal-backdrop">
+        <div class="order-alert-card">
+            <div class="order-alert-header">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                    <div class="order-alert-badge">
+                        <i class="fa-solid fa-bell fa-shake"></i> NEW ORDER
+                    </div>
+                    <span style="font-weight: 800; font-size: 1.05rem; letter-spacing: 0.3px;" id="order-alert-shop-header">New Order Received!</span>
+                </div>
+                <button type="button" class="order-alert-close" onclick="closeNewOrderAlertModal()" title="Close Alert">&times;</button>
+            </div>
+            <div class="order-alert-body" id="new-order-alert-body">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="order-alert-footer" id="new-order-alert-footer">
+                <!-- Dynamically populated actions -->
+            </div>
+        </div>
+    </div>
+
     <!-- Modal: View Full Order Details -->
     <div id="admin-order-modal" class="modal-backdrop">
         <div class="modal-card">
@@ -426,8 +1624,10 @@
     </div>
 
     <!-- Backend API & Admin Scripts -->
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/admin.js"></script>
+    <script src="js/api.js?v=3.0"></script>
+    <script src="js/auth.js?v=3.0"></script>
+    <script src="js/admin.js?v=3.0"></script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js"></script>
 </body>
 </html>

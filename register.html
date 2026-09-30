@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 </head>
 <body>
 
@@ -35,44 +44,93 @@
         <div class="auth-card" style="max-width: 520px;">
             <div class="auth-header">
                 <div class="logo">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                    <i class="fa-solid fa-graduation-cap" id="reg-header-icon"></i>
                 </div>
-                <h2>Create Student Account</h2>
-                <p>Register your student profile for fast, queue-free campus pre-orders</p>
+                <h2 id="reg-header-title">Create Campus Account</h2>
+                <p id="reg-header-subtitle">Register your profile for fast, queue-free campus food & stationery pre-orders</p>
             </div>
 
             <form onsubmit="handleRegister(event)">
+                <!-- User Type Selector: Student vs Faculty vs Shop Owner -->
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label class="form-label" style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; display: block;">I am registering as:</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem;">
+                        <label id="label-type-student" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.6rem 0.3rem; border: 2px solid var(--primary); background: #fff7ed; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.82rem; color: var(--primary); text-align: center; transition: all 0.2s ease;">
+                            <input type="radio" name="account-type" id="type-student" value="Student" checked onchange="handleUserTypeChange(this.value)" style="display: none;">
+                            <i class="fa-solid fa-graduation-cap" style="font-size: 1.1rem;"></i>
+                            <span>Student</span>
+                        </label>
+                        <label id="label-type-faculty" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.6rem 0.3rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; color: #475569; text-align: center; transition: all 0.2s ease;">
+                            <input type="radio" name="account-type" id="type-faculty" value="Faculty" onchange="handleUserTypeChange(this.value)" style="display: none;">
+                            <i class="fa-solid fa-chalkboard-user" style="font-size: 1.1rem;"></i>
+                            <span>Faculty</span>
+                        </label>
+                        <label id="label-type-shop" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.6rem 0.3rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; color: #475569; text-align: center; transition: all 0.2s ease;">
+                            <input type="radio" name="account-type" id="type-shop" value="ShopOwner" onchange="handleUserTypeChange(this.value)" style="display: none;">
+                            <i class="fa-solid fa-store" style="font-size: 1.1rem;"></i>
+                            <span>Shop Owner</span>
+                        </label>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label class="form-label" for="reg-name">Full Name</label>
+                    <label class="form-label" for="reg-name" id="reg-name-label">Full Name</label>
                     <div class="input-group">
                         <i class="fa-solid fa-user input-icon"></i>
-                        <input type="text" id="reg-name" class="form-input" placeholder="e.g. Rahul Sharma" required autocomplete="name">
+                        <input type="text" id="reg-name" class="form-input" placeholder="e.g. Rahul Sharma / Prof. Sharma" required autocomplete="name">
                     </div>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-group">
-                        <label class="form-label" for="reg-roll">Roll / Student ID</label>
+                        <label class="form-label" for="reg-roll" id="reg-id-label">Roll / Student ID</label>
                         <div class="input-group">
-                            <i class="fa-solid fa-id-card input-icon"></i>
+                            <i class="fa-solid fa-id-card input-icon" id="reg-id-icon"></i>
                             <input type="text" id="reg-roll" class="form-input" placeholder="e.g. BCA-2024-042" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="reg-dept">Department</label>
+                        <label class="form-label" for="reg-dept" id="reg-dept-label">College / Department</label>
                         <div class="input-group">
-                            <i class="fa-solid fa-building-columns input-icon"></i>
+                            <i class="fa-solid fa-building-columns input-icon" id="reg-dept-icon"></i>
                             <select id="reg-dept" class="form-select" required>
-                                <option value="BCA" selected>BCA (Computer App)</option>
-                                <option value="B.Sc CS">B.Sc Computer Science</option>
-                                <option value="B.Tech CS/IT">B.Tech CS / IT</option>
-                                <option value="BBA">BBA</option>
-                                <option value="B.Com">B.Com</option>
-                                <option value="MCA">MCA</option>
-                                <option value="Other">Other Department</option>
+                                <option value="College of Computing Sciences & IT (CCSIT)" selected>College of Computing Sciences & IT (CCSIT)</option>
+                                <option value="Medical College & Research Centre">Medical College & Research Centre</option>
+                                <option value="Dental College & Research Centre">Dental College & Research Centre</option>
+                                <option value="College of Nursing">College of Nursing</option>
+                                <option value="College of Pharmacy">College of Pharmacy</option>
+                                <option value="College of Paramedical Sciences">College of Paramedical Sciences</option>
+                                <option value="Department of Physiotherapy">Department of Physiotherapy</option>
+                                <option value="TMIMT College of Management">TMIMT College of Management</option>
+                                <option value="College of Law & Legal Studies">College of Law & Legal Studies</option>
+                                <option value="College of Engineering">College of Engineering</option>
+                                <option value="College of Fine Arts">College of Fine Arts</option>
+                                <option value="Faculty of Education">Faculty of Education</option>
+                                <option value="TMIMT College of Physical Education">TMIMT College of Physical Education</option>
+                                <option value="College of Agriculture Sciences">College of Agriculture Sciences</option>
+                                <option value="Centre for Jain Studies">Centre for Jain Studies</option>
+                                <option value="Other Department">Other Department</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Shop Owner Specific Location Field -->
+                <div class="form-group" id="shop-location-group" style="display: none;">
+                    <label class="form-label" for="reg-shop-loc"><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Counter / Shop Campus Location</label>
+                    <div class="input-group">
+                        <i class="fa-solid fa-location-dot input-icon"></i>
+                        <input type="text" id="reg-shop-loc" class="form-input" placeholder="e.g. Central Food Court, Counter #3 / Block B">
+                    </div>
+                </div>
+
+                <!-- Optional Faculty Cabin Field (Shown only for Faculty) -->
+                <div class="form-group" id="faculty-cabin-group" style="display: none;">
+                    <label class="form-label" for="reg-cabin">Faculty Cabin / Staff Room No (Optional)</label>
+                    <div class="input-group">
+                        <i class="fa-solid fa-door-open input-icon"></i>
+                        <input type="text" id="reg-cabin" class="form-input" placeholder="e.g. Cabin 204, Block-B / CS Staff Room">
                     </div>
                 </div>
 
@@ -92,22 +150,64 @@
                     </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label class="form-label" for="reg-password">Password</label>
-                        <div class="input-group">
-                            <i class="fa-solid fa-lock input-icon"></i>
-                            <input type="password" id="reg-password" class="form-input" placeholder="Min. 6 chars" required autocomplete="new-password">
+                <!-- Password Creation & Auto-Generate Section -->
+                <div style="margin-bottom: 1rem; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <span style="font-weight: 700; font-size: 0.92rem; color: #1e293b; display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-key" style="color: var(--primary);"></i> Security & Password
+                        </span>
+                        <div style="display: flex; gap: 0.4rem; align-items: center;">
+                            <button type="button" onclick="generateAndSetStrongPassword()" class="btn btn-sm" style="background: #fff7ed; color: #ea580c; border: 1.5px solid #fed7aa; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);" title="Auto generate an ultra-secure strong password">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> ⚡ Suggest Strong Password
+                            </button>
+                            <button type="button" id="copy-pwd-btn" onclick="copyGeneratedPassword()" class="btn btn-sm" style="background: white; color: #475569; border: 1.5px solid #cbd5e1; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; display: none; align-items: center; gap: 0.3rem;" title="Copy Password">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="reg-confirm-password">Confirm Password</label>
-                        <div class="input-group">
-                            <i class="fa-solid fa-shield-halved input-icon"></i>
-                            <input type="password" id="reg-confirm-password" class="form-input" placeholder="Re-enter password" required autocomplete="new-password">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="reg-password" style="font-size: 0.84rem;">Password</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input type="password" id="reg-password" class="form-input" placeholder="Min. 6 chars (or click Suggest)" required autocomplete="new-password" oninput="checkPasswordStrength(this.value); checkPasswordMatch();">
+                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('reg-password', 'reg-pwd-icon')">
+                                    <i id="reg-pwd-icon" class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                                <label class="form-label" for="reg-confirm-password" style="margin-bottom: 0; font-size: 0.84rem;">Confirm Password</label>
+                                <span id="password-match-badge" style="font-size: 0.72rem; font-weight: 700; display: none;"></span>
+                            </div>
+                            <div class="input-group">
+                                <i class="fa-solid fa-shield-halved input-icon"></i>
+                                <input type="password" id="reg-confirm-password" class="form-input" placeholder="Re-enter password" required autocomplete="new-password" oninput="checkPasswordMatch()">
+                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('reg-confirm-password', 'reg-conf-icon')">
+                                    <i id="reg-conf-icon" class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Live Password Strength Meter -->
+                    <div id="password-strength-wrap" style="margin-top: 0.75rem; display: none; background: white; padding: 0.6rem 0.75rem; border-radius: 6px; border: 1px solid #e2e8f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; font-size: 0.78rem;">
+                            <span style="color: #64748b; font-weight: 600;">Password Strength:</span>
+                            <span id="strength-text" style="font-weight: 800; color: #ef4444;">Weak</span>
+                        </div>
+                        <div style="height: 6px; width: 100%; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
+                            <div id="strength-bar" style="height: 100%; width: 25%; background: #ef4444; border-radius: 4px; transition: all 0.3s ease;"></div>
+                        </div>
+                        <div id="password-feedback-tips" style="font-size: 0.74rem; color: #64748b; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-circle-info" style="color: #0284c7;"></i>
+                            <span>Tip: Use 8+ characters with uppercase letters, numbers & special symbols (!@#$).</span>
+                        </div>
+                    </div>
+                </div>
                 <!-- Admin / Staff Application Toggle -->
                 <div style="margin: 0.85rem 0; padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
                     <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #1e293b;">
@@ -119,11 +219,45 @@
                             <i class="fa-solid fa-shield-halved"></i> 
                             <strong>Approval Protected:</strong> Requires Super Admin Deepak's approval.
                         </div>
+                        <div class="form-group" style="margin-bottom: 0.6rem;">
+                            <label class="form-label" for="reg-staff-shop" style="font-size: 0.82rem; color: #475569;">Assigned Shop / Counter:</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-store input-icon"></i>
+                                <select id="reg-staff-shop" class="form-select">
+                                    <option value="All" selected>🏪 All Shops & Counters (General Admin Staff)</option>
+                                    <option value="TMU Special Chole Kulcha">Shop 1 - TMU Special Chole Kulcha</option>
+                                    <option value="Food & Friends">Shop 2 - Food & Friends</option>
+                                    <option value="Chandrakanta Canteen">Shop 3 - Chandrakanta Canteen</option>
+                                    <option value="Super Food Corner">Shop 4 - Super Food Corner</option>
+                                    <option value="Shiv Shudh Veg Biryani">Shop 5 - Shiv Shudh Veg Biryani</option>
+                                    <option value="Foodo Holic">Shop 6 - Foodo Holic</option>
+                                    <option value="Sardar Ji Hub">Shop 7 - Sardar Ji Hub</option>
+                                    <option value="Jiven Canteen">Shop 8 - Jiven Canteen</option>
+                                    <option value="Shree Balaji Chai Bhandar">Shop 9 - Shree Balaji Chai Bhandar</option>
+                                    <option value="Ahuja Photo Shop">Shop 10 - Ahuja Photo Shop</option>
+                                    <option value="Durga Photo Shop">Shop 11 - Durga Photo Shop</option>
+                                    <option value="Royal Cafe">Shop 12 - Royal Cafe</option>
+                                    <option value="Gupta Photo Shop">Shop 13 - Gupta Photo Shop</option>
+                                    <option value="Rapid Food Corner (South Indian)">Shop 14 - Rapid Food Corner (South Indian)</option>
+                                    <option value="Ahuja Mart">Shop 15 - Ahuja Mart</option>
+                                    <option value="Mahinder Food Junction">Shop 16 - Mahinder Food Junction</option>
+                                    <option value="Vardhaman Juice Corner">Shop 17 - Vardhaman Juice Corner</option>
+                                    <option value="Patanjali Mart">Shop 18 - Patanjali Mart</option>
+                                    <option value="Caffelera">Shop 19 - Caffelera</option>
+                                    <option value="Rainbow">Shop 20 - Rainbow</option>
+                                    <option value="Chai Nagri">Shop 21 - Chai Nagri</option>
+                                    <option value="Pani Puri Restaurant">Shop 22 - Pani Puri Restaurant</option>
+                                    <option value="Yummy Express">Shop 23 - Yummy Express</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <label class="form-label" for="reg-staff-role" style="font-size: 0.82rem; color: #475569;">Staff Designation / Role:</label>
                         <div class="input-group">
                             <i class="fa-solid fa-id-badge input-icon"></i>
                             <select id="reg-staff-role" class="form-select">
                                 <option value="Counter & Billing Manager" selected>Counter & Billing Manager</option>
+                                <option value="Shopkeeper / Order Packer">Shopkeeper / Order Packer</option>
                                 <option value="Mart & Inventory Manager">Mart & Inventory Manager</option>
                                 <option value="Mart Supervisor">Mart Supervisor</option>
                                 <option value="Kitchen Head Chef">Kitchen Head Chef</option>
@@ -133,8 +267,8 @@
                     </div>
                 </div>
 
-                <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-block btn-lg" style="margin-top: 0.5rem;">
-                    <i class="fa-solid fa-user-plus"></i> Create Account
+                <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">
+                    <i class="fa-solid fa-shield-halved"></i> Verify Mobile & Create Account
                 </button>
             </form>
 
@@ -144,8 +278,144 @@
         </div>
     </main>
 
+    <!-- Realistic Smartphone Floating Push Notification (iOS / Android SMS Alert) -->
+    <div id="mobile-push-notification" style="position: fixed; top: -160px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 440px; background: rgba(15, 23, 42, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1.5px solid rgba(255, 255, 255, 0.2); border-radius: 18px; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 25px rgba(234, 88, 12, 0.28); z-index: 100000; padding: 0.95rem 1.15rem; color: white; transition: top 0.45s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;" onclick="autoFillOtpAndNotify()">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, #ea580c, #f97316); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: white; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.45); flex-shrink: 0;">
+                    <i class="fa-solid fa-comment-sms"></i>
+                </div>
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="font-size: 0.74rem; font-weight: 800; color: #fb923c; letter-spacing: 0.6px; text-transform: uppercase;">MESSAGES • JUST NOW</span>
+                        <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
+                    </div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #f8fafc; margin-top: 1px;">
+                        TMU Campus Mart OTP: <span id="push-otp-display" style="font-family: monospace; font-size: 1.2rem; color: #fef08a; letter-spacing: 2.5px; font-weight: 800;">------</span>
+                    </div>
+                </div>
+            </div>
+            <button type="button" onclick="event.stopPropagation(); dismissPushNotification()" style="background: rgba(255,255,255,0.15); border: none; color: #cbd5e1; width: 28px; height: 28px; border-radius: 50%; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+        </div>
+        <div style="margin-top: 0.6rem; padding-top: 0.55rem; border-top: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem;">
+            <span style="color: #94a3b8;"><i class="fa-regular fa-clock"></i> Valid for 5 minutes</span>
+            <span style="color: #38bdf8; font-weight: 800; display: flex; align-items: center; gap: 0.35rem; background: rgba(56, 189, 248, 0.15); padding: 3px 10px; border-radius: 12px;">
+                <i class="fa-solid fa-bolt"></i> Tap to Auto-Fill OTP
+            </span>
+        </div>
+    </div>
+
+    <!-- SMS OTP Verification Modal -->
+    <div id="otp-modal" class="modal-backdrop" style="display: none; align-items: center; justify-content: center; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; padding: 1rem;">
+        <div class="modal-card" style="background: white; border-radius: 20px; max-width: 460px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); overflow: hidden; border: 1.5px solid #fed7aa; animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            
+            <!-- SMS Verification Header -->
+            <div style="background: linear-gradient(135deg, #ea580c, #c2410c); color: white; padding: 1.15rem 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: white;">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 1.05rem; letter-spacing: 0.2px;">Mobile SMS Verification</div>
+                        <div style="font-size: 0.74rem; color: #ffedd5; font-weight: 600;">Fast Campus Authentication Gateway</div>
+                    </div>
+                </div>
+                <button type="button" onclick="closeOtpModal()" style="background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+            </div>
+
+            <!-- In-Modal SMS Notification Card Preview -->
+            <div id="simulated-sms-banner" style="background: #fff7ed; border-bottom: 1.5px dashed #fdba74; padding: 0.9rem 1.25rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+                    <span style="font-size: 0.78rem; font-weight: 700; color: #9a3412; display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-solid fa-mobile-screen" style="color: #ea580c;"></i> Simulated SMS Received:
+                    </span>
+                    <span style="font-size: 0.72rem; color: #16a34a; font-weight: 700; background: #dcfce7; padding: 2px 8px; border-radius: 10px;">
+                        <i class="fa-solid fa-circle-check"></i> Delivered
+                    </span>
+                </div>
+                <div style="background: white; border: 1.5px solid #fed7aa; border-radius: 10px; padding: 0.6rem 0.85rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(234,88,12,0.06);">
+                    <div>
+                        <div style="font-size: 0.72rem; color: #64748b; font-weight: 600;">Your 6-Digit OTP:</div>
+                        <strong id="simulated-sms-code" style="color: #ea580c; font-size: 1.45rem; letter-spacing: 4px; font-family: monospace;">------</strong>
+                    </div>
+                    <button type="button" onclick="autoFillOtp()" class="btn btn-sm" style="background: #fff7ed; color: #c2410c; border: 1.5px solid #fed7aa; font-size: 0.8rem; font-weight: 800; padding: 5px 12px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+                        <i class="fa-solid fa-bolt"></i> Auto-Fill
+                    </button>
+                </div>
+            </div>
+
+            <div style="padding: 1.4rem 1.25rem;">
+                <div style="text-align: center; margin-bottom: 1.25rem;">
+                    <h3 style="font-size: 1.12rem; font-weight: 800; color: #0f172a; margin-bottom: 0.25rem;">Enter 6-Digit Code</h3>
+                    <p style="color: #64748b; font-size: 0.84rem;">
+                        Sent to mobile number <strong id="otp-phone-display" style="color: #0f172a;">+91 9876543210</strong>
+                    </p>
+                </div>
+
+                <!-- 6 Digits OTP Box -->
+                <form onsubmit="handleVerifyOtpSubmit(event)">
+                    <div style="display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.25rem;" id="otp-inputs-container">
+                        <input type="text" maxlength="1" class="otp-digit-input" id="otp-d1" oninput="handleOtpDigitInput(this, 1)" onkeydown="handleOtpDigitKeydown(event, 1)" onpaste="handleOtpPaste(event)" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" required>
+                        <input type="text" maxlength="1" class="otp-digit-input" id="otp-d2" oninput="handleOtpDigitInput(this, 2)" onkeydown="handleOtpDigitKeydown(event, 2)" onpaste="handleOtpPaste(event)" inputmode="numeric" pattern="[0-9]*" required>
+                        <input type="text" maxlength="1" class="otp-digit-input" id="otp-d3" oninput="handleOtpDigitInput(this, 3)" onkeydown="handleOtpDigitKeydown(event, 3)" onpaste="handleOtpPaste(event)" inputmode="numeric" pattern="[0-9]*" required>
+                        <input type="text" maxlength="1" class="otp-digit-input" id="otp-d4" oninput="handleOtpDigitInput(this, 4)" onkeydown="handleOtpDigitKeydown(event, 4)" onpaste="handleOtpPaste(event)" inputmode="numeric" pattern="[0-9]*" required>
+                        <input type="text" maxlength="1" class="otp-digit-input" id="otp-d5" oninput="handleOtpDigitInput(this, 5)" onkeydown="handleOtpDigitKeydown(event, 5)" onpaste="handleOtpPaste(event)" inputmode="numeric" pattern="[0-9]*" required>
+                        <input type="text" maxlength="1" class="otp-digit-input" id="otp-d6" oninput="handleOtpDigitInput(this, 6)" onkeydown="handleOtpDigitKeydown(event, 6)" onpaste="handleOtpPaste(event)" inputmode="numeric" pattern="[0-9]*" required>
+                    </div>
+
+                    <div style="text-align: center; margin-bottom: 1.25rem; font-size: 0.85rem; color: #64748b;">
+                        Didn't receive the OTP? 
+                        <span id="otp-timer-wrap">
+                            Resend in <strong id="otp-timer-count" style="color: #ea580c;">60s</strong>
+                        </span>
+                        <button type="button" id="resend-otp-btn" onclick="handleResendOtp()" style="display: none; background: none; border: none; color: #ea580c; font-weight: 700; cursor: pointer; text-decoration: underline; margin-left: 0.25rem;">
+                            Resend OTP Now
+                        </button>
+                    </div>
+
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button type="button" onclick="closeOtpModal()" class="btn btn-outline" style="flex: 1; border-color: #cbd5e1; color: #64748b; font-weight: 600;">
+                            <i class="fa-solid fa-arrow-left"></i> Change Phone
+                        </button>
+                        <button type="submit" id="verify-otp-btn" class="btn btn-primary" style="flex: 1.5; font-weight: 800; background: linear-gradient(135deg, #ea580c, #c2410c); border: none; box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);">
+                            <i class="fa-solid fa-circle-check"></i> Verify & Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .otp-digit-input {
+        width: 46px;
+        height: 54px;
+        text-align: center;
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: #0f172a;
+        border: 2px solid #cbd5e1;
+        border-radius: 12px;
+        background: #f8fafc;
+        transition: all 0.2s ease;
+    }
+    .otp-digit-input:focus {
+        border-color: var(--primary);
+        background: white;
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.18);
+        transform: translateY(-2px);
+    }
+    @keyframes modalPop {
+        0% { transform: scale(0.92); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    </style>
+
     <!-- Backend API & Auth Scripts -->
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js"></script>
 </body>
 </html>

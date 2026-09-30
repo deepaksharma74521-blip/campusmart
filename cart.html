@@ -2,16 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Shopping Cart – Campus Mart</title>
-    <!-- Google Fonts -->
+    <!-- Instant Startup Critical CSS & DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Custom CSS -->
+    <style>
+        /* Instant Cold Boot Paint (0ms White-Screen Eliminator) */
+        :root { --primary: #ea580c; --bg-main: #f8fafc; }
+        html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
+        .navbar { background: #ffffff; min-height: 64px; }
+    </style>
+    <!-- Google Fonts with Swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-blocking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+    <!-- Custom Core CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 </head>
 <body>
 
@@ -19,18 +39,28 @@
     <header class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="brand-logo">
-                <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+                <img src="assets/icons/logo.png" alt="Campus Mart Logo" class="brand-img">
                 <span>Campus<span>Mart</span></span>
             </a>
 
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="menu.html" class="nav-link"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="parcel.html" class="nav-link"><i class="fa-solid fa-box-open"></i> Gate 2 Parcel <span class="badge-soon">Coming Soon</span></a></li>
+                <li><a href="javascript:void(0)" onclick="openSalonComingSoonModal()" class="nav-link"><i class="fa-solid fa-scissors"></i> Men's Salon <span class="badge-soon">Coming Soon</span></a></li>
                 <li><a href="orders.html" class="nav-link"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
                 <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
             </ul>
 
             <div class="nav-actions">
+                <a href="/download/apk" download="CampusMart.apk" class="btn btn-outline btn-sm" style="border-color: #10b981; color: #047857; background: #ecfdf5; font-weight: 700; padding: 0.4rem 0.75rem; display: inline-flex; align-items: center; gap: 0.35rem;" title="Download Android App APK" onclick="triggerApkDownloadFeedback()">
+                    <i class="fa-brands fa-android"></i> App APK
+                </a>
+
+                <button type="button" class="cart-icon-btn" onclick="playWelcomeSoundAndVoice(true)" title="Play Campus Mart Welcome Chime & Greeting" style="background: #fff7ed; border-color: #fed7aa; color: #ea580c; cursor: pointer;">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+
                 <div class="cart-btn-wrap">
                     <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -83,7 +113,7 @@
                     <span id="summary-subtotal" style="font-weight: 600;">₹0</span>
                 </div>
                 <div class="summary-row">
-                    <span>Packaging & Prep Fee</span>
+                    <span id="summary-packaging-label">Packaging &amp; Prep Fee</span>
                     <span id="summary-packaging" style="font-weight: 600;">₹5</span>
                 </div>
                 <div class="summary-row total">
@@ -93,45 +123,289 @@
 
                 <!-- Checkout Form Inputs -->
                 <form id="checkout-form" onsubmit="handlePlaceOrder(event)" style="margin-top: 1.5rem;">
+                    <!-- Customer Identity Badge -->
+                    <div id="cart-user-badge" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.65rem 0.85rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+                        <span style="color: var(--text-muted);">Ordering as:</span>
+                        <span id="cart-user-identity" style="font-weight: 700; color: var(--secondary);">Student</span>
+                    </div>
+
+                    <!-- Department / College Selection -->
                     <div class="form-group">
-                        <label class="form-label" for="pickup-slot">
-                            <i class="fa-solid fa-clock" style="color: var(--primary);"></i> Select Pickup Slot
+                        <label class="form-label" for="cart-order-dept">
+                            <i class="fa-solid fa-building-columns" style="color: var(--primary);"></i> Your College / Department
                         </label>
-                        <select id="pickup-slot" class="form-select no-icon" required>
-                            <option value="Ready in 15 Minutes" selected>Immediate / In 15 Mins</option>
-                            <option value="Ready in 30 Minutes">In 30 Minutes</option>
-                            <option value="Morning Break (11:00 AM)">Morning Break (11:00 AM)</option>
-                            <option value="Lunch Break (1:15 PM)">Lunch Break (1:15 PM)</option>
-                            <option value="Evening Break (3:45 PM)">Evening Break (3:45 PM)</option>
+                        <select id="cart-order-dept" class="form-select no-icon" required>
+                            <option value="College of Computing Sciences & IT (CCSIT)">College of Computing Sciences & IT (CCSIT)</option>
+                            <option value="Medical College & Research Centre">Medical College & Research Centre</option>
+                            <option value="Dental College & Research Centre">Dental College & Research Centre</option>
+                            <option value="College of Nursing">College of Nursing</option>
+                            <option value="College of Pharmacy">College of Pharmacy</option>
+                            <option value="College of Paramedical Sciences">College of Paramedical Sciences</option>
+                            <option value="Department of Physiotherapy">Department of Physiotherapy</option>
+                            <option value="TMIMT College of Management">TMIMT College of Management</option>
+                            <option value="College of Law & Legal Studies">College of Law & Legal Studies</option>
+                            <option value="College of Engineering">College of Engineering</option>
+                            <option value="College of Fine Arts">College of Fine Arts</option>
+                            <option value="Faculty of Education">Faculty of Education</option>
+                            <option value="TMIMT College of Physical Education">TMIMT College of Physical Education</option>
+                            <option value="College of Agriculture Sciences">College of Agriculture Sciences</option>
+                            <option value="Centre for Jain Studies">Centre for Jain Studies</option>
+                            <option value="Other Department">Other Department</option>
                         </select>
+                    </div>
+
+                    <!-- MANDATORY LIVE GPS & CAMPUS SPOT VERIFICATION BOX -->
+                    <div id="gps-location-verification-card" style="background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border: 2px solid #86efac; border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-sm);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.4rem;">
+                            <label class="form-label" style="font-weight: 800; color: #166534; margin-bottom: 0; font-size: 0.9rem; display: flex; align-items: center; gap: 0.45rem;">
+                                <i class="fa-solid fa-satellite-dish" style="color: #16a34a;"></i> Live GPS Location (Mandatory)
+                            </label>
+                            <span id="gps-status-pill" style="font-size: 0.72rem; font-weight: 800; background: #dcfce7; color: #15803d; border: 1px solid #86efac; padding: 2px 8px; border-radius: 9999px; display: inline-flex; align-items: center; gap: 4px;">
+                                <i class="fa-solid fa-circle-dot" style="color: #22c55e;"></i> Detecting GPS...
+                            </span>
+                        </div>
+
+                        <!-- Live GPS Coordinates & Action -->
+                        <div style="background: white; border: 1px solid #bbf7d0; border-radius: 8px; padding: 0.65rem 0.85rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+                            <div>
+                                <div id="gps-coords-display" style="font-family: monospace; font-size: 0.82rem; font-weight: 700; color: #1e293b;">
+                                    📍 Lat: --, Lng: --
+                                </div>
+                                <div id="gps-accuracy-display" style="font-size: 0.72rem; color: #64748b; margin-top: 1px;">
+                                    Fetching exact campus GPS coordinates...
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.4rem;">
+                                <button type="button" id="detect-gps-btn" onclick="detectLiveGpsLocation(true)" class="btn btn-sm" style="background: #15803d; color: white; border: none; font-size: 0.78rem; padding: 4px 10px; border-radius: 6px; font-weight: 700; cursor: pointer;">
+                                    <i class="fa-solid fa-location-crosshairs"></i> Refresh GPS
+                                </button>
+                                <a id="view-live-map-link" href="#" target="_blank" class="btn btn-sm btn-outline" style="font-size: 0.78rem; padding: 4px 8px; border-color: #86efac; color: #166534; display: none; text-decoration: none;">
+                                    <i class="fa-solid fa-map-location-dot"></i> View Pin 📍
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Campus Building & Specific Spot Selector -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                            <div>
+                                <label class="form-label" for="cart-campus-block" style="font-size: 0.78rem; font-weight: 700; color: #166534; margin-bottom: 2px;">
+                                    <i class="fa-solid fa-building"></i> Campus Block / Building *
+                                </label>
+                                <select id="cart-campus-block" class="form-select no-icon" style="font-size: 0.82rem; padding: 0.4rem 0.6rem; background: white;" required>
+                                    <option value="CCSIT Computer Science Block" selected>💻 CCSIT Block (CS & IT)</option>
+                                    <option value="TMU Main Academic Block">🏛️ TMU Main Academic Block</option>
+                                    <option value="Medical College & Hospital">🏥 Medical College & Hospital</option>
+                                    <option value="Dental College Block">🦷 Dental College Wing</option>
+                                    <option value="TMIMT Management Block">🏢 TMIMT Management Block</option>
+                                    <option value="Central Library & Reading Hall">📚 Central Library & Study Wing</option>
+                                    <option value="Boys Hostel Block H-1 / H-2 / H-3">🛏️ Boys Hostel Block (H1/H2/H3)</option>
+                                    <option value="Girls Hostel Block GH-1 / GH-2">🛏️ Girls Hostel Block (GH1/GH2)</option>
+                                    <option value="Sports Complex & Open Campus Lawn">🏃 Sports Complex / Open Lawn</option>
+                                    <option value="Central Food Court & Canteen">🍔 Central Food Court Counter</option>
+                                    <option value="Other Campus Building">📍 Other Campus Spot</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label" for="cart-campus-room" style="font-size: 0.78rem; font-weight: 700; color: #166534; margin-bottom: 2px;">
+                                    <i class="fa-solid fa-door-open"></i> Room / Cabin / Lab No *
+                                </label>
+                                <input type="text" id="cart-campus-room" class="form-input no-icon" placeholder="e.g. Lab 304 / Cabin 12 / Room 205..." style="font-size: 0.82rem; padding: 0.4rem 0.6rem; background: white;" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Fulfillment Mode: Self Pickup vs Campus Delivery -->
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span><i class="fa-solid fa-truck-fast" style="color: var(--primary);"></i> Order Receiving Mode</span>
+                            <span style="font-size: 0.72rem; color: #0284c7; background: #e0f2fe; padding: 2px 7px; border-radius: 9999px; font-weight: 700;">Fast & Direct</span>
+                        </label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                            <label class="fulfillment-card" id="fulfillment-card-pickup" onclick="selectFulfillmentType('pickup')" style="display: flex; flex-direction: column; padding: 0.75rem 0.85rem; border: 2px solid var(--primary); border-radius: 10px; background: #fff7ed; cursor: pointer; transition: all 0.2s;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="radio" name="fulfillment_type" value="pickup" checked style="accent-color: var(--primary);">
+                                    <strong style="font-size: 0.88rem; color: var(--secondary);">🏃 Self Pickup</strong>
+                                </div>
+                                <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">Collect directly from counter</span>
+                            </label>
+                            <label class="fulfillment-card" id="fulfillment-card-delivery" onclick="selectFulfillmentType('delivery')" style="display: flex; flex-direction: column; padding: 0.75rem 0.85rem; border: 1.5px solid var(--border-color); border-radius: 10px; background: white; cursor: pointer; transition: all 0.2s;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="radio" name="fulfillment_type" value="delivery" style="accent-color: var(--primary);">
+                                    <strong style="font-size: 0.88rem; color: var(--secondary);">🛵 Campus Delivery</strong>
+                                </div>
+                                <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">Deliver to Cabin / Room / Lab</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campus Delivery Address Box (Shows when Delivery is chosen) -->
+                    <div id="delivery-address-group" style="display: none; background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 1rem;">
+                        <label class="form-label" for="delivery-location-input" style="color: #1e40af; font-weight: 700; margin-bottom: 0.35rem; font-size: 0.85rem;">
+                            <i class="fa-solid fa-location-dot"></i> Delivery Point / Room / Cabin No *
+                        </label>
+                        <input type="text" id="delivery-location-input" class="form-input no-icon" placeholder="e.g. Faculty Cabin 204 (CS Block) / Hostel H-2 Room 315 / Lab 4..." style="background: white; border-color: #93c5fd; font-size: 0.85rem;">
+                        <div style="font-size: 0.72rem; color: #3b82f6; margin-top: 4px;">
+                            <i class="fa-solid fa-circle-info"></i> Our counter runner will bring your package directly to your location.
+                        </div>
+                    </div>
+
+                    <!-- Arrival / Pickup Time Slot with Custom Time Picker -->
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label class="form-label" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span><i class="fa-solid fa-clock" style="color: var(--primary);"></i> Mention When You Will Arrive / Need Delivery</span>
+                        </label>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
+                            <button type="button" class="time-slot-pill active" onclick="selectTimeSlotOption('Immediate / In 15 Mins', this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid var(--primary); background: #fff7ed; color: var(--primary); font-weight: 700; font-size: 0.78rem; cursor: pointer;">⚡ Immediate (15m)</button>
+                            <button type="button" class="time-slot-pill" onclick="selectTimeSlotOption('Lunch Break (1:15 PM)', this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid #cbd5e1; background: white; color: #475569; font-weight: 600; font-size: 0.78rem; cursor: pointer;">🍱 Lunch (1:15 PM)</button>
+                            <button type="button" class="time-slot-pill" onclick="selectTimeSlotOption('Evening Break (4:30 PM)', this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid #cbd5e1; background: white; color: #475569; font-weight: 600; font-size: 0.78rem; cursor: pointer;">☕ Evening (4:30 PM)</button>
+                            <button type="button" class="time-slot-pill" id="custom-time-pill" onclick="toggleCustomTimeInput(this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid #cbd5e1; background: white; color: #6b21a8; font-weight: 700; font-size: 0.78rem; cursor: pointer;">⏰ Set Custom Time</button>
+                        </div>
+                        <input type="hidden" id="pickup-slot" value="Immediate / In 15 Mins">
+
+                        <!-- Custom Time Input Box (Hidden by default, shows on click) -->
+                        <div id="custom-time-box" style="display: none; background: #fdf4ff; border: 1.5px solid #f0abfc; border-radius: 8px; padding: 0.75rem 1rem; margin-top: 0.4rem;">
+                            <label class="form-label" for="custom-time-picker" style="color: #86198f; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.3rem;">
+                                <i class="fa-solid fa-stopwatch"></i> Exact Time / Note for Counter (e.g. 01:45 PM):
+                            </label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="time" id="custom-time-picker" class="form-input no-icon" style="flex: 1; font-weight: 700; font-size: 0.95rem; background: white;" onchange="onCustomTimeChanged(this.value)">
+                                <input type="text" id="custom-time-note" class="form-input no-icon" placeholder="e.g. Arriving after 2nd lecture" style="flex: 2; font-size: 0.85rem; background: white;" oninput="onCustomTimeChanged()">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="special-notes">
-                            <i class="fa-solid fa-pen" style="color: var(--primary);"></i> Cooking / Dietary Notes (Optional)
+                            <i class="fa-solid fa-pen" style="color: var(--primary);"></i> Special Cooking / Packing Instructions (Optional)
                         </label>
-                        <textarea id="special-notes" class="form-textarea no-icon" rows="2" placeholder="e.g. Less spicy, extra ketchup, no mayo..."></textarea>
+                        <textarea id="special-notes" class="form-textarea no-icon" rows="2" placeholder="e.g. Extra napkins, less spicy, pack separately..."></textarea>
+                    </div>
+
+                    <!-- Payment Split Selection (100% Full, 50-50 Split, 80-20 Split) -->
+                    <div class="form-group">
+                        <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                            <span><i class="fa-solid fa-pie-chart" style="color: var(--primary);"></i> Select Payment Split Mode</span>
+                            <span style="font-size: 0.74rem; color: #16a34a; font-weight: 700; background: #dcfce7; padding: 2px 7px; border-radius: 9999px;">Flexible Booking</span>
+                        </label>
+
+                        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+                            <!-- Option 1: 100% Full -->
+                            <label class="payment-split-card" id="split-card-100" onclick="selectPaymentSplit(100)" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border: 2px solid var(--primary); border-radius: 10px; background: #fff7ed; cursor: pointer; transition: all 0.2s ease;">
+                                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                    <input type="radio" name="payment_split" value="100" checked style="accent-color: var(--primary);">
+                                    <div>
+                                        <div style="font-weight: 700; font-size: 0.92rem; color: var(--secondary);">100% Full Payment</div>
+                                        <div style="font-size: 0.76rem; color: var(--text-muted);">Pay full amount now &bull; Zero balance on pickup</div>
+                                    </div>
+                                </div>
+                                <span class="badge-split" id="split-badge-100" style="font-weight: 800; color: var(--primary); font-size: 0.95rem;">₹0</span>
+                            </label>
+
+                            <!-- Option 2: 50% - 50% Split -->
+                            <label class="payment-split-card" id="split-card-50" onclick="selectPaymentSplit(50)" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border: 1.5px solid var(--border-color); border-radius: 10px; background: white; cursor: pointer; transition: all 0.2s ease;">
+                                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                    <input type="radio" name="payment_split" value="50" style="accent-color: var(--primary);">
+                                    <div>
+                                        <div style="font-weight: 700; font-size: 0.92rem; color: var(--secondary);">50% Advance + 50% on Pickup</div>
+                                        <div style="font-size: 0.76rem; color: var(--text-muted);">Pay half now &bull; Pay remaining half at counter</div>
+                                    </div>
+                                </div>
+                                <span class="badge-split" id="split-badge-50" style="font-weight: 700; color: #b45309; font-size: 0.88rem;">₹0 Now</span>
+                            </label>
+
+                            <!-- Option 3: 80% - 20% Split -->
+                            <label class="payment-split-card" id="split-card-80" onclick="selectPaymentSplit(80)" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border: 1.5px solid var(--border-color); border-radius: 10px; background: white; cursor: pointer; transition: all 0.2s ease;">
+                                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                    <input type="radio" name="payment_split" value="80" style="accent-color: var(--primary);">
+                                    <div>
+                                        <div style="font-weight: 700; font-size: 0.92rem; color: var(--secondary);">80% Advance + 20% on Pickup</div>
+                                        <div style="font-size: 0.76rem; color: var(--text-muted);">Pay 80% now &bull; Pay 20% balance at counter</div>
+                                    </div>
+                                </div>
+                                <span class="badge-split" id="split-badge-80" style="font-weight: 700; color: #4338ca; font-size: 0.88rem;">₹0 Now</span>
+                            </label>
+                        </div>
+
+                        <!-- Live Payment Breakdown Box -->
+                        <div id="split-breakdown-box" style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 0.75rem 1rem; margin-top: 0.75rem; font-size: 0.85rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                                <span style="color: var(--text-muted);">Advance Payable Now:</span>
+                                <strong id="split-advance-amt" style="color: #16a34a; font-size: 0.95rem;">₹0</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-muted);">Balance Due at Counter:</span>
+                                <strong id="split-due-amt" style="color: #d97706; font-size: 0.95rem;">₹0</strong>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">
-                            <i class="fa-solid fa-wallet" style="color: var(--primary);"></i> Payment Mode
+                            <i class="fa-solid fa-wallet" style="color: var(--primary);"></i> Advance Payment Channel
                         </label>
                         <div style="display: flex; flex-direction: column; gap: 0.5rem; background: var(--bg-main); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
                             <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
-                                <input type="radio" name="payment_method" value="Pay on Pickup Counter" checked style="accent-color: var(--primary);">
-                                <span><i class="fa-solid fa-hand-holding-dollar" style="color: var(--veg-color);"></i> Pay Cash / UPI at Counter</span>
+                                <input type="radio" name="payment_method" value="Instant UPI & Gateway Split" checked style="accent-color: var(--primary);" onchange="toggleUpiPaymentBox(true)">
+                                <span><i class="fa-solid fa-bolt" style="color: #eab308;"></i> <strong>Instant UPI & Online Split</strong> (GPay / PhonePe / Paytm / Cards)</span>
                             </label>
                             <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
-                                <input type="radio" name="payment_method" value="Campus Digital Wallet" style="accent-color: var(--primary);">
-                                <span><i class="fa-solid fa-id-card-clip" style="color: var(--primary);"></i> Student Campus Wallet</span>
+                                <input type="radio" name="payment_method" value="Campus Digital Wallet" style="accent-color: var(--primary);" onchange="toggleUpiPaymentBox(false)">
+                                <span><i class="fa-solid fa-id-card-clip" style="color: var(--primary);"></i> Campus Student/Faculty Digital Wallet</span>
                             </label>
+                            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
+                                <input type="radio" name="payment_method" value="Pay Cash on Pickup Counter" style="accent-color: var(--primary);" onchange="toggleUpiPaymentBox(false)">
+                                <span><i class="fa-solid fa-hand-holding-dollar" style="color: var(--veg-color);"></i> <strong>Pay Cash at Counter</strong> (Auto-tracked in ledger)</span>
+                            </label>
+                        </div>
+
+                        <!-- Dynamic Shop Owner UPI QR Container (Shows when UPI is chosen) -->
+                        <div id="checkout-upi-box" style="display: none; background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border: 2px solid #7dd3fc; border-radius: 12px; padding: 1.25rem; margin-top: 0.85rem; text-align: center; box-shadow: var(--shadow-sm);">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-store" style="color: #0284c7; font-size: 1.1rem;"></i>
+                                <span style="font-size: 0.82rem; font-weight: 700; color: #0369a1; text-transform: uppercase; letter-spacing: 0.5px;">Paying Directly To:</span>
+                                <strong id="checkout-upi-shop-name" style="color: #0f172a; font-size: 0.95rem;">TMU Central Food Court</strong>
+                            </div>
+
+                            <div style="margin: 0.75rem 0;">
+                                <img id="checkout-upi-qr-img" src="" alt="Shop UPI QR Code" style="width: 175px; height: 175px; object-fit: contain; background: white; border-radius: 10px; border: 2px solid #bae6fd; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: inline-block;">
+                            </div>
+
+                            <div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                                <span style="font-size: 0.84rem; color: #475569;">Amount to Pay:</span>
+                                <span id="checkout-upi-amount-badge" style="background: #15803d; color: white; padding: 2px 10px; border-radius: 9999px; font-weight: 800; font-size: 1rem;">₹0</span>
+                            </div>
+
+                            <div style="background: white; border: 1px dashed #93c5fd; border-radius: 8px; padding: 0.5rem 0.75rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                                <div style="text-align: left;">
+                                    <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Shop UPI ID:</div>
+                                    <span id="checkout-upi-vpa-text" style="font-family: monospace; font-size: 0.88rem; font-weight: 800; color: #0284c7;">campusmart@upi</span>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline" id="copy-upi-btn" onclick="copyCheckoutUpiId(this)" style="font-size: 0.78rem; padding: 4px 8px; border-color: #0284c7; color: #0369a1;">
+                                    <i class="fa-solid fa-copy"></i> Copy UPI
+                                </button>
+                            </div>
+
+                            <div id="checkout-upi-note" style="font-size: 0.78rem; color: #0369a1; font-weight: 500; margin-bottom: 0.75rem; background: #e0f2fe; padding: 4px 8px; border-radius: 6px;">
+                                💡 Scan with Google Pay / PhonePe / Paytm. Keep screenshot ready for pickup.
+                            </div>
+
+                            <div style="text-align: left;">
+                                <label for="checkout-utr-input" style="font-size: 0.8rem; font-weight: 700; color: #1e3a8a; display: block; margin-bottom: 3px;">
+                                    <i class="fa-solid fa-receipt"></i> UPI UTR / Transaction ID (Optional for fast verification):
+                                </label>
+                                <input type="text" id="checkout-utr-input" class="form-input no-icon" placeholder="e.g. 423819284712 or Last 4 digits" maxlength="25" style="background: white; border-color: #93c5fd; font-size: 0.85rem; font-weight: 600;">
+                            </div>
                         </div>
                     </div>
 
                     <button type="submit" id="place-order-btn" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
                         <i class="fa-solid fa-circle-check"></i> Place Pre-Order Now
                     </button>
+
+                    <div style="background: #fff7ed; border: 1px dashed #fdba74; border-radius: 8px; padding: 0.6rem 0.85rem; margin-top: 0.85rem; font-size: 0.78rem; color: #9a3412; display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-fire" style="color: #ea580c; font-size: 1rem;"></i>
+                        <span><strong>Hot Food Notice:</strong> Fresh meals are served piping hot. Please collect within 20 mins of the ready alert to enjoy optimal taste!</span>
+                    </div>
                 </form>
             </div>
         </div>
@@ -141,11 +415,18 @@
     <div id="order-success-modal" class="modal-backdrop">
         <div class="modal-card" style="text-align: center;">
             <div class="modal-body" style="padding: 2.5rem 2rem;">
-                <div style="width: 70px; height: 70px; border-radius: 50%; background: #dcfce7; color: #16a34a; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem auto;">
+                <div style="width: 70px; height: 70px; border-radius: 50%; background: #dcfce7; color: #166534; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem auto;">
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <h3 style="font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.5rem;">Pre-Order Placed!</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Your pre-order has been forwarded to the mart counter.</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">Your pre-order has been forwarded to the mart counter.</p>
+
+                <div style="background: #fff7ed; border: 1.5px solid #fdba74; color: #9a3412; padding: 0.6rem 0.9rem; border-radius: 10px; font-size: 0.8rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; text-align: left;">
+                    <i class="fa-solid fa-fire" style="font-size: 1.15rem; color: #ea580c;"></i>
+                    <div>
+                        <strong>♨️ Hot Food 20-Min Window:</strong> Please collect within 20 minutes once prepared before it gets cold!
+                    </div>
+                </div>
 
                 <div style="background: var(--bg-main); border: 1px dashed var(--border-color); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; text-align: left;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
@@ -153,8 +434,16 @@
                         <strong id="modal-order-id" style="font-family: var(--font-heading); color: var(--primary); font-size: 1.1rem;">ORD-000000</strong>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span style="color: var(--text-muted); font-size: 0.88rem;">Total Payable:</span>
+                        <span style="color: var(--text-muted); font-size: 0.88rem;">Total Bill:</span>
                         <strong id="modal-order-amount">₹0</strong>
+                    </div>
+                    <div id="modal-split-row" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; background: #f0fdf4; padding: 4px 8px; border-radius: 6px;">
+                        <span style="color: #166534; font-size: 0.85rem; font-weight: 600;">Advance Paid:</span>
+                        <strong id="modal-order-advance" style="color: #15803d;">₹0</strong>
+                    </div>
+                    <div id="modal-due-row" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; background: #fffbeb; padding: 4px 8px; border-radius: 6px;">
+                        <span style="color: #92400e; font-size: 0.85rem; font-weight: 600;">Due on Pickup:</span>
+                        <strong id="modal-order-due" style="color: #b45309;">₹0</strong>
                     </div>
                     <div style="display: flex; justify-content: space-between;">
                         <span style="color: var(--text-muted); font-size: 0.88rem;">Pickup Slot:</span>
@@ -212,5 +501,7 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js"></script>
 </body>
 </html>

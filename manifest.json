@@ -1,0 +1,38 @@
+{
+  "name": "Campus Mart – Smart Food & Essentials Pre-Order",
+  "short_name": "Campus Mart",
+  "description": "Smart Multi-Vendor Pre-Order & Campus Essentials Ecosystem for TMU & Colleges",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b1120",
+  "theme_color": "#ea580c",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["food", "shopping", "lifestyle", "education"],
+  "screenshots": [
+    {
+      "src": "/assets/ppt_images/hero.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg"
+    }
+  ]
+}

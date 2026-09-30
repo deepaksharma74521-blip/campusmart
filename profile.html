@@ -2,16 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Student Profile – Campus Mart</title>
-    <!-- Google Fonts -->
+    <!-- Instant Startup Critical CSS & DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Custom CSS -->
+    <style>
+        /* Instant Cold Boot Paint (0ms White-Screen Eliminator) */
+        :root { --primary: #ea580c; --bg-main: #f8fafc; }
+        html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
+        .navbar { background: #ffffff; min-height: 64px; }
+    </style>
+    <!-- Google Fonts with Swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-blocking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+    <!-- Custom Core CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 </head>
 <body>
 
@@ -110,15 +130,24 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="edit-dept">Department</label>
+                        <label class="form-label" for="edit-dept">College / Department</label>
                         <select id="edit-dept" class="form-select no-icon" required>
-                            <option value="BCA">BCA (Computer App)</option>
-                            <option value="B.Sc CS">B.Sc Computer Science</option>
-                            <option value="B.Tech CS/IT">B.Tech CS / IT</option>
-                            <option value="BBA">BBA</option>
-                            <option value="B.Com">B.Com</option>
-                            <option value="MCA">MCA</option>
-                            <option value="Other">Other Department</option>
+                            <option value="College of Computing Sciences & IT (CCSIT)">College of Computing Sciences & IT (CCSIT)</option>
+                            <option value="Medical College & Research Centre">Medical College & Research Centre</option>
+                            <option value="Dental College & Research Centre">Dental College & Research Centre</option>
+                            <option value="College of Nursing">College of Nursing</option>
+                            <option value="College of Pharmacy">College of Pharmacy</option>
+                            <option value="College of Paramedical Sciences">College of Paramedical Sciences</option>
+                            <option value="Department of Physiotherapy">Department of Physiotherapy</option>
+                            <option value="TMIMT College of Management">TMIMT College of Management</option>
+                            <option value="College of Law & Legal Studies">College of Law & Legal Studies</option>
+                            <option value="College of Engineering">College of Engineering</option>
+                            <option value="College of Fine Arts">College of Fine Arts</option>
+                            <option value="Faculty of Education">Faculty of Education</option>
+                            <option value="TMIMT College of Physical Education">TMIMT College of Physical Education</option>
+                            <option value="College of Agriculture Sciences">College of Agriculture Sciences</option>
+                            <option value="Centre for Jain Studies">Centre for Jain Studies</option>
+                            <option value="Other Department">Other Department</option>
                         </select>
                     </div>
                 </div>
@@ -182,5 +211,7 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/profile.js"></script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js"></script>
 </body>
 </html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Campus Mart – Delivery Partner & Fleet Portal</title>
+    <!-- Instant Startup Critical CSS & DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        /* Instant Cold Boot Paint (0ms White-Screen Eliminator) */
+        :root { --primary: #ea580c; --bg-main: #f8fafc; }
+        html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
+        .navbar { background: #ffffff; min-height: 64px; }
+    </style>
+    <!-- Google Fonts with Swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-blocking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: #f8fafc; min-height: 100vh; display: flex; flex-direction: column;">
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="assets/icons/logo.png" alt="Campus Mart Logo" class="brand-img" onerror="this.onerror=null; this.src='assets/icons/icon-192.png';">
+                <span>Campus<span>Mart</span></span>
+            </a>
+
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span class="badge" style="background: #e0f2fe; color: #0369a1; font-weight: 700; padding: 4px 10px; border-radius: 9999px; font-size: 0.8rem;">
+                    <i class="fa-solid fa-person-biking"></i> Delivery Partner Fleet
+                </span>
+                <div id="delivery-user-actions" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span id="delivery-runner-name" style="font-size: 0.88rem; font-weight: 700; color: var(--secondary);">Runner</span>
+                    <button onclick="api.logout()" class="btn btn-outline btn-sm" title="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container" style="flex: 1; padding: 1.5rem 1rem; max-width: 900px;">
+        
+        <!-- Header & Partner Status Banner -->
+        <div style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-md);">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+                <div>
+                    <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;">
+                        <i class="fa-solid fa-shield-halved" style="color: #38bdf8;"></i> Authorized Delivery Runner Portal
+                    </div>
+                    <h2 style="font-size: 1.6rem; font-weight: 800; margin: 0.25rem 0 0.4rem 0; color: white;" id="runner-greeting">
+                        Campus Delivery Fleet
+                    </h2>
+                    <p style="font-size: 0.86rem; color: #cbd5e1; margin: 0;">
+                        Deliver orders across Campus Hostels, Faculty Cabins & Labs with instant Cash / Online reconciliation.
+                    </p>
+                </div>
+
+                <div style="text-align: right; background: rgba(255, 255, 255, 0.1); padding: 0.6rem 1rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Status</div>
+                    <div style="font-size: 0.95rem; font-weight: 700; color: #4ade80; display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #4ade80; display: inline-block; animation: pulseTimer 1.5s infinite;"></span>
+                        Online & Active
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metric KPI Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 1.1rem; box-shadow: var(--shadow-xs); display: flex; align-items: center; gap: 0.85rem;">
+                <div style="width: 46px; height: 46px; border-radius: 12px; background: #e0f2fe; color: #0284c7; font-size: 1.3rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-person-biking"></i>
+                </div>
+                <div>
+                    <div style="font-size: 1.45rem; font-weight: 800; color: var(--secondary);" id="stat-active-deliveries">0</div>
+                    <div style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Active Pickups</div>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 1.1rem; box-shadow: var(--shadow-xs); display: flex; align-items: center; gap: 0.85rem;">
+                <div style="width: 46px; height: 46px; border-radius: 12px; background: #dcfce7; color: #16a34a; font-size: 1.3rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div>
+                    <div style="font-size: 1.45rem; font-weight: 800; color: #16a34a;" id="stat-completed-deliveries">0</div>
+                    <div style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Delivered Today</div>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #fde68a; border-radius: var(--radius-md); padding: 1.1rem; box-shadow: var(--shadow-xs); display: flex; align-items: center; gap: 0.85rem;">
+                <div style="width: 46px; height: 46px; border-radius: 12px; background: #fef3c7; color: #d97706; font-size: 1.3rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div>
+                    <div style="font-size: 1.45rem; font-weight: 800; color: #b45309;" id="stat-cash-collected">₹0</div>
+                    <div style="font-size: 0.78rem; font-weight: 600; color: #92400e;">Cash in Hand</div>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #c7d2fe; border-radius: var(--radius-md); padding: 1.1rem; box-shadow: var(--shadow-xs); display: flex; align-items: center; gap: 0.85rem;">
+                <div style="width: 46px; height: 46px; border-radius: 12px; background: #e0e7ff; color: #4338ca; font-size: 1.3rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <div style="font-size: 1.45rem; font-weight: 800; color: #4338ca;" id="stat-online-collected">₹0</div>
+                    <div style="font-size: 0.78rem; font-weight: 600; color: #3730a3;">Online / UPI Paid</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs & Search Bar -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 0.85rem 1rem; margin-bottom: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem;">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button class="btn btn-sm btn-primary filter-tab active" data-filter="active" onclick="filterDeliveryOrders('active', this)">
+                    <i class="fa-solid fa-motorcycle"></i> Active Tasks (<span id="count-active">0</span>)
+                </button>
+                <button class="btn btn-sm btn-outline filter-tab" data-filter="delivered" onclick="filterDeliveryOrders('delivered', this)">
+                    <i class="fa-solid fa-check-double"></i> Delivered (<span id="count-delivered">0</span>)
+                </button>
+                <button class="btn btn-sm btn-outline filter-tab" data-filter="all" onclick="filterDeliveryOrders('all', this)">
+                    <i class="fa-solid fa-list-check"></i> All Tasks (<span id="count-all">0</span>)
+                </button>
+            </div>
+
+            <div class="search-box-wrap" style="max-width: 280px; width: 100%;">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="delivery-search-input" class="search-input" placeholder="Search Room, Name, Phone..." oninput="handleDeliverySearch(this.value)">
+            </div>
+        </div>
+
+        <!-- Delivery Orders List Container -->
+        <div id="delivery-orders-list">
+            <div style="text-align: center; padding: 3rem 0;">
+                <div class="loader-spinner"></div>
+                <p style="color: var(--text-muted); font-weight: 500;">Loading delivery dispatch tasks...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- MARK AS DELIVERED MODAL -->
+    <div id="delivery-complete-modal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 480px; width: 100%;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 1.25rem 1.5rem; border-radius: var(--radius-lg) var(--radius-lg) 0 0; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: #22c55e; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.15rem; font-weight: 700; color: white; margin: 0;" id="modal-delivery-order-id">Complete Delivery</h3>
+                        <div style="font-size: 0.75rem; color: #94a3b8;">Confirm payment collection & hand-off</div>
+                    </div>
+                </div>
+                <button type="button" onclick="closeDeliveryModal()" style="background: none; border: none; color: white; font-size: 1.25rem; cursor: pointer;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="delivery-complete-form" onsubmit="handleDeliverySubmit(event)" style="padding: 1.5rem;">
+                <input type="hidden" id="modal-order-doc-id">
+                
+                <!-- Order & Customer Summary Box -->
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 1.25rem; font-size: 0.85rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <span style="color: var(--text-muted);">Customer:</span>
+                        <strong id="modal-customer-name" style="color: var(--secondary);">Student Name</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <span style="color: var(--text-muted);">Location:</span>
+                        <strong id="modal-customer-location" style="color: #0284c7;">Hostel H-1 / Room 204</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <span style="color: var(--text-muted);">Total Bill:</span>
+                        <strong id="modal-total-amount" style="color: var(--secondary);">₹0</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-top: 1px dashed #cbd5e1; padding-top: 4px; margin-top: 4px;">
+                        <span style="color: #92400e; font-weight: 700;">Balance Due on Hand-Off:</span>
+                        <strong id="modal-due-amount" style="color: #b45309; font-size: 0.95rem; background: #fef3c7; padding: 1px 6px; border-radius: 4px;">₹0</strong>
+                    </div>
+                </div>
+
+                <!-- Payment Method Received Choice (Cash vs Online) -->
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label class="form-label" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; display: block;">
+                        <i class="fa-solid fa-hand-holding-dollar" style="color: var(--primary);"></i> How did customer pay on delivery? *
+                    </label>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;">
+                        <label class="payment-choice-card" id="choice-card-cash" onclick="selectDeliveryPayMode('Cash')" style="display: flex; flex-direction: column; padding: 0.75rem 0.85rem; border: 2px solid var(--primary); border-radius: 10px; background: #fff7ed; cursor: pointer; transition: all 0.2s;">
+                            <div style="display: flex; align-items: center; gap: 0.45rem;">
+                                <input type="radio" name="delivery_payment_mode" value="Cash" checked style="accent-color: var(--primary);">
+                                <strong style="font-size: 0.88rem; color: #9a3412;">💵 Cash Paid</strong>
+                            </div>
+                            <span style="font-size: 0.72rem; color: #c2410c; margin-top: 3px;">Physical Cash Collected</span>
+                        </label>
+
+                        <label class="payment-choice-card" id="choice-card-online" onclick="selectDeliveryPayMode('Online')" style="display: flex; flex-direction: column; padding: 0.75rem 0.85rem; border: 1.5px solid var(--border-color); border-radius: 10px; background: white; cursor: pointer; transition: all 0.2s;">
+                            <div style="display: flex; align-items: center; gap: 0.45rem;">
+                                <input type="radio" name="delivery_payment_mode" value="Online" style="accent-color: var(--primary);">
+                                <strong style="font-size: 0.88rem; color: var(--secondary);">📲 Online / UPI</strong>
+                            </div>
+                            <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 3px;">UPI / QR / Gateway Paid</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Amount Collected Input -->
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label class="form-label" for="modal-collected-amount" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.35rem; display: block;">
+                        Amount Collected (₹) *
+                    </label>
+                    <input type="number" id="modal-collected-amount" class="form-input no-icon" min="0" step="1" required style="font-size: 1.1rem; font-weight: 800; color: var(--secondary); padding: 0.6rem 0.85rem;">
+                </div>
+
+                <!-- Optional Online Transaction ID / Ref (Shows if Online) -->
+                <div id="modal-online-ref-group" style="display: none; margin-bottom: 1rem;">
+                    <label class="form-label" for="modal-transaction-ref" style="font-size: 0.82rem; font-weight: 700; color: #1e40af; margin-bottom: 0.35rem; display: block;">
+                        <i class="fa-solid fa-receipt"></i> UPI UTR / Transaction Ref (Optional)
+                    </label>
+                    <input type="text" id="modal-transaction-ref" class="form-input no-icon" placeholder="e.g. 423819284712 or GPay Ref" style="font-size: 0.85rem; border-color: #93c5fd;">
+                </div>
+
+                <!-- Optional Delivery Remarks -->
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label class="form-label" for="modal-delivery-notes" style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem; display: block;">
+                        <i class="fa-solid fa-note-sticky"></i> Delivery Notes / Hand-off Remark (Optional)
+                    </label>
+                    <input type="text" id="modal-delivery-notes" class="form-input no-icon" placeholder="e.g. Handed to student in room, paid exact change..." style="font-size: 0.85rem;">
+                </div>
+
+                <div style="display: flex; gap: 0.75rem;">
+                    <button type="button" onclick="closeDeliveryModal()" class="btn btn-outline" style="flex: 1; justify-content: center;">
+                        Cancel
+                    </button>
+                    <button type="submit" id="submit-delivery-btn" class="btn btn-primary" style="flex: 2; justify-content: center; font-weight: 700;">
+                        <i class="fa-solid fa-circle-check"></i> Complete & Mark Delivered
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: auto; padding: 1.5rem 0; background: white; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.82rem; color: var(--text-muted);">
+        <div class="container">
+            <div>Campus Mart Express Fleet Portal &bull; Confidential & Authorized Staff Only</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/delivery.js"></script>
+</body>
+</html>

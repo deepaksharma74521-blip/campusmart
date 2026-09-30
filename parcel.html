@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Campus Gate Parcel Concierge – TMU Gate 2 to Hostel Delivery | Campus Mart</title>
+    <!-- Instant Startup Critical CSS & DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        /* Instant Cold Boot Paint (0ms White-Screen Eliminator) */
+        :root { --primary: #ea580c; --bg-main: #f8fafc; }
+        html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
+        .navbar { background: #ffffff; min-height: 64px; }
+    </style>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .parcel-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 2.5rem 0 2rem 0;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .parcel-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+        .platform-card {
+            border: 1.5px solid #cbd5e1;
+            background: white;
+            border-radius: 10px;
+            padding: 0.65rem 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .platform-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .platform-card.active {
+            border-color: var(--primary);
+            background: #fff7ed;
+            box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+        }
+        .platform-card i {
+            font-size: 1.4rem;
+        }
+        .platform-card .platform-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        .parcel-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        .parcel-tab-btn {
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .parcel-tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+        }
+        .parcel-step-pill {
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1.5px solid #cbd5e1;
+            background: white;
+            color: #475569;
+            transition: all 0.2s ease;
+        }
+        .parcel-step-pill.active {
+            border-color: var(--primary);
+            background: #fff7ed;
+            color: var(--primary);
+        }
+        .pin-badge {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1.5px solid #f59e0b;
+            color: #92400e;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .parcel-tracker {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 1.5rem 0 1.25rem 0;
+        }
+        .parcel-tracker::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+        .parcel-track-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+        .parcel-track-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #cbd5e1;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.4rem auto;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .parcel-track-step.completed .parcel-track-icon {
+            background: #16a34a;
+            border-color: #16a34a;
+            color: white;
+        }
+        .parcel-track-step.active .parcel-track-icon {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+            animation: pulse-ring 2s infinite;
+        }
+        .parcel-track-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #64748b;
+        }
+        .parcel-track-step.completed .parcel-track-label,
+        .parcel-track-step.active .parcel-track-label {
+            color: var(--secondary);
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(249, 115, 22, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+        }
+    </style>
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+</head>
+<body>
+    <!-- Coming Soon Roadmap Notice Bar -->
+    <div style="background: linear-gradient(90deg, #ea580c, #f59e0b); color: white; padding: 0.55rem 1rem; text-align: center; font-weight: 700; font-size: 0.86rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap;">
+        <span style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 800;">
+            <i class="fa-solid fa-rocket"></i> Coming Soon
+        </span>
+        <span><strong>Strategic Roadmap & Upcoming Innovation:</strong> Gate No. 2 Smart Parcel Locker Hub is launching in Phase 2!</span>
+        <button onclick="notifyMeUpcoming('Gate 2 Smart Parcel Locker Hub')" class="btn btn-sm" style="background: white; color: #ea580c; font-weight: 800; padding: 2px 10px; font-size: 0.75rem; border-radius: 20px; border: none; cursor: pointer;">
+            <i class="fa-solid fa-bell"></i> Notify Me When Live
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="brand-logo">
+                <img src="assets/icons/logo.png" alt="Campus Mart Logo" class="brand-img">
+                <span>Campus<span>Mart</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="menu.html" class="nav-link"><i class="fa-solid fa-bag-shopping"></i> Menu</a>
+                <a href="parcel.html" class="nav-link active" style="color: var(--primary); font-weight: 800;">
+                    <i class="fa-solid fa-box-open"></i> Gate 2 Parcel <span class="badge-soon">Coming Soon</span>
+                </a>
+                <a href="javascript:void(0)" onclick="openSalonComingSoonModal()" class="nav-link">
+                    <i class="fa-solid fa-scissors"></i> Men's Salon <span class="badge-soon">Coming Soon</span>
+                </a>
+                <a href="orders.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Orders</a>
+                <button type="button" class="nav-link" onclick="playWelcomeSoundAndVoice(true)" title="Play Campus Mart Welcome Chime & Greeting" style="background: #fff7ed; border: 1.5px solid #fed7aa; color: #ea580c; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <a href="cart.html" class="nav-link cart-link">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cart-badge-count">0</span>
+                </a>
+                <a href="admin.html" class="nav-link admin-nav-link" id="admin-nav-item" style="display: none;">
+                    <i class="fa-solid fa-gauge-high"></i> Admin
+                </a>
+            </nav>
+            <div class="auth-buttons" id="auth-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Parcel Hero Banner -->
+    <section class="parcel-hero">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+                <div style="max-width: 650px;">
+                    <span style="background: rgba(249, 115, 22, 0.25); color: #fed7aa; border: 1px solid #f97316; padding: 4px 12px; border-radius: 9999px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <i class="fa-solid fa-rocket"></i> Upcoming Phase 2 Innovation
+                    </span>
+                    <h1 style="font-size: 2.1rem; font-weight: 800; margin: 0.6rem 0 0.4rem 0; font-family: var(--font-heading); line-height: 1.2;">
+                        Gate No. 2 Parcel Pickup & Hostel Delivery 📦
+                    </h1>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.5;">
+                        Flipkart, Amazon, Blinkit ya Myntra ka parcel Gate No. 2 par aaya hai? Hamara campus runner parcel collect karke aapke <strong>Hostel Room ya Cabin</strong> tak direct deliver karega!
+                    </p>
+                </div>
+                <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 1rem 1.25rem; border-radius: 12px; text-align: center; backdrop-filter: blur(8px);">
+                    <div style="font-size: 0.78rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Standard Runner Fee</div>
+                    <div style="font-size: 1.8rem; font-weight: 800; color: #fbbf24; margin: 0.2rem 0;">₹10 <span style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">/ parcel</span></div>
+                    <div style="font-size: 0.72rem; color: #86efac; font-weight: 600;"><i class="fa-solid fa-shield-check"></i> 100% Safe with 4-Digit Handover PIN</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container" style="margin-bottom: 3rem;">
+        <!-- Navigation Tabs: Book New Pickup vs Track Deliveries -->
+        <div class="parcel-tabs">
+            <button class="parcel-tab-btn active" id="tab-btn-book" onclick="switchParcelTab('book')">
+                <i class="fa-solid fa-box-archive"></i> Book Gate Parcel Pickup
+            </button>
+            <button class="parcel-tab-btn" id="tab-btn-track" onclick="switchParcelTab('track')">
+                <i class="fa-solid fa-location-crosshairs"></i> My Active Parcel Tasks
+                <span id="active-parcel-count-badge" style="background: #ef4444; color: white; border-radius: 9999px; padding: 1px 7px; font-size: 0.72rem; font-weight: 800; display: none;">0</span>
+            </button>
+        </div>
+
+        <!-- VIEW 1: BOOK GATE PARCEL PICKUP FORM -->
+        <div id="view-book-parcel">
+            <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.75rem; align-items: start;">
+                <!-- Booking Form Card -->
+                <div class="card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-clipboard-list" style="color: var(--primary);"></i>
+                        Enter Parcel Pickup Details
+                    </h3>
+
+                    <form id="parcel-booking-form" onsubmit="handleBookParcel(event)">
+                        <!-- Platform / App Selector -->
+                        <div class="form-group" style="margin-bottom: 1.25rem;">
+                            <label class="form-label" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">
+                                <i class="fa-solid fa-store" style="color: var(--primary);"></i> 1. Select Shopping / Courier Platform *
+                            </label>
+                            <div class="platform-grid">
+                                <div class="platform-card active" onclick="selectPlatform('Amazon', this)">
+                                    <i class="fa-brands fa-amazon" style="color: #ff9900;"></i>
+                                    <span class="platform-name">Amazon</span>
+                                </div>
+                                <div class="platform-card" onclick="selectPlatform('Flipkart', this)">
+                                    <i class="fa-solid fa-bag-shopping" style="color: #2874f0;"></i>
+                                    <span class="platform-name">Flipkart</span>
+                                </div>
+                                <div class="platform-card" onclick="selectPlatform('Blinkit', this)">
+                                    <i class="fa-solid fa-bolt" style="color: #eab308;"></i>
+                                    <span class="platform-name">Blinkit</span>
+                                </div>
+                                <div class="platform-card" onclick="selectPlatform('Myntra', this)">
+                                    <i class="fa-solid fa-shirt" style="color: #ec4899;"></i>
+                                    <span class="platform-name">Myntra</span>
+                                </div>
+                                <div class="platform-card" onclick="selectPlatform('Meesho', this)">
+                                    <i class="fa-solid fa-box-open" style="color: #a855f7;"></i>
+                                    <span class="platform-name">Meesho</span>
+                                </div>
+                                <div class="platform-card" onclick="selectPlatform('Zepto', this)">
+                                    <i class="fa-solid fa-stopwatch" style="color: #6366f1;"></i>
+                                    <span class="platform-name">Zepto</span>
+                                </div>
+                                <div class="platform-card" onclick="selectPlatform('Swiggy / Zomato', this)">
+                                    <i class="fa-solid fa-burger" style="color: #ea580c;"></i>
+                                    <span class="platform-name">Food Order</span>
+                                </div>
+                                <div class="platform-card" onclick="selectPlatform('DTDC / Post', this)">
+                                    <i class="fa-solid fa-truck-fast" style="color: #0284c7;"></i>
+                                    <span class="platform-name">DTDC/Post</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="parcel-platform" value="Amazon">
+                        </div>
+
+                        <!-- Pickup Gate Selector -->
+                        <div class="form-group" style="margin-bottom: 1.25rem;">
+                            <label class="form-label" for="parcel-gate" style="font-weight: 700; color: var(--secondary);">
+                                <i class="fa-solid fa-door-open" style="color: var(--primary);"></i> 2. Campus Gate Where Courier Guy is Arrived *
+                            </label>
+                            <select id="parcel-gate" class="form-select no-icon" style="font-weight: 600;" required>
+                                <option value="Gate No. 2 (Main Parcel Drop Point)" selected>🚪 Gate No. 2 (Main Campus Courier Drop Point)</option>
+                                <option value="Gate No. 1 (Front University Gate)">🚪 Gate No. 1 (Main Front University Gate)</option>
+                                <option value="Hospital / Medical College Gate">🚪 TMU Hospital / Medical Gate</option>
+                            </select>
+                        </div>
+
+                        <!-- Courier Boy Mobile & Tracking ID -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" for="parcel-courier-phone" style="font-weight: 700; color: var(--secondary);">
+                                    <i class="fa-solid fa-phone" style="color: #0284c7;"></i> Courier Boy Phone / Name (Optional)
+                                </label>
+                                <input type="tel" id="parcel-courier-phone" class="form-input no-icon" placeholder="e.g. 9812345678 (Delivery Guy)">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" for="parcel-tracking-no" style="font-weight: 700; color: var(--secondary);">
+                                    <i class="fa-solid fa-barcode" style="color: #0284c7;"></i> Order / Tracking ID (Optional)
+                                </label>
+                                <input type="text" id="parcel-tracking-no" class="form-input no-icon" placeholder="e.g. FMPC8923 or Amazon Tracking">
+                            </div>
+                        </div>
+
+                        <!-- Drop Point / Room / Hostel -->
+                        <div class="form-group" style="margin-bottom: 1.25rem;">
+                            <label class="form-label" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i> 3. Delivery Drop Point (Your Room / Cabin) *
+                            </label>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
+                                <button type="button" class="parcel-step-pill active" onclick="setDropPreset('Boys Hostel H-2, Room 315', this)">Boys Hostel H-2</button>
+                                <button type="button" class="parcel-step-pill" onclick="setDropPreset('Boys Hostel H-1, Room 102', this)">Boys Hostel H-1</button>
+                                <button type="button" class="parcel-step-pill" onclick="setDropPreset('Boys Hostel H-3, Room 204', this)">Boys Hostel H-3</button>
+                                <button type="button" class="parcel-step-pill" onclick="setDropPreset('Girls Hostel G-1, Security Desk / Room 108', this)">Girls Hostel G-1</button>
+                                <button type="button" class="parcel-step-pill" onclick="setDropPreset('Girls Hostel G-2, Reception', this)">Girls Hostel G-2</button>
+                                <button type="button" class="parcel-step-pill" onclick="setDropPreset('CCSIT Faculty Cabin 204 (CS Dept)', this)">Faculty Cabin</button>
+                            </div>
+                            <input type="text" id="parcel-drop-location" class="form-input no-icon" placeholder="e.g. Boys Hostel H-2, 3rd Floor Room 315 / Girls Hostel G-1 Reception..." required value="Boys Hostel H-2, Room 315" style="font-weight: 600;">
+                        </div>
+
+                        <!-- Preferred Delivery Timing -->
+                        <div class="form-group" style="margin-bottom: 1.25rem;">
+                            <label class="form-label" for="parcel-slot" style="font-weight: 700; color: var(--secondary);">
+                                <i class="fa-solid fa-clock" style="color: var(--primary);"></i> 4. Preferred Delivery Time *
+                            </label>
+                            <select id="parcel-slot" class="form-select no-icon" style="font-weight: 600;">
+                                <option value="Immediate (Within 20 mins)" selected>⚡ Immediate Runner Dispatch (Within 20 mins)</option>
+                                <option value="Lunch Break (1:15 PM - 1:45 PM)">🍱 Lunch Break (1:15 PM)</option>
+                                <option value="Evening After Classes (4:30 PM)">☕ Evening Break (4:30 PM)</option>
+                                <option value="Night Drop (7:00 PM - 8:30 PM)">🌙 Night Drop (7:30 PM)</option>
+                            </select>
+                        </div>
+
+                        <!-- Special Instructions -->
+                        <div class="form-group" style="margin-bottom: 1.25rem;">
+                            <label class="form-label" for="parcel-instructions">
+                                <i class="fa-solid fa-pen-to-square" style="color: var(--primary);"></i> Special Instructions for Runner (Optional)
+                            </label>
+                            <input type="text" id="parcel-instructions" class="form-input no-icon" placeholder="e.g. Call me once courier boy hands over the packet.">
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label class="form-label" style="font-weight: 700; color: var(--secondary);">
+                                <i class="fa-solid fa-wallet" style="color: var(--primary);"></i> 5. Runner Fee Payment Mode (₹10)
+                            </label>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; background: var(--bg-main); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                                <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
+                                    <input type="radio" name="parcel_payment" value="Campus Digital Wallet" checked style="accent-color: var(--primary);">
+                                    <span><i class="fa-solid fa-id-card-clip" style="color: var(--primary);"></i> Campus Digital Student Wallet (₹10)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
+                                    <input type="radio" name="parcel_payment" value="Instant UPI & QR Pay" style="accent-color: var(--primary);">
+                                    <span><i class="fa-solid fa-qrcode" style="color: #0284c7;"></i> Instant UPI / GPay / Paytm (₹10)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
+                                    <input type="radio" name="parcel_payment" value="Pay on Pickup Counter" style="accent-color: var(--primary);">
+                                    <span><i class="fa-solid fa-hand-holding-dollar" style="color: #16a34a;"></i> Pay ₹10 Cash to Runner at Hostel Room</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-parcel-btn" class="btn btn-primary btn-block btn-lg" style="font-size: 1.05rem; font-weight: 800; padding: 0.9rem;">
+                            <i class="fa-solid fa-person-running"></i> Request Gate 2 Parcel Runner (₹10)
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Runner Service Benefits & Info Card -->
+                <div>
+                    <div class="card" style="padding: 1.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 1.5px solid #fed7aa;">
+                        <h4 style="color: #9a3412; font-size: 1.1rem; font-weight: 800; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-bolt" style="color: var(--primary);"></i> How It Works:
+                        </h4>
+                        <ol style="color: #7c2d12; font-size: 0.88rem; line-height: 1.6; padding-left: 1.25rem; margin-bottom: 1rem;">
+                            <li><strong>Submit Request:</strong> Mention your courier app & Gate 2 courier details.</li>
+                            <li><strong>Runner Collects:</strong> Mart runner goes to Gate 2 and receives your package.</li>
+                            <li><strong>Safe Handover:</strong> Runner brings it to your hostel room and verifies your secret <strong>4-Digit PIN</strong>.</li>
+                        </ol>
+                        <div style="background: white; border-radius: 8px; padding: 0.75rem; border: 1px dashed #fdba74; font-size: 0.8rem; color: #9a3412;">
+                            <i class="fa-solid fa-shield-halved" style="color: #16a34a;"></i> <strong>Zero Risk:</strong> Runner only completes delivery when you share your secret handover PIN!
+                        </div>
+                    </div>
+
+                    <div class="card" style="padding: 1.25rem; text-align: center;">
+                        <i class="fa-solid fa-headset" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; display: block;"></i>
+                        <h4 style="font-size: 1rem; color: var(--secondary); margin-bottom: 0.25rem;">Gate Runner Helpline</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.75rem;">Need urgent assistance with your Gate 2 delivery?</p>
+                        <a href="tel:6395322813" class="btn btn-outline btn-sm btn-block" style="color: var(--primary); border-color: var(--primary);">
+                            <i class="fa-solid fa-phone"></i> Call Gate Runner Counter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: ACTIVE PARCEL TRACKER & HISTORY -->
+        <div id="view-track-parcel" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--secondary);">
+                        <i class="fa-solid fa-truck-ramp-box" style="color: var(--primary);"></i> Your Gate Parcel Tasks
+                    </h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Live tracking with Gate No. 2 runner updates & secret PINs</p>
+                </div>
+                <button class="btn btn-sm btn-outline" onclick="fetchAndRenderParcels()">
+                    <i class="fa-solid fa-rotate"></i> Refresh Tasks
+                </button>
+            </div>
+
+            <div id="parcels-list-container">
+                <!-- Rendered dynamically by parcel.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Mart Pre-Order & Gate Parcel Concierge System | BCA Final Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="menu.html" class="mobile-nav-item">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Mart</span>
+        </a>
+        <a href="parcel.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+            <span>Gate 2</span>
+        </a>
+        <a href="orders.html" class="mobile-nav-item">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Orders</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/parcel.js"></script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js"></script>
+</body>
+</html>
