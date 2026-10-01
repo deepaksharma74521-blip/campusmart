@@ -6,7 +6,7 @@
 
 const API_BASE = (window.location.protocol === 'http:' || window.location.protocol === 'https:')
     ? '' 
-    : 'http://localhost:5000';
+    : 'https://campusmart.online';
 
 const api = {
     // 1. Auth & Mobile OTP Methods
