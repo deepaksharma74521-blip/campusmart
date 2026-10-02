@@ -20,6 +20,7 @@ let adminPollInterval = null;
 
 // Multi-Shop / Multi-Counter Scope
 let activeShopScope = 'All';
+let adminMenuShopFilter = 'All';
 let currentUserProfile = null;
 
 // --- Real-Time Order Notification & Alert State ---
@@ -621,7 +622,20 @@ async function loadAdminShops() {
                 }).join('');
             }
 
-            // 5. If currently on shop profile tab and user is NOT typing, fill form
+            // 5. Populate Menu Tab Dedicated Shop Filter Dropdown
+            const menuShopFilter = document.getElementById('admin-menu-shop-filter');
+            if (menuShopFilter) {
+                const currentMVal = menuShopFilter.value || adminMenuShopFilter || 'All';
+                menuShopFilter.innerHTML = `
+                    <option value="All" ${currentMVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (All 23 Outlets)</option>
+                    ${adminShops.map(s => {
+                        const sid = s.shopId || s._id;
+                        return `<option value="${sid}" ${currentMVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${s.category})</option>`;
+                    }).join('')}
+                `;
+            }
+
+            // 6. If currently on shop profile tab and user is NOT typing, fill form
             if (currentAdminTab === 'shop') {
                 const shopForm = document.getElementById('shop-profile-form');
                 const isUserInteracting = shopForm && document.activeElement && shopForm.contains(document.activeElement);
@@ -1513,12 +1527,119 @@ function matchSmartCategory(item, catKey) {
     }
 }
 
+function handleAdminMenuShopFilterChange(val) {
+    adminMenuShopFilter = val || 'All';
+    renderAdminFoodTable();
+}
+
+async function quickSaveItemPrice(itemId, isHalfFull) {
+    const item = adminFoodItems.find(i => (i._id === itemId || i.id === itemId));
+    if (!item) {
+        showToast('Item not found.', 'error');
+        return;
+    }
+
+    const saveBtn = document.getElementById(`btn-quick-save-${itemId}`);
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+    }
+
+    try {
+        let newPrice = item.price;
+        let newPriceHalf = item.priceHalf;
+        let newPriceFull = item.priceFull;
+
+        if (isHalfFull) {
+            const halfInput = document.getElementById(`quick-price-half-${itemId}`);
+            const fullInput = document.getElementById(`quick-price-full-${itemId}`);
+            const halfVal = Number(halfInput?.value);
+            const fullVal = Number(fullInput?.value);
+
+            if (isNaN(halfVal) || halfVal <= 0 || isNaN(fullVal) || fullVal <= 0) {
+                showToast('Please enter valid positive prices for both Half and Full.', 'warning');
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save Rate';
+                }
+                return;
+            }
+
+            newPriceHalf = halfVal;
+            newPriceFull = fullVal;
+            newPrice = halfVal;
+        } else {
+            const singleInput = document.getElementById(`quick-price-${itemId}`);
+            const singleVal = Number(singleInput?.value);
+
+            if (isNaN(singleVal) || singleVal <= 0) {
+                showToast('Please enter a valid positive price.', 'warning');
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
+                }
+                return;
+            }
+
+            newPrice = singleVal;
+        }
+
+        // Prepare payload preserving all item fields
+        const updatedItem = {
+            ...item,
+            price: newPrice,
+            priceHalf: isHalfFull ? newPriceHalf : null,
+            priceFull: isHalfFull ? newPriceFull : null,
+            hasHalfFull: isHalfFull
+        };
+
+        const targetId = item._id || item.id;
+        const res = await api.saveFoodItem(updatedItem, targetId);
+        if (res && res.success) {
+            // Update in-memory item
+            item.price = newPrice;
+            item.priceHalf = isHalfFull ? newPriceHalf : null;
+            item.priceFull = isHalfFull ? newPriceFull : null;
+            item.hasHalfFull = isHalfFull;
+
+            const rateDisplay = isHalfFull ? `Half: ₹${newPriceHalf} / Full: ₹${newPriceFull}` : `₹${newPrice}`;
+            showToast(`✅ Price for "${item.name}" updated to ${rateDisplay}!`, 'success');
+
+            if (saveBtn) {
+                saveBtn.disabled = false;
+                saveBtn.style.background = '#15803d';
+                saveBtn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
+                setTimeout(() => {
+                    if (saveBtn) {
+                        saveBtn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+                        saveBtn.innerHTML = isHalfFull ? '<i class="fa-solid fa-floppy-disk"></i> Save Rate' : '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
+                    }
+                }, 1800);
+            }
+        } else {
+            showToast(res?.message || 'Failed to update price.', 'error');
+            if (saveBtn) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = isHalfFull ? '<i class="fa-solid fa-floppy-disk"></i> Save Rate' : '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
+            }
+        }
+    } catch (err) {
+        console.error('Quick price save error:', err);
+        showToast('Error saving price: ' + err.message, 'error');
+        if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = isHalfFull ? '<i class="fa-solid fa-floppy-disk"></i> Save Rate' : '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
+        }
+    }
+}
+
 function renderAdminFoodTable() {
     const tableBody = document.getElementById('admin-food-table-body');
     const searchVal = document.getElementById('admin-food-search')?.value.trim().toLowerCase() || '';
     if (!tableBody) return;
 
     let filtered = adminFoodItems.filter(item => {
+        // 1. Overall Admin Dashboard Scope Filter
         let matchesScope = true;
         if (activeShopScope !== 'All') {
             const targetShop = adminShops.find(s => (s.shopId === activeShopScope || s._id === activeShopScope || s.name === activeShopScope || s.category === activeShopScope));
@@ -1531,19 +1652,43 @@ function renderAdminFoodTable() {
                             item.shopName === activeShopScope ||
                             item.category === activeShopScope);
         }
+
+        // 2. Menu Management Dedicated Shop Filter Dropdown
+        let matchesMenuShop = true;
+        if (adminMenuShopFilter && adminMenuShopFilter !== 'All') {
+            const mShop = adminShops.find(s => (s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter));
+            const mSid = mShop ? (mShop.shopId || mShop._id) : adminMenuShopFilter;
+            const mSname = mShop ? mShop.name : adminMenuShopFilter;
+
+            matchesMenuShop = (
+                item.shopId === mSid ||
+                item.shopId === adminMenuShopFilter ||
+                (mSname && item.shopName === mSname) ||
+                item.shopName === adminMenuShopFilter ||
+                (mShop && mShop.category && item.category === mShop.category)
+            );
+        }
+
+        // 3. Category Filter Pills
         const matchesCategory = matchSmartCategory(item, currentFoodFilter);
+
+        // 4. Search Filter
         const matchesSearch = !searchVal || 
                               (item.name && item.name.toLowerCase().includes(searchVal)) ||
-                              (item.description && item.description.toLowerCase().includes(searchVal));
-        return matchesScope && matchesCategory && matchesSearch;
+                              (item.description && item.description.toLowerCase().includes(searchVal)) ||
+                              (item.shopName && item.shopName.toLowerCase().includes(searchVal));
+
+        return matchesScope && matchesMenuShop && matchesCategory && matchesSearch;
     });
 
     if (filtered.length === 0) {
+        const activeShopLabel = (adminMenuShopFilter !== 'All' ? (adminShops.find(s=>s.shopId===adminMenuShopFilter||s._id===adminMenuShopFilter)?.name || adminMenuShopFilter) : (activeShopScope === 'All' ? 'All Counters' : activeShopScope));
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">
-                    <i class="fa-solid fa-boxes-stacked" style="font-size: 2rem; margin-bottom: 0.5rem; display: block; color: var(--primary);"></i>
-                    No products found in this counter/category (${activeShopScope === 'All' ? 'All Counters' : activeShopScope}).
+                <td colspan="6" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                    <i class="fa-solid fa-store-slash" style="font-size: 2.5rem; margin-bottom: 0.75rem; display: block; color: var(--primary);"></i>
+                    <strong style="font-size: 1.05rem; color: var(--secondary); display: block; margin-bottom: 0.35rem;">No dishes or products found</strong>
+                    <span>No items match your filter in <strong>${activeShopLabel}</strong> (${currentFoodFilter === 'all' ? 'All Categories' : currentFoodFilter}).</span>
                 </td>
             </tr>
         `;
@@ -1556,43 +1701,74 @@ function renderAdminFoodTable() {
         const isAvailable = item.available !== undefined ? item.available : (item.isAvailable !== false);
         const isVeg = item.type === 'veg' || !item.type;
         const itemId = item._id || item.id;
+        const assignedShop = adminShops.find(s => s.shopId === item.shopId || s._id === item.shopId || s.name === item.shopName) || adminShops.find(s => s.category === item.category);
+        const shopDisplay = item.shopName || (assignedShop ? assignedShop.name : 'TMU Campus Mart');
 
         return `
             <tr>
                 <td>
                     <img src="${item.image || item.imageUrl || fallbackImg}" alt="${item.name}" 
-                         style="width: 50px; height: 50px; border-radius: var(--radius-sm); object-fit: cover;"
+                         style="width: 52px; height: 52px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid #e2e8f0;"
                          onerror="this.src='${fallbackImg}'">
                 </td>
                 <td>
-                    <div style="font-weight: 700; color: var(--secondary);">${item.name}</div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <div style="font-weight: 700; color: var(--secondary); font-size: 0.95rem;">${item.name}</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                         ${item.description || ''}
                     </div>
-                    <div style="font-size: 0.72rem; color: #475569; margin-top: 3px; font-weight: 600;">
-                        <i class="fa-solid fa-store" style="color: var(--primary);"></i> ${item.shopName || (adminShops.find(s=>s.category===item.category)?.name || 'Central Outlet')}
+                    <div style="font-size: 0.74rem; color: #9a3412; margin-top: 3px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; background: #fff7ed; border: 1px solid #fed7aa; padding: 1px 6px; border-radius: 4px;">
+                        <i class="fa-solid fa-store" style="color: var(--primary);"></i> ${shopDisplay}
                     </div>
                 </td>
                 <td>
-                    <span style="font-size: 0.82rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: var(--radius-full); background: #f1f5f9;">
+                    <span style="font-size: 0.8rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); background: #f1f5f9; color: #334155; display: inline-block;">
                         ${item.category || 'General'}
                     </span>
-                    <span style="font-size: 0.75rem; font-weight: 700; margin-left: 0.4rem; color: ${isVeg ? '#16a34a' : '#dc2626'};">
-                        ${isVeg ? 'VEG' : 'NON-VEG'}
+                    <span style="font-size: 0.74rem; font-weight: 800; margin-left: 0.35rem; color: ${isVeg ? '#16a34a' : '#dc2626'}; background: ${isVeg ? '#dcfce7' : '#fee2e2'}; padding: 2px 6px; border-radius: 4px; border: 1px solid ${isVeg ? '#86efac' : '#fca5a5'};">
+                        ${isVeg ? '🟢 VEG' : '🔴 NON-VEG'}
                     </span>
                 </td>
                 <td>
                     ${item.hasHalfFull ? `
-                        <div style="line-height: 1.3;">
-                            <div style="font-size: 0.82rem; font-weight: 700; color: #0369a1;">
-                                🥣 Half: ₹${item.priceHalf || item.price}
+                        <div style="display: flex; flex-direction: column; gap: 5px; min-width: 145px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                                <span style="font-size: 0.76rem; font-weight: 800; color: #0369a1; min-width: 38px;">🥣 Half:</span>
+                                <div style="display: flex; align-items: center; background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 6px; padding: 1px 4px;">
+                                    <span style="font-weight: 700; color: #0284c7; font-size: 0.8rem; margin-right: 2px;">₹</span>
+                                    <input type="number" id="quick-price-half-${itemId}" value="${item.priceHalf || item.price}" min="1" step="1"
+                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #0369a1; outline: none; padding: 2px 0;"
+                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Half Price">
+                                </div>
                             </div>
-                            <div style="font-size: 0.85rem; font-weight: 800; color: #15803d;">
-                                🍲 Full: ₹${item.priceFull || item.price}
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                                <span style="font-size: 0.76rem; font-weight: 800; color: #15803d; min-width: 38px;">🍲 Full:</span>
+                                <div style="display: flex; align-items: center; background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 6px; padding: 1px 4px;">
+                                    <span style="font-weight: 700; color: #16a34a; font-size: 0.8rem; margin-right: 2px;">₹</span>
+                                    <input type="number" id="quick-price-full-${itemId}" value="${item.priceFull || item.price}" min="1" step="1"
+                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #15803d; outline: none; padding: 2px 0;"
+                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Full Price">
+                                </div>
                             </div>
+                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', true)"
+                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; margin-top: 2px; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
+                                    title="Save Half & Full Price">
+                                <i class="fa-solid fa-floppy-disk"></i> Save Rate
+                            </button>
                         </div>
                     ` : `
-                        <strong style="color: var(--primary); font-size: 1rem;">₹${item.price}</strong>
+                        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 120px;">
+                            <div style="display: flex; align-items: center; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 2px 6px;">
+                                <span style="font-weight: 800; color: var(--primary); font-size: 0.92rem; margin-right: 2px;">₹</span>
+                                <input type="number" id="quick-price-${itemId}" value="${item.price}" min="1" step="1"
+                                       style="width: 58px; border: none; background: transparent; font-weight: 800; font-size: 0.95rem; color: #9a3412; outline: none; padding: 2px 0;"
+                                       onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', false)" title="Edit Price">
+                            </div>
+                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', false)"
+                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
+                                    title="Save Price">
+                                <i class="fa-solid fa-floppy-disk"></i> Save ₹
+                            </button>
+                        </div>
                     `}
                 </td>
                 <td>
@@ -1605,7 +1781,7 @@ function renderAdminFoodTable() {
                 </td>
                 <td>
                     <div style="display: flex; gap: 0.4rem;">
-                        <button class="btn btn-outline btn-sm" onclick="openEditFoodModal('${itemId}')" title="Edit Item">
+                        <button class="btn btn-outline btn-sm" onclick="openEditFoodModal('${itemId}')" title="Edit Full Item (Name, Shop, Photo)">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <button class="btn btn-outline btn-sm" style="color: #ef4444; border-color: #fca5a5;" onclick="deleteFoodItem('${itemId}', '${item.name}')" title="Delete Item">
@@ -1809,6 +1985,18 @@ function populateShopDropdowns() {
             const sid = s.shopId || s._id;
             return `<option value="${sid}">${getShopEmoji(s.category)} ${s.name}</option>`;
         }).join('');
+    }
+
+    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
+    if (menuShopFilter && adminShops && adminShops.length > 0) {
+        const currentMVal = menuShopFilter.value || adminMenuShopFilter || 'All';
+        menuShopFilter.innerHTML = `
+            <option value="All" ${currentMVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (All 23 Outlets)</option>
+            ${adminShops.map(s => {
+                const sid = s.shopId || s._id;
+                return `<option value="${sid}" ${currentMVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${s.category})</option>`;
+            }).join('')}
+        `;
     }
 }
 
