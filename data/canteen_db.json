@@ -607,7 +607,7 @@
       "_id": "dish-91e31810",
       "id": "dish-91e31810",
       "name": "Cold Coffee",
-      "price": 40.0,
+      "price": 10.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -624,15 +624,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 24,
-        "full": 40.0
+        "half": 15.0,
+        "full": 10.0
       }
     },
     {
       "_id": "dish-1b27e5e9",
       "id": "dish-1b27e5e9",
       "name": "Butter Scotch Shake",
-      "price": 60.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -647,13 +647,17 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.222737",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-82bb4723",
       "id": "dish-82bb4723",
       "name": "Strawberry Shake",
-      "price": 80.0,
+      "price": 50.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -670,15 +674,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 48,
-        "full": 80.0
+        "half": 30,
+        "full": 50.0
       }
     },
     {
       "_id": "dish-e8e03514",
       "id": "dish-e8e03514",
       "name": "Cold Coffee Strong",
-      "price": 60.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -693,7 +697,11 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.222737",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-97d1da22",
@@ -783,7 +791,7 @@
       "_id": "dish-96f5fece",
       "id": "dish-96f5fece",
       "name": "Ice Cream Topping Extra",
-      "price": 50.0,
+      "price": 10.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -798,13 +806,17 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.222737",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 15.0,
+        "full": 10.0
+      }
     },
     {
       "_id": "dish-b5278a32",
       "id": "dish-b5278a32",
       "name": "Chocolate Shake",
-      "price": 80.0,
+      "price": 121.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -821,8 +833,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 48,
-        "full": 80.0
+        "half": 73,
+        "full": 121.0
       }
     },
     {
@@ -1062,7 +1074,7 @@
       "_id": "dish-410d3a6e",
       "id": "dish-410d3a6e",
       "name": "Aloo Paratha",
-      "price": 50.0,
+      "price": 25.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1077,7 +1089,11 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 15.0,
+        "full": 25.0
+      }
     },
     {
       "_id": "dish-dfa0ecb8",
@@ -1107,7 +1123,7 @@
       "_id": "dish-2361d414",
       "id": "dish-2361d414",
       "name": "Aloo Pyaz Paratha",
-      "price": 50.0,
+      "price": 30.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1122,13 +1138,17 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 18,
+        "full": 30.0
+      }
     },
     {
       "_id": "dish-89268438",
       "id": "dish-89268438",
       "name": "Paneer Bread Pakoda",
-      "price": 100.0,
+      "price": 251.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -1142,13 +1162,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 151,
+        "full": 251.0
+      }
     },
     {
       "_id": "dish-9e5e8abd",
       "id": "dish-9e5e8abd",
       "name": "Paneer Pyaz Paratha",
-      "price": 8.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1162,13 +1186,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-9bbf7a4e",
       "id": "dish-9bbf7a4e",
       "name": "Poha",
-      "price": 60.0,
+      "price": 50.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1182,7 +1210,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 30,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-24422f54",
@@ -1208,7 +1240,7 @@
       "_id": "dish-e92a3100",
       "id": "dish-e92a3100",
       "name": "Bread Roll",
-      "price": 50.0,
+      "price": 201.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1222,7 +1254,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 121,
+        "full": 201.0
+      }
     },
     {
       "_id": "dish-71274487",
@@ -1248,7 +1284,7 @@
       "_id": "dish-b91e7c64",
       "id": "dish-b91e7c64",
       "name": "Vada Pav",
-      "price": 60.0,
+      "price": 701.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1262,7 +1298,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 421,
+        "full": 701.0
+      }
     },
     {
       "_id": "dish-afec5df3",
@@ -1352,7 +1392,7 @@
       "_id": "dish-1154e932",
       "id": "dish-1154e932",
       "name": "Vada Sambhar",
-      "price": 60.0,
+      "price": 251.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1366,7 +1406,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 151,
+        "full": 251.0
+      }
     },
     {
       "_id": "dish-a0a90ba2",
@@ -1412,7 +1456,7 @@
       "_id": "dish-a738fa8d",
       "id": "dish-a738fa8d",
       "name": "Chole Bhature",
-      "price": 70.0,
+      "price": 301.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1426,13 +1470,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 181,
+        "full": 301.0
+      }
     },
     {
       "_id": "dish-ade089c4",
       "id": "dish-ade089c4",
       "name": "Pav Bhaji",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1446,7 +1494,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-992d0944",
@@ -1530,13 +1582,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.223743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-cc677132",
       "id": "dish-cc677132",
       "name": "Paneer Burger",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -1552,8 +1608,8 @@
       "createdAt": "2026-09-27T19:18:23.223743",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 48,
+        "full": 80.0
       }
     },
     {
@@ -1920,7 +1976,7 @@
       "_id": "dish-699fc5ea",
       "id": "dish-699fc5ea",
       "name": "Loaded Cheesy Fries",
-      "price": 50.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1934,13 +1990,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.224743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-64f6fc8c",
       "id": "dish-64f6fc8c",
       "name": "Veg Momos",
-      "price": 60.0,
+      "price": 20.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -1956,15 +2016,15 @@
       "createdAt": "2026-09-27T19:18:23.224743",
       "isVeg": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 15.0,
+        "full": 20.0
       }
     },
     {
       "_id": "dish-36d5c35e",
       "id": "dish-36d5c35e",
       "name": "Paneer Momos",
-      "price": 60.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -1980,15 +2040,15 @@
       "createdAt": "2026-09-27T19:18:23.224743",
       "isVeg": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 60,
+        "full": 100.0
       }
     },
     {
       "_id": "dish-b3fbd9a8",
       "id": "dish-b3fbd9a8",
       "name": "Red Sauce Pasta",
-      "price": 90.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -2004,8 +2064,8 @@
       "createdAt": "2026-09-27T19:18:23.224743",
       "isVeg": true,
       "portions": {
-        "half": 54,
-        "full": 90.0
+        "half": 72,
+        "full": 120.0
       }
     },
     {
@@ -2100,7 +2160,7 @@
       "_id": "dish-6b662ba9",
       "id": "dish-6b662ba9",
       "name": "Special Thali",
-      "price": 150.0,
+      "price": 801.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -2114,7 +2174,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.224743",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 481,
+        "full": 801.0
+      }
     },
     {
       "_id": "dish-c16cce5a",
@@ -2304,7 +2368,7 @@
       "_id": "dish-104428f6",
       "id": "dish-104428f6",
       "name": "Paneer Maggi",
-      "price": 40.0,
+      "price": 290.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -2320,15 +2384,15 @@
       "createdAt": "2026-09-27T19:18:23.225742",
       "isVeg": true,
       "portions": {
-        "half": 24,
-        "full": 40.0
+        "half": 174,
+        "full": 290.0
       }
     },
     {
       "_id": "dish-363541c5",
       "id": "dish-363541c5",
       "name": "Cheese Maggi",
-      "price": 40.0,
+      "price": 601.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -2344,8 +2408,8 @@
       "createdAt": "2026-09-27T19:18:23.225742",
       "isVeg": true,
       "portions": {
-        "half": 24,
-        "full": 40.0
+        "half": 361,
+        "full": 601.0
       }
     },
     {
@@ -2508,7 +2572,7 @@
       "_id": "dish-fc9c8a32",
       "id": "dish-fc9c8a32",
       "name": "Green Apple Mojito",
-      "price": 70.0,
+      "price": 1301.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -2524,8 +2588,8 @@
       "createdAt": "2026-09-27T19:18:23.225742",
       "isVeg": true,
       "portions": {
-        "half": 42,
-        "full": 70.0
+        "half": 781,
+        "full": 1301.0
       }
     },
     {
@@ -2733,7 +2797,7 @@
       "_id": "dish-ac3f5562",
       "id": "dish-ac3f5562",
       "name": "Spicy Veggie Pizza",
-      "price": 140.0,
+      "price": 30.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -2747,7 +2811,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 18,
+        "full": 30.0
+      }
     },
     {
       "_id": "dish-b812775b",
@@ -2853,7 +2921,7 @@
       "_id": "dish-65992c3c",
       "id": "dish-65992c3c",
       "name": "Hakka Noodles",
-      "price": 50.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -2869,8 +2937,8 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 90,
+        "full": 150.0
       }
     },
     {
@@ -2901,7 +2969,7 @@
       "_id": "dish-ec671173",
       "id": "dish-ec671173",
       "name": "Paneer Fried Rice",
-      "price": 120.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -2917,15 +2985,15 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 66,
+        "full": 110.0
       }
     },
     {
       "_id": "dish-8ecbc3c6",
       "id": "dish-8ecbc3c6",
       "name": "Veg Manchurian",
-      "price": 60.0,
+      "price": 190.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -2939,7 +3007,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-bdf1cf77",
@@ -2985,7 +3057,7 @@
       "_id": "dish-65a23705",
       "id": "dish-65a23705",
       "name": "Paneer Tikka Masala",
-      "price": 120.0,
+      "price": 280.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -3001,8 +3073,8 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 168,
+        "full": 280.0
       }
     },
     {
@@ -3050,7 +3122,7 @@
       "_id": "dish-1f0fa115",
       "id": "dish-1f0fa115",
       "name": "Spring Roll",
-      "price": 60.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3064,7 +3136,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-4cabd51b",
@@ -3130,7 +3206,7 @@
       "_id": "dish-a86d2007",
       "id": "dish-a86d2007",
       "name": "Mushroom Fried Rice",
-      "price": 70.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -3144,7 +3220,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-546389e7",
@@ -3174,7 +3254,7 @@
       "_id": "dish-ad5ff683",
       "id": "dish-ad5ff683",
       "name": "Peri Peri Fries",
-      "price": 60.0,
+      "price": 701.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3190,15 +3270,15 @@
       "createdAt": "2026-09-27T19:18:23.227750",
       "isVeg": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 421,
+        "full": 701.0
       }
     },
     {
       "_id": "dish-f10ec2c6",
       "id": "dish-f10ec2c6",
       "name": "Chilly Potato",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3212,13 +3292,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-2e4d26b2",
       "id": "dish-2e4d26b2",
       "name": "Honey Chilly Potato",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3232,7 +3316,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-a7d8f357",
@@ -3298,7 +3386,7 @@
       "_id": "dish-ce0f4c91",
       "id": "dish-ce0f4c91",
       "name": "Chilly Paneer Dry Gravy",
-      "price": 100.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -3312,7 +3400,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-ab8adf11",
@@ -3392,13 +3484,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-fddd8ff7",
       "id": "dish-fddd8ff7",
       "name": "Crispy Corn",
-      "price": 50.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3412,7 +3508,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-337d66a0",
@@ -3438,7 +3538,7 @@
       "_id": "dish-0e65f23c",
       "id": "dish-0e65f23c",
       "name": "Chilly Mushroom",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -3452,7 +3552,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-55693d6b",
@@ -3498,7 +3602,7 @@
       "_id": "dish-79adc310",
       "id": "dish-79adc310",
       "name": "Chilly Gobhi",
-      "price": 60.0,
+      "price": 240.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3512,7 +3616,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 144,
+        "full": 240.0
+      }
     },
     {
       "_id": "dish-a539f1e4",
@@ -3538,7 +3646,7 @@
       "_id": "dish-0b424c75",
       "id": "dish-0b424c75",
       "name": "Paneer Momo",
-      "price": 100.0,
+      "price": 60.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -3552,7 +3660,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 36,
+        "full": 60.0
+      }
     },
     {
       "_id": "dish-23c0b43b",
@@ -3598,7 +3710,7 @@
       "_id": "dish-ab9fff91",
       "id": "dish-ab9fff91",
       "name": "Veg Peri Peri Momo",
-      "price": 80.0,
+      "price": 60.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3612,7 +3724,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 36,
+        "full": 60.0
+      }
     },
     {
       "_id": "dish-6271930e",
@@ -3638,7 +3754,7 @@
       "_id": "dish-9af68e63",
       "id": "dish-9af68e63",
       "name": "Paneer Fried Momo",
-      "price": 100.0,
+      "price": 60.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -3652,7 +3768,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 36,
+        "full": 60.0
+      }
     },
     {
       "_id": "dish-5f4ab2cd",
@@ -3758,7 +3878,7 @@
       "_id": "dish-aebf1c78",
       "id": "dish-aebf1c78",
       "name": "Hakka Noodle",
-      "price": 60.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -3772,7 +3892,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-cec4ec56",
@@ -3953,7 +4077,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.227750",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 36,
+        "full": 60.0
+      }
     },
     {
       "_id": "dish-c1f6cf1a",
@@ -3999,7 +4127,7 @@
       "_id": "dish-3be8855e",
       "id": "dish-3be8855e",
       "name": "Masala Dosa",
-      "price": 90.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -4013,7 +4141,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-5e7ae9bd",
@@ -4039,7 +4171,7 @@
       "_id": "dish-e00414c0",
       "id": "dish-e00414c0",
       "name": "Paneer Dosa",
-      "price": 110.0,
+      "price": 140.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -4053,13 +4185,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 84,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-cf127b9f",
       "id": "dish-cf127b9f",
       "name": "Paneer Onion Masala Dosa",
-      "price": 110.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -4073,13 +4209,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-6ba7ecbd",
       "id": "dish-6ba7ecbd",
       "name": "Onion Masala Dosa",
-      "price": 90.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -4093,7 +4233,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-0205ca2e",
@@ -4119,7 +4263,7 @@
       "_id": "dish-38c4ca5c",
       "id": "dish-38c4ca5c",
       "name": "Cheese Masala Dosa",
-      "price": 110.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -4133,7 +4277,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-48cb6dbe",
@@ -4179,7 +4327,7 @@
       "_id": "dish-7b9baa80",
       "id": "dish-7b9baa80",
       "name": "Special Dosa",
-      "price": 110.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -4193,7 +4341,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-dbb700ca",
@@ -4339,7 +4491,7 @@
       "_id": "dish-fcc25b27",
       "id": "dish-fcc25b27",
       "name": "Malai Chaap Roll",
-      "price": 100.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4353,7 +4505,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-a98d4c39",
@@ -4379,7 +4535,7 @@
       "_id": "dish-012f5c36",
       "id": "dish-012f5c36",
       "name": "Achari Chaap Roll",
-      "price": 100.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4393,7 +4549,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-e9260153",
@@ -4419,7 +4579,7 @@
       "_id": "dish-8c5820e4",
       "id": "dish-8c5820e4",
       "name": "Paneer Tikka Roll",
-      "price": 100.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4433,7 +4593,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-b7962292",
@@ -4459,7 +4623,7 @@
       "_id": "dish-152c61a3",
       "id": "dish-152c61a3",
       "name": "Mushroom Tikka Roll",
-      "price": 80.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -4473,7 +4637,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-62910dae",
@@ -4519,7 +4687,7 @@
       "_id": "dish-2263a2f1",
       "id": "dish-2263a2f1",
       "name": "Tandoori Chaap Roll",
-      "price": 100.0,
+      "price": 150.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4533,13 +4701,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-84f4a86a",
       "id": "dish-84f4a86a",
       "name": "Tandoori Chaap",
-      "price": 100.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4553,13 +4725,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 180.0,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-83af7ea8",
       "id": "dish-83af7ea8",
       "name": "Malai Chaap",
-      "price": 100.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4573,13 +4749,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-fcbc120e",
       "id": "dish-fcbc120e",
       "name": "Afgani Chaap",
-      "price": 100.0,
+      "price": 130.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4593,7 +4773,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 200.0,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-320de4ac",
@@ -4659,7 +4843,7 @@
       "_id": "dish-c5b1157b",
       "id": "dish-c5b1157b",
       "name": "Punjabi Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4673,13 +4857,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-ec27c31f",
       "id": "dish-ec27c31f",
       "name": "Garlic Tikka Chaap",
-      "price": 100.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4693,13 +4881,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-acc2464a",
       "id": "dish-acc2464a",
       "name": "Paneer Tikka",
-      "price": 120.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4715,8 +4907,8 @@
       "createdAt": "2026-09-27T19:18:23.228749",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 102,
+        "full": 170.0
       }
     },
     {
@@ -4783,7 +4975,7 @@
       "_id": "dish-f108db28",
       "id": "dish-f108db28",
       "name": "Mushroom Tikka",
-      "price": 80.0,
+      "price": 250.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -4797,7 +4989,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 150,
+        "full": 250.0
+      }
     },
     {
       "_id": "dish-869bb978",
@@ -4843,7 +5039,7 @@
       "_id": "dish-75549e28",
       "id": "dish-75549e28",
       "name": "Mix Veg",
-      "price": 50.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -4859,15 +5055,15 @@
       "createdAt": "2026-09-27T19:18:23.228749",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 60,
+        "full": 100.0
       }
     },
     {
       "_id": "dish-283c892d",
       "id": "dish-283c892d",
       "name": "Chana Masala",
-      "price": 70.0,
+      "price": 150.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -4881,13 +5077,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-37b627ea",
       "id": "dish-37b627ea",
       "name": "Sev Bhaji",
-      "price": 90.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -4901,13 +5101,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-2ae8ae44",
       "id": "dish-2ae8ae44",
       "name": "Malai Kofta",
-      "price": 50.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -4923,15 +5127,15 @@
       "createdAt": "2026-09-27T19:18:23.228749",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 114,
+        "full": 190.0
       }
     },
     {
       "_id": "dish-afb8433f",
       "id": "dish-afb8433f",
       "name": "Dal Fry",
-      "price": 70.0,
+      "price": 90.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -4945,13 +5149,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-672b1439",
       "id": "dish-672b1439",
       "name": "Dal Tadka",
-      "price": 70.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -4965,13 +5173,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.228749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-fe26ab9b",
       "id": "dish-fe26ab9b",
       "name": "Dal Makhani",
-      "price": 120.0,
+      "price": 140.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -4987,8 +5199,8 @@
       "createdAt": "2026-09-27T19:18:23.229749",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 84,
+        "full": 140.0
       }
     },
     {
@@ -5015,7 +5227,7 @@
       "_id": "dish-6bdf7675",
       "id": "dish-6bdf7675",
       "name": "Dal Handi",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -5029,13 +5241,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-acf01e79",
       "id": "dish-acf01e79",
       "name": "Aloo Jeera",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -5049,7 +5265,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-0ce45d2c",
@@ -5075,7 +5295,7 @@
       "_id": "dish-d1a8f7aa",
       "id": "dish-d1a8f7aa",
       "name": "Punjabi Dum Aloo",
-      "price": 70.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -5089,13 +5309,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-dc00fc1c",
       "id": "dish-dc00fc1c",
       "name": "Paneer Bhurji",
-      "price": 100.0,
+      "price": 200.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5109,13 +5333,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 120,
+        "full": 200.0
+      }
     },
     {
       "_id": "dish-5c7847bb",
       "id": "dish-5c7847bb",
       "name": "Shahi Paneer",
-      "price": 120.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5131,15 +5359,15 @@
       "createdAt": "2026-09-27T19:18:23.229749",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 60,
+        "full": 100.0
       }
     },
     {
       "_id": "dish-0020ca86",
       "id": "dish-0020ca86",
       "name": "Paneer Butter Masala",
-      "price": 120.0,
+      "price": 130.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5155,15 +5383,15 @@
       "createdAt": "2026-09-27T19:18:23.229749",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 78,
+        "full": 130.0
       }
     },
     {
       "_id": "dish-0c27795d",
       "id": "dish-0c27795d",
       "name": "Kadhai Paneer",
-      "price": 100.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5177,7 +5405,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-dc7c6859",
@@ -5203,7 +5435,7 @@
       "_id": "dish-f39db14a",
       "id": "dish-f39db14a",
       "name": "Matar Paneer",
-      "price": 120.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5219,15 +5451,15 @@
       "createdAt": "2026-09-27T19:18:23.229749",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 60,
+        "full": 100.0
       }
     },
     {
       "_id": "dish-b5af964b",
       "id": "dish-b5af964b",
       "name": "Mughlai Paneer",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5241,7 +5473,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-bd867af0",
@@ -5267,7 +5503,7 @@
       "_id": "dish-bad36fa1",
       "id": "dish-bad36fa1",
       "name": "Paneer Do Pyaza",
-      "price": 100.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5281,13 +5517,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-a0785480",
       "id": "dish-a0785480",
       "name": "Paneer Lababdar",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5301,13 +5541,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-c3fce9f0",
       "id": "dish-c3fce9f0",
       "name": "Afghani Chaap Roll",
-      "price": 100.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5321,7 +5565,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-b73f7fe6",
@@ -5347,7 +5595,7 @@
       "_id": "dish-14e051e2",
       "id": "dish-14e051e2",
       "name": "Mushroom Masala",
-      "price": 50.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -5363,8 +5611,8 @@
       "createdAt": "2026-09-27T19:18:23.229749",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 72,
+        "full": 120.0
       }
     },
     {
@@ -5391,7 +5639,7 @@
       "_id": "dish-f5a1429c",
       "id": "dish-f5a1429c",
       "name": "Matar Mushroom",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -5405,13 +5653,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-c7554f8e",
       "id": "dish-c7554f8e",
       "name": "Mushroom Do Pyaza",
-      "price": 80.0,
+      "price": 250.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -5425,13 +5677,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 150,
+        "full": 250.0
+      }
     },
     {
       "_id": "dish-957404fa",
       "id": "dish-957404fa",
       "name": "Tawa Mushroom",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -5445,7 +5701,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-c951b7cb",
@@ -5511,7 +5771,7 @@
       "_id": "dish-60adc503",
       "id": "dish-60adc503",
       "name": "Kadhai Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5525,13 +5785,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-d060372e",
       "id": "dish-d060372e",
       "name": "Afghani Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5545,13 +5809,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-3588264a",
       "id": "dish-3588264a",
       "name": "Tawa Chaap",
-      "price": 100.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5565,13 +5833,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-e28f2199",
       "id": "dish-e28f2199",
       "name": "Kalimirch Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5585,7 +5857,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-7df2b095",
@@ -5631,7 +5907,7 @@
       "_id": "dish-25357218",
       "id": "dish-25357218",
       "name": "Chaap Do Pyaza",
-      "price": 100.0,
+      "price": 70.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5645,7 +5921,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-a0f17a88",
@@ -5671,7 +5951,7 @@
       "_id": "dish-959c8573",
       "id": "dish-959c8573",
       "name": "Changezi Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5685,7 +5965,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-c107c2e1",
@@ -5731,7 +6015,7 @@
       "_id": "dish-718f5f36",
       "id": "dish-718f5f36",
       "name": "Handi Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5745,13 +6029,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-7638c5f0",
       "id": "dish-7638c5f0",
       "name": "Paneer Rogan Josh",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5765,7 +6053,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-bd4d07a8",
@@ -5811,7 +6103,7 @@
       "_id": "dish-2e483fa9",
       "id": "dish-2e483fa9",
       "name": "Changezi Paneer",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5825,13 +6117,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.229749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-f96cdc95",
       "id": "dish-f96cdc95",
       "name": "Handi Paneer",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -5845,7 +6141,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.230748",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-8bafeaed",
@@ -5911,7 +6211,7 @@
       "_id": "dish-15aba173",
       "id": "dish-15aba173",
       "name": "Deluxe Thali",
-      "price": 180.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -5925,7 +6225,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.230748",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-4053f98d",
@@ -5991,7 +6295,7 @@
       "_id": "dish-844ed0d3",
       "id": "dish-844ed0d3",
       "name": "Plain Rice",
-      "price": 50.0,
+      "price": 121.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6005,13 +6309,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.230748",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 73,
+        "full": 121.0
+      }
     },
     {
       "_id": "dish-6beba325",
       "id": "dish-6beba325",
       "name": "Jeera Rice",
-      "price": 50.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6027,15 +6335,15 @@
       "createdAt": "2026-09-27T19:18:23.230748",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 42,
+        "full": 70.0
       }
     },
     {
       "_id": "dish-e42f9e20",
       "id": "dish-e42f9e20",
       "name": "Matar Pulao",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -6049,13 +6357,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.230748",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-104bab5f",
       "id": "dish-104bab5f",
       "name": "Veg Pulao",
-      "price": 50.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -6071,15 +6383,15 @@
       "createdAt": "2026-09-27T19:18:23.230748",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 60,
+        "full": 100.0
       }
     },
     {
       "_id": "dish-a6f2b081",
       "id": "dish-a6f2b081",
       "name": "Paneer Pulao",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -6093,13 +6405,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.230748",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-bd367f60",
       "id": "dish-bd367f60",
       "name": "Veg Hyderabadi Biryani",
-      "price": 90.0,
+      "price": 250.0,
       "hasHalfFull": true,
       "priceHalf": 90.0,
       "priceFull": 160.0,
@@ -6113,13 +6429,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.230748",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 150,
+        "full": 250.0
+      }
     },
     {
       "_id": "dish-a3d54dac",
       "id": "dish-a3d54dac",
       "name": "Chaap Biryani",
-      "price": 90.0,
+      "price": 140.0,
       "hasHalfFull": true,
       "priceHalf": 90.0,
       "priceFull": 160.0,
@@ -6133,7 +6453,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.230748",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 84,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-cec42830",
@@ -6259,7 +6583,7 @@
       "_id": "dish-b7eeb7c5",
       "id": "dish-b7eeb7c5",
       "name": "Veg Biryani",
-      "price": 50.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6275,8 +6599,8 @@
       "createdAt": "2026-09-27T19:18:23.231749",
       "isVeg": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 42,
+        "full": 70.0
       }
     },
     {
@@ -6303,7 +6627,7 @@
       "_id": "dish-0e02cde8",
       "id": "dish-0e02cde8",
       "name": "Dal Makhni Chawal",
-      "price": 70.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -6317,7 +6641,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.231749",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-20cdefb4",
@@ -6343,7 +6671,7 @@
       "_id": "dish-48017218",
       "id": "dish-48017218",
       "name": "Choley Chawal",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6357,13 +6685,17 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.232253",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-5a6d82eb",
       "id": "dish-5a6d82eb",
       "name": "Rajma Chawal",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6377,7 +6709,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.232253",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-b4e5aadf",
@@ -6463,7 +6799,7 @@
       "_id": "dish-e3ab5114",
       "id": "dish-e3ab5114",
       "name": "Boondi Raita",
-      "price": 50.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6477,7 +6813,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.232253",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-06f22b4e",
@@ -6503,7 +6843,7 @@
       "_id": "dish-be81d79b",
       "id": "dish-be81d79b",
       "name": "Pineapple Raita",
-      "price": 50.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6517,7 +6857,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.232253",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-1f2716ff",
@@ -6603,7 +6947,7 @@
       "_id": "dish-f019014e",
       "id": "dish-f019014e",
       "name": "Onion Salad",
-      "price": 40.0,
+      "price": 180.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6617,7 +6961,11 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.233256",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-fd19efe8",
@@ -6824,7 +7172,7 @@
       "_id": "dish-d8c40bfc",
       "id": "dish-d8c40bfc",
       "name": "Tandoori Roti",
-      "price": 10.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6839,13 +7187,17 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.234799",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-592ba3ab",
       "id": "dish-592ba3ab",
       "name": "Tawa Roti",
-      "price": 8.0,
+      "price": 121.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6860,13 +7212,17 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.234799",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 73,
+        "full": 121.0
+      }
     },
     {
       "_id": "dish-e454f856",
       "id": "dish-e454f856",
       "name": "Rumali Roti",
-      "price": 10.0,
+      "price": 121.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6881,13 +7237,17 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.234799",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 73,
+        "full": 121.0
+      }
     },
     {
       "_id": "dish-74914967",
       "id": "dish-74914967",
       "name": "Tandoori Butter Roti",
-      "price": 10.0,
+      "price": 14.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6902,7 +7262,11 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.234799",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 15.0,
+        "full": 14.0
+      }
     },
     {
       "_id": "dish-c36924e9",
@@ -6929,7 +7293,7 @@
       "_id": "dish-0f488928",
       "id": "dish-0f488928",
       "name": "Missi Roti",
-      "price": 15.0,
+      "price": 55.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6946,15 +7310,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 15.0,
-        "full": 15.0
+        "half": 33,
+        "full": 55.0
       }
     },
     {
       "_id": "dish-46ed2dad",
       "id": "dish-46ed2dad",
       "name": "Plain Naan",
-      "price": 15.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6971,15 +7335,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 15.0,
-        "full": 15.0
+        "half": 90,
+        "full": 150.0
       }
     },
     {
       "_id": "dish-c0fd359a",
       "id": "dish-c0fd359a",
       "name": "Laccha Paratha",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -6996,15 +7360,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 48,
+        "full": 80.0
       }
     },
     {
       "_id": "dish-0dc0864c",
       "id": "dish-0dc0864c",
       "name": "Garlic Naan",
-      "price": 15.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7021,8 +7385,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 15.0,
-        "full": 15.0
+        "half": 42,
+        "full": 70.0
       }
     },
     {
@@ -7044,7 +7408,11 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.234799",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-3cf3b091",
@@ -7092,7 +7460,7 @@
       "_id": "dish-725a680d",
       "id": "dish-725a680d",
       "name": "Amritsari Kulcha",
-      "price": 70.0,
+      "price": 85.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7107,7 +7475,11 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.234799",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 51,
+        "full": 85.0
+      }
     },
     {
       "_id": "dish-1d7bf74a",
@@ -7176,7 +7548,7 @@
       "_id": "dish-411bbabe",
       "id": "dish-411bbabe",
       "name": "Nimbu Pani",
-      "price": 35.0,
+      "price": 301.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7191,13 +7563,17 @@
       "shopName": "TMU Special Chole Kulcha",
       "createdAt": "2026-09-27T23:57:25.543823",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 181,
+        "full": 301.0
+      }
     },
     {
       "_id": "dish-c03eea43",
       "id": "dish-c03eea43",
       "name": "Jaljeera",
-      "price": 35.0,
+      "price": 501.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7212,7 +7588,11 @@
       "shopName": "TMU Special Chole Kulcha",
       "createdAt": "2026-09-27T23:57:25.544826",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 301,
+        "full": 501.0
+      }
     },
     {
       "_id": "dish-169fc723",
@@ -7323,7 +7703,7 @@
       "_id": "dish-9144abf7",
       "id": "dish-9144abf7",
       "name": "Lemon Soda",
-      "price": 30.0,
+      "price": 301.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7338,7 +7718,11 @@
       "shopName": "TMU Special Chole Kulcha",
       "createdAt": "2026-09-27T23:57:25.554822",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 181,
+        "full": 301.0
+      }
     },
     {
       "_id": "dish-04e92175",
@@ -7386,7 +7770,7 @@
       "_id": "dish-4eef02a3",
       "id": "dish-4eef02a3",
       "name": "Chole Chawal",
-      "price": 70.0,
+      "price": 251.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7401,7 +7785,11 @@
       "shopName": "TMU Special Chole Kulcha",
       "createdAt": "2026-09-27T23:57:25.563790",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 151,
+        "full": 251.0
+      }
     },
     {
       "_id": "dish-1bf40780",
@@ -7608,7 +7996,7 @@
       "_id": "dish-f6432d9f",
       "id": "dish-f6432d9f",
       "name": "Chilli Potato",
-      "price": 50.0,
+      "price": 20.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7625,15 +8013,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 15.0,
+        "full": 20.0
       }
     },
     {
       "_id": "dish-6b3f7df2",
       "id": "dish-6b3f7df2",
       "name": "Onion Dosa",
-      "price": 75.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7648,7 +8036,11 @@
       "shopName": "Food & Friends",
       "createdAt": "2026-09-27T23:57:25.576398",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-38d58886",
@@ -7809,7 +8201,7 @@
       "_id": "dish-3708583c",
       "id": "dish-3708583c",
       "name": "Mushroom Butter Masala",
-      "price": 80.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -7824,7 +8216,11 @@
       "shopName": "Food & Friends",
       "createdAt": "2026-09-27T23:57:25.584820",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 190.0,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-2127630f",
@@ -7851,7 +8247,7 @@
       "_id": "dish-5cd8bf1b",
       "id": "dish-5cd8bf1b",
       "name": "Mysore Masala Dosa",
-      "price": 85.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7866,7 +8262,11 @@
       "shopName": "Food & Friends",
       "createdAt": "2026-09-27T23:57:25.588221",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-3baf0ae7",
@@ -7939,7 +8339,7 @@
       "_id": "dish-4e8527ae",
       "id": "dish-4e8527ae",
       "name": "Bread Pakora",
-      "price": 60.0,
+      "price": 20.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -7954,7 +8354,11 @@
       "shopName": "Food & Friends",
       "createdAt": "2026-09-27T23:57:25.592609",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 15.0,
+        "full": 20.0
+      }
     },
     {
       "_id": "dish-206fccee",
@@ -8044,7 +8448,7 @@
       "_id": "dish-4339e51b",
       "id": "dish-4339e51b",
       "name": "Paneer Tandoori",
-      "price": 100.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -8059,7 +8463,11 @@
       "shopName": "Food & Friends",
       "createdAt": "2026-09-27T23:57:25.598805",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-13811f8f",
@@ -8283,7 +8691,7 @@
       "_id": "dish-fe292c56",
       "id": "dish-fe292c56",
       "name": "Malai Paneer",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -8298,7 +8706,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.614615",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-d8c8fa19",
@@ -8329,7 +8741,7 @@
       "_id": "dish-685c8c7c",
       "id": "dish-685c8c7c",
       "name": "Chilly Paneer",
-      "price": 100.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -8344,7 +8756,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.615767",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-4502e291",
@@ -8392,7 +8808,7 @@
       "_id": "dish-1dbd74d7",
       "id": "dish-1dbd74d7",
       "name": "Paneer Kali Mirch",
-      "price": 100.0,
+      "price": 140.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -8407,13 +8823,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.623135",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 84,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-bf8093c9",
       "id": "dish-bf8093c9",
       "name": "Paneer Pasanda",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -8428,7 +8848,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.624154",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-a1e1265a",
@@ -8455,7 +8879,7 @@
       "_id": "dish-41fe73e7",
       "id": "dish-41fe73e7",
       "name": "Tawa Paneer",
-      "price": 100.0,
+      "price": 140.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -8470,7 +8894,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.626555",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 84,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-85fff648",
@@ -8585,7 +9013,7 @@
       "_id": "dish-88e90b33",
       "id": "dish-88e90b33",
       "name": "Chaap",
-      "price": 100.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -8600,7 +9028,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.632703",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-6d77f79d",
@@ -8669,7 +9101,7 @@
       "_id": "dish-d73d0f29",
       "id": "dish-d73d0f29",
       "name": "Gobhi Paratha",
-      "price": 8.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8684,7 +9116,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.636879",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-56aa0734",
@@ -8711,7 +9147,7 @@
       "_id": "dish-0cbda5c2",
       "id": "dish-0cbda5c2",
       "name": "Mix Paratha",
-      "price": 8.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8726,13 +9162,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.639878",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-7523f864",
       "id": "dish-7523f864",
       "name": "Choley Bhature",
-      "price": 60.0,
+      "price": 180.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8747,7 +9187,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.642386",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-dc6e7a7f",
@@ -8837,7 +9281,7 @@
       "_id": "dish-332e2579",
       "id": "dish-332e2579",
       "name": "Choley Kulche",
-      "price": 60.0,
+      "price": 190.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8852,13 +9296,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.647808",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-a0271e84",
       "id": "dish-a0271e84",
       "name": "Naan Thali",
-      "price": 8.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8873,13 +9321,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.647808",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-a6f68fd6",
       "id": "dish-a6f68fd6",
       "name": "Naan",
-      "price": 8.0,
+      "price": 18.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8894,13 +9346,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.649263",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 15.0,
+        "full": 18.0
+      }
     },
     {
       "_id": "dish-6f427c7d",
       "id": "dish-6f427c7d",
       "name": "Roti",
-      "price": 15.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8917,15 +9373,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 15.0,
-        "full": 15.0
+        "half": 54,
+        "full": 90.0
       }
     },
     {
       "_id": "dish-e582a98b",
       "id": "dish-e582a98b",
       "name": "Butter Roti",
-      "price": 15.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8942,8 +9398,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 15.0,
-        "full": 15.0
+        "half": 48,
+        "full": 80.0
       }
     },
     {
@@ -8971,7 +9427,7 @@
       "_id": "dish-b50e8b78",
       "id": "dish-b50e8b78",
       "name": "Papad",
-      "price": 60.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -8986,7 +9442,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.652594",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-d9bc6451",
@@ -9013,7 +9473,7 @@
       "_id": "dish-42df90ec",
       "id": "dish-42df90ec",
       "name": "Mix Raita",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9028,13 +9488,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.656140",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-d6ed459d",
       "id": "dish-d6ed459d",
       "name": "Dum Aloo",
-      "price": 70.0,
+      "price": 90.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -9049,13 +9513,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.658020",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-c7aed460",
       "id": "dish-c7aed460",
       "name": "Aloo",
-      "price": 70.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -9070,7 +9538,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.660079",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-6c391303",
@@ -9091,13 +9563,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.661083",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-992ba27b",
       "id": "dish-992ba27b",
       "name": "Aloo Zeera",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -9112,13 +9588,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.662907",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-04389011",
       "id": "dish-04389011",
       "name": "Aloo Pyaz",
-      "price": 70.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -9133,13 +9613,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.664415",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-01e55d99",
       "id": "dish-01e55d99",
       "name": "Achari Aloo",
-      "price": 70.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -9154,13 +9638,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.667465",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-b785a9e8",
       "id": "dish-b785a9e8",
       "name": "Pyaz Tamatar",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9175,13 +9663,17 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.668568",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-0bde1412",
       "id": "dish-0bde1412",
       "name": "Bhindi Masala",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9198,8 +9690,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 48,
+        "full": 80.0
       }
     },
     {
@@ -9336,7 +9828,7 @@
       "_id": "dish-0aea9189",
       "id": "dish-0aea9189",
       "name": "Fried Rice",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -9351,7 +9843,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.676077",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-fc5745e7",
@@ -9378,7 +9874,7 @@
       "_id": "dish-1a88d7e4",
       "id": "dish-1a88d7e4",
       "name": "Coffee",
-      "price": 15.0,
+      "price": 301.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9393,7 +9889,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.678575",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 181,
+        "full": 301.0
+      }
     },
     {
       "_id": "dish-dee4b631",
@@ -9424,7 +9924,7 @@
       "_id": "dish-e4f01022",
       "id": "dish-e4f01022",
       "name": "Samosa",
-      "price": 20.0,
+      "price": 10.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9442,14 +9942,14 @@
       "isRealPhoto": true,
       "portions": {
         "half": 15.0,
-        "full": 20.0
+        "full": 10.0
       }
     },
     {
       "_id": "dish-261d2f81",
       "id": "dish-261d2f81",
       "name": "Samosa Chat",
-      "price": 45.0,
+      "price": 10.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9464,7 +9964,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.681320",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 15.0,
+        "full": 10.0
+      }
     },
     {
       "_id": "dish-0705585a",
@@ -9554,7 +10058,7 @@
       "_id": "dish-13de947b",
       "id": "dish-13de947b",
       "name": "Pasta",
-      "price": 99.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9569,7 +10073,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.685584",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-209f70fb",
@@ -9617,7 +10125,7 @@
       "_id": "dish-c79c3224",
       "id": "dish-c79c3224",
       "name": "Burger",
-      "price": 45.0,
+      "price": 30.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -9632,7 +10140,11 @@
       "shopName": "Chandrakanta Canteen",
       "createdAt": "2026-09-27T23:57:25.689971",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 18,
+        "full": 30.0
+      }
     },
     {
       "_id": "dish-44232b8e",
@@ -10295,7 +10807,7 @@
       "_id": "dish-5b74444c",
       "id": "dish-5b74444c",
       "name": "Chap Rolls Kashmiri Chap Roll",
-      "price": 100.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -10310,7 +10822,11 @@
       "shopName": "Foodo Holic",
       "createdAt": "2026-09-27T23:57:25.721236",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-f64e980f",
@@ -10862,7 +11378,7 @@
       "_id": "dish-346446d8",
       "id": "dish-346446d8",
       "name": "Veg Noodles",
-      "price": 50.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -10879,15 +11395,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 90,
+        "full": 150.0
       }
     },
     {
       "_id": "dish-ab4d268d",
       "id": "dish-ab4d268d",
       "name": "Paneer Noodles",
-      "price": 120.0,
+      "price": 130.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -10904,8 +11420,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 78,
+        "full": 130.0
       }
     },
     {
@@ -10937,7 +11453,7 @@
       "_id": "dish-7cb50730",
       "id": "dish-7cb50730",
       "name": "Schezwan Noodles",
-      "price": 50.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -10954,8 +11470,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 72,
+        "full": 120.0
       }
     },
     {
@@ -10987,7 +11503,7 @@
       "_id": "dish-2d90d52e",
       "id": "dish-2d90d52e",
       "name": "Singapore Noodles",
-      "price": 60.0,
+      "price": 130.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -11002,7 +11518,11 @@
       "shopName": "Foodo Holic",
       "createdAt": "2026-09-27T23:57:25.746395",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-3c141769",
@@ -11365,7 +11885,7 @@
       "_id": "dish-53cd3c02",
       "id": "dish-53cd3c02",
       "name": "Achari Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -11380,7 +11900,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.765748",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-73d0cf96",
@@ -11428,7 +11952,7 @@
       "_id": "dish-668cd651",
       "id": "dish-668cd651",
       "name": "Punjabi Special Chaap",
-      "price": 100.0,
+      "price": 140.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -11443,7 +11967,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.768697",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 220.0,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-ec2f7e61",
@@ -11491,7 +12019,7 @@
       "_id": "dish-f791d96b",
       "id": "dish-f791d96b",
       "name": "Chap Fried Rice",
-      "price": 70.0,
+      "price": 701.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -11506,7 +12034,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.772700",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 421,
+        "full": 701.0
+      }
     },
     {
       "_id": "dish-90b040a4",
@@ -11902,7 +12434,7 @@
       "_id": "dish-1ea26c5b",
       "id": "dish-1ea26c5b",
       "name": "Veg Tandoori Momo",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -11917,13 +12449,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.814136",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-0eb898b0",
       "id": "dish-0eb898b0",
       "name": "Veg Kurkare Momo",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -11938,7 +12474,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.815135",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-b1c72122",
@@ -12561,7 +13101,7 @@
       "_id": "dish-44907375",
       "id": "dish-44907375",
       "name": "Tandoori Cheese Corn",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -12576,13 +13116,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.852306",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-31056478",
       "id": "dish-31056478",
       "name": "Double Cheese Corn",
-      "price": 50.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -12597,7 +13141,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.853819",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-0be6ae95",
@@ -12666,7 +13214,7 @@
       "_id": "dish-5f4aff09",
       "id": "dish-5f4aff09",
       "name": "Paneer Pakoda",
-      "price": 35.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -12683,8 +13231,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 21,
-        "full": 35.0
+        "half": 60,
+        "full": 100.0
       }
     },
     {
@@ -13156,7 +13704,7 @@
       "_id": "dish-86d80bb5",
       "id": "dish-86d80bb5",
       "name": "Vanilla Shake",
-      "price": 60.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -13171,7 +13719,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.893899",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-6fb93f03",
@@ -13198,7 +13750,7 @@
       "_id": "dish-26b38c20",
       "id": "dish-26b38c20",
       "name": "Litchi Shake",
-      "price": 60.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -13213,7 +13765,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.896080",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-bb15390b",
@@ -13307,7 +13863,7 @@
       "_id": "dish-4f5a82cb",
       "id": "dish-4f5a82cb",
       "name": "Apple Shake",
-      "price": 60.0,
+      "price": 50.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -13322,7 +13878,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.902406",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 30,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-46682b38",
@@ -13578,7 +14138,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.918926",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 36,
+        "full": 60.0
+      }
     },
     {
       "_id": "dish-f6c35d89",
@@ -13647,7 +14211,7 @@
       "_id": "dish-cef17325",
       "id": "dish-cef17325",
       "name": "Sada Thali",
-      "price": 99.0,
+      "price": 601.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -13662,13 +14226,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.924079",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 361,
+        "full": 601.0
+      }
     },
     {
       "_id": "dish-f439b6fa",
       "id": "dish-f439b6fa",
       "name": "Plain Thali",
-      "price": 99.0,
+      "price": 601.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -13683,7 +14251,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.925583",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 361,
+        "full": 601.0
+      }
     },
     {
       "_id": "dish-50e491ab",
@@ -13710,7 +14282,7 @@
       "_id": "dish-62135041",
       "id": "dish-62135041",
       "name": "Jain Thali",
-      "price": 140.0,
+      "price": 30.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -13725,7 +14297,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.927024",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 18,
+        "full": 30.0
+      }
     },
     {
       "_id": "dish-1715441b",
@@ -13945,7 +14521,7 @@
       "_id": "dish-7cec6de3",
       "id": "dish-7cec6de3",
       "name": "Dal Bhukhera",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -13960,13 +14536,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.939047",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 150.0,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-1e72fb2e",
       "id": "dish-1e72fb2e",
       "name": "Chana Masala D",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -13981,13 +14561,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.939683",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 150.0,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-06f90592",
       "id": "dish-06f90592",
       "name": "Chana Masala G",
-      "price": 70.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -14002,13 +14586,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.940706",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 130.0,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-66ce9046",
       "id": "dish-66ce9046",
       "name": "Rajma Masala",
-      "price": 70.0,
+      "price": 90.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -14023,13 +14611,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.941709",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 140.0,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-7b06555a",
       "id": "dish-7b06555a",
       "name": "Kadi Pakoda",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -14044,7 +14636,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.942712",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-c45d3e0f",
@@ -14113,7 +14709,7 @@
       "_id": "dish-eb7d0307",
       "id": "dish-eb7d0307",
       "name": "Mushroom Mushroom Mughlai",
-      "price": 80.0,
+      "price": 140.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -14128,7 +14724,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.945305",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 220.0,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-bf801bfd",
@@ -14208,7 +14808,11 @@
       "shopId": "shop-7",
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.949497",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 36,
+        "full": 60.0
+      }
     },
     {
       "_id": "dish-49e41bdd",
@@ -14376,7 +14980,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.954907",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 36,
+        "full": 60.0
+      }
     },
     {
       "_id": "dish-b14fcc85",
@@ -14403,7 +15011,7 @@
       "_id": "dish-db141e19",
       "id": "dish-db141e19",
       "name": "Subz Bengan Bhartha",
-      "price": 60.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -14418,7 +15026,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.956413",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 120.0,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-cf131fdc",
@@ -14466,7 +15078,7 @@
       "_id": "dish-ff8d28f2",
       "id": "dish-ff8d28f2",
       "name": "Subz Kurkuri Bhindi",
-      "price": 60.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -14481,7 +15093,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.958965",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 150.0,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-4355f519",
@@ -14908,7 +15524,7 @@
       "_id": "dish-33fcb034",
       "id": "dish-33fcb034",
       "name": "Paneer Bread Pakora",
-      "price": 100.0,
+      "price": 30.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -14922,7 +15538,11 @@
       "shopId": "shop-7",
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.981196",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 18,
+        "full": 30.0
+      }
     },
     {
       "_id": "dish-8fbd7bd5",
@@ -14948,7 +15568,7 @@
       "_id": "dish-a9431b64",
       "id": "dish-a9431b64",
       "name": "Veg Noodle",
-      "price": 60.0,
+      "price": 50.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -14963,13 +15583,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.984294",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 30,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-da415a18",
       "id": "dish-da415a18",
       "name": "Chilli Garlic Noodle",
-      "price": 60.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -14984,7 +15608,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.985296",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-a00079dd",
@@ -15005,7 +15633,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.985296",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-322d98e1",
@@ -15053,7 +15685,7 @@
       "_id": "dish-4716b9bf",
       "id": "dish-4716b9bf",
       "name": "Bread Toast Bun Maska",
-      "price": 60.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -15068,13 +15700,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.988642",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-238e3f63",
       "id": "dish-238e3f63",
       "name": "Bread Toast Amul Bun Maska",
-      "price": 60.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -15089,7 +15725,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.988642",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-ba698a49",
@@ -15116,7 +15756,7 @@
       "_id": "dish-284ebd3e",
       "id": "dish-284ebd3e",
       "name": "Bread Toast Amul Bread Toast",
-      "price": 60.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -15131,7 +15771,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.991120",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-e8d34339",
@@ -15659,7 +16303,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.011594",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 30,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-1880f549",
@@ -16353,7 +17001,7 @@
       "_id": "dish-25f8ff66",
       "id": "dish-25f8ff66",
       "name": "Rara Paneer",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -16368,7 +17016,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.062112",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-8bc1ecf8",
@@ -16546,7 +17198,7 @@
       "_id": "dish-24973836",
       "id": "dish-24973836",
       "name": "Lemon Rice",
-      "price": 60.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -16561,7 +17213,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.071280",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-4d4514f0",
@@ -16588,7 +17244,7 @@
       "_id": "dish-d44c2072",
       "id": "dish-d44c2072",
       "name": "Matar Paneer Pulao",
-      "price": 70.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -16603,7 +17259,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.072284",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-7996084e",
@@ -16633,7 +17293,7 @@
       "_id": "dish-a227ea0b",
       "id": "dish-a227ea0b",
       "name": "Chap Biryani",
-      "price": 90.0,
+      "price": 70.0,
       "hasHalfFull": true,
       "priceHalf": 90.0,
       "priceFull": 160.0,
@@ -16647,13 +17307,17 @@
       "shopId": "shop-7",
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.075410",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-a11f838a",
       "id": "dish-a11f838a",
       "name": "Paneer Biryani",
-      "price": 120.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 90.0,
       "priceFull": 160.0,
@@ -16669,15 +17333,15 @@
       "createdAt": "2026-09-27T23:57:26.077034",
       "isVeg": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 48,
+        "full": 80.0
       }
     },
     {
       "_id": "dish-b4da60f8",
       "id": "dish-b4da60f8",
       "name": "Hyderabadi Biryani",
-      "price": 90.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 90.0,
       "priceFull": 160.0,
@@ -16691,13 +17355,17 @@
       "shopId": "shop-7",
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.078643",
-      "isVeg": true
+      "isVeg": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-b8b7f12d",
       "id": "dish-b8b7f12d",
       "name": "Gravy Rice Dal Chawal",
-      "price": 70.0,
+      "price": 50.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -16712,7 +17380,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.080228",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 30,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-279928a8",
@@ -17201,7 +17873,7 @@
       "_id": "dish-c1834502",
       "id": "dish-c1834502",
       "name": "Paranthas Tikona Prantha",
-      "price": 60.0,
+      "price": 251.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -17216,13 +17888,17 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.103719",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 151,
+        "full": 251.0
+      }
     },
     {
       "_id": "dish-6b39c9e2",
       "id": "dish-6b39c9e2",
       "name": "Paranthas Masala Prantha",
-      "price": 60.0,
+      "price": 251.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -17237,7 +17913,11 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:26.106900",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 151,
+        "full": 251.0
+      }
     },
     {
       "_id": "dish-24071385",
@@ -17713,7 +18393,7 @@
       "_id": "dish-5c30628b",
       "id": "dish-5c30628b",
       "name": "Plain Paratha",
-      "price": 8.0,
+      "price": 201.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -17728,7 +18408,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.138320",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 121,
+        "full": 201.0
+      }
     },
     {
       "_id": "dish-17e0d2e2",
@@ -17755,7 +18439,7 @@
       "_id": "dish-84be633f",
       "id": "dish-84be633f",
       "name": "Pyaz Paratha",
-      "price": 8.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -17770,7 +18454,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.141601",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-5daab32c",
@@ -17952,7 +18640,7 @@
       "_id": "dish-7184f519",
       "id": "dish-7184f519",
       "name": "Masala Paneer",
-      "price": 100.0,
+      "price": 401.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -17967,13 +18655,17 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.153889",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 241,
+        "full": 401.0
+      }
     },
     {
       "_id": "dish-839fd33b",
       "id": "dish-839fd33b",
       "name": "Kadai Paneer",
-      "price": 120.0,
+      "price": 401.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -17990,8 +18682,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 241,
+        "full": 401.0
       }
     },
     {
@@ -18019,7 +18711,7 @@
       "_id": "dish-4dbeaa4d",
       "id": "dish-4dbeaa4d",
       "name": "Paneer Rogan",
-      "price": 100.0,
+      "price": 401.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -18034,7 +18726,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.158339",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 241,
+        "full": 401.0
+      }
     },
     {
       "_id": "dish-bb00a40d",
@@ -18132,7 +18828,7 @@
       "_id": "dish-dde3b668",
       "id": "dish-dde3b668",
       "name": "Lassi",
-      "price": 40.0,
+      "price": 401.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18147,7 +18843,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.207404",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 241,
+        "full": 401.0
+      }
     },
     {
       "_id": "dish-27af4936",
@@ -18174,7 +18874,7 @@
       "_id": "dish-840efc78",
       "id": "dish-840efc78",
       "name": "Raita",
-      "price": 60.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18189,7 +18889,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.209404",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-bb011232",
@@ -18216,7 +18920,7 @@
       "_id": "dish-b0bcfe3c",
       "id": "dish-b0bcfe3c",
       "name": "Pyaz Tamatar Raita",
-      "price": 60.0,
+      "price": 40.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18231,7 +18935,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.211584",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 24,
+        "full": 40.0
+      }
     },
     {
       "_id": "dish-751021b3",
@@ -18258,7 +18966,7 @@
       "_id": "dish-888dd433",
       "id": "dish-888dd433",
       "name": "Fixed",
-      "price": 60.0,
+      "price": 601.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18273,13 +18981,17 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.214584",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 361,
+        "full": 601.0
+      }
     },
     {
       "_id": "dish-b6004e97",
       "id": "dish-b6004e97",
       "name": "Chole Puri",
-      "price": 60.0,
+      "price": 501.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18294,7 +19006,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.217587",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 301,
+        "full": 501.0
+      }
     },
     {
       "_id": "dish-ce731af7",
@@ -18321,7 +19037,7 @@
       "_id": "dish-ca41d2b0",
       "id": "dish-ca41d2b0",
       "name": "Kadhi Chawal",
-      "price": 70.0,
+      "price": 140.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18336,7 +19052,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.219586",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 84,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-abac3808",
@@ -18388,7 +19108,7 @@
       "_id": "dish-61f792fe",
       "id": "dish-61f792fe",
       "name": "Campa Can",
-      "price": 60.0,
+      "price": 301.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18403,7 +19123,11 @@
       "shopName": "Jiven Canteen",
       "createdAt": "2026-09-27T23:57:26.224585",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 181,
+        "full": 301.0
+      }
     },
     {
       "_id": "dish-04218cab",
@@ -18661,7 +19385,7 @@
       "_id": "dish-fd9f15c2",
       "id": "dish-fd9f15c2",
       "name": "Banana Shake",
-      "price": 60.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -18676,7 +19400,11 @@
       "shopName": "Vardhaman Juice Corner",
       "createdAt": "2026-09-27T23:57:26.266595",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-0298c710",
@@ -19001,7 +19729,7 @@
       "_id": "dish-15cedd00",
       "id": "dish-15cedd00",
       "name": "Mix Juice",
-      "price": 60.0,
+      "price": 90.0,
       "hasHalfFull": true,
       "priceHalf": 60.0,
       "priceFull": 100.0,
@@ -19016,7 +19744,11 @@
       "shopName": "Vardhaman Juice Corner",
       "createdAt": "2026-09-27T23:57:26.297842",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-5e473f54",
@@ -19152,7 +19884,7 @@
       "_id": "dish-ed37f33a",
       "id": "dish-ed37f33a",
       "name": "Pineapple Juice",
-      "price": 60.0,
+      "price": 50.0,
       "hasHalfFull": true,
       "priceHalf": 60.0,
       "priceFull": 100.0,
@@ -19167,7 +19899,11 @@
       "shopName": "Vardhaman Juice Corner",
       "createdAt": "2026-09-27T23:57:26.305821",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 70.0,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-12a93f6a",
@@ -19198,7 +19934,7 @@
       "_id": "dish-b502673c",
       "id": "dish-b502673c",
       "name": "Apple Juice",
-      "price": 60.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 60.0,
       "priceFull": 100.0,
@@ -19213,13 +19949,17 @@
       "shopName": "Vardhaman Juice Corner",
       "createdAt": "2026-09-27T23:57:26.308115",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-145af343",
       "id": "dish-145af343",
       "name": "Mosmi Juice",
-      "price": 60.0,
+      "price": 50.0,
       "hasHalfFull": true,
       "priceHalf": 60.0,
       "priceFull": 100.0,
@@ -19234,13 +19974,17 @@
       "shopName": "Vardhaman Juice Corner",
       "createdAt": "2026-09-27T23:57:26.308115",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 70.0,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-9874c214",
       "id": "dish-9874c214",
       "name": "Vegetable Juice",
-      "price": 60.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 60.0,
       "priceFull": 100.0,
@@ -19255,7 +19999,11 @@
       "shopName": "Vardhaman Juice Corner",
       "createdAt": "2026-09-27T23:57:26.309295",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-19e6a70b",
@@ -19483,7 +20231,7 @@
       "_id": "dish-2792954d",
       "id": "dish-2792954d",
       "name": "Fresh Veggie",
-      "price": 60.0,
+      "price": 270.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -19498,7 +20246,11 @@
       "shopName": "Caffelera",
       "createdAt": "2026-09-27T23:57:26.323039",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 162,
+        "full": 270.0
+      }
     },
     {
       "_id": "dish-4346420c",
@@ -19945,7 +20697,7 @@
       "_id": "dish-d56d84fb",
       "id": "dish-d56d84fb",
       "name": "Cheese Sandwich",
-      "price": 50.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -19962,8 +20714,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 42,
+        "full": 70.0
       }
     },
     {
@@ -22514,7 +23266,7 @@
       "_id": "dish-327ac974",
       "id": "dish-327ac974",
       "name": "Paratha",
-      "price": 8.0,
+      "price": 75.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -22529,7 +23281,11 @@
       "shopName": "Pani Puri Restaurant",
       "createdAt": "2026-09-27T23:57:26.474135",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 45,
+        "full": 75.0
+      }
     },
     {
       "_id": "dish-40a02539",
@@ -24775,7 +25531,7 @@
       "_id": "dish-ccbc7bcb",
       "id": "dish-ccbc7bcb",
       "name": "Mix Uttapam",
-      "price": 75.0,
+      "price": 130.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -24790,7 +25546,11 @@
       "shopName": "Pani Puri Restaurant",
       "createdAt": "2026-09-27T23:57:26.595103",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-0005ca6e",
@@ -24964,7 +25724,7 @@
       "_id": "dish-34ca1d03",
       "id": "dish-34ca1d03",
       "name": "Cheese Corn",
-      "price": 50.0,
+      "price": 40.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -24979,7 +25739,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.606239",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 24,
+        "full": 40.0
+      }
     },
     {
       "_id": "dish-b05fa124",
@@ -25538,7 +26302,7 @@
       "_id": "dish-e3af383b",
       "id": "dish-e3af383b",
       "name": "Pineapple",
-      "price": 60.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -25553,7 +26317,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.638550",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-ae6590b5",
@@ -25907,7 +26675,7 @@
       "_id": "dish-b99ee126",
       "id": "dish-b99ee126",
       "name": "Afghani Veg Momos 8 Pcs",
-      "price": 70.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -25922,13 +26690,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.657144",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-c015efc1",
       "id": "dish-c015efc1",
       "name": "Cheese Corn Uttapam",
-      "price": 110.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -25943,13 +26715,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.659651",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-be7a0641",
       "id": "dish-be7a0641",
       "name": "Chilly Garlic Noodles",
-      "price": 60.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -25964,7 +26740,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.663651",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-7771652d",
@@ -26033,7 +26813,7 @@
       "_id": "dish-56819a44",
       "id": "dish-56819a44",
       "name": "Crispy Paneer",
-      "price": 100.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -26048,13 +26828,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.669373",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-733dc0e4",
       "id": "dish-733dc0e4",
       "name": "Dry Fruit Poha",
-      "price": 60.0,
+      "price": 130.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26069,13 +26853,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.670377",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-793da52f",
       "id": "dish-793da52f",
       "name": "Fried Idli 2 Pcs",
-      "price": 55.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26090,7 +26878,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.672376",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-ae54f0b2",
@@ -26142,7 +26934,7 @@
       "_id": "dish-30154d1d",
       "id": "dish-30154d1d",
       "name": "Jain Dosa",
-      "price": 75.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26157,13 +26949,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.675501",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-49c7a0fe",
       "id": "dish-49c7a0fe",
       "name": "Kfc Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -26178,13 +26974,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.677008",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-71d1e644",
       "id": "dish-71d1e644",
       "name": "Kurkure Paneer Momos 8 Pcs",
-      "price": 100.0,
+      "price": 150.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -26199,13 +26999,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.677973",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-61409bae",
       "id": "dish-61409bae",
       "name": "Kurkure Veg Momos 8 Pcs",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26220,7 +27024,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.677973",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-15f78ab4",
@@ -26247,7 +27055,7 @@
       "_id": "dish-19ef3cc5",
       "id": "dish-19ef3cc5",
       "name": "Mix Chila",
-      "price": 60.0,
+      "price": 170.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26262,7 +27070,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.680295",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-233be051",
@@ -26310,7 +27122,7 @@
       "_id": "dish-04ce1c01",
       "id": "dish-04ce1c01",
       "name": "Mushroom Noodles",
-      "price": 80.0,
+      "price": 130.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -26325,13 +27137,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.683852",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-fd85ff08",
       "id": "dish-fd85ff08",
       "name": "Onion Chila",
-      "price": 60.0,
+      "price": 170.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26346,7 +27162,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.687358",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-c6d9c7f0",
@@ -26373,7 +27193,7 @@
       "_id": "dish-5de58e98",
       "id": "dish-5de58e98",
       "name": "Paneer Chila",
-      "price": 100.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -26388,7 +27208,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.690862",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-eb9d4eab",
@@ -26415,7 +27239,7 @@
       "_id": "dish-8cba811c",
       "id": "dish-8cba811c",
       "name": "Paneer Fried Momos 8 Pcs",
-      "price": 100.0,
+      "price": 140.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -26430,13 +27254,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.693029",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 84,
+        "full": 140.0
+      }
     },
     {
       "_id": "dish-4c95cd98",
       "id": "dish-4c95cd98",
       "name": "Paneer Momos 6 Pcs",
-      "price": 100.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -26451,7 +27279,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.693539",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-91cf2cf6",
@@ -26482,7 +27314,7 @@
       "_id": "dish-44020c26",
       "id": "dish-44020c26",
       "name": "Paneer Onion Uttapam",
-      "price": 110.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26497,7 +27329,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.695688",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-be7015db",
@@ -26570,7 +27406,7 @@
       "_id": "dish-37beffe3",
       "id": "dish-37beffe3",
       "name": "Pizza Dosa",
-      "price": 119.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26585,13 +27421,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.699146",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-9fa13722",
       "id": "dish-9fa13722",
       "name": "Plain Chila",
-      "price": 60.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26606,13 +27446,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.700146",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-fe729bf8",
       "id": "dish-fe729bf8",
       "name": "Plain Idli 2 Pcs",
-      "price": 55.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26627,13 +27471,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.701650",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-9b451ad1",
       "id": "dish-9b451ad1",
       "name": "Plain Uttapam",
-      "price": 75.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26648,7 +27496,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.702653",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-bf40673f",
@@ -26675,7 +27527,7 @@
       "_id": "dish-036a6488",
       "id": "dish-036a6488",
       "name": "Sambar Extra",
-      "price": 75.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26690,7 +27542,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.713046",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-b9bf88c3",
@@ -26784,7 +27640,7 @@
       "_id": "dish-9358e48f",
       "id": "dish-9358e48f",
       "name": "Tandoori Paneer Momos 8 Pcs",
-      "price": 100.0,
+      "price": 150.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -26799,13 +27655,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.718547",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-8ed756e1",
       "id": "dish-8ed756e1",
       "name": "Tandoori Veg Momos 8 Pcs",
-      "price": 50.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26820,13 +27680,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.718547",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-41561d27",
       "id": "dish-41561d27",
       "name": "Veg Cheese Dosa",
-      "price": 110.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26841,13 +27705,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.720551",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-60b76340",
       "id": "dish-60b76340",
       "name": "Veg Cheese Uttapam",
-      "price": 110.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26862,13 +27730,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.722558",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-381dc32b",
       "id": "dish-381dc32b",
       "name": "Veg Fried Momos 8 Pcs",
-      "price": 50.0,
+      "price": 110.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26883,13 +27755,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.724054",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-522a5ccb",
       "id": "dish-522a5ccb",
       "name": "Veg Manchurian Dry",
-      "price": 60.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26904,13 +27780,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.724054",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-77d588f0",
       "id": "dish-77d588f0",
       "name": "Veg Manchurian Gravy",
-      "price": 50.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -26927,8 +27807,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 96,
+        "full": 160.0
       }
     },
     {
@@ -27006,7 +27886,7 @@
       "_id": "dish-7a68fe5f",
       "id": "dish-7a68fe5f",
       "name": "Kaju Korma",
-      "price": 100.0,
+      "price": 200.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -27021,7 +27901,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.730043",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 120,
+        "full": 200.0
+      }
     },
     {
       "_id": "dish-216e54d1",
@@ -27042,13 +27926,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.730554",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-57891bc6",
       "id": "dish-57891bc6",
       "name": "Aloo Mutter",
-      "price": 70.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -27063,13 +27951,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.732629",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-2b1e5872",
       "id": "dish-2b1e5872",
       "name": "Aloo Mutter Gobhi",
-      "price": 70.0,
+      "price": 130.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -27084,13 +27976,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.733632",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-29133c30",
       "id": "dish-29133c30",
       "name": "Gobhi Masala",
-      "price": 60.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27105,13 +28001,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.734991",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-435bf047",
       "id": "dish-435bf047",
       "name": "Jeera Aloo",
-      "price": 50.0,
+      "price": 90.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -27128,8 +28028,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 54,
+        "full": 90.0
       }
     },
     {
@@ -27157,7 +28057,7 @@
       "_id": "dish-c905754c",
       "id": "dish-c905754c",
       "name": "Kashmiri Dum Aloo",
-      "price": 70.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -27172,13 +28072,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.737882",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-2891adec",
       "id": "dish-2891adec",
       "name": "Pyaaz Tamatar",
-      "price": 60.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27193,13 +28097,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.739789",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-95a9a63c",
       "id": "dish-95a9a63c",
       "name": "Aloo Tamatar",
-      "price": 70.0,
+      "price": 250.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -27214,13 +28122,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.739789",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 150,
+        "full": 250.0
+      }
     },
     {
       "_id": "dish-a80cd061",
       "id": "dish-a80cd061",
       "name": "Sev Tamatar",
-      "price": 60.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27235,7 +28147,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.743585",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-1370713e",
@@ -27287,7 +28203,7 @@
       "_id": "dish-0799ef99",
       "id": "dish-0799ef99",
       "name": "Mutter Aloo",
-      "price": 70.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -27302,13 +28218,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.747310",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-12acda27",
       "id": "dish-12acda27",
       "name": "Chilly Munchurian",
-      "price": 60.0,
+      "price": 170.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27323,7 +28243,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.748315",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-4cc1dc0d",
@@ -27375,7 +28299,7 @@
       "_id": "dish-7de21685",
       "id": "dish-7de21685",
       "name": "Bhindi Do Pyaza",
-      "price": 60.0,
+      "price": 170.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27390,7 +28314,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.750214",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-a366350e",
@@ -27417,7 +28345,7 @@
       "_id": "dish-76228c12",
       "id": "dish-76228c12",
       "name": "Tawa Butter Roti",
-      "price": 8.0,
+      "price": 121.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27432,7 +28360,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.752549",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 73,
+        "full": 121.0
+      }
     },
     {
       "_id": "dish-2992c46f",
@@ -27547,7 +28479,7 @@
       "_id": "dish-b1af3733",
       "id": "dish-b1af3733",
       "name": "Butter Naan",
-      "price": 15.0,
+      "price": 55.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27564,15 +28496,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 15.0,
-        "full": 15.0
+        "half": 33,
+        "full": 55.0
       }
     },
     {
       "_id": "dish-34baf4ca",
       "id": "dish-34baf4ca",
       "name": "Onion Naan",
-      "price": 8.0,
+      "price": 75.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27587,7 +28519,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.760240",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 45,
+        "full": 75.0
+      }
     },
     {
       "_id": "dish-004325fa",
@@ -27639,7 +28575,7 @@
       "_id": "dish-4ba32522",
       "id": "dish-4ba32522",
       "name": "Stuffed Naan",
-      "price": 8.0,
+      "price": 50.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27654,7 +28590,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.763197",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 30,
+        "full": 50.0
+      }
     },
     {
       "_id": "dish-8580935e",
@@ -27702,7 +28642,7 @@
       "_id": "dish-a431951b",
       "id": "dish-a431951b",
       "name": "Amritsari Kulcha Thali",
-      "price": 70.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27717,13 +28657,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.766210",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-b247ded4",
       "id": "dish-b247ded4",
       "name": "Churchur Naan Thali",
-      "price": 8.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27738,7 +28682,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.767210",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-9a3792ac",
@@ -27765,7 +28713,7 @@
       "_id": "dish-f0f0993b",
       "id": "dish-f0f0993b",
       "name": "Bondi Raita",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27780,7 +28728,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.769720",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-0a7c7c3a",
@@ -27807,7 +28759,7 @@
       "_id": "dish-1fc04f7d",
       "id": "dish-1fc04f7d",
       "name": "Onion Raita",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -27822,7 +28774,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.773291",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-16fb3aea",
@@ -27912,7 +28868,7 @@
       "_id": "dish-32e11602",
       "id": "dish-32e11602",
       "name": "Diet Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -27927,13 +28883,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.778907",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-c6686da0",
       "id": "dish-c6686da0",
       "name": "Pudina Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -27948,7 +28908,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.778907",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-9197b32e",
@@ -27996,7 +28960,7 @@
       "_id": "dish-586c798a",
       "id": "dish-586c798a",
       "name": "Lemon Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -28011,7 +28975,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.782015",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-7ff1e1d9",
@@ -28084,7 +29052,7 @@
       "_id": "dish-2362ed45",
       "id": "dish-2362ed45",
       "name": "Hariyali Paneer Tikka",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -28099,13 +29067,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.785488",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-e10be1a5",
       "id": "dish-e10be1a5",
       "name": "Moradabadi Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -28120,13 +29092,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.786489",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-1fba9650",
       "id": "dish-1fba9650",
       "name": "Hariyali Mushroom Tikka",
-      "price": 80.0,
+      "price": 250.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -28141,7 +29117,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.787488",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 150,
+        "full": 250.0
+      }
     },
     {
       "_id": "dish-f6b8f55f",
@@ -28168,7 +29148,7 @@
       "_id": "dish-56d422e8",
       "id": "dish-56d422e8",
       "name": "Pudina Chaap Roll",
-      "price": 100.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -28183,7 +29163,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.790091",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-d695c2c1",
@@ -28231,7 +29215,7 @@
       "_id": "dish-cbb1f396",
       "id": "dish-cbb1f396",
       "name": "Chatpati Chaap Roll",
-      "price": 100.0,
+      "price": 160.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -28246,7 +29230,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.792463",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-21d315ef",
@@ -28315,7 +29303,7 @@
       "_id": "dish-212cd634",
       "id": "dish-212cd634",
       "name": "Achari Paneer Tikka Roll",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -28330,7 +29318,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.796922",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-72d4855c",
@@ -28441,7 +29433,7 @@
       "_id": "dish-c93f2787",
       "id": "dish-c93f2787",
       "name": "Achari Paratha",
-      "price": 8.0,
+      "price": 45.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -28456,7 +29448,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.803128",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 27,
+        "full": 45.0
+      }
     },
     {
       "_id": "dish-aadeddd5",
@@ -28504,7 +29500,7 @@
       "_id": "dish-bc82ce97",
       "id": "dish-bc82ce97",
       "name": "Green Chilly Paratha",
-      "price": 8.0,
+      "price": 55.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -28519,7 +29515,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.805745",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 33,
+        "full": 55.0
+      }
     },
     {
       "_id": "dish-78dd5136",
@@ -28630,7 +29630,7 @@
       "_id": "dish-58a8a22d",
       "id": "dish-58a8a22d",
       "name": "Achari Paneer Paratha",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -28645,13 +29645,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.811983",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-d26e71b3",
       "id": "dish-d26e71b3",
       "name": "Paneer Lehsun Paratha",
-      "price": 8.0,
+      "price": 120.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -28666,7 +29670,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.815157",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 72,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-1bc705ee",
@@ -29220,7 +30228,7 @@
       "_id": "dish-5f892e77",
       "id": "dish-5f892e77",
       "name": "Tandoori Burger",
-      "price": 50.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -29237,8 +30245,8 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 48,
+        "full": 80.0
       }
     },
     {
@@ -30023,7 +31031,7 @@
       "_id": "dish-c1a4d482",
       "id": "dish-c1a4d482",
       "name": "Dal Punjabi",
-      "price": 70.0,
+      "price": 130.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -30038,7 +31046,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.881625",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-2cf0e658",
@@ -30090,7 +31102,7 @@
       "_id": "dish-a5ea031d",
       "id": "dish-a5ea031d",
       "name": "Amritsari Chole",
-      "price": 60.0,
+      "price": 150.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -30105,7 +31117,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.884347",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-80490d10",
@@ -30132,7 +31148,7 @@
       "_id": "dish-234ca749",
       "id": "dish-234ca749",
       "name": "Pindi Chana",
-      "price": 70.0,
+      "price": 150.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -30147,7 +31163,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.887352",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 90,
+        "full": 150.0
+      }
     },
     {
       "_id": "dish-e896a3f9",
@@ -30174,7 +31194,7 @@
       "_id": "dish-a865f427",
       "id": "dish-a865f427",
       "name": "Chilly Chana",
-      "price": 70.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -30189,7 +31209,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.888352",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-9894df48",
@@ -30308,7 +31332,7 @@
       "_id": "dish-799140f3",
       "id": "dish-799140f3",
       "name": "Paneer Laziz",
-      "price": 100.0,
+      "price": 250.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30323,7 +31347,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.894521",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 150,
+        "full": 250.0
+      }
     },
     {
       "_id": "dish-e0e55d15",
@@ -30350,7 +31378,7 @@
       "_id": "dish-05916ba1",
       "id": "dish-05916ba1",
       "name": "Paneer Roganjosh",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30365,7 +31393,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.895784",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-dcacfe1b",
@@ -30434,7 +31466,7 @@
       "_id": "dish-aa15078c",
       "id": "dish-aa15078c",
       "name": "Paneer Takatak",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30449,7 +31481,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.900291",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-8c68a130",
@@ -30476,7 +31512,7 @@
       "_id": "dish-71426253",
       "id": "dish-71426253",
       "name": "Paneer Keleji",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30491,13 +31527,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.902550",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-5e47deb0",
       "id": "dish-5e47deb0",
       "name": "Paneer Punjabi",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30512,7 +31552,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.905871",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-cef0c53c",
@@ -30539,7 +31583,7 @@
       "_id": "dish-d9f759a5",
       "id": "dish-d9f759a5",
       "name": "Paneer Lakhnavi Kor",
-      "price": 100.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30554,13 +31598,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.908287",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-c654e064",
       "id": "dish-c654e064",
       "name": "Dhamiya Adrak Paneer",
-      "price": 100.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30575,13 +31623,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.909480",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-66ad1219",
       "id": "dish-66ad1219",
       "name": "Keema Paneer",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30596,13 +31648,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.909480",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-23769a3e",
       "id": "dish-23769a3e",
       "name": "Shahi Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30617,7 +31673,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.911153",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-61753de8",
@@ -30686,7 +31746,7 @@
       "_id": "dish-76e3e269",
       "id": "dish-76e3e269",
       "name": "Chaap Laziz",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30701,13 +31761,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.914578",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-5056cecb",
       "id": "dish-5056cecb",
       "name": "Chaap Butter Masala",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30722,13 +31786,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.914578",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-1b9e2bbc",
       "id": "dish-1b9e2bbc",
       "name": "Chaap Lababdar",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30743,7 +31811,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.915910",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-c109ef83",
@@ -30770,7 +31842,7 @@
       "_id": "dish-a122e51b",
       "id": "dish-a122e51b",
       "name": "Chaap Roganjosh",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30785,7 +31857,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.916995",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-a33f71b4",
@@ -30812,7 +31888,7 @@
       "_id": "dish-3fcabae4",
       "id": "dish-3fcabae4",
       "name": "Chaap Takatak",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30827,13 +31903,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.919500",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-0be7839f",
       "id": "dish-0be7839f",
       "name": "Chaap Punjabi",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30848,13 +31928,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.922007",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-451068a0",
       "id": "dish-451068a0",
       "name": "Kaleji Chaap",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30869,13 +31953,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.923180",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-3ae111a2",
       "id": "dish-3ae111a2",
       "name": "Afghani Chaap Gravy",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30890,13 +31978,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.923853",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-549e1468",
       "id": "dish-549e1468",
       "name": "Mughlai Chaap Gravy",
-      "price": 100.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30911,13 +32003,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.925089",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-61b26031",
       "id": "dish-61b26031",
       "name": "Dhamiya Adrak Chaap",
-      "price": 100.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30932,13 +32028,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.926091",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-c4ebf102",
       "id": "dish-c4ebf102",
       "name": "Chaap Lakhnavi Kor",
-      "price": 100.0,
+      "price": 180.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30953,13 +32053,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.927096",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 108,
+        "full": 180.0
+      }
     },
     {
       "_id": "dish-02b0b490",
       "id": "dish-02b0b490",
       "name": "Keema Chaap",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30974,13 +32078,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.927755",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-4275d109",
       "id": "dish-4275d109",
       "name": "Malai Chaap Gravy",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -30995,13 +32103,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.928757",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-f8b53a96",
       "id": "dish-f8b53a96",
       "name": "Chaap Kali Mirch",
-      "price": 100.0,
+      "price": 190.0,
       "hasHalfFull": true,
       "priceHalf": 100.0,
       "priceFull": 180.0,
@@ -31016,13 +32128,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.929757",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 114,
+        "full": 190.0
+      }
     },
     {
       "_id": "dish-3d591f27",
       "id": "dish-3d591f27",
       "name": "Shahi Mushroom",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31037,13 +32153,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.930758",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-1e800a25",
       "id": "dish-1e800a25",
       "name": "Kadhai Mushroom",
-      "price": 80.0,
+      "price": 250.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31058,7 +32178,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.931758",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 150,
+        "full": 250.0
+      }
     },
     {
       "_id": "dish-277fb466",
@@ -31106,7 +32230,7 @@
       "_id": "dish-e85a11b2",
       "id": "dish-e85a11b2",
       "name": "Mushroom Laziz",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31121,7 +32245,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.934841",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-b1c22d6b",
@@ -31169,7 +32297,7 @@
       "_id": "dish-61e0cf6d",
       "id": "dish-61e0cf6d",
       "name": "Mushroom Lababdar",
-      "price": 80.0,
+      "price": 120.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31184,13 +32312,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.937929",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 180.0,
+        "full": 120.0
+      }
     },
     {
       "_id": "dish-69cf4c5a",
       "id": "dish-69cf4c5a",
       "name": "Changezi Mushroom",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31205,13 +32337,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.938665",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-315538bf",
       "id": "dish-315538bf",
       "name": "Mushroom Roganjosh",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31226,13 +32362,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.939653",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-54cfdd68",
       "id": "dish-54cfdd68",
       "name": "Handi Mushroom",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31247,13 +32387,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.940157",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-ac7e6d59",
       "id": "dish-ac7e6d59",
       "name": "Mushroom Takatak",
-      "price": 80.0,
+      "price": 170.0,
       "hasHalfFull": true,
       "priceHalf": 80.0,
       "priceFull": 140.0,
@@ -31268,7 +32412,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.942003",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 102,
+        "full": 170.0
+      }
     },
     {
       "_id": "dish-f2f19951",
@@ -31358,7 +32506,7 @@
       "_id": "dish-ec881a54",
       "id": "dish-ec881a54",
       "name": "Dal Tadka Rice",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -31373,7 +32521,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.948006",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-d3e7cd97",
@@ -31421,7 +32573,7 @@
       "_id": "dish-cc72d63e",
       "id": "dish-cc72d63e",
       "name": "Dal Makhani Chawal",
-      "price": 70.0,
+      "price": 80.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -31436,7 +32588,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.950995",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-470ae54d",
@@ -31555,7 +32711,7 @@
       "_id": "dish-3dc6114f",
       "id": "dish-3dc6114f",
       "name": "Mushroom Pulao",
-      "price": 70.0,
+      "price": 100.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -31570,13 +32726,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.956504",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 60,
+        "full": 100.0
+      }
     },
     {
       "_id": "dish-2b4a32f9",
       "id": "dish-2b4a32f9",
       "name": "Mutter Paneer Pulao",
-      "price": 70.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -31591,13 +32751,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.958417",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-fef71538",
       "id": "dish-fef71538",
       "name": "Mutter Pulao",
-      "price": 70.0,
+      "price": 80.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -31612,7 +32776,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.959919",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 48,
+        "full": 80.0
+      }
     },
     {
       "_id": "dish-40edb8c4",
@@ -31660,7 +32828,7 @@
       "_id": "dish-0329ccf7",
       "id": "dish-0329ccf7",
       "name": "Garlic Fried Rice",
-      "price": 70.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -31675,7 +32843,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.962311",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-1ec49e00",
@@ -31706,7 +32878,7 @@
       "_id": "dish-8f660c3c",
       "id": "dish-8f660c3c",
       "name": "Schezwan Fried Rice",
-      "price": 50.0,
+      "price": 110.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -31723,15 +32895,15 @@
       "isVeg": true,
       "isRealPhoto": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 66,
+        "full": 110.0
       }
     },
     {
       "_id": "dish-79aa6417",
       "id": "dish-79aa6417",
       "name": "Pyaz Tamatar Rice",
-      "price": 60.0,
+      "price": 90.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -31746,7 +32918,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.965311",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 54,
+        "full": 90.0
+      }
     },
     {
       "_id": "dish-6822eded",
@@ -31794,7 +32970,7 @@
       "_id": "dish-5bb556f3",
       "id": "dish-5bb556f3",
       "name": "Aloo Chana Chat",
-      "price": 70.0,
+      "price": 130.0,
       "hasHalfFull": true,
       "priceHalf": 70.0,
       "priceFull": 120.0,
@@ -31809,7 +32985,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.967762",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-52d67164",
@@ -31878,7 +33058,7 @@
       "_id": "dish-537f1e90",
       "id": "dish-537f1e90",
       "name": "Lemon Coriander Soup",
-      "price": 60.0,
+      "price": 130.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -31893,7 +33073,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.972275",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 78,
+        "full": 130.0
+      }
     },
     {
       "_id": "dish-0613e878",
@@ -32025,7 +33209,7 @@
       "_id": "dish-63d6faa1",
       "id": "dish-63d6faa1",
       "name": "Tandoori Thali",
-      "price": 120.0,
+      "price": 110.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -32040,7 +33224,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.981846",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 66,
+        "full": 110.0
+      }
     },
     {
       "_id": "dish-c0d0e5d8",
@@ -32088,7 +33276,7 @@
       "_id": "dish-d1d04f4f",
       "id": "dish-d1d04f4f",
       "name": "Rice",
-      "price": 60.0,
+      "price": 70.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -32103,13 +33291,17 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.985715",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 42,
+        "full": 70.0
+      }
     },
     {
       "_id": "dish-ec68179a",
       "id": "dish-ec68179a",
       "name": "Salad",
-      "price": 60.0,
+      "price": 160.0,
       "hasHalfFull": false,
       "priceHalf": null,
       "priceFull": null,
@@ -32124,7 +33316,11 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.986719",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "portions": {
+        "half": 96,
+        "full": 160.0
+      }
     },
     {
       "_id": "dish-de697aa3",
@@ -33464,7 +34660,7 @@
       "id": "bc87e991-95ab-4757-a7e7-ebb3a4b67ae4",
       "name": "Veg Pan Fried Momos",
       "description": "Freshly prepared Veg Pan Fried Momos served at Chai Nagri.",
-      "price": 60.0,
+      "price": 130.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/chai_nagri/veg_pan_fried_momos.jpg",
       "isVeg": true,
@@ -33474,8 +34670,8 @@
       "shopName": "Chai Nagri",
       "isAvailable": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 78,
+        "full": 130.0
       }
     },
     {
@@ -33500,7 +34696,7 @@
       "id": "5e4b3417-2e3b-4e01-a84a-40f1db219407",
       "name": "Yakhni Veg Momos",
       "description": "Freshly prepared Yakhni Veg Momos served at Chai Nagri.",
-      "price": 60.0,
+      "price": 20.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/chai_nagri/yakhni_veg_momos.jpg",
       "isVeg": true,
@@ -33510,8 +34706,8 @@
       "shopName": "Chai Nagri",
       "isAvailable": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 15.0,
+        "full": 20.0
       }
     },
     {
@@ -33824,7 +35020,7 @@
       "id": "f7fc931a-7524-43a6-b1af-91a3fc516989",
       "name": "Cheesy Spring Roll",
       "description": "Freshly prepared Cheesy Spring Roll served at Chai Nagri.",
-      "price": 60.0,
+      "price": 140.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/chai_nagri/cheesy_spring_roll.jpg",
       "isVeg": true,
@@ -33834,15 +35030,15 @@
       "shopName": "Chai Nagri",
       "isAvailable": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 84,
+        "full": 140.0
       }
     },
     {
       "id": "3028adef-92b9-42c2-adc3-b59eeeaeef0d",
       "name": "Malai Spring Roll",
       "description": "Freshly prepared Malai Spring Roll served at Chai Nagri.",
-      "price": 60.0,
+      "price": 140.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/chai_nagri/malai_spring_roll.jpg",
       "isVeg": true,
@@ -33852,8 +35048,8 @@
       "shopName": "Chai Nagri",
       "isAvailable": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 84,
+        "full": 140.0
       }
     },
     {
@@ -34994,7 +36190,7 @@
       "id": "d7bde51f-4d41-4b2c-a8a1-de27051d20bd",
       "name": "Veg Deluxe Burger",
       "description": "Freshly prepared Veg Deluxe Burger served at Royal Cafe.",
-      "price": 50.0,
+      "price": 20.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/royal_cafe/veg_deluxe_burger.jpg",
       "isVeg": true,
@@ -35004,8 +36200,8 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 15.0,
+        "full": 20.0
       }
     },
     {
@@ -35120,7 +36316,7 @@
       "id": "e47fb139-d230-44ad-b16d-e4fcb8aa36cf",
       "name": "Spring Rolls Veg",
       "description": "Freshly prepared Spring Rolls Veg served at Royal Cafe.",
-      "price": 60.0,
+      "price": 20.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/royal_cafe/spring_rolls_veg.jpg",
       "isVeg": true,
@@ -35130,8 +36326,8 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 36,
-        "full": 60.0
+        "half": 15.0,
+        "full": 20.0
       }
     },
     {
@@ -35372,7 +36568,7 @@
       "id": "573b13e8-3b32-4b16-908d-ee793b189000",
       "name": "Chocolate Lava Cake",
       "description": "Freshly prepared Chocolate Lava Cake served at Royal Cafe.",
-      "price": 50.0,
+      "price": 30.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/royal_cafe/chocolate_lava_cake.jpg",
       "isVeg": true,
@@ -35382,15 +36578,15 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 18,
+        "full": 30.0
       }
     },
     {
       "id": "169d5f9b-4238-4a82-87eb-f24a7016c48d",
       "name": "Ice Cream 2 Scoops",
       "description": "Freshly prepared Ice Cream 2 Scoops served at Royal Cafe.",
-      "price": 50.0,
+      "price": 30.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/royal_cafe/ice_cream_2_scoops.jpg",
       "isVeg": true,
@@ -35400,8 +36596,8 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 18,
+        "full": 30.0
       }
     },
     {
@@ -35624,7 +36820,7 @@
       "id": "8cc57dc9-1862-4dde-b02b-31e9cabd470f",
       "name": "Yellow Dal Tadka",
       "description": "Freshly prepared Yellow Dal Tadka served at Royal Cafe.",
-      "price": 120.0,
+      "price": 50.0,
       "category": "Canteen Food",
       "image": "/assets/real_food_photos/royal_cafe/yellow_dal_tadka.jpg",
       "isVeg": true,
@@ -35634,8 +36830,8 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 30,
+        "full": 50.0
       }
     },
     {
@@ -36686,7 +37882,7 @@
       "id": "fd5438e8-ca47-47bd-bbfe-002f28e576ca",
       "name": "Corn Cheese",
       "description": "Freshly prepared Corn Cheese served at Royal Cafe.",
-      "price": 50.0,
+      "price": 140.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/royal_cafe/corn_cheese.jpg",
       "isVeg": true,
@@ -36696,15 +37892,15 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 84,
+        "full": 140.0
       }
     },
     {
       "id": "af2d7ab1-c267-4202-b016-3e60b5056e62",
       "name": "Veg Exotic",
       "description": "Freshly prepared Veg Exotic served at Royal Cafe.",
-      "price": 50.0,
+      "price": 160.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/royal_cafe/veg_exotic.jpg",
       "isVeg": true,
@@ -36714,15 +37910,15 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 96,
+        "full": 160.0
       }
     },
     {
       "id": "b531c3e2-007c-4666-b01e-821c498cc83d",
       "name": "Cheese Burst",
       "description": "Freshly prepared Cheese Burst served at Royal Cafe.",
-      "price": 50.0,
+      "price": 180.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/royal_cafe/cheese_burst.jpg",
       "isVeg": true,
@@ -36732,15 +37928,15 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 108,
+        "full": 180.0
       }
     },
     {
       "id": "49f32b12-c1bc-49f1-8e7f-cfd66fe2de0a",
       "name": "Paneer Makhani",
       "description": "Freshly prepared Paneer Makhani served at Royal Cafe.",
-      "price": 120.0,
+      "price": 180.0,
       "category": "Canteen Food",
       "image": "/assets/real_food_photos/royal_cafe/paneer_makhani.jpg",
       "isVeg": true,
@@ -36750,8 +37946,8 @@
       "shopName": "Royal Cafe",
       "isAvailable": true,
       "portions": {
-        "half": 72,
-        "full": 120.0
+        "half": 108,
+        "full": 180.0
       }
     },
     {
@@ -37298,7 +38494,7 @@
       "id": "4d6a2c75-5cc5-4e55-a324-17572ad30a57",
       "name": "Classic Lemonade",
       "description": "Freshly prepared Classic Lemonade served at Caffelera.",
-      "price": 50.0,
+      "price": 1201.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/classic_lemonade.jpg",
       "isVeg": true,
@@ -37308,8 +38504,8 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 721,
+        "full": 1201.0
       }
     },
     {
@@ -37388,7 +38584,7 @@
       "id": "e07b7529-19a0-43ff-bb4b-1cd86ea310e6",
       "name": "Canberry Mojito",
       "description": "Freshly prepared Canberry Mojito served at Caffelera.",
-      "price": 70.0,
+      "price": 1601.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/canberry_mojito.jpg",
       "isVeg": true,
@@ -37398,8 +38594,8 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 42,
-        "full": 70.0
+        "half": 961,
+        "full": 1601.0
       }
     },
     {
@@ -37442,7 +38638,7 @@
       "id": "45fff37b-03ad-4279-9fb9-80ebcc5f9677",
       "name": "Vanilla Shakes",
       "description": "Freshly prepared Vanilla Shakes served at Caffelera.",
-      "price": 80.0,
+      "price": 1701.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/vanilla_shakes.jpg",
       "isVeg": true,
@@ -37452,15 +38648,15 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 48,
-        "full": 80.0
+        "half": 1021,
+        "full": 1701.0
       }
     },
     {
       "id": "55ba43c5-6a5b-4e92-bf57-45a25945b948",
       "name": "Strawberry Shakes",
       "description": "Freshly prepared Strawberry Shakes served at Caffelera.",
-      "price": 80.0,
+      "price": 1301.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/strawberry_shakes.jpg",
       "isVeg": true,
@@ -37470,8 +38666,8 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 48,
-        "full": 80.0
+        "half": 781,
+        "full": 1301.0
       }
     },
     {
@@ -37532,7 +38728,7 @@
       "id": "34838fd2-1cb5-43a7-82c4-6528b26a8441",
       "name": "Kitkat Shakes",
       "description": "Freshly prepared Kitkat Shakes served at Caffelera.",
-      "price": 80.0,
+      "price": 1501.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/kitkat_shakes.jpg",
       "isVeg": true,
@@ -37542,15 +38738,15 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 48,
-        "full": 80.0
+        "half": 901,
+        "full": 1501.0
       }
     },
     {
       "id": "016851a6-1efe-4763-b0c2-e66b4a950059",
       "name": "Oreo Shakes",
       "description": "Freshly prepared Oreo Shakes served at Caffelera.",
-      "price": 80.0,
+      "price": 1601.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/oreo_shakes.jpg",
       "isVeg": true,
@@ -37560,8 +38756,8 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 48,
-        "full": 80.0
+        "half": 961,
+        "full": 1601.0
       }
     },
     {
@@ -37604,7 +38800,7 @@
       "id": "1f923409-d965-4516-b976-64c313d0c1c9",
       "name": "Cold Brownie Frappe",
       "description": "Freshly prepared Cold Brownie Frappe served at Caffelera.",
-      "price": 170.0,
+      "price": 1701.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/cold_brownie_frappe.png",
       "isVeg": true,
@@ -37614,8 +38810,8 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 102,
-        "full": 170.0
+        "half": 1021,
+        "full": 1701.0
       }
     },
     {
@@ -37748,7 +38944,7 @@
       "id": "7b7bd854-c063-4592-b721-1027a51d6133",
       "name": "Cold Tiramisu Frappe",
       "description": "Freshly prepared Cold Tiramisu Frappe served at Caffelera.",
-      "price": 170.0,
+      "price": 1701.0,
       "category": "Drinks & Juices",
       "image": "/assets/real_food_photos/caffelera/cold_tiramisu_frappe.png",
       "isVeg": true,
@@ -37758,8 +38954,8 @@
       "shopName": "Caffelera",
       "isAvailable": true,
       "portions": {
-        "half": 102,
-        "full": 170.0
+        "half": 1021,
+        "full": 1701.0
       }
     },
     {
@@ -37982,7 +39178,7 @@
       "id": "8f511621-6bb9-4a3b-ba6e-385c6fc0aac8",
       "name": "Aloo Chaat",
       "description": "Freshly prepared Aloo Chaat served at Shree Balaji Chai Bhandar.",
-      "price": 50.0,
+      "price": 100.0,
       "category": "Snacks & Chips",
       "image": "/assets/real_food_photos/shree_balaji_chai_bhandar/aloo_chaat.png",
       "isVeg": true,
@@ -37992,8 +39188,8 @@
       "shopName": "Shree Balaji Chai Bhandar",
       "isAvailable": true,
       "portions": {
-        "half": 30,
-        "full": 50.0
+        "half": 60,
+        "full": 100.0
       }
     },
     {
