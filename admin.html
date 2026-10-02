@@ -177,33 +177,33 @@
 
         <!-- Admin Navigation Tabs -->
         <div class="admin-tabs">
-            <button class="admin-tab-btn active" data-tab="orders" id="tab-btn-orders">
+            <button class="admin-tab-btn active" data-tab="orders" id="tab-btn-orders" onclick="switchAdminTab('orders')">
                 <i class="fa-solid fa-bell-concierge"></i> Live Orders Management
             </button>
-            <button class="admin-tab-btn" data-tab="menu" id="tab-btn-menu" style="font-weight: 800;">
+            <button class="admin-tab-btn" data-tab="menu" id="tab-btn-menu" onclick="switchAdminTab('menu')" style="font-weight: 800;">
                 <i class="fa-solid fa-tags" style="color: #ea580c;"></i> 🍽️ Shop Menu & Price Editor
                 <span id="admin-menu-badge" style="background: #ea580c; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 800;">23 Shops</span>
             </button>
-            <button class="admin-tab-btn" data-tab="shop" id="tab-btn-shop">
+            <button class="admin-tab-btn" data-tab="shop" id="tab-btn-shop" onclick="switchAdminTab('shop')">
                 <i class="fa-solid fa-store"></i> My Shop Profile
             </button>
-            <button class="admin-tab-btn" data-tab="staff" id="tab-btn-staff">
+            <button class="admin-tab-btn" data-tab="staff" id="tab-btn-staff" onclick="switchAdminTab('staff')">
                 <i class="fa-solid fa-user-shield"></i> Staff Approvals
                 <span id="pending-staff-badge" style="display: none; background: #ef4444; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
             </button>
-            <button class="admin-tab-btn" data-tab="parcels" id="tab-btn-parcels">
+            <button class="admin-tab-btn" data-tab="parcels" id="tab-btn-parcels" onclick="switchAdminTab('parcels')">
                 <i class="fa-solid fa-truck-ramp-box" style="color: #f97316;"></i> Gate 2 Parcel Tasks
                 <span id="admin-parcels-badge" style="display: none; background: #ea580c; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
             </button>
-            <button class="admin-tab-btn" data-tab="feedbacks" id="tab-btn-feedbacks">
+            <button class="admin-tab-btn" data-tab="feedbacks" id="tab-btn-feedbacks" onclick="switchAdminTab('feedbacks')">
                 <i class="fa-solid fa-star" style="color: #f59e0b;"></i> Student Feedbacks & Ratings
                 <span id="feedback-count-badge" style="background: #f59e0b; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
             </button>
-            <button class="admin-tab-btn" data-tab="commissions" id="tab-btn-commissions">
+            <button class="admin-tab-btn" data-tab="commissions" id="tab-btn-commissions" onclick="switchAdminTab('commissions')">
                 <i class="fa-solid fa-coins" style="color: #10b981;"></i> Revenue & Split Ledger
                 <span id="admin-commissions-badge" style="background: #10b981; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">₹2.50 Split</span>
             </button>
-            <button class="admin-tab-btn" data-tab="delivery" id="tab-btn-delivery">
+            <button class="admin-tab-btn" data-tab="delivery" id="tab-btn-delivery" onclick="switchAdminTab('delivery')">
                 <i class="fa-solid fa-person-biking" style="color: #0284c7;"></i> Delivery Partners & Fleet
                 <span id="admin-delivery-badge" style="display: none; background: #0284c7; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
             </button>
@@ -285,10 +285,15 @@
                     </div>
                 </div>
 
-                <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
-                    <div class="search-box-wrap" style="max-width: 340px;">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" id="admin-food-search" class="search-input" placeholder="Search dishes in selected shop...">
+                <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                    <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; flex: 1; max-width: 620px;">
+                        <div class="search-box-wrap" style="flex: 1; min-width: 200px;">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="admin-food-search" class="search-input" placeholder="Search dishes in selected shop...">
+                        </div>
+                        <select id="admin-menu-shop-filter" class="form-select no-icon" style="padding: 0.5rem 0.85rem; font-size: 0.86rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #ea580c; max-width: 260px; background: #fff7ed; color: #9a3412; cursor: pointer;" onchange="selectShopMenuFilter(this.value)">
+                            <option value="All">🏪 All Shops (1,963 Dishes)</option>
+                        </select>
                     </div>
 
                     <div class="category-filter-pills" style="overflow-x: auto; display: flex; flex-wrap: nowrap; gap: 0.4rem; padding-bottom: 0.3rem; scrollbar-width: thin;">
@@ -1614,7 +1619,7 @@ Chai 15"></textarea>
     </div>
 
     <!-- LIVE NEW ORDER INCOMING POPUP MODAL FOR SHOP OWNER -->
-    <div id="new-order-alert-modal" class="order-alert-modal-backdrop">
+    <div id="new-order-alert-modal" class="order-alert-modal-backdrop" style="display: none;">
         <div class="order-alert-card">
             <div class="order-alert-header">
                 <div style="display: flex; align-items: center; gap: 0.6rem;">
@@ -1635,7 +1640,7 @@ Chai 15"></textarea>
     </div>
 
     <!-- Modal: View Full Order Details -->
-    <div id="admin-order-modal" class="modal-backdrop">
+    <div id="admin-order-modal" class="modal-backdrop" style="display: none;">
         <div class="modal-card">
             <div class="modal-header">
                 <h3>Order Full Details</h3>
@@ -1651,10 +1656,10 @@ Chai 15"></textarea>
     </div>
 
     <!-- Backend API & Admin Scripts -->
-    <script src="js/api.js?v=4.0"></script>
-    <script src="js/auth.js?v=4.0"></script>
-    <script src="js/admin.js?v=4.0"></script>
+    <script src="js/api.js?v=5.0"></script>
+    <script src="js/auth.js?v=5.0"></script>
+    <script src="js/admin.js?v=5.0"></script>
     <!-- PWA 1-Click Mobile App Installer -->
-    <script src="js/pwa-install.js?v=4.0"></script>
+    <script src="js/pwa-install.js?v=5.0"></script>
 </body>
 </html>

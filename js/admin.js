@@ -474,7 +474,20 @@ async function initAdminPage() {
     updateAdminSoundUI();
     document.getElementById('admin-user-name').textContent = user.name || 'Admin';
 
-    loadAdminDashboardData();
+    // Support direct URL Tab Navigation (e.g. admin.html#menu or admin.html?tab=menu)
+    const urlParams = new URLSearchParams(window.location.search);
+    const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
+    const initialTab = urlParams.get('tab') || hashTab;
+    if (initialTab && ['orders', 'menu', 'shop', 'staff', 'parcels', 'feedbacks', 'commissions', 'delivery'].includes(initialTab)) {
+        switchAdminTab(initialTab);
+    }
+
+    const initialShop = urlParams.get('shop');
+    if (initialShop) {
+        adminMenuShopFilter = initialShop;
+    }
+
+    await loadAdminDashboardData();
 
     // Auto poll admin dashboard every 3.5 seconds
     if (adminPollInterval) clearInterval(adminPollInterval);
@@ -552,7 +565,7 @@ async function loadAdminDashboardData() {
         }
 
         // 3. Fetch Menu Items (Guard: Do NOT wipe table if user is currently typing)
-        const menuRes = await api.getMenu();
+        const menuRes = await api.getMenu(true);
         if (menuRes.success && menuRes.items) {
             adminFoodItems = menuRes.items;
             renderShopChips();
@@ -1568,22 +1581,28 @@ function renderShopChips() {
             const activeShop = adminShops.find(s => s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter);
             const sName = activeShop ? activeShop.name : adminMenuShopFilter;
             const sCount = countItemsForShop(adminMenuShopFilter, sName);
-            label.innerHTML = `🏪 Selected Shop: <strong style="color: #065f46; text-decoration: underline;">${sName}</strong> (${sCount} Dishes) <button onclick="selectShopMenuFilter('All')" style="background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; cursor: pointer; font-weight: 800; font-size: 0.75rem; margin-left: 8px; padding: 2px 8px; border-radius: 6px;">[Show All 23 Shops]</button>`;
+            label.innerHTML = `🏪 Selected Shop: <strong style="color: #065f46; text-decoration: underline;">${sName}</strong> (${sCount} Dishes) <button type="button" onclick="selectShopMenuFilter('All')" style="background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; cursor: pointer; font-weight: 800; font-size: 0.75rem; margin-left: 8px; padding: 2px 8px; border-radius: 6px;">[Show All 23 Shops]</button>`;
             label.style.background = '#ecfdf5';
             label.style.color = '#047857';
             label.style.borderColor = '#86efac';
         }
     }
 
+    // Keep dropdown in sync if present
+    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
+    if (menuShopFilter && menuShopFilter.value !== adminMenuShopFilter) {
+        menuShopFilter.value = adminMenuShopFilter;
+    }
+
     let html = `
-        <button type="button" onclick="selectShopMenuFilter('All')" 
-                style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isAll ? '#ea580c' : '#cbd5e1'}; background: ${isAll ? 'linear-gradient(135deg, #fff7ed, #fed7aa)' : '#f8fafc'}; color: ${isAll ? '#9a3412' : '#334155'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isAll ? '0 3px 10px rgba(234, 88, 12, 0.25)' : 'none'}; transition: all 0.2s ease;">
-            <span>🏪</span>
-            <span>All Shops</span>
-            <span style="background: ${isAll ? '#ea580c' : '#e2e8f0'}; color: ${isAll ? 'white' : '#475569'}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px;">
+        <button type="button" data-shop-id="All" onclick="selectShopMenuFilter('All')" 
+                style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isAll ? '#ea580c' : '#cbd5e1'}; background: ${isAll ? 'linear-gradient(135deg, #fff7ed, #fed7aa)' : '#f8fafc'}; color: ${isAll ? '#9a3412' : '#334155'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isAll ? '0 3px 10px rgba(234, 88, 12, 0.25)' : 'none'}; transition: all 0.2s ease; pointer-events: auto !important; position: relative; z-index: 5; user-select: none;">
+            <span style="pointer-events: none;">🏪</span>
+            <span style="pointer-events: none;">All Shops</span>
+            <span style="background: ${isAll ? '#ea580c' : '#e2e8f0'}; color: ${isAll ? 'white' : '#475569'}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; pointer-events: none;">
                 ${totalCount}
             </span>
-            ${isAll ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem;"></i>' : ''}
+            ${isAll ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem; pointer-events: none;"></i>' : ''}
         </button>
     `;
 
@@ -1593,14 +1612,14 @@ function renderShopChips() {
         const isActive = (adminMenuShopFilter === sid || adminMenuShopFilter === s.name);
 
         html += `
-            <button type="button" onclick="selectShopMenuFilter('${sid}')" 
-                    style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isActive ? '#ea580c' : '#e2e8f0'}; background: ${isActive ? 'linear-gradient(135deg, #fff7ed, #ffedd5)' : 'white'}; color: ${isActive ? '#9a3412' : '#1e293b'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isActive ? '0 4px 12px rgba(234, 88, 12, 0.28)' : '0 1px 3px rgba(0,0,0,0.04)'}; transition: all 0.2s ease; transform: ${isActive ? 'scale(1.04)' : 'scale(1)'};">
-                <span style="font-size: 1.1rem;">${getShopEmoji(s.category)}</span>
-                <span>${s.name}</span>
-                <span style="background: ${isActive ? '#ea580c' : '#f1f5f9'}; color: ${isActive ? 'white' : (count > 0 ? '#0f172a' : '#94a3b8')}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; border: 1px solid ${isActive ? '#ea580c' : '#cbd5e1'};">
+            <button type="button" data-shop-id="${sid}" onclick="selectShopMenuFilter('${sid}')" 
+                    style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isActive ? '#ea580c' : '#e2e8f0'}; background: ${isActive ? 'linear-gradient(135deg, #fff7ed, #ffedd5)' : 'white'}; color: ${isActive ? '#9a3412' : '#1e293b'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isActive ? '0 4px 12px rgba(234, 88, 12, 0.28)' : '0 1px 3px rgba(0,0,0,0.04)'}; transition: all 0.2s ease; transform: ${isActive ? 'scale(1.04)' : 'scale(1)'}; pointer-events: auto !important; position: relative; z-index: 5; user-select: none;">
+                <span style="font-size: 1.1rem; pointer-events: none;">${getShopEmoji(s.category)}</span>
+                <span style="pointer-events: none;">${s.name}</span>
+                <span style="background: ${isActive ? '#ea580c' : '#f1f5f9'}; color: ${isActive ? 'white' : (count > 0 ? '#0f172a' : '#94a3b8')}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; border: 1px solid ${isActive ? '#ea580c' : '#cbd5e1'}; pointer-events: none;">
                     ${count}
                 </span>
-                ${isActive ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem;"></i>' : ''}
+                ${isActive ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem; pointer-events: none;"></i>' : ''}
             </button>
         `;
     });
@@ -1610,14 +1629,17 @@ function renderShopChips() {
 
 function selectShopMenuFilter(shopId) {
     adminMenuShopFilter = shopId || 'All';
+    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
+    if (menuShopFilter) menuShopFilter.value = adminMenuShopFilter;
     renderShopChips();
     renderAdminFoodTable();
+    const activeShop = adminShops.find(s => s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter);
+    const sName = activeShop ? activeShop.name : (shopId === 'All' ? 'All 23 Shops' : shopId);
+    showToast(`🏪 Filtered dishes for: ${sName}`, 'info');
 }
 
 function handleAdminMenuShopFilterChange(val) {
-    adminMenuShopFilter = val || 'All';
-    renderShopChips();
-    renderAdminFoodTable();
+    selectShopMenuFilter(val);
 }
 
 async function quickSaveItemPrice(itemId, isHalfFull) {
@@ -3574,6 +3596,12 @@ function switchAdminTab(tabName) {
 
     currentAdminTab = tabName;
 
+    try {
+        if (window.location.hash !== `#${tabName}`) {
+            history.replaceState(null, '', `#${tabName}`);
+        }
+    } catch (e) {}
+
     document.querySelectorAll('.admin-tab-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-tab') === tabName);
     });
@@ -4158,11 +4186,26 @@ function exportCommissionsLedgerCsv() {
 }
 
 function setupAdminEventListeners() {
+    // 1. Tab Navigation Listener
     document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchAdminTab(btn.getAttribute('data-tab'));
+        btn.addEventListener('click', (e) => {
+            const tab = btn.getAttribute('data-tab');
+            if (tab) switchAdminTab(tab);
         });
     });
+
+    // 2. Event Delegation for Shop Chips (Zero Click Failure Guarantee)
+    const chipsContainer = document.getElementById('admin-menu-shop-chips');
+    if (chipsContainer) {
+        chipsContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-shop-id]');
+            if (btn) {
+                e.preventDefault();
+                const sid = btn.getAttribute('data-shop-id') || 'All';
+                selectShopMenuFilter(sid);
+            }
+        });
+    }
 
     document.querySelectorAll('.user-type-filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
@@ -4429,6 +4472,84 @@ function renderAdminDeliveryLogsTable() {
         `;
     }).join('');
 }
+
+// ==========================================================================
+// EXPLICIT GLOBAL WINDOW SCOPE EXPORTS (100% Reliable Inline Event Handlers)
+// ==========================================================================
+window.switchAdminTab = switchAdminTab;
+window.selectShopMenuFilter = selectShopMenuFilter;
+window.handleAdminMenuShopFilterChange = handleAdminMenuShopFilterChange;
+window.handleShopScopeChange = handleShopScopeChange;
+window.quickSaveItemPrice = quickSaveItemPrice;
+window.toggleItemAvailability = toggleItemAvailability;
+window.openAddFoodModal = openAddFoodModal;
+window.openEditFoodModal = openEditFoodModal;
+window.deleteFoodItem = deleteFoodItem;
+window.handleSaveFoodItem = handleSaveFoodItem;
+window.onFoodShopSelectChange = onFoodShopSelectChange;
+window.toggleFoodFormHalfFull = toggleFoodFormHalfFull;
+window.switchImageTab = switchImageTab;
+window.handleFoodImageFileUpload = handleFoodImageFileUpload;
+window.selectPresetPhoto = selectPresetPhoto;
+window.updateImagePreviewFromUrl = updateImagePreviewFromUrl;
+window.openBulkAddModal = openBulkAddModal;
+window.addBulkRow = addBulkRow;
+window.removeBulkRow = removeBulkRow;
+window.clearEmptyBulkRows = clearEmptyBulkRows;
+window.updateBulkRowField = updateBulkRowField;
+window.toggleBulkRowHalfFull = toggleBulkRowHalfFull;
+window.onBulkTargetShopChange = onBulkTargetShopChange;
+window.handleBatchPhotosSelected = handleBatchPhotosSelected;
+window.submitBulkAddItems = submitBulkAddItems;
+window.openMenuScannerModal = openMenuScannerModal;
+window.switchScannerMode = switchScannerMode;
+window.handleMenuPhotoUploaded = handleMenuPhotoUploaded;
+window.handleScanTextPasted = handleScanTextPasted;
+window.testScannerSample = testScannerSample;
+window.removeScannedItemRow = removeScannedItemRow;
+window.toggleScannedItemHalfFull = toggleScannedItemHalfFull;
+window.updateScannedItemField = updateScannedItemField;
+window.resetScannerModal = resetScannerModal;
+window.executeBulkImport = executeBulkImport;
+window.startAddNewShop = startAddNewShop;
+window.onShopProfileSelectChange = onShopProfileSelectChange;
+window.populateShopProfileForm = populateShopProfileForm;
+window.onShopUpiChanged = onShopUpiChanged;
+window.handleShopQrFileUpload = handleShopQrFileUpload;
+window.generateAutoUpiQr = generateAutoUpiQr;
+window.removeShopQrImage = removeShopQrImage;
+window.updateShopStatusBadge = updateShopStatusBadge;
+window.handleSaveShopProfile = handleSaveShopProfile;
+window.loadStaffData = loadStaffData;
+window.handleStaffApproval = handleStaffApproval;
+window.approveStaffApplicant = approveStaffApplicant;
+window.loadFeedbackData = loadFeedbackData;
+window.deleteFeedbackItem = deleteFeedbackItem;
+window.loadAdminParcels = loadAdminParcels;
+window.filterAdminParcels = filterAdminParcels;
+window.handleAssignRunner = handleAssignRunner;
+window.handleParcelStatusChange = handleParcelStatusChange;
+window.openVerifyParcelPinModal = openVerifyParcelPinModal;
+window.submitVerifyParcelPin = submitVerifyParcelPin;
+window.loadCommissionsLedger = loadCommissionsLedger;
+window.settleShopCashLedger = settleShopCashLedger;
+window.openGatewaySettingsModal = openGatewaySettingsModal;
+window.handleSaveGatewaySettings = handleSaveGatewaySettings;
+window.exportCommissionsLedgerCsv = exportCommissionsLedgerCsv;
+window.loadAdminDeliveryDashboard = loadAdminDeliveryDashboard;
+window.filterAdminDeliveryLogs = filterAdminDeliveryLogs;
+window.closeModal = closeModal;
+window.seedSampleDishes = seedSampleDishes;
+window.toggleAdminOrderSound = toggleAdminOrderSound;
+window.testNewOrderAlertPopup = testNewOrderAlertPopup;
+window.closeNewOrderAlertModal = closeNewOrderAlertModal;
+window.acceptOrderFromAlert = acceptOrderFromAlert;
+window.viewOrderDetailsFromAlert = viewOrderDetailsFromAlert;
+window.handleOrderPrepTimeChange = handleOrderPrepTimeChange;
+window.updateOrderStatus = updateOrderStatus;
+window.viewOrderDetailsModal = viewOrderDetailsModal;
+window.renderShopChips = renderShopChips;
+window.renderAdminFoodTable = renderAdminFoodTable;
 
 document.addEventListener('DOMContentLoaded', () => {
     setupAdminEventListeners();

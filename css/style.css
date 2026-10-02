@@ -1939,18 +1939,21 @@ button {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     z-index: 10000;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 1rem;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .order-ready-modal-backdrop.active {
+    display: flex;
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .order-ready-modal-card {
@@ -2114,18 +2117,21 @@ button {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 10000;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 1.25rem;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .order-alert-modal-backdrop.active {
+    display: flex;
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .order-alert-card {
@@ -2309,7 +2315,7 @@ button {
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(6px);
     z-index: 99999;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 1rem;
@@ -2319,8 +2325,26 @@ button {
 }
 
 .coming-soon-modal-backdrop.active {
+    display: flex;
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Ensure all Admin and Dashboard clickable chips/buttons respond instantly to touch and mouse */
+.admin-tab-btn,
+.shop-filter-pill,
+#admin-menu-shop-chips button,
+.filter-pill,
+.admin-food-filter-pill,
+.order-filter-pill,
+.user-type-filter-pill,
+.feedback-filter-pill,
+.parcel-filter-pill,
+.btn {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(234, 88, 12, 0.2);
 }
 
 .coming-soon-modal-card {
