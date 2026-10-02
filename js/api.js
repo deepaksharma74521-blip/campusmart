@@ -4,9 +4,9 @@
 // Description: Centralized REST API client for MongoDB Backend
 // ==========================================================================
 
-const API_BASE = (window.location.protocol === 'http:' || window.location.protocol === 'https:')
+const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
     ? '' 
-    : 'https://campusmart.online';
+    : 'https://campusmart-api-75rg.onrender.com';
 
 const api = {
     // 1. Auth & Mobile OTP Methods
