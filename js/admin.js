@@ -4,128 +4,10 @@
 // Description: Admin Dashboard, Food & Mart Products CRUD, Live Order Management & Seeder
 // ==========================================================================
 
-const DEFAULT_ADMIN_SHOPS = [
-    {
-        "_id": "shop-1", "shopId": "shop-1", "name": "TMU Special Chole Kulcha", "shortName": "Chole Kulcha Corner", "category": "Canteen Food",
-        "ownerName": "Mr. Satish Sharma", "ownerEmail": "satish.canteen@tmu.ac.in", "phone": "+91 98765 43201",
-        "location": "Central Food Court, Counter #1", "timing": "8:00 AM - 9:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 520, "total_items": 16, "isVegOnly": true, "id": "shop-1"
-    },
-    {
-        "_id": "shop-2", "shopId": "shop-2", "name": "Food & Friends", "shortName": "Food & Friends", "category": "Canteen Food",
-        "ownerName": "Ramesh Kumar", "ownerEmail": "foodfriends@tmu.ac.in", "phone": "+91 98765 43202",
-        "location": "Near Gate No. 2 Food Arcade, Counter #2", "timing": "9:00 AM - 10:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 430, "total_items": 0, "isVegOnly": true, "id": "shop-2"
-    },
-    {
-        "_id": "shop-3", "shopId": "shop-3", "name": "Chandrakanta Canteen", "shortName": "Chandrakanta Canteen", "category": "Canteen Food",
-        "ownerName": "Chandrakanta Sharma", "ownerEmail": "chandrakanta@tmu.ac.in", "phone": "+91 98765 43203",
-        "location": "Hostel Ground Block B, Counter #3", "timing": "7:30 AM - 10:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 680, "total_items": 60, "isVegOnly": true, "id": "shop-3"
-    },
-    {
-        "_id": "shop-4", "shopId": "shop-4", "name": "Super Food Corner", "shortName": "Super Food", "category": "Canteen Food",
-        "ownerName": "Sunil Verma", "ownerEmail": "superfood@tmu.ac.in", "phone": "+91 98765 43204",
-        "location": "Medical & Dental Cafeteria Wing, Counter #4", "timing": "8:30 AM - 9:30 PM", "isOpen": true, "rating": 4.7, "totalOrders": 390, "total_items": 0, "isVegOnly": true, "id": "shop-4"
-    },
-    {
-        "_id": "shop-5", "shopId": "shop-5", "name": "Shiv Shudh Veg Biryani", "shortName": "Shiv Veg Biryani", "category": "Canteen Food",
-        "ownerName": "Shiv Charan Ji", "ownerEmail": "shivbiryani@tmu.ac.in", "phone": "+91 98765 43205",
-        "location": "Central Food Court, Counter #5", "timing": "11:00 AM - 9:30 PM", "isOpen": true, "rating": 4.8, "totalOrders": 470, "total_items": 0, "isVegOnly": true, "id": "shop-5"
-    },
-    {
-        "_id": "shop-6", "shopId": "shop-6", "name": "Foodo Holic", "shortName": "Foodo Holic", "category": "Canteen Food",
-        "ownerName": "Ankit Saxena", "ownerEmail": "foodoholic@tmu.ac.in", "phone": "+91 98765 43206",
-        "location": "CCSIT & Engineering Plaza, Counter #6", "timing": "9:30 AM - 10:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 510, "total_items": 0, "isVegOnly": true, "id": "shop-6"
-    },
-    {
-        "_id": "shop-7", "shopId": "shop-7", "name": "Sardar Ji Hub", "shortName": "Sardar Ji Hub", "category": "Canteen Food",
-        "ownerName": "Harpreet Singh", "ownerEmail": "sardarjihub@tmu.ac.in", "phone": "+91 98765 43207",
-        "location": "Near Gate No. 1 Arcade, Counter #7", "timing": "10:00 AM - 10:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 590, "total_items": 0, "isVegOnly": true, "id": "shop-7"
-    },
-    {
-        "_id": "shop-8", "shopId": "shop-8", "name": "Jiven Canteen", "shortName": "Jiven Canteen", "category": "Canteen Food",
-        "ownerName": "Jiven Lal", "ownerEmail": "jivencanteen@tmu.ac.in", "phone": "+91 98765 43208",
-        "location": "Pharmacy & Nursing Block, Counter #8", "timing": "8:00 AM - 8:30 PM", "isOpen": true, "rating": 4.6, "totalOrders": 340, "total_items": 0, "isVegOnly": true, "id": "shop-8"
-    },
-    {
-        "_id": "shop-9", "shopId": "shop-9", "name": "Shree Balaji Chai Bhandar", "shortName": "Balaji Chai", "category": "Drinks & Juices",
-        "ownerName": "Manoj Kumar", "ownerEmail": "balajichai@tmu.ac.in", "phone": "+91 98765 43209",
-        "location": "Main Lawn Gazebo, Counter #9", "timing": "6:30 AM - 11:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 750, "total_items": 0, "isVegOnly": true, "id": "shop-9"
-    },
-    {
-        "_id": "shop-10", "shopId": "shop-10", "name": "Ahuja Photo Shop", "shortName": "Ahuja Photo Shop", "category": "Stationery",
-        "ownerName": "Surinder Ahuja", "ownerEmail": "ahujaphoto@tmu.ac.in", "phone": "+91 98765 43210",
-        "location": "Administrative Block Basement, Shop #10", "timing": "8:30 AM - 8:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 290, "total_items": 0, "isVegOnly": true, "id": "shop-10"
-    },
-    {
-        "_id": "shop-11", "shopId": "shop-11", "name": "Durga Photo Shop", "shortName": "Durga Photo Shop", "category": "Stationery",
-        "ownerName": "Vivek Gupta", "ownerEmail": "durgaphoto@tmu.ac.in", "phone": "+91 98765 43211",
-        "location": "Engineering Block, Ground Floor, Shop #11", "timing": "8:30 AM - 8:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 310, "total_items": 0, "isVegOnly": true, "id": "shop-11"
-    },
-    {
-        "_id": "shop-12", "shopId": "shop-12", "name": "Royal Cafe", "shortName": "Royal Cafe", "category": "Drinks & Juices",
-        "ownerName": "Lucky Chaudhary", "managerName": "Tarush", "ownerEmail": "royalcafe@tmu.ac.in", "phone": "+91 98765 43212",
-        "location": "Central Boulevard, Counter #12", "timing": "8:30 AM - 8:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 330, "total_items": 0, "isVegOnly": true, "id": "shop-12"
-    },
-    {
-        "_id": "shop-13", "shopId": "shop-13", "name": "Gupta Photo Shop", "shortName": "Gupta Photo Shop", "category": "Stationery",
-        "ownerName": "Charu Gupta", "managerName": "Self", "ownerEmail": "guptaphoto@tmu.ac.in", "phone": "+91 98765 43213",
-        "location": "Medical & Nursing Block Annex, Shop #13", "timing": "9:00 AM - 8:00 PM", "isOpen": true, "rating": 4.7, "totalOrders": 180, "total_items": 0, "isVegOnly": true, "id": "shop-13"
-    },
-    {
-        "_id": "shop-14", "shopId": "shop-14", "name": "Rapid Food Corner (South Indian)", "shortName": "Rapid South Indian", "category": "Canteen Food",
-        "ownerName": "Anil Kumar", "managerName": "Self", "ownerEmail": "rapidfood@tmu.ac.in", "phone": "+91 98765 43214",
-        "location": "Central Food Court South Wing, Counter #14", "timing": "10:00 AM - 10:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 360, "total_items": 0, "isVegOnly": true, "id": "shop-14"
-    },
-    {
-        "_id": "shop-15", "shopId": "shop-15", "name": "Ahuja Mart", "shortName": "Ahuja Mart", "category": "Hostel Essentials",
-        "ownerName": "Rajeev", "managerName": "Dhiraj", "ownerEmail": "ahujamart@tmu.ac.in", "phone": "+91 98765 43215",
-        "location": "Hostel Complex Market, Shop #15", "timing": "10:00 AM - 9:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 270, "total_items": 0, "isVegOnly": true, "id": "shop-15"
-    },
-    {
-        "_id": "shop-16", "shopId": "shop-16", "name": "Mahinder Food Junction", "shortName": "Mahinder Food", "category": "Canteen Food",
-        "ownerName": "Tarun Ji", "managerName": "Self", "ownerEmail": "mahinderfood@tmu.ac.in", "phone": "+91 98765 43216",
-        "location": "Open Lawn Food Street, Counter #16", "timing": "11:00 AM - 11:00 PM", "isOpen": true, "rating": 4.7, "totalOrders": 320, "total_items": 0, "isVegOnly": true, "id": "shop-16"
-    },
-    {
-        "_id": "shop-17", "shopId": "shop-17", "name": "Vardhaman Juice Corner", "shortName": "Vardhaman Juice", "category": "Drinks & Juices",
-        "ownerName": "Anita Ji", "managerName": "Self", "ownerEmail": "vardhaman@tmu.ac.in", "phone": "+91 98765 43217",
-        "location": "Near Sports Ground, Counter #17", "timing": "9:00 AM - 8:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 410, "total_items": 32, "isVegOnly": true, "id": "shop-17"
-    },
-    {
-        "_id": "shop-18", "shopId": "shop-18", "name": "Patanjali Mart", "shortName": "Patanjali Mart", "category": "Hostel Essentials",
-        "ownerName": "Deepak Agarwal", "managerName": "Self", "ownerEmail": "patanjalimart@tmu.ac.in", "phone": "+91 84499 17176",
-        "location": "TMU Main Gate Shopping Arcade, Shop #18", "timing": "8:30 AM - 9:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 290, "total_items": 0, "isVegOnly": true, "id": "shop-18"
-    },
-    {
-        "_id": "shop-19", "shopId": "shop-19", "name": "Caffelera", "shortName": "Caffelera", "category": "Drinks & Juices",
-        "ownerName": "Akshat Jain", "managerName": "Dilip Bhai", "ownerEmail": "caffelera@tmu.ac.in", "phone": "+91 85299 08288",
-        "location": "Student Activity Plaza, Shop #19", "timing": "9:00 AM - 11:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 450, "total_items": 59, "isVegOnly": true, "id": "shop-19"
-    },
-    {
-        "_id": "shop-20", "shopId": "shop-20", "name": "Rainbow", "shortName": "Rainbow Treats", "category": "Snacks & Chips",
-        "ownerName": "Amit Dubey", "ownerEmail": "rainbow@tmu.ac.in", "phone": "+91 98765 43220",
-        "location": "Central Food Court, Kiosk #20", "timing": "9:00 AM - 11:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 370, "total_items": 324, "isVegOnly": true, "id": "shop-20"
-    },
-    {
-        "_id": "shop-21", "shopId": "shop-21", "name": "Chai Nagri", "shortName": "Chai Nagri", "category": "Drinks & Juices",
-        "ownerName": "Raja Gupta", "managerName": "Amit Goswami", "ownerEmail": "chainagri@tmu.ac.in", "phone": "+91 98765 43221",
-        "location": "Near Engineering Garden, Shop #21", "timing": "7:00 AM - 10:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 610, "total_items": 0, "isVegOnly": true, "id": "shop-21"
-    },
-    {
-        "_id": "shop-22", "shopId": "shop-22", "name": "Pani Puri Restaurant", "shortName": "Pani Puri Corner", "category": "Canteen Food",
-        "ownerName": "Inderpal Ji", "ownerEmail": "panipuri@tmu.ac.in", "phone": "+91 98765 43222",
-        "location": "Food Court East Corner, Counter #22", "timing": "11:00 AM - 9:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 390, "total_items": 195, "isVegOnly": true, "id": "shop-22"
-    },
-    {
-        "_id": "shop-23", "shopId": "shop-23", "name": "Yummy Express", "shortName": "Yummy Express", "category": "Canteen Food",
-        "ownerName": "Deepanshu", "ownerEmail": "yummy01@gmail.com", "phone": "+91 98765 43223",
-        "location": "Central Campus Mart & Food Court, Counter #23", "timing": "8:00 AM - 9:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 480, "total_items": 378, "isVegOnly": true, "id": "shop-23"
-    }
-];
-
 let adminFoodItems = [];
 let adminOrders = [];
 let adminFeedbacks = [];
-let adminShops = [...DEFAULT_ADMIN_SHOPS];
+let adminShops = [];
 let adminParcels = [];
 let scannedItemsCache = [];
 let currentOrderFilter = 'all';
@@ -138,7 +20,6 @@ let adminPollInterval = null;
 
 // Multi-Shop / Multi-Counter Scope
 let activeShopScope = 'All';
-let adminMenuShopFilter = 'All';
 let currentUserProfile = null;
 
 // --- Real-Time Order Notification & Alert State ---
@@ -545,19 +426,16 @@ function feedbackBelongsToShop(fb, shopScope) {
 
 // Admin Verification & Initializer
 async function initAdminPage() {
-    let user = api.getCurrentUser();
-    if (!user || (user.role !== 'admin' && user.role !== 'superadmin')) {
-        // Auto-seed Deepak Sharma as Super Admin so the dashboard always works effortlessly
-        user = {
-            _id: "admin_super_1",
-            id: "admin_super_1",
-            name: "Deepak Sharma (Admin)",
-            email: "deepaksharma74521@gmail.com",
-            role: "superadmin",
-            assignedShop: "All",
-            collegeId: "TMU-ADMIN-01"
-        };
-        localStorage.setItem('canteen_user', JSON.stringify(user));
+    const user = api.getCurrentUser();
+    if (!user) {
+        window.location.href = 'login.html?redirect=admin.html';
+        return;
+    }
+
+    if (user.role !== 'admin' && user.role !== 'superadmin') {
+        alert('Access Restricted: This dashboard is reserved for Canteen Administrators only.');
+        window.location.href = 'menu.html';
+        return;
     }
 
     currentUserProfile = user;
@@ -595,20 +473,7 @@ async function initAdminPage() {
     updateAdminSoundUI();
     document.getElementById('admin-user-name').textContent = user.name || 'Admin';
 
-    // Support direct URL Tab Navigation (e.g. admin.html#menu or admin.html?tab=menu)
-    const urlParams = new URLSearchParams(window.location.search);
-    const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
-    const initialTab = urlParams.get('tab') || hashTab;
-    if (initialTab && ['orders', 'menu', 'shop', 'staff', 'parcels', 'feedbacks', 'commissions', 'delivery'].includes(initialTab)) {
-        switchAdminTab(initialTab);
-    }
-
-    const initialShop = urlParams.get('shop');
-    if (initialShop) {
-        adminMenuShopFilter = initialShop;
-    }
-
-    await loadAdminDashboardData();
+    loadAdminDashboardData();
 
     // Auto poll admin dashboard every 3.5 seconds
     if (adminPollInterval) clearInterval(adminPollInterval);
@@ -617,9 +482,6 @@ async function initAdminPage() {
 
 function handleShopScopeChange(shopVal) {
     activeShopScope = shopVal || 'All';
-    adminMenuShopFilter = shopVal || 'All';
-    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
-    if (menuShopFilter) menuShopFilter.value = adminMenuShopFilter;
     updateShopScopeUI();
     renderAdminOrdersTable();
     renderAdminFoodTable();
@@ -685,20 +547,11 @@ async function loadAdminDashboardData() {
             renderAdminOrdersTable();
         }
 
-        // 3. Fetch Menu Items (Guard: Do NOT wipe table if user is currently typing)
-        const menuRes = await api.getMenu(true);
+        // 3. Fetch Menu Items
+        const menuRes = await api.getMenu();
         if (menuRes.success && menuRes.items) {
             adminFoodItems = menuRes.items;
-            renderShopChips();
-            const activeEl = document.activeElement;
-            const isUserEditing = activeEl && (
-                activeEl.id?.startsWith('quick-price') || 
-                activeEl.id === 'admin-food-search' || 
-                (document.getElementById('admin-food-table-body') && document.getElementById('admin-food-table-body').contains(activeEl))
-            );
-            if (!isUserEditing) {
-                renderAdminFoodTable();
-            }
+            renderAdminFoodTable();
         }
 
         // 4. Update Metrics & Statistics
@@ -717,13 +570,6 @@ async function loadAdminDashboardData() {
     }
 }
 
-function countItemsForShop(sid, sname) {
-    if (!adminFoodItems || adminFoodItems.length === 0) return 0;
-    return adminFoodItems.filter(item => {
-        return item.shopId === sid || (sname && item.shopName && item.shopName.toLowerCase() === sname.toLowerCase());
-    }).length;
-}
-
 async function loadAdminShops() {
     try {
         const res = await api.getShops();
@@ -738,8 +584,7 @@ async function loadAdminShops() {
                     <option value="All" ${currentVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (Master View)</option>
                     ${adminShops.map(s => {
                         const sid = s.shopId || s._id;
-                        const count = countItemsForShop(sid, s.name);
-                        return `<option value="${sid}" ${currentVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} ${count > 0 ? `(${count} items)` : ''} ${!s.isOpen ? '(CLOSED)' : ''}</option>`;
+                        return `<option value="${sid}" ${currentVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} ${!s.isOpen ? '(CLOSED)' : ''}</option>`;
                     }).join('')}
                 `;
             }
@@ -772,26 +617,11 @@ async function loadAdminShops() {
                 const currentEditId = document.getElementById('shop-form-id')?.value || (adminShops[0]?.shopId || adminShops[0]?._id);
                 profileShopSelect.innerHTML = adminShops.map(s => {
                     const sid = s.shopId || s._id;
-                    const count = countItemsForShop(sid, s.name);
-                    return `<option value="${sid}" ${currentEditId === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${count} items) ${!s.isOpen ? '🔴 CLOSED' : '🟢 OPEN'}</option>`;
+                    return `<option value="${sid}" ${currentEditId === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${s.itemCount || 0} items) ${!s.isOpen ? '🔴 CLOSED' : '🟢 OPEN'}</option>`;
                 }).join('');
             }
 
-            // 5. Populate Menu Tab Dedicated Shop Filter Dropdown
-            const menuShopFilter = document.getElementById('admin-menu-shop-filter');
-            if (menuShopFilter) {
-                const currentMVal = menuShopFilter.value || adminMenuShopFilter || 'All';
-                menuShopFilter.innerHTML = `
-                    <option value="All" ${currentMVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (All 23 Outlets - ${adminFoodItems.length || 1963} Dishes)</option>
-                    ${adminShops.map(s => {
-                        const sid = s.shopId || s._id;
-                        const count = countItemsForShop(sid, s.name);
-                        return `<option value="${sid}" ${currentMVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${count} dishes)</option>`;
-                    }).join('')}
-                `;
-            }
-
-            // 6. If currently on shop profile tab and user is NOT typing, fill form
+            // 5. If currently on shop profile tab and user is NOT typing, fill form
             if (currentAdminTab === 'shop') {
                 const shopForm = document.getElementById('shop-profile-form');
                 const isUserInteracting = shopForm && document.activeElement && shopForm.contains(document.activeElement);
@@ -1683,241 +1513,37 @@ function matchSmartCategory(item, catKey) {
     }
 }
 
-function renderShopChips() {
-    const container = document.getElementById('admin-menu-shop-chips');
-    const label = document.getElementById('active-shop-selected-label');
-    if (!container) return;
-
-    const totalCount = adminFoodItems.length || 1963;
-    const isAll = (adminMenuShopFilter === 'All' || !adminMenuShopFilter);
-
-    // Update Top Label
-    if (label) {
-        if (isAll) {
-            label.innerHTML = `🏪 Showing: <strong>All 23 Campus Shops</strong> (${totalCount} Dishes)`;
-            label.style.background = '#fff7ed';
-            label.style.color = '#ea580c';
-            label.style.borderColor = '#fed7aa';
-        } else {
-            const activeShop = adminShops.find(s => s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter);
-            const sName = activeShop ? activeShop.name : adminMenuShopFilter;
-            const sCount = countItemsForShop(adminMenuShopFilter, sName);
-            label.innerHTML = `🏪 Selected Shop: <strong style="color: #065f46; text-decoration: underline;">${sName}</strong> (${sCount} Dishes) <button type="button" onclick="selectShopMenuFilter('All')" style="background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; cursor: pointer; font-weight: 800; font-size: 0.75rem; margin-left: 8px; padding: 2px 8px; border-radius: 6px;">[Show All 23 Shops]</button>`;
-            label.style.background = '#ecfdf5';
-            label.style.color = '#047857';
-            label.style.borderColor = '#86efac';
-        }
-    }
-
-    // Keep dropdown in sync if present
-    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
-    if (menuShopFilter && menuShopFilter.value !== adminMenuShopFilter) {
-        menuShopFilter.value = adminMenuShopFilter;
-    }
-
-    let html = `
-        <button type="button" data-shop-id="All" onclick="selectShopMenuFilter('All')" 
-                style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isAll ? '#ea580c' : '#cbd5e1'}; background: ${isAll ? 'linear-gradient(135deg, #fff7ed, #fed7aa)' : '#f8fafc'}; color: ${isAll ? '#9a3412' : '#334155'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isAll ? '0 3px 10px rgba(234, 88, 12, 0.25)' : 'none'}; transition: all 0.2s ease; pointer-events: auto !important; position: relative; z-index: 5; user-select: none;">
-            <span style="pointer-events: none;">🏪</span>
-            <span style="pointer-events: none;">All Shops</span>
-            <span style="background: ${isAll ? '#ea580c' : '#e2e8f0'}; color: ${isAll ? 'white' : '#475569'}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; pointer-events: none;">
-                ${totalCount}
-            </span>
-            ${isAll ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem; pointer-events: none;"></i>' : ''}
-        </button>
-    `;
-
-    adminShops.forEach(s => {
-        const sid = s.shopId || s._id;
-        const count = countItemsForShop(sid, s.name);
-        const isActive = (adminMenuShopFilter === sid || adminMenuShopFilter === s.name);
-
-        html += `
-            <button type="button" data-shop-id="${sid}" onclick="selectShopMenuFilter('${sid}')" 
-                    style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isActive ? '#ea580c' : '#e2e8f0'}; background: ${isActive ? 'linear-gradient(135deg, #fff7ed, #ffedd5)' : 'white'}; color: ${isActive ? '#9a3412' : '#1e293b'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isActive ? '0 4px 12px rgba(234, 88, 12, 0.28)' : '0 1px 3px rgba(0,0,0,0.04)'}; transition: all 0.2s ease; transform: ${isActive ? 'scale(1.04)' : 'scale(1)'}; pointer-events: auto !important; position: relative; z-index: 5; user-select: none;">
-                <span style="font-size: 1.1rem; pointer-events: none;">${getShopEmoji(s.category)}</span>
-                <span style="pointer-events: none;">${s.name}</span>
-                <span style="background: ${isActive ? '#ea580c' : '#f1f5f9'}; color: ${isActive ? 'white' : (count > 0 ? '#0f172a' : '#94a3b8')}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; border: 1px solid ${isActive ? '#ea580c' : '#cbd5e1'}; pointer-events: none;">
-                    ${count}
-                </span>
-                ${isActive ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem; pointer-events: none;"></i>' : ''}
-            </button>
-        `;
-    });
-
-    container.innerHTML = html;
-}
-
-function selectShopMenuFilter(shopId) {
-    adminMenuShopFilter = shopId || 'All';
-    currentFoodFilter = 'all';
-    const searchInput = document.getElementById('admin-food-search');
-    if (searchInput) searchInput.value = '';
-    document.querySelectorAll('.admin-food-filter-pill').forEach(pill => {
-        if (pill.getAttribute('data-category') === 'all') pill.classList.add('active');
-        else pill.classList.remove('active');
-    });
-    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
-    if (menuShopFilter) menuShopFilter.value = adminMenuShopFilter;
-    renderShopChips();
-    renderAdminFoodTable();
-    const activeShop = adminShops.find(s => s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter);
-    const sName = activeShop ? activeShop.name : (shopId === 'All' ? 'All 23 Shops' : shopId);
-    showToast(`🏪 Filtered dishes for: ${sName}`, 'info');
-}
-
-function handleAdminMenuShopFilterChange(val) {
-    selectShopMenuFilter(val);
-}
-
-async function quickSaveItemPrice(itemId, isHalfFull) {
-    const item = adminFoodItems.find(i => (i._id === itemId || i.id === itemId));
-    if (!item) {
-        showToast('Item not found.', 'error');
-        return;
-    }
-
-    const saveBtn = document.getElementById(`btn-quick-save-${itemId}`);
-    if (saveBtn) {
-        saveBtn.disabled = true;
-        saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
-    }
-
-    try {
-        let newPrice = item.price;
-        let newPriceHalf = item.priceHalf;
-        let newPriceFull = item.priceFull;
-
-        if (isHalfFull) {
-            const halfInput = document.getElementById(`quick-price-half-${itemId}`);
-            const fullInput = document.getElementById(`quick-price-full-${itemId}`);
-            const halfVal = Number(halfInput?.value);
-            const fullVal = Number(fullInput?.value);
-
-            if (isNaN(halfVal) || halfVal <= 0 || isNaN(fullVal) || fullVal <= 0) {
-                showToast('Please enter valid positive prices for both Half and Full.', 'warning');
-                if (saveBtn) {
-                    saveBtn.disabled = false;
-                    saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save Rate';
-                }
-                return;
-            }
-
-            newPriceHalf = halfVal;
-            newPriceFull = fullVal;
-            newPrice = halfVal;
-        } else {
-            const singleInput = document.getElementById(`quick-price-${itemId}`);
-            const singleVal = Number(singleInput?.value);
-
-            if (isNaN(singleVal) || singleVal <= 0) {
-                showToast('Please enter a valid positive price.', 'warning');
-                if (saveBtn) {
-                    saveBtn.disabled = false;
-                    saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
-                }
-                return;
-            }
-
-            newPrice = singleVal;
-        }
-
-        // Prepare payload preserving all item fields
-        const updatedItem = {
-            ...item,
-            price: newPrice,
-            priceHalf: isHalfFull ? newPriceHalf : null,
-            priceFull: isHalfFull ? newPriceFull : null,
-            hasHalfFull: isHalfFull
-        };
-
-        const targetId = item._id || item.id;
-        const res = await api.saveFoodItem(updatedItem, targetId);
-        if (res && res.success) {
-            // Update in-memory item
-            item.price = newPrice;
-            item.priceHalf = isHalfFull ? newPriceHalf : null;
-            item.priceFull = isHalfFull ? newPriceFull : null;
-            item.hasHalfFull = isHalfFull;
-
-            const rateDisplay = isHalfFull ? `Half: ₹${newPriceHalf} / Full: ₹${newPriceFull}` : `₹${newPrice}`;
-            showToast(`✅ Price for "${item.name}" updated to ${rateDisplay}!`, 'success');
-
-            if (saveBtn) {
-                saveBtn.disabled = false;
-                saveBtn.style.background = '#15803d';
-                saveBtn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
-                setTimeout(() => {
-                    if (saveBtn) {
-                        saveBtn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
-                        saveBtn.innerHTML = isHalfFull ? '<i class="fa-solid fa-floppy-disk"></i> Save Rate' : '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
-                    }
-                }, 1800);
-            }
-        } else {
-            showToast(res?.message || 'Failed to update price.', 'error');
-            if (saveBtn) {
-                saveBtn.disabled = false;
-                saveBtn.innerHTML = isHalfFull ? '<i class="fa-solid fa-floppy-disk"></i> Save Rate' : '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
-            }
-        }
-    } catch (err) {
-        console.error('Quick price save error:', err);
-        showToast('Error saving price: ' + err.message, 'error');
-        if (saveBtn) {
-            saveBtn.disabled = false;
-            saveBtn.innerHTML = isHalfFull ? '<i class="fa-solid fa-floppy-disk"></i> Save Rate' : '<i class="fa-solid fa-floppy-disk"></i> Save ₹';
-        }
-    }
-}
-
 function renderAdminFoodTable() {
     const tableBody = document.getElementById('admin-food-table-body');
     const searchVal = document.getElementById('admin-food-search')?.value.trim().toLowerCase() || '';
     if (!tableBody) return;
 
     let filtered = adminFoodItems.filter(item => {
-        // 1. Filter by Selected Shop (from shop chips or dropdown)
-        if (adminMenuShopFilter && adminMenuShopFilter !== 'All') {
-            const mShop = adminShops.find(s => (s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter));
-            const mSid = mShop ? (mShop.shopId || mShop._id) : adminMenuShopFilter;
-            const mSname = mShop ? mShop.name.toLowerCase() : adminMenuShopFilter.toLowerCase();
+        let matchesScope = true;
+        if (activeShopScope !== 'All') {
+            const targetShop = adminShops.find(s => (s.shopId === activeShopScope || s._id === activeShopScope || s.name === activeShopScope || s.category === activeShopScope));
+            const targetSid = targetShop ? (targetShop.shopId || targetShop._id) : activeShopScope;
+            const targetSname = targetShop ? targetShop.name : activeShopScope;
 
-            const itemSid = item.shopId || '';
-            const itemSname = (item.shopName || '').toLowerCase();
-
-            const matchesThisShop = (
-                itemSid === mSid ||
-                itemSid === adminMenuShopFilter ||
-                (mSname && itemSname === mSname) ||
-                (mSname && itemSname.includes(mSname))
-            );
-            if (!matchesThisShop) return false;
+            matchesScope = (item.shopId === targetSid || 
+                            item.shopId === activeShopScope || 
+                            item.shopName === targetSname || 
+                            item.shopName === activeShopScope ||
+                            item.category === activeShopScope);
         }
-
-        // 2. Category Filter Pills
         const matchesCategory = matchSmartCategory(item, currentFoodFilter);
-        if (!matchesCategory) return false;
-
-        // 3. Search Filter
-        if (searchVal) {
-            const nameMatch = item.name && item.name.toLowerCase().includes(searchVal);
-            const descMatch = item.description && item.description.toLowerCase().includes(searchVal);
-            const shopMatch = item.shopName && item.shopName.toLowerCase().includes(searchVal);
-            if (!nameMatch && !descMatch && !shopMatch) return false;
-        }
-
-        return true;
+        const matchesSearch = !searchVal || 
+                              (item.name && item.name.toLowerCase().includes(searchVal)) ||
+                              (item.description && item.description.toLowerCase().includes(searchVal));
+        return matchesScope && matchesCategory && matchesSearch;
     });
 
     if (filtered.length === 0) {
-        const activeShopLabel = (adminMenuShopFilter !== 'All' ? (adminShops.find(s=>s.shopId===adminMenuShopFilter||s._id===adminMenuShopFilter||s.name===adminMenuShopFilter)?.name || adminMenuShopFilter) : 'All Shops');
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
-                    <i class="fa-solid fa-store-slash" style="font-size: 2.5rem; margin-bottom: 0.75rem; display: block; color: var(--primary);"></i>
-                    <strong style="font-size: 1.05rem; color: var(--secondary); display: block; margin-bottom: 0.35rem;">No dishes or products found</strong>
-                    <span>No items match your filter in <strong>${activeShopLabel}</strong> (${currentFoodFilter === 'all' ? 'All Categories' : currentFoodFilter}).</span>
+                <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                    <i class="fa-solid fa-boxes-stacked" style="font-size: 2rem; margin-bottom: 0.5rem; display: block; color: var(--primary);"></i>
+                    No products found in this counter/category (${activeShopScope === 'All' ? 'All Counters' : activeShopScope}).
                 </td>
             </tr>
         `;
@@ -1930,74 +1556,43 @@ function renderAdminFoodTable() {
         const isAvailable = item.available !== undefined ? item.available : (item.isAvailable !== false);
         const isVeg = item.type === 'veg' || !item.type;
         const itemId = item._id || item.id;
-        const assignedShop = adminShops.find(s => s.shopId === item.shopId || s._id === item.shopId || s.name === item.shopName) || adminShops.find(s => s.category === item.category);
-        const shopDisplay = item.shopName || (assignedShop ? assignedShop.name : 'TMU Campus Mart');
 
         return `
             <tr>
                 <td>
                     <img src="${item.image || item.imageUrl || fallbackImg}" alt="${item.name}" 
-                         style="width: 52px; height: 52px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid #e2e8f0;"
+                         style="width: 50px; height: 50px; border-radius: var(--radius-sm); object-fit: cover;"
                          onerror="this.src='${fallbackImg}'">
                 </td>
                 <td>
-                    <div style="font-weight: 700; color: var(--secondary); font-size: 0.95rem;">${item.name}</div>
-                    <div style="font-size: 0.78rem; color: var(--text-muted); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <div style="font-weight: 700; color: var(--secondary);">${item.name}</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                         ${item.description || ''}
                     </div>
-                    <div style="font-size: 0.74rem; color: #9a3412; margin-top: 3px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; background: #fff7ed; border: 1px solid #fed7aa; padding: 1px 6px; border-radius: 4px;">
-                        <i class="fa-solid fa-store" style="color: var(--primary);"></i> ${shopDisplay}
+                    <div style="font-size: 0.72rem; color: #475569; margin-top: 3px; font-weight: 600;">
+                        <i class="fa-solid fa-store" style="color: var(--primary);"></i> ${item.shopName || (adminShops.find(s=>s.category===item.category)?.name || 'Central Outlet')}
                     </div>
                 </td>
                 <td>
-                    <span style="font-size: 0.8rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); background: #f1f5f9; color: #334155; display: inline-block;">
+                    <span style="font-size: 0.82rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: var(--radius-full); background: #f1f5f9;">
                         ${item.category || 'General'}
                     </span>
-                    <span style="font-size: 0.74rem; font-weight: 800; margin-left: 0.35rem; color: ${isVeg ? '#16a34a' : '#dc2626'}; background: ${isVeg ? '#dcfce7' : '#fee2e2'}; padding: 2px 6px; border-radius: 4px; border: 1px solid ${isVeg ? '#86efac' : '#fca5a5'};">
-                        ${isVeg ? '🟢 VEG' : '🔴 NON-VEG'}
+                    <span style="font-size: 0.75rem; font-weight: 700; margin-left: 0.4rem; color: ${isVeg ? '#16a34a' : '#dc2626'};">
+                        ${isVeg ? 'VEG' : 'NON-VEG'}
                     </span>
                 </td>
                 <td>
                     ${item.hasHalfFull ? `
-                        <div style="display: flex; flex-direction: column; gap: 5px; min-width: 145px;">
-                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
-                                <span style="font-size: 0.76rem; font-weight: 800; color: #0369a1; min-width: 38px;">🥣 Half:</span>
-                                <div style="display: flex; align-items: center; background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 6px; padding: 1px 4px;">
-                                    <span style="font-weight: 700; color: #0284c7; font-size: 0.8rem; margin-right: 2px;">₹</span>
-                                    <input type="number" id="quick-price-half-${itemId}" value="${item.priceHalf || item.price}" min="1" step="1"
-                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #0369a1; outline: none; padding: 2px 0;"
-                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Half Price">
-                                </div>
+                        <div style="line-height: 1.3;">
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #0369a1;">
+                                🥣 Half: ₹${item.priceHalf || item.price}
                             </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
-                                <span style="font-size: 0.76rem; font-weight: 800; color: #15803d; min-width: 38px;">🍲 Full:</span>
-                                <div style="display: flex; align-items: center; background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 6px; padding: 1px 4px;">
-                                    <span style="font-weight: 700; color: #16a34a; font-size: 0.8rem; margin-right: 2px;">₹</span>
-                                    <input type="number" id="quick-price-full-${itemId}" value="${item.priceFull || item.price}" min="1" step="1"
-                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #15803d; outline: none; padding: 2px 0;"
-                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Full Price">
-                                </div>
+                            <div style="font-size: 0.85rem; font-weight: 800; color: #15803d;">
+                                🍲 Full: ₹${item.priceFull || item.price}
                             </div>
-                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', true)"
-                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; margin-top: 2px; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
-                                    title="Save Half & Full Price">
-                                <i class="fa-solid fa-floppy-disk"></i> Save Rate
-                            </button>
                         </div>
                     ` : `
-                        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 120px;">
-                            <div style="display: flex; align-items: center; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 2px 6px;">
-                                <span style="font-weight: 800; color: var(--primary); font-size: 0.92rem; margin-right: 2px;">₹</span>
-                                <input type="number" id="quick-price-${itemId}" value="${item.price}" min="1" step="1"
-                                       style="width: 58px; border: none; background: transparent; font-weight: 800; font-size: 0.95rem; color: #9a3412; outline: none; padding: 2px 0;"
-                                       onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', false)" title="Edit Price">
-                            </div>
-                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', false)"
-                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
-                                    title="Save Price">
-                                <i class="fa-solid fa-floppy-disk"></i> Save ₹
-                            </button>
-                        </div>
+                        <strong style="color: var(--primary); font-size: 1rem;">₹${item.price}</strong>
                     `}
                 </td>
                 <td>
@@ -2010,93 +1605,7 @@ function renderAdminFoodTable() {
                 </td>
                 <td>
                     <div style="display: flex; gap: 0.4rem;">
-                        <button class="btn btn-outline btn-sm" onclick="openEditFoodModal('${itemId}')" title="Edit Full Item (Name, Shop, Photo)">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <button class="btn btn-outline btn-sm" style="color: #ef4444; border-color: #fca5a5;" onclick="deleteFoodItem('${itemId}', '${item.name}')" title="Delete Item">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        `;
-    }).join('');
-}
-                    <img src="${item.image || item.imageUrl || fallbackImg}" alt="${item.name}" 
-                         style="width: 52px; height: 52px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid #e2e8f0;"
-                         onerror="this.src='${fallbackImg}'">
-                </td>
-                <td>
-                    <div style="font-weight: 700; color: var(--secondary); font-size: 0.95rem;">${item.name}</div>
-                    <div style="font-size: 0.78rem; color: var(--text-muted); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                        ${item.description || ''}
-                    </div>
-                    <div style="font-size: 0.74rem; color: #9a3412; margin-top: 3px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; background: #fff7ed; border: 1px solid #fed7aa; padding: 1px 6px; border-radius: 4px;">
-                        <i class="fa-solid fa-store" style="color: var(--primary);"></i> ${shopDisplay}
-                    </div>
-                </td>
-                <td>
-                    <span style="font-size: 0.8rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); background: #f1f5f9; color: #334155; display: inline-block;">
-                        ${item.category || 'General'}
-                    </span>
-                    <span style="font-size: 0.74rem; font-weight: 800; margin-left: 0.35rem; color: ${isVeg ? '#16a34a' : '#dc2626'}; background: ${isVeg ? '#dcfce7' : '#fee2e2'}; padding: 2px 6px; border-radius: 4px; border: 1px solid ${isVeg ? '#86efac' : '#fca5a5'};">
-                        ${isVeg ? '🟢 VEG' : '🔴 NON-VEG'}
-                    </span>
-                </td>
-                <td>
-                    ${item.hasHalfFull ? `
-                        <div style="display: flex; flex-direction: column; gap: 5px; min-width: 145px;">
-                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
-                                <span style="font-size: 0.76rem; font-weight: 800; color: #0369a1; min-width: 38px;">🥣 Half:</span>
-                                <div style="display: flex; align-items: center; background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 6px; padding: 1px 4px;">
-                                    <span style="font-weight: 700; color: #0284c7; font-size: 0.8rem; margin-right: 2px;">₹</span>
-                                    <input type="number" id="quick-price-half-${itemId}" value="${item.priceHalf || item.price}" min="1" step="1"
-                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #0369a1; outline: none; padding: 2px 0;"
-                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Half Price">
-                                </div>
-                            </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
-                                <span style="font-size: 0.76rem; font-weight: 800; color: #15803d; min-width: 38px;">🍲 Full:</span>
-                                <div style="display: flex; align-items: center; background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 6px; padding: 1px 4px;">
-                                    <span style="font-weight: 700; color: #16a34a; font-size: 0.8rem; margin-right: 2px;">₹</span>
-                                    <input type="number" id="quick-price-full-${itemId}" value="${item.priceFull || item.price}" min="1" step="1"
-                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #15803d; outline: none; padding: 2px 0;"
-                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Full Price">
-                                </div>
-                            </div>
-                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', true)"
-                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; margin-top: 2px; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
-                                    title="Save Half & Full Price">
-                                <i class="fa-solid fa-floppy-disk"></i> Save Rate
-                            </button>
-                        </div>
-                    ` : `
-                        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 120px;">
-                            <div style="display: flex; align-items: center; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 2px 6px;">
-                                <span style="font-weight: 800; color: var(--primary); font-size: 0.92rem; margin-right: 2px;">₹</span>
-                                <input type="number" id="quick-price-${itemId}" value="${item.price}" min="1" step="1"
-                                       style="width: 58px; border: none; background: transparent; font-weight: 800; font-size: 0.95rem; color: #9a3412; outline: none; padding: 2px 0;"
-                                       onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', false)" title="Edit Price">
-                            </div>
-                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', false)"
-                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
-                                    title="Save Price">
-                                <i class="fa-solid fa-floppy-disk"></i> Save ₹
-                            </button>
-                        </div>
-                    `}
-                </td>
-                <td>
-                    <button class="btn btn-sm ${isAvailable ? 'btn-success' : 'btn-outline'}" 
-                            onclick="toggleItemAvailability('${itemId}', ${!isAvailable})"
-                            title="Click to toggle stock status">
-                        <i class="fa-solid ${isAvailable ? 'fa-check' : 'fa-xmark'}"></i>
-                        ${isAvailable ? 'In Stock' : 'Out of Stock'}
-                    </button>
-                </td>
-                <td>
-                    <div style="display: flex; gap: 0.4rem;">
-                        <button class="btn btn-outline btn-sm" onclick="openEditFoodModal('${itemId}')" title="Edit Full Item (Name, Shop, Photo)">
+                        <button class="btn btn-outline btn-sm" onclick="openEditFoodModal('${itemId}')" title="Edit Item">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <button class="btn btn-outline btn-sm" style="color: #ef4444; border-color: #fca5a5;" onclick="deleteFoodItem('${itemId}', '${item.name}')" title="Delete Item">
@@ -2300,18 +1809,6 @@ function populateShopDropdowns() {
             const sid = s.shopId || s._id;
             return `<option value="${sid}">${getShopEmoji(s.category)} ${s.name}</option>`;
         }).join('');
-    }
-
-    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
-    if (menuShopFilter && adminShops && adminShops.length > 0) {
-        const currentMVal = menuShopFilter.value || adminMenuShopFilter || 'All';
-        menuShopFilter.innerHTML = `
-            <option value="All" ${currentMVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (All 23 Outlets)</option>
-            ${adminShops.map(s => {
-                const sid = s.shopId || s._id;
-                return `<option value="${sid}" ${currentMVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${s.category})</option>`;
-            }).join('')}
-        `;
     }
 }
 
@@ -3715,8 +3212,7 @@ async function deleteFeedbackItem(feedbackId, studentName) {
 }
 
 function switchAdminTab(tabName) {
-    const user = currentUserProfile || (typeof api !== 'undefined' && api.getCurrentUser ? api.getCurrentUser() : null);
-    const isSuperAdmin = user && (user.role === 'superadmin' || user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu');
+    const isSuperAdmin = currentUserProfile && (currentUserProfile.role === 'superadmin' || currentUserProfile.email === 'deepaksharma74521@gmail.com' || currentUserProfile.email === 'admin@canteen.edu');
 
     if (tabName === 'staff' && !isSuperAdmin) {
         showToast('Access Restricted: Only Super Admin Deepak Sharma can view Staff Approvals & Permissions.', 'warning', 'Permission Required');
@@ -3724,12 +3220,6 @@ function switchAdminTab(tabName) {
     }
 
     currentAdminTab = tabName;
-
-    try {
-        if (window.location.hash !== `#${tabName}`) {
-            history.replaceState(null, '', `#${tabName}`);
-        }
-    } catch (e) {}
 
     document.querySelectorAll('.admin-tab-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-tab') === tabName);
@@ -3753,10 +3243,7 @@ function switchAdminTab(tabName) {
     if (commissionsSection) commissionsSection.style.display = (tabName === 'commissions' ? 'block' : 'none');
     if (deliverySection) deliverySection.style.display = (tabName === 'delivery' ? 'block' : 'none');
 
-    if (tabName === 'menu') {
-        renderShopChips();
-        renderAdminFoodTable();
-    } else if (tabName === 'shop') {
+    if (tabName === 'shop') {
         populateShopProfileForm();
     } else if (tabName === 'staff') {
         loadStaffData();
@@ -4315,26 +3802,11 @@ function exportCommissionsLedgerCsv() {
 }
 
 function setupAdminEventListeners() {
-    // 1. Tab Navigation Listener
     document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const tab = btn.getAttribute('data-tab');
-            if (tab) switchAdminTab(tab);
+        btn.addEventListener('click', () => {
+            switchAdminTab(btn.getAttribute('data-tab'));
         });
     });
-
-    // 2. Event Delegation for Shop Chips (Zero Click Failure Guarantee)
-    const chipsContainer = document.getElementById('admin-menu-shop-chips');
-    if (chipsContainer) {
-        chipsContainer.addEventListener('click', (e) => {
-            const btn = e.target.closest('button[data-shop-id]');
-            if (btn) {
-                e.preventDefault();
-                const sid = btn.getAttribute('data-shop-id') || 'All';
-                selectShopMenuFilter(sid);
-            }
-        });
-    }
 
     document.querySelectorAll('.user-type-filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
@@ -4602,93 +4074,10 @@ function renderAdminDeliveryLogsTable() {
     }).join('');
 }
 
-// ==========================================================================
-// EXPLICIT GLOBAL WINDOW SCOPE EXPORTS (100% Reliable Inline Event Handlers)
-// ==========================================================================
-window.switchAdminTab = switchAdminTab;
-window.selectShopMenuFilter = selectShopMenuFilter;
-window.handleAdminMenuShopFilterChange = handleAdminMenuShopFilterChange;
-window.handleShopScopeChange = handleShopScopeChange;
-window.quickSaveItemPrice = quickSaveItemPrice;
-window.toggleItemAvailability = toggleItemAvailability;
-window.openAddFoodModal = openAddFoodModal;
-window.openEditFoodModal = openEditFoodModal;
-window.deleteFoodItem = deleteFoodItem;
-window.handleSaveFoodItem = handleSaveFoodItem;
-window.onFoodShopSelectChange = onFoodShopSelectChange;
-window.toggleFoodFormHalfFull = toggleFoodFormHalfFull;
-window.switchImageTab = switchImageTab;
-window.handleFoodImageFileUpload = handleFoodImageFileUpload;
-window.selectPresetPhoto = selectPresetPhoto;
-window.updateImagePreviewFromUrl = updateImagePreviewFromUrl;
-window.openBulkAddModal = openBulkAddModal;
-window.addBulkRow = addBulkRow;
-window.removeBulkRow = removeBulkRow;
-window.clearEmptyBulkRows = clearEmptyBulkRows;
-window.updateBulkRowField = updateBulkRowField;
-window.toggleBulkRowHalfFull = toggleBulkRowHalfFull;
-window.onBulkTargetShopChange = onBulkTargetShopChange;
-window.handleBatchPhotosSelected = handleBatchPhotosSelected;
-window.submitBulkAddItems = submitBulkAddItems;
-window.openMenuScannerModal = openMenuScannerModal;
-window.switchScannerMode = switchScannerMode;
-window.handleMenuPhotoUploaded = handleMenuPhotoUploaded;
-window.handleScanTextPasted = handleScanTextPasted;
-window.testScannerSample = testScannerSample;
-window.removeScannedItemRow = removeScannedItemRow;
-window.toggleScannedItemHalfFull = toggleScannedItemHalfFull;
-window.updateScannedItemField = updateScannedItemField;
-window.resetScannerModal = resetScannerModal;
-window.executeBulkImport = executeBulkImport;
-window.startAddNewShop = startAddNewShop;
-window.onShopProfileSelectChange = onShopProfileSelectChange;
-window.populateShopProfileForm = populateShopProfileForm;
-window.onShopUpiChanged = onShopUpiChanged;
-window.handleShopQrFileUpload = handleShopQrFileUpload;
-window.generateAutoUpiQr = generateAutoUpiQr;
-window.removeShopQrImage = removeShopQrImage;
-window.updateShopStatusBadge = updateShopStatusBadge;
-window.handleSaveShopProfile = handleSaveShopProfile;
-window.loadStaffData = loadStaffData;
-window.handleStaffApproval = handleStaffApproval;
-window.approveStaffApplicant = approveStaffApplicant;
-window.loadFeedbackData = loadFeedbackData;
-window.deleteFeedbackItem = deleteFeedbackItem;
-window.loadAdminParcels = loadAdminParcels;
-window.filterAdminParcels = filterAdminParcels;
-window.handleAssignRunner = handleAssignRunner;
-window.handleParcelStatusChange = handleParcelStatusChange;
-window.openVerifyParcelPinModal = openVerifyParcelPinModal;
-window.submitVerifyParcelPin = submitVerifyParcelPin;
-window.loadCommissionsLedger = loadCommissionsLedger;
-window.settleShopCashLedger = settleShopCashLedger;
-window.openGatewaySettingsModal = openGatewaySettingsModal;
-window.handleSaveGatewaySettings = handleSaveGatewaySettings;
-window.exportCommissionsLedgerCsv = exportCommissionsLedgerCsv;
-window.loadAdminDeliveryDashboard = loadAdminDeliveryDashboard;
-window.filterAdminDeliveryLogs = filterAdminDeliveryLogs;
-window.closeModal = closeModal;
-window.seedSampleDishes = seedSampleDishes;
-window.toggleAdminOrderSound = toggleAdminOrderSound;
-window.testNewOrderAlertPopup = testNewOrderAlertPopup;
-window.closeNewOrderAlertModal = closeNewOrderAlertModal;
-window.acceptOrderFromAlert = acceptOrderFromAlert;
-window.viewOrderDetailsFromAlert = viewOrderDetailsFromAlert;
-window.handleOrderPrepTimeChange = handleOrderPrepTimeChange;
-window.updateOrderStatus = updateOrderStatus;
-window.viewOrderDetailsModal = viewOrderDetailsModal;
-window.renderShopChips = renderShopChips;
-window.renderAdminFoodTable = renderAdminFoodTable;
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        setupAdminEventListeners();
-        initAdminPage();
-    });
-} else {
+document.addEventListener('DOMContentLoaded', () => {
     setupAdminEventListeners();
     initAdminPage();
-}
+});
 
 
 

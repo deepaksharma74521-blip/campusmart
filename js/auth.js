@@ -74,6 +74,28 @@ function handleLoginRoleChange(selectedRole) {
     }
 }
 
+function quickFillSuperAdmin() {
+    handleLoginRoleChange('ShopOwner');
+    const rShop = document.getElementById('login-role-shop');
+    if (rShop) rShop.checked = true;
+    const em = document.getElementById('login-email');
+    const pw = document.getElementById('login-password');
+    if (em) em.value = 'deepaksharma74521@gmail.com';
+    if (pw) pw.value = 'deepak123';
+    showToast('👑 Super Admin (Deepak Sharma) credentials filled!', 'info');
+}
+
+function quickFillVendor() {
+    handleLoginRoleChange('ShopOwner');
+    const rShop = document.getElementById('login-role-shop');
+    if (rShop) rShop.checked = true;
+    const em = document.getElementById('login-email');
+    const pw = document.getElementById('login-password');
+    if (em) em.value = 'cholekulcha@tmu.ac.in';
+    if (pw) pw.value = 'shop123';
+    showToast('🏪 TMU Special Chole Kulcha vendor credentials filled!', 'info');
+}
+
 function handleUserTypeChange(selectedType) {
     const isFaculty = (selectedType === 'Faculty');
     const isShopOwner = (selectedType === 'ShopOwner');

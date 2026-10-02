@@ -151,10 +151,6 @@ async function loadMenuItems() {
         const res = await api.getMenu();
         if (res.success && res.items) {
             allFoodItems = res.items;
-            // Pre-index for 0.1ms instant search & filtering
-            allFoodItems.forEach(it => {
-                it._searchIndex = `${it.name || ''} ${it.description || ''} ${it.category || ''} ${it.shopName || ''}`.toLowerCase();
-            });
 
             if (allFoodItems.length === 0) {
                 renderEmptyMenu();
@@ -440,13 +436,11 @@ function renderFoodGrid(reset = true) {
             // Granular Smart Category filter
             const matchesCategory = matchSmartCategory(item, currentCategory);
 
-            // Ultra-Fast 0.1ms Pre-Indexed Search
-            const q = searchQuery.toLowerCase();
-            const matchesSearch = !q || (item._searchIndex ? item._searchIndex.includes(q) : (
-                (item.name && item.name.toLowerCase().includes(q)) ||
-                (item.description && item.description.toLowerCase().includes(q)) ||
-                (item.shopName && item.shopName.toLowerCase().includes(q))
-            ));
+            // Search query
+            const matchesSearch = !searchQuery || 
+                                  (item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                                  (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                                  (item.shopName && item.shopName.toLowerCase().includes(searchQuery.toLowerCase()));
 
             return matchesShop && matchesCategory && matchesSearch;
         });

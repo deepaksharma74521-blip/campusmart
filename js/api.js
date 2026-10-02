@@ -63,274 +63,61 @@ const api = {
         }
     },
 
-    // 2. Ultra-Fast In-Memory & SessionStorage Turbo Cache Engine (0ms Response)
-    _cache: {
-        menu: null,
-        menuTime: 0,
-        shops: null,
-        shopsTime: 0,
-        TTL: 180000 // 3 minutes
-    },
-
-    async _loadFromStaticDb() {
-        try {
-            const res = await fetch('/data/canteen_db.json');
-            if (res.ok) return await res.json();
-        } catch (e) {}
-        try {
-            const res = await fetch('data/canteen_db.json');
-            if (res.ok) return await res.json();
-        } catch (e) {}
-        return null;
-    },
-
-    async _revalidateMenuInBackground() {
-        try {
-            const res = await fetch(`${API_BASE}/api/menu`);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && data.success) {
-                    this._cache.menu = data;
-                    this._cache.menuTime = Date.now();
-                    try {
-                        sessionStorage.setItem('campusmart_menu_cache', JSON.stringify(data));
-                        sessionStorage.setItem('campusmart_menu_time', this._cache.menuTime.toString());
-                    } catch (e) {}
-                }
-            }
-        } catch (e) {}
-    },
-
-    async _revalidateShopsInBackground() {
-        try {
-            const res = await fetch(`${API_BASE}/api/shops`);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && data.success) {
-                    this._cache.shops = data;
-                    this._cache.shopsTime = Date.now();
-                    try {
-                        sessionStorage.setItem('campusmart_shops_cache', JSON.stringify(data));
-                        sessionStorage.setItem('campusmart_shops_time', this._cache.shopsTime.toString());
-                    } catch (e) {}
-                }
-            }
-        } catch (e) {}
-    },
-
-    async getMenu(forceRefresh = false) {
-        const now = Date.now();
-        // 1. Instant RAM Cache
-        if (!forceRefresh && this._cache.menu && (now - this._cache.menuTime < this._cache.TTL)) {
-            return this._cache.menu;
-        }
-        // 2. Instant SessionStorage Cache with Background Sync
-        if (!forceRefresh && !this._cache.menu) {
-            try {
-                const cached = sessionStorage.getItem('campusmart_menu_cache');
-                const cachedTime = parseInt(sessionStorage.getItem('campusmart_menu_time') || '0', 10);
-                if (cached && (now - cachedTime < this._cache.TTL)) {
-                    this._cache.menu = JSON.parse(cached);
-                    this._cache.menuTime = cachedTime;
-                    this._revalidateMenuInBackground();
-                    return this._cache.menu;
-                }
-            } catch (e) {}
-        }
-        // 3. Network Fetch from REST API
-        try {
-            const res = await fetch(`${API_BASE}/api/menu`);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && (data.success || Array.isArray(data.items))) {
-                    this._cache.menu = data;
-                    this._cache.menuTime = Date.now();
-                    try {
-                        sessionStorage.setItem('campusmart_menu_cache', JSON.stringify(data));
-                        sessionStorage.setItem('campusmart_menu_time', this._cache.menuTime.toString());
-                    } catch (e) {}
-                    return data;
-                }
-            }
-        } catch (err) {
-            console.warn('[API] REST API offline/unreachable, loading from static database...');
-        }
-
-        // 4. Resilient Fallback to data/canteen_db.json + Local Overrides
-        try {
-            const staticDb = await this._loadFromStaticDb();
-            if (staticDb) {
-                const rawItems = staticDb.foodItems || staticDb.items || [];
-                const overrides = JSON.parse(localStorage.getItem('canteen_local_menu_overrides') || '{}');
-                const mergedItems = rawItems.map(item => {
-                    const id = item._id || item.id;
-                    if (overrides[id]) {
-                        return { ...item, ...overrides[id] };
-                    }
-                    return item;
-                });
-                const fallbackData = {
-                    success: true,
-                    count: mergedItems.length,
-                    items: mergedItems
-                };
-                this._cache.menu = fallbackData;
-                this._cache.menuTime = Date.now();
-                return fallbackData;
-            }
-        } catch (e) {
-            console.error('[API] Static database load error:', e);
-        }
-
-        if (this._cache.menu) return this._cache.menu;
-        return { success: true, count: 0, items: [] };
+    // 2. Menu Methods
+    async getMenu() {
+        const res = await fetch(`${API_BASE}/api/menu`);
+        return await res.json();
     },
 
     async saveFoodItem(itemData, itemId = null) {
-        this._cache.menu = null;
-        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
         const url = itemId ? `${API_BASE}/api/menu/${itemId}` : `${API_BASE}/api/menu`;
         const method = itemId ? 'PUT' : 'POST';
-        try {
-            const res = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(itemData)
-            });
-            if (res.ok) {
-                return await res.json();
-            }
-        } catch (e) {
-            console.warn('[API] Backend offline, saving price override locally in browser:', e);
-        }
-
-        // Local Storage Override Persistence
-        try {
-            const overrides = JSON.parse(localStorage.getItem('canteen_local_menu_overrides') || '{}');
-            const targetId = itemId || itemData._id || itemData.id || `item_${Date.now()}`;
-            overrides[targetId] = { ...itemData, _id: targetId };
-            localStorage.setItem('canteen_local_menu_overrides', JSON.stringify(overrides));
-            return {
-                success: true,
-                message: 'Price updated and saved successfully!',
-                item: { ...itemData, _id: targetId }
-            };
-        } catch (e) {
-            return { success: false, message: e.message };
-        }
+        const res = await fetch(url, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(itemData)
+        });
+        return await res.json();
     },
 
     async deleteFoodItem(itemId) {
-        this._cache.menu = null;
-        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
-        try {
-            const res = await fetch(`${API_BASE}/api/menu/${itemId}`, {
-                method: 'DELETE'
-            });
-            if (res.ok) return await res.json();
-        } catch (e) {}
-        return { success: true, message: 'Item removed' };
+        const res = await fetch(`${API_BASE}/api/menu/${itemId}`, {
+            method: 'DELETE'
+        });
+        return await res.json();
     },
 
     async toggleStock(itemId, available) {
-        this._cache.menu = null;
-        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
-        try {
-            const res = await fetch(`${API_BASE}/api/menu/${itemId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ available, isAvailable: available })
-            });
-            if (res.ok) return await res.json();
-        } catch (e) {}
-        // Fallback: save stock toggle locally
-        try {
-            const overrides = JSON.parse(localStorage.getItem('canteen_local_menu_overrides') || '{}');
-            overrides[itemId] = { ...(overrides[itemId] || {}), available, isAvailable: available };
-            localStorage.setItem('canteen_local_menu_overrides', JSON.stringify(overrides));
-        } catch (e) {}
-        return { success: true, available };
+        const res = await fetch(`${API_BASE}/api/menu/${itemId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ available, isAvailable: available })
+        });
+        return await res.json();
     },
 
     async bulkImportMenu(items, shopId = 'shop-1', shopName = '', replaceExisting = false) {
-        this._cache.menu = null;
-        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
-        try {
-            const res = await fetch(`${API_BASE}/api/menu/bulk-import`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ items, shopId, shopName, replaceExisting })
-            });
-            if (res.ok) return await res.json();
-        } catch (e) {}
-        return { success: true, count: items.length, message: `Imported ${items.length} items successfully` };
+        const res = await fetch(`${API_BASE}/api/menu/bulk-import`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items, shopId, shopName, replaceExisting })
+        });
+        return await res.json();
     },
 
     async smartParseMenu(text, shopId = 'shop-1', category = '') {
-        try {
-            const res = await fetch(`${API_BASE}/api/menu/smart-parse`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text, shopId, category })
-            });
-            if (res.ok) return await res.json();
-        } catch (e) {}
-        return { success: true, count: 0, items: [] };
+        const res = await fetch(`${API_BASE}/api/menu/smart-parse`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, shopId, category })
+        });
+        return await res.json();
     },
 
-    // 2.5 Shops & Vendors Methods (with 0ms Turbo Cache)
-    async getShops(forceRefresh = false) {
-        const now = Date.now();
-        if (!forceRefresh && this._cache.shops && (now - this._cache.shopsTime < this._cache.TTL)) {
-            return this._cache.shops;
-        }
-        if (!forceRefresh && !this._cache.shops) {
-            try {
-                const cached = sessionStorage.getItem('campusmart_shops_cache');
-                const cachedTime = parseInt(sessionStorage.getItem('campusmart_shops_time') || '0', 10);
-                if (cached && (now - cachedTime < this._cache.TTL)) {
-                    this._cache.shops = JSON.parse(cached);
-                    this._cache.shopsTime = cachedTime;
-                    this._revalidateShopsInBackground();
-                    return this._cache.shops;
-                }
-            } catch (e) {}
-        }
-        try {
-            const res = await fetch(`${API_BASE}/api/shops`);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && (data.success || Array.isArray(data.shops))) {
-                    this._cache.shops = data;
-                    this._cache.shopsTime = Date.now();
-                    try {
-                        sessionStorage.setItem('campusmart_shops_cache', JSON.stringify(data));
-                        sessionStorage.setItem('campusmart_shops_time', this._cache.shopsTime.toString());
-                    } catch (e) {}
-                    return data;
-                }
-            }
-        } catch (err) {
-            console.warn('[API] REST API offline, loading shops from static database...');
-        }
-
-        // Resilient Fallback to data/canteen_db.json
-        try {
-            const staticDb = await this._loadFromStaticDb();
-            if (staticDb && staticDb.shops) {
-                const fallbackData = {
-                    success: true,
-                    count: staticDb.shops.length,
-                    shops: staticDb.shops
-                };
-                this._cache.shops = fallbackData;
-                this._cache.shopsTime = Date.now();
-                return fallbackData;
-            }
-        } catch (e) {}
-
-        if (this._cache.shops) return this._cache.shops;
-        return { success: true, count: 0, shops: [] };
+    // 2.5 Shops & Vendors Methods
+    async getShops() {
+        const res = await fetch(`${API_BASE}/api/shops`);
+        return await res.json();
     },
 
     async getShop(shopId) {
@@ -398,29 +185,8 @@ const api = {
 
     async getOrders(userId = null) {
         const url = userId ? `${API_BASE}/api/orders?userId=${encodeURIComponent(userId)}` : `${API_BASE}/api/orders`;
-        try {
-            const res = await fetch(url);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && (data.success || Array.isArray(data.orders))) return data;
-            }
-        } catch (e) {}
-
-        // Fallback to static DB + local storage orders
-        try {
-            const staticDb = await this._loadFromStaticDb();
-            const baseOrders = (staticDb && staticDb.orders) ? staticDb.orders : [];
-            const localOrders = JSON.parse(localStorage.getItem('canteen_local_orders') || '[]');
-            const combined = [...localOrders, ...baseOrders];
-            const filtered = userId ? combined.filter(o => o.userId === userId || o.userEmail === userId || o.studentEmail === userId) : combined;
-            return {
-                success: true,
-                count: filtered.length,
-                orders: filtered
-            };
-        } catch (e) {
-            return { success: true, count: 0, orders: [] };
-        }
+        const res = await fetch(url);
+        return await res.json();
     },
 
     async cancelOrder(orderId) {
