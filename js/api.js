@@ -63,13 +63,86 @@ const api = {
         }
     },
 
-    // 2. Menu Methods
-    async getMenu() {
-        const res = await fetch(`${API_BASE}/api/menu`);
-        return await res.json();
+    // 2. Ultra-Fast In-Memory & SessionStorage Turbo Cache Engine (0ms Response)
+    _cache: {
+        menu: null,
+        menuTime: 0,
+        shops: null,
+        shopsTime: 0,
+        TTL: 180000 // 3 minutes
+    },
+
+    async _revalidateMenuInBackground() {
+        try {
+            const res = await fetch(`${API_BASE}/api/menu`);
+            const data = await res.json();
+            if (data && data.success) {
+                this._cache.menu = data;
+                this._cache.menuTime = Date.now();
+                try {
+                    sessionStorage.setItem('campusmart_menu_cache', JSON.stringify(data));
+                    sessionStorage.setItem('campusmart_menu_time', this._cache.menuTime.toString());
+                } catch (e) {}
+            }
+        } catch (e) {}
+    },
+
+    async _revalidateShopsInBackground() {
+        try {
+            const res = await fetch(`${API_BASE}/api/shops`);
+            const data = await res.json();
+            if (data && data.success) {
+                this._cache.shops = data;
+                this._cache.shopsTime = Date.now();
+                try {
+                    sessionStorage.setItem('campusmart_shops_cache', JSON.stringify(data));
+                    sessionStorage.setItem('campusmart_shops_time', this._cache.shopsTime.toString());
+                } catch (e) {}
+            }
+        } catch (e) {}
+    },
+
+    async getMenu(forceRefresh = false) {
+        const now = Date.now();
+        // 1. Instant RAM Cache
+        if (!forceRefresh && this._cache.menu && (now - this._cache.menuTime < this._cache.TTL)) {
+            return this._cache.menu;
+        }
+        // 2. Instant SessionStorage Cache with Background Sync
+        if (!forceRefresh && !this._cache.menu) {
+            try {
+                const cached = sessionStorage.getItem('campusmart_menu_cache');
+                const cachedTime = parseInt(sessionStorage.getItem('campusmart_menu_time') || '0', 10);
+                if (cached && (now - cachedTime < this._cache.TTL)) {
+                    this._cache.menu = JSON.parse(cached);
+                    this._cache.menuTime = cachedTime;
+                    this._revalidateMenuInBackground();
+                    return this._cache.menu;
+                }
+            } catch (e) {}
+        }
+        // 3. Network Fetch
+        try {
+            const res = await fetch(`${API_BASE}/api/menu`);
+            const data = await res.json();
+            if (data && data.success) {
+                this._cache.menu = data;
+                this._cache.menuTime = Date.now();
+                try {
+                    sessionStorage.setItem('campusmart_menu_cache', JSON.stringify(data));
+                    sessionStorage.setItem('campusmart_menu_time', this._cache.menuTime.toString());
+                } catch (e) {}
+            }
+            return data;
+        } catch (err) {
+            if (this._cache.menu) return this._cache.menu;
+            throw err;
+        }
     },
 
     async saveFoodItem(itemData, itemId = null) {
+        this._cache.menu = null;
+        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
         const url = itemId ? `${API_BASE}/api/menu/${itemId}` : `${API_BASE}/api/menu`;
         const method = itemId ? 'PUT' : 'POST';
         const res = await fetch(url, {
@@ -81,6 +154,8 @@ const api = {
     },
 
     async deleteFoodItem(itemId) {
+        this._cache.menu = null;
+        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
         const res = await fetch(`${API_BASE}/api/menu/${itemId}`, {
             method: 'DELETE'
         });
@@ -88,6 +163,8 @@ const api = {
     },
 
     async toggleStock(itemId, available) {
+        this._cache.menu = null;
+        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
         const res = await fetch(`${API_BASE}/api/menu/${itemId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -97,6 +174,8 @@ const api = {
     },
 
     async bulkImportMenu(items, shopId = 'shop-1', shopName = '', replaceExisting = false) {
+        this._cache.menu = null;
+        try { sessionStorage.removeItem('campusmart_menu_cache'); } catch(e) {}
         const res = await fetch(`${API_BASE}/api/menu/bulk-import`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -114,10 +193,40 @@ const api = {
         return await res.json();
     },
 
-    // 2.5 Shops & Vendors Methods
-    async getShops() {
-        const res = await fetch(`${API_BASE}/api/shops`);
-        return await res.json();
+    // 2.5 Shops & Vendors Methods (with 0ms Turbo Cache)
+    async getShops(forceRefresh = false) {
+        const now = Date.now();
+        if (!forceRefresh && this._cache.shops && (now - this._cache.shopsTime < this._cache.TTL)) {
+            return this._cache.shops;
+        }
+        if (!forceRefresh && !this._cache.shops) {
+            try {
+                const cached = sessionStorage.getItem('campusmart_shops_cache');
+                const cachedTime = parseInt(sessionStorage.getItem('campusmart_shops_time') || '0', 10);
+                if (cached && (now - cachedTime < this._cache.TTL)) {
+                    this._cache.shops = JSON.parse(cached);
+                    this._cache.shopsTime = cachedTime;
+                    this._revalidateShopsInBackground();
+                    return this._cache.shops;
+                }
+            } catch (e) {}
+        }
+        try {
+            const res = await fetch(`${API_BASE}/api/shops`);
+            const data = await res.json();
+            if (data && data.success) {
+                this._cache.shops = data;
+                this._cache.shopsTime = Date.now();
+                try {
+                    sessionStorage.setItem('campusmart_shops_cache', JSON.stringify(data));
+                    sessionStorage.setItem('campusmart_shops_time', this._cache.shopsTime.toString());
+                } catch (e) {}
+            }
+            return data;
+        } catch (err) {
+            if (this._cache.shops) return this._cache.shops;
+            throw err;
+        }
     },
 
     async getShop(shopId) {

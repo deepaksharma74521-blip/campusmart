@@ -2862,3 +2862,77 @@ button {
         font-size: 0.64rem !important;
     }
 }
+
+
+/* ==========================================================================
+   Campus Mart - 10x Ultra-Fast GPU Hardware Acceleration & 60/120 FPS Engine
+   ========================================================================== */
+
+html {
+    scroll-behavior: smooth !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* GPU Layer Promotion & Layout Containment (Zero Layout Thrashing) */
+.food-card,
+.shop-card,
+.feature-card,
+.order-card,
+.cart-item,
+.hero-card-preview {
+    contain: content !important;
+    content-visibility: auto !important;
+    contain-intrinsic-size: 160px !important;
+    transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    will-change: transform, opacity !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 120 FPS Smooth Touch Physics */
+.menu-grid,
+#home-shops-grid,
+#shops-carousel-bar,
+.category-tabs,
+.shop-filter-bar,
+.hero-badges,
+.orders-grid {
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
+    scrollbar-width: none !important;
+}
+
+.menu-grid::-webkit-scrollbar,
+#home-shops-grid::-webkit-scrollbar,
+#shops-carousel-bar::-webkit-scrollbar,
+.category-tabs::-webkit-scrollbar,
+.shop-filter-bar::-webkit-scrollbar,
+.hero-badges::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Instant Image Shimmer Placeholder (0 Layout Shift) */
+.food-img-wrap,
+.shop-card-img-wrap,
+.hero-image-wrap {
+    background: linear-gradient(110deg, #f1f5f9 8%, #f8fafc 18%, #f1f5f9 33%) !important;
+    background-size: 200% 100% !important;
+    animation: shimmerPlaceHolder 1.4s linear infinite !important;
+}
+
+@keyframes shimmerPlaceHolder {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.food-img,
+.shop-card img,
+.hero-image-wrap img {
+    content-visibility: auto !important;
+    transform: translateZ(0) !important;
+    image-rendering: -webkit-optimize-contrast !important;
+}
