@@ -15,6 +15,37 @@
         :root { --primary: #ea580c; --bg-main: #f8fafc; }
         html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
         .navbar { background: #ffffff; min-height: 64px; }
+
+        /* Critical Zero-Click-Blocking Modal Reset */
+        .modal-backdrop,
+        .order-alert-modal-backdrop,
+        .coming-soon-modal-backdrop,
+        .order-ready-modal-backdrop {
+            display: none !important;
+            pointer-events: none !important;
+        }
+        .modal-backdrop.active,
+        .order-alert-modal-backdrop.active,
+        .coming-soon-modal-backdrop.active,
+        .order-ready-modal-backdrop.active {
+            display: flex !important;
+            pointer-events: auto !important;
+        }
+
+        /* 100% Guaranteed Click Response for Admin Chips, Tabs & Buttons */
+        .admin-tab-btn,
+        #admin-menu-shop-chips button,
+        .filter-pill,
+        .admin-food-filter-pill,
+        .btn {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            position: relative !important;
+            z-index: 10 !important;
+            user-select: none !important;
+            touch-action: manipulation !important;
+            -webkit-tap-highlight-color: rgba(234, 88, 12, 0.2) !important;
+        }
     </style>
     <!-- Google Fonts with Swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
@@ -24,7 +55,7 @@
     <!-- Tesseract OCR for client-side Menu Card scanning (Deferred) -->
     <script defer src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=2.2">
+    <link rel="stylesheet" href="css/style.css?v=6.0">
     <!-- PWA & 1-Click Mobile App Meta Tags -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ea580c">
@@ -1057,7 +1088,7 @@
     </main>
 
     <!-- Modal: Instant Split Gateway Settings -->
-    <div id="gateway-settings-modal" class="modal-backdrop">
+    <div id="gateway-settings-modal" class="modal-backdrop" style="display: none;">
         <div class="modal-card" style="max-width: 650px; width: 95%;">
             <div class="modal-header" style="background: linear-gradient(135deg, #064e3b, #047857); color: white;">
                 <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem;">
@@ -1161,7 +1192,7 @@
     </div>
 
     <!-- Modal: Verify Parcel Handover PIN -->
-    <div id="admin-parcel-pin-modal" class="modal-backdrop">
+    <div id="admin-parcel-pin-modal" class="modal-backdrop" style="display: none;">
         <div class="modal-card" style="max-width: 420px; text-align: center;">
             <div class="modal-header">
                 <h3 style="display: flex; align-items: center; gap: 0.5rem; justify-content: center; width: 100%; font-size: 1.15rem;">
@@ -1191,7 +1222,7 @@
     </div>
 
     <!-- Modal: Add / Edit Food Item -->
-    <div id="admin-food-modal" class="modal-backdrop">
+    <div id="admin-food-modal" class="modal-backdrop" style="display: none;">
         <div class="modal-card">
             <div class="modal-header">
                 <h3 id="food-modal-title">Add New Product / Item</h3>
@@ -1360,7 +1391,7 @@
     </div>
 
     <!-- Modal: Bulk Add Multiple Items with Photos -->
-    <div id="admin-bulk-add-modal" class="modal-backdrop">
+    <div id="admin-bulk-add-modal" class="modal-backdrop" style="display: none;">
         <div class="modal-card" style="max-width: 980px; width: 96%; max-height: 90vh; display: flex; flex-direction: column;">
             <div class="modal-header" style="background: linear-gradient(135deg, #059669, #10b981); color: white;">
                 <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem;">
@@ -1453,7 +1484,7 @@
     </div>
 
     <!-- Modal: AI Menu Card / Rate Chart Photo Scanner -->
-    <div id="admin-scanner-modal" class="modal-backdrop">
+    <div id="admin-scanner-modal" class="modal-backdrop" style="display: none;">
         <div class="modal-card" style="max-width: 820px; width: 95%;">
             <div class="modal-header" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white;">
                 <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem;">
@@ -1659,7 +1690,5 @@ Chai 15"></textarea>
     <script src="js/api.js?v=5.0"></script>
     <script src="js/auth.js?v=5.0"></script>
     <script src="js/admin.js?v=5.0"></script>
-    <!-- PWA 1-Click Mobile App Installer -->
-    <script src="js/pwa-install.js?v=5.0"></script>
 </body>
 </html>

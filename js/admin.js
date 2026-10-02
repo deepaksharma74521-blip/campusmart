@@ -4,10 +4,128 @@
 // Description: Admin Dashboard, Food & Mart Products CRUD, Live Order Management & Seeder
 // ==========================================================================
 
+const DEFAULT_ADMIN_SHOPS = [
+    {
+        "_id": "shop-1", "shopId": "shop-1", "name": "TMU Special Chole Kulcha", "shortName": "Chole Kulcha Corner", "category": "Canteen Food",
+        "ownerName": "Mr. Satish Sharma", "ownerEmail": "satish.canteen@tmu.ac.in", "phone": "+91 98765 43201",
+        "location": "Central Food Court, Counter #1", "timing": "8:00 AM - 9:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 520, "total_items": 16, "isVegOnly": true, "id": "shop-1"
+    },
+    {
+        "_id": "shop-2", "shopId": "shop-2", "name": "Food & Friends", "shortName": "Food & Friends", "category": "Canteen Food",
+        "ownerName": "Ramesh Kumar", "ownerEmail": "foodfriends@tmu.ac.in", "phone": "+91 98765 43202",
+        "location": "Near Gate No. 2 Food Arcade, Counter #2", "timing": "9:00 AM - 10:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 430, "total_items": 0, "isVegOnly": true, "id": "shop-2"
+    },
+    {
+        "_id": "shop-3", "shopId": "shop-3", "name": "Chandrakanta Canteen", "shortName": "Chandrakanta Canteen", "category": "Canteen Food",
+        "ownerName": "Chandrakanta Sharma", "ownerEmail": "chandrakanta@tmu.ac.in", "phone": "+91 98765 43203",
+        "location": "Hostel Ground Block B, Counter #3", "timing": "7:30 AM - 10:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 680, "total_items": 60, "isVegOnly": true, "id": "shop-3"
+    },
+    {
+        "_id": "shop-4", "shopId": "shop-4", "name": "Super Food Corner", "shortName": "Super Food", "category": "Canteen Food",
+        "ownerName": "Sunil Verma", "ownerEmail": "superfood@tmu.ac.in", "phone": "+91 98765 43204",
+        "location": "Medical & Dental Cafeteria Wing, Counter #4", "timing": "8:30 AM - 9:30 PM", "isOpen": true, "rating": 4.7, "totalOrders": 390, "total_items": 0, "isVegOnly": true, "id": "shop-4"
+    },
+    {
+        "_id": "shop-5", "shopId": "shop-5", "name": "Shiv Shudh Veg Biryani", "shortName": "Shiv Veg Biryani", "category": "Canteen Food",
+        "ownerName": "Shiv Charan Ji", "ownerEmail": "shivbiryani@tmu.ac.in", "phone": "+91 98765 43205",
+        "location": "Central Food Court, Counter #5", "timing": "11:00 AM - 9:30 PM", "isOpen": true, "rating": 4.8, "totalOrders": 470, "total_items": 0, "isVegOnly": true, "id": "shop-5"
+    },
+    {
+        "_id": "shop-6", "shopId": "shop-6", "name": "Foodo Holic", "shortName": "Foodo Holic", "category": "Canteen Food",
+        "ownerName": "Ankit Saxena", "ownerEmail": "foodoholic@tmu.ac.in", "phone": "+91 98765 43206",
+        "location": "CCSIT & Engineering Plaza, Counter #6", "timing": "9:30 AM - 10:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 510, "total_items": 0, "isVegOnly": true, "id": "shop-6"
+    },
+    {
+        "_id": "shop-7", "shopId": "shop-7", "name": "Sardar Ji Hub", "shortName": "Sardar Ji Hub", "category": "Canteen Food",
+        "ownerName": "Harpreet Singh", "ownerEmail": "sardarjihub@tmu.ac.in", "phone": "+91 98765 43207",
+        "location": "Near Gate No. 1 Arcade, Counter #7", "timing": "10:00 AM - 10:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 590, "total_items": 0, "isVegOnly": true, "id": "shop-7"
+    },
+    {
+        "_id": "shop-8", "shopId": "shop-8", "name": "Jiven Canteen", "shortName": "Jiven Canteen", "category": "Canteen Food",
+        "ownerName": "Jiven Lal", "ownerEmail": "jivencanteen@tmu.ac.in", "phone": "+91 98765 43208",
+        "location": "Pharmacy & Nursing Block, Counter #8", "timing": "8:00 AM - 8:30 PM", "isOpen": true, "rating": 4.6, "totalOrders": 340, "total_items": 0, "isVegOnly": true, "id": "shop-8"
+    },
+    {
+        "_id": "shop-9", "shopId": "shop-9", "name": "Shree Balaji Chai Bhandar", "shortName": "Balaji Chai", "category": "Drinks & Juices",
+        "ownerName": "Manoj Kumar", "ownerEmail": "balajichai@tmu.ac.in", "phone": "+91 98765 43209",
+        "location": "Main Lawn Gazebo, Counter #9", "timing": "6:30 AM - 11:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 750, "total_items": 0, "isVegOnly": true, "id": "shop-9"
+    },
+    {
+        "_id": "shop-10", "shopId": "shop-10", "name": "Ahuja Photo Shop", "shortName": "Ahuja Photo Shop", "category": "Stationery",
+        "ownerName": "Surinder Ahuja", "ownerEmail": "ahujaphoto@tmu.ac.in", "phone": "+91 98765 43210",
+        "location": "Administrative Block Basement, Shop #10", "timing": "8:30 AM - 8:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 290, "total_items": 0, "isVegOnly": true, "id": "shop-10"
+    },
+    {
+        "_id": "shop-11", "shopId": "shop-11", "name": "Durga Photo Shop", "shortName": "Durga Photo Shop", "category": "Stationery",
+        "ownerName": "Vivek Gupta", "ownerEmail": "durgaphoto@tmu.ac.in", "phone": "+91 98765 43211",
+        "location": "Engineering Block, Ground Floor, Shop #11", "timing": "8:30 AM - 8:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 310, "total_items": 0, "isVegOnly": true, "id": "shop-11"
+    },
+    {
+        "_id": "shop-12", "shopId": "shop-12", "name": "Royal Cafe", "shortName": "Royal Cafe", "category": "Drinks & Juices",
+        "ownerName": "Lucky Chaudhary", "managerName": "Tarush", "ownerEmail": "royalcafe@tmu.ac.in", "phone": "+91 98765 43212",
+        "location": "Central Boulevard, Counter #12", "timing": "8:30 AM - 8:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 330, "total_items": 0, "isVegOnly": true, "id": "shop-12"
+    },
+    {
+        "_id": "shop-13", "shopId": "shop-13", "name": "Gupta Photo Shop", "shortName": "Gupta Photo Shop", "category": "Stationery",
+        "ownerName": "Charu Gupta", "managerName": "Self", "ownerEmail": "guptaphoto@tmu.ac.in", "phone": "+91 98765 43213",
+        "location": "Medical & Nursing Block Annex, Shop #13", "timing": "9:00 AM - 8:00 PM", "isOpen": true, "rating": 4.7, "totalOrders": 180, "total_items": 0, "isVegOnly": true, "id": "shop-13"
+    },
+    {
+        "_id": "shop-14", "shopId": "shop-14", "name": "Rapid Food Corner (South Indian)", "shortName": "Rapid South Indian", "category": "Canteen Food",
+        "ownerName": "Anil Kumar", "managerName": "Self", "ownerEmail": "rapidfood@tmu.ac.in", "phone": "+91 98765 43214",
+        "location": "Central Food Court South Wing, Counter #14", "timing": "10:00 AM - 10:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 360, "total_items": 0, "isVegOnly": true, "id": "shop-14"
+    },
+    {
+        "_id": "shop-15", "shopId": "shop-15", "name": "Ahuja Mart", "shortName": "Ahuja Mart", "category": "Hostel Essentials",
+        "ownerName": "Rajeev", "managerName": "Dhiraj", "ownerEmail": "ahujamart@tmu.ac.in", "phone": "+91 98765 43215",
+        "location": "Hostel Complex Market, Shop #15", "timing": "10:00 AM - 9:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 270, "total_items": 0, "isVegOnly": true, "id": "shop-15"
+    },
+    {
+        "_id": "shop-16", "shopId": "shop-16", "name": "Mahinder Food Junction", "shortName": "Mahinder Food", "category": "Canteen Food",
+        "ownerName": "Tarun Ji", "managerName": "Self", "ownerEmail": "mahinderfood@tmu.ac.in", "phone": "+91 98765 43216",
+        "location": "Open Lawn Food Street, Counter #16", "timing": "11:00 AM - 11:00 PM", "isOpen": true, "rating": 4.7, "totalOrders": 320, "total_items": 0, "isVegOnly": true, "id": "shop-16"
+    },
+    {
+        "_id": "shop-17", "shopId": "shop-17", "name": "Vardhaman Juice Corner", "shortName": "Vardhaman Juice", "category": "Drinks & Juices",
+        "ownerName": "Anita Ji", "managerName": "Self", "ownerEmail": "vardhaman@tmu.ac.in", "phone": "+91 98765 43217",
+        "location": "Near Sports Ground, Counter #17", "timing": "9:00 AM - 8:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 410, "total_items": 32, "isVegOnly": true, "id": "shop-17"
+    },
+    {
+        "_id": "shop-18", "shopId": "shop-18", "name": "Patanjali Mart", "shortName": "Patanjali Mart", "category": "Hostel Essentials",
+        "ownerName": "Deepak Agarwal", "managerName": "Self", "ownerEmail": "patanjalimart@tmu.ac.in", "phone": "+91 84499 17176",
+        "location": "TMU Main Gate Shopping Arcade, Shop #18", "timing": "8:30 AM - 9:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 290, "total_items": 0, "isVegOnly": true, "id": "shop-18"
+    },
+    {
+        "_id": "shop-19", "shopId": "shop-19", "name": "Caffelera", "shortName": "Caffelera", "category": "Drinks & Juices",
+        "ownerName": "Akshat Jain", "managerName": "Dilip Bhai", "ownerEmail": "caffelera@tmu.ac.in", "phone": "+91 85299 08288",
+        "location": "Student Activity Plaza, Shop #19", "timing": "9:00 AM - 11:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 450, "total_items": 59, "isVegOnly": true, "id": "shop-19"
+    },
+    {
+        "_id": "shop-20", "shopId": "shop-20", "name": "Rainbow", "shortName": "Rainbow Treats", "category": "Snacks & Chips",
+        "ownerName": "Amit Dubey", "ownerEmail": "rainbow@tmu.ac.in", "phone": "+91 98765 43220",
+        "location": "Central Food Court, Kiosk #20", "timing": "9:00 AM - 11:00 PM", "isOpen": true, "rating": 4.9, "totalOrders": 370, "total_items": 324, "isVegOnly": true, "id": "shop-20"
+    },
+    {
+        "_id": "shop-21", "shopId": "shop-21", "name": "Chai Nagri", "shortName": "Chai Nagri", "category": "Drinks & Juices",
+        "ownerName": "Raja Gupta", "managerName": "Amit Goswami", "ownerEmail": "chainagri@tmu.ac.in", "phone": "+91 98765 43221",
+        "location": "Near Engineering Garden, Shop #21", "timing": "7:00 AM - 10:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 610, "total_items": 0, "isVegOnly": true, "id": "shop-21"
+    },
+    {
+        "_id": "shop-22", "shopId": "shop-22", "name": "Pani Puri Restaurant", "shortName": "Pani Puri Corner", "category": "Canteen Food",
+        "ownerName": "Inderpal Ji", "ownerEmail": "panipuri@tmu.ac.in", "phone": "+91 98765 43222",
+        "location": "Food Court East Corner, Counter #22", "timing": "11:00 AM - 9:00 PM", "isOpen": true, "rating": 4.8, "totalOrders": 390, "total_items": 195, "isVegOnly": true, "id": "shop-22"
+    },
+    {
+        "_id": "shop-23", "shopId": "shop-23", "name": "Yummy Express", "shortName": "Yummy Express", "category": "Canteen Food",
+        "ownerName": "Deepanshu", "ownerEmail": "yummy01@gmail.com", "phone": "+91 98765 43223",
+        "location": "Central Campus Mart & Food Court, Counter #23", "timing": "8:00 AM - 9:30 PM", "isOpen": true, "rating": 4.9, "totalOrders": 480, "total_items": 378, "isVegOnly": true, "id": "shop-23"
+    }
+];
+
 let adminFoodItems = [];
 let adminOrders = [];
 let adminFeedbacks = [];
-let adminShops = [];
+let adminShops = [...DEFAULT_ADMIN_SHOPS];
 let adminParcels = [];
 let scannedItemsCache = [];
 let currentOrderFilter = 'all';
@@ -1629,6 +1747,13 @@ function renderShopChips() {
 
 function selectShopMenuFilter(shopId) {
     adminMenuShopFilter = shopId || 'All';
+    currentFoodFilter = 'all';
+    const searchInput = document.getElementById('admin-food-search');
+    if (searchInput) searchInput.value = '';
+    document.querySelectorAll('.admin-food-filter-pill').forEach(pill => {
+        if (pill.getAttribute('data-category') === 'all') pill.classList.add('active');
+        else pill.classList.remove('active');
+    });
     const menuShopFilter = document.getElementById('admin-menu-shop-filter');
     if (menuShopFilter) menuShopFilter.value = adminMenuShopFilter;
     renderShopChips();
@@ -3587,7 +3712,8 @@ async function deleteFeedbackItem(feedbackId, studentName) {
 }
 
 function switchAdminTab(tabName) {
-    const isSuperAdmin = currentUserProfile && (currentUserProfile.role === 'superadmin' || currentUserProfile.email === 'deepaksharma74521@gmail.com' || currentUserProfile.email === 'admin@canteen.edu');
+    const user = currentUserProfile || (typeof api !== 'undefined' && api.getCurrentUser ? api.getCurrentUser() : null);
+    const isSuperAdmin = user && (user.role === 'superadmin' || user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu');
 
     if (tabName === 'staff' && !isSuperAdmin) {
         showToast('Access Restricted: Only Super Admin Deepak Sharma can view Staff Approvals & Permissions.', 'warning', 'Permission Required');
@@ -4551,10 +4677,15 @@ window.viewOrderDetailsModal = viewOrderDetailsModal;
 window.renderShopChips = renderShopChips;
 window.renderAdminFoodTable = renderAdminFoodTable;
 
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        setupAdminEventListeners();
+        initAdminPage();
+    });
+} else {
     setupAdminEventListeners();
     initAdminPage();
-});
+}
 
 
 
