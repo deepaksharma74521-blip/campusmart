@@ -88,20 +88,24 @@ class LocalMongoCollection:
         with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, default=str)
 
+    def _matches_query(self, item, query):
+        if not query:
+            return True
+        for k, v in query.items():
+            if k in ["_id", "id"]:
+                item_val = item.get("_id") or item.get("id")
+                if str(item_val) != str(v):
+                    return False
+            else:
+                if item.get(k) != v:
+                    return False
+        return True
+
     def find(self, query=None):
         items = self._read_all()
         if not query:
             return items
-        results = []
-        for item in items:
-            match = True
-            for k, v in query.items():
-                if item.get(k) != v:
-                    match = False
-                    break
-            if match:
-                results.append(item)
-        return results
+        return [item for item in items if self._matches_query(item, query)]
 
     def find_one(self, query):
         items = self.find(query)
@@ -111,6 +115,8 @@ class LocalMongoCollection:
         items = self._read_all()
         if "_id" not in document:
             document["_id"] = str(uuid.uuid4())
+        if "id" not in document:
+            document["id"] = document["_id"]
         items.append(document)
         self._write_all(items)
         return document
@@ -120,12 +126,7 @@ class LocalMongoCollection:
         updated = False
         update_fields = update.get("$set", update)
         for item in items:
-            match = True
-            for k, v in query.items():
-                if item.get(k) != v:
-                    match = False
-                    break
-            if match:
+            if self._matches_query(item, query):
                 for uk, uv in update_fields.items():
                     item[uk] = uv
                 updated = True
@@ -139,15 +140,10 @@ class LocalMongoCollection:
         new_items = []
         deleted = False
         for item in items:
-            match = True
-            for k, v in query.items():
-                if item.get(k) != v:
-                    match = False
-                    break
-            if not match:
-                new_items.append(item)
-            else:
+            if self._matches_query(item, query) and not deleted:
                 deleted = True
+            else:
+                new_items.append(item)
         if deleted:
             self._write_all(new_items)
         return deleted
@@ -157,15 +153,10 @@ class LocalMongoCollection:
         new_items = []
         deleted_count = 0
         for item in items:
-            match = True
-            for k, v in query.items():
-                if item.get(k) != v:
-                    match = False
-                    break
-            if not match:
-                new_items.append(item)
-            else:
+            if self._matches_query(item, query):
                 deleted_count += 1
+            else:
+                new_items.append(item)
         if deleted_count > 0:
             self._write_all(new_items)
         return deleted_count
