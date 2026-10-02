@@ -555,6 +555,7 @@ async function loadAdminDashboardData() {
         const menuRes = await api.getMenu();
         if (menuRes.success && menuRes.items) {
             adminFoodItems = menuRes.items;
+            renderShopChips();
             const activeEl = document.activeElement;
             const isUserEditing = activeEl && (
                 activeEl.id?.startsWith('quick-price') || 
@@ -1548,8 +1549,74 @@ function matchSmartCategory(item, catKey) {
     }
 }
 
+function renderShopChips() {
+    const container = document.getElementById('admin-menu-shop-chips');
+    const label = document.getElementById('active-shop-selected-label');
+    if (!container) return;
+
+    const totalCount = adminFoodItems.length || 1963;
+    const isAll = (adminMenuShopFilter === 'All' || !adminMenuShopFilter);
+
+    // Update Top Label
+    if (label) {
+        if (isAll) {
+            label.innerHTML = `🏪 Showing: <strong>All 23 Campus Shops</strong> (${totalCount} Dishes)`;
+            label.style.background = '#fff7ed';
+            label.style.color = '#ea580c';
+            label.style.borderColor = '#fed7aa';
+        } else {
+            const activeShop = adminShops.find(s => s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter);
+            const sName = activeShop ? activeShop.name : adminMenuShopFilter;
+            const sCount = countItemsForShop(adminMenuShopFilter, sName);
+            label.innerHTML = `🏪 Selected Shop: <strong style="color: #065f46; text-decoration: underline;">${sName}</strong> (${sCount} Dishes) <button onclick="selectShopMenuFilter('All')" style="background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; cursor: pointer; font-weight: 800; font-size: 0.75rem; margin-left: 8px; padding: 2px 8px; border-radius: 6px;">[Show All 23 Shops]</button>`;
+            label.style.background = '#ecfdf5';
+            label.style.color = '#047857';
+            label.style.borderColor = '#86efac';
+        }
+    }
+
+    let html = `
+        <button type="button" onclick="selectShopMenuFilter('All')" 
+                style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isAll ? '#ea580c' : '#cbd5e1'}; background: ${isAll ? 'linear-gradient(135deg, #fff7ed, #fed7aa)' : '#f8fafc'}; color: ${isAll ? '#9a3412' : '#334155'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isAll ? '0 3px 10px rgba(234, 88, 12, 0.25)' : 'none'}; transition: all 0.2s ease;">
+            <span>🏪</span>
+            <span>All Shops</span>
+            <span style="background: ${isAll ? '#ea580c' : '#e2e8f0'}; color: ${isAll ? 'white' : '#475569'}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px;">
+                ${totalCount}
+            </span>
+            ${isAll ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem;"></i>' : ''}
+        </button>
+    `;
+
+    adminShops.forEach(s => {
+        const sid = s.shopId || s._id;
+        const count = countItemsForShop(sid, s.name);
+        const isActive = (adminMenuShopFilter === sid || adminMenuShopFilter === s.name);
+
+        html += `
+            <button type="button" onclick="selectShopMenuFilter('${sid}')" 
+                    style="display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.95rem; border-radius: 10px; border: 2px solid ${isActive ? '#ea580c' : '#e2e8f0'}; background: ${isActive ? 'linear-gradient(135deg, #fff7ed, #ffedd5)' : 'white'}; color: ${isActive ? '#9a3412' : '#1e293b'}; font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; box-shadow: ${isActive ? '0 4px 12px rgba(234, 88, 12, 0.28)' : '0 1px 3px rgba(0,0,0,0.04)'}; transition: all 0.2s ease; transform: ${isActive ? 'scale(1.04)' : 'scale(1)'};">
+                <span style="font-size: 1.1rem;">${getShopEmoji(s.category)}</span>
+                <span>${s.name}</span>
+                <span style="background: ${isActive ? '#ea580c' : '#f1f5f9'}; color: ${isActive ? 'white' : (count > 0 ? '#0f172a' : '#94a3b8')}; font-size: 0.72rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; border: 1px solid ${isActive ? '#ea580c' : '#cbd5e1'};">
+                    ${count}
+                </span>
+                ${isActive ? '<i class="fa-solid fa-circle-check" style="color: #ea580c; font-size: 0.85rem;"></i>' : ''}
+            </button>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+function selectShopMenuFilter(shopId) {
+    adminMenuShopFilter = shopId || 'All';
+    renderShopChips();
+    renderAdminFoodTable();
+}
+
 function handleAdminMenuShopFilterChange(val) {
     adminMenuShopFilter = val || 'All';
+    renderShopChips();
     renderAdminFoodTable();
 }
 
@@ -1660,50 +1727,41 @@ function renderAdminFoodTable() {
     if (!tableBody) return;
 
     let filtered = adminFoodItems.filter(item => {
-        // 1. Overall Admin Dashboard Scope Filter
-        let matchesScope = true;
-        if (activeShopScope !== 'All') {
-            const targetShop = adminShops.find(s => (s.shopId === activeShopScope || s._id === activeShopScope || s.name === activeShopScope || s.category === activeShopScope));
-            const targetSid = targetShop ? (targetShop.shopId || targetShop._id) : activeShopScope;
-            const targetSname = targetShop ? targetShop.name : activeShopScope;
-
-            matchesScope = (item.shopId === targetSid || 
-                            item.shopId === activeShopScope || 
-                            item.shopName === targetSname || 
-                            item.shopName === activeShopScope ||
-                            item.category === activeShopScope);
-        }
-
-        // 2. Menu Management Dedicated Shop Filter Dropdown
-        let matchesMenuShop = true;
+        // 1. Filter by Selected Shop (from shop chips or dropdown)
         if (adminMenuShopFilter && adminMenuShopFilter !== 'All') {
             const mShop = adminShops.find(s => (s.shopId === adminMenuShopFilter || s._id === adminMenuShopFilter || s.name === adminMenuShopFilter));
             const mSid = mShop ? (mShop.shopId || mShop._id) : adminMenuShopFilter;
-            const mSname = mShop ? mShop.name : adminMenuShopFilter;
+            const mSname = mShop ? mShop.name.toLowerCase() : adminMenuShopFilter.toLowerCase();
 
-            matchesMenuShop = (
-                item.shopId === mSid ||
-                item.shopId === adminMenuShopFilter ||
-                (mSname && item.shopName === mSname) ||
-                item.shopName === adminMenuShopFilter ||
-                (mShop && mShop.category && item.category === mShop.category)
+            const itemSid = item.shopId || '';
+            const itemSname = (item.shopName || '').toLowerCase();
+
+            const matchesThisShop = (
+                itemSid === mSid ||
+                itemSid === adminMenuShopFilter ||
+                (mSname && itemSname === mSname) ||
+                (mSname && itemSname.includes(mSname))
             );
+            if (!matchesThisShop) return false;
         }
 
-        // 3. Category Filter Pills
+        // 2. Category Filter Pills
         const matchesCategory = matchSmartCategory(item, currentFoodFilter);
+        if (!matchesCategory) return false;
 
-        // 4. Search Filter
-        const matchesSearch = !searchVal || 
-                              (item.name && item.name.toLowerCase().includes(searchVal)) ||
-                              (item.description && item.description.toLowerCase().includes(searchVal)) ||
-                              (item.shopName && item.shopName.toLowerCase().includes(searchVal));
+        // 3. Search Filter
+        if (searchVal) {
+            const nameMatch = item.name && item.name.toLowerCase().includes(searchVal);
+            const descMatch = item.description && item.description.toLowerCase().includes(searchVal);
+            const shopMatch = item.shopName && item.shopName.toLowerCase().includes(searchVal);
+            if (!nameMatch && !descMatch && !shopMatch) return false;
+        }
 
-        return matchesScope && matchesMenuShop && matchesCategory && matchesSearch;
+        return true;
     });
 
     if (filtered.length === 0) {
-        const activeShopLabel = (adminMenuShopFilter !== 'All' ? (adminShops.find(s=>s.shopId===adminMenuShopFilter||s._id===adminMenuShopFilter)?.name || adminMenuShopFilter) : (activeShopScope === 'All' ? 'All Counters' : activeShopScope));
+        const activeShopLabel = (adminMenuShopFilter !== 'All' ? (adminShops.find(s=>s.shopId===adminMenuShopFilter||s._id===adminMenuShopFilter||s.name===adminMenuShopFilter)?.name || adminMenuShopFilter) : 'All Shops');
         tableBody.innerHTML = `
             <tr>
                 <td colspan="6" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
@@ -1728,6 +1786,92 @@ function renderAdminFoodTable() {
         return `
             <tr>
                 <td>
+                    <img src="${item.image || item.imageUrl || fallbackImg}" alt="${item.name}" 
+                         style="width: 52px; height: 52px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid #e2e8f0;"
+                         onerror="this.src='${fallbackImg}'">
+                </td>
+                <td>
+                    <div style="font-weight: 700; color: var(--secondary); font-size: 0.95rem;">${item.name}</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted); max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        ${item.description || ''}
+                    </div>
+                    <div style="font-size: 0.74rem; color: #9a3412; margin-top: 3px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; background: #fff7ed; border: 1px solid #fed7aa; padding: 1px 6px; border-radius: 4px;">
+                        <i class="fa-solid fa-store" style="color: var(--primary);"></i> ${shopDisplay}
+                    </div>
+                </td>
+                <td>
+                    <span style="font-size: 0.8rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); background: #f1f5f9; color: #334155; display: inline-block;">
+                        ${item.category || 'General'}
+                    </span>
+                    <span style="font-size: 0.74rem; font-weight: 800; margin-left: 0.35rem; color: ${isVeg ? '#16a34a' : '#dc2626'}; background: ${isVeg ? '#dcfce7' : '#fee2e2'}; padding: 2px 6px; border-radius: 4px; border: 1px solid ${isVeg ? '#86efac' : '#fca5a5'};">
+                        ${isVeg ? '🟢 VEG' : '🔴 NON-VEG'}
+                    </span>
+                </td>
+                <td>
+                    ${item.hasHalfFull ? `
+                        <div style="display: flex; flex-direction: column; gap: 5px; min-width: 145px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                                <span style="font-size: 0.76rem; font-weight: 800; color: #0369a1; min-width: 38px;">🥣 Half:</span>
+                                <div style="display: flex; align-items: center; background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 6px; padding: 1px 4px;">
+                                    <span style="font-weight: 700; color: #0284c7; font-size: 0.8rem; margin-right: 2px;">₹</span>
+                                    <input type="number" id="quick-price-half-${itemId}" value="${item.priceHalf || item.price}" min="1" step="1"
+                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #0369a1; outline: none; padding: 2px 0;"
+                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Half Price">
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                                <span style="font-size: 0.76rem; font-weight: 800; color: #15803d; min-width: 38px;">🍲 Full:</span>
+                                <div style="display: flex; align-items: center; background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 6px; padding: 1px 4px;">
+                                    <span style="font-weight: 700; color: #16a34a; font-size: 0.8rem; margin-right: 2px;">₹</span>
+                                    <input type="number" id="quick-price-full-${itemId}" value="${item.priceFull || item.price}" min="1" step="1"
+                                           style="width: 50px; border: none; background: transparent; font-weight: 800; font-size: 0.85rem; color: #15803d; outline: none; padding: 2px 0;"
+                                           onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', true)" title="Edit Full Price">
+                                </div>
+                            </div>
+                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', true)"
+                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; margin-top: 2px; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
+                                    title="Save Half & Full Price">
+                                <i class="fa-solid fa-floppy-disk"></i> Save Rate
+                            </button>
+                        </div>
+                    ` : `
+                        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 120px;">
+                            <div style="display: flex; align-items: center; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 2px 6px;">
+                                <span style="font-weight: 800; color: var(--primary); font-size: 0.92rem; margin-right: 2px;">₹</span>
+                                <input type="number" id="quick-price-${itemId}" value="${item.price}" min="1" step="1"
+                                       style="width: 58px; border: none; background: transparent; font-weight: 800; font-size: 0.95rem; color: #9a3412; outline: none; padding: 2px 0;"
+                                       onkeydown="if(event.key==='Enter') quickSaveItemPrice('${itemId}', false)" title="Edit Price">
+                            </div>
+                            <button class="btn btn-sm" id="btn-quick-save-${itemId}" onclick="quickSaveItemPrice('${itemId}', false)"
+                                    style="padding: 2px 8px; font-size: 0.74rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 5px; font-weight: 700; width: 100%; box-shadow: 0 1px 3px rgba(16,185,129,0.25); cursor: pointer;"
+                                    title="Save Price">
+                                <i class="fa-solid fa-floppy-disk"></i> Save ₹
+                            </button>
+                        </div>
+                    `}
+                </td>
+                <td>
+                    <button class="btn btn-sm ${isAvailable ? 'btn-success' : 'btn-outline'}" 
+                            onclick="toggleItemAvailability('${itemId}', ${!isAvailable})"
+                            title="Click to toggle stock status">
+                        <i class="fa-solid ${isAvailable ? 'fa-check' : 'fa-xmark'}"></i>
+                        ${isAvailable ? 'In Stock' : 'Out of Stock'}
+                    </button>
+                </td>
+                <td>
+                    <div style="display: flex; gap: 0.4rem;">
+                        <button class="btn btn-outline btn-sm" onclick="openEditFoodModal('${itemId}')" title="Edit Full Item (Name, Shop, Photo)">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn btn-outline btn-sm" style="color: #ef4444; border-color: #fca5a5;" onclick="deleteFoodItem('${itemId}', '${item.name}')" title="Delete Item">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
                     <img src="${item.image || item.imageUrl || fallbackImg}" alt="${item.name}" 
                          style="width: 52px; height: 52px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid #e2e8f0;"
                          onerror="this.src='${fallbackImg}'">
@@ -3452,7 +3596,10 @@ function switchAdminTab(tabName) {
     if (commissionsSection) commissionsSection.style.display = (tabName === 'commissions' ? 'block' : 'none');
     if (deliverySection) deliverySection.style.display = (tabName === 'delivery' ? 'block' : 'none');
 
-    if (tabName === 'shop') {
+    if (tabName === 'menu') {
+        renderShopChips();
+        renderAdminFoodTable();
+    } else if (tabName === 'shop') {
         populateShopProfileForm();
     } else if (tabName === 'staff') {
         loadStaffData();
