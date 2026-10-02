@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMU Campus Mart - Shopkeeper Login Cards</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 2rem;
+            color: #1e293b;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0; color: #1e40af; font-size: 1.8rem; }
+        .header p { color: #64748b; margin-top: 0.5rem; }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .cred-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            page-break-inside: avoid;
+        }
+        .card-header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .shop-title { font-size: 1.1rem; font-weight: 800; }
+        .shop-badge { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+        .card-body { padding: 1.25rem; }
+        .info-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem; }
+        .info-row .label { color: #64748b; font-weight: 600; }
+        .info-row .val { font-weight: 700; color: #0f172a; text-align: right; }
+        .creds-box {
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 0.85rem;
+            margin: 1rem 0;
+        }
+        .cred-field { margin-bottom: 0.5rem; }
+        .cred-field:last-child { margin-bottom: 0; }
+        .cred-label { font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; }
+        .cred-value { font-family: monospace; font-size: 1rem; font-weight: 800; color: #0f172a; }
+        .cred-value.email { color: #2563eb; word-break: break-all; }
+        .cred-value.password { color: #059669; font-size: 1.1rem; letter-spacing: 0.5px; }
+        .footer-note { font-size: 0.75rem; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 0.75rem; }
+        .print-btn {
+            background: #2563eb; color: white; border: none; padding: 0.75rem 1.5rem;
+            border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 1rem;
+            font-size: 1rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .print-btn { display: none; }
+            .cred-card { border: 1.5px solid #94a3b8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎓 TMU Campus Mart - Official Shopkeeper Counter Slips</h1>
+        <p>Direct login credentials for all 23 campus canteen & mart counter managers.</p>
+        <button class="print-btn" onclick="window.print()">🖨️ Print All Counter Cards</button>
+    </div>
+    
+    <div class="cards-grid">
+        
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">TMU Special Chole Kulcha</div>
+                    <span class="shop-badge">shop-1</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Banti Singh</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Campus Central Food Court, Counter #1</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43201</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">cholekulcha@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">chole123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Food & Friends</div>
+                    <span class="shop-badge">shop-2</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Nirmal Ji</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Student Activity Centre, Counter #2</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43202</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">foodfriends@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">foodfriends123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Chandrakanta Canteen</div>
+                    <span class="shop-badge">shop-3</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Pankaj Gupta</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Central Dining Complex, Counter #3</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43203</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">chandrakanta@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">chandra123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Super Food Corner</div>
+                    <span class="shop-badge">shop-4</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Vikash Kumar</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Food Court North Wing, Counter #4</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43204</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">superfood@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">superfood123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Shiv Shudh Veg Biryani</div>
+                    <span class="shop-badge">shop-5</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Banty Bhai</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Near Gate No. 2 Lawn, Counter #5</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43205</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">shividum@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">shiv123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Foodo Holic</div>
+                    <span class="shop-badge">shop-6</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Aanand</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">CCSIT Food Court, Counter #6</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43206</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">foodoholic@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">foodoholic123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Sardar Ji Hub</div>
+                    <span class="shop-badge">shop-7</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Ravinder Pal</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Main Lawn Food Hub, Counter #7</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43207</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">sardarjihub@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">sardarji123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Jiven Canteen</div>
+                    <span class="shop-badge">shop-8</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Jiven Singh</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Sports Complex Wing, Counter #8</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43208</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">jivencanteen@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">jiven123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Shree Balaji Chai Bhandar</div>
+                    <span class="shop-badge">shop-9</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Neeraj Kumar</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Gazebo Central Plaza, Counter #9</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43209</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">balajichai@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">balaji123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Ahuja Photo Shop</div>
+                    <span class="shop-badge">shop-10</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Ahuja Ji</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">CCSIT Ground Floor Corridor, Shop #10</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43210</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">ahujaphoto@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">ahujaphoto123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Durga Photo Shop</div>
+                    <span class="shop-badge">shop-11</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Vivek Gupta</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Engineering Block, Ground Floor, Shop #11</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43211</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">durgaphoto@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">durgaphoto123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Royal Cafe</div>
+                    <span class="shop-badge">shop-12</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Lucky Chaudhary</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Central Boulevard, Counter #12</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43212</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">royalcafe@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">royalcafe123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Gupta Photo Shop</div>
+                    <span class="shop-badge">shop-13</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Charu Gupta</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Medical & Nursing Block Annex, Shop #13</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43213</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">guptaphoto@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">guptaphoto123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Rapid Food Corner (South Indian)</div>
+                    <span class="shop-badge">shop-14</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Anil Kumar</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Central Food Court South Wing, Counter #14</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43214</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">rapidfood@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">rapidfood123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Ahuja Mart</div>
+                    <span class="shop-badge">shop-15</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Rajeev</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Hostel Complex Market, Shop #15</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43215</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">ahujamart@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">ahujamart123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Mahinder Food Junction</div>
+                    <span class="shop-badge">shop-16</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Tarun Ji</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Open Lawn Food Street, Counter #16</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43216</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">mahinderfood@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">mahinder123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Vardhaman Juice Corner</div>
+                    <span class="shop-badge">shop-17</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Anita Ji</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Near Sports Ground, Counter #17</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43217</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">vardhaman@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">vardhaman123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Patanjali Mart</div>
+                    <span class="shop-badge">shop-18</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Deepak Agarwal</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">TMU Main Gate Shopping Arcade, Shop #18</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 84499 17176</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">patanjalimart@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">patanjali123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Caffelera</div>
+                    <span class="shop-badge">shop-19</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Akshat Jain</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Student Activity Plaza, Shop #19</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 85299 08288</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">caffelera@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">caffelera123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Rainbow</div>
+                    <span class="shop-badge">shop-20</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Amit Dubey</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Central Food Court, Kiosk #20</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43220</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">rainbow@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">rainbow123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Chai Nagri</div>
+                    <span class="shop-badge">shop-21</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Raja Gupta</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Near Engineering Garden, Shop #21</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43221</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">chainagri@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">chainagri123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Pani Puri Restaurant</div>
+                    <span class="shop-badge">shop-22</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Inderpal Ji</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Food Court East Corner, Counter #22</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43222</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">panipuri@tmu.ac.in</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">panipuri123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cred-card">
+                <div class="card-header">
+                    <div class="shop-title">Yummy Express</div>
+                    <span class="shop-badge">shop-23</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row"><span class="label">Manager:</span> <span class="val">Deepanshu</span></div>
+                    <div class="info-row"><span class="label">Location:</span> <span class="val">Central Campus Mart & Food Court, Counter #23</span></div>
+                    <div class="info-row"><span class="label">Phone:</span> <span class="val">+91 98765 43223</span></div>
+                    
+                    <div class="creds-box">
+                        <div class="cred-field">
+                            <span class="cred-label">Login Email</span>
+                            <span class="cred-value email">yummy01@gmail.com</span>
+                        </div>
+                        <div class="cred-field">
+                            <span class="cred-label">Password</span>
+                            <span class="cred-value password">yummy123</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-note">
+                        🔒 Direct Login: <a href="http://127.0.0.1:5000/login.html">http://127.0.0.1:5000/login.html</a><br>
+                        <em>Orders placed by students for this shop will automatically appear on your screen!</em>
+                    </div>
+                </div>
+            </div>
+            
+    </div>
+</body>
+</html>
