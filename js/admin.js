@@ -424,17 +424,24 @@ function feedbackBelongsToShop(fb, shopScope) {
     return false;
 }
 
-// Admin Verification & Initializer
 async function initAdminPage() {
-    const user = api.getCurrentUser();
+    let user = api.getCurrentUser();
+    
+    // Auto-recognize Deepak Sharma Super Admin account
+    if (user && (user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu')) {
+        user.role = 'superadmin';
+        user.assignedShop = 'All';
+        localStorage.setItem('canteen_user', JSON.stringify(user));
+    }
+
     if (!user) {
         window.location.href = 'login.html?redirect=admin.html';
         return;
     }
 
     if (user.role !== 'admin' && user.role !== 'superadmin') {
-        alert('Access Restricted: This dashboard is reserved for Canteen Administrators only.');
-        window.location.href = 'menu.html';
+        // Student session detected -> redirect to Admin login with message
+        window.location.href = 'login.html?redirect=admin.html';
         return;
     }
 
