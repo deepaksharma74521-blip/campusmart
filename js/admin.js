@@ -483,6 +483,9 @@ async function initAdminPage() {
 
 function handleShopScopeChange(shopVal) {
     activeShopScope = shopVal || 'All';
+    adminMenuShopFilter = shopVal || 'All';
+    const menuShopFilter = document.getElementById('admin-menu-shop-filter');
+    if (menuShopFilter) menuShopFilter.value = adminMenuShopFilter;
     updateShopScopeUI();
     renderAdminOrdersTable();
     renderAdminFoodTable();
@@ -548,11 +551,19 @@ async function loadAdminDashboardData() {
             renderAdminOrdersTable();
         }
 
-        // 3. Fetch Menu Items
+        // 3. Fetch Menu Items (Guard: Do NOT wipe table if user is currently typing)
         const menuRes = await api.getMenu();
         if (menuRes.success && menuRes.items) {
             adminFoodItems = menuRes.items;
-            renderAdminFoodTable();
+            const activeEl = document.activeElement;
+            const isUserEditing = activeEl && (
+                activeEl.id?.startsWith('quick-price') || 
+                activeEl.id === 'admin-food-search' || 
+                (document.getElementById('admin-food-table-body') && document.getElementById('admin-food-table-body').contains(activeEl))
+            );
+            if (!isUserEditing) {
+                renderAdminFoodTable();
+            }
         }
 
         // 4. Update Metrics & Statistics
@@ -571,6 +582,13 @@ async function loadAdminDashboardData() {
     }
 }
 
+function countItemsForShop(sid, sname) {
+    if (!adminFoodItems || adminFoodItems.length === 0) return 0;
+    return adminFoodItems.filter(item => {
+        return item.shopId === sid || (sname && item.shopName && item.shopName.toLowerCase() === sname.toLowerCase());
+    }).length;
+}
+
 async function loadAdminShops() {
     try {
         const res = await api.getShops();
@@ -585,7 +603,8 @@ async function loadAdminShops() {
                     <option value="All" ${currentVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (Master View)</option>
                     ${adminShops.map(s => {
                         const sid = s.shopId || s._id;
-                        return `<option value="${sid}" ${currentVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} ${!s.isOpen ? '(CLOSED)' : ''}</option>`;
+                        const count = countItemsForShop(sid, s.name);
+                        return `<option value="${sid}" ${currentVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} ${count > 0 ? `(${count} items)` : ''} ${!s.isOpen ? '(CLOSED)' : ''}</option>`;
                     }).join('')}
                 `;
             }
@@ -618,7 +637,8 @@ async function loadAdminShops() {
                 const currentEditId = document.getElementById('shop-form-id')?.value || (adminShops[0]?.shopId || adminShops[0]?._id);
                 profileShopSelect.innerHTML = adminShops.map(s => {
                     const sid = s.shopId || s._id;
-                    return `<option value="${sid}" ${currentEditId === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${s.itemCount || 0} items) ${!s.isOpen ? '🔴 CLOSED' : '🟢 OPEN'}</option>`;
+                    const count = countItemsForShop(sid, s.name);
+                    return `<option value="${sid}" ${currentEditId === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${count} items) ${!s.isOpen ? '🔴 CLOSED' : '🟢 OPEN'}</option>`;
                 }).join('');
             }
 
@@ -627,10 +647,11 @@ async function loadAdminShops() {
             if (menuShopFilter) {
                 const currentMVal = menuShopFilter.value || adminMenuShopFilter || 'All';
                 menuShopFilter.innerHTML = `
-                    <option value="All" ${currentMVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (All 23 Outlets)</option>
+                    <option value="All" ${currentMVal === 'All' ? 'selected' : ''}>🏪 All Shops & Counters (All 23 Outlets - ${adminFoodItems.length || 1963} Dishes)</option>
                     ${adminShops.map(s => {
                         const sid = s.shopId || s._id;
-                        return `<option value="${sid}" ${currentMVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${s.category})</option>`;
+                        const count = countItemsForShop(sid, s.name);
+                        return `<option value="${sid}" ${currentMVal === sid ? 'selected' : ''}>${getShopEmoji(s.category)} ${s.name} (${count} dishes)</option>`;
                     }).join('')}
                 `;
             }

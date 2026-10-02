@@ -92,7 +92,7 @@
             </div>
 
             <!-- Shop Dropdown for Super Admin / Multi-shop Staff -->
-            <div id="shop-switcher-wrap" style="display: flex; align-items: center; gap: 0.6rem;">
+            <div id="shop-switcher-wrap" style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
                 <label for="admin-active-shop-select" style="font-size: 0.85rem; font-weight: 700; color: #475569;">Switch Counter:</label>
                 <select id="admin-active-shop-select" class="form-select no-icon" style="padding: 0.45rem 0.9rem; font-size: 0.88rem; font-weight: 600; border-radius: 8px; border: 1.5px solid var(--primary); cursor: pointer;" onchange="handleShopScopeChange(this.value)">
                     <option value="All" selected>🏪 All Shops & Counters (Master View)</option>
@@ -103,6 +103,9 @@
                     <option value="Drinks & Juices">🥤 Cold Drinks & Juices</option>
                     <option value="Hostel Essentials">🧴 Daily / Hostel Essentials</option>
                 </select>
+                <button type="button" onclick="switchAdminTab('menu')" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #ea580c, #c2410c); font-weight: 700; border: none; padding: 0.45rem 0.95rem; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.25);">
+                    <i class="fa-solid fa-tags"></i> 🍽️ Quick Price & Menu Editor
+                </button>
             </div>
         </div>
 
@@ -177,8 +180,9 @@
             <button class="admin-tab-btn active" data-tab="orders" id="tab-btn-orders">
                 <i class="fa-solid fa-bell-concierge"></i> Live Orders Management
             </button>
-            <button class="admin-tab-btn" data-tab="menu" id="tab-btn-menu">
-                <i class="fa-solid fa-boxes-stacked"></i> Products & Menu Items (CRUD)
+            <button class="admin-tab-btn" data-tab="menu" id="tab-btn-menu" style="font-weight: 800;">
+                <i class="fa-solid fa-tags" style="color: #ea580c;"></i> 🍽️ Shop Menu & Price Editor
+                <span id="admin-menu-badge" style="background: #ea580c; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 800;">23 Shops</span>
             </button>
             <button class="admin-tab-btn" data-tab="shop" id="tab-btn-shop">
                 <i class="fa-solid fa-store"></i> My Shop Profile
@@ -1647,10 +1651,10 @@ Chai 15"></textarea>
     </div>
 
     <!-- Backend API & Admin Scripts -->
-    <script src="js/api.js?v=3.0"></script>
-    <script src="js/auth.js?v=3.0"></script>
-    <script src="js/admin.js?v=3.0"></script>
+    <script src="js/api.js?v=3.5"></script>
+    <script src="js/auth.js?v=3.5"></script>
+    <script src="js/admin.js?v=3.5"></script>
     <!-- PWA 1-Click Mobile App Installer -->
-    <script src="js/pwa-install.js"></script>
+    <script src="js/pwa-install.js?v=3.5"></script>
 </body>
 </html>
