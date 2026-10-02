@@ -1602,6 +1602,14 @@ def add_food_item():
     if not name or float(price) <= 0:
         return jsonify({"success": False, "message": "Valid name and price are required."}), 400
 
+    # Strict 100% Pure Veg Guard: Campus Mart is exclusively Pure Vegetarian
+    non_veg_pattern = r'\b(chicken|mutton|fish|egg|eggs|meat|prawn|prawns|beef|pork|bacon|seafood)\b'
+    if re.search(non_veg_pattern, name, re.IGNORECASE):
+        return jsonify({
+            "success": False,
+            "message": "Campus Mart is a 100% Certified Pure Vegetarian platform. Non-veg items cannot be added."
+        }), 400
+
     item_doc = {
         "_id": str(uuid.uuid4()),
         "name": name,
@@ -1714,6 +1722,11 @@ def bulk_import_menu():
                 has_half_full = False
             
         if not name or price <= 0:
+            continue
+
+        # Skip any non-veg items (Strict Pure Veg Campus Policy)
+        non_veg_pattern = r'\b(chicken|mutton|fish|egg|eggs|meat|prawn|prawns|beef|pork|bacon|seafood)\b'
+        if re.search(non_veg_pattern, name, re.IGNORECASE):
             continue
             
         cat = itm.get("category") or "Canteen Food"

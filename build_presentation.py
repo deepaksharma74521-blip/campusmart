@@ -136,7 +136,7 @@ def create_deck():
     p.space_after = Pt(12)
 
     p = tf.add_paragraph()
-    p.text = "• Order food, snacks & stationery from classroom on smartphone\n• Multi-shop counter order isolation (23 Outlets & 1,974+ Pure Veg items)\n• Live 20-min freshness countdown & Web Audio pickup alerts\n• Gate No. 2 Parcel Concierge & New Look Men's Salon integration\n• Automated Revenue Split (₹2.50 Platform Profit) & Live Cash Ledger"
+    p.text = "• Order food, snacks & stationery from classroom on smartphone\n• Multi-shop counter order isolation (23 Outlets & 1,963+ Pure Veg items)\n• Live 20-min freshness countdown & Web Audio pickup alerts\n• Gate No. 2 Parcel Concierge & New Look Men's Salon integration\n• Automated Revenue Split (₹2.50 Platform Profit) & Live Cash Ledger"
     p.font.size = Pt(11.5)
     p.font.color.rgb = c_muted
     p.space_after = Pt(20)
@@ -184,11 +184,11 @@ def create_deck():
         s3.shapes.add_picture(pickup_img, Inches(7.4), Inches(1.8), Inches(5.1), Inches(5.3))
 
     # =========================================================================
-    # SLIDE 4: SCALE & CATALOG SHOWCASE (1,974+ DISHES & 23 SHOPS)
+    # SLIDE 4: SCALE & CATALOG SHOWCASE (1,963+ DISHES & 23 SHOPS)
     # =========================================================================
     s4 = prs.slides.add_slide(blank_slide_layout)
     set_bg(s4)
-    add_header(s4, "Extensive Catalog Showcase", "Campus Scale: 1,974+ Pure Veg Items Across 23 Outlets", "100% Pure Vegetarian certified menu covering dining, groceries, photocopying, and stationery")
+    add_header(s4, "Extensive Catalog Showcase", "Campus Scale: 1,963+ Pure Veg Items Across 23 Outlets", "100% Pure Vegetarian certified menu covering dining, groceries, photocopying, and stationery")
 
     def add_showcase_item(slide, left, top, w, h, img_name, title, desc, title_col):
         card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(left), Inches(top), Inches(w), Inches(h))
@@ -381,8 +381,8 @@ def create_deck():
     add_header(s11, "Engineering & System Architecture", "Lightweight, Modern Full-Stack Technology", "Zero client-side build complexity; ultra-fast response times on campus Wi-Fi / 4G")
 
     add_card(s11, 0.8, 1.8, 6.2, 1.35, "Frontend: HTML5 + CSS3 + Vanilla JS", "Clean mobile-first glassmorphism UI; instant page load without downloading 100MB+ node_modules.", c_orange, "🌐")
-    add_card(s11, 0.8, 3.25, 6.2, 1.35, "Backend: Python Flask REST API", "24/7 Render Cloud API serving 1,974+ items, orders pipeline, split engine & RBAC.", c_blue, "⚡")
-    add_card(s11, 0.8, 4.7, 6.2, 1.35, "Database: MongoDB NoSQL JSON Store", "Flexible JSON document persistence for 26 accounts, 1,974+ pure veg food items & 23 shops.", c_green, "🍃")
+    add_card(s11, 0.8, 3.25, 6.2, 1.35, "Backend: Python Flask REST API", "24/7 Render Cloud API serving 1,963+ items, orders pipeline, split engine & RBAC.", c_blue, "⚡")
+    add_card(s11, 0.8, 4.7, 6.2, 1.35, "Database: MongoDB NoSQL JSON Store", "Flexible JSON document persistence for 26 accounts, 1,963+ pure veg food items & 23 shops.", c_green, "🍃")
     add_card(s11, 0.8, 6.15, 6.2, 0.95, "Audio Engine: Web Audio API & TTS", "Browser-native oscillator chime synthesizer and Text-To-Speech speech synthesis engine.", c_purple, "🔊")
 
     tech_img = os.path.join(img_dir, "tech.jpg")
