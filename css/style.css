@@ -1933,10 +1933,10 @@ button {
 
 .order-ready-modal-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -1945,9 +1945,11 @@ button {
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
 }
 
 .order-ready-modal-backdrop.active {
@@ -1960,54 +1962,86 @@ button {
     background: white;
     width: 100%;
     max-width: 480px;
+    max-height: calc(100dvh - 32px);
+    max-height: calc(100vh - 32px);
     border-radius: 20px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
     border: 2px solid #86efac;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin: auto;
     text-align: center;
+    transform: scale(0.95);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .order-ready-modal-backdrop.active .order-ready-modal-card {
-    animation: popInBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform: scale(1);
 }
 
 .order-ready-modal-header {
     background: linear-gradient(135deg, #15803d, #16a34a);
     color: white;
-    padding: 2rem 1.5rem 1.25rem 1.5rem;
+    padding: 1.5rem 1.25rem 1rem 1.25rem;
     position: relative;
+    flex-shrink: 0;
+}
+
+.order-ready-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.22);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.order-ready-close-btn:hover {
+    background: rgba(255, 255, 255, 0.38);
 }
 
 .order-ready-icon-wrap {
-    width: 76px;
-    height: 76px;
+    width: 64px;
+    height: 64px;
     background: white;
     color: #16a34a;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
-    margin: 0 auto 0.85rem auto;
+    font-size: 1.8rem;
+    margin: 0 auto 0.6rem auto;
     animation: orderReadyPulse 2s infinite;
 }
 
 .order-ready-modal-body {
-    padding: 1.5rem;
+    padding: 1.15rem 1.25rem;
     text-align: left;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    scrollbar-width: thin;
+    overscroll-behavior: contain;
 }
 
 .order-ready-token-box {
     background: #f0fdf4;
     border: 2px dashed #86efac;
     border-radius: 12px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1.25rem;
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 0.85rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2017,12 +2051,36 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
-    margin-top: 1.5rem;
+    margin-top: 1.15rem;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding-top: 0.5rem;
 }
 
 @media (max-width: 480px) {
+    .order-ready-modal-card {
+        max-height: calc(100dvh - 20px) !important;
+        border-radius: 16px !important;
+    }
+    .order-ready-modal-header {
+        padding: 1.15rem 1rem 0.75rem !important;
+    }
+    .order-ready-icon-wrap {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.4rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    .order-ready-modal-header h3 {
+        font-size: 1.25rem !important;
+    }
+    .order-ready-modal-body {
+        padding: 0.85rem 1rem 1rem !important;
+    }
     .order-ready-actions {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
     }
 }
 

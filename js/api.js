@@ -719,13 +719,14 @@ function showOrderReadyModal(order) {
     backdrop.innerHTML = `
         <div class="order-ready-modal-card">
             <div class="order-ready-modal-header">
+                <button type="button" class="order-ready-close-btn" onclick="dismissOrderReadyModal('${order.orderId || order._id}')" title="Close" aria-label="Close">&times;</button>
                 <div class="order-ready-icon-wrap" onclick="playOrderReadyChime(); triggerDeviceVibration();" style="cursor: pointer;" title="Tap to Ring Chime Again">
                     <i class="fa-solid fa-bell-concierge"></i>
                 </div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 0.35rem; font-weight: 800;">Your Order is Ready!</h3>
-                <p style="font-size: 0.92rem; opacity: 0.92; margin: 0;">Packed & ready for pickup at the counter</p>
+                <h3 style="font-size: 1.45rem; margin-bottom: 0.25rem; font-weight: 800;">Your Order is Ready!</h3>
+                <p style="font-size: 0.88rem; opacity: 0.94; margin: 0;">Packed & ready for pickup at counter</p>
                 
-                <button type="button" onclick="playOrderReadyChime(); triggerDeviceVibration();" style="background: rgba(255,255,255,0.22); color: white; border: 1px solid rgba(255,255,255,0.45); border-radius: 9999px; padding: 4px 12px; font-size: 0.78rem; font-weight: 700; margin-top: 0.75rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+                <button type="button" onclick="playOrderReadyChime(); triggerDeviceVibration();" style="background: rgba(255,255,255,0.22); color: white; border: 1px solid rgba(255,255,255,0.45); border-radius: 9999px; padding: 3px 12px; font-size: 0.75rem; font-weight: 700; margin-top: 0.6rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
                     <i class="fa-solid fa-volume-high"></i> Tap to Ring Bell Sound 🔔
                 </button>
             </div>
@@ -733,16 +734,16 @@ function showOrderReadyModal(order) {
             <div class="order-ready-modal-body">
                 <div class="order-ready-token-box">
                     <div>
-                        <div style="font-size: 0.78rem; color: #166534; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Pickup Token ID</div>
-                        <div style="font-size: 1.45rem; font-weight: 800; color: #15803d; font-family: var(--font-heading);">${order.orderId || 'ORD-#'}</div>
+                        <div style="font-size: 0.75rem; color: #166534; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Pickup Token ID</div>
+                        <div style="font-size: 1.4rem; font-weight: 800; color: #15803d; font-family: var(--font-heading);">${order.orderId || 'ORD-#'}</div>
                     </div>
                     <span style="background: #16a34a; color: white; padding: 4px 10px; border-radius: 9999px; font-weight: 700; font-size: 0.78rem; display: inline-flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-circle-check"></i> READY
                     </span>
                 </div>
 
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 0.75rem; font-size: 0.86rem; line-height: 1.6;">
-                    <div style="color: #334155; margin-bottom: 0.25rem;">
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem 0.9rem; margin-bottom: 0.65rem; font-size: 0.84rem; line-height: 1.5;">
+                    <div style="color: #334155; margin-bottom: 0.2rem;">
                         <i class="fa-solid fa-box" style="color: var(--primary); margin-right: 4px;"></i> <strong>Items:</strong> ${itemsSummary}
                     </div>
                     <div style="color: #475569;">
@@ -756,36 +757,36 @@ function showOrderReadyModal(order) {
                 </div>
 
                 ${(order.dueAmount && Number(order.dueAmount) > 0) ? `
-                    <div style="background: #fffbeb; border: 1.5px solid #fde68a; color: #92400e; padding: 0.65rem 1rem; border-radius: 10px; font-size: 0.84rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                    <div style="background: #fffbeb; border: 1.5px solid #fde68a; color: #92400e; padding: 0.55rem 0.9rem; border-radius: 10px; font-size: 0.82rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.65rem;">
                         <span><i class="fa-solid fa-hand-holding-dollar" style="color: #b45309; margin-right: 6px;"></i> <strong>Pay at Counter:</strong></span>
-                        <strong style="font-size: 1rem; color: #b45309; background: white; padding: 2px 8px; border-radius: 6px; border: 1px solid #fde68a;">₹${order.dueAmount}</strong>
+                        <strong style="font-size: 0.95rem; color: #b45309; background: white; padding: 2px 8px; border-radius: 6px; border: 1px solid #fde68a;">₹${order.dueAmount}</strong>
                     </div>
                 ` : `
-                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.82rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 0.45rem 0.9rem; border-radius: 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
                         <i class="fa-solid fa-circle-check" style="color: #16a34a;"></i>
                         <span><strong>100% Fully Paid:</strong> Zero payment due at counter!</span>
                     </div>
                 `}
 
                 <!-- Food Freshness Window Alert -->
-                <div style="background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 1.5px solid #fdba74; color: #9a3412; padding: 0.65rem 0.9rem; border-radius: 10px; font-size: 0.82rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px;">
-                    <i class="fa-solid fa-fire" style="font-size: 1.25rem; color: #ea580c;"></i>
+                <div style="background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 1.5px solid #fdba74; color: #9a3412; padding: 0.55rem 0.8rem; border-radius: 10px; font-size: 0.8rem; margin-bottom: 0.65rem; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-fire" style="font-size: 1.15rem; color: #ea580c;"></i>
                     <div style="flex: 1; text-align: left;">
                         <div style="font-weight: 700; color: #9a3412;">♨️ 20-Minute Hot Food Freshness Window</div>
-                        <div style="font-size: 0.75rem; color: #c2410c;">Please collect within 20 mins to enjoy your meal piping hot before it cools down!</div>
+                        <div style="font-size: 0.72rem; color: #c2410c;">Please collect within 20 mins to enjoy your meal hot & fresh!</div>
                     </div>
                 </div>
 
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; color: #475569; padding: 0.65rem 1rem; border-radius: 10px; font-size: 0.82rem; display: flex; align-items: center; gap: 0.6rem;">
-                    <i class="fa-solid fa-location-dot" style="font-size: 1.1rem; color: var(--primary);"></i>
-                    <span>Please head over to the counter and show this Token ID to collect your items.</span>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; color: #475569; padding: 0.55rem 0.9rem; border-radius: 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-location-dot" style="font-size: 1rem; color: var(--primary);"></i>
+                    <span>Show this Token ID at counter to collect your items.</span>
                 </div>
 
                 <div class="order-ready-actions">
-                    <a href="orders.html" class="btn btn-primary btn-block" style="justify-content: center; font-weight: 700;">
+                    <a href="orders.html" class="btn btn-primary btn-block" style="justify-content: center; font-weight: 700; font-size: 0.88rem; padding: 0.65rem 1rem;">
                         <i class="fa-solid fa-receipt"></i> View Pickup Token
                     </a>
-                    <button class="btn btn-outline btn-block" onclick="dismissOrderReadyModal('${order.orderId || order._id}')" style="justify-content: center;">
+                    <button class="btn btn-outline btn-block" onclick="dismissOrderReadyModal('${order.orderId || order._id}')" style="justify-content: center; font-weight: 700; font-size: 0.88rem; padding: 0.65rem 1rem;">
                         <i class="fa-solid fa-check"></i> Got It / Dismiss
                     </button>
                 </div>
