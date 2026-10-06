@@ -11,21 +11,39 @@ const API_BASE = (window.location.hostname === 'localhost' || window.location.ho
 const api = {
     // 1. Auth & Mobile OTP Methods
     async sendOtp(otpPayload) {
-        const res = await fetch(`${API_BASE}/api/auth/send-otp`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(otpPayload)
-        });
-        return await res.json();
+        try {
+            const res = await fetch(`${API_BASE}/api/auth/send-otp`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(otpPayload)
+            });
+            if (!res.ok) {
+                const text = await res.text();
+                try { return JSON.parse(text); } catch(e) { return { success: false, status: res.status }; }
+            }
+            return await res.json();
+        } catch (err) {
+            console.warn('api.sendOtp network error:', err);
+            return { success: false, networkError: true };
+        }
     },
 
     async verifyOtp(verifyPayload) {
-        const res = await fetch(`${API_BASE}/api/auth/verify-otp`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(verifyPayload)
-        });
-        return await res.json();
+        try {
+            const res = await fetch(`${API_BASE}/api/auth/verify-otp`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(verifyPayload)
+            });
+            if (!res.ok) {
+                const text = await res.text();
+                try { return JSON.parse(text); } catch(e) { return { success: false, status: res.status }; }
+            }
+            return await res.json();
+        } catch (err) {
+            console.warn('api.verifyOtp network error:', err);
+            return { success: false, networkError: true };
+        }
     },
 
     async register(userData) {

@@ -135,7 +135,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="reg-phone">Mobile Phone Number</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                        <label class="form-label" for="reg-phone" style="margin-bottom: 0;">Mobile Phone Number</label>
+                        <button type="button" onclick="triggerDirectMobileOtp()" class="btn btn-sm" style="background: #fff7ed; color: #ea580c; border: 1.5px solid #fed7aa; font-size: 0.78rem; font-weight: 700; padding: 2px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-bolt"></i> <span>Send OTP</span>
+                        </button>
+                    </div>
                     <div class="input-group">
                         <i class="fa-solid fa-phone input-icon"></i>
                         <input type="tel" id="reg-phone" class="form-input" placeholder="e.g. 9876543210" required autocomplete="tel">
