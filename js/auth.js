@@ -489,7 +489,10 @@ function openOtpModal(phone, otpCode) {
     const smsBanner = document.getElementById('simulated-sms-banner');
     const smsCode = document.getElementById('simulated-sms-code');
 
-    if (!modal) return;
+    if (!modal) {
+        console.error('otp-modal not found');
+        return;
+    }
 
     if (phoneDisplay) phoneDisplay.textContent = `+91 ${phone}`;
     if (smsCode && otpCode) smsCode.textContent = otpCode;
@@ -501,7 +504,10 @@ function openOtpModal(phone, otpCode) {
         if (inp) inp.value = '';
     }
 
+    modal.classList.add('active');
     modal.style.display = 'flex';
+    modal.style.opacity = '1';
+    modal.style.pointerEvents = 'auto';
     document.body.style.overflow = 'hidden';
 
     // Focus first input
@@ -514,7 +520,12 @@ function openOtpModal(phone, otpCode) {
 
 function closeOtpModal() {
     const modal = document.getElementById('otp-modal');
-    if (modal) modal.style.display = 'none';
+    if (modal) {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
+    }
     document.body.style.overflow = '';
     if (otpTimerInterval) clearInterval(otpTimerInterval);
     dismissPushNotification();

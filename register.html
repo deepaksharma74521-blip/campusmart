@@ -11,7 +11,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=3.5">
+    <link rel="stylesheet" href="css/style.css?v=4.0">
     <!-- PWA & 1-Click Mobile App Meta Tags -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ea580c">
@@ -311,7 +311,7 @@
     </div>
 
     <!-- SMS OTP Verification Modal -->
-    <div id="otp-modal" class="modal-backdrop" style="display: none; align-items: center; justify-content: center; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; padding: 1rem;">
+    <div id="otp-modal" class="modal-backdrop" style="display: none; opacity: 0; pointer-events: none; align-items: center; justify-content: center; position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100000; padding: 1rem; transition: opacity 0.25s ease;">
         <div class="modal-card" style="background: white; border-radius: 20px; max-width: 460px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); overflow: hidden; border: 1.5px solid #fed7aa; animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
             
             <!-- SMS Verification Header -->
@@ -429,9 +429,9 @@
     </style>
 
     <!-- Backend API & Auth Scripts -->
-    <script src="js/api.js?v=3.5"></script>
-    <script src="js/auth.js?v=3.5"></script>
+    <script src="js/api.js?v=4.0"></script>
+    <script src="js/auth.js?v=4.0"></script>
     <!-- PWA 1-Click Mobile App Installer -->
-    <script src="js/pwa-install.js?v=3.5"></script>
+    <script src="js/pwa-install.js?v=4.0"></script>
 </body>
 </html>
