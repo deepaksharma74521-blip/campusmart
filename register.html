@@ -388,10 +388,10 @@
 
     <style>
     .otp-digit-input {
-        width: 46px;
-        height: 54px;
+        width: 44px;
+        height: 52px;
         text-align: center;
-        font-size: 1.45rem;
+        font-size: 1.4rem;
         font-weight: 800;
         color: #0f172a;
         border: 2px solid #cbd5e1;
@@ -405,6 +405,17 @@
         outline: none;
         box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.18);
         transform: translateY(-2px);
+    }
+    @media (max-width: 420px) {
+        .otp-digit-input {
+            width: 38px !important;
+            height: 46px !important;
+            font-size: 1.2rem !important;
+            border-radius: 8px !important;
+        }
+        #otp-inputs-container {
+            gap: 0.35rem !important;
+        }
     }
     @keyframes modalPop {
         0% { transform: scale(0.92); opacity: 0; }
