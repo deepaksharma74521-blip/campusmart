@@ -121,11 +121,13 @@
     </div>
     <script>
         (function() {
-            var splashShown = sessionStorage.getItem('CM_SPLASH_SHOWN');
+            var urlParams = new URLSearchParams(window.location.search);
+            var forceSplash = urlParams.get('splash') === '1' || urlParams.get('intro') === '1';
+            var splashShown = sessionStorage.getItem('CM_SPLASH_SHOWN_V2');
             var splashScreen = document.getElementById('campus-splash-screen');
             var splashVideo = document.getElementById('splash-video');
             
-            if (!splashShown && splashScreen && splashVideo) {
+            if ((forceSplash || !splashShown) && splashScreen && splashVideo) {
                 // First open in this browser session
                 splashScreen.style.display = 'flex';
                 
@@ -133,7 +135,7 @@
                 window.dismissSplashScreen = function() {
                     if (dismissed) return;
                     dismissed = true;
-                    sessionStorage.setItem('CM_SPLASH_SHOWN', 'true');
+                    sessionStorage.setItem('CM_SPLASH_SHOWN_V2', 'true');
                     if (splashScreen) {
                         splashScreen.classList.add('splash-fade-out');
                         setTimeout(function() {

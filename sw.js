@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Stale-While-Revalidate for Instant Cold Start)
-const CACHE_NAME = 'campus-mart-v2.5';
+const CACHE_NAME = 'campus-mart-v3.0';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -48,8 +48,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // 1. Pass API requests directly to network (no cache)
-  if (url.pathname.startsWith('/api/') || event.request.method !== 'GET') {
+  // 1. Pass API requests and media video files directly to network (no stale cache)
+  if (url.pathname.startsWith('/api/') || url.pathname.endsWith('.mp4') || event.request.method !== 'GET') {
     event.respondWith(fetch(event.request));
     return;
   }
