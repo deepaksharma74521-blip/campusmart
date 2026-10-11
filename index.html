@@ -16,6 +16,78 @@
         :root { --primary: #ea580c; --bg-main: #f8fafc; }
         html, body { background-color: #f8fafc; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif; text-rendering: optimizeSpeed; }
         .navbar { background: #ffffff; min-height: 64px; }
+
+        /* Cinematic App Intro Splash Screen */
+        #campus-splash-screen {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            background: #000000;
+            z-index: 99999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+        }
+        #campus-splash-screen.splash-fade-out {
+            opacity: 0 !important;
+            transform: scale(1.04) !important;
+            pointer-events: none !important;
+        }
+        .splash-video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000000;
+        }
+        #splash-video {
+            width: 100%;
+            height: 100%;
+            max-width: 100vw;
+            max-height: 100dvh;
+            object-fit: contain;
+            background: #000000;
+        }
+        #splash-skip-btn {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            background: rgba(15, 23, 42, 0.75);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 7px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            z-index: 1000;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+        }
+        #splash-skip-btn:hover {
+            background: rgba(234, 88, 12, 0.9);
+            border-color: rgba(234, 88, 12, 1);
+            transform: scale(1.05);
+        }
+        @media (max-width: 480px) {
+            #splash-skip-btn {
+                top: 16px;
+                right: 16px;
+                padding: 6px 13px;
+                font-size: 0.78rem;
+            }
+        }
     </style>
     <!-- Google Fonts with Swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
@@ -35,6 +107,68 @@
     <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 </head>
 <body>
+
+    <!-- Cinematic Video Splash Intro Screen -->
+    <div id="campus-splash-screen">
+        <div class="splash-video-wrapper">
+            <video id="splash-video" playsinline muted autoplay preload="auto">
+                <source src="assets/splash_intro.mp4" type="video/mp4">
+            </video>
+            <button id="splash-skip-btn" type="button" onclick="dismissSplashScreen()">
+                <span>Skip</span> <i class="fa-solid fa-forward-step" style="font-size: 0.8rem;"></i>
+            </button>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var splashShown = sessionStorage.getItem('CM_SPLASH_SHOWN');
+            var splashScreen = document.getElementById('campus-splash-screen');
+            var splashVideo = document.getElementById('splash-video');
+            
+            if (!splashShown && splashScreen && splashVideo) {
+                // First open in this browser session
+                splashScreen.style.display = 'flex';
+                
+                var dismissed = false;
+                window.dismissSplashScreen = function() {
+                    if (dismissed) return;
+                    dismissed = true;
+                    sessionStorage.setItem('CM_SPLASH_SHOWN', 'true');
+                    if (splashScreen) {
+                        splashScreen.classList.add('splash-fade-out');
+                        setTimeout(function() {
+                            splashScreen.style.display = 'none';
+                            try { splashVideo.pause(); } catch(e) {}
+                        }, 450);
+                    }
+                };
+
+                // Play video
+                var playPromise = splashVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function() {
+                        // If browser blocks autoplay, smoothly dismiss after brief glance
+                        setTimeout(window.dismissSplashScreen, 1200);
+                    });
+                }
+
+                // Auto dismiss when video finishes
+                splashVideo.addEventListener('ended', window.dismissSplashScreen);
+
+                // Tap anywhere on splash screen to bypass
+                splashScreen.addEventListener('click', function(e) {
+                    if (e.target.id !== 'splash-skip-btn' && !e.target.closest('#splash-skip-btn')) {
+                        window.dismissSplashScreen();
+                    }
+                });
+
+                // Safety timeout: max 5 seconds so user is never stuck
+                setTimeout(window.dismissSplashScreen, 5000);
+            } else if (splashScreen) {
+                splashScreen.style.display = 'none';
+            }
+        })();
+    </script>
 
     <!-- Top Navigation Bar -->
     <header class="navbar">
