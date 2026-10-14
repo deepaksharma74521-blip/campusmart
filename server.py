@@ -3103,6 +3103,6 @@ if __name__ == "__main__":
     print(f"  [SERVER] 💻 Laptop Browser: http://localhost:{port}/index.html")
     print(f"  [SERVER] 💻 Local Loopback: http://127.0.0.1:{port}/index.html")
     print(f"  [SERVER] 📱 Mobile / Wi-Fi: http://{local_ip}:{port}/index.html")
-    print(f"  [SERVER] 👑 Super Admin: deepaksharma74521@gmail.com / deepak123")
+    print(f"  [SERVER] 👑 Super Admin: deepaksharma74521@gmail.com / Deepak@2026#TMU")
     print("=" * 70)
     app.run(host="0.0.0.0", port=port, debug=False, threaded=True)

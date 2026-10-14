@@ -81,7 +81,7 @@ function quickFillSuperAdmin() {
     const em = document.getElementById('login-email');
     const pw = document.getElementById('login-password');
     if (em) em.value = 'deepaksharma74521@gmail.com';
-    if (pw) pw.value = 'deepak123';
+    if (pw) pw.value = 'Deepak@2026#TMU';
     showToast('👑 Super Admin (Deepak Sharma) credentials filled!', 'info');
 }
 
