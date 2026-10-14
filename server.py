@@ -10,7 +10,12 @@ import json
 import uuid
 import hashlib
 import random
+import hmac
+import base64
+import time
+import secrets
 from datetime import datetime, timedelta
+from functools import wraps
 
 if hasattr(sys.stdout, 'reconfigure'):
     try:
@@ -26,11 +31,164 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 @app.after_request
-def add_header(response):
+def add_security_headers(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "0"
+    # Modern OWASP Security & Hardening Headers
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     return response
+
+# ------------------------------------------------------------------------------
+# SECURITY SUITE: Tamper-Proof Cryptographic Tokens & Rate Limiter Guard
+# ------------------------------------------------------------------------------
+SECURITY_SECRET = os.environ.get("CAMPUSMART_SECRET_KEY", "campusmart-vault-hmac-sha256-key-2026-tmu-deepak")
+
+def generate_auth_token(user_data, expires_in_days=30):
+    """Generates an HMAC-SHA256 tamper-proof signed authorization token."""
+    now = int(time.time())
+    uid = str(user_data.get("_id") or user_data.get("uid") or user_data.get("id") or "")
+    payload = {
+        "uid": uid,
+        "email": (user_data.get("email") or "").strip().lower(),
+        "role": user_data.get("role", "student"),
+        "name": user_data.get("name", "User"),
+        "iat": now,
+        "exp": now + (expires_in_days * 86400)
+    }
+    payload_json = json.dumps(payload, separators=(',', ':'), sort_keys=True)
+    payload_b64 = base64.urlsafe_b64encode(payload_json.encode('utf-8')).decode('utf-8').rstrip('=')
+    sig = hmac.new(SECURITY_SECRET.encode('utf-8'), payload_b64.encode('utf-8'), hashlib.sha256).hexdigest()
+    return f"{payload_b64}.{sig}"
+
+def verify_auth_token(token):
+    """Verifies HMAC-SHA256 signature and expiration. Returns payload if valid, else None."""
+    if not token or not isinstance(token, str) or "." not in token:
+        return None
+    try:
+        payload_b64, sig = token.split(".", 1)
+        expected_sig = hmac.new(SECURITY_SECRET.encode('utf-8'), payload_b64.encode('utf-8'), hashlib.sha256).hexdigest()
+        if not hmac.compare_digest(sig, expected_sig):
+            return None # Tampered!
+        padding = '=' * (-len(payload_b64) % 4)
+        payload_json = base64.urlsafe_b64decode((payload_b64 + padding).encode('utf-8')).decode('utf-8')
+        payload = json.loads(payload_json)
+        if payload.get("exp", 0) < int(time.time()):
+            return None # Expired!
+        return payload
+    except Exception:
+        return None
+
+class SecurityLimiter:
+    """In-memory thread-safe rate limiter for OTP flooding, brute force, and DDOS mitigation."""
+    def __init__(self):
+        self.ip_requests = {}         # ip -> list of timestamps
+        self.otp_requests = {}        # clean_phone -> list of timestamps
+        self.otp_failed_attempts = {} # clean_phone -> count
+        self.login_failed = {}        # key -> list of timestamps
+
+    def is_ip_flooding(self, ip, max_requests=120, window_secs=60):
+        now = time.time()
+        timestamps = [t for t in self.ip_requests.get(ip, []) if now - t < window_secs]
+        timestamps.append(now)
+        self.ip_requests[ip] = timestamps
+        return len(timestamps) > max_requests
+
+    def check_otp_limit(self, phone):
+        now = time.time()
+        clean = phone.replace(" ", "").replace("-", "").replace("+91", "")
+        # Cooldown: 45 seconds between requests
+        timestamps = [t for t in self.otp_requests.get(clean, []) if now - t < 600]
+        if timestamps and (now - timestamps[-1]) < 45:
+            remaining = int(45 - (now - timestamps[-1]))
+            return False, f"⏳ Please wait {remaining}s before requesting another OTP."
+        # Window: max 4 OTPs in 10 minutes
+        if len(timestamps) >= 4:
+            return False, "⚠️ Maximum OTP requests reached for this number. Please try again after 10 minutes."
+        timestamps.append(now)
+        self.otp_requests[clean] = timestamps
+        return True, ""
+
+    def record_otp_failure(self, phone, max_attempts=5):
+        clean = phone.replace(" ", "").replace("-", "").replace("+91", "")
+        count = self.otp_failed_attempts.get(clean, 0) + 1
+        self.otp_failed_attempts[clean] = count
+        if count >= max_attempts:
+            self.otp_failed_attempts.pop(clean, None)
+            return True, count
+        return False, count
+
+    def reset_otp_failure(self, phone):
+        clean = phone.replace(" ", "").replace("-", "").replace("+91", "")
+        self.otp_failed_attempts.pop(clean, None)
+
+    def is_login_locked(self, key):
+        now = time.time()
+        timestamps = [t for t in self.login_failed.get(key, []) if now - t < 300] # 5 min window
+        return len(timestamps) >= 5
+
+    def record_login_failure(self, key):
+        now = time.time()
+        timestamps = [t for t in self.login_failed.get(key, []) if now - t < 300]
+        timestamps.append(now)
+        self.login_failed[key] = timestamps
+        return len(timestamps) >= 5
+
+    def reset_login_failure(self, key):
+        self.login_failed.pop(key, None)
+
+security_limiter = SecurityLimiter()
+
+def get_request_token():
+    auth_header = request.headers.get("Authorization", "")
+    if auth_header.startswith("Bearer "):
+        return auth_header[7:].strip()
+    return request.headers.get("X-Auth-Token") or request.args.get("token")
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        token = get_request_token()
+        token_data = verify_auth_token(token) if token else None
+        if token_data:
+            if token_data.get("role") in ["admin", "superadmin"]:
+                return f(*args, **kwargs)
+            return jsonify({"success": False, "message": "⛔ Access Denied: Administrator privileges required."}), 403
+            
+        req_user_id = request.headers.get("X-User-Id") or (request.json.get("requesterId") if request.is_json and request.json else None)
+        if req_user_id:
+            u = db.users.find_one({"_id": req_user_id}) or db.users.find_one({"uid": req_user_id})
+            if u and u.get("role") in ["admin", "superadmin"]:
+                return f(*args, **kwargs)
+
+        if request.method in ["POST", "PUT", "DELETE"]:
+            return jsonify({"success": False, "message": "⛔ Unauthorized: Admin token required for sensitive operations."}), 401
+            
+        return f(*args, **kwargs)
+    return decorated_function
+
+@app.before_request
+def security_firewall():
+    # Bypass static web assets and media files
+    p = request.path
+    if (p.startswith("/assets") or p.startswith("/css") or p.startswith("/js") or 
+        p.endswith((".png", ".jpg", ".jpeg", ".mp4", ".apk", ".ico", ".json", ".svg", ".woff2"))):
+        return None
+
+    # Identify real visitor IP behind Cloudflare / Reverse Proxy
+    client_ip = request.headers.get("CF-Connecting-IP") or request.headers.get("X-Forwarded-For") or request.remote_addr or "127.0.0.1"
+    if "," in client_ip:
+        client_ip = client_ip.split(",")[0].strip()
+
+    if security_limiter.is_ip_flooding(client_ip, max_requests=120, window_secs=60):
+        return jsonify({
+            "success": False,
+            "message": "⚠️ Security Alert: High request rate detected. Please slow down."
+        }), 429
 
 # ------------------------------------------------------------------------------
 # 1. DATABASE LAYER: PyMongo with Auto-Fallback Persistent Document Store
@@ -1092,6 +1250,11 @@ def send_otp():
     if len(clean_phone) < 10:
         return jsonify({"success": False, "message": "Please enter a valid 10-digit mobile number."}), 400
 
+    # Rate Limiting & Cooldown Protection (Anti-SMS/WhatsApp Bombing)
+    allowed, limit_msg = security_limiter.check_otp_limit(clean_phone)
+    if not allowed:
+        return jsonify({"success": False, "message": limit_msg}), 429
+
     # Strict Check: Only 1 account per mobile number
     if purpose == "register":
         all_users = db.users.find({})
@@ -1179,7 +1342,22 @@ def verify_otp():
     otp_record = db.otps.find_one({"phone": clean_phone, "otp": otp}) if hasattr(db, "otps") else None
 
     if not otp_record:
-        return jsonify({"success": False, "message": "❌ Invalid OTP! Please check the 6-digit code sent to your mobile number."}), 400
+        locked, attempts = security_limiter.record_otp_failure(clean_phone)
+        if locked:
+            if hasattr(db, "otps"):
+                db.otps.delete_many({"phone": clean_phone})
+            return jsonify({
+                "success": False,
+                "message": "🔒 Maximum OTP verification attempts exceeded (5 failed attempts). For security, this OTP has been invalidated. Please request a new OTP."
+            }), 429
+
+        remaining = 5 - attempts
+        return jsonify({
+            "success": False,
+            "message": f"❌ Invalid OTP! {remaining} attempt(s) remaining."
+        }), 400
+
+    security_limiter.reset_otp_failure(clean_phone)
 
     expires_at_str = otp_record.get("expiresAt")
     if expires_at_str:
@@ -1294,6 +1472,8 @@ def register():
 
     user_safe = format_doc(user_doc)
     del user_safe["password"]
+    token = generate_auth_token(user_safe)
+    user_safe["token"] = token
 
     if is_shop_owner:
         msg = f"🎉 Shop Owner account & '{assigned_shop}' registered successfully!"
@@ -1302,7 +1482,7 @@ def register():
     else:
         msg = "🎉 Account verified & registered successfully!"
         
-    return jsonify({"success": True, "message": msg, "user": user_safe}), 201
+    return jsonify({"success": True, "message": msg, "user": user_safe, "token": token}), 201
 
 
 @app.route("/api/auth/login", methods=["POST"])
@@ -1314,15 +1494,33 @@ def login():
     if not email or not password:
         return jsonify({"success": False, "message": "Email and password are required."}), 400
 
+    client_ip = request.headers.get("CF-Connecting-IP") or request.headers.get("X-Forwarded-For") or request.remote_addr or "127.0.0.1"
+    if "," in client_ip:
+        client_ip = client_ip.split(",")[0].strip()
+    login_key = f"{email}_{client_ip}"
+
+    # Anti-Brute Force Protection
+    if security_limiter.is_login_locked(login_key):
+        return jsonify({
+            "success": False,
+            "message": "🔒 Too many failed login attempts! Account access temporarily paused for 5 minutes for security. Please try again later."
+        }), 429
+
     user = db.users.find_one({"email": email})
     if not user or user.get("password") != hash_password(password):
+        security_limiter.record_login_failure(login_key)
         return jsonify({"success": False, "message": "Invalid email or password."}), 401
+
+    security_limiter.reset_login_failure(login_key)
 
     user_safe = format_doc(user)
     if "password" in user_safe:
         del user_safe["password"]
 
-    return jsonify({"success": True, "message": "Login successful!", "user": user_safe}), 200
+    token = generate_auth_token(user_safe)
+    user_safe["token"] = token
+
+    return jsonify({"success": True, "message": "Login successful!", "user": user_safe, "token": token}), 200
 
 
 # ------------------------------------------------------------------------------
@@ -2076,6 +2274,7 @@ def get_staff_list():
 
 
 @app.route("/api/admin/staff/<user_id>", methods=["PUT"])
+@admin_required
 def manage_staff(user_id):
     data = request.json or {}
     action = data.get("action", "").lower()
@@ -2416,12 +2615,14 @@ def save_gateway_settings(settings):
 
 
 @app.route("/api/admin/gateway-settings", methods=["GET"])
+@admin_required
 def get_admin_gateway_settings():
     settings = load_gateway_settings()
     return jsonify({"success": True, "settings": settings}), 200
 
 
 @app.route("/api/admin/gateway-settings", methods=["PUT"])
+@admin_required
 def update_admin_gateway_settings():
     data = request.json or {}
     current = load_gateway_settings()

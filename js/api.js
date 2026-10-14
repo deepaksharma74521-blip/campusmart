@@ -46,13 +46,37 @@ const api = {
         }
     },
 
+    getAuthHeaders(customHeaders = {}) {
+        const headers = { 'Content-Type': 'application/json', ...customHeaders };
+        try {
+            const user = api.getCurrentUser();
+            const token = localStorage.getItem('canteen_token') || (user && user.token);
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+                headers['X-Auth-Token'] = token;
+            }
+            if (user && (user.id || user._id || user.uid)) {
+                headers['X-User-Id'] = user.id || user._id || user.uid;
+            }
+        } catch(e) {}
+        return headers;
+    },
+
     async register(userData) {
         const res = await fetch(`${API_BASE}/api/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
         });
-        return await res.json();
+        const data = await res.json();
+        if (data.success && data.user) {
+            if (data.token) {
+                localStorage.setItem('canteen_token', data.token);
+                data.user.token = data.token;
+            }
+            localStorage.setItem('canteen_user', JSON.stringify(data.user));
+        }
+        return data;
     },
 
     async login(email, password) {
@@ -63,6 +87,10 @@ const api = {
         });
         const data = await res.json();
         if (data.success && data.user) {
+            if (data.token) {
+                localStorage.setItem('canteen_token', data.token);
+                data.user.token = data.token;
+            }
             localStorage.setItem('canteen_user', JSON.stringify(data.user));
         }
         return data;
@@ -70,6 +98,7 @@ const api = {
 
     logout() {
         localStorage.removeItem('canteen_user');
+        localStorage.removeItem('canteen_token');
         window.location.href = 'login.html';
     },
 
