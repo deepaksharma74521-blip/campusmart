@@ -112,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
         settings.setSaveFormData(true);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         
+        // Append CampusMartApp identification to User-Agent for auto-hiding APK buttons
+        String defaultUa = settings.getUserAgentString();
+        settings.setUserAgentString(defaultUa + " CampusMartApp/2.4");
+        
         // Enable Audio Auto-Play for Web Audio Chimes and Speech Synthesis
         settings.setMediaPlaybackRequiresUserGesture(false);
 

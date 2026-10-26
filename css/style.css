@@ -1,3 +1,12 @@
+
+/* --- Smart Hide for Installed / Downloaded App --- */
+html.app-installed a[href*="/download/apk"],
+html.app-installed a[href*="CampusMart.apk"],
+html.app-installed #auto-apk-install-banner,
+html.app-installed .auto-apk-banner {
+    display: none !important;
+}
+
 /* ==========================================================================
    Campus Mart – Smart Food & Essentials Pre-Order System
    File: css/style.css

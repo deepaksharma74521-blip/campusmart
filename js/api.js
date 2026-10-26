@@ -1040,7 +1040,36 @@ function notifyMeUpcoming(featureName) {
     alert(`🎉 Thank you! You will be notified when "${featureName}" goes live on Campus Mart!`);
 }
 
-// Smart Automatic App Download & Install System
+// Smart Automatic App Download & Install System with Auto-Hide
+function isRunningInsideAppOrDownloaded() {
+    // 1. Android WebView or custom App UA detection
+    const isApp = /CampusMartApp|wv|Android.*Version\/[0-9.]+/i.test(navigator.userAgent);
+    // 2. PWA Standalone display mode detection
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    // 3. User explicitly downloaded the APK in this browser
+    const hasDownloaded = localStorage.getItem('CM_APK_DOWNLOADED') === 'true';
+
+    return isApp || isStandalone || hasDownloaded;
+}
+
+function hideAllApkDownloadElements() {
+    if (!isRunningInsideAppOrDownloaded()) return;
+
+    // Apply global class for instant CSS hide
+    document.documentElement.classList.add('app-installed');
+
+    // Hide any buttons or links matching apk download
+    document.querySelectorAll('a[href*="/download/apk"], a[href*="CampusMart.apk"], .auto-apk-banner, #auto-apk-install-banner').forEach(el => {
+        el.style.display = 'none';
+        el.setAttribute('aria-hidden', 'true');
+    });
+}
+
+// Apply immediately on parse (0ms white-screen elimination)
+if (isRunningInsideAppOrDownloaded()) {
+    document.documentElement.classList.add('app-installed');
+}
+
 let deferredAppInstallPrompt = null;
 
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -1051,7 +1080,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 function showAutoApkPrompt(force = false) {
     if (!force && sessionStorage.getItem('campusmart_apk_dismissed')) return;
-    if (window.matchMedia('(display-mode: standalone)').matches) return; // Already installed as PWA
+    if (isRunningInsideAppOrDownloaded()) return; // Never show prompt if app is installed or APK already downloaded
 
     let banner = document.getElementById('auto-apk-install-banner');
     if (!banner) {
@@ -1119,6 +1148,10 @@ function triggerPwaInstall() {
 }
 
 function triggerApkDownloadFeedback() {
+    // Record that user has downloaded the APK and hide all APK buttons
+    localStorage.setItem('CM_APK_DOWNLOADED', 'true');
+    hideAllApkDownloadElements();
+
     setTimeout(() => {
         alert('🚀 Campus Mart APK download started! Check your downloads notification bar to install.');
         dismissAutoApkPrompt();
@@ -1126,6 +1159,8 @@ function triggerApkDownloadFeedback() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Auto-hide APK download buttons if downloaded or in-app
+    hideAllApkDownloadElements();
     // Instant local state render (0ms)
     updateGlobalCartBadge();
     
