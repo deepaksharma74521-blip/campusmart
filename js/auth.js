@@ -69,31 +69,17 @@ function handleLoginRoleChange(selectedRole) {
         }
         if (headerIcon) headerIcon.className = 'fa-solid fa-graduation-cap';
         if (headerTitle) headerTitle.textContent = 'Student Login';
-        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to order food, snacks, stationery & essentials';
+        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to your account';
         if (emailInput) emailInput.placeholder = 'student@college.edu';
     }
 }
 
 function quickFillSuperAdmin() {
-    handleLoginRoleChange('ShopOwner');
-    const rShop = document.getElementById('login-role-shop');
-    if (rShop) rShop.checked = true;
-    const em = document.getElementById('login-email');
-    const pw = document.getElementById('login-password');
-    if (em) em.value = 'deepaksharma74521@gmail.com';
-    if (pw) pw.value = 'Deepak@2026#TMU';
-    showToast('👑 Super Admin (Deepak Sharma) credentials filled!', 'info');
+    /* Demo quick-fill removed for platform security */
 }
 
 function quickFillVendor() {
-    handleLoginRoleChange('ShopOwner');
-    const rShop = document.getElementById('login-role-shop');
-    if (rShop) rShop.checked = true;
-    const em = document.getElementById('login-email');
-    const pw = document.getElementById('login-password');
-    if (em) em.value = 'cholekulcha@tmu.ac.in';
-    if (pw) pw.value = 'shop123';
-    showToast('🏪 TMU Special Chole Kulcha vendor credentials filled!', 'info');
+    /* Demo quick-fill removed for platform security */
 }
 
 function handleUserTypeChange(selectedType) {
