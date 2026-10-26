@@ -1,10 +1,27 @@
 
-/* --- Smart Hide for Installed / Downloaded App --- */
+/* --- Smart Hide for Installed / Downloaded App & Desktop / Laptop PCs --- */
 html.app-installed a[href*="/download/apk"],
 html.app-installed a[href*="CampusMart.apk"],
 html.app-installed #auto-apk-install-banner,
-html.app-installed .auto-apk-banner {
+html.app-installed .auto-apk-banner,
+html.desktop-device a[href*="/download/apk"],
+html.desktop-device a[href*="CampusMart.apk"],
+html.desktop-device #auto-apk-install-banner,
+html.desktop-device .auto-apk-banner,
+html.desktop-device .apk-download-badge,
+.apk-download-badge.hidden {
     display: none !important;
+}
+
+/* Instant pure CSS hide on Desktop & Laptop viewports (>=992px) */
+@media screen and (min-width: 992px) {
+    a[href*="/download/apk"],
+    a[href*="CampusMart.apk"],
+    #auto-apk-install-banner,
+    .auto-apk-banner,
+    .apk-download-badge {
+        display: none !important;
+    }
 }
 
 /* ==========================================================================

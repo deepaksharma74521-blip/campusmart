@@ -1042,11 +1042,21 @@ function notifyMeUpcoming(featureName) {
 
 // Smart Automatic App Download & Install System with Auto-Hide
 function isRunningInsideAppOrDownloaded() {
-    // 1. Android WebView or custom App UA detection
-    const isApp = /CampusMartApp|wv|Android.*Version\/[0-9.]+/i.test(navigator.userAgent);
-    // 2. PWA Standalone display mode detection
+    const ua = navigator.userAgent || '';
+
+    // 1. PC / Laptop / Desktop (Windows, Mac, Linux desktop, etc.) or non-Android devices:
+    // Android APK cannot run on PC/Laptop or iOS, so hide APK downloads completely
+    const isAndroid = /Android/i.test(ua);
+    if (!isAndroid) {
+        document.documentElement.classList.add('desktop-device');
+        return true;
+    }
+
+    // 2. Android WebView or custom App UA detection
+    const isApp = /CampusMartApp|wv|Android.*Version\/[0-9.]+/i.test(ua);
+    // 3. PWA Standalone display mode detection
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-    // 3. User explicitly downloaded the APK in this browser
+    // 4. User explicitly downloaded the APK in this browser
     const hasDownloaded = localStorage.getItem('CM_APK_DOWNLOADED') === 'true';
 
     return isApp || isStandalone || hasDownloaded;
@@ -1059,8 +1069,8 @@ function hideAllApkDownloadElements() {
     document.documentElement.classList.add('app-installed');
 
     // Hide any buttons or links matching apk download
-    document.querySelectorAll('a[href*="/download/apk"], a[href*="CampusMart.apk"], .auto-apk-banner, #auto-apk-install-banner').forEach(el => {
-        el.style.display = 'none';
+    document.querySelectorAll('a[href*="/download/apk"], a[href*="CampusMart.apk"], .auto-apk-banner, #auto-apk-install-banner, .apk-download-badge').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
         el.setAttribute('aria-hidden', 'true');
     });
 }
