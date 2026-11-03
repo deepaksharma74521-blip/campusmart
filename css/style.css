@@ -885,8 +885,12 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+    filter: contrast(1.03) saturate(1.05);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .food-card:hover .food-img {

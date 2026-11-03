@@ -306,14 +306,14 @@ function matchSmartCategory(item, catKey) {
 
 // // Image URL Optimizer for Ultra-Fast Loading on Mobile
 function getOptimizedImageUrl(url) {
-    const fallbackImg = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=360&auto=format&fit=crop&q=70';
+    const fallbackImg = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&auto=format&fit=crop&q=85';
     if (!url || typeof url !== 'string') return fallbackImg;
     
-    // Optimize Unsplash images with lightweight mobile thumbnails
+    // Optimize Unsplash images with crystal-clear Ultra HD Retina quality
     if (url.includes('images.unsplash.com')) {
         try {
             const base = url.split('?')[0];
-            return `${base}?w=360&auto=format&fit=crop&q=70`;
+            return `${base}?w=900&auto=format&fit=crop&q=85`;
         } catch (e) {
             return url;
         }

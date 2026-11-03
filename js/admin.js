@@ -1198,9 +1198,14 @@ function renderAdminOrdersTable() {
                     </select>
                 </td>
                 <td>
-                    <button class="btn btn-outline btn-sm" onclick="viewOrderDetailsModal('${orderId}')" title="View Full Details">
-                        <i class="fa-solid fa-eye"></i>
-                    </button>
+                    <div style="display: flex; gap: 0.35rem; align-items: center;">
+                        <button class="btn btn-outline btn-sm" onclick="viewOrderDetailsModal('${orderId}')" title="View Full Details">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <button class="btn btn-sm" onclick="sendWhatsAppOrderAlert('${orderId}')" style="background: #25d366; color: white; border: none; padding: 0.35rem 0.55rem; border-radius: var(--radius-sm);" title="Send WhatsApp Ready Alert to Student">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 0.95rem;"></i>
+                        </button>
+                    </div>
                 </td>
             </tr>
         `;
@@ -1263,6 +1268,14 @@ async function updateOrderStatus(orderId, newStatus) {
                 }
                 speakCustomText(`Order ${shortCode} is now Ready for pickup!`);
                 showToast(`🎉 Order #${orderId} marked READY! Real-time sound & alert sent to student.`, 'success', 'Order Ready');
+                
+                // Optional 1-click WhatsApp prompt for shopkeeper
+                const targetOrder = adminOrders.find(o => (o._id === orderId || o.id === orderId || o.orderId === orderId));
+                if (targetOrder && (targetOrder.phone || targetOrder.studentPhone || targetOrder.customerPhone)) {
+                    setTimeout(() => {
+                        sendWhatsAppOrderAlert(orderId);
+                    }, 600);
+                }
             } else if (newStatus === 'Preparing') {
                 if (typeof playCanteenOrderBellSound === 'function') playCanteenOrderBellSound();
                 speakCustomText(`Order ${shortCode} accepted. Now preparing in kitchen.`);
@@ -4088,3 +4101,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+function sendWhatsAppOrderAlert(orderId) {
+    const order = adminOrders.find(o => (o._id === orderId || o.id === orderId || o.orderId === orderId));
+    if (!order) {
+        showToast('Order details not found.', 'error');
+        return;
+    }
+
+    let phone = order.phone || order.studentPhone || order.customerPhone || order.userPhone || '';
+    if (!phone || phone.length < 10) {
+        phone = prompt(`Enter student WhatsApp mobile number for Order #${order.orderId || orderId}:`, phone || '');
+        if (!phone) return;
+    }
+
+    const cleanDigits = phone.replace(/[^0-9]/g, '');
+    const waNumber = cleanDigits.length === 10 ? '91' + cleanDigits : cleanDigits;
+
+    const customer = order.customerName || order.studentName || 'Student';
+    const token = order.orderId || orderId;
+    const shop = order.shopName || 'Campus Mart Counter';
+    const itemsSummary = (order.items || []).map(i => `${i.name} (x${i.quantity || 1})`).join(', ') || 'Your pre-ordered items';
+
+    const message = `🍽️ *Campus Mart - Order Ready Alert!*\n\nHello *${customer}*!\nYour food order *${token}* is *READY for pickup* at *${shop}*!\n\n📦 *Items:* ${itemsSummary}\n📍 *Counter:* ${shop}\n\n👉 Please show your phone token to collect fresh food. Enjoy your meal! 😊`;
+
+    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank');
+    showToast(`📲 Opening WhatsApp to notify ${customer}!`, 'success', 'WhatsApp Alert');
+}

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Counter Token Display – Campus Mart</title>
+    
+    <!-- Instant DNS Prefetch & Font Awesome -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <meta name="theme-color" content="#0b0f19">
+
+    <style>
+        :root {
+            --bg-display: #0b0f19;
+            --bg-card: #131b2e;
+            --bg-card-hover: #1a243d;
+            --border-card: #1f2c47;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #ea580c;
+            --ready-green: #10b981;
+            --ready-green-glow: rgba(16, 185, 129, 0.35);
+            --prep-amber: #f59e0b;
+            --prep-amber-glow: rgba(245, 158, 11, 0.3);
+            --font-heading: 'Poppins', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-display);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* TV Display Header */
+        .tv-header {
+            background: linear-gradient(180deg, rgba(19, 27, 46, 0.95) 0%, rgba(11, 15, 25, 0.9) 100%);
+            border-bottom: 2px solid #1e293b;
+            padding: 0.85rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+        }
+
+        .brand-info h1 {
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brand-info h1 span {
+            color: var(--primary);
+        }
+
+        .live-tag {
+            background: #ef4444;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            animation: pulse-red 1.8s infinite;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.96); }
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .clock-box {
+            background: #0f172a;
+            border: 1.5px solid #334155;
+            padding: 0.45rem 1.1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .clock-time {
+            font-family: var(--font-mono);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .clock-date {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .tv-btn {
+            background: #1e293b;
+            color: #f1f5f9;
+            border: 1px solid #334155;
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .tv-btn:hover {
+            background: #334155;
+            border-color: #64748b;
+        }
+
+        .tv-btn.active {
+            background: #065f46;
+            color: #34d399;
+            border-color: #059669;
+        }
+
+        .tv-select {
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Main TV Board Split Screen */
+        .tv-board {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Columns */
+        .board-column {
+            background: rgba(19, 27, 46, 0.6);
+            border-radius: 20px;
+            border: 2px solid var(--border-card);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .column-header {
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--border-card);
+        }
+
+        .column-header.ready-header {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border-bottom-color: rgba(16, 185, 129, 0.35);
+        }
+
+        .column-header.prep-header {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border-bottom-color: rgba(245, 158, 11, 0.35);
+        }
+
+        .col-title-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .col-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+        }
+
+        .ready-icon {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 0 15px var(--ready-green-glow);
+        }
+
+        .prep-icon {
+            background: #f59e0b;
+            color: #0b0f19;
+            box-shadow: 0 0 15px var(--prep-amber-glow);
+        }
+
+        .col-title-group h2 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .col-title-group p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .col-count-pill {
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+        }
+
+        .ready-pill {
+            background: #064e3b;
+            color: #34d399;
+            border: 1px solid #059669;
+        }
+
+        .prep-pill {
+            background: #451a03;
+            color: #fbbf24;
+            border: 1px solid #d97706;
+        }
+
+        /* Token Cards Grid */
+        .tokens-grid {
+            flex: 1;
+            padding: 1.25rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+            align-content: start;
+            overflow-y: auto;
+            max-height: calc(100vh - 180px);
+        }
+
+        /* Ready Token Card */
+        .token-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-card);
+            border-radius: 16px;
+            padding: 1.25rem 1.4rem;
+            position: relative;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .token-card.ready-card {
+            border-color: #10b981;
+            background: linear-gradient(145deg, #132724 0%, #0d191d 100%);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+        }
+
+        .token-card.ready-card.newly-ready {
+            animation: flash-ready 1.2s infinite alternate;
+        }
+
+        @keyframes flash-ready {
+            0% { border-color: #10b981; box-shadow: 0 0 25px rgba(16, 185, 129, 0.35); }
+            100% { border-color: #34d399; box-shadow: 0 0 45px rgba(52, 211, 153, 0.7); transform: scale(1.02); }
+        }
+
+        .token-card.prep-card {
+            border-color: #f59e0b;
+            background: linear-gradient(145deg, #231b14 0%, #131b2e 100%);
+        }
+
+        .token-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.65rem;
+        }
+
+        .token-shop-tag {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .token-badge-status {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .badge-ready {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .badge-prep {
+            background: rgba(245, 158, 11, 0.25);
+            color: #fbbf24;
+            border: 1px solid #f59e0b;
+        }
+
+        .token-number {
+            font-family: var(--font-mono);
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 0.65rem;
+        }
+
+        .ready-card .token-number {
+            color: #34d399;
+            text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
+        }
+
+        .prep-card .token-number {
+            color: #fbbf24;
+            font-size: 2.4rem;
+        }
+
+        .token-bottom-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 0.6rem;
+            font-size: 0.8rem;
+            color: #cbd5e1;
+        }
+
+        .customer-name {
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .items-preview {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Empty State */
+        .empty-column-state {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            min-height: 250px;
+        }
+
+        .empty-column-state i {
+            font-size: 2.5rem;
+            opacity: 0.35;
+        }
+
+        .empty-column-state p {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Bottom Ticker / Announcement Bar */
+        .tv-ticker {
+            background: #0f172a;
+            border-top: 1.5px solid #1e293b;
+            padding: 0.65rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            overflow: hidden;
+        }
+
+        .ticker-label {
+            background: var(--primary);
+            color: white;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .ticker-marquee {
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .tv-board {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                padding: 1rem;
+            }
+            .tokens-grid {
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TV Header -->
+    <header class="tv-header">
+        <div class="header-brand">
+            <div class="brand-badge">
+                <i class="fa-solid fa-store"></i>
+            </div>
+            <div class="brand-info">
+                <h1>Campus<span>Mart</span> <span class="live-tag"><i class="fa-solid fa-circle" style="font-size: 0.45rem;"></i> LIVE</span></h1>
+                <p style="font-size: 0.78rem; color: #94a3b8; font-weight: 600;">Canteen & Food Court Token Announcer</p>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="clock-box">
+                <div class="clock-time" id="tv-clock">12:00:00 PM</div>
+                <div class="clock-date" id="tv-date">TODAY</div>
+            </div>
+        </div>
+
+        <div class="header-controls">
+            <!-- Filter by Counter / Shop -->
+            <select class="tv-select" id="shop-filter-select" onchange="handleShopFilterChange(this.value)">
+                <option value="all">🏪 All Counters & Shops</option>
+            </select>
+
+            <!-- Sound Toggle -->
+            <button class="tv-btn active" id="audio-toggle-btn" onclick="toggleAudioAnnouncer()">
+                <i class="fa-solid fa-volume-high" id="audio-toggle-icon"></i>
+                <span id="audio-toggle-text">Sound: ON</span>
+            </button>
+
+            <!-- Fullscreen -->
+            <button class="tv-btn" onclick="toggleTvFullscreen()" title="Toggle Fullscreen for Smart TV">
+                <i class="fa-solid fa-expand"></i> ⛶ Fullscreen
+            </button>
+
+            <!-- Back to Mart -->
+            <a href="index.html" class="tv-btn">
+                <i class="fa-solid fa-arrow-left"></i> Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main TV Board Split Screen -->
+    <main class="tv-board">
+
+        <!-- Ready for Pickup Column -->
+        <section class="board-column">
+            <div class="column-header ready-header">
+                <div class="col-title-group">
+                    <div class="col-icon ready-icon">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                    </div>
+                    <div>
+                        <h2 style="color: #34d399;">READY FOR PICKUP</h2>
+                        <p>Collect food from counter with your token</p>
+                    </div>
+                </div>
+                <span class="col-count-pill ready-pill" id="ready-count-pill">0 READY</span>
+            </div>
+
+            <div class="tokens-grid" id="ready-tokens-grid">
+                <!-- Dynamically Rendered Ready Tokens -->
+                <div class="empty-column-state">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <p>No orders ready for pickup right now</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kitchen Preparing Column -->
+        <section class="board-column">
+            <div class="column-header prep-header">
+                <div class="col-title-group">
+                    <div class="col-icon prep-icon">
+                        <i class="fa-solid fa-fire-burner"></i>
+                    </div>
+                    <div>
+                        <h2 style="color: #fbbf24;">NOW PREPARING</h2>
+                        <p>Food being cooked fresh in the kitchen</p>
+                    </div>
+                </div>
+                <span class="col-count-pill prep-pill" id="prep-count-pill">0 IN KITCHEN</span>
+            </div>
+
+            <div class="tokens-grid" id="prep-tokens-grid">
+                <!-- Dynamically Rendered Preparing Tokens -->
+                <div class="empty-column-state">
+                    <i class="fa-solid fa-kitchen-set"></i>
+                    <p>Kitchen is clear. Waiting for incoming orders...</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Ticker Bar -->
+    <footer class="tv-ticker">
+        <div class="ticker-label">💡 Notice</div>
+        <div class="ticker-marquee" id="ticker-text">
+            Welcome to Campus Mart Pre-Order System! 🍽️ Please show your digital pickup token on your phone when collecting your order from the counter. Enjoy your meal!
+        </div>
+    </footer>
+
+    <!-- Core Backend API Scripts -->
+    <script src="js/api.js?v=3.7"></script>
+
+    <script>
+        // TV Token Announcer Engine
+        let isAudioEnabled = true;
+        let selectedShopFilter = 'all';
+        let knownReadyTokenIds = new Set();
+        let isInitialLoad = true;
+        let pollTimer = null;
+
+        // Sample Seed Tokens for Demo / Offline Presentation
+        const DEMO_ORDERS = [
+            { id: '1', orderId: 'ORD-104', status: 'Ready', shopName: 'TMU Chole Kulcha', customerName: 'Deepak S.', items: [{ name: 'Special Chole Bhature', quantity: 2 }] },
+            { id: '2', orderId: 'ORD-108', status: 'Ready', shopName: 'TMU Canteen Food Court', customerName: 'Aman V.', items: [{ name: 'Paneer Patties', quantity: 1 }, { name: 'Cold Coffee', quantity: 1 }] },
+            { id: '3', orderId: 'ORD-111', status: 'Preparing', shopName: 'TMU Chole Kulcha', customerName: 'Rohan K.', items: [{ name: 'Amritsari Kulcha', quantity: 2 }] },
+            { id: '4', orderId: 'ORD-112', status: 'Preparing', shopName: 'Nescafe Corner', customerName: 'Priya M.', items: [{ name: 'Hot Hazelnut Coffee', quantity: 2 }] },
+            { id: '5', orderId: 'ORD-115', status: 'Preparing', shopName: 'Stationery Mart', customerName: 'Harsh G.', items: [{ name: 'Spiral Register A4', quantity: 1 }] }
+        ];
+
+        // 1. Live Digital Clock
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            const dateStr = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+            
+            const clockEl = document.getElementById('tv-clock');
+            const dateEl = document.getElementById('tv-date');
+            if (clockEl) clockEl.textContent = timeStr;
+            if (dateEl) dateEl.textContent = dateStr;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. Fullscreen Toggle
+        function toggleTvFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log('Fullscreen error:', err);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // 3. Audio Announcer Toggle
+        function toggleAudioAnnouncer() {
+            isAudioEnabled = !isAudioEnabled;
+            const btn = document.getElementById('audio-toggle-btn');
+            const icon = document.getElementById('audio-toggle-icon');
+            const text = document.getElementById('audio-toggle-text');
+
+            if (isAudioEnabled) {
+                btn.className = 'tv-btn active';
+                icon.className = 'fa-solid fa-volume-high';
+                text.textContent = 'Sound: ON';
+                if (typeof playOrderReadyChime === 'function') playOrderReadyChime();
+            } else {
+                btn.className = 'tv-btn';
+                icon.className = 'fa-solid fa-volume-xmark';
+                text.textContent = 'Sound: MUTED';
+            }
+        }
+
+        // 4. Announce Token via Voice & Chime
+        function announceReadyToken(order) {
+            if (!isAudioEnabled) return;
+
+            // Play bell chime
+            if (typeof playOrderReadyChime === 'function') {
+                playOrderReadyChime();
+            }
+
+            // Speak token through SpeechSynthesis
+            if ('speechSynthesis' in window) {
+                try {
+                    const tokenNum = (order.orderId || '').replace(/[^0-9]/g, '') || order.orderId;
+                    const customer = order.customerName || order.studentName || 'Student';
+                    const shop = order.shopName || 'Campus Counter';
+                    
+                    const text = `Attention! Token number ${tokenNum} for ${customer} is now READY at ${shop}!`;
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.95;
+                    utterance.pitch = 1.05;
+                    utterance.lang = 'en-IN';
+                    window.speechSynthesis.speak(utterance);
+                } catch (e) {
+                    console.warn('Speech error:', e);
+                }
+            }
+        }
+
+        // 5. Fetch Orders & Render Live Board
+        async function fetchAndRenderBoard() {
+            let allOrders = [];
+
+            try {
+                if (typeof api !== 'undefined' && api.getOrders) {
+                    const res = await api.getOrders();
+                    if (res && res.success && res.orders && res.orders.length > 0) {
+                        allOrders = res.orders;
+                    }
+                }
+            } catch (err) {
+                console.log('Orders fetch offline fallback:', err);
+            }
+
+            // Use demo fallback if no live orders in backend
+            if (!allOrders || allOrders.length === 0) {
+                allOrders = DEMO_ORDERS;
+            }
+
+            // Populate Counter Shop Filter dropdown dynamically
+            populateShopFilter(allOrders);
+
+            // Filter by selected shop if applicable
+            let filteredOrders = allOrders;
+            if (selectedShopFilter !== 'all') {
+                filteredOrders = allOrders.filter(o => o.shopName === selectedShopFilter);
+            }
+
+            // Separate into Ready vs Preparing
+            const readyOrders = filteredOrders.filter(o => o.status === 'Ready');
+            const prepOrders = filteredOrders.filter(o => o.status === 'Preparing' || o.status === 'Pending');
+
+            // Detect newly ready orders for announcement
+            readyOrders.forEach(o => {
+                const id = String(o.orderId || o._id || o.id);
+                if (!isInitialLoad && !knownReadyTokenIds.has(id)) {
+                    announceReadyToken(o);
+                }
+                knownReadyTokenIds.add(id);
+            });
+
+            isInitialLoad = false;
+
+            // Render UI Columns
+            renderReadyColumn(readyOrders);
+            renderPrepColumn(prepOrders);
+        }
+
+        function renderReadyColumn(orders) {
+            const container = document.getElementById('ready-tokens-grid');
+            const countPill = document.getElementById('ready-count-pill');
+            if (countPill) countPill.textContent = `${orders.length} READY`;
+
+            if (orders.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-column-state">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p>No orders waiting for pickup</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = orders.map((o, idx) => {
+                const tokenStr = o.orderId || `#${o._id ? o._id.slice(-4) : 'ORD'}`;
+                const itemsCount = (o.items || []).reduce((sum, item) => sum + (item.quantity || 1), 0) || 1;
+                const itemsText = (o.items || []).map(i => i.name).join(', ') || 'Food items';
+                const isRecent = idx === 0;
+
+                return `
+                    <div class="token-card ready-card ${isRecent ? 'newly-ready' : ''}">
+                        <div>
+                            <div class="token-top-row">
+                                <span class="token-shop-tag">
+                                    <i class="fa-solid fa-store" style="color: #10b981;"></i> ${o.shopName || 'Canteen Counter'}
+                                </span>
+                                <span class="token-badge-status badge-ready">
+                                    <i class="fa-solid fa-circle-check"></i> READY
+                                </span>
+                            </div>
+                            <div class="token-number">${tokenStr}</div>
+                        </div>
+                        <div class="token-bottom-info">
+                            <span class="customer-name"><i class="fa-solid fa-user" style="font-size: 0.72rem; color: #10b981;"></i> ${o.customerName || o.studentName || 'Student'}</span>
+                            <span class="items-preview" title="${itemsText}">${itemsCount} item${itemsCount > 1 ? 's' : ''}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderPrepColumn(orders) {
+            const container = document.getElementById('prep-tokens-grid');
+            const countPill = document.getElementById('prep-count-pill');
+            if (countPill) countPill.textContent = `${orders.length} IN KITCHEN`;
+
+            if (orders.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-column-state">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                        <p>Kitchen is clear. Waiting for incoming orders...</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = orders.map(o => {
+                const tokenStr = o.orderId || `#${o._id ? o._id.slice(-4) : 'ORD'}`;
+                const itemsCount = (o.items || []).reduce((sum, item) => sum + (item.quantity || 1), 0) || 1;
+                const itemsText = (o.items || []).map(i => i.name).join(', ') || 'Food items';
+
+                return `
+                    <div class="token-card prep-card">
+                        <div>
+                            <div class="token-top-row">
+                                <span class="token-shop-tag">
+                                    <i class="fa-solid fa-kitchen-set" style="color: #f59e0b;"></i> ${o.shopName || 'Kitchen Counter'}
+                                </span>
+                                <span class="token-badge-status badge-prep">
+                                    <i class="fa-solid fa-fire-burner"></i> COOKING
+                                </span>
+                            </div>
+                            <div class="token-number">${tokenStr}</div>
+                        </div>
+                        <div class="token-bottom-info">
+                            <span class="customer-name"><i class="fa-solid fa-user" style="font-size: 0.72rem; color: #f59e0b;"></i> ${o.customerName || o.studentName || 'Student'}</span>
+                            <span class="items-preview" title="${itemsText}">${itemsCount} item${itemsCount > 1 ? 's' : ''}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function populateShopFilter(orders) {
+            const select = document.getElementById('shop-filter-select');
+            if (!select) return;
+
+            const existingVal = select.value;
+            const uniqueShops = Array.from(new Set(orders.map(o => o.shopName).filter(Boolean)));
+
+            // Keep "all" and append distinct shops
+            let html = '<option value="all">🏪 All Counters & Shops</option>';
+            uniqueShops.forEach(s => {
+                html += `<option value="${s}" ${s === existingVal ? 'selected' : ''}>${s}</option>`;
+            });
+
+            select.innerHTML = html;
+        }
+
+        function handleShopFilterChange(val) {
+            selectedShopFilter = val;
+            fetchAndRenderBoard();
+        }
+
+        // Initial Boot & Recurring 3.5s Poll
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAndRenderBoard();
+            pollTimer = setInterval(fetchAndRenderBoard, 3500);
+        });
+    </script>
+</body>
+</html>
