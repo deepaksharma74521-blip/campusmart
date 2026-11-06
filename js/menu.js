@@ -582,12 +582,8 @@ function addToCart(itemId) {
 
     let cart = JSON.parse(localStorage.getItem('canteen_cart') || '[]');
     
-    // Check Max 4 Items Limit
+    // Cart Limit Removed - Unlimited Items Allowed
     const currentTotalQuantity = cart.reduce((sum, it) => sum + (Number(it.quantity) || 1), 0);
-    if (currentTotalQuantity >= 4) {
-        showToast('Cart limit reached! You can add a maximum of 4 items per express break order for faster counter packing.', 'warning', 'Limit Reached (Max 4 Items)');
-        return;
-    }
 
     const existingIndex = cart.findIndex(i => (i.id === cartItemId || i._id === cartItemId));
 
@@ -619,7 +615,7 @@ function addToCart(itemId) {
         try { navigator.vibrate(40); } catch(e) {}
     }
     updateGlobalCartBadge();
-    showToast(`${cartItemName} added to cart! (${currentTotalQuantity + 1}/4 items)`, 'success', 'Cart Updated');
+    showToast(`${cartItemName} added to cart! (${currentTotalQuantity + 1} items in cart)`, 'success', 'Cart Updated');
 }
 
 let searchDebounceTimer = null;

@@ -4,8 +4,8 @@
 // Description: Shopping Cart Management, Calculations & Pre-Order Placement
 // ==========================================================================
 
-function getCartPackagingFee(cart) {
-    if (!cart || cart.length === 0) return 5;
+function getCartPackagingFee(cart, subtotal = null) {
+    if (!cart || cart.length === 0) return 0;
     const hasSalon = cart.some(it => 
         it.category === 'Salon & Grooming' || 
         it.shopId === 'shop-24' || 
@@ -13,7 +13,21 @@ function getCartPackagingFee(cart) {
         it.packagingFee === 20 ||
         it.isService === true
     );
-    return hasSalon ? 20 : 5;
+    if (hasSalon) return 20;
+
+    const currentSubtotal = (subtotal !== null) 
+        ? Number(subtotal) 
+        : cart.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
+
+    // Base packaging fee: ₹5
+    let fee = 5;
+
+    // Rule: For orders above ₹100, add ₹5 per ₹100 slab
+    if (currentSubtotal > 100) {
+        const extraSlabs = Math.floor(currentSubtotal / 100);
+        fee = 5 + (extraSlabs * 5);
+    }
+    return fee;
 }
 
 let currentSelectedSplit = 100;
@@ -42,7 +56,7 @@ function selectPaymentSplit(percent) {
 
     const cart = JSON.parse(localStorage.getItem('canteen_cart') || '[]');
     const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
-    const fee = getCartPackagingFee(cart);
+    const fee = getCartPackagingFee(cart, subtotal);
     const totalAmount = subtotal > 0 ? subtotal + fee : 0;
     updateSplitCalculation(totalAmount);
 }
@@ -223,14 +237,21 @@ function loadCart() {
         `;
     }).join('');
 
-    const fee = getCartPackagingFee(cart);
+    const fee = getCartPackagingFee(cart, subtotal);
     const hasSalon = (fee === 20);
     const totalAmount = subtotal + fee;
     
     document.getElementById('summary-subtotal').textContent = `₹${subtotal}`;
     const packLabel = document.getElementById('summary-packaging-label');
     if (packLabel) {
-        packLabel.innerHTML = hasSalon ? '💈 Salon Booking &amp; Disposable Kit Fee' : 'Packaging &amp; Prep Fee';
+        if (hasSalon) {
+            packLabel.innerHTML = '💈 Salon Booking &amp; Disposable Kit Fee';
+        } else if (subtotal > 100) {
+            const extra = Math.floor(subtotal / 100) * 5;
+            packLabel.innerHTML = `Packaging &amp; Service Fee <span style="font-size: 0.72rem; color: #ea580c; font-weight: 700; display: block;">(₹5 base + ₹${extra} extra on ₹${subtotal})</span>`;
+        } else {
+            packLabel.innerHTML = 'Packaging &amp; Service Fee';
+        }
     }
     document.getElementById('summary-packaging').textContent = `₹${fee}`;
     document.getElementById('summary-total').textContent = `₹${totalAmount}`;
@@ -261,13 +282,7 @@ function updateItemQuantity(index, delta) {
     let cart = JSON.parse(localStorage.getItem('canteen_cart') || '[]');
     if (!cart[index]) return;
 
-    if (delta > 0) {
-        const totalItemsCount = cart.reduce((sum, it) => sum + (Number(it.quantity) || 1), 0);
-        if (totalItemsCount >= 4) {
-            showToast('Cart limit reached: Maximum 4 items per express break order for faster counter handover!', 'warning', 'Limit Reached (Max 4 Items)');
-            return;
-        }
-    }
+    // Cart limit removed - allow unlimited items
 
     cart[index].quantity = (cart[index].quantity || 1) + delta;
 
@@ -592,7 +607,7 @@ async function handlePlaceOrder(event) {
 
     try {
         const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
-        const fee = getCartPackagingFee(cart);
+        const fee = getCartPackagingFee(cart, subtotal);
         const isSalon = (fee === 20);
         const totalAmount = subtotal + fee;
         const adminCommission = isSalon ? 10.0 : 2.5;
