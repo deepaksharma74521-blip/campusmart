@@ -249,27 +249,64 @@
                         </div>
                     </div>
 
-                    <!-- Arrival / Pickup Time Slot with Custom Time Picker -->
-                    <div class="form-group" style="margin-bottom: 1.25rem;">
-                        <label class="form-label" style="font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
-                            <span><i class="fa-solid fa-clock" style="color: var(--primary);"></i> Mention When You Will Arrive / Need Delivery</span>
-                        </label>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;">
-                            <button type="button" class="time-slot-pill active" onclick="selectTimeSlotOption('Immediate / In 15 Mins', this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid var(--primary); background: #fff7ed; color: var(--primary); font-weight: 700; font-size: 0.78rem; cursor: pointer;">⚡ Immediate (15m)</button>
-                            <button type="button" class="time-slot-pill" onclick="selectTimeSlotOption('Lunch Break (1:15 PM)', this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid #cbd5e1; background: white; color: #475569; font-weight: 600; font-size: 0.78rem; cursor: pointer;">🍱 Lunch (1:15 PM)</button>
-                            <button type="button" class="time-slot-pill" onclick="selectTimeSlotOption('Evening Break (4:30 PM)', this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid #cbd5e1; background: white; color: #475569; font-weight: 600; font-size: 0.78rem; cursor: pointer;">☕ Evening (4:30 PM)</button>
-                            <button type="button" class="time-slot-pill" id="custom-time-pill" onclick="toggleCustomTimeInput(this)" style="padding: 5px 10px; border-radius: 9999px; border: 1.5px solid #cbd5e1; background: white; color: #6b21a8; font-weight: 700; font-size: 0.78rem; cursor: pointer;">⏰ Set Custom Time</button>
+                    <!-- College Break-Time Pre-Order Scheduler -->
+                    <div class="form-group" style="margin-bottom: 1.25rem; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 1.1rem; box-shadow: var(--shadow-xs);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <label class="form-label" style="font-weight: 800; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-bell-concierge" style="color: var(--primary); font-size: 1.15rem;"></i>
+                                <span>Schedule for College Break / Pickup Time</span>
+                            </label>
+                            <span id="current-college-time" style="font-size: 0.75rem; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 9999px; font-weight: 700;">Live Clock</span>
                         </div>
-                        <input type="hidden" id="pickup-slot" value="Immediate / In 15 Mins">
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 0.55rem; margin-bottom: 0.75rem;" id="break-slot-chips">
+                            <!-- 1. Immediate -->
+                            <button type="button" class="time-slot-pill active" onclick="selectTimeSlotOption('⚡ Immediate (10-15 Mins)', this)" style="display: flex; flex-direction: column; align-items: flex-start; padding: 0.6rem 0.75rem; border-radius: 10px; border: 2px solid var(--primary); background: #fff7ed; color: var(--primary); cursor: pointer; text-align: left; transition: all 0.2s;">
+                                <div style="font-weight: 800; font-size: 0.85rem;"><i class="fa-solid fa-bolt"></i> Immediate</div>
+                                <div style="font-size: 0.72rem; color: #9a3412; opacity: 0.9;">In 10-15 Mins</div>
+                            </button>
+
+                            <!-- 2. Morning Recess -->
+                            <button type="button" class="time-slot-pill" onclick="selectTimeSlotOption('🥪 Recess Break (11:15 AM)', this)" style="display: flex; flex-direction: column; align-items: flex-start; padding: 0.6rem 0.75rem; border-radius: 10px; border: 1.5px solid #cbd5e1; background: white; color: #334155; cursor: pointer; text-align: left; transition: all 0.2s;">
+                                <div style="font-weight: 800; font-size: 0.85rem;">🥪 Recess Break</div>
+                                <div style="font-size: 0.72rem; color: #64748b;">11:15 AM Slot</div>
+                            </button>
+
+                            <!-- 3. Lunch Break -->
+                            <button type="button" class="time-slot-pill" onclick="selectTimeSlotOption('🍱 Lunch Break (1:15 PM)', this)" style="display: flex; flex-direction: column; align-items: flex-start; padding: 0.6rem 0.75rem; border-radius: 10px; border: 1.5px solid #cbd5e1; background: white; color: #334155; cursor: pointer; text-align: left; transition: all 0.2s;">
+                                <div style="font-weight: 800; font-size: 0.85rem;">🍱 Lunch Break</div>
+                                <div style="font-size: 0.72rem; color: #64748b;">1:15 PM Peak</div>
+                            </button>
+
+                            <!-- 4. Evening Tea Break -->
+                            <button type="button" class="time-slot-pill" onclick="selectTimeSlotOption('☕ Evening Tea (3:30 PM)', this)" style="display: flex; flex-direction: column; align-items: flex-start; padding: 0.6rem 0.75rem; border-radius: 10px; border: 1.5px solid #cbd5e1; background: white; color: #334155; cursor: pointer; text-align: left; transition: all 0.2s;">
+                                <div style="font-weight: 800; font-size: 0.85rem;">☕ Evening Tea</div>
+                                <div style="font-size: 0.72rem; color: #64748b;">3:30 PM Slot</div>
+                            </button>
+
+                            <!-- 5. Custom Time -->
+                            <button type="button" class="time-slot-pill" id="custom-time-pill" onclick="toggleCustomTimeInput(this)" style="display: flex; flex-direction: column; align-items: flex-start; padding: 0.6rem 0.75rem; border-radius: 10px; border: 1.5px solid #cbd5e1; background: white; color: #6b21a8; cursor: pointer; text-align: left; transition: all 0.2s;">
+                                <div style="font-weight: 800; font-size: 0.85rem;">⏰ Custom Time</div>
+                                <div style="font-size: 0.72rem; color: #7e22ce;">Pick Exact Time</div>
+                            </button>
+                        </div>
+
+                        <!-- Active Slot Banner info -->
+                        <div id="break-slot-info-banner" style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 0.55rem 0.85rem; font-size: 0.82rem; color: #166534; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-circle-check" style="color: #16a34a;"></i>
+                            <span id="break-slot-info-text">⚡ Immediate Pickup selected — Kitchen will prepare order within 10-15 minutes.</span>
+                        </div>
+
+                        <input type="hidden" id="pickup-slot" value="⚡ Immediate (10-15 Mins)">
 
                         <!-- Custom Time Input Box (Hidden by default, shows on click) -->
-                        <div id="custom-time-box" style="display: none; background: #fdf4ff; border: 1.5px solid #f0abfc; border-radius: 8px; padding: 0.75rem 1rem; margin-top: 0.4rem;">
-                            <label class="form-label" for="custom-time-picker" style="color: #86198f; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.3rem;">
-                                <i class="fa-solid fa-stopwatch"></i> Exact Time / Note for Counter (e.g. 01:45 PM):
+                        <div id="custom-time-box" style="display: none; background: #faf5ff; border: 1.5px solid #e9d5ff; border-radius: 10px; padding: 0.75rem 1rem; margin-top: 0.65rem;">
+                            <label class="form-label" for="custom-time-picker" style="color: #6b21a8; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.35rem;">
+                                <i class="fa-solid fa-stopwatch"></i> Exact Time / Note for Counter (e.g. 02:00 PM after Lab):
                             </label>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <input type="time" id="custom-time-picker" class="form-input no-icon" style="flex: 1; font-weight: 700; font-size: 0.95rem; background: white;" onchange="onCustomTimeChanged(this.value)">
-                                <input type="text" id="custom-time-note" class="form-input no-icon" placeholder="e.g. Arriving after 2nd lecture" style="flex: 2; font-size: 0.85rem; background: white;" oninput="onCustomTimeChanged()">
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <input type="time" id="custom-time-picker" class="form-input no-icon" style="flex: 1; min-width: 120px; font-weight: 700; font-size: 0.95rem; background: white;" onchange="onCustomTimeChanged(this.value)">
+                                <input type="text" id="custom-time-note" class="form-input no-icon" placeholder="e.g. Pick up right after OS Lecture" style="flex: 2; min-width: 180px; font-size: 0.85rem; background: white;" oninput="onCustomTimeChanged()">
                             </div>
                         </div>
                     </div>

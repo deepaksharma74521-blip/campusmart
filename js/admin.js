@@ -1146,8 +1146,8 @@ function renderAdminOrdersTable() {
                 </td>
                 <td style="max-width: 240px;">
                     ${itemsDisplayHtml}
-                    <div style="font-size: 0.78rem; color: #6b21a8; font-weight: 700; margin-top: 0.25rem; background: #faf5ff; border: 1px solid #e9d5ff; padding: 2px 6px; border-radius: 4px; display: inline-block;">
-                        <i class="fa-solid fa-stopwatch"></i> Slot: ${arrivalTime}
+                    <div style="font-size: 0.78rem; font-weight: 800; margin-top: 0.25rem; background: #fff7ed; border: 1.5px solid #fed7aa; color: #c2410c; padding: 2px 7px; border-radius: 6px; display: inline-block;">
+                        <i class="fa-solid fa-bell-concierge"></i> ${arrivalTime}
                     </div>
                 </td>
                 <td style="min-width: 135px;">

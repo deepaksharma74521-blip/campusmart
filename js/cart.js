@@ -357,10 +357,10 @@ function selectTimeSlotOption(slotText, btnEl) {
     document.querySelectorAll('.time-slot-pill').forEach(btn => {
         btn.style.border = '1.5px solid #cbd5e1';
         btn.style.background = 'white';
-        btn.style.color = '#475569';
+        btn.style.color = '#334155';
     });
     if (btnEl) {
-        btnEl.style.border = '1.5px solid var(--primary)';
+        btnEl.style.border = '2px solid var(--primary)';
         btnEl.style.background = '#fff7ed';
         btnEl.style.color = 'var(--primary)';
     }
@@ -369,6 +369,20 @@ function selectTimeSlotOption(slotText, btnEl) {
 
     const customBox = document.getElementById('custom-time-box');
     if (customBox) customBox.style.display = 'none';
+
+    // Update Banner Info
+    const bannerText = document.getElementById('break-slot-info-text');
+    if (bannerText) {
+        if (slotText.includes('Lunch')) {
+            bannerText.textContent = '🍱 Lunch Break (1:15 PM) selected — Your meal will be packed piping hot & kept ready for zero-wait pickup!';
+        } else if (slotText.includes('Recess')) {
+            bannerText.textContent = '🥪 Morning Recess (11:15 AM) selected — Counter will have your snacks fresh and packed when the bell rings!';
+        } else if (slotText.includes('Evening')) {
+            bannerText.textContent = '☕ Evening Tea (3:30 PM) selected — Fresh tea & snacks scheduled for evening departure break.';
+        } else {
+            bannerText.textContent = '⚡ Immediate Pickup selected — Kitchen will prepare order fresh within 10-15 minutes.';
+        }
+    }
 }
 
 function toggleCustomTimeInput(btnEl) {
@@ -718,5 +732,18 @@ function showOrderSuccessModal(orderId, amount, pickupSlot, advanceAmount = amou
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     loadCart();
+    initCollegeClockInCart();
     detectLiveGpsLocation(false);
 });
+
+
+function initCollegeClockInCart() {
+    function tick() {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        const el = document.getElementById('current-college-time');
+        if (el) el.textContent = `⏰ College Time: ${timeStr}`;
+    }
+    tick();
+    setInterval(tick, 10000);
+}
