@@ -668,7 +668,8 @@ function playOrderReadyChime() {
 
 function playWelcomeSoundAndVoice(force = false) {
     try {
-        if (!force && sessionStorage.getItem('campus_mart_welcome_played')) {
+        // Lifetime Check: Never play again if already played once in student's browser/app lifetime
+        if (!force && (localStorage.getItem('campus_mart_welcome_played_lifetime') || sessionStorage.getItem('campus_mart_welcome_played'))) {
             return;
         }
 
@@ -745,6 +746,8 @@ function playWelcomeSoundAndVoice(force = false) {
             }, 300);
         }
 
+        // Mark as played permanently for lifetime in device localStorage
+        localStorage.setItem('campus_mart_welcome_played_lifetime', 'true');
         sessionStorage.setItem('campus_mart_welcome_played', 'true');
 
         if (force) {
@@ -755,9 +758,10 @@ function playWelcomeSoundAndVoice(force = false) {
     }
 }
 
-// Auto-trigger welcome sound on page load / first user interaction
+// Auto-trigger welcome sound only once in user's entire lifetime
 function initWelcomeAudioTrigger() {
-    if (sessionStorage.getItem('campus_mart_welcome_played')) {
+    // If user has ever opened the app before, exit immediately (never play again)
+    if (localStorage.getItem('campus_mart_welcome_played_lifetime') || sessionStorage.getItem('campus_mart_welcome_played')) {
         return;
     }
 
@@ -773,7 +777,7 @@ function initWelcomeAudioTrigger() {
     });
 
     setTimeout(() => {
-        if (!sessionStorage.getItem('campus_mart_welcome_played')) {
+        if (!localStorage.getItem('campus_mart_welcome_played_lifetime')) {
             playWelcomeSoundAndVoice(false);
         }
     }, 700);
