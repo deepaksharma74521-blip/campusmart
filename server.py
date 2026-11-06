@@ -1255,7 +1255,7 @@ def send_otp():
     if not allowed:
         return jsonify({"success": False, "message": limit_msg}), 429
 
-    # Strict Check: Only 1 account per mobile number
+    # Account Check based on Purpose
     if purpose == "register":
         all_users = db.users.find({})
         for u in all_users:
@@ -1275,6 +1275,23 @@ def send_otp():
                     "alreadyRegistered": True,
                     "message": f"⚠️ Email address '{email}' is already registered. Please login instead."
                 }), 400
+    elif purpose in ["reset_password", "forgot"]:
+        # Verify that an account exists for this mobile number or email
+        all_users = db.users.find({})
+        matched_user = None
+        for u in all_users:
+            u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
+            if u_phone and u_phone == clean_phone:
+                matched_user = u
+                break
+        if not matched_user and email:
+            matched_user = db.users.find_one({"email": email})
+
+        if not matched_user:
+            return jsonify({
+                "success": False,
+                "message": f"⚠️ No registered account found with mobile number '{phone}'. Please check your number or sign up first."
+            }), 404
 
     # Generate 6-Digit random OTP
     otp_code = str(random.randint(100000, 999999))
@@ -1282,10 +1299,17 @@ def send_otp():
     expires_at = (now + timedelta(minutes=5)).isoformat()
 
     # WhatsApp Formatted OTP Message
+    if purpose in ["reset_password", "forgot"]:
+        wa_header = "🔑 *CAMPUS MART - PASSWORD RESET CODE*"
+        wa_label = "Your 6-Digit Password Reset OTP is:"
+    else:
+        wa_header = "🍔 *CAMPUS MART - MOBILE VERIFICATION*"
+        wa_label = "Your 6-Digit Verification Code is:"
+
     wa_message = (
-        f"🍔 *CAMPUS MART - MOBILE VERIFICATION*\n"
+        f"{wa_header}\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
-        f"👋 Hello! Your 6-Digit Verification Code is:\n"
+        f"👋 Hello! {wa_label}\n"
         f"👉 *{otp_code}*\n"
         f"_(Valid for 5 minutes only)_\n\n"
         f"⚠️ Do not share this OTP with anyone.\n"
@@ -1374,6 +1398,70 @@ def verify_otp():
         "success": True,
         "message": "✅ Mobile number verified successfully!",
         "phone": phone
+    }), 200
+
+
+@app.route("/api/auth/reset-password", methods=["POST"])
+def reset_password():
+    data = request.json or {}
+    phone = (data.get("phone") or "").strip()
+    otp = str(data.get("otp", "")).strip()
+    new_password = (data.get("new_password") or "").strip()
+
+    if not phone or not otp or not new_password:
+        return jsonify({"success": False, "message": "Phone, OTP and new password are required."}), 400
+
+    if len(new_password) < 6:
+        return jsonify({"success": False, "message": "New password must be at least 6 characters long."}), 400
+
+    clean_phone = phone.replace(" ", "").replace("-", "").replace("+91", "")
+
+    otp_record = db.otps.find_one({"phone": clean_phone, "otp": otp}) if hasattr(db, "otps") else None
+    if not otp_record:
+        return jsonify({"success": False, "message": "❌ Invalid OTP! Please enter the correct 6-digit code received on your phone."}), 400
+
+    expires_at_str = otp_record.get("expiresAt")
+    if expires_at_str:
+        try:
+            expires_at = datetime.fromisoformat(expires_at_str)
+            if datetime.now() > expires_at:
+                return jsonify({"success": False, "message": "⌛ OTP has expired (5 min limit). Please request a new code."}), 400
+        except Exception:
+            pass
+
+    # Find the user
+    user = None
+    all_users = db.users.find({})
+    for u in all_users:
+        u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
+        if u_phone and u_phone == clean_phone:
+            user = u
+            break
+
+    if not user:
+        return jsonify({"success": False, "message": "⚠️ User account matching this mobile number was not found."}), 404
+
+    # Update password in database
+    hashed_pwd = hash_password(new_password)
+    db.users.update_one({"_id": user["_id"]}, {"$set": {"password": hashed_pwd, "updatedAt": datetime.now().isoformat()}})
+
+    # Invalidate OTPs for this phone
+    if hasattr(db, "otps"):
+        db.otps.delete_many({"phone": clean_phone})
+
+    user["password"] = hashed_pwd
+    auth_token = generate_auth_token(user)
+    user_safe = format_doc(user)
+    if "password" in user_safe:
+        del user_safe["password"]
+
+    print(f"[AUTH] 🔑 Password reset successfully for user: {user.get('name')} ({user.get('email')}, {clean_phone})")
+
+    return jsonify({
+        "success": True,
+        "message": "🎉 Password reset successfully! You are now logged in.",
+        "token": auth_token,
+        "user": user_safe
     }), 200
 
 

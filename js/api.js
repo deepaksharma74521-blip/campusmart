@@ -96,6 +96,32 @@ const api = {
         return data;
     },
 
+    async sendPasswordResetOtp(phone) {
+        const res = await fetch(`${API_BASE}/api/auth/send-otp`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone, purpose: 'reset_password' })
+        });
+        return await res.json();
+    },
+
+    async resetPassword(phone, otp, newPassword) {
+        const res = await fetch(`${API_BASE}/api/auth/reset-password`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone, otp, new_password: newPassword })
+        });
+        const data = await res.json();
+        if (data.success && data.user) {
+            if (data.token) {
+                localStorage.setItem('canteen_token', data.token);
+                data.user.token = data.token;
+            }
+            localStorage.setItem('canteen_user', JSON.stringify(data.user));
+        }
+        return data;
+    },
+
     logout() {
         localStorage.removeItem('canteen_user');
         localStorage.removeItem('canteen_token');

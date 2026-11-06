@@ -50,7 +50,7 @@
       "uid": "a96cc209-f9f3-4945-bef1-d3d06c1d14de",
       "name": "Pari Jain",
       "email": "parijaincomic@gmail.com",
-      "password": "4f40686881b73bfa559dc55d510c246e87bb4a8c0a8975ed3256f9436e91dd63",
+      "password": "475b61fe6100100e183319ba17283b52105e6bfb67c76bcbb60ab776274c6ba6",
       "rollNo": "TCA2568350",
       "department": "College of Computing Sciences & IT (CCSIT)",
       "phone": "9315913825",
@@ -61,7 +61,8 @@
       "staffDesignation": null,
       "assignedShop": "All",
       "createdAt": "2026-09-26T10:54:46.152254",
-      "id": "a96cc209-f9f3-4945-bef1-d3d06c1d14de"
+      "id": "a96cc209-f9f3-4945-bef1-d3d06c1d14de",
+      "updatedAt": "2026-11-06T23:43:38.023885"
     },
     {
       "_id": "user-shop-1",
@@ -42658,7 +42659,7 @@
       "paymentStatus": "Fully Paid",
       "dueStatus": "Fully Paid",
       "splitPaymentType": "online_split",
-      "splitStatus": "Instant Split Settled (₹2.50 Admin + Vendor Net Credit)",
+      "splitStatus": "Instant Split Settled (\u20b92.50 Admin + Vendor Net Credit)",
       "cashCommissionDue": 0.0,
       "adminSettled": true,
       "vendorSettled": true,
@@ -42742,7 +42743,7 @@
       "paymentStatus": "Fully Paid",
       "dueStatus": "Fully Paid",
       "splitPaymentType": "online_split",
-      "splitStatus": "Instant Split Settled (₹2.50 Admin + Vendor Net Credit)",
+      "splitStatus": "Instant Split Settled (\u20b92.50 Admin + Vendor Net Credit)",
       "cashCommissionDue": 0.0,
       "adminSettled": true,
       "vendorSettled": true,
@@ -42894,7 +42895,7 @@
       "phone": "+91 98765 43205",
       "location": "Near Gate No. 2 Lawn, Counter #5",
       "timing": "8:30 AM - 5:30 PM",
-      "description": "Aromatic dum biryani with soya chaap, paneer chunks, spicy gravy & fresh raita (₹40 / ₹50 / ₹60).",
+      "description": "Aromatic dum biryani with soya chaap, paneer chunks, spicy gravy & fresh raita (\u20b940 / \u20b950 / \u20b960).",
       "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&auto=format&fit=crop&q=80",
       "isOpen": true,
       "rating": 4.9,
@@ -43294,7 +43295,7 @@
       "specialInstructions": "Call me once you collect from Gate 2 courier boy.",
       "runnerFee": 10,
       "paymentMethod": "Campus Digital Wallet",
-      "paymentStatus": "Paid (₹10)",
+      "paymentStatus": "Paid (\u20b910)",
       "status": "Out for Delivery",
       "runnerName": "Vikas (Mart Runner #3)",
       "runnerPhone": "+91 98765 00112",
@@ -43323,7 +43324,7 @@
       "specialInstructions": "Leave with security desk if I am in class.",
       "runnerFee": 20,
       "paymentMethod": "Instant UPI & QR Pay",
-      "paymentStatus": "Paid (₹20)",
+      "paymentStatus": "Paid (\u20b920)",
       "status": "Collected at Gate 2",
       "runnerName": "Deepak (Runner #1)",
       "runnerPhone": "+91 63953 22813",
@@ -43335,17 +43336,6 @@
     }
   ],
   "otps": [
-    {
-      "_id": "6c6db535-7845-4bae-b6fc-01a47a806aaf",
-      "phone": "9315913825",
-      "rawPhone": "9315913825",
-      "email": "parijaincomic@gmail.com",
-      "otp": "687891",
-      "channel": "WhatsApp",
-      "verified": false,
-      "createdAt": "2026-09-26T10:54:35.785851",
-      "expiresAt": "2026-09-26T10:59:35.785851"
-    },
     {
       "_id": "7c595519-afee-4f97-9dc4-f47af828bf03",
       "phone": "7983170609",

@@ -1067,3 +1067,220 @@ function checkPasswordMatch() {
         badge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Mismatch';
     }
 }
+
+// ==========================================================================
+// Forgot Password Flow (OTP Verification & Instant Password Reset)
+// ==========================================================================
+let currentForgotPhone = '';
+let currentForgotOtp = '';
+let forgotPushTimer = null;
+
+function openForgotPasswordModal() {
+    const modal = document.getElementById('forgot-modal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    modal.style.pointerEvents = 'auto';
+    setTimeout(() => {
+        modal.style.opacity = '1';
+    }, 10);
+
+    // Reset steps
+    const step1 = document.getElementById('forgot-step-1');
+    const step2 = document.getElementById('forgot-step-2');
+    if (step1) step1.style.display = 'block';
+    if (step2) step2.style.display = 'none';
+
+    // Focus phone input
+    const phoneInput = document.getElementById('forgot-phone-input');
+    if (phoneInput) {
+        phoneInput.value = '';
+        setTimeout(() => phoneInput.focus(), 150);
+    }
+}
+
+function closeForgotPasswordModal() {
+    const modal = document.getElementById('forgot-modal');
+    if (!modal) return;
+    modal.style.opacity = '0';
+    modal.style.pointerEvents = 'none';
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 250);
+    dismissForgotPushNotification();
+}
+
+function changeForgotPhone() {
+    const step1 = document.getElementById('forgot-step-1');
+    const step2 = document.getElementById('forgot-step-2');
+    if (step1) step1.style.display = 'block';
+    if (step2) step2.style.display = 'none';
+    dismissForgotPushNotification();
+}
+
+async function handleForgotSendOtp() {
+    const phoneInput = document.getElementById('forgot-phone-input');
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    const cleanPhone = phone.replace(/[^0-9]/g, '');
+
+    if (!cleanPhone || cleanPhone.length < 10) {
+        showToast('Please enter a valid 10-digit registered mobile number.', 'warning', 'Invalid Phone');
+        if (phoneInput) phoneInput.focus();
+        return;
+    }
+
+    const sendBtn = document.getElementById('forgot-send-otp-btn');
+    const resendBtn = document.getElementById('forgot-resend-btn');
+    if (sendBtn) {
+        sendBtn.disabled = true;
+        sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending OTP...';
+    }
+    if (resendBtn) {
+        resendBtn.disabled = true;
+        resendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+    }
+
+    try {
+        const res = await api.sendPasswordResetOtp(cleanPhone);
+        if (res.success) {
+            currentForgotPhone = cleanPhone;
+            currentForgotOtp = String(res.otp || '');
+
+            showToast(res.message || 'OTP sent successfully!', 'success', 'OTP Dispatched');
+
+            // Switch to Step 2
+            const step1 = document.getElementById('forgot-step-1');
+            const step2 = document.getElementById('forgot-step-2');
+            const targetPhoneEl = document.getElementById('forgot-target-phone-display');
+            if (step1) step1.style.display = 'none';
+            if (step2) step2.style.display = 'block';
+            if (targetPhoneEl) {
+                targetPhoneEl.textContent = `+91 ${cleanPhone.slice(0, 5)} ${cleanPhone.slice(5)}`;
+            }
+
+            // WhatsApp link setup
+            const waBtn = document.getElementById('forgot-whatsapp-btn');
+            if (waBtn && res.whatsappUrl) {
+                waBtn.href = res.whatsappUrl;
+                waBtn.style.display = 'inline-flex';
+            }
+
+            // Show floating push notification
+            showForgotPushNotification(currentForgotOtp);
+
+            // Focus OTP input
+            const otpInput = document.getElementById('forgot-otp-input');
+            if (otpInput) {
+                otpInput.value = '';
+                setTimeout(() => otpInput.focus(), 150);
+            }
+        } else {
+            showToast(res.message || 'Could not send OTP.', 'error', 'Error');
+        }
+    } catch (err) {
+        console.error('Send OTP Error:', err);
+        showToast('Error connecting to server. Please try again.', 'error');
+    } finally {
+        if (sendBtn) {
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send OTP Code';
+        }
+        if (resendBtn) {
+            resendBtn.disabled = false;
+            resendBtn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Resend OTP';
+        }
+    }
+}
+
+function showForgotPushNotification(otp) {
+    const notif = document.getElementById('forgot-push-notification');
+    const otpDisplay = document.getElementById('forgot-push-otp-display');
+    if (!notif) return;
+
+    if (otpDisplay) otpDisplay.textContent = otp;
+    notif.style.top = '20px';
+
+    if ('vibrate' in navigator) {
+        try { navigator.vibrate([100, 50, 100]); } catch(e) {}
+    }
+
+    if (forgotPushTimer) clearTimeout(forgotPushTimer);
+    forgotPushTimer = setTimeout(() => {
+        dismissForgotPushNotification();
+    }, 15000);
+}
+
+function dismissForgotPushNotification() {
+    const notif = document.getElementById('forgot-push-notification');
+    if (notif) notif.style.top = '-160px';
+    if (forgotPushTimer) {
+        clearTimeout(forgotPushTimer);
+        forgotPushTimer = null;
+    }
+}
+
+function autoFillForgotOtp() {
+    const otpInput = document.getElementById('forgot-otp-input');
+    if (otpInput && currentForgotOtp) {
+        otpInput.value = currentForgotOtp;
+        showToast('OTP auto-filled successfully!', 'success', 'Auto-Filled');
+        dismissForgotPushNotification();
+        const pwdInput = document.getElementById('forgot-new-pwd');
+        if (pwdInput) pwdInput.focus();
+    }
+}
+
+async function handleResetPasswordSubmit() {
+    const otpInput = document.getElementById('forgot-otp-input');
+    const newPwdInput = document.getElementById('forgot-new-pwd');
+    const confirmPwdInput = document.getElementById('forgot-confirm-pwd');
+    const submitBtn = document.getElementById('forgot-reset-submit-btn');
+
+    const otp = otpInput ? otpInput.value.trim() : '';
+    const newPwd = newPwdInput ? newPwdInput.value : '';
+    const confirmPwd = confirmPwdInput ? confirmPwdInput.value : '';
+
+    if (!otp || otp.length < 6) {
+        showToast('Please enter the 6-digit OTP received on your mobile.', 'warning', 'Invalid OTP');
+        if (otpInput) otpInput.focus();
+        return;
+    }
+
+    if (!newPwd || newPwd.length < 6) {
+        showToast('New password must be at least 6 characters long.', 'warning', 'Password Too Short');
+        if (newPwdInput) newPwdInput.focus();
+        return;
+    }
+
+    if (newPwd !== confirmPwd) {
+        showToast('New passwords do not match. Please verify.', 'error', 'Mismatch');
+        if (confirmPwdInput) confirmPwdInput.focus();
+        return;
+    }
+
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Resetting Password...';
+    }
+
+    try {
+        const res = await api.resetPassword(currentForgotPhone, otp, newPwd);
+        if (res.success) {
+            showToast('🎉 Password reset successfully! Redirecting...', 'success', 'Success');
+            dismissForgotPushNotification();
+            setTimeout(() => {
+                closeForgotPasswordModal();
+                window.location.href = 'menu.html';
+            }, 1000);
+        } else {
+            showToast(res.message || 'Failed to reset password.', 'error', 'Error');
+        }
+    } catch (err) {
+        console.error('Reset Password Error:', err);
+        showToast('Could not complete reset. Please try again.', 'error');
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Reset Password & Sign In';
+        }
+    }
+}
