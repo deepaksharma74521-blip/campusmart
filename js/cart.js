@@ -586,6 +586,7 @@ async function handlePlaceOrder(event) {
         
         const randomDigits = Math.floor(100000 + Math.random() * 900000);
         const orderId = isSalon ? `SLN-${randomDigits}` : `ORD-${randomDigits}`;
+        const pickupOtp = Math.floor(1000 + Math.random() * 9000).toString();
 
         const isFaculty = user.userType === 'Faculty';
         
@@ -607,6 +608,7 @@ async function handlePlaceOrder(event) {
 
         const orderPayload = {
             orderId: orderId,
+            pickupOtp: pickupOtp,
             userId: user._id || user.uid || user.id,
             customerType: user.userType || 'Student',
             cabinNumber: campusRoom || user.cabinNumber || '',
@@ -672,7 +674,7 @@ async function handlePlaceOrder(event) {
         if (res.success) {
             localStorage.removeItem('canteen_cart');
             updateGlobalCartBadge();
-            showOrderSuccessModal(orderId, totalAmount, pickupSlot, advanceAmount, dueAmount);
+            showOrderSuccessModal(orderId, totalAmount, pickupSlot, advanceAmount, dueAmount, pickupOtp);
         } else {
             showToast(res.message || 'Failed to place order.', 'error');
             placeBtn.disabled = false;
@@ -687,7 +689,7 @@ async function handlePlaceOrder(event) {
     }
 }
 
-function showOrderSuccessModal(orderId, amount, pickupSlot, advanceAmount = amount, dueAmount = 0) {
+function showOrderSuccessModal(orderId, amount, pickupSlot, advanceAmount = amount, dueAmount = 0, pickupOtp = '') {
     const modal = document.getElementById('order-success-modal');
     if (!modal) {
         window.location.href = 'orders.html';
@@ -706,6 +708,9 @@ function showOrderSuccessModal(orderId, amount, pickupSlot, advanceAmount = amou
     if (dueRow) dueRow.style.display = (dueAmount > 0) ? 'flex' : 'none';
 
     document.getElementById('modal-order-slot').textContent = pickupSlot;
+    const pinEl = document.getElementById('modal-order-pin');
+    if (pinEl) pinEl.textContent = pickupOtp || (orderId ? orderId.slice(-4) : '----');
+    try { localStorage.setItem('last_order_pin_' + orderId, pickupOtp); } catch(e) {}
 
     modal.classList.add('active');
 }

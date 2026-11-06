@@ -505,16 +505,53 @@ function showToast(message, type = 'info', title = '') {
     }, 3800);
 }
 
-// Global Cart Badge updater
+// Global Cart Badge & Swiggy-Style Floating Cart Bar Updater
 function updateGlobalCartBadge() {
     try {
         const cart = JSON.parse(localStorage.getItem('canteen_cart') || '[]');
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const totalItems = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (Number(item.price) * (Number(item.quantity) || 1)), 0);
+
         const badges = document.querySelectorAll('.cart-badge');
         badges.forEach(b => {
             b.textContent = totalItems;
             b.style.display = totalItems > 0 ? 'inline-flex' : 'none';
         });
+
+        // Don't show floating cart bar on cart.html, admin.html, or delivery.html
+        const p = window.location.pathname.toLowerCase();
+        if (p.includes('cart.html') || p.includes('admin.html') || p.includes('delivery.html')) return;
+
+        let pill = document.getElementById('global-floating-cart-pill');
+        if (!pill) {
+            pill = document.createElement('a');
+            pill.id = 'global-floating-cart-pill';
+            pill.href = 'cart.html';
+            pill.className = 'floating-cart-pill';
+            document.body.appendChild(pill);
+        }
+
+        if (totalItems > 0) {
+            pill.innerHTML = `
+                <div class="floating-cart-left">
+                    <div class="floating-cart-icon-wrap">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="floating-cart-badge-count">${totalItems}</span>
+                    </div>
+                    <div class="floating-cart-meta">
+                        <span class="floating-cart-items-text">${totalItems} ITEM${totalItems > 1 ? 'S' : ''} ADDED</span>
+                        <span class="floating-cart-price-text">₹${totalPrice}</span>
+                    </div>
+                </div>
+                <div class="floating-cart-right">
+                    <span>View Cart</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            `;
+            pill.classList.add('visible');
+        } else {
+            pill.classList.remove('visible');
+        }
     } catch (e) {
         console.error('Error updating cart badge:', e);
     }
@@ -787,6 +824,15 @@ function showOrderReadyModal(order) {
                     <span style="background: #16a34a; color: white; padding: 4px 10px; border-radius: 9999px; font-weight: 700; font-size: 0.78rem; display: inline-flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-circle-check"></i> READY
                     </span>
+                </div>
+
+                <!-- 4-Digit Pickup PIN in Modal -->
+                <div class="pickup-pin-container" style="margin: 0.5rem 0 0.75rem 0; padding: 0.5rem 0.85rem;">
+                    <div>
+                        <div style="font-size: 0.72rem; color: #166534; font-weight: 700; text-transform: uppercase;">🔐 Counter Pickup PIN</div>
+                        <div style="font-size: 0.72rem; color: #475569;">Show this code to counter staff</div>
+                    </div>
+                    <div class="pickup-pin-digits" style="font-size: 1.25rem; padding: 2px 10px;">${order.pickupOtp || (order.orderId ? order.orderId.slice(-4) : '1234')}</div>
                 </div>
 
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem 0.9rem; margin-bottom: 0.65rem; font-size: 0.84rem; line-height: 1.5;">

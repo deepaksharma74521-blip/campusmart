@@ -1105,8 +1105,11 @@ function renderAdminOrdersTable() {
         return `
             <tr>
                 <td>
-                    <strong>${order.orderId || 'ORD-#'}</strong>
-                    <div style="font-size: 0.78rem; color: var(--text-muted);">${formattedDate}</div>
+                    <div style="font-weight: 800; font-family: var(--font-heading); color: #0f172a;">${order.orderId || 'ORD-#'}</div>
+                    <div style="display: inline-flex; align-items: center; gap: 4px; background: #f0fdf4; border: 1.5px solid #86efac; color: #15803d; font-family: monospace; font-size: 0.78rem; font-weight: 800; padding: 1px 6px; border-radius: 6px; margin-top: 3px;" title="4-Digit Pickup PIN">
+                        <i class="fa-solid fa-key" style="font-size: 0.68rem;"></i> PIN: ${order.pickupOtp || (order.orderId ? order.orderId.slice(-4) : 'N/A')}
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">${formattedDate}</div>
                 </td>
                 <td>
                     <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px; flex-wrap: wrap;">
@@ -1204,6 +1207,9 @@ function renderAdminOrdersTable() {
                         </button>
                         <button class="btn btn-sm" onclick="sendWhatsAppOrderAlert('${orderId}')" style="background: #25d366; color: white; border: none; padding: 0.35rem 0.55rem; border-radius: var(--radius-sm);" title="Send WhatsApp Ready Alert to Student">
                             <i class="fa-brands fa-whatsapp" style="font-size: 0.95rem;"></i>
+                        </button>
+                        <button class="btn btn-sm" onclick="printKotReceipt('${orderId}')" style="background: #0f172a; color: white; border: none; padding: 0.35rem 0.55rem; border-radius: var(--radius-sm);" title="Print 1-Click KOT Thermal Receipt">
+                            <i class="fa-solid fa-print" style="font-size: 0.88rem;"></i>
                         </button>
                     </div>
                 </td>
@@ -4129,4 +4135,70 @@ function sendWhatsAppOrderAlert(orderId) {
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
     window.open(waUrl, '_blank');
     showToast(`📲 Opening WhatsApp to notify ${customer}!`, 'success', 'WhatsApp Alert');
+}
+
+
+function printKotReceipt(orderId) {
+    const order = adminOrders.find(o => (o._id === orderId || o.id === orderId || o.orderId === orderId));
+    if (!order) {
+        showToast('Order details not found.', 'error');
+        return;
+    }
+
+    let printArea = document.getElementById('kot-receipt-modal');
+    if (!printArea) {
+        printArea = document.createElement('div');
+        printArea.id = 'kot-receipt-modal';
+        document.body.appendChild(printArea);
+    }
+
+    const itemsHtml = (order.items || []).map(i => `
+        <div style="display: flex; justify-content: space-between; font-size: 13px; margin: 3px 0; font-family: monospace;">
+            <span>${i.quantity || 1} x ${i.name}</span>
+            <span>₹${(i.price || 0) * (i.quantity || 1)}</span>
+        </div>
+    `).join('');
+
+    const formattedDate = order.createdAt ? new Date(order.createdAt).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' }) : 'Now';
+    const pin = order.pickupOtp || (order.orderId ? order.orderId.slice(-4) : 'N/A');
+
+    printArea.innerHTML = `
+        <div style="width: 280px; margin: 0 auto; padding: 10px; font-family: monospace; color: #000000; background: #ffffff; border: 1.5px solid #000000;">
+            <div style="text-align: center; border-bottom: 1px dashed #000000; padding-bottom: 6px; margin-bottom: 6px;">
+                <div style="font-size: 16px; font-weight: 900; letter-spacing: 1px;">CAMPUS MART KOT</div>
+                <div style="font-size: 12px; font-weight: 700;">${order.shopName || 'Canteen Counter'}</div>
+                <div style="font-size: 10px;">Token: ${order.orderId || 'ORD-#'} &bull; ${formattedDate}</div>
+            </div>
+
+            <div style="font-size: 11px; margin-bottom: 6px; border-bottom: 1px dashed #000000; padding-bottom: 4px;">
+                <div><strong>Customer:</strong> ${order.customerName || order.studentName || 'Student'}</div>
+                <div><strong>Phone:</strong> ${order.studentPhone || order.phone || 'N/A'}</div>
+                <div><strong>Mode:</strong> ${order.fulfillmentType === 'delivery' ? 'Campus Delivery' : 'Counter Pickup'}</div>
+                <div><strong>Slot:</strong> ${order.pickupSlot || 'Immediate'}</div>
+            </div>
+
+            <div style="border-bottom: 1px dashed #000000; padding-bottom: 6px; margin-bottom: 6px;">
+                <div style="font-size: 11px; font-weight: 800; margin-bottom: 3px;">ORDER ITEMS:</div>
+                ${itemsHtml}
+            </div>
+
+            <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 13px; margin-bottom: 6px; border-bottom: 1px dashed #000000; padding-bottom: 4px;">
+                <span>TOTAL AMOUNT:</span>
+                <span>₹${order.totalAmount || 0}</span>
+            </div>
+
+            <div style="text-align: center; padding: 6px 0; border: 2px solid #000000; margin-top: 6px; background: #f8fafc;">
+                <div style="font-size: 10px; font-weight: 700;">HANDOVER PICKUP PIN</div>
+                <div style="font-size: 22px; font-weight: 900; letter-spacing: 4px;">${pin}</div>
+            </div>
+
+            <div style="text-align: center; font-size: 9px; margin-top: 6px; color: #444;">
+                *** Campus Mart Express Kitchen Slip ***
+            </div>
+        </div>
+    `;
+
+    setTimeout(() => {
+        window.print();
+    }, 150);
 }

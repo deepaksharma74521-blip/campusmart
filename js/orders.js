@@ -306,6 +306,18 @@ function renderOrders(orders) {
                     </div>
                 ` : ''}
 
+                <!-- 4-Digit Digital Pickup PIN -->
+                <div class="pickup-pin-container" style="padding: 0.55rem 0.85rem; margin: 0.65rem 0; border: 1.5px dashed #86efac; border-radius: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-shield-halved" style="color: #16a34a; font-size: 1.15rem;"></i>
+                        <div>
+                            <div style="font-size: 0.72rem; color: #166534; font-weight: 700; text-transform: uppercase;">Counter Pickup PIN</div>
+                            <div style="font-size: 0.74rem; color: #475569;">Show this 4-digit code to collect fresh food</div>
+                        </div>
+                    </div>
+                    <div class="pickup-pin-digits" style="font-size: 1.25rem; padding: 2px 10px;">${order.pickupOtp || (order.orderId ? order.orderId.slice(-4) : '1234')}</div>
+                </div>
+
                 <!-- 4-Stage Live Order Tracker -->
                 ${!isCancelled ? `
                     <div class="order-tracker">

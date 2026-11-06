@@ -138,12 +138,24 @@ async function loadMenuItems() {
     const grid = document.getElementById('food-grid');
     if (!grid) return;
 
-    grid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 0;">
-            <div class="loader-spinner"></div>
-            <p style="color: var(--text-muted); font-weight: 500;">Loading items & fresh dishes from database...</p>
-        </div>
-    `;
+    let skeletons = '';
+    for (let i = 0; i < 8; i++) {
+        skeletons += `
+            <div class="skeleton-card">
+                <div class="skeleton-img-box skeleton-shimmer"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line title w-75 skeleton-shimmer"></div>
+                    <div class="skeleton-line w-50 skeleton-shimmer"></div>
+                    <div class="skeleton-line w-90 skeleton-shimmer"></div>
+                    <div class="skeleton-footer">
+                        <div class="skeleton-line w-35 skeleton-shimmer" style="height: 22px;"></div>
+                        <div class="skeleton-btn skeleton-shimmer"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    grid.innerHTML = skeletons;
 
     try {
         await loadShops();
@@ -603,6 +615,9 @@ function addToCart(itemId) {
     }
 
     localStorage.setItem('canteen_cart', JSON.stringify(cart));
+    if ('vibrate' in navigator) {
+        try { navigator.vibrate(40); } catch(e) {}
+    }
     updateGlobalCartBadge();
     showToast(`${cartItemName} added to cart! (${currentTotalQuantity + 1}/4 items)`, 'success', 'Cart Updated');
 }
