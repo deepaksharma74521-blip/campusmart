@@ -568,11 +568,7 @@ async function handlePlaceOrder(event) {
         return;
     }
 
-    const totalOrderQty = cart.reduce((sum, it) => sum + (Number(it.quantity) || 1), 0);
-    if (totalOrderQty > 4) {
-        showToast('Cart limit exceeded: A maximum of 4 items are allowed per express break order.', 'warning', 'Max 4 Items Limit');
-        return;
-    }
+    // Unlimited Items Allowed - No restriction on quantity
 
     // Campus Block & Room/Cabin
     const campusBlock = document.getElementById('cart-campus-block')?.value || 'CCSIT Computer Science Block';
