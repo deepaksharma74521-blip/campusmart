@@ -1,5 +1,5 @@
-// Campus Mart - Ultra-Fast Service Worker (Stale-While-Revalidate for Instant Cold Start)
-const CACHE_NAME = 'campus-mart-v4.3';
+// Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, Stale-While-Revalidate for Assets)
+const CACHE_NAME = 'campus-mart-v5.0';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -50,13 +50,27 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // 1. Pass API requests and media video files directly to network (no stale cache)
-  if (url.pathname.startsWith('/api/') || url.pathname.endsWith('.mp4') || event.request.method !== 'GET') {
+  // 1. Pass API requests directly to network
+  if (url.pathname.startsWith('/api/') || event.request.method !== 'GET') {
     event.respondWith(fetch(event.request));
     return;
   }
 
-  // 2. Fast Stale-While-Revalidate Strategy for all HTML, CSS, JS, Images & Fonts
+  // 2. Network-First strategy for HTML navigation so updates are instant on website
+  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
+    event.respondWith(
+      fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        }
+        return networkResponse;
+      }).catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // 3. Stale-While-Revalidate Strategy for CSS, JS, Images & Fonts
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
@@ -67,7 +81,6 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       }).catch(() => cachedResponse);
 
-      // Return instant local cache if present, otherwise wait for network fetch
       return cachedResponse || fetchPromise;
     })
   );

@@ -33,6 +33,23 @@
     <meta name="apple-mobile-web-app-title" content="Campus Mart">
     <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
     <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <style>
+        #campus-splash-screen, #splash-video, .splash-video-wrapper { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+    </style>
+    <script>
+        (function() {
+            sessionStorage.setItem('CM_SPLASH_SHOWN_V2', 'true');
+            sessionStorage.setItem('CM_SPLASH_SHOWN', 'true');
+            var killOldSplash = function() {
+                var el = document.getElementById('campus-splash-screen');
+                if (el) el.remove();
+                var vid = document.getElementById('splash-video');
+                if (vid) { try { vid.pause(); } catch(e){} vid.remove(); }
+            };
+            killOldSplash();
+            document.addEventListener('DOMContentLoaded', killOldSplash);
+        })();
+    </script>
 </head>
 <body>
 
