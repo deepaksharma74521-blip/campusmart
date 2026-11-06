@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Launch Marketing Kit & Table QR Stickers – Campus Mart</title>
+    
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --secondary: #0f172a;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --font-heading: 'Poppins', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding-bottom: 3rem;
+        }
+
+        /* Top Bar Controls (Hidden in Print) */
+        .controls-bar {
+            background: #ffffff;
+            border-bottom: 2px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-print-poster {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            color: white;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.35);
+        }
+
+        .btn-print-stickers {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.35);
+        }
+
+        .btn-outline {
+            background: white;
+            color: #475569;
+            border: 1.5px solid #cbd5e1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: white;
+            padding: 0.4rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            width: fit-content;
+        }
+
+        .tab-btn {
+            padding: 0.55rem 1.25rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+        }
+
+        /* 1. Official Notice Board Poster (A4 Sheet Preview) */
+        .poster-sheet {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 3px solid var(--secondary);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .poster-header {
+            background: linear-gradient(135deg, #ea580c 0%, #9a3412 100%);
+            color: white;
+            padding: 2.25rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .poster-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            margin-bottom: 0.35rem;
+        }
+
+        .poster-header p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0.95;
+            letter-spacing: 0.3px;
+        }
+
+        .poster-body {
+            padding: 2.25rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .punchline-banner {
+            background: #fff7ed;
+            border: 2px dashed #ea580c;
+            border-radius: 14px;
+            padding: 1.1rem 1.5rem;
+            text-align: center;
+        }
+
+        .punchline-banner h2 {
+            color: #9a3412;
+            font-size: 1.45rem;
+            font-weight: 900;
+            font-family: var(--font-heading);
+            margin-bottom: 0.25rem;
+        }
+
+        .punchline-banner p {
+            color: #c2410c;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        /* QR Split Section */
+        .poster-qr-section {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 2rem;
+            align-items: center;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+        }
+
+        .qr-card {
+            background: white;
+            border: 2px solid #cbd5e1;
+            border-radius: 14px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .qr-card img {
+            width: 190px;
+            height: 190px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .qr-caption {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-top: 0.6rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #ffedd5;
+            color: #ea580c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-text h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .feature-text p {
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.35;
+        }
+
+        .poster-footer {
+            background: #0f172a;
+            color: white;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* 2. Canteen Table Stickers Grid (6 Per Page) */
+        .stickers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .table-sticker {
+            background: white;
+            border: 2.5px solid #0f172a;
+            border-radius: 16px;
+            padding: 1.25rem 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sticker-badge-strip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ea580c, #16a34a, #2563eb);
+        }
+
+        .sticker-qr {
+            width: 125px;
+            height: 125px;
+            flex-shrink: 0;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 4px;
+            background: white;
+        }
+
+        .sticker-qr img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .sticker-info {
+            flex: 1;
+        }
+
+        .sticker-brand {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .sticker-brand span {
+            color: var(--primary);
+        }
+
+        .sticker-table-box {
+            display: inline-block;
+            background: #f1f5f9;
+            border: 1.5px dashed #94a3b8;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        .sticker-tagline {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #15803d;
+            margin-bottom: 4px;
+        }
+
+        .sticker-sub {
+            font-size: 0.72rem;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            .controls-bar, .tab-nav {
+                display: none !important;
+            }
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .poster-sheet {
+                box-shadow: none !important;
+                border: 2px solid #000000 !important;
+                max-width: 100% !important;
+                page-break-after: always;
+            }
+            .stickers-grid {
+                max-width: 100% !important;
+                gap: 10mm !important;
+            }
+            .table-sticker {
+                box-shadow: none !important;
+                border: 2px solid #000000 !important;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Controls Bar -->
+    <header class="controls-bar">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <a href="index.html" class="btn-action btn-outline">
+                <i class="fa-solid fa-arrow-left"></i> Back to Mart
+            </a>
+            <h2 style="font-size: 1.25rem; font-family: var(--font-heading); font-weight: 800;">
+                Campus Mart <span style="color: var(--primary);">Print Marketing Kit</span>
+            </h2>
+        </div>
+
+        <div style="display: flex; gap: 0.6rem;">
+            <button onclick="printView('poster')" class="btn-action btn-print-poster">
+                <i class="fa-solid fa-print"></i> Print A4 Notice Poster
+            </button>
+            <button onclick="printView('stickers')" class="btn-action btn-print-stickers">
+                <i class="fa-solid fa-table"></i> Print Table Stickers (6x)
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Tabs Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" id="tab-btn-poster" onclick="switchTab('poster')">
+                <i class="fa-solid fa-file-lines"></i> Notice Board Poster (A4)
+            </button>
+            <button class="tab-btn" id="tab-btn-stickers" onclick="switchTab('stickers')">
+                <i class="fa-solid fa-border-all"></i> Canteen Table Stickers (6 Per Page)
+            </button>
+        </div>
+
+        <!-- 1. Notice Board Poster Sheet -->
+        <section id="section-poster" class="poster-sheet">
+            <div class="poster-header">
+                <div style="background: rgba(255,255,255,0.2); display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px; border-radius: 9999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 0.75rem;">
+                    🎓 Official College Launch Announcement
+                </div>
+                <h1>CAMPUS MART</h1>
+                <p>Smart Food, Snacks & Essentials Pre-Order System</p>
+            </div>
+
+            <div class="poster-body">
+                <div class="punchline-banner">
+                    <h2>🚫 Canteen Ki Lambi Line Me Mat Raho!</h2>
+                    <p>Apne Phone Se 1-Click Scan Karo &bull; Break Bell Bajte Hi Fresh Khana Pickup Karo!</p>
+                </div>
+
+                <div class="poster-qr-section">
+                    <div class="qr-card">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://campusmart.in&color=0f172a&bgcolor=ffffff" alt="Campus Mart QR Code">
+                        <div class="qr-caption">Scan with any Camera / UPI App</div>
+                    </div>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-qrcode"></i></div>
+                            <div class="feature-text">
+                                <h3>Zero Waiting Time</h3>
+                                <p>Pre-order before class or break ends. Counter will keep your food packed hot & ready.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-store"></i></div>
+                            <div class="feature-text">
+                                <h3>All TMU Counters & Shops Available</h3>
+                                <p>Chole Kulcha, Nescafe, Canteen Food Court, Rolls, South Indian, Juice & Stationery Mart.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-key"></i></div>
+                            <div class="feature-text">
+                                <h3>4-Digit Secure Pickup PIN</h3>
+                                <p>Every order gets a secure handover PIN so no one else can take your meal.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-tv"></i></div>
+                            <div class="feature-text">
+                                <h3>Live TV Counter Display</h3>
+                                <p>Watch your token status live on McDonald's-style counter screens!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-footer">
+                <div>Developed by <strong>Deepak Sharma</strong> (BCA Final Year Project)</div>
+                <div>📍 Central Campus Food Court & Mart, Ground Floor</div>
+            </div>
+        </section>
+
+        <!-- 2. Table Stickers Grid (6 Per Page) -->
+        <section id="section-stickers" class="stickers-grid" style="display: none;">
+            <!-- Repeat 6 Table Stickers -->
+            <div class="table-sticker">
+                <div class="sticker-badge-strip"></div>
+                <div class="sticker-qr">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://campusmart.in&color=0f172a" alt="QR">
+                </div>
+                <div class="sticker-info">
+                    <div class="sticker-brand">Campus<span>Mart</span></div>
+                    <div class="sticker-table-box">TABLE # [ ___ ]</div>
+                    <div class="sticker-tagline">⚡ Scan & Order in 30 Sec</div>
+                    <div class="sticker-sub">Line me mat khade raho! Yahan se scan karo aur counter se uthao.</div>
+                </div>
+            </div>
+
+            <div class="table-sticker">
+                <div class="sticker-badge-strip"></div>
+                <div class="sticker-qr">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://campusmart.in&color=0f172a" alt="QR">
+                </div>
+                <div class="sticker-info">
+                    <div class="sticker-brand">Campus<span>Mart</span></div>
+                    <div class="sticker-table-box">TABLE # [ ___ ]</div>
+                    <div class="sticker-tagline">⚡ Scan & Order in 30 Sec</div>
+                    <div class="sticker-sub">Line me mat khade raho! Yahan se scan karo aur counter se uthao.</div>
+                </div>
+            </div>
+
+            <div class="table-sticker">
+                <div class="sticker-badge-strip"></div>
+                <div class="sticker-qr">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://campusmart.in&color=0f172a" alt="QR">
+                </div>
+                <div class="sticker-info">
+                    <div class="sticker-brand">Campus<span>Mart</span></div>
+                    <div class="sticker-table-box">TABLE # [ ___ ]</div>
+                    <div class="sticker-tagline">⚡ Scan & Order in 30 Sec</div>
+                    <div class="sticker-sub">Line me mat khade raho! Yahan se scan karo aur counter se uthao.</div>
+                </div>
+            </div>
+
+            <div class="table-sticker">
+                <div class="sticker-badge-strip"></div>
+                <div class="sticker-qr">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://campusmart.in&color=0f172a" alt="QR">
+                </div>
+                <div class="sticker-info">
+                    <div class="sticker-brand">Campus<span>Mart</span></div>
+                    <div class="sticker-table-box">TABLE # [ ___ ]</div>
+                    <div class="sticker-tagline">⚡ Scan & Order in 30 Sec</div>
+                    <div class="sticker-sub">Line me mat khade raho! Yahan se scan karo aur counter se uthao.</div>
+                </div>
+            </div>
+
+            <div class="table-sticker">
+                <div class="sticker-badge-strip"></div>
+                <div class="sticker-qr">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://campusmart.in&color=0f172a" alt="QR">
+                </div>
+                <div class="sticker-info">
+                    <div class="sticker-brand">Campus<span>Mart</span></div>
+                    <div class="sticker-table-box">TABLE # [ ___ ]</div>
+                    <div class="sticker-tagline">⚡ Scan & Order in 30 Sec</div>
+                    <div class="sticker-sub">Line me mat khade raho! Yahan se scan karo aur counter se uthao.</div>
+                </div>
+            </div>
+
+            <div class="table-sticker">
+                <div class="sticker-badge-strip"></div>
+                <div class="sticker-qr">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://campusmart.in&color=0f172a" alt="QR">
+                </div>
+                <div class="sticker-info">
+                    <div class="sticker-brand">Campus<span>Mart</span></div>
+                    <div class="sticker-table-box">TABLE # [ ___ ]</div>
+                    <div class="sticker-tagline">⚡ Scan & Order in 30 Sec</div>
+                    <div class="sticker-sub">Line me mat khade raho! Yahan se scan karo aur counter se uthao.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function switchTab(tab) {
+            const secPoster = document.getElementById('section-poster');
+            const secStickers = document.getElementById('section-stickers');
+            const btnPoster = document.getElementById('tab-btn-poster');
+            const btnStickers = document.getElementById('tab-btn-stickers');
+
+            if (tab === 'poster') {
+                secPoster.style.display = 'flex';
+                secStickers.style.display = 'none';
+                btnPoster.classList.add('active');
+                btnStickers.classList.remove('active');
+            } else {
+                secPoster.style.display = 'none';
+                secStickers.style.display = 'grid';
+                btnPoster.classList.remove('active');
+                btnStickers.classList.add('active');
+            }
+        }
+
+        function printView(view) {
+            switchTab(view);
+            setTimeout(() => {
+                window.print();
+            }, 200);
+        }
+    </script>
+</body>
+</html>

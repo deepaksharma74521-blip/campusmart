@@ -1,3 +1,32 @@
+
+// Continuous Zomato/Swiggy-Style Repeating Order Siren
+let orderAlertSirenInterval = null;
+
+function startOrderAlertSiren(order) {
+    if (!adminSoundEnabled) return;
+    stopOrderAlertSiren();
+
+    playCanteenOrderBellSound();
+    if (order) speakOrderAnnouncement(order);
+
+    // Repeat every 7.5 seconds until accepted
+    orderAlertSirenInterval = setInterval(() => {
+        if (!currentAlertModalOrder) {
+            stopOrderAlertSiren();
+            return;
+        }
+        playCanteenOrderBellSound();
+        if (order) speakOrderAnnouncement(order);
+    }, 7500);
+}
+
+function stopOrderAlertSiren() {
+    if (orderAlertSirenInterval) {
+        clearInterval(orderAlertSirenInterval);
+        orderAlertSirenInterval = null;
+    }
+}
+
 // ==========================================================================
 // Campus Mart – Smart Food & Essentials Pre-Order System (MongoDB)
 // File: js/admin.js
@@ -220,13 +249,24 @@ function displayNewOrderModal(order) {
     `).join('');
 
     body.innerHTML = `
-        <div class="order-alert-token-box">
+        <div class="order-alert-token-box" style="position: relative;">
             <div class="order-alert-token-title">Token / Order Number</div>
             <div class="order-alert-token-val">#${token}</div>
             <div style="font-size: 0.8rem; font-weight: 600; color: #7c2d12;">
                 Order ID: <code>${orderId}</code>
             </div>
+            <!-- Pickup PIN in Modal -->
+            <div style="margin-top: 6px; display: inline-flex; align-items: center; gap: 6px; background: #ffffff; border: 1.5px solid #16a34a; padding: 3px 10px; border-radius: 8px;">
+                <span style="font-size: 0.72rem; color: #166534; font-weight: 800; text-transform: uppercase;">Handover PIN:</span>
+                <span style="font-family: monospace; font-size: 1.15rem; font-weight: 900; color: #15803d; letter-spacing: 2px;">${order.pickupOtp || (order.orderId ? order.orderId.slice(-4) : 'N/A')}</span>
+            </div>
         </div>
+        ${order.pickupSlot ? `
+            <div style="background: #fff7ed; border: 1.5px solid #fed7aa; color: #c2410c; padding: 0.45rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 800; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-clock"></i>
+                <span>Customer Arrival / Break: ${order.pickupSlot}</span>
+            </div>
+        ` : ''}
 
         <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 0.85rem;">
             <div class="order-alert-info-row">
@@ -286,6 +326,7 @@ function displayNewOrderModal(order) {
 }
 
 function closeNewOrderAlertModal() {
+    stopOrderAlertSiren();
     const modal = document.getElementById('new-order-alert-modal');
     if (modal) modal.classList.remove('active');
     currentAlertModalOrder = null;
@@ -314,12 +355,9 @@ function viewOrderDetailsFromAlert(orderId) {
 function handleNewIncomingOrdersAlert(newOrders) {
     if (!newOrders || newOrders.length === 0) return;
 
-    // 1. Play Sound Chime
-    playCanteenOrderBellSound();
-
-    // 2. Speak voice announcement for the latest order
     const latestOrder = newOrders[newOrders.length - 1];
-    speakOrderAnnouncement(latestOrder);
+    // Start Continuous Loud Ringing Siren
+    startOrderAlertSiren(latestOrder);
 
     // 3. Vibrate device
     vibrateDeviceForNewOrder();
