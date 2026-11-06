@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Stale-While-Revalidate for Instant Cold Start)
-const CACHE_NAME = 'campus-mart-v4.2';
+const CACHE_NAME = 'campus-mart-v4.3';
 const CORE_ASSETS = [
   '/',
   '/index.html',
