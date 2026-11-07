@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Mart – College Launch Marketing Kit & Print Suite</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --secondary: #0f172a;
+            --font-heading: 'Poppins', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+            font-family: 'Inter', -apple-system, sans-serif;
+            padding-bottom: 4rem;
+        }
+
+        /* Top Sticky Action Bar */
+        .controls-bar {
+            background: #ffffff;
+            border-bottom: 2px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            color: white;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.35);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.35);
+        }
+
+        .btn-outline {
+            background: white;
+            color: #475569;
+            border: 1.5px solid #cbd5e1;
+        }
+
+        .btn-outline:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Tab Switcher */
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: white;
+            padding: 0.4rem;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.3rem;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 10px rgba(234, 88, 12, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Card Wrapper */
+        .preview-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1.5px solid #e2e8f0;
+            margin-bottom: 2rem;
+        }
+
+        .preview-img {
+            width: 100%;
+            max-width: 780px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border: 1px solid #cbd5e1;
+        }
+
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        .table-item {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .table-item img {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            .controls-bar, .tab-nav, .no-print {
+                display: none !important;
+            }
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .preview-card {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .preview-img {
+                max-width: 100% !important;
+                width: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                page-break-after: always;
+            }
+            .print-only {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Controls Bar -->
+    <header class="controls-bar">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <a href="../index.html" class="btn-action btn-outline">
+                <i class="fa-solid fa-arrow-left"></i> Back to Mart
+            </a>
+            <div>
+                <h2 style="font-size: 1.2rem; font-family: var(--font-heading); font-weight: 800; line-height: 1.2;">
+                    Campus Mart <span style="color: var(--primary);">Marketing Kit &amp; Stickers</span>
+                </h2>
+                <div style="font-size: 0.76rem; color: #64748b; font-weight: 600;">
+                    Target QR: <strong style="color: #ea580c;">https://campusmart-api-75rg.onrender.com</strong>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button onclick="window.print()" class="btn-action btn-primary" title="Print Current View (A4 Sheet)">
+                <i class="fa-solid fa-print"></i> 1-Click Print (Ctrl + P)
+            </button>
+            <a href="https://api.whatsapp.com/send?text=%F0%9F%8D%94%20%2ATMU%20CAMPUS%20MART%20-%20ONLINE%20PRE-ORDER%2A%0ALine%20me%20mat%20lado%2C%20apne%20phone%20se%20order%20karo%20aur%20break%20time%20par%20fresh%20khana%20pickup%20karo%21%0A%F0%9F%91%89%20https%3A%2F%2Fcampusmart-api-75rg.onrender.com" target="_blank" class="btn-action btn-success" title="Share on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Tabs -->
+        <div class="tab-nav no-print">
+            <button class="tab-btn active" onclick="switchTab('poster', this)">
+                <i class="fa-solid fa-bullhorn"></i> 1. A4 Notice Board Poster
+            </button>
+            <button class="tab-btn" onclick="switchTab('table-sheet', this)">
+                <i class="fa-solid fa-table"></i> 2. Table Stickers (6-in-1 Sheet)
+            </button>
+            <button class="tab-btn" onclick="switchTab('individual-tables', this)">
+                <i class="fa-solid fa-border-all"></i> 3. Individual Table Stickers (1-6)
+            </button>
+            <button class="tab-btn" onclick="switchTab('whatsapp-banner', this)">
+                <i class="fa-brands fa-whatsapp"></i> 4. WhatsApp Story Banner
+            </button>
+            <button class="tab-btn" onclick="switchTab('pocket-card', this)">
+                <i class="fa-solid fa-id-card"></i> 5. Pocket Counter Handout
+            </button>
+        </div>
+
+        <!-- TAB 1: Notice Board Poster -->
+        <section id="tab-poster" class="tab-content active">
+            <div class="preview-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;" class="no-print">
+                    <div>
+                        <h3 style="font-weight: 800; font-size: 1.15rem; color: #0f172a;">College Notice Board &amp; Wall Poster (A4)</h3>
+                        <p style="font-size: 0.82rem; color: #64748b;">Perfect for College Gate, CCSIT Block, Notice Boards &amp; Canteen Entrance</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <a href="02_Notice_Board_Launch_Poster_A4.png" download="CampusMart_Notice_Poster_A4.png" class="btn-action btn-outline btn-sm">
+                            <i class="fa-solid fa-download"></i> Download HD PNG
+                        </a>
+                        <button onclick="printSpecific('02_Notice_Board_Launch_Poster_A4.png')" class="btn-action btn-primary btn-sm">
+                            <i class="fa-solid fa-print"></i> Print Poster
+                        </button>
+                    </div>
+                </div>
+                <img src="02_Notice_Board_Launch_Poster_A4.png" alt="Notice Board Poster A4" class="preview-img">
+            </div>
+        </section>
+
+        <!-- TAB 2: Table Stickers 6-in-1 Sheet -->
+        <section id="tab-table-sheet" class="tab-content">
+            <div class="preview-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;" class="no-print">
+                    <div>
+                        <h3 style="font-weight: 800; font-size: 1.15rem; color: #0f172a;">6-in-1 Table Stickers A4 Sheet (Tables #01 to #06)</h3>
+                        <p style="font-size: 0.82rem; color: #64748b;">Print on self-adhesive sticker paper, cut along scissor marks, and stick on canteen tables</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <a href="01_Table_Stickers_6x_A4_Sheet.png" download="CampusMart_Table_Stickers_6x_A4.png" class="btn-action btn-outline btn-sm">
+                            <i class="fa-solid fa-download"></i> Download HD PNG
+                        </a>
+                        <button onclick="printSpecific('01_Table_Stickers_6x_A4_Sheet.png')" class="btn-action btn-primary btn-sm">
+                            <i class="fa-solid fa-print"></i> Print 6x Stickers
+                        </button>
+                    </div>
+                </div>
+                <img src="01_Table_Stickers_6x_A4_Sheet.png" alt="Table Stickers Sheet" class="preview-img">
+            </div>
+        </section>
+
+        <!-- TAB 3: Individual Table Stickers -->
+        <section id="tab-individual-tables" class="tab-content">
+            <div class="preview-card">
+                <div style="margin-bottom: 1rem;" class="no-print">
+                    <h3 style="font-weight: 800; font-size: 1.15rem; color: #0f172a;">Individual Table Stickers (Square 1200x1200px 300 DPI)</h3>
+                    <p style="font-size: 0.82rem; color: #64748b;">Ready to print individually or paste onto acrylic table stands</p>
+                </div>
+                <div class="table-grid">
+                    <div class="table-item">
+                        <img src="table_01_sticker.png" alt="Table 01">
+                        <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">Table #01 Sticker</div>
+                        <a href="table_01_sticker.png" download="table_01_sticker.png" class="btn-action btn-outline btn-sm" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
+                    </div>
+                    <div class="table-item">
+                        <img src="table_02_sticker.png" alt="Table 02">
+                        <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">Table #02 Sticker</div>
+                        <a href="table_02_sticker.png" download="table_02_sticker.png" class="btn-action btn-outline btn-sm" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
+                    </div>
+                    <div class="table-item">
+                        <img src="table_03_sticker.png" alt="Table 03">
+                        <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">Table #03 Sticker</div>
+                        <a href="table_03_sticker.png" download="table_03_sticker.png" class="btn-action btn-outline btn-sm" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
+                    </div>
+                    <div class="table-item">
+                        <img src="table_04_sticker.png" alt="Table 04">
+                        <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">Table #04 Sticker</div>
+                        <a href="table_04_sticker.png" download="table_04_sticker.png" class="btn-action btn-outline btn-sm" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
+                    </div>
+                    <div class="table-item">
+                        <img src="table_05_sticker.png" alt="Table 05">
+                        <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">Table #05 Sticker</div>
+                        <a href="table_05_sticker.png" download="table_05_sticker.png" class="btn-action btn-outline btn-sm" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
+                    </div>
+                    <div class="table-item">
+                        <img src="table_06_sticker.png" alt="Table 06">
+                        <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">Table #06 Sticker</div>
+                        <a href="table_06_sticker.png" download="table_06_sticker.png" class="btn-action btn-outline btn-sm" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: WhatsApp Story Banner -->
+        <section id="tab-whatsapp-banner" class="tab-content">
+            <div class="preview-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;" class="no-print">
+                    <div>
+                        <h3 style="font-weight: 800; font-size: 1.15rem; color: #0f172a;">WhatsApp &amp; Instagram Story Banner (1080x1920px 9:16)</h3>
+                        <p style="font-size: 0.82rem; color: #64748b;">Direct share to Class WhatsApp Groups, Friends, CRs &amp; Status</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <a href="03_WhatsApp_Class_Group_Banner.png" download="CampusMart_WhatsApp_Story.png" class="btn-action btn-success btn-sm">
+                            <i class="fa-brands fa-whatsapp"></i> Download &amp; Share
+                        </a>
+                    </div>
+                </div>
+                <img src="03_WhatsApp_Class_Group_Banner.png" alt="WhatsApp Banner" style="max-width: 440px; display: block; margin: 0 auto; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.18);">
+            </div>
+        </section>
+
+        <!-- TAB 5: Pocket Counter Handout -->
+        <section id="tab-pocket-card" class="tab-content">
+            <div class="preview-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;" class="no-print">
+                    <div>
+                        <h3 style="font-weight: 800; font-size: 1.15rem; color: #0f172a;">Pocket Handout &amp; Counter Flyer</h3>
+                        <p style="font-size: 0.82rem; color: #64748b;">Compact card for handing out to students at canteen counter</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <a href="04_Pocket_Handout_Card.png" download="CampusMart_Pocket_Card.png" class="btn-action btn-outline btn-sm">
+                            <i class="fa-solid fa-download"></i> Download PNG
+                        </a>
+                    </div>
+                </div>
+                <img src="04_Pocket_Handout_Card.png" alt="Pocket Handout Card" class="preview-img" style="max-width: 650px;">
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            if (btn) btn.classList.add('active');
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.add('active');
+        }
+
+        function printSpecific(imgSrc) {
+            const printWin = window.open('', '_blank');
+            printWin.document.write(`
+                <html>
+                <head>
+                    <title>Print - Campus Mart</title>
+                    <style>
+                        @page { margin: 0; size: A4 portrait; }
+                        body { margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; }
+                        img { width: 100vw; height: auto; max-height: 100vh; object-fit: contain; }
+                    </style>
+                </head>
+                <body onload="window.print(); window.close();">
+                    <img src="${imgSrc}">
+                </body>
+                </html>
+            `);
+            printWin.document.close();
+        }
+    </script>
+</body>
+</html>

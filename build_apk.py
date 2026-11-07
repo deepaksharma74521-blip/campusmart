@@ -83,7 +83,7 @@ def generate_apk():
         # 4. Embedded Web Application (assets/www)
         base_dir = os.path.dirname(__file__)
         core_folders = [
-            'css', 'js', 'data', 
+            'css', 'js', 'data', 'stikers',
             os.path.join('assets', 'icons'), 
             os.path.join('assets', 'rainbow'), 
             os.path.join('assets', 'shops'),
