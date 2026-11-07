@@ -3264,17 +3264,55 @@ def download_apk_file():
         )
     return jsonify({"success": False, "message": "APK file not found"}), 404
 
-@app.route("/api/health")
+@app.route("/api/health", methods=["GET", "HEAD"])
 def api_health():
+    if request.method == "HEAD":
+        return "", 200
+    try:
+        items_count = len(db.foodItems.find())
+        shops_count = len(db.shops.find())
+        orders_count = len(db.orders.find())
+    except Exception:
+        items_count, shops_count, orders_count = 0, 0, 0
     return jsonify({
         "status": "online",
         "service": "Campus Mart Backend Server",
         "port": 5000,
-        "itemsCount": len(db.foodItems.find()),
-        "shopsCount": len(db.shops.find()),
-        "ordersCount": len(db.orders.find()),
+        "itemsCount": items_count,
+        "shopsCount": shops_count,
+        "ordersCount": orders_count,
+        "uptime": "24x7 Active (Self-Keeper Running)",
         "timestamp": datetime.now().isoformat()
     }), 200
+
+# ------------------------------------------------------------------------------
+# 24x7 Cloud Self-Keeper Daemon (Keeps Render Free Tier Awake)
+# ------------------------------------------------------------------------------
+def _start_keep_alive_daemon():
+    import threading
+    import time
+    import urllib.request
+
+    def _keeper_worker():
+        time.sleep(45)  # Let server boot completely
+        target = "https://campusmart-api-75rg.onrender.com/api/health"
+        while True:
+            try:
+                req = urllib.request.Request(
+                    target,
+                    headers={"User-Agent": "CampusMart-24x7-SelfKeeper/1.0"}
+                )
+                with urllib.request.urlopen(req, timeout=25) as resp:
+                    pass
+            except Exception:
+                pass
+            time.sleep(480)  # Ping every 8 minutes (Render sleeps after 15 minutes)
+
+    t = threading.Thread(target=_keeper_worker, daemon=True, name="CampusMart-Keeper")
+    t.start()
+
+if os.environ.get("RENDER") or os.environ.get("PORT"):
+    _start_keep_alive_daemon()
 
 if __name__ == "__main__":
     import socket
