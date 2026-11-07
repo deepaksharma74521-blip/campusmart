@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, Stale-While-Revalidate for Assets)
-const CACHE_NAME = 'campus-mart-v5.2';
+const CACHE_NAME = 'campus-mart-v5.3-liquid-glass';
 const CORE_ASSETS = [
   '/',
   '/index.html',

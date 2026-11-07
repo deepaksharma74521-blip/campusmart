@@ -3401,3 +3401,226 @@ button {
         display: none !important;
     }
 }
+
+/* ==========================================================================
+   Campus Mart – Hybrid Apple-Style Liquid Glass Design System (VisionOS / iOS 18)
+   ========================================================================== */
+
+/* 1. Global Ambient Mesh Refraction Canvas */
+body {
+    background-color: #f8fafc !important;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(254, 243, 199, 0.5) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(254, 215, 170, 0.45) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(224, 242, 254, 0.45) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(220, 252, 231, 0.4) 0px, transparent 50%) !important;
+    background-attachment: fixed !important;
+    padding-bottom: 84px !important;
+}
+
+@media (min-width: 768px) {
+    body {
+        padding-bottom: 0 !important;
+    }
+}
+
+/* 2. Liquid Glass Top Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(20px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7) !important;
+    box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+/* 3. Floating Liquid Glass Bottom Navigation Capsule (Mobile / App) */
+@media screen and (max-width: 767px) {
+    .mobile-bottom-nav {
+        display: flex !important;
+        position: fixed !important;
+        bottom: 12px !important;
+        left: 14px !important;
+        right: 14px !important;
+        max-width: 460px !important;
+        margin: 0 auto !important;
+        height: 60px !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(24px) saturate(190%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        border-radius: 36px !important;
+        box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.95) !important;
+        z-index: 10000 !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        padding: 0 8px !important;
+        padding-bottom: env(safe-area-inset-bottom, 0) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+    }
+
+    .mobile-nav-item {
+        border-radius: 20px !important;
+        padding: 6px 12px !important;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .mobile-nav-item.active {
+        color: var(--primary) !important;
+        background: rgba(234, 88, 12, 0.1) !important;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .mobile-nav-item:active {
+        transform: scale(0.92) !important;
+    }
+}
+
+/* 4. Food & Mart Product Cards (Hybrid Liquid Glass) */
+.food-card, .product-card {
+    background: rgba(255, 255, 255, 0.86) !important;
+    backdrop-filter: blur(18px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.75) !important;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+    border-radius: 18px !important;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.food-card:hover, .product-card:hover {
+    transform: translateY(-5px) translateZ(0) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(234, 88, 12, 0.35) !important;
+    box-shadow: 0 16px 36px -4px rgba(234, 88, 12, 0.14), 0 4px 12px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+}
+
+.food-card:active, .product-card:active {
+    transform: scale(0.98) translateZ(0) !important;
+}
+
+/* 5. Shop Counter Cards */
+.shop-card {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(16px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.75) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95) !important;
+    overflow: hidden !important;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.shop-card:hover {
+    transform: translateY(-5px) scale(1.01) !important;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.1), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+    border-color: rgba(234, 88, 12, 0.4) !important;
+}
+
+/* 6. Floating Cart Bar (Liquid Emerald Glass) */
+.floating-cart-pill {
+    background: linear-gradient(135deg, rgba(22, 163, 74, 0.92), rgba(15, 118, 54, 0.92)) !important;
+    backdrop-filter: blur(20px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 26px !important;
+    box-shadow: 0 14px 35px -4px rgba(22, 163, 74, 0.45), 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+.floating-cart-pill:active {
+    transform: translateX(-50%) scale(0.97) !important;
+}
+
+/* 7. Search Bar & Filter Pills (Frosted Glass) */
+.search-box-wrap .search-input {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(14px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+    border: 1.5px solid rgba(226, 232, 240, 0.8) !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03), inset 0 1px 2px rgba(255, 255, 255, 0.9) !important;
+    border-radius: var(--radius-full) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.search-box-wrap .search-input:focus {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 4px 20px rgba(234, 88, 12, 0.18), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+}
+
+.filter-pill, .category-pill, .shop-filter-pill, .admin-food-filter-pill, .user-type-filter-pill {
+    background: rgba(255, 255, 255, 0.72) !important;
+    backdrop-filter: blur(12px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(160%) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+    border-radius: var(--radius-full) !important;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.filter-pill.active, .category-pill.active, .shop-filter-pill.active, .admin-food-filter-pill.active, .user-type-filter-pill.active {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.95), rgba(249, 115, 22, 0.9)) !important;
+    backdrop-filter: blur(16px) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.45) !important;
+}
+
+/* 8. Modals & Dialogs (VisionOS Cinematic Glass) */
+.modal-backdrop {
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.modal-card {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(28px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.85) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+}
+
+/* 9. General Cards, Auth Card & Summary Panels */
+.card, .auth-card, .cart-items-card, .order-summary-card, .order-card, .feature-card {
+    background: rgba(255, 255, 255, 0.86) !important;
+    backdrop-filter: blur(16px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 10. Reusable Utility Classes */
+.liquid-glass {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.75) !important;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06), inset 0 1px 2px rgba(255, 255, 255, 0.95) !important;
+}
+
+.glass-pill {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: var(--radius-full) !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+}
+
+.glass-dark {
+    background: rgba(15, 23, 42, 0.82) !important;
+    backdrop-filter: blur(22px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: white !important;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 11. Tactile Apple-Style Spring Buttons */
+.btn, .add-cart-btn, .cart-icon-btn, .modal-close-btn {
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background 0.15s ease !important;
+}
+
+.btn:active, .add-cart-btn:active, .cart-icon-btn:active {
+    transform: scale(0.95) !important;
+}
