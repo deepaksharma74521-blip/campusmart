@@ -1,0 +1,113 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-7136ffd5,Caffelera,Canteen Food,Aloo Sandwich,70.00,70.00,120.00,YES
+dish-9ea7083d,Caffelera,Canteen Food,Caffelara Blast,60.00,,,YES
+dish-780ce439,Caffelera,Canteen Food,Caffelara Parcel Cheesy Dip,60.00,,,YES
+dish-0725bb89,Caffelera,Canteen Food,Caffelara Parcel Makhani Dip,60.00,,,YES
+dish-4eb27aba,Caffelera,Canteen Food,Caffelara Parcel Peri Peri Dip,60.00,,,YES
+dish-50dd78d3,Caffelera,Canteen Food,Caffelara Parcel Tandoori Dip,60.00,,,YES
+dish-d10fee7b,Caffelera,Canteen Food,Caffelara Parcel Zingy Parcel,60.00,,,YES
+dish-4346420c,Caffelera,Canteen Food,Cheese N Corn,50.00,,,YES
+dish-d56d84fb,Caffelera,Canteen Food,Cheese Sandwich,70.00,,,YES
+dish-5a9bd587,Caffelera,Canteen Food,Chinese Paneer Noodle,100.00,100.00,180.00,YES
+dish-238137bc,Caffelera,Canteen Food,Chinese Veg Manchurian,60.00,,,YES
+dish-ad9fd9aa,Caffelera,Canteen Food,Chinese Veg Noodle,60.00,,,YES
+dish-10c6f5e5,Caffelera,Canteen Food,Corn Sandwich,45.00,,,YES
+dish-ee95ea37,Caffelera,Canteen Food,Double Cheese Margherita,60.00,,,YES
+dish-58b78727,Caffelera,Canteen Food,Farmhouse Pizza,139.00,,,YES
+dish-2792954d,Caffelera,Canteen Food,Fresh Veggie,270.00,,,YES
+dish-4b1dcfca,Caffelera,Canteen Food,Garlic Breads Cheese Garlic Bread,79.00,,,YES
+dish-8b98467c,Caffelera,Canteen Food,Garlic Breads Corn Garlic Bread,79.00,,,YES
+dish-165c1f7b,Caffelera,Canteen Food,Garlic Breads Corn Jalapeno,79.00,,,YES
+dish-c6a7d8ee,Caffelera,Canteen Food,Garlic Breads Garlic Bread Stick,79.00,,,YES
+dish-0b3cefd5,Caffelera,Canteen Food,Garlic Breads Paneer Tikka Onion,79.00,,,YES
+dish-73b35227,Caffelera,Canteen Food,Garlic Breads Stuffed Garlic Bread,79.00,,,YES
+dish-e57de934,Caffelera,Canteen Food,Maggi Pasta,99.00,,,YES
+dish-520c3af9,Caffelera,Canteen Food,Margherita,50.00,,,YES
+dish-42213958,Caffelera,Canteen Food,Mexican Sandwich,70.00,,,YES
+dish-88f850fb,Caffelera,Canteen Food,Mexican Veggie,60.00,,,YES
+dish-6d13d02e,Caffelera,Canteen Food,Miss Pappa,60.00,,,YES
+dish-6e5af11c,Caffelera,Canteen Food,Paneer Burger,50.00,100.00,180.00,YES
+dish-344209b4,Caffelera,Canteen Food,Paneer Sandwich,50.00,100.00,180.00,YES
+dish-421dc66a,Caffelera,Canteen Food,Paneer Tikka,120.00,100.00,180.00,YES
+dish-dfea79a4,Caffelera,Canteen Food,Peppy Paneer,100.00,100.00,180.00,YES
+dish-d2b5b21d,Caffelera,Canteen Food,Peri Peri Burger,45.00,,,YES
+dish-03a055aa,Caffelera,Canteen Food,Pink Sauce Pasta,90.00,,,YES
+dish-2ee56b45,Caffelera,Canteen Food,Red Sauce Pasta,90.00,,,YES
+dish-027e7280,Caffelera,Canteen Food,Spicy Vingo,60.00,,,YES
+dish-c733ad9a,Caffelera,Canteen Food,Tacos Aloo Taki Taco,70.00,70.00,120.00,YES
+dish-0bce92bd,Caffelera,Canteen Food,Tacos Paneer Taki Taco,100.00,100.00,180.00,YES
+dish-014a9df5,Caffelera,Canteen Food,Tacos Pizza Taco,119.00,,,YES
+dish-726b5c0c,Caffelera,Canteen Food,Tacos Veg Cheese Nacho Taco,60.00,,,YES
+dish-6b613b3c,Caffelera,Canteen Food,Veg Burger,50.00,,,YES
+dish-c60b2e8e,Caffelera,Canteen Food,Veg Cheese Burger,70.00,,,YES
+dish-12fdce0b,Caffelera,Canteen Food,Veggie Paradise,60.00,,,YES
+dish-947e41ca,Caffelera,Canteen Food,Veggie Sandwich,45.00,,,YES
+dish-a26b802c,Caffelera,Canteen Food,White Sauce Pasta,90.00,,,YES
+dish-b27cc94f,Caffelera,Canteen Food,Wraps Aloo Wrap,70.00,70.00,120.00,YES
+dish-0cc0209d,Caffelera,Canteen Food,Wraps Mexican Wrap,60.00,,,YES
+dish-2cc40542,Caffelera,Canteen Food,Wraps Paneer Wrap,100.00,100.00,180.00,YES
+dish-06a22fcc,Caffelera,Canteen Food,Wraps Veg Wrap,60.00,,,YES
+dish-b11b6786,Caffelera,Chocolates & Candies,Desserts Brownie,79.00,,,YES
+dish-1e0210ee,Caffelera,Chocolates & Candies,Desserts Brownie With Ice Cream,79.00,,,YES
+dish-69a844fe,Caffelera,Chocolates & Candies,Desserts Choco Lava Cake,40.00,,,YES
+adebe959-38db-4f37-8b7d-77c19d5048f4,Caffelera,Drinks & Juices,Black Currant Iced Tea,140.00,,,YES
+8908c68c-e422-4f68-ab95-8c379c946a6d,Caffelera,Drinks & Juices,Black Currant Shakes,80.00,,,YES
+5d304833-2da9-494d-b009-5b8255029661,Caffelera,Drinks & Juices,Blue Berry Mojito,70.00,,,YES
+4b626a47-3bf1-4010-80e0-e4227e26963f,Caffelera,Drinks & Juices,Bubblegum Shakes,80.00,,,YES
+e8ae6b9f-4bde-4a1a-a1f7-eb9fe23be90a,Caffelera,Drinks & Juices,Cafe Americano,100.00,,,YES
+6da482e7-fab2-4a0d-9adc-53c0384034d2,Caffelera,Drinks & Juices,Cafe Latte,130.00,,,YES
+6be29c0e-2ca9-4233-a8a9-24d5801941ee,Caffelera,Drinks & Juices,Cafe Macchiato,120.00,,,YES
+14673726-a015-4e66-adf8-22c9edd8a8cd,Caffelera,Drinks & Juices,Cafe Mocha,140.00,,,YES
+e07b7529-19a0-43ff-bb4b-1cd86ea310e6,Caffelera,Drinks & Juices,Canberry Mojito,1601.00,,,YES
+550edf94-516a-4cf4-acdb-176747ad76e3,Caffelera,Drinks & Juices,Cappuccino,120.00,,,YES
+dish-061d3b26,Caffelera,Drinks & Juices,Chinese Classic Fried Rice,40.00,,,YES
+0d20cf31-e066-4796-8af4-05621db51421,Caffelera,Drinks & Juices,Chocolate Shakes,80.00,,,YES
+4d6a2c75-5cc5-4e55-a324-17572ad30a57,Caffelera,Drinks & Juices,Classic Lemonade,1201.00,,,YES
+1f923409-d965-4516-b976-64c313d0c1c9,Caffelera,Drinks & Juices,Cold Brownie Frappe,1701.00,,,YES
+1f7580e8-9961-4ce6-b69a-53c4f510ddd6,Caffelera,Drinks & Juices,Cold Caffelara Blast,130.00,,,YES
+b29e90cb-3717-46ca-a76b-6152814867b0,Caffelera,Drinks & Juices,Cold Caffelara Frappe,140.00,,,YES
+52cc33e3-e011-4c05-8a73-7196dfd10a7d,Caffelera,Drinks & Juices,Cold Caramel Frappe,190.00,,,YES
+47b10d65-5656-4b00-9990-f73ff4b0274a,Caffelera,Drinks & Juices,Cold Hazelnut Frappe,190.00,,,YES
+0d2a8223-45cb-47d9-9d0a-2e2ffdffd060,Caffelera,Drinks & Juices,Cold Irish Frappe,210.00,,,YES
+d643a634-c15b-4448-a603-d821896da01a,Caffelera,Drinks & Juices,Cold Orange Zest Frappe,160.00,,,YES
+fa533d33-cec2-458b-898a-ae58b43a3589,Caffelera,Drinks & Juices,Cold Strawberry Frappe,180.00,,,YES
+7b7bd854-c063-4592-b721-1027a51d6133,Caffelera,Drinks & Juices,Cold Tiramisu Frappe,1701.00,,,YES
+89a06f1f-4f5e-46e5-9b7a-a36e4e5d6cce,Caffelera,Drinks & Juices,Cold Vanilla Frappe,150.00,,,YES
+c8ffbbfd-308e-43d4-bba7-a3de37684df2,Caffelera,Drinks & Juices,Cranberry Iced Tea,140.00,,,YES
+dish-de91cfe0,Caffelera,Drinks & Juices,Crispy Fingers Classic Fries,40.00,,,YES
+dish-d6f24fe3,Caffelera,Drinks & Juices,Garlic Breads Classic Garlic Bread,40.00,,,YES
+2273e439-7bad-4f3d-8a62-078a03da532b,Caffelera,Drinks & Juices,Green Apple Mojito,70.00,,,YES
+6b91c510-3924-46b8-a9cc-1c834c449273,Caffelera,Drinks & Juices,Hot Caramel Latte,130.00,,,YES
+c5dc1215-fbd5-47bd-b66e-f4a6b6b39b6b,Caffelera,Drinks & Juices,Hot Hazelnut Latte,130.00,,,YES
+45323ef0-ae41-40af-9088-59106d2c5e3d,Caffelera,Drinks & Juices,Hot Irish Latte,130.00,,,YES
+82db0dc0-a615-46ef-8ec2-809cee6db7cf,Caffelera,Drinks & Juices,Hot Tiramisu Latte,130.00,,,YES
+c1b99c90-d18e-4ee8-a5cb-9e845c1193a7,Caffelera,Drinks & Juices,Hot Vanilla Latte,130.00,,,YES
+4ea79180-d107-4c6d-9193-0c4503286cf8,Caffelera,Drinks & Juices,Iced Americano,110.00,,,YES
+c6d67596-e97c-4e29-ba54-77d334060844,Caffelera,Drinks & Juices,Iced Cafe Mocha,130.00,,,YES
+81bb98d8-e4f4-4945-96da-10c73db80004,Caffelera,Drinks & Juices,Iced Caramel Latte,130.00,,,YES
+fe882783-3fa3-4bd6-910a-300659dac6db,Caffelera,Drinks & Juices,Iced Hazelnut Latte,120.00,,,YES
+945c1e04-9e2f-41ba-9e24-92644f744b90,Caffelera,Drinks & Juices,Iced Irish Latte,100.00,,,YES
+f7136813-8cbe-4b52-b3c6-76deafa4769e,Caffelera,Drinks & Juices,Iced Latte,130.00,,,YES
+37586cba-9629-4f6f-80a3-bacb926b7e0a,Caffelera,Drinks & Juices,Iced Tiramisu Latte,120.00,,,YES
+34838fd2-1cb5-43a7-82c4-6528b26a8441,Caffelera,Drinks & Juices,Kitkat Shakes,1501.00,,,YES
+2b041cbe-2fa6-4157-b5b2-480f3268b924,Caffelera,Drinks & Juices,Lemon Iced Tea,120.00,,,YES
+16c0b327-7d1a-4394-b000-409cfe6378d4,Caffelera,Drinks & Juices,Litchi Mojito,70.00,,,YES
+9166265f-458a-4ef5-aa4a-f1ed9a203e1e,Caffelera,Drinks & Juices,Lotus Biscoff Shakes,80.00,,,YES
+ec690bd0-564f-4db0-96c7-b9361923a2d5,Caffelera,Drinks & Juices,Mango Shakes,80.00,,,YES
+385e54a4-90e1-4b5e-b643-435548d229c2,Caffelera,Drinks & Juices,Mint Mojito,70.00,,,YES
+6abc6d84-627c-4401-9ab1-20a72ef22017,Caffelera,Drinks & Juices,Nutella Shakes,80.00,,,YES
+016851a6-1efe-4763-b0c2-e66b4a950059,Caffelera,Drinks & Juices,Oreo Shakes,1601.00,,,YES
+5e5723ff-0045-422d-aa13-688cff1b0a3a,Caffelera,Drinks & Juices,Peach Iced Tea,130.00,,,YES
+08ecd968-27ab-41aa-9616-5ebd443ec2ca,Caffelera,Drinks & Juices,Ress Berry Mojito,70.00,,,YES
+55ba43c5-6a5b-4e92-bf57-45a25945b948,Caffelera,Drinks & Juices,Strawberry Shakes,1301.00,,,YES
+317bb019-4524-48a1-a50b-32b7364cd37b,Caffelera,Drinks & Juices,Vanilla Mist Latte,130.00,,,YES
+45fff37b-03ad-4279-9fb9-80ebcc5f9677,Caffelera,Drinks & Juices,Vanilla Shakes,1701.00,,,YES
+7f18b81a-c131-4b0b-abd6-9796eaa78131,Caffelera,Drinks & Juices,Watermelon Mojito,130.00,,,YES
+item-real-71f3d6fb,Caffelera,Pastas & Chinese,Pasta Maggi Pasta,70.00,42.00,70.00,YES
+dish-4019329b,Caffelera,Snacks & Chips,Cheese Nachos,50.00,,,YES
+dish-fa7a760a,Caffelera,Snacks & Chips,Crispy Fingers Peri Cheese Loaded Fries,50.00,,,YES
+dish-52e07a58,Caffelera,Snacks & Chips,Crispy Fingers Peri Peri Fries,50.00,,,YES
+dish-d4d8d93f,Caffelera,Snacks & Chips,Crispy Fingers Veg Cheese Loaded Fries,50.00,,,YES
+2adfa46e-e4b0-4eb8-b149-5881589853b5,Caffelera,Snacks & Chips,Hot Chocolate,150.00,,,YES
+dish-88b7f328,Caffelera,Snacks & Chips,Veg Cheese Nachos,50.00,,,YES
+item-real-fbf718c2,Caffelera,Snacks & Maggi,Nachos Cheese Nachos,65.00,,,YES

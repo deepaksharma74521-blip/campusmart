@@ -1,0 +1,197 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-5a2d4391,Pani Puri Restaurant,Canteen Food,Achari Chaap,100.00,100.00,180.00,YES
+dish-97b5657f,Pani Puri Restaurant,Canteen Food,Afghani Chaap,100.00,100.00,180.00,YES
+dish-731c376f,Pani Puri Restaurant,Canteen Food,Aloo Paratha,50.00,,,YES
+dish-20d3a81b,Pani Puri Restaurant,Canteen Food,Aloo Sandwich,70.00,70.00,120.00,YES
+dish-9037aa0b,Pani Puri Restaurant,Canteen Food,Beverages Hot Chocolate,60.00,,,YES
+dish-77c3593c,Pani Puri Restaurant,Canteen Food,Burgers Cheese Burger,70.00,,,YES
+dish-cdcf93f5,Pani Puri Restaurant,Canteen Food,Burgers Double Cheese Corn Burger,70.00,,,YES
+dish-2014df39,Pani Puri Restaurant,Canteen Food,Burgers Veg Burger,45.00,,,YES
+dish-ab980cc5,Pani Puri Restaurant,Canteen Food,Chana Dal,70.00,70.00,120.00,YES
+dish-b35cdb61,Pani Puri Restaurant,Canteen Food,Chap Rolls Afghani Chap Roll,100.00,100.00,180.00,YES
+dish-f41ba374,Pani Puri Restaurant,Canteen Food,Chap Rolls Kashmiri Chap Roll,100.00,100.00,180.00,YES
+dish-4e951a02,Pani Puri Restaurant,Canteen Food,Chap Rolls Paneer Chap Roll,100.00,100.00,180.00,YES
+dish-a5868924,Pani Puri Restaurant,Canteen Food,Chap Rolls Tandoori Chap Roll,100.00,100.00,180.00,YES
+dish-4ec17788,Pani Puri Restaurant,Canteen Food,Cheese Macaroni,60.00,,,YES
+dish-d3a07d5e,Pani Puri Restaurant,Canteen Food,Cheese Maggi,40.00,,,YES
+dish-5b667a9f,Pani Puri Restaurant,Canteen Food,Cheese Pasta,90.00,,,YES
+dish-9444dc69,Pani Puri Restaurant,Canteen Food,Cheese Sandwich,50.00,,,YES
+dish-0005ca6e,Pani Puri Restaurant,Canteen Food,Cheese Uttapam,110.00,,,YES
+dish-dbf14bde,Pani Puri Restaurant,Canteen Food,Chhena Poda,60.00,,,YES
+dish-cffe730e,Pani Puri Restaurant,Canteen Food,Chilli Garlic Noodles,50.00,,,YES
+dish-cf042241,Pani Puri Restaurant,Canteen Food,Chilli Paneer Noodles,100.00,100.00,180.00,YES
+dish-2d1a2a09,Pani Puri Restaurant,Canteen Food,Chilli Potato Noodles,60.00,,,YES
+dish-9e068250,Pani Puri Restaurant,Canteen Food,Dal Makhani,120.00,80.00,140.00,YES
+dish-ada07c00,Pani Puri Restaurant,Canteen Food,Dal Tadka,70.00,70.00,120.00,YES
+dish-de74ea69,Pani Puri Restaurant,Canteen Food,Fried Maggi,40.00,,,YES
+dish-0532e83a,Pani Puri Restaurant,Canteen Food,Fried Momos,60.00,,,YES
+dish-a1f66b73,Pani Puri Restaurant,Canteen Food,Fried Rice Manchurian Hakka Manchurian,70.00,70.00,120.00,YES
+dish-e2114169,Pani Puri Restaurant,Canteen Food,Fried Rice Manchurian Mushroom Fried Rice,70.00,70.00,120.00,YES
+dish-952b3ae6,Pani Puri Restaurant,Canteen Food,Fried Rice Manchurian Paneer Fried Rice,70.00,70.00,120.00,YES
+dish-ae5682ae,Pani Puri Restaurant,Canteen Food,Fried Rice Manchurian Paneer Manchurian,70.00,70.00,120.00,YES
+dish-8c579a40,Pani Puri Restaurant,Canteen Food,Fried Rice Manchurian Schezwan Fried Rice,70.00,70.00,120.00,YES
+dish-2f95239f,Pani Puri Restaurant,Canteen Food,Fried Rice Manchurian Veg Fried Rice,70.00,70.00,120.00,YES
+dish-3b73e276,Pani Puri Restaurant,Canteen Food,Fried Rice Manchurian Veg Manchurian,70.00,70.00,120.00,YES
+dish-e3b8dad0,Pani Puri Restaurant,Canteen Food,Ghar Wali Thali,120.00,,,YES
+dish-f1721532,Pani Puri Restaurant,Canteen Food,Gobi Paratha,8.00,,,YES
+dish-a0c2d468,Pani Puri Restaurant,Canteen Food,Gravy Chaap,100.00,100.00,180.00,YES
+dish-3b5d2e8f,Pani Puri Restaurant,Canteen Food,Gravy Momos,50.00,,,YES
+dish-a2192cb4,Pani Puri Restaurant,Canteen Food,Gravy Tawa Chapati,100.00,100.00,180.00,YES
+dish-a3ae2dbe,Pani Puri Restaurant,Canteen Food,Gravy Tawa Chapati Cold Drink,100.00,100.00,180.00,YES
+dish-50638e19,Pani Puri Restaurant,Canteen Food,Hakka Noodles,50.00,,,YES
+dish-49164042,Pani Puri Restaurant,Canteen Food,Indo Chinese Mushroom Roll,80.00,80.00,140.00,YES
+dish-9dfa199c,Pani Puri Restaurant,Canteen Food,Indo Chinese Paneer Roll,100.00,100.00,180.00,YES
+dish-aa3f9c53,Pani Puri Restaurant,Canteen Food,Indo Chinese Pavbhaji,60.00,,,YES
+dish-318b6fcc,Pani Puri Restaurant,Canteen Food,Indo Chinese Veg Kabab Roll,50.00,,,YES
+dish-e8c2ed03,Pani Puri Restaurant,Canteen Food,Jeera Rice,50.00,,,YES
+dish-c3197306,Pani Puri Restaurant,Canteen Food,Kadai Paneer,120.00,100.00,180.00,YES
+dish-3e6fed9d,Pani Puri Restaurant,Canteen Food,Kadhi,60.00,,,YES
+dish-3256d296,Pani Puri Restaurant,Canteen Food,Kashmiri Pulao,50.00,70.00,120.00,YES
+dish-40a02539,Pani Puri Restaurant,Canteen Food,Lachha Paratha,8.00,,,YES
+dish-167746c5,Pani Puri Restaurant,Canteen Food,Malai Chaap,100.00,100.00,180.00,YES
+dish-ba2861d4,Pani Puri Restaurant,Canteen Food,Malai Tikka,130.00,,,YES
+dish-f5f528ae,Pani Puri Restaurant,Canteen Food,Manchurian Fried Rice,70.00,70.00,120.00,YES
+dish-e92c2b5f,Pani Puri Restaurant,Canteen Food,Mancurian Chilli Garlic Fried Rice,70.00,70.00,120.00,YES
+dish-bd91e1aa,Pani Puri Restaurant,Canteen Food,Mancurian Paneer Fried Rice,70.00,70.00,120.00,YES
+dish-c21f214f,Pani Puri Restaurant,Canteen Food,Mancurian Schezwan Fried Rice,70.00,70.00,120.00,YES
+dish-528225c3,Pani Puri Restaurant,Canteen Food,Mancurian Veg Fried Rice,70.00,70.00,120.00,YES
+dish-5dc70947,Pani Puri Restaurant,Canteen Food,Masala Chaap,100.00,100.00,180.00,YES
+dish-f6def392,Pani Puri Restaurant,Canteen Food,Masala Maggi,40.00,,,YES
+dish-e266441c,Pani Puri Restaurant,Canteen Food,Masoor Dal,70.00,70.00,120.00,YES
+dish-1cb7e2ab,Pani Puri Restaurant,Canteen Food,Matar Paneer,120.00,100.00,180.00,YES
+dish-27f67094,Pani Puri Restaurant,Canteen Food,Matar Pulao,70.00,70.00,120.00,YES
+dish-358a58a2,Pani Puri Restaurant,Canteen Food,Mix Paratha,8.00,,,YES
+dish-e1a33e22,Pani Puri Restaurant,Canteen Food,Mix Sauce Pasta,90.00,,,YES
+dish-ccbc7bcb,Pani Puri Restaurant,Canteen Food,Mix Uttapam,130.00,,,YES
+dish-bd9d8f41,Pani Puri Restaurant,Canteen Food,Mocktails Blue Curacao Mocktail,60.00,,,YES
+dish-ee4b6a02,Pani Puri Restaurant,Canteen Food,Mocktails Green Apple Mocktail,60.00,,,YES
+dish-df0a88d2,Pani Puri Restaurant,Canteen Food,Mocktails Kala Khatta Mocktail,60.00,,,YES
+dish-87ecb744,Pani Puri Restaurant,Canteen Food,Mocktails Watermelon Mocktail,60.00,,,YES
+dish-a76903ca,Pani Puri Restaurant,Canteen Food,Muli Paratha,8.00,,,YES
+dish-bc59a238,Pani Puri Restaurant,Canteen Food,Navratri Thali,120.00,,,YES
+dish-968985c2,Pani Puri Restaurant,Canteen Food,Onion Paratha,8.00,,,YES
+dish-86ad4010,Pani Puri Restaurant,Canteen Food,Onion Uttapam,75.00,,,YES
+dish-3d5d6f4a,Pani Puri Restaurant,Canteen Food,Pahadi Thali,120.00,,,YES
+dish-d5d7dbe4,Pani Puri Restaurant,Canteen Food,Palak Paneer,120.00,100.00,180.00,YES
+dish-22956908,Pani Puri Restaurant,Canteen Food,Paneer Butter Masala,120.00,100.00,180.00,YES
+dish-239bb6ad,Pani Puri Restaurant,Canteen Food,Paneer Cheese Maggi,100.00,100.00,180.00,YES
+dish-728658cd,Pani Puri Restaurant,Canteen Food,Paneer Large,100.00,100.00,180.00,YES
+dish-7bfe51f1,Pani Puri Restaurant,Canteen Food,Paneer Maggi,40.00,100.00,180.00,YES
+dish-9ef3ccf7,Pani Puri Restaurant,Canteen Food,Paneer Medium,100.00,100.00,180.00,YES
+dish-15168972,Pani Puri Restaurant,Canteen Food,Paneer Momos,60.00,100.00,180.00,YES
+dish-a7a9925c,Pani Puri Restaurant,Canteen Food,Paneer Paratha,70.00,,,YES
+dish-7b3c5b7c,Pani Puri Restaurant,Canteen Food,Paneer Pulao,70.00,70.00,120.00,YES
+dish-f43fdfd5,Pani Puri Restaurant,Canteen Food,Paneer Regular,100.00,100.00,180.00,YES
+dish-0701955f,Pani Puri Restaurant,Canteen Food,Paneer Roll,60.00,100.00,180.00,YES
+dish-3e995204,Pani Puri Restaurant,Canteen Food,Paneer Spring Roll,100.00,100.00,180.00,YES
+dish-d1210e9d,Pani Puri Restaurant,Canteen Food,Paneer Tikka Masala,120.00,100.00,180.00,YES
+dish-fbc5191f,Pani Puri Restaurant,Canteen Food,Pani Puri Chaat Puri,60.00,,,YES
+dish-ee31ca6c,Pani Puri Restaurant,Canteen Food,Pani Puri Dahi Puri,60.00,,,YES
+dish-7ea2f700,Pani Puri Restaurant,Canteen Food,Pani Puri Gol Gappe 8 Pcs,60.00,,,YES
+dish-5a21037a,Pani Puri Restaurant,Canteen Food,Pani Puri Masala Puri,60.00,,,YES
+dish-35ac2bc8,Pani Puri Restaurant,Canteen Food,Pani Puri Pani Puri 6 Pcs,60.00,,,YES
+dish-54782686,Pani Puri Restaurant,Canteen Food,Pani Puri Pani Puri Tikki Photo,60.00,,,YES
+dish-31723e59,Pani Puri Restaurant,Canteen Food,Pani Puri Sev Puri,60.00,,,YES
+dish-7a07ef08,Pani Puri Restaurant,Canteen Food,Pani Puri Tikki 2 Pcs,60.00,,,YES
+dish-1e0d949c,Pani Puri Restaurant,Canteen Food,Parantha Aloo Paratha,50.00,,,YES
+dish-89026742,Pani Puri Restaurant,Canteen Food,Parantha Aloo Pyaz Paratha,50.00,,,YES
+dish-319083ee,Pani Puri Restaurant,Canteen Food,Parantha Gobi Paratha,8.00,,,YES
+dish-c75fb9c5,Pani Puri Restaurant,Canteen Food,Parantha Onion Paratha,8.00,,,YES
+dish-327ac974,Pani Puri Restaurant,Canteen Food,Paratha,75.00,,,YES
+dish-aa297cd6,Pani Puri Restaurant,Canteen Food,Peri Peri Spring Roll,60.00,,,YES
+dish-75114546,Pani Puri Restaurant,Canteen Food,Pizza Double Cheese Margherita,119.00,,,YES
+dish-8fbd7f44,Pani Puri Restaurant,Canteen Food,Pizza Margherita Pizza,119.00,,,YES
+dish-873ca7a5,Pani Puri Restaurant,Canteen Food,Pizza Onion Capsicum Pizza,119.00,,,YES
+dish-d9d7c2b7,Pani Puri Restaurant,Canteen Food,Plain Maggi,40.00,,,YES
+dish-1109004e,Pani Puri Restaurant,Canteen Food,Plain Paratha,8.00,,,YES
+dish-6e0869c8,Pani Puri Restaurant,Canteen Food,Plain Rice,45.00,,,YES
+dish-8299d68f,Pani Puri Restaurant,Canteen Food,Punjabi Thali,120.00,,,YES
+dish-c3c9ff10,Pani Puri Restaurant,Canteen Food,Rajma,70.00,70.00,120.00,YES
+dish-7a69e328,Pani Puri Restaurant,Canteen Food,Red Sauce Pasta,90.00,,,YES
+dish-ce5d3cff,Pani Puri Restaurant,Canteen Food,Reshmi Kebab,130.00,,,YES
+dish-224a6d1f,Pani Puri Restaurant,Canteen Food,Rolls Chilli Paneer Roll,100.00,100.00,180.00,YES
+dish-8fb08af4,Pani Puri Restaurant,Canteen Food,Rolls Noodles Roll,60.00,,,YES
+dish-1defff7e,Pani Puri Restaurant,Canteen Food,Rolls Paneer Roll,100.00,100.00,180.00,YES
+dish-65e70d57,Pani Puri Restaurant,Canteen Food,Rolls Veg Roll,50.00,,,YES
+dish-6de65c08,Pani Puri Restaurant,Canteen Food,Rumali Roti,10.00,,,YES
+dish-6badea39,Pani Puri Restaurant,Canteen Food,Schezwan Maggi,40.00,,,YES
+dish-85068f10,Pani Puri Restaurant,Canteen Food,Schezwan Noodles,50.00,,,YES
+dish-acf3e80e,Pani Puri Restaurant,Canteen Food,Seekh Kebab,130.00,,,YES
+dish-fef9d487,Pani Puri Restaurant,Canteen Food,Shahi Paneer,120.00,100.00,180.00,YES
+dish-e8829ca0,Pani Puri Restaurant,Canteen Food,Singapuri Noodles,60.00,,,YES
+dish-7a7338ef,Pani Puri Restaurant,Canteen Food,Special Paneer Lachcha Paratha,8.00,,,YES
+dish-cf93965f,Pani Puri Restaurant,Canteen Food,Special Paneer Paratha,70.00,,,YES
+dish-c695198f,Pani Puri Restaurant,Canteen Food,Special Punjabi Food Chole Bhature,65.00,,,YES
+dish-0bcbbe0c,Pani Puri Restaurant,Canteen Food,Special Punjabi Food Chole Kulche,50.00,,,YES
+dish-14d028f6,Pani Puri Restaurant,Canteen Food,Special Thali,160.00,,,YES
+dish-b5ae3e4a,Pani Puri Restaurant,Canteen Food,Spring Roll,60.00,,,YES
+dish-4eb030b8,Pani Puri Restaurant,Canteen Food,Supreme Thali,160.00,,,YES
+dish-94ebd63f,Pani Puri Restaurant,Canteen Food,Tacos Aloo Tikki Taco,70.00,70.00,120.00,YES
+dish-43f7f94e,Pani Puri Restaurant,Canteen Food,Tacos Paneer Tikki Taco,100.00,100.00,180.00,YES
+dish-9bcc40f4,Pani Puri Restaurant,Canteen Food,Tacos Pizza Taco,119.00,,,YES
+dish-cea3d8e9,Pani Puri Restaurant,Canteen Food,Tandoori Aloo Tikka,70.00,70.00,120.00,YES
+dish-b571c70b,Pani Puri Restaurant,Canteen Food,Tandoori Chaap,100.00,100.00,180.00,YES
+dish-871cbd40,Pani Puri Restaurant,Canteen Food,Tandoori Chaap Roll,100.00,100.00,180.00,YES
+dish-e360d219,Pani Puri Restaurant,Canteen Food,Tandoori Maggi,40.00,,,YES
+dish-f4752b54,Pani Puri Restaurant,Canteen Food,Tandoori Momos,60.00,,,YES
+dish-e2d15044,Pani Puri Restaurant,Canteen Food,Tandoori Mushroom,80.00,80.00,140.00,YES
+dish-55f35318,Pani Puri Restaurant,Canteen Food,Tandoori Paneer Sandwich,100.00,100.00,180.00,YES
+dish-2664d441,Pani Puri Restaurant,Canteen Food,Tandoori Paneer Tikka,100.00,100.00,180.00,YES
+dish-47af5d5e,Pani Puri Restaurant,Canteen Food,Tandoori Roti,10.00,,,YES
+dish-1c558205,Pani Puri Restaurant,Canteen Food,Tangri Kebab,130.00,,,YES
+dish-41ee82f2,Pani Puri Restaurant,Canteen Food,Tawa Roti,8.00,,,YES
+dish-25bd9578,Pani Puri Restaurant,Canteen Food,Tomato Uttapam,75.00,,,YES
+dish-d3ac06ce,Pani Puri Restaurant,Canteen Food,Veg Biryani,50.00,90.00,160.00,YES
+dish-3dfe20b7,Pani Puri Restaurant,Canteen Food,Veg Large,60.00,,,YES
+dish-4edc67ae,Pani Puri Restaurant,Canteen Food,Veg Macaroni,60.00,,,YES
+dish-e4a14405,Pani Puri Restaurant,Canteen Food,Veg Maggi,40.00,,,YES
+dish-793d048f,Pani Puri Restaurant,Canteen Food,Veg Medium,60.00,,,YES
+dish-55bcc9f6,Pani Puri Restaurant,Canteen Food,Veg Momos,60.00,,,YES
+dish-d92429b2,Pani Puri Restaurant,Canteen Food,Veg Noodles,50.00,,,YES
+dish-cf8f62b2,Pani Puri Restaurant,Canteen Food,Veg Pulao,50.00,70.00,120.00,YES
+dish-eac0e621,Pani Puri Restaurant,Canteen Food,Veg Regular,60.00,,,YES
+dish-2210726d,Pani Puri Restaurant,Canteen Food,Veg Roll,60.00,,,YES
+dish-ad46e517,Pani Puri Restaurant,Canteen Food,Veg Sandwich,50.00,,,YES
+dish-9359cbbe,Pani Puri Restaurant,Canteen Food,Veg Spring Roll,60.00,,,YES
+dish-16289543,Pani Puri Restaurant,Canteen Food,White Sauce Pasta,90.00,,,YES
+dish-da6cca48,Pani Puri Restaurant,Chocolates & Candies,Chocolate Cake,40.00,,,YES
+dish-5504427e,Pani Puri Restaurant,Chocolates & Candies,Gajar Halwa,40.00,,,YES
+dish-73126470,Pani Puri Restaurant,Chocolates & Candies,Gulab Jamun,40.00,,,YES
+dish-5aed6731,Pani Puri Restaurant,Chocolates & Candies,Ice Cream,40.00,,,YES
+dish-0efe330b,Pani Puri Restaurant,Chocolates & Candies,Kulfi,40.00,,,YES
+dish-ae1cdf51,Pani Puri Restaurant,Chocolates & Candies,Ras Malai,40.00,,,YES
+dish-5b981de4,Pani Puri Restaurant,Chocolates & Candies,Rasgulla,40.00,,,YES
+dish-ce9598ee,Pani Puri Restaurant,Drinks & Juices,Beverages Black Coffee,15.00,,,YES
+dish-65797440,Pani Puri Restaurant,Drinks & Juices,Beverages Cold Coffee,50.00,,,YES
+dish-b0f75df3,Pani Puri Restaurant,Drinks & Juices,Beverages Cold Coffee With Ice Cream,60.00,,,YES
+dish-dea6651f,Pani Puri Restaurant,Drinks & Juices,Beverages Hot Coffee,30.00,,,YES
+dish-a697f427,Pani Puri Restaurant,Drinks & Juices,Beverages Hot Coffee With Ice Cream,30.00,,,YES
+dish-a783d372,Pani Puri Restaurant,Drinks & Juices,Beverages Tea,15.00,,,YES
+dish-d095a61b,Pani Puri Restaurant,Drinks & Juices,Blue Lagoon Mojito,60.00,,,YES
+dish-89d291c5,Pani Puri Restaurant,Drinks & Juices,Caramel Cold Coffee,50.00,,,YES
+dish-f3860075,Pani Puri Restaurant,Drinks & Juices,Chocolate Cold Coffee,50.00,,,YES
+dish-1d84e767,Pani Puri Restaurant,Drinks & Juices,Chocolate Shake,80.00,,,YES
+dish-63cb41b0,Pani Puri Restaurant,Drinks & Juices,Classic Cold Coffee,80.00,,,YES
+dish-3b7ee14a,Pani Puri Restaurant,Drinks & Juices,Cold Coffee,40.00,,,YES
+dish-e8099ed9,Pani Puri Restaurant,Drinks & Juices,Dark Chocolate Shake,60.00,,,YES
+dish-20617dd8,Pani Puri Restaurant,Drinks & Juices,Green Apple Mojito,70.00,,,YES
+dish-b2d3eb8b,Pani Puri Restaurant,Drinks & Juices,Hazelnut Cold Coffee,50.00,,,YES
+dish-04a5c2ae,Pani Puri Restaurant,Drinks & Juices,Kitkat Shake,70.00,,,YES
+dish-35b1430d,Pani Puri Restaurant,Drinks & Juices,Mango Mojito,60.00,,,YES
+dish-85662ac6,Pani Puri Restaurant,Drinks & Juices,Mango Shake,80.00,,,YES
+dish-b1417216,Pani Puri Restaurant,Drinks & Juices,Mocha Cold Coffee,60.00,,,YES
+dish-ef9a94a2,Pani Puri Restaurant,Drinks & Juices,Mocktails Green Apple Lemonade,35.00,,,YES
+dish-4f74eb3d,Pani Puri Restaurant,Drinks & Juices,Mocktails Mint Mojito,60.00,,,YES
+dish-2f1bf858,Pani Puri Restaurant,Drinks & Juices,Oreo Shake,70.00,,,YES
+dish-d38e3694,Pani Puri Restaurant,Drinks & Juices,Shakes Blueberry Shake,60.00,,,YES
+dish-c2ca9fdb,Pani Puri Restaurant,Drinks & Juices,Shakes Butterscotch Shake,60.00,,,YES
+dish-a94d9f87,Pani Puri Restaurant,Drinks & Juices,Shakes Chocolate Shake,60.00,,,YES
+dish-486b4a39,Pani Puri Restaurant,Drinks & Juices,Shakes Pineapple Shake,60.00,,,YES
+dish-86a8a71e,Pani Puri Restaurant,Drinks & Juices,Shakes Rasmalai Shake,60.00,,,YES
+dish-45f1934b,Pani Puri Restaurant,Drinks & Juices,Shakes Strawberry Shake,60.00,,,YES
+dish-5385fb9f,Pani Puri Restaurant,Drinks & Juices,Strawberry Mojito,60.00,,,YES
+dish-eea60e61,Pani Puri Restaurant,Drinks & Juices,Vanilla Cold Coffee,50.00,,,YES
+dish-2080991a,Pani Puri Restaurant,Drinks & Juices,Virgin Mojito,70.00,,,YES
+dish-20f24ea4,Pani Puri Restaurant,Drinks & Juices,Watermelon Mojito,130.00,,,YES
+item-real-8bd83f62,Pani Puri Restaurant,Rolls & Wraps,Spring Rolls Veg Spring Roll,60.00,,,YES
+dish-94b0428c,Pani Puri Restaurant,Snacks & Chips,Tacos Veg Cheese Nachos Taco,50.00,,,YES

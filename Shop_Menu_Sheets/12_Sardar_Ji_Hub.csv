@@ -1,0 +1,298 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-05179d77,Sardar Ji Hub,Canteen Food,Aachari Chap,100.00,100.00,180.00,YES
+dish-53cd3c02,Sardar Ji Hub,Canteen Food,Achari Chaap,170.00,100.00,180.00,YES
+dish-4b71d42c,Sardar Ji Hub,Canteen Food,Achari Maggi,40.00,,,YES
+dish-73d0cf96,Sardar Ji Hub,Canteen Food,Afgani Chaap,100.00,100.00,180.00,YES
+dish-63653f4d,Sardar Ji Hub,Canteen Food,Aloo Pakoda,70.00,70.00,120.00,YES
+dish-688fcc4e,Sardar Ji Hub,Canteen Food,Aloo Popcorn,70.00,70.00,120.00,YES
+dish-2d390e02,Sardar Ji Hub,Canteen Food,Aloo Puri,70.00,70.00,120.00,YES
+dish-43c76ee0,Sardar Ji Hub,Canteen Food,Aloo Pyaz Pakodi,70.00,70.00,120.00,YES
+dish-807ddfb9,Sardar Ji Hub,Canteen Food,Amritsari Kulche Aloo Kulcha,8.00,,,YES
+dish-7e285c35,Sardar Ji Hub,Canteen Food,Amritsari Kulche Aloo Pyaz Kulcha,8.00,,,YES
+dish-43cb5be2,Sardar Ji Hub,Canteen Food,Amritsari Kulche Gobhi Kulcha,8.00,,,YES
+dish-47bb543b,Sardar Ji Hub,Canteen Food,Amritsari Kulche Paneer Kulcha,8.00,,,YES
+dish-cd52efcd,Sardar Ji Hub,Canteen Food,Boondi Raita,60.00,,,YES
+dish-ea5c4db1,Sardar Ji Hub,Canteen Food,Bread Pakora,60.00,,,YES
+dish-8fbd7bd5,Sardar Ji Hub,Canteen Food,Bread Slice,60.00,,,YES
+dish-284ebd3e,Sardar Ji Hub,Canteen Food,Bread Toast Amul Bread Toast,100.00,,,YES
+dish-238e3f63,Sardar Ji Hub,Canteen Food,Bread Toast Amul Bun Maska,80.00,,,YES
+dish-ba698a49,Sardar Ji Hub,Canteen Food,Bread Toast Bread Toast,60.00,,,YES
+dish-4716b9bf,Sardar Ji Hub,Canteen Food,Bread Toast Bun Maska,100.00,,,YES
+dish-2acc6324,Sardar Ji Hub,Canteen Food,Breads Rumali Roti,10.00,,,YES
+dish-aed28950,Sardar Ji Hub,Canteen Food,Breads Tawa Butter Roti,8.00,,,YES
+dish-47fc6ce7,Sardar Ji Hub,Canteen Food,Breads Tawa Roti,8.00,,,YES
+dish-ed08e1f0,Sardar Ji Hub,Canteen Food,Butter Masala Maggi,55.00,,,YES
+dish-1e72fb2e,Sardar Ji Hub,Canteen Food,Chana Masala D,100.00,70.00,120.00,YES
+dish-06f90592,Sardar Ji Hub,Canteen Food,Chana Masala G,80.00,70.00,120.00,YES
+dish-70949cae,Sardar Ji Hub,Canteen Food,Chap 2 Pyaza,100.00,100.00,180.00,YES
+dish-a227ea0b,Sardar Ji Hub,Canteen Food,Chap Biryani,70.00,90.00,160.00,YES
+dish-af7e624a,Sardar Ji Hub,Canteen Food,Chap Butter Masala,100.00,100.00,180.00,YES
+dish-4a8d9b5f,Sardar Ji Hub,Canteen Food,Chap Changezi,100.00,100.00,180.00,YES
+dish-76a1209b,Sardar Ji Hub,Canteen Food,Chap Fingers,100.00,100.00,180.00,YES
+dish-f791d96b,Sardar Ji Hub,Canteen Food,Chap Fried Rice,701.00,70.00,120.00,YES
+dish-49f1e1b3,Sardar Ji Hub,Canteen Food,Chap Kali Mirch,100.00,100.00,180.00,YES
+dish-ed376d8d,Sardar Ji Hub,Canteen Food,Chap Lawabdar,100.00,100.00,180.00,YES
+dish-09a55287,Sardar Ji Hub,Canteen Food,Chap Paneer Spl.,100.00,100.00,180.00,YES
+dish-1715441b,Sardar Ji Hub,Canteen Food,Chap Thali,140.00,,,YES
+dish-2238e735,Sardar Ji Hub,Canteen Food,Chatori Baatein Aate K Golgappe 5pcs,60.00,,,YES
+dish-ab3d1112,Sardar Ji Hub,Canteen Food,Chatori Baatein Aloo Tikki,70.00,70.00,120.00,YES
+dish-da704b24,Sardar Ji Hub,Canteen Food,Chatori Baatein Dahi Bhale,60.00,,,YES
+dish-5bb8ea11,Sardar Ji Hub,Canteen Food,Chatori Baatein Pappi Chat,60.00,,,YES
+dish-4b654583,Sardar Ji Hub,Canteen Food,Chatori Baatein Saunth K Golgappe 5pcs,60.00,,,YES
+dish-e317ff2f,Sardar Ji Hub,Canteen Food,Chatori Baatein Suji K Golgappe 4pcs,60.00,,,YES
+dish-c3b7b277,Sardar Ji Hub,Canteen Food,Cheese Corn Maggi,55.00,,,YES
+dish-b4def716,Sardar Ji Hub,Canteen Food,Cheese Corn Pizza,119.00,,,YES
+dish-c78b9b5b,Sardar Ji Hub,Canteen Food,Cheese Masala Dosa,110.00,,,YES
+dish-762c740e,Sardar Ji Hub,Canteen Food,Cheese Onion,60.00,,,YES
+dish-fdd08f55,Sardar Ji Hub,Canteen Food,Cheese Paneer,100.00,100.00,180.00,YES
+dish-029e243b,Sardar Ji Hub,Canteen Food,Cheese Veg,60.00,,,YES
+dish-da415a18,Sardar Ji Hub,Canteen Food,Chilli Garlic Noodle,80.00,,,YES
+dish-245d5709,Sardar Ji Hub,Canteen Food,Chinese Chilli Paneer Dry,100.00,100.00,180.00,YES
+dish-59ec0b41,Sardar Ji Hub,Canteen Food,Chinese Chilli Paneer Gravy,100.00,100.00,180.00,YES
+dish-e8d34339,Sardar Ji Hub,Canteen Food,Chinese Chilli Potato,60.00,,,YES
+dish-e241b3af,Sardar Ji Hub,Canteen Food,Chinese Honey Chilli Potato,60.00,,,YES
+dish-a12b52e5,Sardar Ji Hub,Canteen Food,Chinese Veg Manchurian,60.00,,,YES
+dish-ab2f9cdc,Sardar Ji Hub,Canteen Food,Chole Bhature,65.00,,,YES
+dish-3eb9ba72,Sardar Ji Hub,Canteen Food,Chole Kulche,50.00,,,YES
+dish-eb193737,Sardar Ji Hub,Canteen Food,Crispy Corn,50.00,,,YES
+dish-9aa94c1b,Sardar Ji Hub,Canteen Food,Crispy Veggie Pizza,119.00,,,YES
+dish-7cec6de3,Sardar Ji Hub,Canteen Food,Dal Bhukhera,100.00,70.00,120.00,YES
+dish-12bd347e,Sardar Ji Hub,Canteen Food,Dal Fry,70.00,70.00,120.00,YES
+dish-52816374,Sardar Ji Hub,Canteen Food,Dal Handi,70.00,70.00,120.00,YES
+dish-057818ba,Sardar Ji Hub,Canteen Food,Dal Makhani,120.00,80.00,140.00,YES
+dish-1c853465,Sardar Ji Hub,Canteen Food,Dal Tadka,70.00,70.00,120.00,YES
+dish-1400871e,Sardar Ji Hub,Canteen Food,Delux Thali,160.00,,,YES
+dish-31056478,Sardar Ji Hub,Canteen Food,Double Cheese Corn,100.00,,,YES
+dish-a391ef99,Sardar Ji Hub,Canteen Food,Double Masala Maggi,40.00,,,YES
+dish-b673c8d0,Sardar Ji Hub,Canteen Food,Fried Idli,55.00,,,YES
+dish-7fd500a8,Sardar Ji Hub,Canteen Food,Fried Rice,70.00,70.00,120.00,YES
+dish-6777ba53,Sardar Ji Hub,Canteen Food,Garlic Spicy Maggi,40.00,,,YES
+dish-ebd5c9db,Sardar Ji Hub,Canteen Food,Gravy Rice Chole Chawal,70.00,,,YES
+dish-b8b7f12d,Sardar Ji Hub,Canteen Food,Gravy Rice Dal Chawal,50.00,,,YES
+dish-c023a5f6,Sardar Ji Hub,Canteen Food,Gravy Rice Dal Makhani Chawal,70.00,,,YES
+dish-279928a8,Sardar Ji Hub,Canteen Food,Gravy Rice Kadhi Chawal,70.00,,,YES
+dish-02f9e456,Sardar Ji Hub,Canteen Food,Gravy Rice Multani Chole Chawal,70.00,,,YES
+dish-9674a48a,Sardar Ji Hub,Canteen Food,Gravy Rice Rajma Chawal,70.00,,,YES
+dish-322d98e1,Sardar Ji Hub,Canteen Food,Hakka Noodle,60.00,,,YES
+dish-209882d5,Sardar Ji Hub,Canteen Food,Handi Chap,100.00,100.00,180.00,YES
+dish-502a8f18,Sardar Ji Hub,Canteen Food,Handi Paneer,100.00,100.00,180.00,YES
+dish-0b64724d,Sardar Ji Hub,Canteen Food,Hot N Sour Soup,60.00,,,YES
+dish-b4da60f8,Sardar Ji Hub,Canteen Food,Hyderabadi Biryani,100.00,90.00,160.00,YES
+dish-0e6aedf5,Sardar Ji Hub,Canteen Food,Idli Sambhar,55.00,,,YES
+dish-ec2f7e61,Sardar Ji Hub,Canteen Food,Jain Spl Chap,100.00,100.00,180.00,YES
+dish-62135041,Sardar Ji Hub,Canteen Food,Jain Thali,30.00,,,YES
+dish-68d068a9,Sardar Ji Hub,Canteen Food,Jeera Rice,50.00,,,YES
+dish-c027849e,Sardar Ji Hub,Canteen Food,Kadhai Chap,100.00,100.00,180.00,YES
+dish-63d7858f,Sardar Ji Hub,Canteen Food,Kadhai Paneer,100.00,100.00,180.00,YES
+dish-d9d64d70,Sardar Ji Hub,Canteen Food,Kaju Kari,60.00,,,YES
+dish-1cc67e11,Sardar Ji Hub,Canteen Food,Keema Chap,100.00,100.00,180.00,YES
+dish-820ebe70,Sardar Ji Hub,Canteen Food,Kfc Chap,100.00,100.00,180.00,YES
+dish-f6c35d89,Sardar Ji Hub,Canteen Food,Kfc Momo,50.00,,,YES
+dish-541323ab,Sardar Ji Hub,Canteen Food,Kfc Potato Leg Piece,60.00,,,YES
+dish-24973836,Sardar Ji Hub,Canteen Food,Lemon Rice,100.00,,,YES
+dish-84e8993d,Sardar Ji Hub,Canteen Food,Maggi Masala Pasta,99.00,,,YES
+dish-2f9a1ac8,Sardar Ji Hub,Canteen Food,Malai Chaap,100.00,100.00,180.00,YES
+dish-ad9baf74,Sardar Ji Hub,Canteen Food,Malai Chap,100.00,100.00,180.00,YES
+dish-b12525a6,Sardar Ji Hub,Canteen Food,Malai Chap Roll,100.00,100.00,180.00,YES
+dish-a40d484f,Sardar Ji Hub,Canteen Food,Malai Kofta,50.00,100.00,180.00,YES
+dish-3c71b47d,Sardar Ji Hub,Canteen Food,Malai Paneer,100.00,100.00,180.00,YES
+dish-7707b6d4,Sardar Ji Hub,Canteen Food,Malai Paneer Roll,100.00,100.00,180.00,YES
+dish-7e5bf1f8,Sardar Ji Hub,Canteen Food,Masala Dosa,85.00,,,YES
+dish-bf801bfd,Sardar Ji Hub,Canteen Food,Masala Raita,60.00,,,YES
+dish-4e601edd,Sardar Ji Hub,Canteen Food,Masala Uttappam,75.00,,,YES
+dish-403a6fb0,Sardar Ji Hub,Canteen Food,Matar Paneer,120.00,100.00,180.00,YES
+dish-d44c2072,Sardar Ji Hub,Canteen Food,Matar Paneer Pulao,120.00,70.00,120.00,YES
+dish-4d4514f0,Sardar Ji Hub,Canteen Food,Matar Pulao,70.00,70.00,120.00,YES
+dish-71e54d41,Sardar Ji Hub,Canteen Food,Mix Raita,60.00,,,YES
+dish-f1cf507d,Sardar Ji Hub,Canteen Food,Mughlai Chap,100.00,100.00,180.00,YES
+dish-ec805d85,Sardar Ji Hub,Canteen Food,Mughlai Paneer,100.00,100.00,180.00,YES
+dish-1eb44ed8,Sardar Ji Hub,Canteen Food,Mushroom Mushroom 2 Pyaza,80.00,80.00,140.00,YES
+dish-32b464f8,Sardar Ji Hub,Canteen Food,Mushroom Mushroom Lawabdar,80.00,80.00,140.00,YES
+dish-c45d3e0f,Sardar Ji Hub,Canteen Food,Mushroom Mushroom Masala,80.00,80.00,140.00,YES
+dish-eb7d0307,Sardar Ji Hub,Canteen Food,Mushroom Mushroom Mughlai,140.00,80.00,140.00,YES
+dish-35d317b1,Sardar Ji Hub,Canteen Food,Mysore Masala Dosa,85.00,,,YES
+dish-4d4fef32,Sardar Ji Hub,Canteen Food,Mysore Onion Masala Dosa,85.00,,,YES
+dish-c4fc7254,Sardar Ji Hub,Canteen Food,Mysore Paneer,100.00,100.00,180.00,YES
+dish-39fff68b,Sardar Ji Hub,Canteen Food,Naan Thali,8.00,,,YES
+dish-e1a77ea9,Sardar Ji Hub,Canteen Food,Onion Dosa,75.00,,,YES
+dish-f0dd0f8c,Sardar Ji Hub,Canteen Food,Onion Masala Dosa,85.00,,,YES
+dish-3ef2c963,Sardar Ji Hub,Canteen Food,Onion Rice,60.00,,,YES
+dish-0b0bd2f6,Sardar Ji Hub,Canteen Food,Onion Uttappam,75.00,,,YES
+dish-07fee3c8,Sardar Ji Hub,Canteen Food,Paneer 2 Pyaza,100.00,100.00,180.00,YES
+dish-2f2a0ad5,Sardar Ji Hub,Canteen Food,Paneer Achari,100.00,100.00,180.00,YES
+dish-76685526,Sardar Ji Hub,Canteen Food,Paneer Bhurji,100.00,100.00,180.00,YES
+dish-a11f838a,Sardar Ji Hub,Canteen Food,Paneer Biryani,80.00,90.00,160.00,YES
+dish-33fcb034,Sardar Ji Hub,Canteen Food,Paneer Bread Pakora,30.00,100.00,180.00,YES
+dish-4ff2590b,Sardar Ji Hub,Canteen Food,Paneer Burger,50.00,100.00,180.00,YES
+dish-79040de2,Sardar Ji Hub,Canteen Food,Paneer Butter Masala,120.00,100.00,180.00,YES
+dish-8bc1ecf8,Sardar Ji Hub,Canteen Food,Paneer Changezi,100.00,100.00,180.00,YES
+dish-88de676c,Sardar Ji Hub,Canteen Food,Paneer Cheese Corn,100.00,100.00,180.00,YES
+dish-4a2bdba1,Sardar Ji Hub,Canteen Food,Paneer Fried Momo,100.00,100.00,180.00,YES
+dish-90b040a4,Sardar Ji Hub,Canteen Food,Paneer Fried Rice,120.00,70.00,120.00,YES
+dish-fada1f24,Sardar Ji Hub,Canteen Food,Paneer Kali Mirch,100.00,100.00,180.00,YES
+dish-b1c72122,Sardar Ji Hub,Canteen Food,Paneer Kurkare,100.00,100.00,180.00,YES
+dish-77f3d71f,Sardar Ji Hub,Canteen Food,Paneer Lawabdar,100.00,100.00,180.00,YES
+dish-18ffd341,Sardar Ji Hub,Canteen Food,Paneer Maggi,40.00,100.00,180.00,YES
+dish-a54dbb28,Sardar Ji Hub,Canteen Food,Paneer Malai,100.00,100.00,180.00,YES
+dish-a0d9f3fa,Sardar Ji Hub,Canteen Food,Paneer Malai Tikka,100.00,100.00,180.00,YES
+dish-5a1d692e,Sardar Ji Hub,Canteen Food,Paneer Momo,100.00,100.00,180.00,YES
+dish-a00079dd,Sardar Ji Hub,Canteen Food,Paneer Noodle,100.00,100.00,180.00,YES
+dish-d291422d,Sardar Ji Hub,Canteen Food,Paneer Onion Dosa,110.00,,,YES
+dish-5f4aff09,Sardar Ji Hub,Canteen Food,Paneer Pakoda,100.00,100.00,180.00,YES
+dish-ff1a2715,Sardar Ji Hub,Canteen Food,Paneer Pasanda,100.00,100.00,180.00,YES
+dish-bce2b20a,Sardar Ji Hub,Canteen Food,Paneer Peri Peri,100.00,100.00,180.00,YES
+dish-34daf39c,Sardar Ji Hub,Canteen Food,Paneer Roll,60.00,100.00,180.00,YES
+dish-44011c36,Sardar Ji Hub,Canteen Food,Paneer Sandwich,50.00,100.00,180.00,YES
+dish-f64ac21d,Sardar Ji Hub,Canteen Food,Paneer Tandoori,100.00,100.00,180.00,YES
+dish-62b587b5,Sardar Ji Hub,Canteen Food,Paneer Tikka,120.00,100.00,180.00,YES
+dish-5c1599f3,Sardar Ji Hub,Canteen Food,Paneer Tikka Roll,100.00,100.00,180.00,YES
+dish-0b954350,Sardar Ji Hub,Canteen Food,Paneer Uttappam,110.00,,,YES
+dish-a66eaf19,Sardar Ji Hub,Canteen Food,Paneer Veggie Pizza,139.00,,,YES
+dish-6182a1bb,Sardar Ji Hub,Canteen Food,Papad Fry Papad,60.00,,,YES
+dish-88bb6d88,Sardar Ji Hub,Canteen Food,Papad Roasted Papad,60.00,,,YES
+dish-3e8292b8,Sardar Ji Hub,Canteen Food,Pappdi Chat,60.00,,,YES
+dish-24071385,Sardar Ji Hub,Canteen Food,Paranthas Aloo Prantha,70.00,70.00,120.00,YES
+dish-ce304c08,Sardar Ji Hub,Canteen Food,Paranthas Aloo Pyaz Prantha,70.00,70.00,120.00,YES
+dish-d56a8e4f,Sardar Ji Hub,Canteen Food,Paranthas Cheese Corn Prantha,50.00,,,YES
+dish-5a1c034f,Sardar Ji Hub,Canteen Food,Paranthas Garlic Prantha,60.00,,,YES
+dish-18092fde,Sardar Ji Hub,Canteen Food,Paranthas Gobhi Prantha,60.00,,,YES
+dish-4b853127,Sardar Ji Hub,Canteen Food,Paranthas Gobhi Pyaz Prantha,60.00,,,YES
+dish-6b39c9e2,Sardar Ji Hub,Canteen Food,Paranthas Masala Prantha,251.00,,,YES
+dish-7710426a,Sardar Ji Hub,Canteen Food,Paranthas Methi Prantha,60.00,,,YES
+dish-ac0e9890,Sardar Ji Hub,Canteen Food,Paranthas Muli Prantha,60.00,,,YES
+dish-d5b9173a,Sardar Ji Hub,Canteen Food,Paranthas Paneer Prantha,100.00,100.00,180.00,YES
+dish-eb999b57,Sardar Ji Hub,Canteen Food,Paranthas Paneer Pyaz Prantha,100.00,100.00,180.00,YES
+dish-fc664095,Sardar Ji Hub,Canteen Food,Paranthas Pyaz Prantha,60.00,,,YES
+dish-5da3ecd9,Sardar Ji Hub,Canteen Food,Paranthas Sev Prantha,60.00,,,YES
+dish-6406419e,Sardar Ji Hub,Canteen Food,Paranthas Sev Pyaz Prantha,60.00,,,YES
+dish-c1834502,Sardar Ji Hub,Canteen Food,Paranthas Tikona Prantha,251.00,,,YES
+dish-2d0bd0c1,Sardar Ji Hub,Canteen Food,Pav Bhaji,65.00,,,YES
+dish-0d4b4ca2,Sardar Ji Hub,Canteen Food,Peri Peri Maggi,40.00,,,YES
+dish-ce7ed150,Sardar Ji Hub,Canteen Food,Peri Peri Pasta,99.00,,,YES
+dish-49c0c792,Sardar Ji Hub,Canteen Food,Pink Sauce Pasta,90.00,,,YES
+dish-4cc8d70b,Sardar Ji Hub,Canteen Food,Plain Dosa,75.00,,,YES
+dish-102e8efe,Sardar Ji Hub,Canteen Food,Plain Maggi,40.00,,,YES
+dish-615ee541,Sardar Ji Hub,Canteen Food,Plain Rice,45.00,,,YES
+dish-f439b6fa,Sardar Ji Hub,Canteen Food,Plain Thali,601.00,,,YES
+dish-45b87643,Sardar Ji Hub,Canteen Food,Poha Poha,60.00,,,YES
+dish-41fc850c,Sardar Ji Hub,Canteen Food,Potato Fingers,60.00,,,YES
+dish-6bc91550,Sardar Ji Hub,Canteen Food,Potato Nuggets,60.00,,,YES
+dish-161ebd24,Sardar Ji Hub,Canteen Food,Punjabi Chap Roll,100.00,100.00,180.00,YES
+dish-fedf2a2d,Sardar Ji Hub,Canteen Food,Punjabi Paneer Roll,100.00,100.00,180.00,YES
+dish-668cd651,Sardar Ji Hub,Canteen Food,Punjabi Special Chaap,140.00,100.00,180.00,YES
+dish-411d79fb,Sardar Ji Hub,Canteen Food,Punjabi Spl Paneer,100.00,100.00,180.00,YES
+dish-2575953e,Sardar Ji Hub,Canteen Food,Punjabi Spl. Chap,100.00,100.00,180.00,YES
+item-real-68c3cc0a,Sardar Ji Hub,Canteen Food,Raita Boondi Raita,65.00,,,YES
+item-real-f639a95e,Sardar Ji Hub,Canteen Food,Raita Masala Raita,65.00,,,YES
+item-real-94f9bc6d,Sardar Ji Hub,Canteen Food,Raita Mix Raita,65.00,,,YES
+item-real-942251cf,Sardar Ji Hub,Canteen Food,Raita Pappdi Chat,65.00,,,YES
+dish-66ce9046,Sardar Ji Hub,Canteen Food,Rajma Masala,90.00,70.00,120.00,YES
+dish-f98bb657,Sardar Ji Hub,Canteen Food,Rara Chap,100.00,100.00,180.00,YES
+dish-25f8ff66,Sardar Ji Hub,Canteen Food,Rara Paneer,170.00,100.00,180.00,YES
+dish-61827a99,Sardar Ji Hub,Canteen Food,Rawa Dosa,75.00,,,YES
+dish-e56b3201,Sardar Ji Hub,Canteen Food,Rawa Paneer Dosa,110.00,,,YES
+dish-6996335c,Sardar Ji Hub,Canteen Food,Red Sauce Pasta,90.00,,,YES
+dish-cef17325,Sardar Ji Hub,Canteen Food,Sada Thali,601.00,,,YES
+dish-d5aad5ee,Sardar Ji Hub,Canteen Food,Sardar Ji Special Thali,160.00,,,YES
+dish-0be6ae95,Sardar Ji Hub,Canteen Food,Sardar Ji Spl,60.00,,,YES
+dish-18c47c80,Sardar Ji Hub,Canteen Food,Sardar Ji Spl Paneer,100.00,100.00,180.00,YES
+dish-e500fbef,Sardar Ji Hub,Canteen Food,Sardar Ji Spl. Chap,100.00,100.00,180.00,YES
+dish-28d4dbb6,Sardar Ji Hub,Canteen Food,Schezwan Noodle,60.00,,,YES
+dish-6e0ea931,Sardar Ji Hub,Canteen Food,Shahi Chap,100.00,100.00,180.00,YES
+dish-8035e215,Sardar Ji Hub,Canteen Food,Shahi Paneer,120.00,100.00,180.00,YES
+dish-1bb0d869,Sardar Ji Hub,Canteen Food,Soya Fingers,60.00,,,YES
+dish-d99e4e20,Sardar Ji Hub,Canteen Food,Soya Kabab,130.00,,,YES
+dish-fb19f4c5,Sardar Ji Hub,Canteen Food,Soya Kalegi,60.00,,,YES
+dish-50e491ab,Sardar Ji Hub,Canteen Food,Special Thali,160.00,,,YES
+dish-4e9e9be4,Sardar Ji Hub,Canteen Food,Special Thali Sardar Ji Special Thali,160.00,,,YES
+dish-aae5784a,Sardar Ji Hub,Canteen Food,Spring Roll,60.00,,,YES
+dish-b5ae4722,Sardar Ji Hub,Canteen Food,Subz Aloo 2 Pyaza,70.00,70.00,120.00,YES
+dish-6be655ba,Sardar Ji Hub,Canteen Food,Subz Aloo Fry,70.00,70.00,120.00,YES
+dish-e440ab0f,Sardar Ji Hub,Canteen Food,Subz Aloo Gobhi,70.00,70.00,120.00,YES
+dish-49e41bdd,Sardar Ji Hub,Canteen Food,Subz Aloo Jeera,70.00,70.00,120.00,YES
+dish-a0873c6f,Sardar Ji Hub,Canteen Food,Subz Aloo Matar,70.00,70.00,120.00,YES
+dish-137e0ed4,Sardar Ji Hub,Canteen Food,Subz Aloo Methi,70.00,70.00,120.00,YES
+dish-b14fcc85,Sardar Ji Hub,Canteen Food,Subz Aloo Pyaz,70.00,70.00,120.00,YES
+dish-d65153b3,Sardar Ji Hub,Canteen Food,Subz Aloo Tamatar,70.00,70.00,120.00,YES
+dish-db141e19,Sardar Ji Hub,Canteen Food,Subz Bengan Bhartha,80.00,,,YES
+dish-d5c4435a,Sardar Ji Hub,Canteen Food,Subz Bhindi 2 Pyaza,60.00,,,YES
+dish-cf131fdc,Sardar Ji Hub,Canteen Food,Subz Bhindi Masala,60.00,,,YES
+dish-fa299644,Sardar Ji Hub,Canteen Food,Subz Dum Aloo,70.00,70.00,120.00,YES
+dish-ff8d28f2,Sardar Ji Hub,Canteen Food,Subz Kurkuri Bhindi,100.00,,,YES
+dish-4355f519,Sardar Ji Hub,Canteen Food,Subz Mix Veg,60.00,,,YES
+dish-99bb9275,Sardar Ji Hub,Canteen Food,Subz Stuff Dum Aloo,70.00,70.00,120.00,YES
+dish-09e4e433,Sardar Ji Hub,Canteen Food,Subz Tamatar Pyaz,60.00,,,YES
+dish-5c2d4879,Sardar Ji Hub,Canteen Food,Tandoori Bread Amritsari Naan,8.00,,,YES
+dish-0e6f2709,Sardar Ji Hub,Canteen Food,Tandoori Bread Butter Naan,8.00,,,YES
+dish-3911b792,Sardar Ji Hub,Canteen Food,Tandoori Bread Chaap Naan,8.00,,,YES
+dish-4da9806a,Sardar Ji Hub,Canteen Food,Tandoori Bread Dry Fruit Naan,8.00,,,YES
+dish-961603a7,Sardar Ji Hub,Canteen Food,Tandoori Bread Garlic Naan,50.00,,,YES
+dish-ad247ff1,Sardar Ji Hub,Canteen Food,Tandoori Bread Lachha Prantha,60.00,,,YES
+dish-9f54dc22,Sardar Ji Hub,Canteen Food,Tandoori Bread Misi Roti,8.00,,,YES
+dish-52092915,Sardar Ji Hub,Canteen Food,Tandoori Bread Paneer Naan,60.00,,,YES
+dish-641097b9,Sardar Ji Hub,Canteen Food,Tandoori Bread Stuff Naan,60.00,,,YES
+dish-2dd88d4f,Sardar Ji Hub,Canteen Food,Tandoori Bread Tandoori Butter Roti,10.00,,,YES
+dish-fe6db1d9,Sardar Ji Hub,Canteen Food,Tandoori Bread Tandoori Roti,10.00,,,YES
+dish-015c7bda,Sardar Ji Hub,Canteen Food,Tandoori Chaap,100.00,100.00,180.00,YES
+dish-44907375,Sardar Ji Hub,Canteen Food,Tandoori Cheese Corn,80.00,,,YES
+dish-7c740cef,Sardar Ji Hub,Canteen Food,Tawa Chap,100.00,100.00,180.00,YES
+dish-7b6b0c24,Sardar Ji Hub,Canteen Food,Tawa Paneer,100.00,100.00,180.00,YES
+dish-0dd315f4,Sardar Ji Hub,Canteen Food,Tomato Soup,60.00,,,YES
+dish-4fb90700,Sardar Ji Hub,Canteen Food,Vada Pav,55.00,,,YES
+dish-5af583f9,Sardar Ji Hub,Canteen Food,Vada Sambhar,55.00,,,YES
+dish-7996084e,Sardar Ji Hub,Canteen Food,Veg Biryani,50.00,90.00,160.00,YES
+dish-e2ec4e86,Sardar Ji Hub,Canteen Food,Veg Burger,50.00,,,YES
+dish-0351b047,Sardar Ji Hub,Canteen Food,Veg Cheese Burger,70.00,,,YES
+dish-aa8b0e05,Sardar Ji Hub,Canteen Food,Veg Cheese Sandwich,70.00,,,YES
+dish-bb5c5c5f,Sardar Ji Hub,Canteen Food,Veg Fried Momo,50.00,,,YES
+dish-e1b8c49f,Sardar Ji Hub,Canteen Food,Veg Fry Maggi,40.00,,,YES
+dish-b669de51,Sardar Ji Hub,Canteen Food,Veg Kabab Roll,50.00,,,YES
+dish-0eb898b0,Sardar Ji Hub,Canteen Food,Veg Kurkare Momo,80.00,,,YES
+dish-c873f36f,Sardar Ji Hub,Canteen Food,Veg Maggi,40.00,,,YES
+dish-a9431b64,Sardar Ji Hub,Canteen Food,Veg Noodle,50.00,,,YES
+dish-913fe6ae,Sardar Ji Hub,Canteen Food,Veg Peri Peri Momo,50.00,,,YES
+dish-b7421e66,Sardar Ji Hub,Canteen Food,Veg Sandwich,50.00,,,YES
+dish-1ea26c5b,Sardar Ji Hub,Canteen Food,Veg Tandoori Momo,80.00,,,YES
+dish-6f2a4edb,Sardar Ji Hub,Canteen Food,White Sauce Pasta,90.00,,,YES
+dish-a1b6f750,Sardar Ji Hub,Chocolates & Candies,Sweet Corn Soup,40.00,,,YES
+dish-8334cefb,Sardar Ji Hub,Chocolates & Candies,Sweets Gajar Ka Halwa,40.00,,,YES
+dish-d766e3e5,Sardar Ji Hub,Chocolates & Candies,Sweets Gulab Jamun,40.00,,,YES
+dish-55a9c39b,Sardar Ji Hub,Chocolates & Candies,Sweets Rasgulla,40.00,,,YES
+dish-4f5a82cb,Sardar Ji Hub,Drinks & Juices,Apple Shake,50.00,,,YES
+dish-62ecd9f5,Sardar Ji Hub,Drinks & Juices,Badam Shake,70.00,,,YES
+dish-95f5673c,Sardar Ji Hub,Drinks & Juices,Chocolate Shake,80.00,,,YES
+dish-cc49ca24,Sardar Ji Hub,Drinks & Juices,Cold Beverages Shakes Chocolate Shake,60.00,,,YES
+dish-3babb4a5,Sardar Ji Hub,Drinks & Juices,Cold Beverages Shakes Cold Coffee,60.00,,,YES
+dish-78ddacd8,Sardar Ji Hub,Drinks & Juices,Cold Beverages Shakes Cold Filter Coffee,60.00,,,YES
+dish-baec9e25,Sardar Ji Hub,Drinks & Juices,Cold Beverages Shakes Kitkat Shake,70.00,,,YES
+dish-c2be61a5,Sardar Ji Hub,Drinks & Juices,Cold Beverages Shakes Oreo Shake,70.00,,,YES
+dish-431ffce3,Sardar Ji Hub,Drinks & Juices,Cold Coffee,40.00,,,YES
+dish-1339aa4b,Sardar Ji Hub,Drinks & Juices,Date Shake,60.00,,,YES
+dish-e16bba64,Sardar Ji Hub,Drinks & Juices,Hot Beverages Black Coffee,15.00,,,YES
+dish-5e83b73b,Sardar Ji Hub,Drinks & Juices,Hot Beverages Chai,15.00,,,YES
+dish-16a6abd7,Sardar Ji Hub,Drinks & Juices,Hot Beverages Hot Coffee,30.00,,,YES
+dish-b3bc624b,Sardar Ji Hub,Drinks & Juices,Hot Beverages Hot Filter Coffee,15.00,,,YES
+dish-db6f5176,Sardar Ji Hub,Drinks & Juices,Hot Beverages Special Chai,15.00,,,YES
+dish-b6bf406b,Sardar Ji Hub,Drinks & Juices,Kesar Badam Shake,70.00,,,YES
+dish-26b38c20,Sardar Ji Hub,Drinks & Juices,Litchi Shake,90.00,,,YES
+dish-46682b38,Sardar Ji Hub,Drinks & Juices,Oreo Shake,70.00,,,YES
+dish-cd339c4e,Sardar Ji Hub,Drinks & Juices,Papaya Shake,60.00,,,YES
+dish-6fb93f03,Sardar Ji Hub,Drinks & Juices,Rose Milk Shake,60.00,,,YES
+dish-bb15390b,Sardar Ji Hub,Drinks & Juices,Strawberry Shake,80.00,,,YES
+dish-86d80bb5,Sardar Ji Hub,Drinks & Juices,Vanilla Shake,90.00,,,YES
+dish-38dd8210,Sardar Ji Hub,Drinks & Juices,Veg Momo Steam,15.00,,,YES
+dish-1880f549,Sardar Ji Hub,Snacks & Chips,Cheesy Fries,50.00,,,YES
+dish-cccb9e40,Sardar Ji Hub,Snacks & Chips,French Fries,60.00,,,YES
+dish-997a9b02,Sardar Ji Hub,Snacks & Chips,Gobhi Pakoda,50.00,,,YES
+dish-7b06555a,Sardar Ji Hub,Snacks & Chips,Kadi Pakoda,80.00,,,YES
+dish-920e55e1,Sardar Ji Hub,Snacks & Chips,Mix Pakoda,50.00,,,YES
+dish-89268805,Sardar Ji Hub,Snacks & Chips,Peri Peri Fries,60.00,,,YES
+dish-308de0a8,Sardar Ji Hub,Snacks & Chips,Pyaz Pakoda,50.00,,,YES
+dish-cf8a19bc,Sardar Ji Hub,Snacks & Chips,Salted Fries,60.00,,,YES
+dish-077c8c83,Sardar Ji Hub,Snacks & Chips,Samosa,20.00,,,YES
+dish-111c459b,Sardar Ji Hub,Snacks & Chips,Samosa Chaat,45.00,,,YES
+dish-734f7cbf,Sardar Ji Hub,Snacks & Chips,Tandoori Fries,50.00,,,YES
+item-real-1ff1a3fc,Sardar Ji Hub,Snacks & Maggi,Samosa Bread Pakora Bread Pakora,20.00,,,YES
+item-real-0df2fc39,Sardar Ji Hub,Snacks & Maggi,Samosa Bread Pakora Samosa,20.00,,,YES
+item-real-91a351ff,Sardar Ji Hub,Thalis & Combos,Biryani Hyderabadi Biryani,65.00,39.00,65.00,YES
+item-real-af7aa21b,Sardar Ji Hub,Thalis & Combos,Biryani Veg Biryani,65.00,39.00,65.00,YES

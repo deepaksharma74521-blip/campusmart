@@ -1,0 +1,54 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+fb98db3e-d3fa-4051-bd52-ad4627bd1835,Rapid Food Corner (South Indian),Canteen Food,Cheese Maggi,40.00,,,YES
+4aa46c62-7615-4df7-829b-5a41fdd72145,Rapid Food Corner (South Indian),Canteen Food,Chilli Garlic Fried Rice,50.00,,,YES
+7cce04a1-1086-4bbf-984a-cb1f8ac73f8c,Rapid Food Corner (South Indian),Canteen Food,Chilli Garlic Noodles,50.00,,,YES
+5a1a2532-8eef-4876-8043-77255a7a96f8,Rapid Food Corner (South Indian),Canteen Food,Chilli Mushroom Dry Gravy,50.00,,,YES
+a98d1e89-7454-4cde-9a88-584619092cac,Rapid Food Corner (South Indian),Canteen Food,Chilli Paneer Dry Gravy,120.00,,,YES
+79633ca9-05d2-443f-9559-6113746221e5,Rapid Food Corner (South Indian),Canteen Food,Chilli Potato,50.00,,,YES
+b21fd1ea-10a2-4ee3-8a6e-ca24439530af,Rapid Food Corner (South Indian),Canteen Food,Desi Style Fried Rice,50.00,,,YES
+604efef9-c4e0-4c8b-9c84-692397b7cebb,Rapid Food Corner (South Indian),Canteen Food,Fried Maggi,40.00,,,YES
+58b73ce3-b017-47e8-bfe4-52360477a5d0,Rapid Food Corner (South Indian),Canteen Food,Hakka Noodles,50.00,,,YES
+32418829-f969-4e04-95e4-b6d500413465,Rapid Food Corner (South Indian),Canteen Food,Malai Paneer Momos,60.00,,,YES
+384a8ebe-eb52-45da-aacd-d14cb0120008,Rapid Food Corner (South Indian),Canteen Food,Manchurian Dry Gravy,50.00,,,YES
+553e63e3-c622-4945-bb18-1e6eed0ab8ba,Rapid Food Corner (South Indian),Canteen Food,Mix Maggi,40.00,,,YES
+bea5b9a7-2f7b-43e7-bda2-5ad219229b9a,Rapid Food Corner (South Indian),Canteen Food,Mushroom Maggi,40.00,,,YES
+665d405e-666b-4da0-a7be-01ec49768f72,Rapid Food Corner (South Indian),Canteen Food,Paneer Burger,50.00,,,YES
+76e87cc0-9620-4209-815b-6795047fcbcf,Rapid Food Corner (South Indian),Canteen Food,Paneer Fried Rice,120.00,,,YES
+e35c461a-f608-424f-b1a4-6da98325068b,Rapid Food Corner (South Indian),Canteen Food,Paneer Maggi,40.00,,,YES
+d76bdb8d-038d-4ade-ae38-7ece9e71c8bc,Rapid Food Corner (South Indian),Canteen Food,Paneer Momos,60.00,,,YES
+b0f540e3-a5e4-4e99-b635-b642cecccc7c,Rapid Food Corner (South Indian),Canteen Food,Paneer Noodles,120.00,,,YES
+bf2b705b-a49a-4b9e-a809-f0b78adbebf0,Rapid Food Corner (South Indian),Canteen Food,Paneer Pan Fried Momos,60.00,,,YES
+87c23ef9-6de9-4368-8f35-536d520019a2,Rapid Food Corner (South Indian),Canteen Food,Paneer Roll,60.00,,,YES
+3e627985-8471-4699-899a-7f21943793fe,Rapid Food Corner (South Indian),Canteen Food,Paneer Sandwich,50.00,,,YES
+10d70839-c8b0-4156-97b2-c4e8385cea50,Rapid Food Corner (South Indian),Canteen Food,Plain Maggi,40.00,,,YES
+86372900-6500-4b8e-9408-1a3cb28acd2a,Rapid Food Corner (South Indian),Canteen Food,Schezwan Fried Rice,50.00,,,YES
+72d5333c-98a5-46ae-aeda-f601fbde94d3,Rapid Food Corner (South Indian),Canteen Food,Schezwan Noodles,50.00,,,YES
+17f7c1f3-85f1-4e65-ab0b-c20b359e6d56,Rapid Food Corner (South Indian),Canteen Food,Tandoori Maggi,40.00,,,YES
+2b32557e-a89b-43ff-95e6-777980c258da,Rapid Food Corner (South Indian),Canteen Food,Tandoori Paneer Momos,60.00,,,YES
+c153e339-fe87-415b-a792-3ea93556d0a6,Rapid Food Corner (South Indian),Canteen Food,Veg Fried Rice,50.00,,,YES
+8783aa96-6202-4b13-9053-5430267ab35b,Rapid Food Corner (South Indian),Canteen Food,Veg Maggi,40.00,,,YES
+d94ff2ce-9482-45ba-8310-acbb21a455f7,Rapid Food Corner (South Indian),Canteen Food,Veg Noodles,50.00,,,YES
+7d773c86-a5e7-487a-aea7-adbed8ffa8bf,Rapid Food Corner (South Indian),Snacks & Chips,Aloo Roll,60.00,,,YES
+22408798-0f7e-4608-977d-4b718b5db1de,Rapid Food Corner (South Indian),Snacks & Chips,Cheese Burger,50.00,,,YES
+43d88ba8-4f15-4c72-9d51-b1342af00165,Rapid Food Corner (South Indian),Snacks & Chips,Cheese Corn Momos,60.00,,,YES
+8292ca87-56b3-429b-96b2-9157ea3954ab,Rapid Food Corner (South Indian),Snacks & Chips,Cheese Pasta,90.00,,,YES
+4823beec-090a-464f-b312-89e223f79b32,Rapid Food Corner (South Indian),Snacks & Chips,Cheese Sandwich,50.00,,,YES
+96c47f71-0c91-49a2-a1b2-1a40b230be26,Rapid Food Corner (South Indian),Snacks & Chips,Chilli Garlic Roll,60.00,,,YES
+8c790555-73e9-48cf-b4d1-9161e6a3cffc,Rapid Food Corner (South Indian),Snacks & Chips,French Fries,60.00,,,YES
+7be3cc3f-4d11-4974-8255-adf7f8d5c3b1,Rapid Food Corner (South Indian),Snacks & Chips,Grilled Sandwich,50.00,,,YES
+cb712632-149d-44f2-a057-a5418a814cb4,Rapid Food Corner (South Indian),Snacks & Chips,Mix Roll,60.00,,,YES
+19b4f1d1-3a84-4df4-b69f-46bd0dcd6ec3,Rapid Food Corner (South Indian),Snacks & Chips,Mix Sauce Pasta,90.00,,,YES
+7f789b96-cf81-4262-af00-95e41179e29c,Rapid Food Corner (South Indian),Snacks & Chips,Mushroom Roll,60.00,,,YES
+6359b529-1940-464a-baf2-b62ac12c7f92,Rapid Food Corner (South Indian),Snacks & Chips,Pink Sauce Pasta,90.00,,,YES
+d248f283-4e46-4859-8a49-27e4e682c30c,Rapid Food Corner (South Indian),Snacks & Chips,Red Sauce Pasta,90.00,,,YES
+8c76ba6c-1700-4e50-8948-76ece8af72a6,Rapid Food Corner (South Indian),Snacks & Chips,Tandoori Burger,50.00,,,YES
+d5263179-d3e0-4bed-b3e9-a76944f21d4b,Rapid Food Corner (South Indian),Snacks & Chips,Tandoori Sandwich,50.00,,,YES
+9afc1da2-ff43-4176-b33f-78e4c50b3a53,Rapid Food Corner (South Indian),Snacks & Chips,Tandoori Veg Momos,60.00,,,YES
+b8f8ef86-f2b3-4c87-a18a-30d26cc556e1,Rapid Food Corner (South Indian),Snacks & Chips,Veg Burger,50.00,,,YES
+168bd5c2-f2f5-4599-a359-d2815f2f3b96,Rapid Food Corner (South Indian),Snacks & Chips,Veg Kathi Roll,60.00,,,YES
+e4cedb0d-f97b-48d4-9dd5-e2f2ccca0584,Rapid Food Corner (South Indian),Snacks & Chips,Veg Momos,60.00,,,YES
+3446a4f2-e8b8-4db8-8547-af51d70155e6,Rapid Food Corner (South Indian),Snacks & Chips,Veg Pan Fried Momos,60.00,,,YES
+ff8e4646-58d6-4d8e-89fb-fe7eee3480b1,Rapid Food Corner (South Indian),Snacks & Chips,Veg Roll,60.00,,,YES
+24a9bfb1-f353-4a5f-b0ae-afb317c8938a,Rapid Food Corner (South Indian),Snacks & Chips,Veg Sandwich,50.00,,,YES
+c5609ab1-204a-4634-a108-29beb343a4ab,Rapid Food Corner (South Indian),Snacks & Chips,White Sauce Pasta,90.00,,,YES
+84b27ea6-3516-4f3d-8030-7dfa14f5364a,Rapid Food Corner (South Indian),Snacks & Chips,Yakhni Veg Momos,60.00,,,YES

@@ -1,0 +1,388 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-dbe8cf20,Yummy Express,Canteen Food,Achari Chaap,100.00,100.00,180.00,YES
+dish-21d315ef,Yummy Express,Canteen Food,Achari Chaap Roll,100.00,100.00,180.00,YES
+dish-58a8a22d,Yummy Express,Canteen Food,Achari Paneer Paratha,100.00,,,YES
+dish-212cd634,Yummy Express,Canteen Food,Achari Paneer Tikka Roll,170.00,100.00,180.00,YES
+dish-c93f2787,Yummy Express,Canteen Food,Achari Paratha,45.00,,,YES
+dish-d6431329,Yummy Express,Canteen Food,Afghani Chaap,100.00,100.00,180.00,YES
+dish-3ae111a2,Yummy Express,Canteen Food,Afghani Chaap Gravy,170.00,100.00,180.00,YES
+dish-a12a9086,Yummy Express,Canteen Food,Afghani Chaap Roll,100.00,100.00,180.00,YES
+dish-dfa36e1f,Yummy Express,Canteen Food,Afghani Paneer Momos 8 Pcs,100.00,100.00,180.00,YES
+dish-b99ee126,Yummy Express,Canteen Food,Afghani Veg Momos 8 Pcs,150.00,,,YES
+dish-5bb556f3,Yummy Express,Canteen Food,Aloo Chana Chat,130.00,70.00,120.00,YES
+dish-216e54d1,Yummy Express,Canteen Food,Aloo Gobhi,70.00,70.00,120.00,YES
+dish-57891bc6,Yummy Express,Canteen Food,Aloo Mutter,120.00,70.00,120.00,YES
+dish-2b1e5872,Yummy Express,Canteen Food,Aloo Mutter Gobhi,130.00,70.00,120.00,YES
+dish-150f10c0,Yummy Express,Canteen Food,Aloo Paratha,50.00,,,YES
+dish-78dd5136,Yummy Express,Canteen Food,Aloo Pyaz Lemon Paratha,8.00,,,YES
+dish-aadeddd5,Yummy Express,Canteen Food,Aloo Pyaz Paratha,50.00,,,YES
+dish-95a9a63c,Yummy Express,Canteen Food,Aloo Tamatar,250.00,70.00,120.00,YES
+dish-85517f42,Yummy Express,Canteen Food,Aloo Tikki Roll,70.00,70.00,120.00,YES
+dish-a5ea031d,Yummy Express,Canteen Food,Amritsari Chole,150.00,,,YES
+dish-e53d9229,Yummy Express,Canteen Food,Amritsari Kulcha,70.00,,,YES
+dish-a431951b,Yummy Express,Canteen Food,Amritsari Kulcha Thali,150.00,,,YES
+dish-f5ef0f21,Yummy Express,Canteen Food,Authentic Veg,60.00,,,YES
+dish-1bc705ee,Yummy Express,Canteen Food,Bachelor S Burger,45.00,,,YES
+dish-769f5d27,Yummy Express,Canteen Food,Behaya Burger,45.00,,,YES
+dish-7de21685,Yummy Express,Canteen Food,Bhindi Do Pyaza,170.00,,,YES
+dish-1a095b5f,Yummy Express,Canteen Food,Bhindi Masala,50.00,,,YES
+dish-a083d767,Yummy Express,Canteen Food,Black Current,60.00,,,YES
+dish-b7c4c6df,Yummy Express,Canteen Food,Bombay Aalo Tikki Sandwich,45.00,,,YES
+dish-f2f19951,Yummy Express,Canteen Food,Bombay Jalo Sandwich,45.00,,,YES
+dish-f0f0993b,Yummy Express,Canteen Food,Bondi Raita,70.00,,,YES
+dish-9cdd5afa,Yummy Express,Canteen Food,Boondi Raita,60.00,,,YES
+dish-b1af3733,Yummy Express,Canteen Food,Butter Naan,55.00,,,YES
+dish-cae33b19,Yummy Express,Canteen Food,Chaap Biryani,90.00,90.00,160.00,YES
+dish-5056cecb,Yummy Express,Canteen Food,Chaap Butter Masala,170.00,100.00,180.00,YES
+dish-1f8bed41,Yummy Express,Canteen Food,Chaap Do Pyaza,100.00,100.00,180.00,YES
+dish-f8b53a96,Yummy Express,Canteen Food,Chaap Kali Mirch,190.00,100.00,180.00,YES
+dish-1b9e2bbc,Yummy Express,Canteen Food,Chaap Lababdar,170.00,100.00,180.00,YES
+dish-c4ebf102,Yummy Express,Canteen Food,Chaap Lakhnavi Kor,180.00,100.00,180.00,YES
+dish-76e3e269,Yummy Express,Canteen Food,Chaap Laziz,170.00,100.00,180.00,YES
+dish-0be7839f,Yummy Express,Canteen Food,Chaap Punjabi,170.00,100.00,180.00,YES
+dish-a122e51b,Yummy Express,Canteen Food,Chaap Roganjosh,170.00,100.00,180.00,YES
+dish-3fcabae4,Yummy Express,Canteen Food,Chaap Takatak,170.00,100.00,180.00,YES
+dish-80490d10,Yummy Express,Canteen Food,Chana Masala,70.00,70.00,120.00,YES
+dish-c109ef83,Yummy Express,Canteen Food,Changezi Chaap,100.00,100.00,180.00,YES
+dish-69cf4c5a,Yummy Express,Canteen Food,Changezi Mushroom,170.00,80.00,140.00,YES
+dish-cbb1f396,Yummy Express,Canteen Food,Chatpati Chaap Roll,160.00,100.00,180.00,YES
+dish-e8b29909,Yummy Express,Canteen Food,Cheese Bomb Burger,70.00,,,YES
+dish-931c4076,Yummy Express,Canteen Food,Cheese Capsicum,60.00,,,YES
+dish-34ca1d03,Yummy Express,Canteen Food,Cheese Corn,40.00,,,YES
+dish-f139065b,Yummy Express,Canteen Food,Cheese Corn Sandwich,70.00,,,YES
+dish-c015efc1,Yummy Express,Canteen Food,Cheese Corn Uttapam,150.00,,,YES
+dish-d240a5c1,Yummy Express,Canteen Food,Cheese Garlic Bread,35.00,,,YES
+dish-b05fa124,Yummy Express,Canteen Food,Cheese Mushroom,80.00,80.00,140.00,YES
+dish-4ce99759,Yummy Express,Canteen Food,Cheese Onion,60.00,,,YES
+dish-9d6614af,Yummy Express,Canteen Food,Cheese Roll,50.00,,,YES
+dish-e8740a5f,Yummy Express,Canteen Food,Cheese Slice Roll,50.00,,,YES
+dish-e907799a,Yummy Express,Canteen Food,Cheese Tomato,60.00,,,YES
+dish-de418100,Yummy Express,Canteen Food,Cheesy Nacho S,60.00,,,YES
+dish-3444969d,Yummy Express,Canteen Food,Cheesy Veg Nacho S,60.00,,,YES
+dish-a865f427,Yummy Express,Canteen Food,Chilly Chana,180.00,70.00,120.00,YES
+dish-be7a0641,Yummy Express,Canteen Food,Chilly Garlic Noodles,120.00,,,YES
+dish-4cc1dc0d,Yummy Express,Canteen Food,Chilly Gobhi,60.00,,,YES
+dish-e65ec1f0,Yummy Express,Canteen Food,Chilly Guava,60.00,,,YES
+dish-12acda27,Yummy Express,Canteen Food,Chilly Munchurian,170.00,,,YES
+dish-b1c22d6b,Yummy Express,Canteen Food,Chilly Mushroom,80.00,80.00,140.00,YES
+dish-cef0c53c,Yummy Express,Canteen Food,Chilly Paneer,100.00,100.00,180.00,YES
+dish-7771652d,Yummy Express,Canteen Food,Chilly Potato,60.00,,,YES
+dish-2591ae69,Yummy Express,Canteen Food,Choley Bhature,60.00,,,YES
+dish-5c94960f,Yummy Express,Canteen Food,Choley Chawal,70.00,,,YES
+dish-2250aacd,Yummy Express,Canteen Food,Churchur Naan,8.00,,,YES
+dish-b247ded4,Yummy Express,Canteen Food,Churchur Naan Thali,150.00,,,YES
+dish-b17299cb,Yummy Express,Canteen Food,Club Sandwich,45.00,,,YES
+dish-d82d23ef,Yummy Express,Canteen Food,Cmc3 Burger,45.00,,,YES
+dish-b6b570e1,Yummy Express,Canteen Food,Coc Le,60.00,,,YES
+dish-3fb36787,Yummy Express,Canteen Food,Corn Soup,50.00,,,YES
+dish-16f49f10,Yummy Express,Canteen Food,Couple S Combo Medium Special Pizza 2 Paneer Burgers 2 Cold Drinks 2 Fries,139.00,,,YES
+dish-0bdc9008,Yummy Express,Canteen Food,Crispy Bread,60.00,,,YES
+dish-d5917c45,Yummy Express,Canteen Food,Crispy Burger,45.00,,,YES
+dish-b451d31c,Yummy Express,Canteen Food,Crispy Cheese Burger,70.00,,,YES
+dish-03bd6925,Yummy Express,Canteen Food,Crispy Corn,50.00,,,YES
+dish-6e3829eb,Yummy Express,Canteen Food,Crispy Garlic Bread,79.00,,,YES
+dish-56819a44,Yummy Express,Canteen Food,Crispy Paneer,180.00,100.00,180.00,YES
+dish-b11adfc8,Yummy Express,Canteen Food,Crispy Paneer Burger,100.00,100.00,180.00,YES
+dish-259724fa,Yummy Express,Canteen Food,Dal Handi,70.00,70.00,120.00,YES
+dish-2cf0e658,Yummy Express,Canteen Food,Dal Makhani,120.00,80.00,140.00,YES
+dish-cc72d63e,Yummy Express,Canteen Food,Dal Makhani Chawal,80.00,,,YES
+dish-c1a4d482,Yummy Express,Canteen Food,Dal Punjabi,130.00,70.00,120.00,YES
+dish-a49494d5,Yummy Express,Canteen Food,Dal Tadka,70.00,70.00,120.00,YES
+dish-ec881a54,Yummy Express,Canteen Food,Dal Tadka Rice,70.00,,,YES
+dish-02e81a61,Yummy Express,Canteen Food,Deluxe Thali,160.00,,,YES
+dish-61b26031,Yummy Express,Canteen Food,Dhamiya Adrak Chaap,180.00,100.00,180.00,YES
+dish-c654e064,Yummy Express,Canteen Food,Dhamiya Adrak Paneer,180.00,100.00,180.00,YES
+dish-32e11602,Yummy Express,Canteen Food,Diet Chaap,170.00,100.00,180.00,YES
+dish-d6c70491,Yummy Express,Canteen Food,Double Cheese Margherita,60.00,,,YES
+dish-733dc0e4,Yummy Express,Canteen Food,Dry Fruit Poha,130.00,,,YES
+dish-010207eb,Yummy Express,Canteen Food,Farmhouse,60.00,,,YES
+dish-793da52f,Yummy Express,Canteen Food,Fried Idli 2 Pcs,120.00,,,YES
+dish-40edb8c4,Yummy Express,Canteen Food,Fried Rice,70.00,70.00,120.00,YES
+dish-03df33f3,Yummy Express,Canteen Food,Garlic Bread Sticks,79.00,,,YES
+dish-0329ccf7,Yummy Express,Canteen Food,Garlic Fried Rice,110.00,70.00,120.00,YES
+dish-004325fa,Yummy Express,Canteen Food,Garlic Naan,15.00,,,YES
+dish-fbc8a3f7,Yummy Express,Canteen Food,Garlic Tikka Chaap,100.00,100.00,180.00,YES
+item-real-fbc885f7,Yummy Express,Canteen Food,Garlicbread Crispy Bread,65.00,,,YES
+dish-29133c30,Yummy Express,Canteen Food,Gobhi Masala,120.00,,,YES
+dish-41177983,Yummy Express,Canteen Food,Gobhi Paratha,8.00,,,YES
+dish-4f66bcfe,Yummy Express,Canteen Food,Gobi Paratha,8.00,,,YES
+dish-bc82ce97,Yummy Express,Canteen Food,Green Chilly Paratha,55.00,,,YES
+dish-de697aa3,Yummy Express,Canteen Food,Green Chutney,60.00,,,YES
+dish-6822eded,Yummy Express,Canteen Food,Green Salad,60.00,,,YES
+dish-ae54f0b2,Yummy Express,Canteen Food,Hakka Noodles,50.00,,,YES
+dish-a33f71b4,Yummy Express,Canteen Food,Handi Chaap,100.00,100.00,180.00,YES
+dish-54cfdd68,Yummy Express,Canteen Food,Handi Mushroom,170.00,80.00,140.00,YES
+dish-71ad3fd1,Yummy Express,Canteen Food,Handi Paneer,100.00,100.00,180.00,YES
+dish-1fba9650,Yummy Express,Canteen Food,Hariyali Mushroom Tikka,250.00,80.00,140.00,YES
+dish-85a02f21,Yummy Express,Canteen Food,Hariyali Mushroom Tikka Roll,80.00,80.00,140.00,YES
+dish-2362ed45,Yummy Express,Canteen Food,Hariyali Paneer Tikka,170.00,100.00,180.00,YES
+dish-5ca27f08,Yummy Express,Canteen Food,Hariyali Paneer Tikka Roll,100.00,100.00,180.00,YES
+dish-03c1cc84,Yummy Express,Canteen Food,Haryali Mushroom Roll,80.00,80.00,140.00,YES
+dish-cad03051,Yummy Express,Canteen Food,Honey Chilly Potato,60.00,,,YES
+dish-0613e878,Yummy Express,Canteen Food,Hot Sour Soup,60.00,,,YES
+dish-30154d1d,Yummy Express,Canteen Food,Jain Dosa,100.00,,,YES
+dish-1980911e,Yummy Express,Canteen Food,Jain Pizza,119.00,,,YES
+dish-435bf047,Yummy Express,Canteen Food,Jeera Aloo,90.00,70.00,120.00,YES
+dish-ca864877,Yummy Express,Canteen Food,Jeera Rice,50.00,,,YES
+dish-61753de8,Yummy Express,Canteen Food,Kadhai Chaap,100.00,100.00,180.00,YES
+dish-1e800a25,Yummy Express,Canteen Food,Kadhai Mushroom,250.00,80.00,140.00,YES
+dish-4fe9fde5,Yummy Express,Canteen Food,Kadhai Paneer,100.00,100.00,180.00,YES
+dish-7a68fe5f,Yummy Express,Canteen Food,Kaju Korma,200.00,100.00,180.00,YES
+dish-451068a0,Yummy Express,Canteen Food,Kaleji Chaap,170.00,100.00,180.00,YES
+dish-9197b32e,Yummy Express,Canteen Food,Kali Mirch Chaap,100.00,100.00,180.00,YES
+dish-c905754c,Yummy Express,Canteen Food,Kashmiri Dum Aloo,160.00,70.00,120.00,YES
+dish-02b0b490,Yummy Express,Canteen Food,Keema Chaap,190.00,100.00,180.00,YES
+dish-66ad1219,Yummy Express,Canteen Food,Keema Paneer,190.00,100.00,180.00,YES
+dish-49c7a0fe,Yummy Express,Canteen Food,Kfc Chaap,170.00,100.00,180.00,YES
+dish-de90bf64,Yummy Express,Canteen Food,Kuchumber Salad,60.00,,,YES
+dish-22211322,Yummy Express,Canteen Food,Kulcha,50.00,,,YES
+dish-71d1e644,Yummy Express,Canteen Food,Kurkure Paneer Momos 8 Pcs,150.00,100.00,180.00,YES
+dish-61409bae,Yummy Express,Canteen Food,Kurkure Veg Momos 8 Pcs,100.00,,,YES
+dish-8580935e,Yummy Express,Canteen Food,Lachha Paratha,8.00,,,YES
+dish-a023cc74,Yummy Express,Canteen Food,Lajawab Combo Medium Special Pizza 2 Paneer Burgers 2 Cold Drinks 2 Fries,139.00,,,YES
+dish-972e9fb1,Yummy Express,Canteen Food,Lajawab Combo Regular Special Pizza Paneer Burger Cold Drink Fries,139.00,,,YES
+dish-586c798a,Yummy Express,Canteen Food,Lemon Chaap,170.00,100.00,180.00,YES
+dish-7ff1e1d9,Yummy Express,Canteen Food,Lemon Coriander Chaap,100.00,100.00,180.00,YES
+dish-537f1e90,Yummy Express,Canteen Food,Lemon Coriander Soup,130.00,,,YES
+dish-4cb59ef6,Yummy Express,Canteen Food,Maggi Masala Pasta,99.00,,,YES
+dish-ba881b5c,Yummy Express,Canteen Food,Makhani Burger,45.00,,,YES
+dish-c68d2210,Yummy Express,Canteen Food,Makhani Paneer Sandwich,100.00,100.00,180.00,YES
+dish-d5b92b3c,Yummy Express,Canteen Food,Makhani Roll,50.00,,,YES
+dish-1c6e0bbf,Yummy Express,Canteen Food,Makhani Sauce Pasta,99.00,,,YES
+dish-aab6588a,Yummy Express,Canteen Food,Malai Chaap,100.00,100.00,180.00,YES
+dish-4275d109,Yummy Express,Canteen Food,Malai Chaap Gravy,190.00,100.00,180.00,YES
+dish-d695c2c1,Yummy Express,Canteen Food,Malai Chaap Roll,100.00,100.00,180.00,YES
+dish-a46c53ea,Yummy Express,Canteen Food,Malai Kofta,50.00,100.00,180.00,YES
+dish-afd5318f,Yummy Express,Canteen Food,Malai Paneer,100.00,100.00,180.00,YES
+dish-3ce89012,Yummy Express,Canteen Food,Malai Paneer Roll,100.00,100.00,180.00,YES
+dish-edcabd8f,Yummy Express,Canteen Food,Manchow Soup,60.00,,,YES
+dish-4ecf11b4,Yummy Express,Canteen Food,Margherita,50.00,,,YES
+dish-15f78ab4,Yummy Express,Canteen Food,Masala Dosa,85.00,,,YES
+dish-9d44fd86,Yummy Express,Canteen Food,Masala Papad,60.00,,,YES
+dish-4fdfd53b,Yummy Express,Canteen Food,Maxican Burger,45.00,,,YES
+dish-98a73abb,Yummy Express,Canteen Food,Mexican Sandwich,70.00,,,YES
+dish-b563e89a,Yummy Express,Canteen Food,Mexican Veggie,60.00,,,YES
+dish-ac9ee3d8,Yummy Express,Canteen Food,Miss Paprika,60.00,,,YES
+dish-7609528e,Yummy Express,Canteen Food,Missi Missi,60.00,,,YES
+dish-19ef3cc5,Yummy Express,Canteen Food,Mix Chila,170.00,,,YES
+dish-233be051,Yummy Express,Canteen Food,Mix Noodles,60.00,,,YES
+dish-45fef0d5,Yummy Express,Canteen Food,Mix Paratha,8.00,,,YES
+dish-0a7c7c3a,Yummy Express,Canteen Food,Mix Raita,60.00,,,YES
+dish-afb2097a,Yummy Express,Canteen Food,Mix Uttapam,75.00,,,YES
+dish-36cfc708,Yummy Express,Canteen Food,Mix Veg,50.00,,,YES
+dish-e10be1a5,Yummy Express,Canteen Food,Moradabadi Chaap,170.00,100.00,180.00,YES
+dish-549e1468,Yummy Express,Canteen Food,Mughlai Chaap Gravy,170.00,100.00,180.00,YES
+dish-8c68a130,Yummy Express,Canteen Food,Mughlai Paneer,100.00,100.00,180.00,YES
+dish-283a44a4,Yummy Express,Canteen Food,Mushroom Butter Masala,80.00,80.00,140.00,YES
+dish-277fb466,Yummy Express,Canteen Food,Mushroom Do Pyaza,80.00,80.00,140.00,YES
+dish-3d557998,Yummy Express,Canteen Food,Mushroom Fried Rice,70.00,70.00,120.00,YES
+dish-61e0cf6d,Yummy Express,Canteen Food,Mushroom Lababdar,120.00,80.00,140.00,YES
+dish-e85a11b2,Yummy Express,Canteen Food,Mushroom Laziz,170.00,80.00,140.00,YES
+dish-04ce1c01,Yummy Express,Canteen Food,Mushroom Noodles,130.00,80.00,140.00,YES
+dish-3dc6114f,Yummy Express,Canteen Food,Mushroom Pulao,100.00,70.00,120.00,YES
+dish-315538bf,Yummy Express,Canteen Food,Mushroom Roganjosh,170.00,80.00,140.00,YES
+dish-8ae0a996,Yummy Express,Canteen Food,Mushroom Sandwich,80.00,80.00,140.00,YES
+dish-ac7e6d59,Yummy Express,Canteen Food,Mushroom Takatak,170.00,80.00,140.00,YES
+dish-72d4855c,Yummy Express,Canteen Food,Mushroom Tikka,80.00,80.00,140.00,YES
+dish-0799ef99,Yummy Express,Canteen Food,Mutter Aloo,120.00,70.00,120.00,YES
+dish-2b4a32f9,Yummy Express,Canteen Food,Mutter Paneer Pulao,110.00,70.00,120.00,YES
+dish-fef71538,Yummy Express,Canteen Food,Mutter Pulao,80.00,70.00,120.00,YES
+dish-fbf7918a,Yummy Express,Canteen Food,Nacho S Burger,45.00,,,YES
+dish-6e018479,Yummy Express,Canteen Food,Naughty Strawberry,60.00,,,YES
+dish-0526a5cd,Yummy Express,Canteen Food,Oniccap,60.00,,,YES
+dish-fd85ff08,Yummy Express,Canteen Food,Onion Chila,170.00,,,YES
+dish-c6d9c7f0,Yummy Express,Canteen Food,Onion Dosa,75.00,,,YES
+dish-34baf4ca,Yummy Express,Canteen Food,Onion Naan,75.00,,,YES
+dish-1fc04f7d,Yummy Express,Canteen Food,Onion Raita,70.00,,,YES
+dish-c0d0e5d8,Yummy Express,Canteen Food,Paneer,100.00,100.00,180.00,YES
+dish-7056fdfb,Yummy Express,Canteen Food,Paneer Bherji,100.00,100.00,180.00,YES
+dish-dcacfe1b,Yummy Express,Canteen Food,Paneer Bhurji,100.00,100.00,180.00,YES
+dish-d00b3c4a,Yummy Express,Canteen Food,Paneer Burger,50.00,100.00,180.00,YES
+dish-f628ab42,Yummy Express,Canteen Food,Paneer Burger Cold Drink Fries,100.00,100.00,180.00,YES
+dish-545c082c,Yummy Express,Canteen Food,Paneer Butter Masala,120.00,100.00,180.00,YES
+dish-a66f30b0,Yummy Express,Canteen Food,Paneer Calzone,100.00,100.00,180.00,YES
+dish-5de58e98,Yummy Express,Canteen Food,Paneer Chila,180.00,100.00,180.00,YES
+dish-9bc2b451,Yummy Express,Canteen Food,Paneer Do Pyaza,100.00,100.00,180.00,YES
+dish-eb9d4eab,Yummy Express,Canteen Food,Paneer Dosa,110.00,,,YES
+dish-8cba811c,Yummy Express,Canteen Food,Paneer Fried Momos 8 Pcs,140.00,100.00,180.00,YES
+dish-1ec49e00,Yummy Express,Canteen Food,Paneer Fried Rice,120.00,70.00,120.00,YES
+dish-6bb23b11,Yummy Express,Canteen Food,Paneer Garlic Bread,79.00,,,YES
+dish-470ae54d,Yummy Express,Canteen Food,Paneer Gravy,100.00,100.00,180.00,YES
+dish-71426253,Yummy Express,Canteen Food,Paneer Keleji,170.00,100.00,180.00,YES
+dish-e0e55d15,Yummy Express,Canteen Food,Paneer Lababdar,100.00,100.00,180.00,YES
+dish-d9f759a5,Yummy Express,Canteen Food,Paneer Lakhnavi Kor,180.00,100.00,180.00,YES
+dish-799140f3,Yummy Express,Canteen Food,Paneer Laziz,250.00,100.00,180.00,YES
+dish-d26e71b3,Yummy Express,Canteen Food,Paneer Lehsun Paratha,120.00,,,YES
+dish-4c95cd98,Yummy Express,Canteen Food,Paneer Momos 6 Pcs,110.00,100.00,180.00,YES
+dish-91cf2cf6,Yummy Express,Canteen Food,Paneer Noodles,120.00,100.00,180.00,YES
+dish-44020c26,Yummy Express,Canteen Food,Paneer Onion Uttapam,150.00,,,YES
+dish-be7015db,Yummy Express,Canteen Food,Paneer Pakoda,35.00,100.00,180.00,YES
+dish-b600c6d3,Yummy Express,Canteen Food,Paneer Paratha,70.00,,,YES
+dish-3f84e55b,Yummy Express,Canteen Food,Paneer Pulao,70.00,70.00,120.00,YES
+dish-5e47deb0,Yummy Express,Canteen Food,Paneer Punjabi,170.00,100.00,180.00,YES
+dish-cfd9d542,Yummy Express,Canteen Food,Paneer Pyaz Paratha,8.00,,,YES
+dish-05916ba1,Yummy Express,Canteen Food,Paneer Roganjosh,170.00,100.00,180.00,YES
+dish-15d8de87,Yummy Express,Canteen Food,Paneer Roll,60.00,100.00,180.00,YES
+dish-f4f2710c,Yummy Express,Canteen Food,Paneer Sandwich,50.00,100.00,180.00,YES
+dish-aa15078c,Yummy Express,Canteen Food,Paneer Takatak,170.00,100.00,180.00,YES
+dish-ccb2e015,Yummy Express,Canteen Food,Paneer Tikka,120.00,100.00,180.00,YES
+dish-30d8e0e7,Yummy Express,Canteen Food,Paneer Tikka Roll,100.00,100.00,180.00,YES
+dish-322396bf,Yummy Express,Canteen Food,Paneer Tikka Sandwich,100.00,100.00,180.00,YES
+dish-a3b56496,Yummy Express,Canteen Food,Paper Dosa,65.00,,,YES
+dish-3f76b283,Yummy Express,Canteen Food,Paratha Burger,8.00,,,YES
+dish-6109efe0,Yummy Express,Canteen Food,Passion Fruit,60.00,,,YES
+dish-3d62c3cd,Yummy Express,Canteen Food,Pav Bhaji,65.00,,,YES
+dish-f599864c,Yummy Express,Canteen Food,Peri Peri Pasta,99.00,,,YES
+dish-234ca749,Yummy Express,Canteen Food,Pindi Chana,150.00,70.00,120.00,YES
+dish-e3af383b,Yummy Express,Canteen Food,Pineapple,90.00,,,YES
+dish-16fb3aea,Yummy Express,Canteen Food,Pineapple Raita,60.00,,,YES
+dish-20cf52e0,Yummy Express,Canteen Food,Pink Sauce Pasta,90.00,,,YES
+dish-37beffe3,Yummy Express,Canteen Food,Pizza Dosa,150.00,,,YES
+dish-9fa13722,Yummy Express,Canteen Food,Plain Chila,150.00,,,YES
+dish-fe729bf8,Yummy Express,Canteen Food,Plain Idli 2 Pcs,100.00,,,YES
+dish-0240da1b,Yummy Express,Canteen Food,Plain Naan,15.00,,,YES
+dish-52d67164,Yummy Express,Canteen Food,Plain Papad,60.00,,,YES
+dish-cfef812f,Yummy Express,Canteen Food,Plain Paratha,8.00,,,YES
+dish-9a3792ac,Yummy Express,Canteen Food,Plain Raita,60.00,,,YES
+dish-1456a553,Yummy Express,Canteen Food,Plain Rice,45.00,,,YES
+dish-9b451ad1,Yummy Express,Canteen Food,Plain Uttapam,100.00,,,YES
+dish-bf40673f,Yummy Express,Canteen Food,Poha,60.00,,,YES
+dish-c6686da0,Yummy Express,Canteen Food,Pudina Chaap,170.00,100.00,180.00,YES
+dish-56d422e8,Yummy Express,Canteen Food,Pudina Chaap Roll,160.00,100.00,180.00,YES
+dish-1d08497a,Yummy Express,Canteen Food,Punjabi Dum Aloo,70.00,70.00,120.00,YES
+dish-ae6590b5,Yummy Express,Canteen Food,Punjabi Paneer,100.00,100.00,180.00,YES
+dish-2891adec,Yummy Express,Canteen Food,Pyaaz Tamatar,120.00,,,YES
+dish-bfbc0070,Yummy Express,Canteen Food,Pyaz Paratha,8.00,,,YES
+dish-79aa6417,Yummy Express,Canteen Food,Pyaz Tamatar Rice,90.00,,,YES
+dish-118925b5,Yummy Express,Canteen Food,Raita,60.00,,,YES
+item-real-3f3a04d5,Yummy Express,Canteen Food,Raita Boondi Raita,65.00,,,YES
+item-real-00636a57,Yummy Express,Canteen Food,Raita Mix Raita,65.00,,,YES
+item-real-f5c75781,Yummy Express,Canteen Food,Raita Plain Raita,65.00,,,YES
+dish-d3e7cd97,Yummy Express,Canteen Food,Rajma Chawal,70.00,,,YES
+dish-e896a3f9,Yummy Express,Canteen Food,Rajma Masala,70.00,70.00,120.00,YES
+dish-a8a04313,Yummy Express,Canteen Food,Red Sauce Pasta,90.00,,,YES
+dish-d1d04f4f,Yummy Express,Canteen Food,Rice,70.00,,,YES
+dish-7e4f04b5,Yummy Express,Canteen Food,Rumali Roti,10.00,,,YES
+dish-ec68179a,Yummy Express,Canteen Food,Salad,160.00,,,YES
+dish-036a6488,Yummy Express,Canteen Food,Sambar Extra,120.00,,,YES
+dish-8f660c3c,Yummy Express,Canteen Food,Schezwan Fried Rice,110.00,70.00,120.00,YES
+dish-b9bf88c3,Yummy Express,Canteen Food,Schezwan Noodles,50.00,,,YES
+dish-528b1790,Yummy Express,Canteen Food,Schezwan Pasta,99.00,,,YES
+dish-02d5d8c4,Yummy Express,Canteen Food,Schezwan Pizza,119.00,,,YES
+dish-1370713e,Yummy Express,Canteen Food,Sev Bhaji,85.00,,,YES
+dish-a80cd061,Yummy Express,Canteen Food,Sev Tamatar,160.00,,,YES
+dish-23769a3e,Yummy Express,Canteen Food,Shahi Chaap,170.00,100.00,180.00,YES
+dish-3d591f27,Yummy Express,Canteen Food,Shahi Mushroom,170.00,80.00,140.00,YES
+dish-9894df48,Yummy Express,Canteen Food,Shahi Paneer,120.00,100.00,180.00,YES
+dish-d1992eba,Yummy Express,Canteen Food,Signature Thali,120.00,,,YES
+dish-905957a3,Yummy Express,Canteen Food,Singapore Noodles,60.00,,,YES
+dish-d4bb24d7,Yummy Express,Canteen Food,Special Dosa,110.00,,,YES
+dish-98dd53af,Yummy Express,Canteen Food,Special Veg Deluxe Veggie,60.00,,,YES
+dish-8066f5e9,Yummy Express,Canteen Food,Spring Roll,60.00,,,YES
+dish-181705b5,Yummy Express,Canteen Food,Stuffed Garlic Bread,79.00,,,YES
+dish-4ba32522,Yummy Express,Canteen Food,Stuffed Naan,50.00,,,YES
+dish-5f892e77,Yummy Express,Canteen Food,Tandoori Burger,80.00,,,YES
+dish-e1dda1bd,Yummy Express,Canteen Food,Tandoori Butter Roti,10.00,,,YES
+dish-fb90d4df,Yummy Express,Canteen Food,Tandoori Chaap,100.00,100.00,180.00,YES
+dish-f6b8f55f,Yummy Express,Canteen Food,Tandoori Chaap Roll,100.00,100.00,180.00,YES
+dish-522402e3,Yummy Express,Canteen Food,Tandoori Cheese Corn,50.00,,,YES
+dish-073557e9,Yummy Express,Canteen Food,Tandoori Paneer,100.00,100.00,180.00,YES
+dish-9358e48f,Yummy Express,Canteen Food,Tandoori Paneer Momos 8 Pcs,150.00,100.00,180.00,YES
+dish-20ee274a,Yummy Express,Canteen Food,Tandoori Pasta,90.00,,,YES
+dish-2992c46f,Yummy Express,Canteen Food,Tandoori Roti,10.00,,,YES
+dish-63d6faa1,Yummy Express,Canteen Food,Tandoori Thali,110.00,,,YES
+dish-0e68e9f0,Yummy Express,Canteen Food,Tandoori Tikka Masala,130.00,,,YES
+dish-8ed756e1,Yummy Express,Canteen Food,Tandoori Veg Momos 8 Pcs,150.00,,,YES
+dish-ffb3501a,Yummy Express,Canteen Food,Tandoorisnacks Achari Chaap,100.00,100.00,180.00,YES
+dish-9a4bdbbe,Yummy Express,Canteen Food,Tandoorisnacks Afghani Chaap,100.00,100.00,180.00,YES
+dish-3e7fde78,Yummy Express,Canteen Food,Tandoorisnacks Diet Chaap,100.00,100.00,180.00,YES
+dish-c35b4a3b,Yummy Express,Canteen Food,Tandoorisnacks Garlic Tikka Chaap,100.00,100.00,180.00,YES
+dish-52b922a2,Yummy Express,Canteen Food,Tandoorisnacks Kalimirch Chaap,100.00,100.00,180.00,YES
+dish-862c6ea3,Yummy Express,Canteen Food,Tandoorisnacks Lemon Chaap,100.00,100.00,180.00,YES
+dish-9e7fb924,Yummy Express,Canteen Food,Tandoorisnacks Malai Chaap,100.00,100.00,180.00,YES
+dish-c37002ac,Yummy Express,Canteen Food,Tandoorisnacks Paneer Tikka,100.00,100.00,180.00,YES
+dish-04076fa7,Yummy Express,Canteen Food,Tandoorisnacks Pudina Chaap,100.00,100.00,180.00,YES
+dish-534cbde3,Yummy Express,Canteen Food,Tandoorisnacks Tandoori Chaap,100.00,100.00,180.00,YES
+dish-76228c12,Yummy Express,Canteen Food,Tawa Butter Roti,121.00,,,YES
+dish-ee675a2e,Yummy Express,Canteen Food,Tawa Chaap,100.00,100.00,180.00,YES
+dish-c22665fc,Yummy Express,Canteen Food,Tawa Mushroom,80.00,80.00,140.00,YES
+dish-7cc44974,Yummy Express,Canteen Food,Tawa Paneer,100.00,100.00,180.00,YES
+dish-a366350e,Yummy Express,Canteen Food,Tawa Roti,8.00,,,YES
+dish-1a379c32,Yummy Express,Canteen Food,Tomato Soup,60.00,,,YES
+dish-48c51208,Yummy Express,Canteen Food,Veg Burger,50.00,,,YES
+dish-2467db7b,Yummy Express,Canteen Food,Veg Cheese Burger,70.00,,,YES
+dish-41561d27,Yummy Express,Canteen Food,Veg Cheese Dosa,150.00,,,YES
+dish-20694fec,Yummy Express,Canteen Food,Veg Cheese Nacho S Baked,60.00,,,YES
+dish-7b7f68a8,Yummy Express,Canteen Food,Veg Cheese Sandwich,70.00,,,YES
+dish-60b76340,Yummy Express,Canteen Food,Veg Cheese Uttapam,150.00,,,YES
+dish-381dc32b,Yummy Express,Canteen Food,Veg Fried Momos 8 Pcs,110.00,,,YES
+dish-99e3158e,Yummy Express,Canteen Food,Veg Fried Pasta,99.00,,,YES
+dish-3750287a,Yummy Express,Canteen Food,Veg Grill Sandwich,50.00,,,YES
+dish-522a5ccb,Yummy Express,Canteen Food,Veg Manchurian Dry,160.00,,,YES
+dish-77d588f0,Yummy Express,Canteen Food,Veg Manchurian Gravy,160.00,,,YES
+dish-c4767da3,Yummy Express,Canteen Food,Veg Momos 6 Pcs,50.00,,,YES
+dish-354de844,Yummy Express,Canteen Food,Veg Noodles,50.00,,,YES
+dish-8904e7a3,Yummy Express,Canteen Food,Veg Pulao,50.00,70.00,120.00,YES
+dish-7475dd8b,Yummy Express,Canteen Food,Veg Sandwich,50.00,,,YES
+dish-7330fa59,Yummy Express,Canteen Food,Veg Soup,60.00,,,YES
+dish-f0e12286,Yummy Express,Canteen Food,White Sauce Pasta,90.00,,,YES
+dish-72cc0ac0,Yummy Express,Canteen Food,Wrap Aalo Tikki Wrap,60.00,,,YES
+dish-039cf2a4,Yummy Express,Canteen Food,Wrap Mactan Wrap,60.00,,,YES
+dish-a2b81ca7,Yummy Express,Canteen Food,Wrap Makhani Wrap,60.00,,,YES
+dish-45a8833a,Yummy Express,Canteen Food,Wrap Paneer Wrap,100.00,100.00,180.00,YES
+dish-52ae887f,Yummy Express,Canteen Food,Wrap Tandoori Wrap,60.00,,,YES
+dish-5e8d8062,Yummy Express,Canteen Food,Wrap Veg Wrap,60.00,,,YES
+dish-aa567e43,Yummy Express,Chocolates & Candies,Sweet Heart,40.00,,,YES
+dish-a68f5e73,Yummy Express,Chocolates & Candies,Sweet Pineapple,40.00,,,YES
+dish-4bc0d4af,Yummy Express,Drinks & Juices,Apple Shake,60.00,,,YES
+dish-20928e87,Yummy Express,Drinks & Juices,Badam Shake,70.00,,,YES
+dish-d49d7abf,Yummy Express,Drinks & Juices,Beer Mojito,60.00,,,YES
+dish-b7f6d8e6,Yummy Express,Drinks & Juices,Blood Orange Mojito,60.00,,,YES
+dish-e4757f8f,Yummy Express,Drinks & Juices,Blueberry Mojito,130.00,,,YES
+dish-6bc289fa,Yummy Express,Drinks & Juices,Blueberry Shake,60.00,,,YES
+dish-f295ed86,Yummy Express,Drinks & Juices,Brownie Shake,70.00,,,YES
+dish-2320059b,Yummy Express,Drinks & Juices,Butterscotch Shake,80.00,,,YES
+dish-78d6c306,Yummy Express,Drinks & Juices,Chocolate Oreo Shake,70.00,,,YES
+dish-8d839a64,Yummy Express,Drinks & Juices,Chocolate Shake,80.00,,,YES
+dish-62a9b1d0,Yummy Express,Drinks & Juices,Classic Cheese Loaded Fries,40.00,,,YES
+dish-2b8ff4bd,Yummy Express,Drinks & Juices,Classic Fries,40.00,,,YES
+dish-b8ff2357,Yummy Express,Drinks & Juices,Classic Garlic Bread Plain Cheese,40.00,,,YES
+dish-e3df1077,Yummy Express,Drinks & Juices,Classic Slice Paneer Burger,40.00,,,YES
+dish-dc5a692d,Yummy Express,Drinks & Juices,Cold Coffee,40.00,,,YES
+dish-f88cc2d1,Yummy Express,Drinks & Juices,Curacao Mojito,60.00,,,YES
+dish-c722e885,Yummy Express,Drinks & Juices,Date Shake,60.00,,,YES
+dish-2f7b2d79,Yummy Express,Drinks & Juices,Green Apple Ice Tea,50.00,,,YES
+dish-271a1d23,Yummy Express,Drinks & Juices,Green Apple Mojito,70.00,,,YES
+dish-e318a5ec,Yummy Express,Drinks & Juices,Kit Kat Shakes,70.00,,,YES
+dish-3d33e136,Yummy Express,Drinks & Juices,Lemon Ice Tea,50.00,,,YES
+dish-97370584,Yummy Express,Drinks & Juices,Lemonade,35.00,,,YES
+dish-a4c2ffcb,Yummy Express,Drinks & Juices,Lichhi Shake,60.00,,,YES
+dish-286ed93c,Yummy Express,Drinks & Juices,Lichi Mojito,60.00,,,YES
+dish-53e672d0,Yummy Express,Drinks & Juices,Mint Chocolate Oreo Shake,70.00,,,YES
+dish-e1b016d2,Yummy Express,Drinks & Juices,Oreo Shake,70.00,,,YES
+dish-26a20f00,Yummy Express,Drinks & Juices,Papaya Shake,60.00,,,YES
+dish-b5e30f61,Yummy Express,Drinks & Juices,Peach Ice Tea,50.00,,,YES
+dish-3c0cb26f,Yummy Express,Drinks & Juices,Peach Mojito,60.00,,,YES
+dish-54b52298,Yummy Express,Drinks & Juices,Peanut Butter Shake,60.00,,,YES
+dish-f7c8d41c,Yummy Express,Drinks & Juices,Pine Hawaiian Mojito,60.00,,,YES
+dish-eaf84644,Yummy Express,Drinks & Juices,Rose Milk Shake,60.00,,,YES
+dish-3b279c32,Yummy Express,Drinks & Juices,Shikanji Soda,30.00,,,YES
+dish-8476773b,Yummy Express,Drinks & Juices,Strawberry Ice Tea,50.00,,,YES
+dish-63c61aff,Yummy Express,Drinks & Juices,Strawberry Mojito,60.00,,,YES
+dish-9cce4acf,Yummy Express,Drinks & Juices,Strawberry Shake,80.00,,,YES
+dish-9f07ea92,Yummy Express,Drinks & Juices,Vanilla Shake,60.00,,,YES
+dish-c52f5e80,Yummy Express,Drinks & Juices,Virgin Mojito,70.00,,,YES
+dish-37768fbe,Yummy Express,Drinks & Juices,Water Lemon Mojito,60.00,,,YES
+item-real-c2ec5056,Yummy Express,Pizzas & Breads,Garlicbread Cheese Garlic Bread,65.00,,,YES
+item-real-2a401666,Yummy Express,Pizzas & Breads,Garlicbread Garlic Bread Sticks,65.00,,,YES
+item-real-8a293d89,Yummy Express,Rolls & Wraps,Rollwithrumali Pudina Chaap Roll,110.00,66.00,110.00,YES
+item-real-152b691a,Yummy Express,Rolls & Wraps,Rollwithrumali Tandoori Chaap Roll,110.00,66.00,110.00,YES
+dish-ab6f934a,Yummy Express,Snacks & Chips,Cheese Bomb Burger Cold Drink Fries,70.00,,,YES
+dish-becdf3c2,Yummy Express,Snacks & Chips,Cold Drink Fries,50.00,,,YES
+dish-7f1df65d,Yummy Express,Snacks & Chips,French Fries,60.00,,,YES
+dish-47d805a0,Yummy Express,Snacks & Chips,Peri Peri Cheese Loaded Fries,50.00,,,YES
+dish-a8540655,Yummy Express,Snacks & Chips,Peri Peri Fries,60.00,,,YES
+dish-97670c67,Yummy Express,Snacks & Chips,Salted Fries,60.00,,,YES
+dish-828896e2,Yummy Express,Snacks & Chips,Tandoori Fries,50.00,,,YES
+dish-ea6224a3,Yummy Express,Snacks & Chips,Veg Loaded Cheese Fries,50.00,,,YES
+item-real-7204f2d1,Yummy Express,Snacks & Maggi,Nachos Cheesy Nacho S,65.00,,,YES

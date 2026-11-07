@@ -1,0 +1,28 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+5a73fffe-1580-4b79-aef4-1555b6cd9ccf,Super Food Corner,Canteen Food,Idli Tikka,20.00,,,YES
+e23e3d84-0b5c-4dd3-ab4b-86b25fc31302,Super Food Corner,Canteen Food,Paneer Dhokla,350.00,,,YES
+f69cdf98-ff4d-4232-8c2a-9f557621520a,Super Food Corner,Canteen Food,Paneer Pakoda,35.00,,,YES
+264442c6-9011-4ff5-b9f3-64c9d448577b,Super Food Corner,Drinks & Juices,Blueberry Mojito,130.00,,,YES
+6c3c9e8e-94b3-4fd9-ad07-2194f51e77af,Super Food Corner,Drinks & Juices,Chai Cup,70.00,,,YES
+3d8911c7-f67a-4964-a816-8e44c94af4ea,Super Food Corner,Drinks & Juices,Classic Cold Coffee,80.00,,,YES
+137ee1a1-3c37-47f8-8973-4850a3d1f9da,Super Food Corner,Drinks & Juices,Coffee Cup,70.00,,,YES
+9e3cf3bd-6efb-4e4a-80f2-9ba83d56d659,Super Food Corner,Drinks & Juices,Cranberry Mojito,130.00,,,YES
+ada11b33-061d-43c7-9dba-ffc2f68087a2,Super Food Corner,Drinks & Juices,Extra Strong Cold Coffee,90.00,,,YES
+01dc5a41-2ba7-4c7d-b0ef-22dc975e0dc4,Super Food Corner,Drinks & Juices,Hot Coffee,60.00,,,YES
+10a2f53e-8229-4860-9447-c056586339c7,Super Food Corner,Drinks & Juices,Peanut Butter Cold Coffee,100.00,,,YES
+123b60bc-e599-42a0-a472-5e572fa102e5,Super Food Corner,Drinks & Juices,Raspberry Mojito,130.00,,,YES
+4581172b-6905-4ef9-923c-e6f42762d5fc,Super Food Corner,Drinks & Juices,Watermelon Mojito,130.00,,,YES
+9a4c78df-40c4-44b6-a508-2d5f31bf3130,Super Food Corner,Snacks & Chips,Aloo Bonda,20.00,,,YES
+807f3ab9-e042-4d40-9091-00499b1eab9e,Super Food Corner,Snacks & Chips,Aloo Vada,20.00,,,YES
+56e3b82e-830f-4fb0-9760-1290fed2501e,Super Food Corner,Snacks & Chips,Bread Pakoda,35.00,,,YES
+6a5bafe8-d5dc-4124-94f1-c23eb0b57174,Super Food Corner,Snacks & Chips,Chawal Ka Dhokla,340.00,,,YES
+d50375d6-892f-4a1e-98d7-e05582af190c,Super Food Corner,Snacks & Chips,Dhokla,280.00,,,YES
+38ee3445-3c9f-4b90-891a-70f7cd172d96,Super Food Corner,Snacks & Chips,Gobhi Samosa,30.00,,,YES
+d196b670-c5ed-48d0-a905-6ef08dcc1980,Super Food Corner,Snacks & Chips,Gujarati Samosa,30.00,,,YES
+75df6d5e-3e1a-4442-815a-5e155a721796,Super Food Corner,Snacks & Chips,Khandvi,340.00,,,YES
+f20d7a2c-c864-4efd-bea2-e00ae20c2be1,Super Food Corner,Snacks & Chips,Mirch Pakoda,20.00,,,YES
+1cf280bc-4e41-41d8-8060-924e424e76ec,Super Food Corner,Snacks & Chips,Pyaz Pakodi,35.00,,,YES
+d80ce2cb-3943-412f-934a-f48b129e97c3,Super Food Corner,Snacks & Chips,Samosa,20.00,,,YES
+edcada6d-e487-4c5f-a0ec-1cee5ff9cd1f,Super Food Corner,Snacks & Chips,Sandwich Dhokla,340.00,,,YES
+173ea4eb-b5fd-49c1-987d-3d5024444893,Super Food Corner,Snacks & Chips,Thenkla,280.00,,,YES
+d5d3e306-bb88-4683-90d6-fde6d00aff3a,Super Food Corner,Snacks & Chips,Veg Cutlet,25.00,,,YES

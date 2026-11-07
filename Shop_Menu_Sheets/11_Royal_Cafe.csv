@@ -1,0 +1,116 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+2e05cedd-cc1f-4f65-abda-5fc7b2ac64ff,Royal Cafe,Canteen Food,Aloo Gobi Masala,50.00,,,YES
+79cedbed-2959-4fa5-9bf0-327391c9f529,Royal Cafe,Canteen Food,Bhindi Masala,50.00,,,YES
+0c798439-d0ff-4a68-89ac-ade80e62e568,Royal Cafe,Canteen Food,Cheese Maggi,40.00,,,YES
+639a6ab6-619f-49a3-8570-966de003e81b,Royal Cafe,Canteen Food,Chilli Potato,50.00,,,YES
+18dbc09d-93aa-4afd-a884-3afc46c923d4,Royal Cafe,Canteen Food,Dal Makhani,120.00,,,YES
+af7f988d-267c-414c-89e1-8d963b707277,Royal Cafe,Canteen Food,Deluxe Veg Thali,50.00,,,YES
+d047e1a8-d338-4463-a46e-a712e5d593db,Royal Cafe,Canteen Food,Jeera Aloo,50.00,,,YES
+9d6a8518-1bd2-40f7-bec5-fe2f54b06e22,Royal Cafe,Canteen Food,Jeera Rice,50.00,,,YES
+c51cbc16-0153-4cd1-a903-6cacc5edde89,Royal Cafe,Canteen Food,Kadai Paneer,120.00,,,YES
+7bcb6e9d-723e-4e64-95b1-eaed608b47b7,Royal Cafe,Canteen Food,Kashmiri Pulao,50.00,,,YES
+b6f784e8-c0a6-4e72-a3ca-5ee6681cd806,Royal Cafe,Canteen Food,Kashmiri Veg Biryani,50.00,,,YES
+170cbe78-8052-4e2a-9695-e032aeb769ae,Royal Cafe,Canteen Food,Maggi Cold Drink,40.00,,,YES
+64728dcb-8c4d-4cb0-80a6-9dd9ba7fd0f0,Royal Cafe,Canteen Food,Malai Kofta,50.00,,,YES
+350eea64-6b51-4f63-887d-a499a3b4bd0e,Royal Cafe,Canteen Food,Masala Maggi,40.00,,,YES
+3b545641-355a-4bd7-a33a-6e7f7c900506,Royal Cafe,Canteen Food,Matar Paneer,120.00,,,YES
+9913a598-c1d7-45fc-bc63-f6293f051a42,Royal Cafe,Canteen Food,Mix Veg,50.00,,,YES
+31ff0155-6dd9-4ae1-a5eb-e29aca125829,Royal Cafe,Canteen Food,Mushroom Masala,50.00,,,YES
+59cc89a4-24f6-46d1-a274-a49e8555ccb2,Royal Cafe,Canteen Food,Palak Paneer,120.00,,,YES
+e692fea9-4ed4-4e60-9e74-7505d8b8c623,Royal Cafe,Canteen Food,Paneer Biryani,120.00,,,YES
+66fc0659-5c1f-4bd3-a675-28c94bd97f4b,Royal Cafe,Canteen Food,Paneer Burger,50.00,,,YES
+3ad70f42-edee-40a7-b446-9db2e68d6a7f,Royal Cafe,Canteen Food,Paneer Butter Masala,120.00,,,YES
+2a006504-eb36-466a-ada8-204d5d69d087,Royal Cafe,Canteen Food,Paneer Maggi,40.00,,,YES
+49f32b12-c1bc-49f1-8e7f-cfd66fe2de0a,Royal Cafe,Canteen Food,Paneer Makhani,180.00,,,YES
+933c9ff9-9bef-4de3-be72-ee3c3a79a85a,Royal Cafe,Canteen Food,Paneer Momos Fried,60.00,,,YES
+a37e6f38-8942-49e9-bb86-f3cc66b79e06,Royal Cafe,Canteen Food,Paneer Pakora,120.00,,,YES
+132ead33-c085-4aff-8fb3-dbef76f73d29,Royal Cafe,Canteen Food,Paneer Sandwich,50.00,,,YES
+7f44088c-802c-46ee-a1b6-15a4e7b3d212,Royal Cafe,Canteen Food,Paneer Thali,120.00,,,YES
+d36c84b6-16f6-4c2c-8542-73331174df43,Royal Cafe,Canteen Food,Paneer Tikka,120.00,,,YES
+0c899d0b-7b77-47d3-bb93-580e32db9210,Royal Cafe,Canteen Food,Paneer Tikka Masala,120.00,,,YES
+e2d7acf0-88f9-4dad-a838-6df8f87ab7bf,Royal Cafe,Canteen Food,Plain Maggi,40.00,,,YES
+c6722fca-368d-499d-819f-f123cf3bf3b0,Royal Cafe,Canteen Food,Royal Special Thali,50.00,,,YES
+6dba4329-43b0-4869-befe-feecef95dd2a,Royal Cafe,Canteen Food,Shahi Paneer,120.00,,,YES
+b735ebf4-ff79-4c39-8b64-ae8621ae777d,Royal Cafe,Canteen Food,Soya Chunks Biryani,50.00,,,YES
+8fd5360d-2a45-4a34-a743-689a0ff534ea,Royal Cafe,Canteen Food,Spicy Paneer Burger,50.00,,,YES
+1a5cb6d0-65cd-4f22-a6e9-e1290415bf0d,Royal Cafe,Canteen Food,Stuffed Capsicum Masala,50.00,,,YES
+fef48796-1f69-42d8-8b00-5aeebd91e977,Royal Cafe,Canteen Food,Veg Biryani,50.00,,,YES
+97e0660e-c603-4156-98e8-e02c1ca02585,Royal Cafe,Canteen Food,Veg Kolhapuri,50.00,,,YES
+404b780a-3b7c-40a9-b69d-be72c452e775,Royal Cafe,Canteen Food,Veg Maggi,40.00,,,YES
+8b35b620-2c59-4cf1-b5a1-68ae2276ad6f,Royal Cafe,Canteen Food,Veg Nuggets,6.00,,,YES
+4e3e4445-93ea-404c-8251-3bcd12c33f4f,Royal Cafe,Canteen Food,Veg Pulao,50.00,,,YES
+de6f7492-be03-4c02-b439-02ebc264099c,Royal Cafe,Canteen Food,Veg Thali,50.00,,,YES
+8cc57dc9-1862-4dde-b02b-31e9cabd470f,Royal Cafe,Canteen Food,Yellow Dal Tadka,50.00,,,YES
+06ce2a67-49af-4d73-aa0a-b8833c4e8ce7,Royal Cafe,Drinks & Juices,Adrak Chai,20.00,,,YES
+beddbfe0-9b27-489e-94b9-ddc8b65dd08a,Royal Cafe,Drinks & Juices,Blue Lagoon,50.00,,,YES
+9414cb8e-2605-4356-84d6-3e94f3b6efe9,Royal Cafe,Drinks & Juices,Cappuccino,120.00,,,YES
+baf44f22-a9e0-4558-8ccd-122dce50f180,Royal Cafe,Drinks & Juices,Chocolate Shake,80.00,,,YES
+5cf02a56-32a3-40a5-843d-e8310e719f57,Royal Cafe,Drinks & Juices,Cold Coffee,40.00,,,YES
+24d85782-bbca-4e5b-bce6-ad2f1d789006,Royal Cafe,Drinks & Juices,Elaichi Chai,20.00,,,YES
+15f2ca18-f173-493c-beb5-d5123e6e12cd,Royal Cafe,Drinks & Juices,Fresh Lime Soda,50.00,,,YES
+54908fc6-9c85-4ef7-aa1c-ff30bb6a9408,Royal Cafe,Drinks & Juices,Green Tea,20.00,,,YES
+6fd02b1c-587a-42d3-a067-73cec7ab9868,Royal Cafe,Drinks & Juices,Hot Chocolate,150.00,,,YES
+5c04d160-561d-429f-ad9a-55bdac6dfa57,Royal Cafe,Drinks & Juices,Hot Coffee,60.00,,,YES
+743fe23e-5c63-48b5-8e2a-8e54399012f7,Royal Cafe,Drinks & Juices,Iced Latte,130.00,,,YES
+7c94429a-7aad-45d9-b534-525b23000dd8,Royal Cafe,Drinks & Juices,Iced Mocha,50.00,,,YES
+7eeda96f-77ff-489c-9899-be4c669291b6,Royal Cafe,Drinks & Juices,Latte,50.00,,,YES
+34fc9b30-25b5-4b73-bc0d-060e8f24c98d,Royal Cafe,Drinks & Juices,Lemon Tea,20.00,,,YES
+fab3cd7d-8100-4646-9237-d5195576ec56,Royal Cafe,Drinks & Juices,Lemonade Sweet Salt,50.00,,,YES
+0614ef1f-832d-4640-96c0-a18e2bc77043,Royal Cafe,Drinks & Juices,Mango Shake,80.00,,,YES
+4cec38a5-e096-4e7e-81a1-6ff40c247793,Royal Cafe,Drinks & Juices,Masala Chai,20.00,,,YES
+4351de55-78dc-4872-81f0-b49913bff116,Royal Cafe,Drinks & Juices,Mint Mojito,70.00,,,YES
+c1d4413f-d764-4c7f-8544-cea2c81d2ebe,Royal Cafe,Drinks & Juices,Mocha,50.00,,,YES
+6b042762-aaa2-42c8-b2f8-fa5a17ab6848,Royal Cafe,Drinks & Juices,Paneer Momos Steamed,20.00,,,YES
+a307d302-a442-4b30-9795-4dac3d253d1d,Royal Cafe,Drinks & Juices,Soya Momos Steamed,20.00,,,YES
+5c8b1fce-2dd3-4ba4-81a4-d1128bfbe24e,Royal Cafe,Drinks & Juices,Steamed Rice,20.00,,,YES
+cb5ed61c-2faf-4377-a9be-89f56571285e,Royal Cafe,Drinks & Juices,Strawberry Shake,80.00,,,YES
+230429f8-ba97-44ee-bdfa-747cfdf82afc,Royal Cafe,Drinks & Juices,Veg Momos Steamed,20.00,,,YES
+30ad3a8f-3aee-4051-af44-2ba68938ac65,Royal Cafe,Snacks & Chips,Aloo Tikki Burger,50.00,,,YES
+883bff25-0ea2-41c8-b8e5-ebd59475da5c,Royal Cafe,Snacks & Chips,Brownie With Ice Cream,50.00,,,YES
+48a75092-0ba5-4ee8-94bb-a6521936e826,Royal Cafe,Snacks & Chips,Butter Naan,15.00,,,YES
+cd718e27-916c-4e68-bcf0-78399f6535de,Royal Cafe,Snacks & Chips,Butter Roti,15.00,,,YES
+b531c3e2-007c-4666-b01e-821c498cc83d,Royal Cafe,Snacks & Chips,Cheese Burst,180.00,,,YES
+363a34b0-f14f-4212-a7a6-a753b5121ca7,Royal Cafe,Snacks & Chips,Cheese Fries,60.00,,,YES
+736d8335-c29d-437b-8017-f86d2f802b12,Royal Cafe,Snacks & Chips,Cheese Garlic Bread,35.00,,,YES
+c0ed5bfa-a358-4079-b583-d855a4ed539b,Royal Cafe,Snacks & Chips,Cheese Grill Sandwich,50.00,,,YES
+4d45e48b-d64f-463a-b683-b8a7cbc106b7,Royal Cafe,Snacks & Chips,Cheese Pasta,90.00,,,YES
+57ebcd0b-0ab7-43bc-b0f9-36761cc0bf33,Royal Cafe,Snacks & Chips,Cheese Sandwich,50.00,,,YES
+d0b61f54-2d41-4a2b-87da-270fe40fb387,Royal Cafe,Snacks & Chips,Cheese Veg Burger,50.00,,,YES
+953ca51d-a5ee-47db-a903-fdf96f0dcc51,Royal Cafe,Snacks & Chips,Cheesy Pasta,90.00,,,YES
+f9ddabc4-d79e-4b5a-b51a-e79af1017a4c,Royal Cafe,Snacks & Chips,Chilli Garlic Noodles,50.00,,,YES
+573b13e8-3b32-4b16-908d-ee793b189000,Royal Cafe,Snacks & Chips,Chocolate Lava Cake,30.00,,,YES
+4324640d-eae1-4a2f-991f-495ac3bcdcb4,Royal Cafe,Snacks & Chips,Club Sandwich Veg,50.00,,,YES
+fd5438e8-ca47-47bd-bbfe-002f28e576ca,Royal Cafe,Snacks & Chips,Corn Cheese,140.00,,,YES
+7483759e-2e5a-4452-a4e4-7b5ee22be22d,Royal Cafe,Snacks & Chips,Extra Cheese,50.00,,,YES
+16e70924-b294-4b9e-ae53-bb69db845cb2,Royal Cafe,Snacks & Chips,Extra Dip,50.00,,,YES
+9aaf633f-34ac-4a48-9c38-52c0aa100752,Royal Cafe,Snacks & Chips,Extra Mayo,50.00,,,YES
+d86a2331-04c3-4799-b2a3-b7a26a838066,Royal Cafe,Snacks & Chips,French Fries,60.00,,,YES
+eda79e3a-55af-4848-b5c9-75bead03548d,Royal Cafe,Snacks & Chips,Garlic Bread,35.00,,,YES
+f9e3a03d-3d7d-42b0-92d0-41c27226e56b,Royal Cafe,Snacks & Chips,Garlic Naan,15.00,,,YES
+a65d1ef3-5437-4d78-b415-8be226a72958,Royal Cafe,Snacks & Chips,Grilled Sandwich Fries Cold Drink,50.00,,,YES
+c7cbe2c9-3f0c-4cbb-b837-cc5821dc1d53,Royal Cafe,Snacks & Chips,Grilled Veg Sandwich,50.00,,,YES
+169d5f9b-4238-4a82-87eb-f24a7016c48d,Royal Cafe,Snacks & Chips,Ice Cream 2 Scoops,30.00,,,YES
+a05e1913-a5c5-4595-a731-0c459175a9cb,Royal Cafe,Snacks & Chips,Kulcha,50.00,,,YES
+8cf81152-a9b8-42ea-8750-cf67197ead68,Royal Cafe,Snacks & Chips,Laccha Paratha,50.00,,,YES
+7e3b15a8-7a71-4738-a4ef-d3c620d7faa4,Royal Cafe,Snacks & Chips,Margherita,50.00,,,YES
+c3e16553-9b43-4bed-9b6f-8497936ad291,Royal Cafe,Snacks & Chips,Missi Roti,15.00,,,YES
+d68cbd1f-1a81-4df9-903a-ba812eb9a44f,Royal Cafe,Snacks & Chips,Mix Sauce Pasta,90.00,,,YES
+13411fda-d9c5-474a-ad8e-f535ce57299c,Royal Cafe,Snacks & Chips,Peri Peri Fries,60.00,,,YES
+5c3d815a-48b0-4a1c-9ca8-a8a414e44c3d,Royal Cafe,Snacks & Chips,Pizza Regular Cold Drink,120.00,,,YES
+a345522c-c6c5-4577-a6b5-13e323126139,Royal Cafe,Snacks & Chips,Plain Naan,15.00,,,YES
+0c6040d7-7c42-498a-90aa-84391be2dea4,Royal Cafe,Snacks & Chips,Red Sauce Pasta,90.00,,,YES
+4173ed7b-b7ca-4931-becd-2a23bec27a54,Royal Cafe,Snacks & Chips,Roti,15.00,,,YES
+b9a697d3-594e-47e4-a8a3-26e33ad284aa,Royal Cafe,Snacks & Chips,Schezwan Noodles,50.00,,,YES
+08b2a1b1-b239-43a1-bd72-d1bebb92cb50,Royal Cafe,Snacks & Chips,Sizzling Brownie,50.00,,,YES
+3df7aa9a-40ae-4287-b47d-b093ee270169,Royal Cafe,Snacks & Chips,Soya Momos Fried,60.00,,,YES
+e47fb139-d230-44ad-b16d-e4fcb8aa36cf,Royal Cafe,Snacks & Chips,Spring Rolls Veg,20.00,,,YES
+28ea215a-7f89-4af4-b859-b9518eda358f,Royal Cafe,Snacks & Chips,Stuffed Paratha Aloo Gobi Paneer,120.00,,,YES
+0d82e5e9-1091-4740-8db0-a2c324953e01,Royal Cafe,Snacks & Chips,Veg Burger,50.00,,,YES
+01fcb134-4cdb-4eff-abbc-15f3c3d34e4c,Royal Cafe,Snacks & Chips,Veg Burger Fries Cold Drink,50.00,,,YES
+d7bde51f-4d41-4b2c-a8a1-de27051d20bd,Royal Cafe,Snacks & Chips,Veg Deluxe Burger,20.00,,,YES
+af2d7ab1-c267-4202-b016-3e60b5056e62,Royal Cafe,Snacks & Chips,Veg Exotic,160.00,,,YES
+49c31d37-3609-4662-8c79-426ba4a76678,Royal Cafe,Snacks & Chips,Veg Hakka Noodles,50.00,,,YES
+49b83831-a85f-4c7f-ba28-9be385f009bf,Royal Cafe,Snacks & Chips,Veg Manchurian Gravy,50.00,,,YES
+f11b20c7-9fdd-4abd-a2f7-342aa36b4bd2,Royal Cafe,Snacks & Chips,Veg Momos Fried,60.00,,,YES
+5a27ce2b-8a5a-4e4e-87d0-4f619953f936,Royal Cafe,Snacks & Chips,Veg Sandwich,50.00,,,YES
+3804df30-5984-43ec-a482-ee8f6e1adbc9,Royal Cafe,Snacks & Chips,White Sauce Pasta,90.00,,,YES

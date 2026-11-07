@@ -1,0 +1,36 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-83b9771e,Food & Friends,Canteen Food,Aachari Paratha,8.00,,,YES
+dish-ae3be16c,Food & Friends,Canteen Food,Aloo Paratha,50.00,,,YES
+dish-70835484,Food & Friends,Canteen Food,Aloo Piyaz Paratha,50.00,,,YES
+dish-059bed4a,Food & Friends,Canteen Food,Bhature,60.00,,,YES
+dish-2127630f,Food & Friends,Canteen Food,Bread Butter,60.00,,,YES
+dish-4e8527ae,Food & Friends,Canteen Food,Bread Pakora,20.00,,,YES
+dish-7134ecc0,Food & Friends,Canteen Food,Cheese Onion Uttappam,110.00,,,YES
+dish-819548c5,Food & Friends,Canteen Food,Cheese Paneer Uttappam,110.00,,,YES
+dish-38d58886,Food & Friends,Canteen Food,Cheese Paratha,8.00,,,YES
+dish-27da1d09,Food & Friends,Canteen Food,Chilli Paratha,8.00,,,YES
+dish-f6432d9f,Food & Friends,Canteen Food,Chilli Potato,20.00,,,YES
+dish-54b9363f,Food & Friends,Canteen Food,Chole Bhature,65.00,,,YES
+dish-3baf0ae7,Food & Friends,Canteen Food,Chole Kulche,50.00,,,YES
+dish-64ad9fd3,Food & Friends,Canteen Food,Kadhai Paratha,60.00,,,YES
+dish-68763875,Food & Friends,Canteen Food,Malai Kofta,50.00,100.00,180.00,YES
+dish-f41033ea,Food & Friends,Canteen Food,Masala Dosa,85.00,,,YES
+dish-0e3da931,Food & Friends,Canteen Food,Masala Uttappam,75.00,,,YES
+dish-39d27d7c,Food & Friends,Canteen Food,Matar Paneer,120.00,100.00,180.00,YES
+dish-3708583c,Food & Friends,Canteen Food,Mushroom Butter Masala,100.00,80.00,140.00,YES
+dish-5cd8bf1b,Food & Friends,Canteen Food,Mysore Masala Dosa,90.00,,,YES
+dish-6b3f7df2,Food & Friends,Canteen Food,Onion Dosa,100.00,,,YES
+dish-d57659e5,Food & Friends,Canteen Food,Onion Masala Dosa,85.00,,,YES
+dish-6d0896b2,Food & Friends,Canteen Food,Onion Uttappam,75.00,,,YES
+dish-cd14cbbb,Food & Friends,Canteen Food,Paneer Butter Masala,120.00,100.00,180.00,YES
+dish-2b7149e9,Food & Friends,Canteen Food,Paneer Paratha,70.00,,,YES
+dish-7c2c5d76,Food & Friends,Canteen Food,Paneer Sandwich,50.00,100.00,180.00,YES
+dish-4339e51b,Food & Friends,Canteen Food,Paneer Tandoori,120.00,100.00,180.00,YES
+dish-fbe78e8b,Food & Friends,Canteen Food,Paneer Uttappam,110.00,,,YES
+dish-13811f8f,Food & Friends,Canteen Food,Rava Paneer Dosa,110.00,,,YES
+dish-206fccee,Food & Friends,Canteen Food,Rawa Dosa,75.00,,,YES
+dish-dd51b397,Food & Friends,Canteen Food,Spring Roll,60.00,,,YES
+dish-a9da0c8b,Food & Friends,Canteen Food,Tandoori Momos,60.00,,,YES
+dish-af52f199,Food & Friends,Canteen Food,Veg Fried Momos,50.00,,,YES
+dish-8a19d7f4,Food & Friends,Drinks & Juices,Veg Momos Steam,15.00,,,YES
+dish-9883922a,Food & Friends,Snacks & Chips,French Fries,60.00,,,YES

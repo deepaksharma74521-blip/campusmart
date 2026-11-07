@@ -1,0 +1,53 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-9b25dc1e,Jiven Canteen,Canteen Food,7up,60.00,,,YES
+dish-17e0d2e2,Jiven Canteen,Canteen Food,Aloo Paratha,50.00,,,YES
+dish-5daab32c,Jiven Canteen,Canteen Food,Aloo Pyaz Paratha,50.00,,,YES
+dish-20c57027,Jiven Canteen,Canteen Food,Bisleri Water,60.00,,,YES
+dish-bb011232,Jiven Canteen,Canteen Food,Boondi Raita,60.00,,,YES
+dish-d2616b37,Jiven Canteen,Canteen Food,Bread Pakora,60.00,,,YES
+dish-52e7b626,Jiven Canteen,Canteen Food,Bread Roll,50.00,,,YES
+dish-a10b77d8,Jiven Canteen,Canteen Food,Butter Toast,60.00,,,YES
+dish-04218cab,Jiven Canteen,Canteen Food,Campa Bottle,60.00,,,YES
+dish-61f792fe,Jiven Canteen,Canteen Food,Campa Can,301.00,,,YES
+dish-abac3808,Jiven Canteen,Canteen Food,Chole Bhature,65.00,,,YES
+dish-b6004e97,Jiven Canteen,Canteen Food,Chole Puri,501.00,,,YES
+dish-27af4936,Jiven Canteen,Canteen Food,Cold Drink,60.00,,,YES
+dish-888dd433,Jiven Canteen,Canteen Food,Fixed,601.00,,,YES
+dish-a8a57fe4,Jiven Canteen,Canteen Food,Gobhi Paratha,8.00,,,YES
+dish-839fd33b,Jiven Canteen,Canteen Food,Kadai Paneer,401.00,100.00,180.00,YES
+dish-ca41d2b0,Jiven Canteen,Canteen Food,Kadhi Chawal,140.00,,,YES
+dish-e9621b11,Jiven Canteen,Canteen Food,Laccha Paratha,50.00,,,YES
+dish-a5a0549d,Jiven Canteen,Canteen Food,Maaza,60.00,,,YES
+dish-10dc6536,Jiven Canteen,Canteen Food,Malai Kofta,50.00,100.00,180.00,YES
+dish-7184f519,Jiven Canteen,Canteen Food,Masala Paneer,401.00,100.00,180.00,YES
+dish-69518d81,Jiven Canteen,Canteen Food,Methi Paratha,8.00,,,YES
+dish-a24c798d,Jiven Canteen,Canteen Food,Mirinda,60.00,,,YES
+dish-75cec20d,Jiven Canteen,Canteen Food,Mix Paratha,8.00,,,YES
+dish-260fcc7a,Jiven Canteen,Canteen Food,Mooli Paratha,8.00,,,YES
+dish-e48b5c4b,Jiven Canteen,Canteen Food,Mountain Dew,60.00,,,YES
+dish-bb00a40d,Jiven Canteen,Canteen Food,Paneer Butter Masala,120.00,100.00,180.00,YES
+dish-b445d18f,Jiven Canteen,Canteen Food,Paneer Do Pyaza,100.00,100.00,180.00,YES
+dish-822fbc6f,Jiven Canteen,Canteen Food,Paneer Pakore,100.00,100.00,180.00,YES
+dish-0b6e9b2c,Jiven Canteen,Canteen Food,Paneer Paratha,70.00,,,YES
+dish-4dbeaa4d,Jiven Canteen,Canteen Food,Paneer Rogan,401.00,100.00,180.00,YES
+dish-a28eb50d,Jiven Canteen,Canteen Food,Pepsi,60.00,,,YES
+dish-5c30628b,Jiven Canteen,Canteen Food,Plain Paratha,201.00,,,YES
+dish-ca4d29f8,Jiven Canteen,Canteen Food,Poha,60.00,,,YES
+dish-84be633f,Jiven Canteen,Canteen Food,Pyaz Paratha,160.00,,,YES
+dish-b0bcfe3c,Jiven Canteen,Canteen Food,Pyaz Tamatar Raita,40.00,,,YES
+dish-840efc78,Jiven Canteen,Canteen Food,Raita,160.00,,,YES
+dish-ce731af7,Jiven Canteen,Canteen Food,Rajma Chawal,70.00,,,YES
+dish-33a3e7c7,Jiven Canteen,Canteen Food,Red Bull,60.00,,,YES
+dish-3468997e,Jiven Canteen,Canteen Food,Roti,15.00,,,YES
+dish-453c6300,Jiven Canteen,Canteen Food,Shahi Paneer,120.00,100.00,180.00,YES
+dish-1a5aed0f,Jiven Canteen,Canteen Food,Thums Up,60.00,,,YES
+dish-9e80416c,Jiven Canteen,Canteen Food,Tropicana,60.00,,,YES
+dish-79592fa4,Jiven Canteen,Canteen Food,Veg Sandwich,50.00,,,YES
+dish-751021b3,Jiven Canteen,Chocolates & Candies,Kheera Raita,40.00,,,YES
+dish-80f94a5c,Jiven Canteen,Drinks & Juices,Coffee,15.00,,,YES
+dish-dde3b668,Jiven Canteen,Drinks & Juices,Lassi,401.00,,,YES
+dish-cc065c14,Jiven Canteen,Drinks & Juices,Soda Drink,30.00,,,YES
+dish-9a2fc819,Jiven Canteen,Drinks & Juices,Tea,15.00,,,YES
+dish-08b25c25,Jiven Canteen,Snacks & Chips,Mix Pakore,50.00,,,YES
+dish-8a1ee641,Jiven Canteen,Snacks & Chips,Samosa,20.00,,,YES
+dish-885dd612,Jiven Canteen,Snacks & Chips,Samosa Chaat,45.00,,,YES

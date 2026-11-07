@@ -1,0 +1,107 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+701dff40-edbf-4501-9fea-acc706f3ce8b,Chai Nagri,Canteen Food,Afghani Paneer Momos,6.00,,,YES
+78f28ce8-052e-4d06-9746-d63c8dae9f25,Chai Nagri,Canteen Food,Chilli Garlic Fried Rice,50.00,,,YES
+fc43c861-21a0-4c0d-827e-8981dd5359be,Chai Nagri,Canteen Food,Desi Style Fried Rice,50.00,,,YES
+1128419b-a214-498c-bf73-4b4c534931b3,Chai Nagri,Canteen Food,Malai Paneer Momos,60.00,,,YES
+0af168bc-3dce-462b-ad32-8c586bc811d9,Chai Nagri,Canteen Food,Malti Paneer Sandwich,50.00,,,YES
+38f9d852-6eec-46a0-8e3a-31bfa5feecff,Chai Nagri,Canteen Food,Meal Combos,50.00,,,YES
+cc7c9f48-7d6d-4ab9-8fc1-cb5a3f69f837,Chai Nagri,Canteen Food,Paneer Fried Rice,120.00,,,YES
+089212ef-91ab-4f27-88c6-fdc9b817eead,Chai Nagri,Canteen Food,Paneer Noodles,120.00,,,YES
+a4804a62-7788-4917-91e8-859d2b114266,Chai Nagri,Canteen Food,Paneer Pan Fried Momos,60.00,,,YES
+562cb35c-504f-40c5-b83f-4fe0c5ee1652,Chai Nagri,Canteen Food,Paneer Pasta,90.00,,,YES
+fa9fd45a-189f-4231-b5ad-71237bb69882,Chai Nagri,Canteen Food,Paneer Tikka,120.00,,,YES
+443fcb02-6cbb-42b4-91b9-13f2bb486ffb,Chai Nagri,Canteen Food,Paneer Tikka Wrap,60.00,,,YES
+a1fbe5fc-46d7-4ac5-aff6-4639ee4d6e61,Chai Nagri,Canteen Food,Pattaya Paneer Salad,120.00,,,YES
+5ce88880-d909-43ff-a8aa-e43d90359c72,Chai Nagri,Canteen Food,Peppy Paneer Taco,60.00,,,YES
+ac95f7b5-aa07-4cfd-90cd-bf0eb09ccaec,Chai Nagri,Canteen Food,Protein Rice Bowl,50.00,,,YES
+081fb311-6fcc-442d-8763-dfe198977348,Chai Nagri,Canteen Food,Schezwan Fried Rice,50.00,,,YES
+503fae5b-6367-496d-820a-214e8f366c62,Chai Nagri,Canteen Food,Tandoori Paneer Momos,60.00,,,YES
+24d12985-dcb4-41b5-9d1c-2c30f7457c28,Chai Nagri,Canteen Food,Tandoori Paneer Salad,120.00,,,YES
+9308d29b-684c-4cc4-90e6-22d6f066e0c0,Chai Nagri,Canteen Food,Veg Fried Rice,50.00,,,YES
+85a040d2-966b-429c-ba88-5d8911a9b1c9,Chai Nagri,Canteen Food,Veg Rice Bowl,50.00,,,YES
+95a95764-5acb-4c65-81b0-6df63dfbba42,Chai Nagri,Drinks & Juices,Adrak Wali Chai,20.00,,,YES
+26d5f70d-fc37-4103-b4f4-1d227907f94e,Chai Nagri,Drinks & Juices,Black Coffee,40.00,,,YES
+5afa353a-7004-4d6b-8ce8-803c6264a7ba,Chai Nagri,Drinks & Juices,Black Currant Shake,80.00,,,YES
+c9c8e24c-0afc-429d-a677-d2fe481566d9,Chai Nagri,Drinks & Juices,Blue Lagoon,50.00,,,YES
+d3924145-6506-411b-9c82-030b156ebcde,Chai Nagri,Drinks & Juices,Blueberry Mojito,130.00,,,YES
+f0b2cff9-9bfd-4115-8ae2-cde74d6804ef,Chai Nagri,Drinks & Juices,Bread Jam,50.00,,,YES
+9b0805b8-bde3-427e-b974-6c7adabbaf7b,Chai Nagri,Drinks & Juices,Bun Muska,50.00,,,YES
+31a3f366-75cf-4247-a587-7a4d52d26308,Chai Nagri,Drinks & Juices,Butter Maggi,40.00,,,YES
+a851fe3f-8475-40ff-9dde-cbfb36f2edb7,Chai Nagri,Drinks & Juices,Butterscotch Shake,80.00,,,YES
+ee78cf64-822d-49b4-90d9-f34be9849e0e,Chai Nagri,Drinks & Juices,Caesar Salad,50.00,,,YES
+77f7b8cb-c9f6-457a-ab19-2f666e9c0d2e,Chai Nagri,Drinks & Juices,Chocolate Chai,20.00,,,YES
+927df0ec-73b3-4a70-a569-b1121d3e4da5,Chai Nagri,Drinks & Juices,Classic Cold Coffee,80.00,,,YES
+c70b0c9b-1d3f-48e9-838a-9a5bbda0dfd0,Chai Nagri,Drinks & Juices,Cutting Chai,20.00,,,YES
+f593df4b-bd71-4306-9d16-5de0a4e456c6,Chai Nagri,Drinks & Juices,Desi Fryums,50.00,,,YES
+5f1f924a-da3f-4970-80d5-0881a69a9bb6,Chai Nagri,Drinks & Juices,Dudh Patti,50.00,,,YES
+d24cd8bd-ec59-492c-b990-05885df8fb95,Chai Nagri,Drinks & Juices,Extra Strong Cold Coffee,90.00,,,YES
+9c120c97-0a07-4828-9c76-0bda4a3287c6,Chai Nagri,Drinks & Juices,Green Apple Mojito,70.00,,,YES
+8c4e43d4-3e4d-4b8a-89a8-86dfeea2d1f5,Chai Nagri,Drinks & Juices,Hot Coffee,60.00,,,YES
+754ec36f-de4a-4edd-a929-b0a6c3b636e9,Chai Nagri,Drinks & Juices,Mango Lassi,50.00,,,YES
+ca2e2963-40ae-4379-b825-bd58789b40f8,Chai Nagri,Drinks & Juices,Nagris Special Chai,20.00,,,YES
+6b8b3661-a3c7-409a-b21b-440aad71194b,Chai Nagri,Drinks & Juices,Nawabi Chai,20.00,,,YES
+8564e484-bf46-44e5-8ba6-e16a640e1711,Chai Nagri,Drinks & Juices,Onion Maggi,40.00,,,YES
+714e784c-96f3-4392-95c2-36d4a3e2a866,Chai Nagri,Drinks & Juices,Pahadi Chai,20.00,,,YES
+57eb030b-48ac-42ef-8413-284d6c2929d0,Chai Nagri,Drinks & Juices,Paneer Steamed Momos,6.00,,,YES
+6b25b5e7-ec49-418c-b66d-0569d020f7f0,Chai Nagri,Drinks & Juices,Peanut Shake,80.00,,,YES
+49350dc6-4b21-4bb4-9793-0bb507acc70d,Chai Nagri,Drinks & Juices,Peanut Toast,50.00,,,YES
+0662893d-eb96-4160-8d68-f7c99a5ec5ce,Chai Nagri,Drinks & Juices,Roohafza Lassi,50.00,,,YES
+42b2f066-bbc4-4c56-a85d-d3526c426c4a,Chai Nagri,Drinks & Juices,Salty Lassi,50.00,,,YES
+e80e3ed4-0a1e-444a-b1df-985114b9644a,Chai Nagri,Drinks & Juices,Steam Momos,20.00,,,YES
+3148f12f-de7f-46ef-8daf-369560940ee1,Chai Nagri,Drinks & Juices,Strawberry Shake,80.00,,,YES
+d9b32001-6d71-41cb-863c-a0824f6f7c2b,Chai Nagri,Drinks & Juices,Sweet Lassi,50.00,,,YES
+a7dda45f-46f3-4d41-a125-55995fc51c51,Chai Nagri,Drinks & Juices,Tandoori Maggi,40.00,,,YES
+4fa3ce20-e329-4cbc-b972-67c1f67e19ea,Chai Nagri,Drinks & Juices,Veg Maggi,40.00,,,YES
+f83cb642-efd6-4cd1-94e2-10491f156c81,Chai Nagri,Drinks & Juices,Veg Steamed Momos,6.00,,,YES
+63b76d1b-c0ec-481a-9bc8-bf96675c45dc,Chai Nagri,Drinks & Juices,Virgin Mojito,70.00,,,YES
+aac72295-d4b1-450a-adc3-bd70232fa68a,Chai Nagri,Drinks & Juices,Watermelon Mojito,130.00,,,YES
+521b849c-11be-41fc-a1ef-6a97654af906,Chai Nagri,Drinks & Juices,Watermelon Shake,80.00,,,YES
+299090d1-e03b-4ff6-9235-607f606b986e,Chai Nagri,Snacks & Chips,Achaari Burger,50.00,,,YES
+5af40468-0b94-4dfc-8bbe-b15ee9df72e8,Chai Nagri,Snacks & Chips,Achaari Grill Sandwich,50.00,,,YES
+b75fc041-659f-47f4-8c9e-885391b09798,Chai Nagri,Snacks & Chips,Afghani Spring Roll,60.00,,,YES
+782c18c9-459e-4a08-bc85-2eff1a2ec48b,Chai Nagri,Snacks & Chips,Aloo Tikki Burger,50.00,,,YES
+1d34652a-dbed-43d3-a499-34dfe0f1d9b4,Chai Nagri,Snacks & Chips,Aloo Tikki Wrap,60.00,,,YES
+682d1a06-05fd-4ceb-8796-0fde47010807,Chai Nagri,Snacks & Chips,Big Mexican Wrap,60.00,,,YES
+d60d15f0-7e36-4134-842d-2dee7ce7e7ee,Chai Nagri,Snacks & Chips,Butter Garlic,50.00,,,YES
+9f34c40d-12c9-42b1-ad5f-f75b1822b644,Chai Nagri,Snacks & Chips,Chaat Masala Special,50.00,,,YES
+65470dac-ab0a-4bff-b30d-c27c3e7eb3f9,Chai Nagri,Snacks & Chips,Cheese Corn Momos,60.00,,,YES
+5d2ac30f-bf54-44c3-ab85-397fe6c60f64,Chai Nagri,Snacks & Chips,Cheese Corn Noodles,50.00,,,YES
+70dd8143-c40a-4c93-bf05-d0e99b88bbd9,Chai Nagri,Snacks & Chips,Cheese Garlic,50.00,,,YES
+d432d7f7-02a0-4e6b-8470-db1cb699ad94,Chai Nagri,Snacks & Chips,Cheeseson Fries,60.00,,,YES
+478700c9-695d-4b88-ac93-87baf4caef0e,Chai Nagri,Snacks & Chips,Cheesy Mushroom Sandwich,50.00,,,YES
+31a43217-6ace-4b3b-9862-0acb7cb56c5f,Chai Nagri,Snacks & Chips,Cheesy Nachos,60.00,,,YES
+f7fc931a-7524-43a6-b1af-91a3fc516989,Chai Nagri,Snacks & Chips,Cheesy Spring Roll,140.00,,,YES
+0898bf54-9a63-4ebe-b64b-c7def6d3ca7f,Chai Nagri,Snacks & Chips,Chilli Garlic Noodles,50.00,,,YES
+2d34d98f-ecc6-4a1d-9085-b20a3fa0e0d2,Chai Nagri,Snacks & Chips,Chowmein Noodles,50.00,,,YES
+56209792-1918-4f39-a302-bc43ac3d6ade,Chai Nagri,Snacks & Chips,Country Special,50.00,,,YES
+69d4068e-394d-407b-a149-f5dd4374e065,Chai Nagri,Snacks & Chips,Fried Momos,60.00,,,YES
+f6a0e9ee-3eff-4aa3-8b23-81450b18609b,Chai Nagri,Snacks & Chips,Hakka Noodles,50.00,,,YES
+15055ad0-8779-4c61-97e5-30adec766d9c,Chai Nagri,Snacks & Chips,Indian Achari Wrap,60.00,,,YES
+3028adef-92b9-42c2-adc3-b59eeeaeef0d,Chai Nagri,Snacks & Chips,Malai Spring Roll,140.00,,,YES
+142c742b-f2c0-4f36-afa4-173636123fa8,Chai Nagri,Snacks & Chips,Malai Veg Momos,6.00,,,YES
+5488f635-7458-4c76-bfb7-e9c7e5a16fd0,Chai Nagri,Snacks & Chips,Margherita,50.00,,,YES
+743dd4b8-ae72-4eb2-a8c9-e0de5c9b1289,Chai Nagri,Snacks & Chips,Mexican Chilli Burger,50.00,,,YES
+57192870-be02-4bf8-8a2d-25ecf2269fa2,Chai Nagri,Snacks & Chips,Mexican Fries,60.00,,,YES
+634b6a2e-dc7f-4dca-b0be-ecf751b46609,Chai Nagri,Snacks & Chips,Mexican Salsa,50.00,,,YES
+bc71cdee-0b4a-46ee-adec-0f505e10ede6,Chai Nagri,Snacks & Chips,Mexican Taco,60.00,,,YES
+e573c393-c252-4d2c-b79f-ad45aa83fe92,Chai Nagri,Snacks & Chips,Mushroom Spring Roll,60.00,,,YES
+d94605bc-031b-472f-bc38-0afb62a18b99,Chai Nagri,Snacks & Chips,Nagris Signature Taco,60.00,,,YES
+66523abf-13e6-46df-a447-b933780ff25a,Chai Nagri,Snacks & Chips,Peri Peri Fries,60.00,,,YES
+c239ba20-7053-495e-acff-d0a6b840e4e7,Chai Nagri,Snacks & Chips,Pizza Momos,60.00,,,YES
+80d4308a-0164-424f-a47e-1bfdae457d6c,Chai Nagri,Snacks & Chips,Red Sauce,50.00,,,YES
+8ccfedb3-4a53-4d80-a96c-d27347fe4174,Chai Nagri,Snacks & Chips,Sab Kuch Loaded Wrap,60.00,,,YES
+0ef528a8-9e16-4bd3-b793-86eb874f9b4a,Chai Nagri,Snacks & Chips,Salted Fries,60.00,,,YES
+8f9cb476-149c-4a94-a827-cb6430662a54,Chai Nagri,Snacks & Chips,Schezwan Noodles,50.00,,,YES
+10bfb6a7-6e1d-469b-9ce4-f60440445d88,Chai Nagri,Snacks & Chips,Signature Wrap,60.00,,,YES
+d88153c8-2882-4c0e-bb0a-59808b8c5430,Chai Nagri,Snacks & Chips,Sweet Corn Salad,50.00,,,YES
+53987539-1639-42d9-97ff-3162f58d2fdf,Chai Nagri,Snacks & Chips,Tandoori Momos,60.00,,,YES
+7b5790d2-ca5d-449d-9484-0eb82109c6af,Chai Nagri,Snacks & Chips,Tandoori Pasta,90.00,,,YES
+6ac10b29-876c-4cd7-b9d1-23151a241222,Chai Nagri,Snacks & Chips,Tandoori Spring Roll,60.00,,,YES
+604d3ebc-b5ca-428e-bd5f-f1267dd6ae55,Chai Nagri,Snacks & Chips,Tandoori Veg Momos,60.00,,,YES
+7c797401-4d63-4a89-aae9-e811e1d113a5,Chai Nagri,Snacks & Chips,Veg Grill Sandwich,50.00,,,YES
+5a791349-b5a6-4948-bffc-6c3bf747c020,Chai Nagri,Snacks & Chips,Veg Noodles,50.00,,,YES
+bc87e991-95ab-4757-a7e7-ebb3a4b67ae4,Chai Nagri,Snacks & Chips,Veg Pan Fried Momos,130.00,,,YES
+50441578-c987-4216-9364-1e7ad4649b15,Chai Nagri,Snacks & Chips,Veg Spring Roll,60.00,,,YES
+a0af2a98-8ac6-479a-a176-d50e4fe6b9c9,Chai Nagri,Snacks & Chips,White Sauce,50.00,,,YES
+5e4b3417-2e3b-4e01-a84a-40f1db219407,Chai Nagri,Snacks & Chips,Yakhni Veg Momos,20.00,,,YES
+16c4bfa1-11c8-406e-9a22-99edb4be9e4c,Chai Nagri,Snacks & Chips,Yummy Spring Roll,60.00,,,YES

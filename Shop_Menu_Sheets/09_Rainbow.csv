@@ -1,0 +1,325 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-012f5c36,Rainbow,Canteen Food,Achari Chaap Roll,160.00,100.00,180.00,YES
+dish-7e00dbf1,Rainbow,Canteen Food,Achari Paneer Tikka,100.00,100.00,180.00,YES
+dish-87ea3fa7,Rainbow,Canteen Food,Achari Tikka Chaap,100.00,100.00,180.00,YES
+dish-fcbc120e,Rainbow,Canteen Food,Afgani Chaap,130.00,100.00,180.00,YES
+dish-a98d4c39,Rainbow,Canteen Food,Afgani Chaap Roll,100.00,100.00,180.00,YES
+dish-d060372e,Rainbow,Canteen Food,Afghani Chaap,170.00,100.00,180.00,YES
+dish-c3fce9f0,Rainbow,Canteen Food,Afghani Chaap Roll,160.00,100.00,180.00,YES
+dish-51eb6243,Rainbow,Canteen Food,Aloo Bread Pakoda,70.00,70.00,120.00,YES
+dish-0ce45d2c,Rainbow,Canteen Food,Aloo Gobhi Dry,70.00,70.00,120.00,YES
+dish-acf01e79,Rainbow,Canteen Food,Aloo Jeera,100.00,70.00,120.00,YES
+dish-410d3a6e,Rainbow,Canteen Food,Aloo Paratha,25.00,,,YES
+dish-969ef193,Rainbow,Canteen Food,Aloo Puri,70.00,70.00,120.00,YES
+dish-64c6f8da,Rainbow,Canteen Food,Aloo Puri 4 Pcs,70.00,70.00,120.00,YES
+dish-2361d414,Rainbow,Canteen Food,Aloo Pyaz Paratha,30.00,,,YES
+dish-3f838a84,Rainbow,Canteen Food,American Chopsuey,60.00,,,YES
+dish-864335eb,Rainbow,Canteen Food,American Corn,50.00,,,YES
+dish-725a680d,Rainbow,Canteen Food,Amritsari Kulcha,85.00,,,YES
+dish-e3ab5114,Rainbow,Canteen Food,Boondi Raita,70.00,,,YES
+dish-e92a3100,Rainbow,Canteen Food,Bread Roll,201.00,,,YES
+dish-3d544c82,Rainbow,Canteen Food,Burning Hot Garlic Pizza,120.00,,,YES
+dish-d2a271fe,Rainbow,Canteen Food,Butter Masala Chaap,100.00,100.00,180.00,YES
+dish-a0a90ba2,Rainbow,Canteen Food,Butter Masala Maggi,40.00,,,YES
+dish-c36924e9,Rainbow,Canteen Food,Butter Tawa Roti,10.00,,,YES
+dish-a3d54dac,Rainbow,Canteen Food,Chaap Biryani,140.00,90.00,160.00,YES
+dish-c6bcf43f,Rainbow,Canteen Food,Chaap Curry,100.00,100.00,180.00,YES
+dish-25357218,Rainbow,Canteen Food,Chaap Do Pyaza,70.00,100.00,180.00,YES
+dish-6eaaae76,Rainbow,Canteen Food,Chaap Hyderabadi Biryani,90.00,90.00,160.00,YES
+dish-c107c2e1,Rainbow,Canteen Food,Chaap Lazeez,100.00,100.00,180.00,YES
+dish-a0f17a88,Rainbow,Canteen Food,Chaap Rogan Josh,100.00,100.00,180.00,YES
+dish-4053f98d,Rainbow,Canteen Food,Chaap Thali,150.00,,,YES
+dish-283c892d,Rainbow,Canteen Food,Chana Masala,150.00,70.00,120.00,YES
+dish-959c8573,Rainbow,Canteen Food,Changezi Chaap,170.00,100.00,180.00,YES
+dish-2e483fa9,Rainbow,Canteen Food,Changezi Paneer,170.00,100.00,180.00,YES
+dish-d2ef1fc2,Rainbow,Canteen Food,Cheese Corn Pizza,120.00,,,YES
+dish-34992adc,Rainbow,Canteen Food,Cheese Corn Sandwich,70.00,,,YES
+dish-5a01a0bd,Rainbow,Canteen Food,Cheese Corn Stuff Garlic Bread,80.00,,,YES
+dish-0205ca2e,Rainbow,Canteen Food,Cheese Dosa,110.00,,,YES
+dish-4187c204,Rainbow,Canteen Food,Cheese Garlic Bread,35.00,,,YES
+dish-6d93ff6e,Rainbow,Canteen Food,Cheese Grilled Sandwich,70.00,,,YES
+dish-363541c5,Rainbow,Canteen Food,Cheese Maggi,601.00,,,YES
+dish-38c4ca5c,Rainbow,Canteen Food,Cheese Masala Dosa,120.00,,,YES
+dish-48cb6dbe,Rainbow,Canteen Food,Cheese Onion Dosa,110.00,,,YES
+dish-5d9fd4aa,Rainbow,Canteen Food,Cheese Paneer Dosa,110.00,,,YES
+dish-dbb700ca,Rainbow,Canteen Food,Cheese Special Dosa,110.00,,,YES
+dish-3ad647b9,Rainbow,Canteen Food,Chilli Mushroom,80.00,80.00,140.00,YES
+dish-bdf1cf77,Rainbow,Canteen Food,Chilli Paneer,100.00,100.00,180.00,YES
+dish-bb054008,Rainbow,Canteen Food,Chilly Garlic Fried Rice,70.00,70.00,120.00,YES
+dish-1e45bd82,Rainbow,Canteen Food,Chilly Garlic Noodle,60.00,,,YES
+dish-79adc310,Rainbow,Canteen Food,Chilly Gobhi,240.00,,,YES
+dish-0e65f23c,Rainbow,Canteen Food,Chilly Mushroom,170.00,80.00,140.00,YES
+dish-ce0f4c91,Rainbow,Canteen Food,Chilly Paneer Dry Gravy,110.00,100.00,180.00,YES
+dish-10384ebe,Rainbow,Canteen Food,Chilly Paneer Noodle Bowl,100.00,100.00,180.00,YES
+dish-ab8adf11,Rainbow,Canteen Food,Chilly Paneer Rice Bowl,70.00,,,YES
+dish-f10ec2c6,Rainbow,Canteen Food,Chilly Potato,70.00,,,YES
+dish-4cabd51b,Rainbow,Canteen Food,Chinese Bhel,60.00,,,YES
+dish-122ec953,Rainbow,Canteen Food,Chinese Sizzler,60.00,,,YES
+dish-a738fa8d,Rainbow,Canteen Food,Chole Bhature,301.00,,,YES
+dish-48017218,Rainbow,Canteen Food,Choley Chawal,70.00,,,YES
+dish-a5a469b8,Rainbow,Canteen Food,Choley Chawal Combo,60.00,,,YES
+dish-4177cb28,Rainbow,Canteen Food,Club Pizza,120.00,,,YES
+dish-4589bf08,Rainbow,Canteen Food,Coc Pizza,120.00,,,YES
+dish-fddd8ff7,Rainbow,Canteen Food,Crispy Corn,150.00,,,YES
+dish-fa581d29,Rainbow,Canteen Food,Crispy Veg,60.00,,,YES
+dish-88838b0d,Rainbow,Canteen Food,Curd Rice,70.00,,,YES
+dish-89689bef,Rainbow,Canteen Food,Dal Dhaba,70.00,70.00,120.00,YES
+dish-afb8433f,Rainbow,Canteen Food,Dal Fry,90.00,70.00,120.00,YES
+dish-6bdf7675,Rainbow,Canteen Food,Dal Handi,100.00,70.00,120.00,YES
+dish-20cdefb4,Rainbow,Canteen Food,Dal Khichdi,70.00,,,YES
+dish-9517b485,Rainbow,Canteen Food,Dal Khichdi Combo,70.00,,,YES
+dish-fe26ab9b,Rainbow,Canteen Food,Dal Makhani,140.00,80.00,140.00,YES
+dish-0e02cde8,Rainbow,Canteen Food,Dal Makhni Chawal,190.00,70.00,120.00,YES
+dish-bb4f0ddd,Rainbow,Canteen Food,Dal Makhni Chawal Combo,70.00,70.00,120.00,YES
+dish-64c2dbc1,Rainbow,Canteen Food,Dal Makhni Jeera Rice Thali,120.00,,,YES
+dish-672b1439,Rainbow,Canteen Food,Dal Tadka,80.00,70.00,120.00,YES
+dish-9f0d974c,Rainbow,Canteen Food,Dal Tadka Jeera Rice Thali,120.00,,,YES
+dish-f86a51b5,Rainbow,Canteen Food,Dal Tadka Thali,120.00,,,YES
+dish-15aba173,Rainbow,Canteen Food,Deluxe Thali,70.00,,,YES
+dish-7253466e,Rainbow,Canteen Food,Farm House Pizza,120.00,,,YES
+dish-91b61389,Rainbow,Canteen Food,Fried Maggi,40.00,,,YES
+dish-9e46392e,Rainbow,Canteen Food,Fried Sandwich,45.00,,,YES
+dish-0dc0864c,Rainbow,Canteen Food,Garlic Naan,70.00,,,YES
+dish-ec27c31f,Rainbow,Canteen Food,Garlic Tikka Chaap,120.00,100.00,180.00,YES
+dish-6e246436,Rainbow,Canteen Food,Ghar Wali Thali,99.00,,,YES
+dish-0fd2ac49,Rainbow,Canteen Food,Green Salad,40.00,,,YES
+dish-aebf1c78,Rainbow,Canteen Food,Hakka Noodle,100.00,,,YES
+dish-65992c3c,Rainbow,Canteen Food,Hakka Noodles,150.00,,,YES
+dish-718f5f36,Rainbow,Canteen Food,Handi Chaap,170.00,100.00,180.00,YES
+dish-f96cdc95,Rainbow,Canteen Food,Handi Paneer,170.00,100.00,180.00,YES
+dish-2e4d26b2,Rainbow,Canteen Food,Honey Chilly Potato,70.00,,,YES
+dish-dfde7747,Rainbow,Canteen Food,Idli Sambhar,60.00,,,YES
+dish-c1f6cf1a,Rainbow,Canteen Food,Idli Vada Sambhar,60.00,,,YES
+dish-d47335bb,Rainbow,Canteen Food,Jeera Pulao,70.00,70.00,120.00,YES
+dish-6beba325,Rainbow,Canteen Food,Jeera Rice,70.00,,,YES
+dish-60adc503,Rainbow,Canteen Food,Kadhai Chaap,170.00,100.00,180.00,YES
+dish-0c27795d,Rainbow,Canteen Food,Kadhai Paneer,160.00,100.00,180.00,YES
+dish-b1534a8b,Rainbow,Canteen Food,Kadhai Paneer Thali,140.00,,,YES
+dish-e28f2199,Rainbow,Canteen Food,Kalimirch Chaap,170.00,100.00,180.00,YES
+dish-b7962292,Rainbow,Canteen Food,Kalimirch Chaap Roll,100.00,100.00,180.00,YES
+dish-dc7c6859,Rainbow,Canteen Food,Kalimirch Paneer,100.00,100.00,180.00,YES
+dish-340c7fbd,Rainbow,Canteen Food,Kulcha Thali,8.00,,,YES
+dish-9b6e9801,Rainbow,Canteen Food,Kulhad Pizza,120.00,,,YES
+dish-13d67fa7,Rainbow,Canteen Food,Kurkure Spring Roll,80.00,,,YES
+dish-fd19efe8,Rainbow,Canteen Food,Kutchumber Salad,40.00,,,YES
+dish-c0fd359a,Rainbow,Canteen Food,Laccha Paratha,80.00,,,YES
+dish-320de4ac,Rainbow,Canteen Food,Lemon Coriander Chaap,100.00,100.00,180.00,YES
+dish-ce63c3d4,Rainbow,Canteen Food,Makhani Pasta,110.00,,,YES
+dish-83af7ea8,Rainbow,Canteen Food,Malai Chaap,120.00,100.00,180.00,YES
+dish-fcc25b27,Rainbow,Canteen Food,Malai Chaap Roll,160.00,100.00,180.00,YES
+dish-2ae8ae44,Rainbow,Canteen Food,Malai Kofta,190.00,100.00,180.00,YES
+dish-675589da,Rainbow,Canteen Food,Manchurian Noodle Bowl,99.00,,,YES
+dish-920c4d7a,Rainbow,Canteen Food,Manchurian Rice Bowl,70.00,,,YES
+dish-3e53b02c,Rainbow,Canteen Food,Margherita Pizza,120.00,,,YES
+dish-62910dae,Rainbow,Canteen Food,Masala Chaap Roll,100.00,100.00,180.00,YES
+dish-71274487,Rainbow,Canteen Food,Masala Chilla Besan,50.00,,,YES
+dish-3be8855e,Rainbow,Canteen Food,Masala Dosa,100.00,,,YES
+dish-f7dd0e51,Rainbow,Canteen Food,Masala Maggi,40.00,,,YES
+dish-1b092246,Rainbow,Canteen Food,Masala Papad,20.00,,,YES
+dish-67180a86,Rainbow,Canteen Food,Masala Pasta,110.00,,,YES
+dish-6ce7c702,Rainbow,Canteen Food,Masala Uttapam,80.00,,,YES
+dish-f5a1429c,Rainbow,Canteen Food,Matar Mushroom,170.00,80.00,140.00,YES
+dish-f39db14a,Rainbow,Canteen Food,Matar Paneer,100.00,100.00,180.00,YES
+dish-e42f9e20,Rainbow,Canteen Food,Matar Pulao,100.00,70.00,120.00,YES
+dish-de969b10,Rainbow,Canteen Food,Mexican Pasta White Red,110.00,,,YES
+dish-36e552b3,Rainbow,Canteen Food,Mexican Pizza Mix,120.00,,,YES
+dish-a7ac4f44,Rainbow,Canteen Food,Mini Thali,99.00,,,YES
+dish-cb37d6d6,Rainbow,Canteen Food,Mirch Methi Malai Seekh Kabab,130.00,,,YES
+dish-0f488928,Rainbow,Canteen Food,Missi Roti,55.00,,,YES
+dish-be9b2115,Rainbow,Canteen Food,Mix Sauce Pasta,90.00,,,YES
+dish-75549e28,Rainbow,Canteen Food,Mix Veg,100.00,70.00,120.00,YES
+dish-06f22b4e,Rainbow,Canteen Food,Mix Veg Raita,70.00,70.00,120.00,YES
+dish-7581f821,Rainbow,Canteen Food,Mix Veg Thali,120.00,,,YES
+dish-3ab7f8bc,Rainbow,Canteen Food,Mix Veg Uttapam,80.00,,,YES
+dish-992d0944,Rainbow,Canteen Food,Moonglet,60.00,,,YES
+dish-7df2b095,Rainbow,Canteen Food,Mughlai Chaap,100.00,100.00,180.00,YES
+dish-b5af964b,Rainbow,Canteen Food,Mughlai Paneer,190.00,100.00,180.00,YES
+dish-c951b7cb,Rainbow,Canteen Food,Mushroom Curry,80.00,80.00,140.00,YES
+dish-c7554f8e,Rainbow,Canteen Food,Mushroom Do Pyaza,250.00,80.00,140.00,YES
+dish-a86d2007,Rainbow,Canteen Food,Mushroom Fried Rice,110.00,70.00,120.00,YES
+dish-14e051e2,Rainbow,Canteen Food,Mushroom Masala,120.00,80.00,140.00,YES
+dish-f108db28,Rainbow,Canteen Food,Mushroom Tikka,250.00,80.00,140.00,YES
+dish-471ac93c,Rainbow,Canteen Food,Mushroom Tikka Bread,80.00,80.00,140.00,YES
+dish-d01ebcda,Rainbow,Canteen Food,Mushroom Tikka Masala,80.00,80.00,140.00,YES
+dish-152c61a3,Rainbow,Canteen Food,Mushroom Tikka Roll,160.00,80.00,140.00,YES
+dish-1d7bf74a,Rainbow,Canteen Food,Onion Kulcha,70.00,,,YES
+dish-6ba7ecbd,Rainbow,Canteen Food,Onion Masala Dosa,100.00,,,YES
+dish-bb69d31a,Rainbow,Canteen Food,Onion Paneer Uttapam,110.00,,,YES
+dish-f019014e,Rainbow,Canteen Food,Onion Salad,180.00,,,YES
+dish-2b81cd7a,Rainbow,Canteen Food,Onion Uttapam,90.00,,,YES
+dish-b4f5af98,Rainbow,Canteen Food,Paneer,100.00,100.00,180.00,YES
+dish-96fd25d4,Rainbow,Canteen Food,Paneer Angara,100.00,100.00,180.00,YES
+dish-dc00fc1c,Rainbow,Canteen Food,Paneer Bhurji,200.00,100.00,180.00,YES
+dish-89268438,Rainbow,Canteen Food,Paneer Bread Pakoda,251.00,100.00,180.00,YES
+dish-cc677132,Rainbow,Canteen Food,Paneer Burger,80.00,100.00,180.00,YES
+dish-0020ca86,Rainbow,Canteen Food,Paneer Butter Masala,130.00,100.00,180.00,YES
+dish-01f4ebdf,Rainbow,Canteen Food,Paneer Cheese Maggi,100.00,100.00,180.00,YES
+dish-d7dc8b93,Rainbow,Canteen Food,Paneer Curry,100.00,100.00,180.00,YES
+dish-bad36fa1,Rainbow,Canteen Food,Paneer Do Pyaza,120.00,100.00,180.00,YES
+dish-e00414c0,Rainbow,Canteen Food,Paneer Dosa,140.00,,,YES
+dish-9af68e63,Rainbow,Canteen Food,Paneer Fried Momo,60.00,100.00,180.00,YES
+dish-ec671173,Rainbow,Canteen Food,Paneer Fried Rice,110.00,70.00,120.00,YES
+dish-88677548,Rainbow,Canteen Food,Paneer Kalimirch Tikka,100.00,100.00,180.00,YES
+dish-7cfab0a8,Rainbow,Canteen Food,Paneer Kathi Roll,100.00,100.00,180.00,YES
+dish-5f4ab2cd,Rainbow,Canteen Food,Paneer Kurkure Momo,100.00,100.00,180.00,YES
+dish-a0785480,Rainbow,Canteen Food,Paneer Lababdar,190.00,100.00,180.00,YES
+dish-b73f7fe6,Rainbow,Canteen Food,Paneer Lababdar Roll,100.00,100.00,180.00,YES
+dish-bd4d07a8,Rainbow,Canteen Food,Paneer Lazeez,100.00,100.00,180.00,YES
+dish-104428f6,Rainbow,Canteen Food,Paneer Maggi,290.00,100.00,180.00,YES
+dish-75909626,Rainbow,Canteen Food,Paneer Malai Tikka,100.00,100.00,180.00,YES
+dish-0b424c75,Rainbow,Canteen Food,Paneer Momo,60.00,100.00,180.00,YES
+dish-36d5c35e,Rainbow,Canteen Food,Paneer Momos,100.00,100.00,180.00,YES
+dish-cb609678,Rainbow,Canteen Food,Paneer Mushroom,100.00,100.00,180.00,YES
+dish-62b364b2,Rainbow,Canteen Food,Paneer Naan,60.00,,,YES
+dish-cf127b9f,Rainbow,Canteen Food,Paneer Onion Masala Dosa,90.00,,,YES
+dish-2bf0ace3,Rainbow,Canteen Food,Paneer Paratha,70.00,,,YES
+dish-f6e684a5,Rainbow,Canteen Food,Paneer Peri Peri Momo,100.00,100.00,180.00,YES
+dish-b812775b,Rainbow,Canteen Food,Paneer Pizza,120.00,,,YES
+dish-a6f2b081,Rainbow,Canteen Food,Paneer Pulao,100.00,70.00,120.00,YES
+dish-9e5e8abd,Rainbow,Canteen Food,Paneer Pyaz Paratha,100.00,,,YES
+dish-8bafeaed,Rainbow,Canteen Food,Paneer Raara,100.00,100.00,180.00,YES
+dish-7638c5f0,Rainbow,Canteen Food,Paneer Rogan Josh,190.00,100.00,180.00,YES
+dish-ad00b46f,Rainbow,Canteen Food,Paneer Sandwich,50.00,100.00,180.00,YES
+dish-acc2464a,Rainbow,Canteen Food,Paneer Tikka,170.00,100.00,180.00,YES
+dish-cec42830,Rainbow,Canteen Food,Paneer Tikka Biryani,90.00,90.00,160.00,YES
+dish-9700df7d,Rainbow,Canteen Food,Paneer Tikka Bread,100.00,100.00,180.00,YES
+dish-65a23705,Rainbow,Canteen Food,Paneer Tikka Masala,280.00,100.00,180.00,YES
+dish-8c5820e4,Rainbow,Canteen Food,Paneer Tikka Roll,160.00,100.00,180.00,YES
+dish-1c6445ad,Rainbow,Canteen Food,Paneer Uttapam,110.00,,,YES
+dish-5e7ae9bd,Rainbow,Canteen Food,Paper Dosa,70.00,,,YES
+dish-52f1a419,Rainbow,Canteen Food,Patiala Chaap,100.00,100.00,180.00,YES
+dish-fd494642,Rainbow,Canteen Food,Patiala Handi Chaap,100.00,100.00,180.00,YES
+dish-ade089c4,Rainbow,Canteen Food,Pav Bhaji,100.00,,,YES
+dish-3473e8ee,Rainbow,Canteen Food,Peri Peri Naan,60.00,,,YES
+dish-be81d79b,Rainbow,Canteen Food,Pineapple Raita,120.00,,,YES
+dish-24422f54,Rainbow,Canteen Food,Plain Chilla Besan,50.00,,,YES
+dish-06c84303,Rainbow,Canteen Food,Plain Kulcha,25.00,,,YES
+dish-79104417,Rainbow,Canteen Food,Plain Maggi,40.00,,,YES
+dish-46ed2dad,Rainbow,Canteen Food,Plain Naan,150.00,,,YES
+dish-7d9335d8,Rainbow,Canteen Food,Plain Papad,20.00,,,YES
+dish-9b31bee2,Rainbow,Canteen Food,Plain Pulao,70.00,70.00,120.00,YES
+dish-90c27096,Rainbow,Canteen Food,Plain Raita,50.00,,,YES
+dish-844ed0d3,Rainbow,Canteen Food,Plain Rice,121.00,,,YES
+dish-9bbf7a4e,Rainbow,Canteen Food,Poha,50.00,,,YES
+dish-68e1f02b,Rainbow,Canteen Food,Pulao,70.00,70.00,120.00,YES
+dish-c5b1157b,Rainbow,Canteen Food,Punjabi Chaap,170.00,100.00,180.00,YES
+dish-e9260153,Rainbow,Canteen Food,Punjabi Chaap Roll,100.00,100.00,180.00,YES
+dish-d1a8f7aa,Rainbow,Canteen Food,Punjabi Dum Aloo,160.00,70.00,120.00,YES
+dish-bd867af0,Rainbow,Canteen Food,Punjabi Paneer,100.00,100.00,180.00,YES
+dish-b4e5aadf,Rainbow,Canteen Food,Punjabi Paneer Kadhai Paneer Thali,150.00,,,YES
+dish-e01b9b76,Rainbow,Canteen Food,Punjabi Paneer Roll,100.00,100.00,180.00,YES
+dish-1f2716ff,Rainbow,Canteen Food,Punjabi Paneer Thali,150.00,,,YES
+dish-64e193b1,Rainbow,Canteen Food,Punjabi Thali,150.00,,,YES
+dish-5a6d82eb,Rainbow,Canteen Food,Rajma Chawal,70.00,,,YES
+dish-64c2642c,Rainbow,Canteen Food,Rajma Chawal Combo,60.00,,,YES
+dish-b3fbd9a8,Rainbow,Canteen Food,Red Sauce Pasta,120.00,,,YES
+dish-e454f856,Rainbow,Canteen Food,Rumali Roti,121.00,,,YES
+dish-55693d6b,Rainbow,Canteen Food,Satay Vegetable,60.00,,,YES
+dish-605e7572,Rainbow,Canteen Food,Schezwan Maggi,40.00,,,YES
+dish-ce87a48b,Rainbow,Canteen Food,Schezwan Noodle,60.00,,,YES
+dish-37b627ea,Rainbow,Canteen Food,Sev Bhaji,160.00,,,YES
+dish-5c7847bb,Rainbow,Canteen Food,Shahi Paneer,100.00,100.00,180.00,YES
+dish-cec4ec56,Rainbow,Canteen Food,Singapuri Noodle,60.00,,,YES
+dish-52dac46d,Rainbow,Canteen Food,Singapuri Paneer,100.00,100.00,180.00,YES
+dish-d8f25ff6,Rainbow,Canteen Food,Special Chaap Handi Biryani,90.00,90.00,160.00,YES
+dish-7b9baa80,Rainbow,Canteen Food,Special Dosa,150.00,,,YES
+dish-6b662ba9,Rainbow,Canteen Food,Special Thali,801.00,,,YES
+dish-143c91fb,Rainbow,Canteen Food,Special Uttapam,110.00,,,YES
+dish-460da66f,Rainbow,Canteen Food,Special Veg Handi Biryani,90.00,90.00,160.00,YES
+dish-4f1c446d,Rainbow,Canteen Food,Spicy Paneer Pizza,140.00,,,YES
+dish-ac3f5562,Rainbow,Canteen Food,Spicy Veggie Pizza,30.00,,,YES
+dish-1f0fa115,Rainbow,Canteen Food,Spring Roll,80.00,,,YES
+dish-3cf3b091,Rainbow,Canteen Food,Stuff Naan,60.00,,,YES
+dish-398f1b80,Rainbow,Canteen Food,Supreme Thali,180.00,,,YES
+dish-74914967,Rainbow,Canteen Food,Tandoori Butter Roti,14.00,,,YES
+dish-84f4a86a,Rainbow,Canteen Food,Tandoori Chaap,120.00,100.00,180.00,YES
+dish-2263a2f1,Rainbow,Canteen Food,Tandoori Chaap Roll,150.00,100.00,180.00,YES
+dish-9254e31b,Rainbow,Canteen Food,Tandoori Maggi,40.00,,,YES
+dish-311b9ebe,Rainbow,Canteen Food,Tandoori Paneer Momo,100.00,100.00,180.00,YES
+dish-688ff972,Rainbow,Canteen Food,Tandoori Paneer Pizza,140.00,,,YES
+dish-d8c40bfc,Rainbow,Canteen Food,Tandoori Roti,100.00,,,YES
+dish-6ac9e1f3,Rainbow,Canteen Food,Tandoori Sandwich,50.00,,,YES
+dish-6271930e,Rainbow,Canteen Food,Tandoori Veg Momo,80.00,,,YES
+dish-3588264a,Rainbow,Canteen Food,Tawa Chaap,110.00,100.00,180.00,YES
+dish-957404fa,Rainbow,Canteen Food,Tawa Mushroom,170.00,80.00,140.00,YES
+dish-592ba3ab,Rainbow,Canteen Food,Tawa Roti,121.00,,,YES
+dish-337d66a0,Rainbow,Canteen Food,Ting Ming Mushroom,80.00,80.00,140.00,YES
+dish-b91e7c64,Rainbow,Canteen Food,Vada Pav,701.00,,,YES
+dish-1154e932,Rainbow,Canteen Food,Vada Sambhar,251.00,,,YES
+dish-b7eeb7c5,Rainbow,Canteen Food,Veg Biryani,70.00,,,YES
+dish-32cca332,Rainbow,Canteen Food,Veg Burger,50.00,,,YES
+dish-e2969023,Rainbow,Canteen Food,Veg Cheese Burger,70.00,,,YES
+dish-23c0b43b,Rainbow,Canteen Food,Veg Fried Momo,60.00,,,YES
+dish-210fff4f,Rainbow,Canteen Food,Veg Fried Rice,50.00,70.00,120.00,YES
+dish-ad74ce73,Rainbow,Canteen Food,Veg Grilled Sandwich,45.00,,,YES
+dish-bd367f60,Rainbow,Canteen Food,Veg Hyderabadi Biryani,250.00,90.00,160.00,YES
+dish-9cb79b50,Rainbow,Canteen Food,Veg Kathi Roll,60.00,,,YES
+dish-30bac6f2,Rainbow,Canteen Food,Veg Kurkure Momo,80.00,,,YES
+dish-544f0dec,Rainbow,Canteen Food,Veg Maggi,40.00,,,YES
+dish-8ecbc3c6,Rainbow,Canteen Food,Veg Manchurian,190.00,,,YES
+dish-a7d8f357,Rainbow,Canteen Food,Veg Manchurian Dry Gravy,60.00,,,YES
+dish-a539f1e4,Rainbow,Canteen Food,Veg Momo,60.00,,,YES
+dish-64f6fc8c,Rainbow,Canteen Food,Veg Momos,20.00,,,YES
+dish-ad0273cc,Rainbow,Canteen Food,Veg Noodle Chowmein,60.00,,,YES
+dish-ab9fff91,Rainbow,Canteen Food,Veg Peri Peri Momo,60.00,,,YES
+dish-104bab5f,Rainbow,Canteen Food,Veg Pulao,100.00,70.00,120.00,YES
+dish-56363b5b,Rainbow,Canteen Food,Veg Sandwich,50.00,,,YES
+dish-869bb978,Rainbow,Canteen Food,Veg Seekh Kabab,130.00,,,YES
+dish-ff820572,Rainbow,Canteen Food,Vegetable Salad,40.00,,,YES
+dish-5af943ca,Rainbow,Canteen Food,White Sauce Pasta,90.00,,,YES
+dish-7835926a,Rainbow,Chocolates & Candies,Brownie Waffle,99.00,,,YES
+dish-235cdf23,Rainbow,Chocolates & Candies,Chhena Poda,50.00,,,YES
+dish-3056bf9e,Rainbow,Chocolates & Candies,Chocolate Cake,50.00,,,YES
+dish-8a589702,Rainbow,Chocolates & Candies,Chocolate Waffle,99.00,,,YES
+dish-f37b6aa8,Rainbow,Chocolates & Candies,Gajar Halwa,50.00,,,YES
+dish-22dc2244,Rainbow,Chocolates & Candies,Gulab Jamun,40.00,,,YES
+dish-035572f4,Rainbow,Chocolates & Candies,Gulab Jamun 2 Pcs,40.00,,,YES
+dish-786f6313,Rainbow,Chocolates & Candies,Hot Brownie,69.00,,,YES
+dish-af3465db,Rainbow,Chocolates & Candies,Hot Brownie With Ice Cream,89.00,,,YES
+dish-12509b1f,Rainbow,Chocolates & Candies,Ice Cream,50.00,,,YES
+dish-96f5fece,Rainbow,Chocolates & Candies,Ice Cream Topping Extra,10.00,,,YES
+dish-31eeb9f9,Rainbow,Chocolates & Candies,Kulfi,50.00,,,YES
+dish-4a884fb0,Rainbow,Chocolates & Candies,Kulhad Kheer,40.00,,,YES
+dish-d755f22f,Rainbow,Chocolates & Candies,Ras Malai,50.00,,,YES
+dish-c16cce5a,Rainbow,Chocolates & Candies,Rasgulla,50.00,,,YES
+dish-281a6e4d,Rainbow,Chocolates & Candies,Strawberry Ice Cream,50.00,,,YES
+dish-c9b03216,Rainbow,Drinks & Juices,Blue Lagoon,50.00,,,YES
+dish-1fcfe11e,Rainbow,Drinks & Juices,Blue Lagoon Mojito,60.00,,,YES
+dish-5ab2847d,Rainbow,Drinks & Juices,Brownie Shake,80.00,,,YES
+dish-1b27e5e9,Rainbow,Drinks & Juices,Butter Scotch Shake,80.00,,,YES
+dish-b5278a32,Rainbow,Drinks & Juices,Chocolate Shake,121.00,,,YES
+dish-91e31810,Rainbow,Drinks & Juices,Cold Coffee,10.00,,,YES
+dish-e8e03514,Rainbow,Drinks & Juices,Cold Coffee Strong,160.00,,,YES
+dish-03abe010,Rainbow,Drinks & Juices,Cold Coffee With Ice Cream,60.00,,,YES
+dish-f42e50a0,Rainbow,Drinks & Juices,Dark Chocolate Shake,60.00,,,YES
+dish-793bab74,Rainbow,Drinks & Juices,Fresh Lime Soda,50.00,,,YES
+dish-fc9c8a32,Rainbow,Drinks & Juices,Green Apple Mojito,1301.00,,,YES
+dish-dfa0ecb8,Rainbow,Drinks & Juices,Hot Coffee,60.00,,,YES
+dish-8b19d291,Rainbow,Drinks & Juices,Iced Tea,50.00,,,YES
+dish-294d7a8e,Rainbow,Drinks & Juices,Kesar Badam Shake,80.00,,,YES
+dish-911a700b,Rainbow,Drinks & Juices,Kit Kat Shake,70.00,,,YES
+dish-755d0a59,Rainbow,Drinks & Juices,Kulhad Lassi,40.00,,,YES
+dish-efaec58c,Rainbow,Drinks & Juices,Kulhad Tea,15.00,,,YES
+dish-4985ecb7,Rainbow,Drinks & Juices,Lemon Ice Tea,50.00,,,YES
+dish-026a69f1,Rainbow,Drinks & Juices,Mango Mojito,60.00,,,YES
+dish-40354770,Rainbow,Drinks & Juices,Mango Shake,80.00,,,YES
+dish-69ad1b6a,Rainbow,Drinks & Juices,Nutella Shake,70.00,,,YES
+dish-97d1da22,Rainbow,Drinks & Juices,Oreo Shake,70.00,,,YES
+dish-7eff2260,Rainbow,Drinks & Juices,Oreo Shake With Ice Cream,70.00,,,YES
+dish-cd72a8a2,Rainbow,Drinks & Juices,Peach Ice Tea,50.00,,,YES
+dish-c7b59ede,Rainbow,Drinks & Juices,Pineapple Shake,60.00,,,YES
+dish-19b7243d,Rainbow,Drinks & Juices,Soda Shikanji,30.00,,,YES
+dish-0e9280e5,Rainbow,Drinks & Juices,Strawberry Mojito,60.00,,,YES
+dish-82bb4723,Rainbow,Drinks & Juices,Strawberry Shake,50.00,,,YES
+dish-b2c8fae8,Rainbow,Drinks & Juices,Virgin Mojito,70.00,,,YES
+dish-0a1f6f78,Rainbow,Drinks & Juices,Water Melon,40.00,,,YES
+dish-3693273f,Rainbow,Drinks & Juices,Watermelon Mojito,130.00,,,YES
+dish-afec5df3,Rainbow,Snacks & Chips,Butter Toast,50.00,,,YES
+dish-667a8cc0,Rainbow,Snacks & Chips,Cheese Nachos,50.00,,,YES
+dish-546389e7,Rainbow,Snacks & Chips,French Fries,60.00,,,YES
+dish-699fc5ea,Rainbow,Snacks & Chips,Loaded Cheesy Fries,120.00,,,YES
+dish-a0b8e8cf,Rainbow,Snacks & Chips,Masala Nachos,50.00,,,YES
+dish-d7ec0824,Rainbow,Snacks & Chips,Mix Pakoda,50.00,,,YES
+dish-f3d1f375,Rainbow,Snacks & Chips,Nachos,50.00,,,YES
+dish-ad5ff683,Rainbow,Snacks & Chips,Peri Peri Fries,701.00,,,YES
+dish-2a7ee843,Rainbow,Snacks & Chips,Veg Cutlet 6 Pcs,50.00,,,YES

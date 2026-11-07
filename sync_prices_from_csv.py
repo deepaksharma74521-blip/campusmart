@@ -1,7 +1,7 @@
 # ==============================================================================
 # Campus Mart – 1-Click Price Synchronizer from Excel / CSV Sheet
 # File: sync_prices_from_csv.py
-# Description: Reads all_menu_prices.csv, updates canteen_db.json, and pushes live to Git/Render
+# Description: Reads all_menu_prices.csv AND Shop_Menu_Sheets/*.csv, updates canteen_db.json, and pushes live to Git/Render
 # ==============================================================================
 
 import os
@@ -10,53 +10,63 @@ import csv
 import json
 import subprocess
 
-CSV_FILE = "all_menu_prices.csv"
+ALL_CSV = "all_menu_prices.csv"
+SHOP_DIR = "Shop_Menu_Sheets"
 DB_FILE = os.path.join("data", "canteen_db.json")
 
 print("=" * 65)
 print("  🍔 CAMPUS MART – 1-CLICK EXCEL PRICE SYNCHRONIZER 🚀")
 print("=" * 65)
 
-if not os.path.exists(CSV_FILE):
-    print(f"[ERROR] '{CSV_FILE}' not found! Please make sure the CSV file is in the project folder.")
-    input("\nPress Enter to exit...")
-    sys.exit(1)
-
 if not os.path.exists(DB_FILE):
     print(f"[ERROR] Database file '{DB_FILE}' not found!")
-    input("\nPress Enter to exit...")
     sys.exit(1)
 
-# Read CSV rows
-rows = []
-for enc in ['utf-8-sig', 'utf-8', 'cp1252', 'latin-1']:
-    try:
-        with open(CSV_FILE, 'r', encoding=enc) as f:
-            reader = csv.DictReader(f)
-            rows = list(reader)
-        print(f"[OK] Successfully read {len(rows)} rows from '{CSV_FILE}' (Encoding: {enc}).")
-        break
-    except Exception:
-        continue
+def read_csv_file(path):
+    for enc in ['utf-8-sig', 'utf-8', 'cp1252', 'latin-1']:
+        try:
+            with open(path, 'r', encoding=enc) as f:
+                reader = csv.DictReader(f)
+                return list(reader)
+        except Exception:
+            continue
+    return []
 
-if not rows:
-    print("[ERROR] Failed to read rows from CSV file. Please check file format.")
-    input("\nPress Enter to exit...")
+# Collect all files to read
+csv_files_to_read = []
+if os.path.exists(ALL_CSV):
+    csv_files_to_read.append(ALL_CSV)
+
+if os.path.exists(SHOP_DIR):
+    for fname in sorted(os.listdir(SHOP_DIR)):
+        if fname.endswith(".csv"):
+            csv_files_to_read.append(os.path.join(SHOP_DIR, fname))
+
+if not csv_files_to_read:
+    print("[ERROR] No CSV price sheets found!")
+    print(f"Please check that '{ALL_CSV}' or '{SHOP_DIR}/' exists.")
     sys.exit(1)
 
-# Build quick lookup maps
+print(f"[INFO] Scanning {len(csv_files_to_read)} CSV files (Master sheet + Shop sheets)...")
+
 by_id = {}
 by_name_shop = {}
+total_rows_read = 0
 
-for r in rows:
-    item_id = (r.get('Item_ID') or '').strip()
-    shop = (r.get('Shop_Name') or '').strip().lower()
-    dish = (r.get('Dish_Name') or '').strip().lower()
+for file_path in csv_files_to_read:
+    file_rows = read_csv_file(file_path)
+    total_rows_read += len(file_rows)
+    for r in file_rows:
+        item_id = (r.get('Item_ID') or '').strip()
+        shop = (r.get('Shop_Name') or '').strip().lower()
+        dish = (r.get('Dish_Name') or '').strip().lower()
 
-    if item_id:
-        by_id[item_id] = r
-    if shop and dish:
-        by_name_shop[(shop, dish)] = r
+        if item_id:
+            by_id[item_id] = r
+        if shop and dish:
+            by_name_shop[(shop, dish)] = r
+
+print(f"[OK] Indexed {len(by_id)} unique dishes across {len(csv_files_to_read)} files.")
 
 # Load Database
 with open(DB_FILE, 'r', encoding='utf-8') as f:
@@ -109,12 +119,9 @@ for itm in food_items:
                 changed = True
         except ValueError:
             pass
-    elif itm.get('hasHalfFull'):
-        # If user cleared Half/Full in CSV, revert to single price
-        itm['hasHalfFull'] = False
-        itm['priceHalf'] = None
-        itm['priceFull'] = None
-        changed = True
+    elif itm.get('hasHalfFull') and (raw_half == '' and raw_full == ''):
+        # Only reset if explicitly cleared
+        pass
 
     # 3. Availability
     raw_avail = (csv_row.get('Available') or '').strip().upper()
@@ -134,7 +141,7 @@ for itm in food_items:
 
 print("-" * 65)
 if updated_count == 0:
-    print("ℹ️  No price changes detected. All database prices already match the CSV sheet.")
+    print("ℹ️  No price changes detected. All database prices already match the CSV sheets.")
 else:
     print(f"✅ Successfully updated {updated_count} items in memory!")
     print("\nSample changes applied:")
@@ -151,8 +158,12 @@ else:
     # Auto Git Commit & Push
     print("\n[DEPLOY] Pushing changes to GitHub & Live Website (Render)...")
     try:
-        subprocess.run(["git", "add", DB_FILE, CSV_FILE], check=True)
-        commit_msg = f"Update menu prices from Excel sheet ({updated_count} items changed)"
+        subprocess.run(["git", "add", DB_FILE], check=True)
+        if os.path.exists(ALL_CSV):
+            subprocess.run(["git", "add", ALL_CSV], check=True)
+        if os.path.exists(SHOP_DIR):
+            subprocess.run(["git", "add", SHOP_DIR], check=True)
+        commit_msg = f"Update menu prices ({updated_count} items changed)"
         subprocess.run(["git", "commit", "-m", commit_msg], check=True)
         subprocess.run(["git", "push", "origin", "main"], check=True)
         print("🎉 SUCCESS! Live website & student apps updated successfully!")

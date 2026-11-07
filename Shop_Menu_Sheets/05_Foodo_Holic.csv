@@ -1,0 +1,78 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-23fea5e2,Foodo Holic,Canteen Food,Chap Rolls Afghani Chap Roll,100.00,100.00,180.00,YES
+dish-208d3b36,Foodo Holic,Canteen Food,Chap Rolls Double Cheese Chap Roll,100.00,100.00,180.00,YES
+dish-5b74444c,Foodo Holic,Canteen Food,Chap Rolls Kashmiri Chap Roll,80.00,100.00,180.00,YES
+dish-655c1ea9,Foodo Holic,Canteen Food,Chap Rolls Paneer Chap Roll,100.00,100.00,180.00,YES
+dish-f64e980f,Foodo Holic,Canteen Food,Chap Rolls Tandoori Chap Roll,100.00,100.00,180.00,YES
+dish-4056c981,Foodo Holic,Canteen Food,Chap Rolls Veg Grilled Chap Roll,100.00,100.00,180.00,YES
+dish-61fbd6fa,Foodo Holic,Canteen Food,Cheese Spring Roll,60.00,,,YES
+dish-6bb2f2a5,Foodo Holic,Canteen Food,Chilli Garlic Noodles,50.00,,,YES
+dish-d7ff53e2,Foodo Holic,Canteen Food,Hakka Noodles,50.00,,,YES
+dish-3664e672,Foodo Holic,Canteen Food,Indian Soups Hot Sour Soup,60.00,,,YES
+dish-d7c03cfa,Foodo Holic,Canteen Food,Indian Soups Manchow Soup,60.00,,,YES
+dish-d411886d,Foodo Holic,Canteen Food,Indian Soups Vegetable Soup,60.00,,,YES
+dish-ff3183c6,Foodo Holic,Canteen Food,Maggi Cheese Maggi,55.00,,,YES
+dish-2accdb78,Foodo Holic,Canteen Food,Maggi Paneer Maggi,100.00,100.00,180.00,YES
+dish-3c141769,Foodo Holic,Canteen Food,Maggi Plain Maggi,40.00,,,YES
+dish-47936d5b,Foodo Holic,Canteen Food,Maggi Veg Maggi,40.00,,,YES
+dish-6149c05e,Foodo Holic,Canteen Food,Manchurian Chilli Garlic Fried Rice,70.00,70.00,120.00,YES
+dish-6a26df06,Foodo Holic,Canteen Food,Manchurian Paneer Fried Rice,70.00,70.00,120.00,YES
+dish-42690c57,Foodo Holic,Canteen Food,Manchurian Schezwan Fried Rice,70.00,70.00,120.00,YES
+dish-e380559d,Foodo Holic,Canteen Food,Manchurian Veg Fried Rice,70.00,70.00,120.00,YES
+dish-a8d6a4ed,Foodo Holic,Canteen Food,Mocktails Blue Curacao Mocktail,60.00,,,YES
+dish-56c4fc87,Foodo Holic,Canteen Food,Mocktails Green Apple Mocktail,60.00,,,YES
+dish-79d816b0,Foodo Holic,Canteen Food,Mocktails Kala Khatta Mocktail,60.00,,,YES
+dish-bd607790,Foodo Holic,Canteen Food,Mocktails Watermelon Mocktail,60.00,,,YES
+dish-211405df,Foodo Holic,Canteen Food,Paneer Burger,50.00,100.00,180.00,YES
+dish-ab4d268d,Foodo Holic,Canteen Food,Paneer Noodles,130.00,100.00,180.00,YES
+dish-b1b6fa9d,Foodo Holic,Canteen Food,Paneer Spring Roll,100.00,100.00,180.00,YES
+dish-d097fbd4,Foodo Holic,Canteen Food,Parantha Aloo Paratha,50.00,,,YES
+dish-38444cc5,Foodo Holic,Canteen Food,Parantha Aloo Pyaj Paratha,8.00,,,YES
+dish-7f0c02fe,Foodo Holic,Canteen Food,Parantha Gobhi Paratha,8.00,,,YES
+dish-03a817e2,Foodo Holic,Canteen Food,Parantha Mix Paratha,8.00,,,YES
+dish-a0bc368f,Foodo Holic,Canteen Food,Parantha Onion Paratha,8.00,,,YES
+dish-d37ab4e0,Foodo Holic,Canteen Food,Parantha Paneer Paratha,70.00,,,YES
+dish-42282f15,Foodo Holic,Canteen Food,Peri Peri Burger,45.00,,,YES
+dish-87ffaadf,Foodo Holic,Canteen Food,Peri Peri Spring Roll,60.00,,,YES
+dish-c8c4b5fd,Foodo Holic,Canteen Food,Pizza Cheese Pizza,119.00,,,YES
+dish-2bcb3ce5,Foodo Holic,Canteen Food,Pizza Kahkadi Pizza,119.00,,,YES
+dish-0725d140,Foodo Holic,Canteen Food,Pizza Margarita Pizza,119.00,,,YES
+dish-29c38869,Foodo Holic,Canteen Food,Pizza Onion Capsicum Pizza,119.00,,,YES
+dish-80a7880e,Foodo Holic,Canteen Food,Rolls Chilli Paneer Roll,100.00,100.00,180.00,YES
+dish-e1939d72,Foodo Holic,Canteen Food,Rolls Noodles Roll,60.00,,,YES
+dish-a8708e3e,Foodo Holic,Canteen Food,Rolls Paneer Roll,100.00,100.00,180.00,YES
+dish-8bd56ee4,Foodo Holic,Canteen Food,Rolls Veg Roll,50.00,,,YES
+dish-7cb50730,Foodo Holic,Canteen Food,Schezwan Noodles,120.00,,,YES
+dish-2d90d52e,Foodo Holic,Canteen Food,Singapore Noodles,130.00,,,YES
+dish-cc143844,Foodo Holic,Canteen Food,Spring Roll,60.00,,,YES
+dish-0c6f3aec,Foodo Holic,Canteen Food,Tacos Aloo Taki Taco,70.00,70.00,120.00,YES
+dish-28e2555f,Foodo Holic,Canteen Food,Tacos Paneer Taki Taco,100.00,100.00,180.00,YES
+dish-8eeca552,Foodo Holic,Canteen Food,Tacos Pizza Taco,119.00,,,YES
+dish-4f5dc22f,Foodo Holic,Canteen Food,Veg Burger,50.00,,,YES
+dish-7fc8aa23,Foodo Holic,Canteen Food,Veg Cheese Burger,70.00,,,YES
+dish-619588e2,Foodo Holic,Canteen Food,Veg Manchurian Spring Roll,60.00,,,YES
+dish-346446d8,Foodo Holic,Canteen Food,Veg Noodles,150.00,,,YES
+dish-112a2148,Foodo Holic,Canteen Food,Veg Spring Roll,60.00,,,YES
+dish-ce623a5f,Foodo Holic,Chocolates & Candies,Indian Soups Sweet Corn Soup,40.00,,,YES
+dish-4b7a80af,Foodo Holic,Drinks & Juices,Caramel Hot Coffee,30.00,,,YES
+dish-18235bc0,Foodo Holic,Drinks & Juices,Chocolate Mocha Cold Coffee,60.00,,,YES
+dish-921a4c2d,Foodo Holic,Drinks & Juices,Classic Hot Coffee,40.00,,,YES
+dish-392c4a2f,Foodo Holic,Drinks & Juices,Dark Hot Coffee,30.00,,,YES
+dish-c069df64,Foodo Holic,Drinks & Juices,Hazelnut Hot Coffee,30.00,,,YES
+dish-beff919c,Foodo Holic,Drinks & Juices,Mocktails Green Apple Lemonade,35.00,,,YES
+dish-4f0e735a,Foodo Holic,Drinks & Juices,Mocktails Mint Mojito,60.00,,,YES
+dish-44361c3f,Foodo Holic,Drinks & Juices,Shakes Blueberry Shake,60.00,,,YES
+dish-d1285b7e,Foodo Holic,Drinks & Juices,Shakes Butterscotch Shake,60.00,,,YES
+dish-75c6ec7c,Foodo Holic,Drinks & Juices,Shakes Chocolate Shake,60.00,,,YES
+dish-b761e840,Foodo Holic,Drinks & Juices,Shakes Pineapple Shake,60.00,,,YES
+dish-23952154,Foodo Holic,Drinks & Juices,Shakes Rasmalai Shake,60.00,,,YES
+dish-80360e42,Foodo Holic,Drinks & Juices,Shakes Strawberry Shake,60.00,,,YES
+dish-cc820160,Foodo Holic,Drinks & Juices,Vanilla Hot Coffee,30.00,,,YES
+item-real-7441f43f,Foodo Holic,Rolls & Wraps,Spring Rolls Veg Spring Roll,60.00,,,YES
+dish-3b5672b3,Foodo Holic,Snacks & Chips,French Fries Cheesy Fries,50.00,,,YES
+dish-8ccd4283,Foodo Holic,Snacks & Chips,French Fries Loaded Fries,50.00,,,YES
+dish-1f9eba7e,Foodo Holic,Snacks & Chips,French Fries Masala Fries,50.00,,,YES
+dish-bc347ee7,Foodo Holic,Snacks & Chips,French Fries Peri Peri Fries,50.00,,,YES
+dish-3f9f9e5e,Foodo Holic,Snacks & Chips,French Fries Salted Fries,50.00,,,YES
+dish-66ee1bdd,Foodo Holic,Snacks & Chips,French Fries Veg Cheese Loaded Fries,50.00,,,YES
+dish-c6bc7bb0,Foodo Holic,Snacks & Chips,Tacos Veg Cheese Nachos Taco,50.00,,,YES

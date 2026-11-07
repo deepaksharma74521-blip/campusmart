@@ -1,0 +1,33 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-233625e3,Vardhaman Juice Corner,Canteen Food,Barf Ka Gola,60.00,,,YES
+dish-19e6a70b,Vardhaman Juice Corner,Canteen Food,Thandai,60.00,,,YES
+dish-b502673c,Vardhaman Juice Corner,Drinks & Juices,Apple Juice,80.00,60.00,100.00,YES
+dish-a157f33a,Vardhaman Juice Corner,Drinks & Juices,Apple Shake Green,60.00,,,YES
+dish-1361a543,Vardhaman Juice Corner,Drinks & Juices,Apple Shake Purple,60.00,,,YES
+dish-360be161,Vardhaman Juice Corner,Drinks & Juices,Badam Shake,70.00,,,YES
+dish-fd9f15c2,Vardhaman Juice Corner,Drinks & Juices,Banana Shake,90.00,,,YES
+dish-0298c710,Vardhaman Juice Corner,Drinks & Juices,Butter Scotch Shake,60.00,,,YES
+dish-db87c566,Vardhaman Juice Corner,Drinks & Juices,Chocolate Shake,80.00,,,YES
+dish-96c820c9,Vardhaman Juice Corner,Drinks & Juices,Cold Coffee,40.00,,,YES
+dish-e217d6d5,Vardhaman Juice Corner,Drinks & Juices,Date Shake,60.00,,,YES
+dish-b9e4e184,Vardhaman Juice Corner,Drinks & Juices,Jaljeera,35.00,,,YES
+dish-97b987a3,Vardhaman Juice Corner,Drinks & Juices,Keshar Badam Shake,70.00,,,YES
+dish-b6257ebb,Vardhaman Juice Corner,Drinks & Juices,Kiwi Shake,60.00,,,YES
+dish-18bc4fa6,Vardhaman Juice Corner,Drinks & Juices,Lemon Soda,30.00,,,YES
+dish-996ebda2,Vardhaman Juice Corner,Drinks & Juices,Litchi Shake,60.00,,,YES
+dish-53f81d60,Vardhaman Juice Corner,Drinks & Juices,Mango Shake,80.00,,,YES
+dish-84c44f06,Vardhaman Juice Corner,Drinks & Juices,Mix Fruit Juice Banner,60.00,60.00,100.00,YES
+dish-15cedd00,Vardhaman Juice Corner,Drinks & Juices,Mix Juice,90.00,60.00,100.00,YES
+dish-145af343,Vardhaman Juice Corner,Drinks & Juices,Mosmi Juice,50.00,60.00,100.00,YES
+dish-269846bc,Vardhaman Juice Corner,Drinks & Juices,Nimbu Pani,35.00,,,YES
+dish-b05354f4,Vardhaman Juice Corner,Drinks & Juices,Oreo Shake,70.00,,,YES
+dish-640833fe,Vardhaman Juice Corner,Drinks & Juices,Papaya Shake,60.00,,,YES
+dish-ed37f33a,Vardhaman Juice Corner,Drinks & Juices,Pineapple Juice,50.00,60.00,100.00,YES
+dish-2f206a9f,Vardhaman Juice Corner,Drinks & Juices,Pineapple Shake,60.00,,,YES
+dish-77686019,Vardhaman Juice Corner,Drinks & Juices,Pomegranate Juice,60.00,60.00,100.00,YES
+dish-5e473f54,Vardhaman Juice Corner,Drinks & Juices,Rose Milk Shake,60.00,,,YES
+dish-caeef09f,Vardhaman Juice Corner,Drinks & Juices,Shikanji,30.00,,,YES
+dish-d9e5812f,Vardhaman Juice Corner,Drinks & Juices,Sprite Shikanji,30.00,,,YES
+dish-12a93f6a,Vardhaman Juice Corner,Drinks & Juices,Strawberry Shake,80.00,,,YES
+dish-e6b552ef,Vardhaman Juice Corner,Drinks & Juices,Vanilla Shake,60.00,,,YES
+dish-9874c214,Vardhaman Juice Corner,Drinks & Juices,Vegetable Juice,80.00,60.00,100.00,YES

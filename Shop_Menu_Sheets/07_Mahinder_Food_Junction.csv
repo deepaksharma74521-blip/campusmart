@@ -1,0 +1,48 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+cbd740b8-7a36-4777-a2b5-4ccd48e41cf3,Mahinder Food Junction,Canteen Food,Paneer Pateez,25.00,,,YES
+c26d02c3-8261-4c20-8e7f-de3eddd39c5a,Mahinder Food Junction,Canteen Food,Paneer Stuff Kulcha,50.00,,,YES
+d4138537-dc3d-4dfb-970b-7ee9d98799fa,Mahinder Food Junction,Canteen Food,Veg Stuff Kulcha,50.00,,,YES
+da5bc3c3-1b67-4dd0-88bb-1f7479967291,Mahinder Food Junction,Drinks & Juices,Opera Pastry Coffee Chocolate,60.00,,,YES
+711103b7-9b81-4d68-b232-6129285bf48e,Mahinder Food Junction,Snacks & Chips,Almond Rose,60.00,,,YES
+6fd4c4f6-93fc-450c-a0e1-70a740e95f6e,Mahinder Food Junction,Snacks & Chips,Aloo Pateez,20.00,,,YES
+c9d0f9a3-573b-43b9-afab-949b75e0dc55,Mahinder Food Junction,Snacks & Chips,Angry Birds,50.00,,,YES
+79186f95-1579-431d-a827-1eecf8f2d6cc,Mahinder Food Junction,Snacks & Chips,Besan Naankhatai,120.00,,,YES
+db794bd8-84bc-48a3-888b-31be64d1f693,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Aata,120.00,,,YES
+cdfcafc5-d83e-444d-a203-75de7950bacb,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Ajwain,120.00,,,YES
+5cb81a07-7551-4dd2-b298-7f652ad2830d,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Badam,120.00,,,YES
+b8a5e20b-77b1-4607-ad38-b3de6dd94a46,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Chocolate,120.00,,,YES
+85f1f495-416d-46f1-a02a-209644f47ce3,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Coconut,120.00,,,YES
+2cc41cd2-101b-4572-9383-4bca00f3946f,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Jeera,120.00,,,YES
+5c2769d5-0c82-4946-be09-4d2fcd999f63,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Kaju,120.00,,,YES
+328c7324-6d2f-46a6-b4a1-126c7eda8697,Mahinder Food Junction,Snacks & Chips,Biscuit Butter Pista,120.00,,,YES
+77abbbe1-1292-4619-ab8a-86394e97892c,Mahinder Food Junction,Snacks & Chips,Bread,35.00,,,YES
+de5e28de-c5fc-4e3c-8279-35fb03eb400c,Mahinder Food Junction,Snacks & Chips,Brown Sandwich,50.00,,,YES
+8ed7e577-ecd1-4f6f-acd0-68c47b0cf2e8,Mahinder Food Junction,Snacks & Chips,Cheese Burger,50.00,,,YES
+cc244a5b-8ae9-40f2-881c-4274975eeb8d,Mahinder Food Junction,Snacks & Chips,Cream Roll,60.00,,,YES
+addc73b6-ce2e-4e68-bac3-a63a616e11e7,Mahinder Food Junction,Snacks & Chips,Dark Fantasy,60.00,,,YES
+17ecd84d-6226-4c05-94b9-ff0fd4c3828b,Mahinder Food Junction,Snacks & Chips,Double Chocochips Cookies,120.00,,,YES
+a277d46f-f1a8-41ec-a8ee-17835db4baf6,Mahinder Food Junction,Snacks & Chips,Fruit Buns,50.00,,,YES
+0d18ff29-409d-4f63-af07-0ea71b0d4b97,Mahinder Food Junction,Snacks & Chips,Garlic Bread,35.00,,,YES
+5fd70295-86a2-4b33-b057-cdd1aa9b9a7f,Mahinder Food Junction,Snacks & Chips,Hot Dog,50.00,,,YES
+8de8ff2d-8e34-47d6-b601-ad2d01cdbcb3,Mahinder Food Junction,Snacks & Chips,Mango Pastry,60.00,,,YES
+128c5355-38d3-4e24-990d-05a83587940a,Mahinder Food Junction,Snacks & Chips,Multi Grain Sugar Free,50.00,,,YES
+9217f0ef-4c3f-4e62-8965-88ee6c2c8504,Mahinder Food Junction,Snacks & Chips,Multigrain Bread,35.00,,,YES
+62a5bdc2-dca3-4e17-92c9-20b44200808c,Mahinder Food Junction,Snacks & Chips,Pastry Blackforest,60.00,,,YES
+90a3624d-5a36-497a-8218-1e188de03d15,Mahinder Food Junction,Snacks & Chips,Pastry Blueberry Filling,60.00,,,YES
+4e913735-93ed-4052-a2fc-d01e4554975b,Mahinder Food Junction,Snacks & Chips,Pastry Butterscotch,60.00,,,YES
+62bf835a-818d-47e3-8e1e-ed1363171590,Mahinder Food Junction,Snacks & Chips,Pastry Oreo,60.00,,,YES
+de612265-1159-4e30-bf41-5ae3fb980eb6,Mahinder Food Junction,Snacks & Chips,Pastry Pineapple,60.00,,,YES
+4213f8a8-fcd9-41dc-9e4e-300077a4ac2d,Mahinder Food Junction,Snacks & Chips,Pastry Rainbow,60.00,,,YES
+260a5fb9-eb41-4cb5-b57a-f60f1c3b474f,Mahinder Food Junction,Snacks & Chips,Pastry Red Velvet,60.00,,,YES
+57166bfa-f339-46e5-8123-717ba7244bd9,Mahinder Food Junction,Snacks & Chips,Pastry Strawberry,60.00,,,YES
+d7359607-d609-4bbd-a0c8-321b34d8ea16,Mahinder Food Junction,Snacks & Chips,Pastry Truffle,60.00,,,YES
+b6e3e830-57ae-4bb3-abc0-fc5a3378dd4f,Mahinder Food Junction,Snacks & Chips,Paw,50.00,,,YES
+bae99694-e199-4fe6-93de-3cac31768096,Mahinder Food Junction,Snacks & Chips,Pista Naankhatai,120.00,,,YES
+749a4d31-8488-4e95-96cb-9516ab8cd022,Mahinder Food Junction,Snacks & Chips,Pizza Base,120.00,,,YES
+39691ba2-3bd3-4861-940f-153fb086ed54,Mahinder Food Junction,Snacks & Chips,Pizza Small,120.00,,,YES
+82dcaf04-d3be-48cd-aff7-78ebc6fa4856,Mahinder Food Junction,Snacks & Chips,Sada Kulcha,50.00,,,YES
+5c015a4e-6531-4520-a908-a5dff7ff26f7,Mahinder Food Junction,Snacks & Chips,Sp Naankhatai,120.00,,,YES
+69fa39bc-d977-44dd-8964-689a043cb862,Mahinder Food Junction,Snacks & Chips,Till Burger,50.00,,,YES
+60519cb7-4202-4cec-bd59-7c668440265d,Mahinder Food Junction,Snacks & Chips,Vanilla Chocochips Cookies,120.00,,,YES
+13f42d37-d04b-44c2-842f-8b3fe3d34ba4,Mahinder Food Junction,Snacks & Chips,Veg Sandwich,50.00,,,YES
+b9187ff3-cc19-434a-8042-a28f086d50f7,Mahinder Food Junction,Snacks & Chips,Walnut Belgian Chocolate,50.00,,,YES

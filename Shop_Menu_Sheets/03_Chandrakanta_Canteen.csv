@@ -1,0 +1,72 @@
+﻿Item_ID,Shop_Name,Category,Dish_Name,Price_INR,Half_Price_INR,Full_Price_INR,Available
+dish-01e55d99,Chandrakanta Canteen,Canteen Food,Achari Aloo,80.00,70.00,120.00,YES
+dish-c7aed460,Chandrakanta Canteen,Canteen Food,Aloo,80.00,70.00,120.00,YES
+dish-6c391303,Chandrakanta Canteen,Canteen Food,Aloo Fry,70.00,70.00,120.00,YES
+dish-0705585a,Chandrakanta Canteen,Canteen Food,Aloo Pakora,70.00,70.00,120.00,YES
+dish-6d77f79d,Chandrakanta Canteen,Canteen Food,Aloo Paratha,50.00,,,YES
+dish-04389011,Chandrakanta Canteen,Canteen Food,Aloo Pyaz,80.00,70.00,120.00,YES
+dish-6be7e233,Chandrakanta Canteen,Canteen Food,Aloo Pyaz Paratha,50.00,,,YES
+dish-992ba27b,Chandrakanta Canteen,Canteen Food,Aloo Zeera,100.00,70.00,120.00,YES
+dish-0bde1412,Chandrakanta Canteen,Canteen Food,Bhindi Masala,80.00,,,YES
+dish-d9bc6451,Chandrakanta Canteen,Canteen Food,Boondi Raita,60.00,,,YES
+dish-9ffccf8a,Chandrakanta Canteen,Canteen Food,Bread Pakora,60.00,,,YES
+dish-c79c3224,Chandrakanta Canteen,Canteen Food,Burger,30.00,,,YES
+dish-e582a98b,Chandrakanta Canteen,Canteen Food,Butter Roti,80.00,,,YES
+dish-88e90b33,Chandrakanta Canteen,Canteen Food,Chaap,120.00,100.00,180.00,YES
+dish-95738186,Chandrakanta Canteen,Canteen Food,Chilly Mushroom,80.00,80.00,140.00,YES
+dish-685c8c7c,Chandrakanta Canteen,Canteen Food,Chilly Paneer,180.00,100.00,180.00,YES
+dish-36a3cd06,Chandrakanta Canteen,Canteen Food,Chilly Potato,60.00,,,YES
+dish-7523f864,Chandrakanta Canteen,Canteen Food,Choley Bhature,180.00,,,YES
+dish-dc6e7a7f,Chandrakanta Canteen,Canteen Food,Choley Chawal,70.00,,,YES
+dish-332e2579,Chandrakanta Canteen,Canteen Food,Choley Kulche,190.00,,,YES
+dish-6b1db17f,Chandrakanta Canteen,Canteen Food,Chowmein,60.00,,,YES
+dish-5b9ecf55,Chandrakanta Canteen,Canteen Food,Cold Drink,60.00,,,YES
+dish-29e886c7,Chandrakanta Canteen,Canteen Food,Dal Fry,70.00,70.00,120.00,YES
+dish-dfce2520,Chandrakanta Canteen,Canteen Food,Dal Handi,70.00,70.00,120.00,YES
+dish-8fa82beb,Chandrakanta Canteen,Canteen Food,Dal Makhni,70.00,70.00,120.00,YES
+dish-9efb791b,Chandrakanta Canteen,Canteen Food,Dal Makhni Chawal,70.00,,,YES
+dish-e01a5f0c,Chandrakanta Canteen,Canteen Food,Dal Tadka,70.00,70.00,120.00,YES
+dish-d6ed459d,Chandrakanta Canteen,Canteen Food,Dum Aloo,90.00,70.00,120.00,YES
+dish-0aea9189,Chandrakanta Canteen,Canteen Food,Fried Rice,100.00,70.00,120.00,YES
+dish-d73d0f29,Chandrakanta Canteen,Canteen Food,Gobhi Paratha,120.00,,,YES
+dish-ae969a8f,Chandrakanta Canteen,Canteen Food,Honey Chilly Potato,60.00,,,YES
+dish-1bec14f8,Chandrakanta Canteen,Canteen Food,Kadhai Chawal,70.00,,,YES
+dish-2aeb0177,Chandrakanta Canteen,Canteen Food,Kadhai Paneer,100.00,100.00,180.00,YES
+dish-44232b8e,Chandrakanta Canteen,Canteen Food,Maggie,40.00,,,YES
+dish-209f70fb,Chandrakanta Canteen,Canteen Food,Makroni,60.00,,,YES
+dish-27c4445c,Chandrakanta Canteen,Canteen Food,Malai Kofta,50.00,100.00,180.00,YES
+dish-fe292c56,Chandrakanta Canteen,Canteen Food,Malai Paneer,190.00,100.00,180.00,YES
+dish-de185cf5,Chandrakanta Canteen,Canteen Food,Matar Paneer,120.00,100.00,180.00,YES
+dish-dd749cb5,Chandrakanta Canteen,Canteen Food,Methi Paratha,8.00,,,YES
+dish-0cbda5c2,Chandrakanta Canteen,Canteen Food,Mix Paratha,70.00,,,YES
+dish-42df90ec,Chandrakanta Canteen,Canteen Food,Mix Raita,70.00,,,YES
+dish-85a92a4e,Chandrakanta Canteen,Canteen Food,Mix Veg,50.00,,,YES
+dish-a1e1265a,Chandrakanta Canteen,Canteen Food,Mughlai Paneer,100.00,100.00,180.00,YES
+dish-2aaf8aac,Chandrakanta Canteen,Canteen Food,Mushroom Butter Masala,80.00,80.00,140.00,YES
+dish-a6f68fd6,Chandrakanta Canteen,Canteen Food,Naan,18.00,,,YES
+dish-a0271e84,Chandrakanta Canteen,Canteen Food,Naan Thali,120.00,,,YES
+dish-85fff648,Chandrakanta Canteen,Canteen Food,Paneer Bhurji,100.00,100.00,180.00,YES
+dish-d8c8fa19,Chandrakanta Canteen,Canteen Food,Paneer Butter Masala,120.00,100.00,180.00,YES
+dish-d258e100,Chandrakanta Canteen,Canteen Food,Paneer Do Pyaza,100.00,100.00,180.00,YES
+dish-1dbd74d7,Chandrakanta Canteen,Canteen Food,Paneer Kali Mirch,140.00,100.00,180.00,YES
+dish-743d6857,Chandrakanta Canteen,Canteen Food,Paneer Lababdar,100.00,100.00,180.00,YES
+dish-56aa0734,Chandrakanta Canteen,Canteen Food,Paneer Paratha,70.00,,,YES
+dish-bf8093c9,Chandrakanta Canteen,Canteen Food,Paneer Pasanda,190.00,100.00,180.00,YES
+dish-4502e291,Chandrakanta Canteen,Canteen Food,Paneer Rogan Josh,100.00,100.00,180.00,YES
+dish-b50e8b78,Chandrakanta Canteen,Canteen Food,Papad,100.00,,,YES
+dish-13de947b,Chandrakanta Canteen,Canteen Food,Pasta,70.00,,,YES
+dish-abff4292,Chandrakanta Canteen,Canteen Food,Pulao Rice,70.00,70.00,120.00,YES
+dish-b785a9e8,Chandrakanta Canteen,Canteen Food,Pyaz Tamatar,70.00,,,YES
+dish-6f427c7d,Chandrakanta Canteen,Canteen Food,Roti,90.00,,,YES
+dish-fd8bb29b,Chandrakanta Canteen,Canteen Food,Shahi Paneer,120.00,100.00,180.00,YES
+dish-a6588fa3,Chandrakanta Canteen,Canteen Food,Tandoori Roti,10.00,,,YES
+dish-41fe73e7,Chandrakanta Canteen,Canteen Food,Tawa Paneer,140.00,100.00,180.00,YES
+dish-df76cb77,Chandrakanta Canteen,Canteen Food,Veg Manchurian,60.00,,,YES
+dish-52812966,Chandrakanta Canteen,Canteen Food,Water Bottle,60.00,,,YES
+dish-06b41d1b,Chandrakanta Canteen,Canteen Food,Zeera Rice,60.00,,,YES
+dish-ae18eb9c,Chandrakanta Canteen,Chocolates & Candies,Ice Cream,40.00,,,YES
+dish-1a88d7e4,Chandrakanta Canteen,Drinks & Juices,Coffee,301.00,,,YES
+dish-dee4b631,Chandrakanta Canteen,Drinks & Juices,Cold Coffee,40.00,,,YES
+dish-fc5745e7,Chandrakanta Canteen,Drinks & Juices,Tea,15.00,,,YES
+dish-e4f01022,Chandrakanta Canteen,Snacks & Chips,Samosa,10.00,,,YES
+dish-261d2f81,Chandrakanta Canteen,Snacks & Chips,Samosa Chat,10.00,,,YES
