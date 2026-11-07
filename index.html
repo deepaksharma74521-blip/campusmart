@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
     <!-- Custom Core CSS -->
-    <link rel="stylesheet" href="css/style.css?v=3.5">
+    <link rel="stylesheet" href="css/style.css?v=7.0-liquid-glass">
     <!-- PWA & 1-Click Mobile App Meta Tags -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ea580c">
@@ -177,7 +177,7 @@
     
 
     <!-- Quick Categories Strip (App Style) -->
-    <section style="background: white; padding: 2.25rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section style="background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 2.25rem 0; border-top: 1px solid rgba(255, 255, 255, 0.6); border-bottom: 1px solid rgba(226, 232, 240, 0.8);">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.15rem;">
                 <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0; color: var(--secondary);"><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> Popular Categories</h3>
@@ -442,7 +442,7 @@
                 const shopNum = shopNumMatch ? shopNumMatch[0] : (idx + 1);
 
                 return `
-                    <div class="card card-hover" style="display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; border: 1.5px solid ${isOpen ? '#e2e8f0' : '#fecaca'}; border-radius: 16px; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.25s ease, box-shadow 0.25s ease;">
+                    <div class="card card-hover shop-card" style="display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; border: 1.5px solid ${isOpen ? 'rgba(255, 255, 255, 0.85)' : '#fecaca'}; border-radius: 20px; background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 8px 24px rgba(15,23,42,0.06), inset 0 1px 1px rgba(255,255,255,0.95); transition: transform 0.25s ease, box-shadow 0.25s ease;">
                         <div style="height: 140px; overflow: hidden; position: relative;">
                             <img src="${shop.image || 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600'}" alt="${shop.name}" style="width: 100%; height: 100%; object-fit: cover;">
                             
