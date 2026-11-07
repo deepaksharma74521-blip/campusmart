@@ -34648,7 +34648,8 @@
         "half": 15.0,
         "full": 6.0
       },
-      "_id": "f83cb642-efd6-4cd1-94e2-10491f156c81"
+      "_id": "f83cb642-efd6-4cd1-94e2-10491f156c81",
+      "available": true
     },
     {
       "id": "57eb030b-48ac-42ef-8413-284d6c2929d0",
@@ -34667,7 +34668,8 @@
         "half": 15.0,
         "full": 6.0
       },
-      "_id": "57eb030b-48ac-42ef-8413-284d6c2929d0"
+      "_id": "57eb030b-48ac-42ef-8413-284d6c2929d0",
+      "available": true
     },
     {
       "id": "65470dac-ab0a-4bff-b30d-c27c3e7eb3f9",
@@ -34686,7 +34688,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "65470dac-ab0a-4bff-b30d-c27c3e7eb3f9"
+      "_id": "65470dac-ab0a-4bff-b30d-c27c3e7eb3f9",
+      "available": true
     },
     {
       "id": "bc87e991-95ab-4757-a7e7-ebb3a4b67ae4",
@@ -34705,7 +34708,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "bc87e991-95ab-4757-a7e7-ebb3a4b67ae4"
+      "_id": "bc87e991-95ab-4757-a7e7-ebb3a4b67ae4",
+      "available": true
     },
     {
       "id": "a4804a62-7788-4917-91e8-859d2b114266",
@@ -34724,7 +34728,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "a4804a62-7788-4917-91e8-859d2b114266"
+      "_id": "a4804a62-7788-4917-91e8-859d2b114266",
+      "available": true
     },
     {
       "id": "5e4b3417-2e3b-4e01-a84a-40f1db219407",
@@ -34743,7 +34748,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "5e4b3417-2e3b-4e01-a84a-40f1db219407"
+      "_id": "5e4b3417-2e3b-4e01-a84a-40f1db219407",
+      "available": true
     },
     {
       "id": "701dff40-edbf-4501-9fea-acc706f3ce8b",
@@ -34762,7 +34768,8 @@
         "half": 15.0,
         "full": 6.0
       },
-      "_id": "701dff40-edbf-4501-9fea-acc706f3ce8b"
+      "_id": "701dff40-edbf-4501-9fea-acc706f3ce8b",
+      "available": true
     },
     {
       "id": "142c742b-f2c0-4f36-afa4-173636123fa8",
@@ -34781,7 +34788,8 @@
         "half": 15.0,
         "full": 6.0
       },
-      "_id": "142c742b-f2c0-4f36-afa4-173636123fa8"
+      "_id": "142c742b-f2c0-4f36-afa4-173636123fa8",
+      "available": true
     },
     {
       "id": "1128419b-a214-498c-bf73-4b4c534931b3",
@@ -34800,7 +34808,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "1128419b-a214-498c-bf73-4b4c534931b3"
+      "_id": "1128419b-a214-498c-bf73-4b4c534931b3",
+      "available": true
     },
     {
       "id": "604d3ebc-b5ca-428e-bd5f-f1267dd6ae55",
@@ -34819,7 +34828,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "604d3ebc-b5ca-428e-bd5f-f1267dd6ae55"
+      "_id": "604d3ebc-b5ca-428e-bd5f-f1267dd6ae55",
+      "available": true
     },
     {
       "id": "503fae5b-6367-496d-820a-214e8f366c62",
@@ -34838,7 +34848,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "503fae5b-6367-496d-820a-214e8f366c62"
+      "_id": "503fae5b-6367-496d-820a-214e8f366c62",
+      "available": true
     },
     {
       "id": "5a791349-b5a6-4948-bffc-6c3bf747c020",
@@ -34857,7 +34868,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5a791349-b5a6-4948-bffc-6c3bf747c020"
+      "_id": "5a791349-b5a6-4948-bffc-6c3bf747c020",
+      "available": true
     },
     {
       "id": "f6a0e9ee-3eff-4aa3-8b23-81450b18609b",
@@ -34876,7 +34888,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "f6a0e9ee-3eff-4aa3-8b23-81450b18609b"
+      "_id": "f6a0e9ee-3eff-4aa3-8b23-81450b18609b",
+      "available": true
     },
     {
       "id": "0898bf54-9a63-4ebe-b64b-c7def6d3ca7f",
@@ -34895,7 +34908,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "0898bf54-9a63-4ebe-b64b-c7def6d3ca7f"
+      "_id": "0898bf54-9a63-4ebe-b64b-c7def6d3ca7f",
+      "available": true
     },
     {
       "id": "8f9cb476-149c-4a94-a827-cb6430662a54",
@@ -34914,7 +34928,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "8f9cb476-149c-4a94-a827-cb6430662a54"
+      "_id": "8f9cb476-149c-4a94-a827-cb6430662a54",
+      "available": true
     },
     {
       "id": "5d2ac30f-bf54-44c3-ab85-397fe6c60f64",
@@ -34933,7 +34948,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5d2ac30f-bf54-44c3-ab85-397fe6c60f64"
+      "_id": "5d2ac30f-bf54-44c3-ab85-397fe6c60f64",
+      "available": true
     },
     {
       "id": "089212ef-91ab-4f27-88c6-fdc9b817eead",
@@ -34952,7 +34968,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "089212ef-91ab-4f27-88c6-fdc9b817eead"
+      "_id": "089212ef-91ab-4f27-88c6-fdc9b817eead",
+      "available": true
     },
     {
       "id": "2d34d98f-ecc6-4a1d-9085-b20a3fa0e0d2",
@@ -34971,7 +34988,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "2d34d98f-ecc6-4a1d-9085-b20a3fa0e0d2"
+      "_id": "2d34d98f-ecc6-4a1d-9085-b20a3fa0e0d2",
+      "available": true
     },
     {
       "id": "50441578-c987-4216-9364-1e7ad4649b15",
@@ -34990,7 +35008,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "50441578-c987-4216-9364-1e7ad4649b15"
+      "_id": "50441578-c987-4216-9364-1e7ad4649b15",
+      "available": true
     },
     {
       "id": "e573c393-c252-4d2c-b79f-ad45aa83fe92",
@@ -35009,7 +35028,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "e573c393-c252-4d2c-b79f-ad45aa83fe92"
+      "_id": "e573c393-c252-4d2c-b79f-ad45aa83fe92",
+      "available": true
     },
     {
       "id": "6ac10b29-876c-4cd7-b9d1-23151a241222",
@@ -35028,7 +35048,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "6ac10b29-876c-4cd7-b9d1-23151a241222"
+      "_id": "6ac10b29-876c-4cd7-b9d1-23151a241222",
+      "available": true
     },
     {
       "id": "16c4bfa1-11c8-406e-9a22-99edb4be9e4c",
@@ -35047,7 +35068,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "16c4bfa1-11c8-406e-9a22-99edb4be9e4c"
+      "_id": "16c4bfa1-11c8-406e-9a22-99edb4be9e4c",
+      "available": true
     },
     {
       "id": "b75fc041-659f-47f4-8c9e-885391b09798",
@@ -35066,7 +35088,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "b75fc041-659f-47f4-8c9e-885391b09798"
+      "_id": "b75fc041-659f-47f4-8c9e-885391b09798",
+      "available": true
     },
     {
       "id": "f7fc931a-7524-43a6-b1af-91a3fc516989",
@@ -35085,7 +35108,8 @@
         "half": 84,
         "full": 140.0
       },
-      "_id": "f7fc931a-7524-43a6-b1af-91a3fc516989"
+      "_id": "f7fc931a-7524-43a6-b1af-91a3fc516989",
+      "available": true
     },
     {
       "id": "3028adef-92b9-42c2-adc3-b59eeeaeef0d",
@@ -35104,7 +35128,8 @@
         "half": 84,
         "full": 140.0
       },
-      "_id": "3028adef-92b9-42c2-adc3-b59eeeaeef0d"
+      "_id": "3028adef-92b9-42c2-adc3-b59eeeaeef0d",
+      "available": true
     },
     {
       "id": "fc43c861-21a0-4c0d-827e-8981dd5359be",
@@ -35123,7 +35148,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "fc43c861-21a0-4c0d-827e-8981dd5359be"
+      "_id": "fc43c861-21a0-4c0d-827e-8981dd5359be",
+      "available": true
     },
     {
       "id": "9308d29b-684c-4cc4-90e6-22d6f066e0c0",
@@ -35142,7 +35168,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "9308d29b-684c-4cc4-90e6-22d6f066e0c0"
+      "_id": "9308d29b-684c-4cc4-90e6-22d6f066e0c0",
+      "available": true
     },
     {
       "id": "cc7c9f48-7d6d-4ab9-8fc1-cb5a3f69f837",
@@ -35161,7 +35188,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "cc7c9f48-7d6d-4ab9-8fc1-cb5a3f69f837"
+      "_id": "cc7c9f48-7d6d-4ab9-8fc1-cb5a3f69f837",
+      "available": true
     },
     {
       "id": "78f28ce8-052e-4d06-9746-d63c8dae9f25",
@@ -35180,7 +35208,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "78f28ce8-052e-4d06-9746-d63c8dae9f25"
+      "_id": "78f28ce8-052e-4d06-9746-d63c8dae9f25",
+      "available": true
     },
     {
       "id": "081fb311-6fcc-442d-8763-dfe198977348",
@@ -35199,7 +35228,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "081fb311-6fcc-442d-8763-dfe198977348"
+      "_id": "081fb311-6fcc-442d-8763-dfe198977348",
+      "available": true
     },
     {
       "id": "87c23ef9-6de9-4368-8f35-536d520019a2",
@@ -35218,7 +35248,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "87c23ef9-6de9-4368-8f35-536d520019a2"
+      "_id": "87c23ef9-6de9-4368-8f35-536d520019a2",
+      "available": true
     },
     {
       "id": "ff8e4646-58d6-4d8e-89fb-fe7eee3480b1",
@@ -35237,7 +35268,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "ff8e4646-58d6-4d8e-89fb-fe7eee3480b1"
+      "_id": "ff8e4646-58d6-4d8e-89fb-fe7eee3480b1",
+      "available": true
     },
     {
       "id": "7d773c86-a5e7-487a-aea7-adbed8ffa8bf",
@@ -35256,7 +35288,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "7d773c86-a5e7-487a-aea7-adbed8ffa8bf"
+      "_id": "7d773c86-a5e7-487a-aea7-adbed8ffa8bf",
+      "available": true
     },
     {
       "id": "7f789b96-cf81-4262-af00-95e41179e29c",
@@ -35275,7 +35308,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "7f789b96-cf81-4262-af00-95e41179e29c"
+      "_id": "7f789b96-cf81-4262-af00-95e41179e29c",
+      "available": true
     },
     {
       "id": "cb712632-149d-44f2-a057-a5418a814cb4",
@@ -35294,7 +35328,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "cb712632-149d-44f2-a057-a5418a814cb4"
+      "_id": "cb712632-149d-44f2-a057-a5418a814cb4",
+      "available": true
     },
     {
       "id": "168bd5c2-f2f5-4599-a359-d2815f2f3b96",
@@ -35313,7 +35348,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "168bd5c2-f2f5-4599-a359-d2815f2f3b96"
+      "_id": "168bd5c2-f2f5-4599-a359-d2815f2f3b96",
+      "available": true
     },
     {
       "id": "96c47f71-0c91-49a2-a1b2-1a40b230be26",
@@ -35332,7 +35368,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "96c47f71-0c91-49a2-a1b2-1a40b230be26"
+      "_id": "96c47f71-0c91-49a2-a1b2-1a40b230be26",
+      "available": true
     },
     {
       "id": "b8f8ef86-f2b3-4c87-a18a-30d26cc556e1",
@@ -35351,7 +35388,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "b8f8ef86-f2b3-4c87-a18a-30d26cc556e1"
+      "_id": "b8f8ef86-f2b3-4c87-a18a-30d26cc556e1",
+      "available": true
     },
     {
       "id": "22408798-0f7e-4608-977d-4b718b5db1de",
@@ -35370,7 +35408,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "22408798-0f7e-4608-977d-4b718b5db1de"
+      "_id": "22408798-0f7e-4608-977d-4b718b5db1de",
+      "available": true
     },
     {
       "id": "8c76ba6c-1700-4e50-8948-76ece8af72a6",
@@ -35389,7 +35428,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "8c76ba6c-1700-4e50-8948-76ece8af72a6"
+      "_id": "8c76ba6c-1700-4e50-8948-76ece8af72a6",
+      "available": true
     },
     {
       "id": "665d405e-666b-4da0-a7be-01ec49768f72",
@@ -35408,7 +35448,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "665d405e-666b-4da0-a7be-01ec49768f72"
+      "_id": "665d405e-666b-4da0-a7be-01ec49768f72",
+      "available": true
     },
     {
       "id": "3e627985-8471-4699-899a-7f21943793fe",
@@ -35427,7 +35468,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "3e627985-8471-4699-899a-7f21943793fe"
+      "_id": "3e627985-8471-4699-899a-7f21943793fe",
+      "available": true
     },
     {
       "id": "24a9bfb1-f353-4a5f-b0ae-afb317c8938a",
@@ -35446,7 +35488,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "24a9bfb1-f353-4a5f-b0ae-afb317c8938a"
+      "_id": "24a9bfb1-f353-4a5f-b0ae-afb317c8938a",
+      "available": true
     },
     {
       "id": "4823beec-090a-464f-b312-89e223f79b32",
@@ -35465,7 +35508,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "4823beec-090a-464f-b312-89e223f79b32"
+      "_id": "4823beec-090a-464f-b312-89e223f79b32",
+      "available": true
     },
     {
       "id": "d5263179-d3e0-4bed-b3e9-a76944f21d4b",
@@ -35484,7 +35528,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d5263179-d3e0-4bed-b3e9-a76944f21d4b"
+      "_id": "d5263179-d3e0-4bed-b3e9-a76944f21d4b",
+      "available": true
     },
     {
       "id": "7be3cc3f-4d11-4974-8255-adf7f8d5c3b1",
@@ -35503,7 +35548,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7be3cc3f-4d11-4974-8255-adf7f8d5c3b1"
+      "_id": "7be3cc3f-4d11-4974-8255-adf7f8d5c3b1",
+      "available": true
     },
     {
       "id": "10d70839-c8b0-4156-97b2-c4e8385cea50",
@@ -35522,7 +35568,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "10d70839-c8b0-4156-97b2-c4e8385cea50"
+      "_id": "10d70839-c8b0-4156-97b2-c4e8385cea50",
+      "available": true
     },
     {
       "id": "8783aa96-6202-4b13-9053-5430267ab35b",
@@ -35541,7 +35588,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "8783aa96-6202-4b13-9053-5430267ab35b"
+      "_id": "8783aa96-6202-4b13-9053-5430267ab35b",
+      "available": true
     },
     {
       "id": "604efef9-c4e0-4c8b-9c84-692397b7cebb",
@@ -35560,7 +35608,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "604efef9-c4e0-4c8b-9c84-692397b7cebb"
+      "_id": "604efef9-c4e0-4c8b-9c84-692397b7cebb",
+      "available": true
     },
     {
       "id": "e35c461a-f608-424f-b1a4-6da98325068b",
@@ -35579,7 +35628,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "e35c461a-f608-424f-b1a4-6da98325068b"
+      "_id": "e35c461a-f608-424f-b1a4-6da98325068b",
+      "available": true
     },
     {
       "id": "bea5b9a7-2f7b-43e7-bda2-5ad219229b9a",
@@ -35598,7 +35648,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "bea5b9a7-2f7b-43e7-bda2-5ad219229b9a"
+      "_id": "bea5b9a7-2f7b-43e7-bda2-5ad219229b9a",
+      "available": true
     },
     {
       "id": "fb98db3e-d3fa-4051-bd52-ad4627bd1835",
@@ -35617,7 +35668,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "fb98db3e-d3fa-4051-bd52-ad4627bd1835"
+      "_id": "fb98db3e-d3fa-4051-bd52-ad4627bd1835",
+      "available": true
     },
     {
       "id": "17f7c1f3-85f1-4e65-ab0b-c20b359e6d56",
@@ -35636,7 +35688,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "17f7c1f3-85f1-4e65-ab0b-c20b359e6d56"
+      "_id": "17f7c1f3-85f1-4e65-ab0b-c20b359e6d56",
+      "available": true
     },
     {
       "id": "553e63e3-c622-4945-bb18-1e6eed0ab8ba",
@@ -35655,7 +35708,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "553e63e3-c622-4945-bb18-1e6eed0ab8ba"
+      "_id": "553e63e3-c622-4945-bb18-1e6eed0ab8ba",
+      "available": true
     },
     {
       "id": "d248f283-4e46-4859-8a49-27e4e682c30c",
@@ -35674,7 +35728,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "d248f283-4e46-4859-8a49-27e4e682c30c"
+      "_id": "d248f283-4e46-4859-8a49-27e4e682c30c",
+      "available": true
     },
     {
       "id": "c5609ab1-204a-4634-a108-29beb343a4ab",
@@ -35693,7 +35748,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "c5609ab1-204a-4634-a108-29beb343a4ab"
+      "_id": "c5609ab1-204a-4634-a108-29beb343a4ab",
+      "available": true
     },
     {
       "id": "6359b529-1940-464a-baf2-b62ac12c7f92",
@@ -35712,7 +35768,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "6359b529-1940-464a-baf2-b62ac12c7f92"
+      "_id": "6359b529-1940-464a-baf2-b62ac12c7f92",
+      "available": true
     },
     {
       "id": "8292ca87-56b3-429b-96b2-9157ea3954ab",
@@ -35731,7 +35788,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "8292ca87-56b3-429b-96b2-9157ea3954ab"
+      "_id": "8292ca87-56b3-429b-96b2-9157ea3954ab",
+      "available": true
     },
     {
       "id": "19b4f1d1-3a84-4df4-b69f-46bd0dcd6ec3",
@@ -35750,7 +35808,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "19b4f1d1-3a84-4df4-b69f-46bd0dcd6ec3"
+      "_id": "19b4f1d1-3a84-4df4-b69f-46bd0dcd6ec3",
+      "available": true
     },
     {
       "id": "d94ff2ce-9482-45ba-8310-acbb21a455f7",
@@ -35769,7 +35828,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d94ff2ce-9482-45ba-8310-acbb21a455f7"
+      "_id": "d94ff2ce-9482-45ba-8310-acbb21a455f7",
+      "available": true
     },
     {
       "id": "7cce04a1-1086-4bbf-984a-cb1f8ac73f8c",
@@ -35788,7 +35848,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7cce04a1-1086-4bbf-984a-cb1f8ac73f8c"
+      "_id": "7cce04a1-1086-4bbf-984a-cb1f8ac73f8c",
+      "available": true
     },
     {
       "id": "72d5333c-98a5-46ae-aeda-f601fbde94d3",
@@ -35807,7 +35868,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "72d5333c-98a5-46ae-aeda-f601fbde94d3"
+      "_id": "72d5333c-98a5-46ae-aeda-f601fbde94d3",
+      "available": true
     },
     {
       "id": "58b73ce3-b017-47e8-bfe4-52360477a5d0",
@@ -35826,7 +35888,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "58b73ce3-b017-47e8-bfe4-52360477a5d0"
+      "_id": "58b73ce3-b017-47e8-bfe4-52360477a5d0",
+      "available": true
     },
     {
       "id": "b0f540e3-a5e4-4e99-b635-b642cecccc7c",
@@ -35845,7 +35908,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "b0f540e3-a5e4-4e99-b635-b642cecccc7c"
+      "_id": "b0f540e3-a5e4-4e99-b635-b642cecccc7c",
+      "available": true
     },
     {
       "id": "79633ca9-05d2-443f-9559-6113746221e5",
@@ -35864,7 +35928,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "79633ca9-05d2-443f-9559-6113746221e5"
+      "_id": "79633ca9-05d2-443f-9559-6113746221e5",
+      "available": true
     },
     {
       "id": "8c790555-73e9-48cf-b4d1-9161e6a3cffc",
@@ -35883,7 +35948,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "8c790555-73e9-48cf-b4d1-9161e6a3cffc"
+      "_id": "8c790555-73e9-48cf-b4d1-9161e6a3cffc",
+      "available": true
     },
     {
       "id": "384a8ebe-eb52-45da-aacd-d14cb0120008",
@@ -35902,7 +35968,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "384a8ebe-eb52-45da-aacd-d14cb0120008"
+      "_id": "384a8ebe-eb52-45da-aacd-d14cb0120008",
+      "available": true
     },
     {
       "id": "a98d1e89-7454-4cde-9a88-584619092cac",
@@ -35921,7 +35988,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "a98d1e89-7454-4cde-9a88-584619092cac"
+      "_id": "a98d1e89-7454-4cde-9a88-584619092cac",
+      "available": true
     },
     {
       "id": "5a1a2532-8eef-4876-8043-77255a7a96f8",
@@ -35940,7 +36008,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5a1a2532-8eef-4876-8043-77255a7a96f8"
+      "_id": "5a1a2532-8eef-4876-8043-77255a7a96f8",
+      "available": true
     },
     {
       "id": "c153e339-fe87-415b-a792-3ea93556d0a6",
@@ -35959,7 +36028,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c153e339-fe87-415b-a792-3ea93556d0a6"
+      "_id": "c153e339-fe87-415b-a792-3ea93556d0a6",
+      "available": true
     },
     {
       "id": "76e87cc0-9620-4209-815b-6795047fcbcf",
@@ -35978,7 +36048,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "76e87cc0-9620-4209-815b-6795047fcbcf"
+      "_id": "76e87cc0-9620-4209-815b-6795047fcbcf",
+      "available": true
     },
     {
       "id": "e4cedb0d-f97b-48d4-9dd5-e2f2ccca0584",
@@ -35997,7 +36068,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "e4cedb0d-f97b-48d4-9dd5-e2f2ccca0584"
+      "_id": "e4cedb0d-f97b-48d4-9dd5-e2f2ccca0584",
+      "available": true
     },
     {
       "id": "d76bdb8d-038d-4ade-ae38-7ece9e71c8bc",
@@ -36016,7 +36088,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "d76bdb8d-038d-4ade-ae38-7ece9e71c8bc"
+      "_id": "d76bdb8d-038d-4ade-ae38-7ece9e71c8bc",
+      "available": true
     },
     {
       "id": "43d88ba8-4f15-4c72-9d51-b1342af00165",
@@ -36035,7 +36108,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "43d88ba8-4f15-4c72-9d51-b1342af00165"
+      "_id": "43d88ba8-4f15-4c72-9d51-b1342af00165",
+      "available": true
     },
     {
       "id": "3446a4f2-e8b8-4db8-8547-af51d70155e6",
@@ -36054,7 +36128,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "3446a4f2-e8b8-4db8-8547-af51d70155e6"
+      "_id": "3446a4f2-e8b8-4db8-8547-af51d70155e6",
+      "available": true
     },
     {
       "id": "bf2b705b-a49a-4b9e-a809-f0b78adbebf0",
@@ -36073,7 +36148,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "bf2b705b-a49a-4b9e-a809-f0b78adbebf0"
+      "_id": "bf2b705b-a49a-4b9e-a809-f0b78adbebf0",
+      "available": true
     },
     {
       "id": "84b27ea6-3516-4f3d-8030-7dfa14f5364a",
@@ -36092,7 +36168,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "84b27ea6-3516-4f3d-8030-7dfa14f5364a"
+      "_id": "84b27ea6-3516-4f3d-8030-7dfa14f5364a",
+      "available": true
     },
     {
       "id": "32418829-f969-4e04-95e4-b6d500413465",
@@ -36111,7 +36188,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "32418829-f969-4e04-95e4-b6d500413465"
+      "_id": "32418829-f969-4e04-95e4-b6d500413465",
+      "available": true
     },
     {
       "id": "9afc1da2-ff43-4176-b33f-78e4c50b3a53",
@@ -36130,7 +36208,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "9afc1da2-ff43-4176-b33f-78e4c50b3a53"
+      "_id": "9afc1da2-ff43-4176-b33f-78e4c50b3a53",
+      "available": true
     },
     {
       "id": "2b32557e-a89b-43ff-95e6-777980c258da",
@@ -36149,7 +36228,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "2b32557e-a89b-43ff-95e6-777980c258da"
+      "_id": "2b32557e-a89b-43ff-95e6-777980c258da",
+      "available": true
     },
     {
       "id": "b21fd1ea-10a2-4ee3-8a6e-ca24439530af",
@@ -36168,7 +36248,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "b21fd1ea-10a2-4ee3-8a6e-ca24439530af"
+      "_id": "b21fd1ea-10a2-4ee3-8a6e-ca24439530af",
+      "available": true
     },
     {
       "id": "4aa46c62-7615-4df7-829b-5a41fdd72145",
@@ -36187,7 +36268,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "4aa46c62-7615-4df7-829b-5a41fdd72145"
+      "_id": "4aa46c62-7615-4df7-829b-5a41fdd72145",
+      "available": true
     },
     {
       "id": "86372900-6500-4b8e-9408-1a3cb28acd2a",
@@ -36206,7 +36288,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "86372900-6500-4b8e-9408-1a3cb28acd2a"
+      "_id": "86372900-6500-4b8e-9408-1a3cb28acd2a",
+      "available": true
     },
     {
       "id": "30ad3a8f-3aee-4051-af44-2ba68938ac65",
@@ -36225,7 +36308,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "30ad3a8f-3aee-4051-af44-2ba68938ac65"
+      "_id": "30ad3a8f-3aee-4051-af44-2ba68938ac65",
+      "available": true
     },
     {
       "id": "0d82e5e9-1091-4740-8db0-a2c324953e01",
@@ -36244,7 +36328,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "0d82e5e9-1091-4740-8db0-a2c324953e01"
+      "_id": "0d82e5e9-1091-4740-8db0-a2c324953e01",
+      "available": true
     },
     {
       "id": "d0b61f54-2d41-4a2b-87da-270fe40fb387",
@@ -36263,7 +36348,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d0b61f54-2d41-4a2b-87da-270fe40fb387"
+      "_id": "d0b61f54-2d41-4a2b-87da-270fe40fb387",
+      "available": true
     },
     {
       "id": "66fc0659-5c1f-4bd3-a675-28c94bd97f4b",
@@ -36282,7 +36368,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "66fc0659-5c1f-4bd3-a675-28c94bd97f4b"
+      "_id": "66fc0659-5c1f-4bd3-a675-28c94bd97f4b",
+      "available": true
     },
     {
       "id": "8fd5360d-2a45-4a34-a743-689a0ff534ea",
@@ -36301,7 +36388,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "8fd5360d-2a45-4a34-a743-689a0ff534ea"
+      "_id": "8fd5360d-2a45-4a34-a743-689a0ff534ea",
+      "available": true
     },
     {
       "id": "d7bde51f-4d41-4b2c-a8a1-de27051d20bd",
@@ -36320,7 +36408,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "d7bde51f-4d41-4b2c-a8a1-de27051d20bd"
+      "_id": "d7bde51f-4d41-4b2c-a8a1-de27051d20bd",
+      "available": true
     },
     {
       "id": "d86a2331-04c3-4799-b2a3-b7a26a838066",
@@ -36339,7 +36428,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "d86a2331-04c3-4799-b2a3-b7a26a838066"
+      "_id": "d86a2331-04c3-4799-b2a3-b7a26a838066",
+      "available": true
     },
     {
       "id": "13411fda-d9c5-474a-ad8e-f535ce57299c",
@@ -36358,7 +36448,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "13411fda-d9c5-474a-ad8e-f535ce57299c"
+      "_id": "13411fda-d9c5-474a-ad8e-f535ce57299c",
+      "available": true
     },
     {
       "id": "363a34b0-f14f-4212-a7a6-a753b5121ca7",
@@ -36377,7 +36468,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "363a34b0-f14f-4212-a7a6-a753b5121ca7"
+      "_id": "363a34b0-f14f-4212-a7a6-a753b5121ca7",
+      "available": true
     },
     {
       "id": "8b35b620-2c59-4cf1-b5a1-68ae2276ad6f",
@@ -36396,7 +36488,8 @@
         "half": 15.0,
         "full": 6.0
       },
-      "_id": "8b35b620-2c59-4cf1-b5a1-68ae2276ad6f"
+      "_id": "8b35b620-2c59-4cf1-b5a1-68ae2276ad6f",
+      "available": true
     },
     {
       "id": "a37e6f38-8942-49e9-bb86-f3cc66b79e06",
@@ -36415,7 +36508,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "a37e6f38-8942-49e9-bb86-f3cc66b79e06"
+      "_id": "a37e6f38-8942-49e9-bb86-f3cc66b79e06",
+      "available": true
     },
     {
       "id": "639a6ab6-619f-49a3-8570-966de003e81b",
@@ -36434,7 +36528,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "639a6ab6-619f-49a3-8570-966de003e81b"
+      "_id": "639a6ab6-619f-49a3-8570-966de003e81b",
+      "available": true
     },
     {
       "id": "e47fb139-d230-44ad-b16d-e4fcb8aa36cf",
@@ -36453,7 +36548,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "e47fb139-d230-44ad-b16d-e4fcb8aa36cf"
+      "_id": "e47fb139-d230-44ad-b16d-e4fcb8aa36cf",
+      "available": true
     },
     {
       "id": "eda79e3a-55af-4848-b5c9-75bead03548d",
@@ -36472,7 +36568,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "eda79e3a-55af-4848-b5c9-75bead03548d"
+      "_id": "eda79e3a-55af-4848-b5c9-75bead03548d",
+      "available": true
     },
     {
       "id": "736d8335-c29d-437b-8017-f86d2f802b12",
@@ -36491,7 +36588,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "736d8335-c29d-437b-8017-f86d2f802b12"
+      "_id": "736d8335-c29d-437b-8017-f86d2f802b12",
+      "available": true
     },
     {
       "id": "230429f8-ba97-44ee-bdfa-747cfdf82afc",
@@ -36510,7 +36608,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "230429f8-ba97-44ee-bdfa-747cfdf82afc"
+      "_id": "230429f8-ba97-44ee-bdfa-747cfdf82afc",
+      "available": true
     },
     {
       "id": "f11b20c7-9fdd-4abd-a2f7-342aa36b4bd2",
@@ -36529,7 +36628,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "f11b20c7-9fdd-4abd-a2f7-342aa36b4bd2"
+      "_id": "f11b20c7-9fdd-4abd-a2f7-342aa36b4bd2",
+      "available": true
     },
     {
       "id": "6b042762-aaa2-42c8-b2f8-fa5a17ab6848",
@@ -36548,7 +36648,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "6b042762-aaa2-42c8-b2f8-fa5a17ab6848"
+      "_id": "6b042762-aaa2-42c8-b2f8-fa5a17ab6848",
+      "available": true
     },
     {
       "id": "933c9ff9-9bef-4de3-be72-ee3c3a79a85a",
@@ -36567,7 +36668,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "933c9ff9-9bef-4de3-be72-ee3c3a79a85a"
+      "_id": "933c9ff9-9bef-4de3-be72-ee3c3a79a85a",
+      "available": true
     },
     {
       "id": "a307d302-a442-4b30-9795-4dac3d253d1d",
@@ -36586,7 +36688,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "a307d302-a442-4b30-9795-4dac3d253d1d"
+      "_id": "a307d302-a442-4b30-9795-4dac3d253d1d",
+      "available": true
     },
     {
       "id": "3df7aa9a-40ae-4287-b47d-b093ee270169",
@@ -36605,7 +36708,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "3df7aa9a-40ae-4287-b47d-b093ee270169"
+      "_id": "3df7aa9a-40ae-4287-b47d-b093ee270169",
+      "available": true
     },
     {
       "id": "01fcb134-4cdb-4eff-abbc-15f3c3d34e4c",
@@ -36624,7 +36728,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "01fcb134-4cdb-4eff-abbc-15f3c3d34e4c"
+      "_id": "01fcb134-4cdb-4eff-abbc-15f3c3d34e4c",
+      "available": true
     },
     {
       "id": "a65d1ef3-5437-4d78-b415-8be226a72958",
@@ -36643,7 +36748,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "a65d1ef3-5437-4d78-b415-8be226a72958"
+      "_id": "a65d1ef3-5437-4d78-b415-8be226a72958",
+      "available": true
     },
     {
       "id": "5c3d815a-48b0-4a1c-9ca8-a8a414e44c3d",
@@ -36662,7 +36768,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "5c3d815a-48b0-4a1c-9ca8-a8a414e44c3d"
+      "_id": "5c3d815a-48b0-4a1c-9ca8-a8a414e44c3d",
+      "available": true
     },
     {
       "id": "170cbe78-8052-4e2a-9695-e032aeb769ae",
@@ -36681,7 +36788,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "170cbe78-8052-4e2a-9695-e032aeb769ae"
+      "_id": "170cbe78-8052-4e2a-9695-e032aeb769ae",
+      "available": true
     },
     {
       "id": "883bff25-0ea2-41c8-b8e5-ebd59475da5c",
@@ -36700,7 +36808,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "883bff25-0ea2-41c8-b8e5-ebd59475da5c"
+      "_id": "883bff25-0ea2-41c8-b8e5-ebd59475da5c",
+      "available": true
     },
     {
       "id": "573b13e8-3b32-4b16-908d-ee793b189000",
@@ -36719,7 +36828,8 @@
         "half": 18,
         "full": 30.0
       },
-      "_id": "573b13e8-3b32-4b16-908d-ee793b189000"
+      "_id": "573b13e8-3b32-4b16-908d-ee793b189000",
+      "available": true
     },
     {
       "id": "169d5f9b-4238-4a82-87eb-f24a7016c48d",
@@ -36738,7 +36848,8 @@
         "half": 18,
         "full": 30.0
       },
-      "_id": "169d5f9b-4238-4a82-87eb-f24a7016c48d"
+      "_id": "169d5f9b-4238-4a82-87eb-f24a7016c48d",
+      "available": true
     },
     {
       "id": "08b2a1b1-b239-43a1-bd72-d1bebb92cb50",
@@ -36757,7 +36868,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "08b2a1b1-b239-43a1-bd72-d1bebb92cb50"
+      "_id": "08b2a1b1-b239-43a1-bd72-d1bebb92cb50",
+      "available": true
     },
     {
       "id": "7483759e-2e5a-4452-a4e4-7b5ee22be22d",
@@ -36776,7 +36888,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7483759e-2e5a-4452-a4e4-7b5ee22be22d"
+      "_id": "7483759e-2e5a-4452-a4e4-7b5ee22be22d",
+      "available": true
     },
     {
       "id": "9aaf633f-34ac-4a48-9c38-52c0aa100752",
@@ -36795,7 +36908,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "9aaf633f-34ac-4a48-9c38-52c0aa100752"
+      "_id": "9aaf633f-34ac-4a48-9c38-52c0aa100752",
+      "available": true
     },
     {
       "id": "16e70924-b294-4b9e-ae53-bb69db845cb2",
@@ -36814,7 +36928,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "16e70924-b294-4b9e-ae53-bb69db845cb2"
+      "_id": "16e70924-b294-4b9e-ae53-bb69db845cb2",
+      "available": true
     },
     {
       "id": "3ad70f42-edee-40a7-b446-9db2e68d6a7f",
@@ -36833,7 +36948,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "3ad70f42-edee-40a7-b446-9db2e68d6a7f"
+      "_id": "3ad70f42-edee-40a7-b446-9db2e68d6a7f",
+      "available": true
     },
     {
       "id": "0c899d0b-7b77-47d3-bb93-580e32db9210",
@@ -36852,7 +36968,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "0c899d0b-7b77-47d3-bb93-580e32db9210"
+      "_id": "0c899d0b-7b77-47d3-bb93-580e32db9210",
+      "available": true
     },
     {
       "id": "c51cbc16-0153-4cd1-a903-6cacc5edde89",
@@ -36871,7 +36988,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "c51cbc16-0153-4cd1-a903-6cacc5edde89"
+      "_id": "c51cbc16-0153-4cd1-a903-6cacc5edde89",
+      "available": true
     },
     {
       "id": "6dba4329-43b0-4869-befe-feecef95dd2a",
@@ -36890,7 +37008,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "6dba4329-43b0-4869-befe-feecef95dd2a"
+      "_id": "6dba4329-43b0-4869-befe-feecef95dd2a",
+      "available": true
     },
     {
       "id": "64728dcb-8c4d-4cb0-80a6-9dd9ba7fd0f0",
@@ -36909,7 +37028,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "64728dcb-8c4d-4cb0-80a6-9dd9ba7fd0f0"
+      "_id": "64728dcb-8c4d-4cb0-80a6-9dd9ba7fd0f0",
+      "available": true
     },
     {
       "id": "9913a598-c1d7-45fc-bc63-f6293f051a42",
@@ -36928,7 +37048,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "9913a598-c1d7-45fc-bc63-f6293f051a42"
+      "_id": "9913a598-c1d7-45fc-bc63-f6293f051a42",
+      "available": true
     },
     {
       "id": "97e0660e-c603-4156-98e8-e02c1ca02585",
@@ -36947,7 +37068,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "97e0660e-c603-4156-98e8-e02c1ca02585"
+      "_id": "97e0660e-c603-4156-98e8-e02c1ca02585",
+      "available": true
     },
     {
       "id": "18dbc09d-93aa-4afd-a884-3afc46c923d4",
@@ -36966,7 +37088,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "18dbc09d-93aa-4afd-a884-3afc46c923d4"
+      "_id": "18dbc09d-93aa-4afd-a884-3afc46c923d4",
+      "available": true
     },
     {
       "id": "8cc57dc9-1862-4dde-b02b-31e9cabd470f",
@@ -36985,7 +37108,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "8cc57dc9-1862-4dde-b02b-31e9cabd470f"
+      "_id": "8cc57dc9-1862-4dde-b02b-31e9cabd470f",
+      "available": true
     },
     {
       "id": "d047e1a8-d338-4463-a46e-a712e5d593db",
@@ -37004,7 +37128,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d047e1a8-d338-4463-a46e-a712e5d593db"
+      "_id": "d047e1a8-d338-4463-a46e-a712e5d593db",
+      "available": true
     },
     {
       "id": "2e05cedd-cc1f-4f65-abda-5fc7b2ac64ff",
@@ -37023,7 +37148,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "2e05cedd-cc1f-4f65-abda-5fc7b2ac64ff"
+      "_id": "2e05cedd-cc1f-4f65-abda-5fc7b2ac64ff",
+      "available": true
     },
     {
       "id": "59cc89a4-24f6-46d1-a274-a49e8555ccb2",
@@ -37042,7 +37168,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "59cc89a4-24f6-46d1-a274-a49e8555ccb2"
+      "_id": "59cc89a4-24f6-46d1-a274-a49e8555ccb2",
+      "available": true
     },
     {
       "id": "3b545641-355a-4bd7-a33a-6e7f7c900506",
@@ -37061,7 +37188,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "3b545641-355a-4bd7-a33a-6e7f7c900506"
+      "_id": "3b545641-355a-4bd7-a33a-6e7f7c900506",
+      "available": true
     },
     {
       "id": "1a5cb6d0-65cd-4f22-a6e9-e1290415bf0d",
@@ -37080,7 +37208,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "1a5cb6d0-65cd-4f22-a6e9-e1290415bf0d"
+      "_id": "1a5cb6d0-65cd-4f22-a6e9-e1290415bf0d",
+      "available": true
     },
     {
       "id": "79cedbed-2959-4fa5-9bf0-327391c9f529",
@@ -37099,7 +37228,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "79cedbed-2959-4fa5-9bf0-327391c9f529"
+      "_id": "79cedbed-2959-4fa5-9bf0-327391c9f529",
+      "available": true
     },
     {
       "id": "31ff0155-6dd9-4ae1-a5eb-e29aca125829",
@@ -37118,7 +37248,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "31ff0155-6dd9-4ae1-a5eb-e29aca125829"
+      "_id": "31ff0155-6dd9-4ae1-a5eb-e29aca125829",
+      "available": true
     },
     {
       "id": "49c31d37-3609-4662-8c79-426ba4a76678",
@@ -37137,7 +37268,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "49c31d37-3609-4662-8c79-426ba4a76678"
+      "_id": "49c31d37-3609-4662-8c79-426ba4a76678",
+      "available": true
     },
     {
       "id": "b9a697d3-594e-47e4-a8a3-26e33ad284aa",
@@ -37156,7 +37288,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "b9a697d3-594e-47e4-a8a3-26e33ad284aa"
+      "_id": "b9a697d3-594e-47e4-a8a3-26e33ad284aa",
+      "available": true
     },
     {
       "id": "f9ddabc4-d79e-4b5a-b51a-e79af1017a4c",
@@ -37175,7 +37308,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "f9ddabc4-d79e-4b5a-b51a-e79af1017a4c"
+      "_id": "f9ddabc4-d79e-4b5a-b51a-e79af1017a4c",
+      "available": true
     },
     {
       "id": "49b83831-a85f-4c7f-ba28-9be385f009bf",
@@ -37194,7 +37328,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "49b83831-a85f-4c7f-ba28-9be385f009bf"
+      "_id": "49b83831-a85f-4c7f-ba28-9be385f009bf",
+      "available": true
     },
     {
       "id": "3804df30-5984-43ec-a482-ee8f6e1adbc9",
@@ -37213,7 +37348,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "3804df30-5984-43ec-a482-ee8f6e1adbc9"
+      "_id": "3804df30-5984-43ec-a482-ee8f6e1adbc9",
+      "available": true
     },
     {
       "id": "0c6040d7-7c42-498a-90aa-84391be2dea4",
@@ -37232,7 +37368,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "0c6040d7-7c42-498a-90aa-84391be2dea4"
+      "_id": "0c6040d7-7c42-498a-90aa-84391be2dea4",
+      "available": true
     },
     {
       "id": "d68cbd1f-1a81-4df9-903a-ba812eb9a44f",
@@ -37251,7 +37388,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "d68cbd1f-1a81-4df9-903a-ba812eb9a44f"
+      "_id": "d68cbd1f-1a81-4df9-903a-ba812eb9a44f",
+      "available": true
     },
     {
       "id": "4d45e48b-d64f-463a-b683-b8a7cbc106b7",
@@ -37270,7 +37408,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "4d45e48b-d64f-463a-b683-b8a7cbc106b7"
+      "_id": "4d45e48b-d64f-463a-b683-b8a7cbc106b7",
+      "available": true
     },
     {
       "id": "5c8b1fce-2dd3-4ba4-81a4-d1128bfbe24e",
@@ -37289,7 +37428,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "5c8b1fce-2dd3-4ba4-81a4-d1128bfbe24e"
+      "_id": "5c8b1fce-2dd3-4ba4-81a4-d1128bfbe24e",
+      "available": true
     },
     {
       "id": "9d6a8518-1bd2-40f7-bec5-fe2f54b06e22",
@@ -37308,7 +37448,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "9d6a8518-1bd2-40f7-bec5-fe2f54b06e22"
+      "_id": "9d6a8518-1bd2-40f7-bec5-fe2f54b06e22",
+      "available": true
     },
     {
       "id": "4e3e4445-93ea-404c-8251-3bcd12c33f4f",
@@ -37327,7 +37468,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "4e3e4445-93ea-404c-8251-3bcd12c33f4f"
+      "_id": "4e3e4445-93ea-404c-8251-3bcd12c33f4f",
+      "available": true
     },
     {
       "id": "7bcb6e9d-723e-4e64-95b1-eaed608b47b7",
@@ -37346,7 +37488,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7bcb6e9d-723e-4e64-95b1-eaed608b47b7"
+      "_id": "7bcb6e9d-723e-4e64-95b1-eaed608b47b7",
+      "available": true
     },
     {
       "id": "fef48796-1f69-42d8-8b00-5aeebd91e977",
@@ -37365,7 +37508,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "fef48796-1f69-42d8-8b00-5aeebd91e977"
+      "_id": "fef48796-1f69-42d8-8b00-5aeebd91e977",
+      "available": true
     },
     {
       "id": "e692fea9-4ed4-4e60-9e74-7505d8b8c623",
@@ -37384,7 +37528,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "e692fea9-4ed4-4e60-9e74-7505d8b8c623"
+      "_id": "e692fea9-4ed4-4e60-9e74-7505d8b8c623",
+      "available": true
     },
     {
       "id": "b6f784e8-c0a6-4e72-a3ca-5ee6681cd806",
@@ -37403,7 +37548,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "b6f784e8-c0a6-4e72-a3ca-5ee6681cd806"
+      "_id": "b6f784e8-c0a6-4e72-a3ca-5ee6681cd806",
+      "available": true
     },
     {
       "id": "b735ebf4-ff79-4c39-8b64-ae8621ae777d",
@@ -37422,7 +37568,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "b735ebf4-ff79-4c39-8b64-ae8621ae777d"
+      "_id": "b735ebf4-ff79-4c39-8b64-ae8621ae777d",
+      "available": true
     },
     {
       "id": "4173ed7b-b7ca-4931-becd-2a23bec27a54",
@@ -37441,7 +37588,8 @@
         "half": 15.0,
         "full": 15.0
       },
-      "_id": "4173ed7b-b7ca-4931-becd-2a23bec27a54"
+      "_id": "4173ed7b-b7ca-4931-becd-2a23bec27a54",
+      "available": true
     },
     {
       "id": "cd718e27-916c-4e68-bcf0-78399f6535de",
@@ -37460,7 +37608,8 @@
         "half": 15.0,
         "full": 15.0
       },
-      "_id": "cd718e27-916c-4e68-bcf0-78399f6535de"
+      "_id": "cd718e27-916c-4e68-bcf0-78399f6535de",
+      "available": true
     },
     {
       "id": "a345522c-c6c5-4577-a6b5-13e323126139",
@@ -37479,7 +37628,8 @@
         "half": 15.0,
         "full": 15.0
       },
-      "_id": "a345522c-c6c5-4577-a6b5-13e323126139"
+      "_id": "a345522c-c6c5-4577-a6b5-13e323126139",
+      "available": true
     },
     {
       "id": "48a75092-0ba5-4ee8-94bb-a6521936e826",
@@ -37498,7 +37648,8 @@
         "half": 15.0,
         "full": 15.0
       },
-      "_id": "48a75092-0ba5-4ee8-94bb-a6521936e826"
+      "_id": "48a75092-0ba5-4ee8-94bb-a6521936e826",
+      "available": true
     },
     {
       "id": "f9e3a03d-3d7d-42b0-92d0-41c27226e56b",
@@ -37517,7 +37668,8 @@
         "half": 15.0,
         "full": 15.0
       },
-      "_id": "f9e3a03d-3d7d-42b0-92d0-41c27226e56b"
+      "_id": "f9e3a03d-3d7d-42b0-92d0-41c27226e56b",
+      "available": true
     },
     {
       "id": "28ea215a-7f89-4af4-b859-b9518eda358f",
@@ -37536,7 +37688,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "28ea215a-7f89-4af4-b859-b9518eda358f"
+      "_id": "28ea215a-7f89-4af4-b859-b9518eda358f",
+      "available": true
     },
     {
       "id": "8cf81152-a9b8-42ea-8750-cf67197ead68",
@@ -37555,7 +37708,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "8cf81152-a9b8-42ea-8750-cf67197ead68"
+      "_id": "8cf81152-a9b8-42ea-8750-cf67197ead68",
+      "available": true
     },
     {
       "id": "c3e16553-9b43-4bed-9b6f-8497936ad291",
@@ -37574,7 +37728,8 @@
         "half": 15.0,
         "full": 15.0
       },
-      "_id": "c3e16553-9b43-4bed-9b6f-8497936ad291"
+      "_id": "c3e16553-9b43-4bed-9b6f-8497936ad291",
+      "available": true
     },
     {
       "id": "a05e1913-a5c5-4595-a731-0c459175a9cb",
@@ -37593,7 +37748,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "a05e1913-a5c5-4595-a731-0c459175a9cb"
+      "_id": "a05e1913-a5c5-4595-a731-0c459175a9cb",
+      "available": true
     },
     {
       "id": "de6f7492-be03-4c02-b439-02ebc264099c",
@@ -37612,7 +37768,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "de6f7492-be03-4c02-b439-02ebc264099c"
+      "_id": "de6f7492-be03-4c02-b439-02ebc264099c",
+      "available": true
     },
     {
       "id": "7f44088c-802c-46ee-a1b6-15a4e7b3d212",
@@ -37631,7 +37788,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "7f44088c-802c-46ee-a1b6-15a4e7b3d212"
+      "_id": "7f44088c-802c-46ee-a1b6-15a4e7b3d212",
+      "available": true
     },
     {
       "id": "af7f988d-267c-414c-89e1-8d963b707277",
@@ -37650,7 +37808,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "af7f988d-267c-414c-89e1-8d963b707277"
+      "_id": "af7f988d-267c-414c-89e1-8d963b707277",
+      "available": true
     },
     {
       "id": "c6722fca-368d-499d-819f-f123cf3bf3b0",
@@ -37669,7 +37828,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c6722fca-368d-499d-819f-f123cf3bf3b0"
+      "_id": "c6722fca-368d-499d-819f-f123cf3bf3b0",
+      "available": true
     },
     {
       "id": "4cec38a5-e096-4e7e-81a1-6ff40c247793",
@@ -37688,7 +37848,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "4cec38a5-e096-4e7e-81a1-6ff40c247793"
+      "_id": "4cec38a5-e096-4e7e-81a1-6ff40c247793",
+      "available": true
     },
     {
       "id": "24d85782-bbca-4e5b-bce6-ad2f1d789006",
@@ -37707,7 +37868,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "24d85782-bbca-4e5b-bce6-ad2f1d789006"
+      "_id": "24d85782-bbca-4e5b-bce6-ad2f1d789006",
+      "available": true
     },
     {
       "id": "06ce2a67-49af-4d73-aa0a-b8833c4e8ce7",
@@ -37726,7 +37888,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "06ce2a67-49af-4d73-aa0a-b8833c4e8ce7"
+      "_id": "06ce2a67-49af-4d73-aa0a-b8833c4e8ce7",
+      "available": true
     },
     {
       "id": "54908fc6-9c85-4ef7-aa1c-ff30bb6a9408",
@@ -37745,7 +37908,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "54908fc6-9c85-4ef7-aa1c-ff30bb6a9408"
+      "_id": "54908fc6-9c85-4ef7-aa1c-ff30bb6a9408",
+      "available": true
     },
     {
       "id": "34fc9b30-25b5-4b73-bc0d-060e8f24c98d",
@@ -37764,7 +37928,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "34fc9b30-25b5-4b73-bc0d-060e8f24c98d"
+      "_id": "34fc9b30-25b5-4b73-bc0d-060e8f24c98d",
+      "available": true
     },
     {
       "id": "5c04d160-561d-429f-ad9a-55bdac6dfa57",
@@ -37783,7 +37948,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "5c04d160-561d-429f-ad9a-55bdac6dfa57"
+      "_id": "5c04d160-561d-429f-ad9a-55bdac6dfa57",
+      "available": true
     },
     {
       "id": "9414cb8e-2605-4356-84d6-3e94f3b6efe9",
@@ -37802,7 +37968,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "9414cb8e-2605-4356-84d6-3e94f3b6efe9"
+      "_id": "9414cb8e-2605-4356-84d6-3e94f3b6efe9",
+      "available": true
     },
     {
       "id": "7eeda96f-77ff-489c-9899-be4c669291b6",
@@ -37821,7 +37988,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7eeda96f-77ff-489c-9899-be4c669291b6"
+      "_id": "7eeda96f-77ff-489c-9899-be4c669291b6",
+      "available": true
     },
     {
       "id": "c1d4413f-d764-4c7f-8544-cea2c81d2ebe",
@@ -37840,7 +38008,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c1d4413f-d764-4c7f-8544-cea2c81d2ebe"
+      "_id": "c1d4413f-d764-4c7f-8544-cea2c81d2ebe",
+      "available": true
     },
     {
       "id": "6fd02b1c-587a-42d3-a067-73cec7ab9868",
@@ -37859,7 +38028,8 @@
         "half": 90,
         "full": 150.0
       },
-      "_id": "6fd02b1c-587a-42d3-a067-73cec7ab9868"
+      "_id": "6fd02b1c-587a-42d3-a067-73cec7ab9868",
+      "available": true
     },
     {
       "id": "5cf02a56-32a3-40a5-843d-e8310e719f57",
@@ -37878,7 +38048,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "5cf02a56-32a3-40a5-843d-e8310e719f57"
+      "_id": "5cf02a56-32a3-40a5-843d-e8310e719f57",
+      "available": true
     },
     {
       "id": "743fe23e-5c63-48b5-8e2a-8e54399012f7",
@@ -37897,7 +38068,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "743fe23e-5c63-48b5-8e2a-8e54399012f7"
+      "_id": "743fe23e-5c63-48b5-8e2a-8e54399012f7",
+      "available": true
     },
     {
       "id": "7c94429a-7aad-45d9-b534-525b23000dd8",
@@ -37916,7 +38088,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7c94429a-7aad-45d9-b534-525b23000dd8"
+      "_id": "7c94429a-7aad-45d9-b534-525b23000dd8",
+      "available": true
     },
     {
       "id": "baf44f22-a9e0-4558-8ccd-122dce50f180",
@@ -37935,7 +38108,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "baf44f22-a9e0-4558-8ccd-122dce50f180"
+      "_id": "baf44f22-a9e0-4558-8ccd-122dce50f180",
+      "available": true
     },
     {
       "id": "cb5ed61c-2faf-4377-a9be-89f56571285e",
@@ -37954,7 +38128,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "cb5ed61c-2faf-4377-a9be-89f56571285e"
+      "_id": "cb5ed61c-2faf-4377-a9be-89f56571285e",
+      "available": true
     },
     {
       "id": "0614ef1f-832d-4640-96c0-a18e2bc77043",
@@ -37973,7 +38148,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "0614ef1f-832d-4640-96c0-a18e2bc77043"
+      "_id": "0614ef1f-832d-4640-96c0-a18e2bc77043",
+      "available": true
     },
     {
       "id": "fab3cd7d-8100-4646-9237-d5195576ec56",
@@ -37992,7 +38168,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "fab3cd7d-8100-4646-9237-d5195576ec56"
+      "_id": "fab3cd7d-8100-4646-9237-d5195576ec56",
+      "available": true
     },
     {
       "id": "4351de55-78dc-4872-81f0-b49913bff116",
@@ -38011,7 +38188,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "4351de55-78dc-4872-81f0-b49913bff116"
+      "_id": "4351de55-78dc-4872-81f0-b49913bff116",
+      "available": true
     },
     {
       "id": "beddbfe0-9b27-489e-94b9-ddc8b65dd08a",
@@ -38030,7 +38208,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "beddbfe0-9b27-489e-94b9-ddc8b65dd08a"
+      "_id": "beddbfe0-9b27-489e-94b9-ddc8b65dd08a",
+      "available": true
     },
     {
       "id": "15f2ca18-f173-493c-beb5-d5123e6e12cd",
@@ -38049,7 +38228,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "15f2ca18-f173-493c-beb5-d5123e6e12cd"
+      "_id": "15f2ca18-f173-493c-beb5-d5123e6e12cd",
+      "available": true
     },
     {
       "id": "7e3b15a8-7a71-4738-a4ef-d3c620d7faa4",
@@ -38068,7 +38248,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7e3b15a8-7a71-4738-a4ef-d3c620d7faa4"
+      "_id": "7e3b15a8-7a71-4738-a4ef-d3c620d7faa4",
+      "available": true
     },
     {
       "id": "d36c84b6-16f6-4c2c-8542-73331174df43",
@@ -38087,7 +38268,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "d36c84b6-16f6-4c2c-8542-73331174df43"
+      "_id": "d36c84b6-16f6-4c2c-8542-73331174df43",
+      "available": true
     },
     {
       "id": "fd5438e8-ca47-47bd-bbfe-002f28e576ca",
@@ -38106,7 +38288,8 @@
         "half": 84,
         "full": 140.0
       },
-      "_id": "fd5438e8-ca47-47bd-bbfe-002f28e576ca"
+      "_id": "fd5438e8-ca47-47bd-bbfe-002f28e576ca",
+      "available": true
     },
     {
       "id": "af2d7ab1-c267-4202-b016-3e60b5056e62",
@@ -38125,7 +38308,8 @@
         "half": 96,
         "full": 160.0
       },
-      "_id": "af2d7ab1-c267-4202-b016-3e60b5056e62"
+      "_id": "af2d7ab1-c267-4202-b016-3e60b5056e62",
+      "available": true
     },
     {
       "id": "b531c3e2-007c-4666-b01e-821c498cc83d",
@@ -38144,7 +38328,8 @@
         "half": 108,
         "full": 180.0
       },
-      "_id": "b531c3e2-007c-4666-b01e-821c498cc83d"
+      "_id": "b531c3e2-007c-4666-b01e-821c498cc83d",
+      "available": true
     },
     {
       "id": "49f32b12-c1bc-49f1-8e7f-cfd66fe2de0a",
@@ -38163,7 +38348,8 @@
         "half": 108,
         "full": 180.0
       },
-      "_id": "49f32b12-c1bc-49f1-8e7f-cfd66fe2de0a"
+      "_id": "49f32b12-c1bc-49f1-8e7f-cfd66fe2de0a",
+      "available": true
     },
     {
       "id": "953ca51d-a5ee-47db-a903-fdf96f0dcc51",
@@ -38182,7 +38368,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "953ca51d-a5ee-47db-a903-fdf96f0dcc51"
+      "_id": "953ca51d-a5ee-47db-a903-fdf96f0dcc51",
+      "available": true
     },
     {
       "id": "5a27ce2b-8a5a-4e4e-87d0-4f619953f936",
@@ -38201,7 +38388,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5a27ce2b-8a5a-4e4e-87d0-4f619953f936"
+      "_id": "5a27ce2b-8a5a-4e4e-87d0-4f619953f936",
+      "available": true
     },
     {
       "id": "c7cbe2c9-3f0c-4cbb-b837-cc5821dc1d53",
@@ -38220,7 +38408,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c7cbe2c9-3f0c-4cbb-b837-cc5821dc1d53"
+      "_id": "c7cbe2c9-3f0c-4cbb-b837-cc5821dc1d53",
+      "available": true
     },
     {
       "id": "57ebcd0b-0ab7-43bc-b0f9-36761cc0bf33",
@@ -38239,7 +38428,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "57ebcd0b-0ab7-43bc-b0f9-36761cc0bf33"
+      "_id": "57ebcd0b-0ab7-43bc-b0f9-36761cc0bf33",
+      "available": true
     },
     {
       "id": "132ead33-c085-4aff-8fb3-dbef76f73d29",
@@ -38258,7 +38448,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "132ead33-c085-4aff-8fb3-dbef76f73d29"
+      "_id": "132ead33-c085-4aff-8fb3-dbef76f73d29",
+      "available": true
     },
     {
       "id": "4324640d-eae1-4a2f-991f-495ac3bcdcb4",
@@ -38277,7 +38468,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "4324640d-eae1-4a2f-991f-495ac3bcdcb4"
+      "_id": "4324640d-eae1-4a2f-991f-495ac3bcdcb4",
+      "available": true
     },
     {
       "id": "c0ed5bfa-a358-4079-b583-d855a4ed539b",
@@ -38296,7 +38488,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c0ed5bfa-a358-4079-b583-d855a4ed539b"
+      "_id": "c0ed5bfa-a358-4079-b583-d855a4ed539b",
+      "available": true
     },
     {
       "id": "e2d7acf0-88f9-4dad-a838-6df8f87ab7bf",
@@ -38315,7 +38508,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "e2d7acf0-88f9-4dad-a838-6df8f87ab7bf"
+      "_id": "e2d7acf0-88f9-4dad-a838-6df8f87ab7bf",
+      "available": true
     },
     {
       "id": "350eea64-6b51-4f63-887d-a499a3b4bd0e",
@@ -38334,7 +38528,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "350eea64-6b51-4f63-887d-a499a3b4bd0e"
+      "_id": "350eea64-6b51-4f63-887d-a499a3b4bd0e",
+      "available": true
     },
     {
       "id": "404b780a-3b7c-40a9-b69d-be72c452e775",
@@ -38353,7 +38548,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "404b780a-3b7c-40a9-b69d-be72c452e775"
+      "_id": "404b780a-3b7c-40a9-b69d-be72c452e775",
+      "available": true
     },
     {
       "id": "0c798439-d0ff-4a68-89ac-ade80e62e568",
@@ -38372,7 +38568,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "0c798439-d0ff-4a68-89ac-ade80e62e568"
+      "_id": "0c798439-d0ff-4a68-89ac-ade80e62e568",
+      "available": true
     },
     {
       "id": "2a006504-eb36-466a-ada8-204d5d69d087",
@@ -38391,7 +38588,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "2a006504-eb36-466a-ada8-204d5d69d087"
+      "_id": "2a006504-eb36-466a-ada8-204d5d69d087",
+      "available": true
     },
     {
       "id": "e8ae6b9f-4bde-4a1a-a1f7-eb9fe23be90a",
@@ -38410,7 +38608,8 @@
         "half": 60,
         "full": 100.0
       },
-      "_id": "e8ae6b9f-4bde-4a1a-a1f7-eb9fe23be90a"
+      "_id": "e8ae6b9f-4bde-4a1a-a1f7-eb9fe23be90a",
+      "available": true
     },
     {
       "id": "550edf94-516a-4cf4-acdb-176747ad76e3",
@@ -38429,7 +38628,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "550edf94-516a-4cf4-acdb-176747ad76e3"
+      "_id": "550edf94-516a-4cf4-acdb-176747ad76e3",
+      "available": true
     },
     {
       "id": "14673726-a015-4e66-adf8-22c9edd8a8cd",
@@ -38448,7 +38648,8 @@
         "half": 84,
         "full": 140.0
       },
-      "_id": "14673726-a015-4e66-adf8-22c9edd8a8cd"
+      "_id": "14673726-a015-4e66-adf8-22c9edd8a8cd",
+      "available": true
     },
     {
       "id": "6da482e7-fab2-4a0d-9adc-53c0384034d2",
@@ -38467,7 +38668,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "6da482e7-fab2-4a0d-9adc-53c0384034d2"
+      "_id": "6da482e7-fab2-4a0d-9adc-53c0384034d2",
+      "available": true
     },
     {
       "id": "6be29c0e-2ca9-4233-a8a9-24d5801941ee",
@@ -38486,7 +38688,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "6be29c0e-2ca9-4233-a8a9-24d5801941ee"
+      "_id": "6be29c0e-2ca9-4233-a8a9-24d5801941ee",
+      "available": true
     },
     {
       "id": "2b041cbe-2fa6-4157-b5b2-480f3268b924",
@@ -38505,7 +38708,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "2b041cbe-2fa6-4157-b5b2-480f3268b924"
+      "_id": "2b041cbe-2fa6-4157-b5b2-480f3268b924",
+      "available": true
     },
     {
       "id": "5e5723ff-0045-422d-aa13-688cff1b0a3a",
@@ -38524,7 +38728,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "5e5723ff-0045-422d-aa13-688cff1b0a3a"
+      "_id": "5e5723ff-0045-422d-aa13-688cff1b0a3a",
+      "available": true
     },
     {
       "id": "c8ffbbfd-308e-43d4-bba7-a3de37684df2",
@@ -38543,7 +38748,8 @@
         "half": 84,
         "full": 140.0
       },
-      "_id": "c8ffbbfd-308e-43d4-bba7-a3de37684df2"
+      "_id": "c8ffbbfd-308e-43d4-bba7-a3de37684df2",
+      "available": true
     },
     {
       "id": "adebe959-38db-4f37-8b7d-77c19d5048f4",
@@ -38562,7 +38768,8 @@
         "half": 84,
         "full": 140.0
       },
-      "_id": "adebe959-38db-4f37-8b7d-77c19d5048f4"
+      "_id": "adebe959-38db-4f37-8b7d-77c19d5048f4",
+      "available": true
     },
     {
       "id": "317bb019-4524-48a1-a50b-32b7364cd37b",
@@ -38581,7 +38788,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "317bb019-4524-48a1-a50b-32b7364cd37b"
+      "_id": "317bb019-4524-48a1-a50b-32b7364cd37b",
+      "available": true
     },
     {
       "id": "37586cba-9629-4f6f-80a3-bacb926b7e0a",
@@ -38600,7 +38808,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "37586cba-9629-4f6f-80a3-bacb926b7e0a"
+      "_id": "37586cba-9629-4f6f-80a3-bacb926b7e0a",
+      "available": true
     },
     {
       "id": "fe882783-3fa3-4bd6-910a-300659dac6db",
@@ -38619,7 +38828,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "fe882783-3fa3-4bd6-910a-300659dac6db"
+      "_id": "fe882783-3fa3-4bd6-910a-300659dac6db",
+      "available": true
     },
     {
       "id": "81bb98d8-e4f4-4945-96da-10c73db80004",
@@ -38638,7 +38848,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "81bb98d8-e4f4-4945-96da-10c73db80004"
+      "_id": "81bb98d8-e4f4-4945-96da-10c73db80004",
+      "available": true
     },
     {
       "id": "945c1e04-9e2f-41ba-9e24-92644f744b90",
@@ -38657,7 +38868,8 @@
         "half": 60,
         "full": 100.0
       },
-      "_id": "945c1e04-9e2f-41ba-9e24-92644f744b90"
+      "_id": "945c1e04-9e2f-41ba-9e24-92644f744b90",
+      "available": true
     },
     {
       "id": "4ea79180-d107-4c6d-9193-0c4503286cf8",
@@ -38676,7 +38888,8 @@
         "half": 66,
         "full": 110.0
       },
-      "_id": "4ea79180-d107-4c6d-9193-0c4503286cf8"
+      "_id": "4ea79180-d107-4c6d-9193-0c4503286cf8",
+      "available": true
     },
     {
       "id": "f7136813-8cbe-4b52-b3c6-76deafa4769e",
@@ -38695,7 +38908,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "f7136813-8cbe-4b52-b3c6-76deafa4769e"
+      "_id": "f7136813-8cbe-4b52-b3c6-76deafa4769e",
+      "available": true
     },
     {
       "id": "c6d67596-e97c-4e29-ba54-77d334060844",
@@ -38714,7 +38928,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "c6d67596-e97c-4e29-ba54-77d334060844"
+      "_id": "c6d67596-e97c-4e29-ba54-77d334060844",
+      "available": true
     },
     {
       "id": "385e54a4-90e1-4b5e-b643-435548d229c2",
@@ -38733,7 +38948,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "385e54a4-90e1-4b5e-b643-435548d229c2"
+      "_id": "385e54a4-90e1-4b5e-b643-435548d229c2",
+      "available": true
     },
     {
       "id": "4d6a2c75-5cc5-4e55-a324-17572ad30a57",
@@ -38752,7 +38968,8 @@
         "half": 721,
         "full": 1201.0
       },
-      "_id": "4d6a2c75-5cc5-4e55-a324-17572ad30a57"
+      "_id": "4d6a2c75-5cc5-4e55-a324-17572ad30a57",
+      "available": true
     },
     {
       "id": "16c0b327-7d1a-4394-b000-409cfe6378d4",
@@ -38771,7 +38988,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "16c0b327-7d1a-4394-b000-409cfe6378d4"
+      "_id": "16c0b327-7d1a-4394-b000-409cfe6378d4",
+      "available": true
     },
     {
       "id": "2273e439-7bad-4f3d-8a62-078a03da532b",
@@ -38790,7 +39008,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "2273e439-7bad-4f3d-8a62-078a03da532b"
+      "_id": "2273e439-7bad-4f3d-8a62-078a03da532b",
+      "available": true
     },
     {
       "id": "7f18b81a-c131-4b0b-abd6-9796eaa78131",
@@ -38809,7 +39028,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "7f18b81a-c131-4b0b-abd6-9796eaa78131"
+      "_id": "7f18b81a-c131-4b0b-abd6-9796eaa78131",
+      "available": true
     },
     {
       "id": "5d304833-2da9-494d-b009-5b8255029661",
@@ -38828,7 +39048,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "5d304833-2da9-494d-b009-5b8255029661"
+      "_id": "5d304833-2da9-494d-b009-5b8255029661",
+      "available": true
     },
     {
       "id": "e07b7529-19a0-43ff-bb4b-1cd86ea310e6",
@@ -38847,7 +39068,8 @@
         "half": 961,
         "full": 1601.0
       },
-      "_id": "e07b7529-19a0-43ff-bb4b-1cd86ea310e6"
+      "_id": "e07b7529-19a0-43ff-bb4b-1cd86ea310e6",
+      "available": true
     },
     {
       "id": "08ecd968-27ab-41aa-9616-5ebd443ec2ca",
@@ -38866,7 +39088,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "08ecd968-27ab-41aa-9616-5ebd443ec2ca"
+      "_id": "08ecd968-27ab-41aa-9616-5ebd443ec2ca",
+      "available": true
     },
     {
       "id": "0d20cf31-e066-4796-8af4-05621db51421",
@@ -38885,7 +39108,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "0d20cf31-e066-4796-8af4-05621db51421"
+      "_id": "0d20cf31-e066-4796-8af4-05621db51421",
+      "available": true
     },
     {
       "id": "45fff37b-03ad-4279-9fb9-80ebcc5f9677",
@@ -38904,7 +39128,8 @@
         "half": 1021,
         "full": 1701.0
       },
-      "_id": "45fff37b-03ad-4279-9fb9-80ebcc5f9677"
+      "_id": "45fff37b-03ad-4279-9fb9-80ebcc5f9677",
+      "available": true
     },
     {
       "id": "55ba43c5-6a5b-4e92-bf57-45a25945b948",
@@ -38923,7 +39148,8 @@
         "half": 781,
         "full": 1301.0
       },
-      "_id": "55ba43c5-6a5b-4e92-bf57-45a25945b948"
+      "_id": "55ba43c5-6a5b-4e92-bf57-45a25945b948",
+      "available": true
     },
     {
       "id": "4b626a47-3bf1-4010-80e0-e4227e26963f",
@@ -38942,7 +39168,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "4b626a47-3bf1-4010-80e0-e4227e26963f"
+      "_id": "4b626a47-3bf1-4010-80e0-e4227e26963f",
+      "available": true
     },
     {
       "id": "8908c68c-e422-4f68-ab95-8c379c946a6d",
@@ -38961,7 +39188,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "8908c68c-e422-4f68-ab95-8c379c946a6d"
+      "_id": "8908c68c-e422-4f68-ab95-8c379c946a6d",
+      "available": true
     },
     {
       "id": "ec690bd0-564f-4db0-96c7-b9361923a2d5",
@@ -38980,7 +39208,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "ec690bd0-564f-4db0-96c7-b9361923a2d5"
+      "_id": "ec690bd0-564f-4db0-96c7-b9361923a2d5",
+      "available": true
     },
     {
       "id": "34838fd2-1cb5-43a7-82c4-6528b26a8441",
@@ -38999,7 +39228,8 @@
         "half": 901,
         "full": 1501.0
       },
-      "_id": "34838fd2-1cb5-43a7-82c4-6528b26a8441"
+      "_id": "34838fd2-1cb5-43a7-82c4-6528b26a8441",
+      "available": true
     },
     {
       "id": "016851a6-1efe-4763-b0c2-e66b4a950059",
@@ -39018,7 +39248,8 @@
         "half": 961,
         "full": 1601.0
       },
-      "_id": "016851a6-1efe-4763-b0c2-e66b4a950059"
+      "_id": "016851a6-1efe-4763-b0c2-e66b4a950059",
+      "available": true
     },
     {
       "id": "6abc6d84-627c-4401-9ab1-20a72ef22017",
@@ -39037,7 +39268,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "6abc6d84-627c-4401-9ab1-20a72ef22017"
+      "_id": "6abc6d84-627c-4401-9ab1-20a72ef22017",
+      "available": true
     },
     {
       "id": "9166265f-458a-4ef5-aa4a-f1ed9a203e1e",
@@ -39056,7 +39288,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "9166265f-458a-4ef5-aa4a-f1ed9a203e1e"
+      "_id": "9166265f-458a-4ef5-aa4a-f1ed9a203e1e",
+      "available": true
     },
     {
       "id": "1f923409-d965-4516-b976-64c313d0c1c9",
@@ -39075,7 +39308,8 @@
         "half": 1021,
         "full": 1701.0
       },
-      "_id": "1f923409-d965-4516-b976-64c313d0c1c9"
+      "_id": "1f923409-d965-4516-b976-64c313d0c1c9",
+      "available": true
     },
     {
       "id": "1f7580e8-9961-4ce6-b69a-53c4f510ddd6",
@@ -39094,7 +39328,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "1f7580e8-9961-4ce6-b69a-53c4f510ddd6"
+      "_id": "1f7580e8-9961-4ce6-b69a-53c4f510ddd6",
+      "available": true
     },
     {
       "id": "b29e90cb-3717-46ca-a76b-6152814867b0",
@@ -39113,7 +39348,8 @@
         "half": 84,
         "full": 140.0
       },
-      "_id": "b29e90cb-3717-46ca-a76b-6152814867b0"
+      "_id": "b29e90cb-3717-46ca-a76b-6152814867b0",
+      "available": true
     },
     {
       "id": "52cc33e3-e011-4c05-8a73-7196dfd10a7d",
@@ -39132,7 +39368,8 @@
         "half": 114,
         "full": 190.0
       },
-      "_id": "52cc33e3-e011-4c05-8a73-7196dfd10a7d"
+      "_id": "52cc33e3-e011-4c05-8a73-7196dfd10a7d",
+      "available": true
     },
     {
       "id": "47b10d65-5656-4b00-9990-f73ff4b0274a",
@@ -39151,7 +39388,8 @@
         "half": 114,
         "full": 190.0
       },
-      "_id": "47b10d65-5656-4b00-9990-f73ff4b0274a"
+      "_id": "47b10d65-5656-4b00-9990-f73ff4b0274a",
+      "available": true
     },
     {
       "id": "0d2a8223-45cb-47d9-9d0a-2e2ffdffd060",
@@ -39170,7 +39408,8 @@
         "half": 126,
         "full": 210.0
       },
-      "_id": "0d2a8223-45cb-47d9-9d0a-2e2ffdffd060"
+      "_id": "0d2a8223-45cb-47d9-9d0a-2e2ffdffd060",
+      "available": true
     },
     {
       "id": "d643a634-c15b-4448-a603-d821896da01a",
@@ -39189,7 +39428,8 @@
         "half": 96,
         "full": 160.0
       },
-      "_id": "d643a634-c15b-4448-a603-d821896da01a"
+      "_id": "d643a634-c15b-4448-a603-d821896da01a",
+      "available": true
     },
     {
       "id": "fa533d33-cec2-458b-898a-ae58b43a3589",
@@ -39208,7 +39448,8 @@
         "half": 108,
         "full": 180.0
       },
-      "_id": "fa533d33-cec2-458b-898a-ae58b43a3589"
+      "_id": "fa533d33-cec2-458b-898a-ae58b43a3589",
+      "available": true
     },
     {
       "id": "7b7bd854-c063-4592-b721-1027a51d6133",
@@ -39227,7 +39468,8 @@
         "half": 1021,
         "full": 1701.0
       },
-      "_id": "7b7bd854-c063-4592-b721-1027a51d6133"
+      "_id": "7b7bd854-c063-4592-b721-1027a51d6133",
+      "available": true
     },
     {
       "id": "89a06f1f-4f5e-46e5-9b7a-a36e4e5d6cce",
@@ -39246,7 +39488,8 @@
         "half": 90,
         "full": 150.0
       },
-      "_id": "89a06f1f-4f5e-46e5-9b7a-a36e4e5d6cce"
+      "_id": "89a06f1f-4f5e-46e5-9b7a-a36e4e5d6cce",
+      "available": true
     },
     {
       "id": "6b91c510-3924-46b8-a9cc-1c834c449273",
@@ -39265,7 +39508,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "6b91c510-3924-46b8-a9cc-1c834c449273"
+      "_id": "6b91c510-3924-46b8-a9cc-1c834c449273",
+      "available": true
     },
     {
       "id": "2adfa46e-e4b0-4eb8-b149-5881589853b5",
@@ -39284,7 +39528,8 @@
         "half": 90,
         "full": 150.0
       },
-      "_id": "2adfa46e-e4b0-4eb8-b149-5881589853b5"
+      "_id": "2adfa46e-e4b0-4eb8-b149-5881589853b5",
+      "available": true
     },
     {
       "id": "c5dc1215-fbd5-47bd-b66e-f4a6b6b39b6b",
@@ -39303,7 +39548,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "c5dc1215-fbd5-47bd-b66e-f4a6b6b39b6b"
+      "_id": "c5dc1215-fbd5-47bd-b66e-f4a6b6b39b6b",
+      "available": true
     },
     {
       "id": "45323ef0-ae41-40af-9088-59106d2c5e3d",
@@ -39322,7 +39568,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "45323ef0-ae41-40af-9088-59106d2c5e3d"
+      "_id": "45323ef0-ae41-40af-9088-59106d2c5e3d",
+      "available": true
     },
     {
       "id": "82db0dc0-a615-46ef-8ec2-809cee6db7cf",
@@ -39341,7 +39588,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "82db0dc0-a615-46ef-8ec2-809cee6db7cf"
+      "_id": "82db0dc0-a615-46ef-8ec2-809cee6db7cf",
+      "available": true
     },
     {
       "id": "c1b99c90-d18e-4ee8-a5cb-9e845c1193a7",
@@ -39360,7 +39608,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "c1b99c90-d18e-4ee8-a5cb-9e845c1193a7"
+      "_id": "c1b99c90-d18e-4ee8-a5cb-9e845c1193a7",
+      "available": true
     },
     {
       "id": "0ff3fef7-c47c-40a2-ad37-53a40090752b",
@@ -39379,7 +39628,8 @@
         "half": 18,
         "full": 30.0
       },
-      "_id": "0ff3fef7-c47c-40a2-ad37-53a40090752b"
+      "_id": "0ff3fef7-c47c-40a2-ad37-53a40090752b",
+      "available": true
     },
     {
       "id": "d35fd37f-0731-4edd-bb86-58d391a2ce99",
@@ -39398,7 +39648,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "d35fd37f-0731-4edd-bb86-58d391a2ce99"
+      "_id": "d35fd37f-0731-4edd-bb86-58d391a2ce99",
+      "available": true
     },
     {
       "id": "f8337f34-8483-4c63-bcc4-82693af0d50b",
@@ -39417,7 +39668,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "f8337f34-8483-4c63-bcc4-82693af0d50b"
+      "_id": "f8337f34-8483-4c63-bcc4-82693af0d50b",
+      "available": true
     },
     {
       "id": "cc822bb4-96ea-41d9-b2fd-ffc573d63673",
@@ -39436,7 +39688,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "cc822bb4-96ea-41d9-b2fd-ffc573d63673"
+      "_id": "cc822bb4-96ea-41d9-b2fd-ffc573d63673",
+      "available": true
     },
     {
       "id": "063150d3-fbd7-4a43-8594-bfa83fa0630f",
@@ -39455,7 +39708,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "063150d3-fbd7-4a43-8594-bfa83fa0630f"
+      "_id": "063150d3-fbd7-4a43-8594-bfa83fa0630f",
+      "available": true
     },
     {
       "id": "8f511621-6bb9-4a3b-ba6e-385c6fc0aac8",
@@ -39474,7 +39728,8 @@
         "half": 60,
         "full": 100.0
       },
-      "_id": "8f511621-6bb9-4a3b-ba6e-385c6fc0aac8"
+      "_id": "8f511621-6bb9-4a3b-ba6e-385c6fc0aac8",
+      "available": true
     },
     {
       "id": "dcee6c22-341e-4558-93ea-ca645bbcdef5",
@@ -39493,7 +39748,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "dcee6c22-341e-4558-93ea-ca645bbcdef5"
+      "_id": "dcee6c22-341e-4558-93ea-ca645bbcdef5",
+      "available": true
     },
     {
       "id": "5f1e8608-6be5-40d0-946f-1ac92983c310",
@@ -39512,7 +39768,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "5f1e8608-6be5-40d0-946f-1ac92983c310"
+      "_id": "5f1e8608-6be5-40d0-946f-1ac92983c310",
+      "available": true
     },
     {
       "id": "50d6d8c1-b59e-4504-9a7c-d1c3355cb213",
@@ -39531,7 +39788,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "50d6d8c1-b59e-4504-9a7c-d1c3355cb213"
+      "_id": "50d6d8c1-b59e-4504-9a7c-d1c3355cb213",
+      "available": true
     },
     {
       "id": "f5cc694f-4b38-4909-ad13-448d890d628c",
@@ -39550,7 +39808,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "f5cc694f-4b38-4909-ad13-448d890d628c"
+      "_id": "f5cc694f-4b38-4909-ad13-448d890d628c",
+      "available": true
     },
     {
       "id": "522548ec-dee2-4c7c-b383-831b7d6f11f1",
@@ -39569,7 +39828,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "522548ec-dee2-4c7c-b383-831b7d6f11f1"
+      "_id": "522548ec-dee2-4c7c-b383-831b7d6f11f1",
+      "available": true
     },
     {
       "id": "404e11e1-bba3-4da1-b44d-07612258e473",
@@ -39588,7 +39848,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "404e11e1-bba3-4da1-b44d-07612258e473"
+      "_id": "404e11e1-bba3-4da1-b44d-07612258e473",
+      "available": true
     },
     {
       "id": "ceb87baa-e75e-4299-a249-e7a48af63c6b",
@@ -39607,7 +39868,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "ceb87baa-e75e-4299-a249-e7a48af63c6b"
+      "_id": "ceb87baa-e75e-4299-a249-e7a48af63c6b",
+      "available": true
     },
     {
       "id": "583e6522-d886-4022-8554-6cacb2b6fd4e",
@@ -39626,7 +39888,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "583e6522-d886-4022-8554-6cacb2b6fd4e"
+      "_id": "583e6522-d886-4022-8554-6cacb2b6fd4e",
+      "available": true
     },
     {
       "id": "a7838220-b3cf-433a-be9d-deedabeeb0f6",
@@ -39645,7 +39908,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "a7838220-b3cf-433a-be9d-deedabeeb0f6"
+      "_id": "a7838220-b3cf-433a-be9d-deedabeeb0f6",
+      "available": true
     },
     {
       "id": "e3963da6-6dd7-480a-bfc1-85cab700518d",
@@ -39664,7 +39928,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "e3963da6-6dd7-480a-bfc1-85cab700518d"
+      "_id": "e3963da6-6dd7-480a-bfc1-85cab700518d",
+      "available": true
     },
     {
       "id": "b0b0dfb2-bd8a-4c3c-ac5e-483d70d4d278",
@@ -39683,7 +39948,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "b0b0dfb2-bd8a-4c3c-ac5e-483d70d4d278"
+      "_id": "b0b0dfb2-bd8a-4c3c-ac5e-483d70d4d278",
+      "available": true
     },
     {
       "id": "6b90f24c-9afd-4784-9e31-4f34660c7a9f",
@@ -39702,7 +39968,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "6b90f24c-9afd-4784-9e31-4f34660c7a9f"
+      "_id": "6b90f24c-9afd-4784-9e31-4f34660c7a9f",
+      "available": true
     },
     {
       "id": "5307780b-f8fa-42ca-8a6e-78815f526f2f",
@@ -39721,7 +39988,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "5307780b-f8fa-42ca-8a6e-78815f526f2f"
+      "_id": "5307780b-f8fa-42ca-8a6e-78815f526f2f",
+      "available": true
     },
     {
       "id": "fd7f8a9f-dec8-4b21-830b-dc578646f9e8",
@@ -39740,7 +40008,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "fd7f8a9f-dec8-4b21-830b-dc578646f9e8"
+      "_id": "fd7f8a9f-dec8-4b21-830b-dc578646f9e8",
+      "available": true
     },
     {
       "id": "31a43217-6ace-4b3b-9862-0acb7cb56c5f",
@@ -39759,7 +40028,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "31a43217-6ace-4b3b-9862-0acb7cb56c5f"
+      "_id": "31a43217-6ace-4b3b-9862-0acb7cb56c5f",
+      "available": true
     },
     {
       "id": "634b6a2e-dc7f-4dca-b0be-ecf751b46609",
@@ -39778,7 +40048,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "634b6a2e-dc7f-4dca-b0be-ecf751b46609"
+      "_id": "634b6a2e-dc7f-4dca-b0be-ecf751b46609",
+      "available": true
     },
     {
       "id": "80d4308a-0164-424f-a47e-1bfdae457d6c",
@@ -39797,7 +40068,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "80d4308a-0164-424f-a47e-1bfdae457d6c"
+      "_id": "80d4308a-0164-424f-a47e-1bfdae457d6c",
+      "available": true
     },
     {
       "id": "7b5790d2-ca5d-449d-9484-0eb82109c6af",
@@ -39816,7 +40088,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "7b5790d2-ca5d-449d-9484-0eb82109c6af"
+      "_id": "7b5790d2-ca5d-449d-9484-0eb82109c6af",
+      "available": true
     },
     {
       "id": "562cb35c-504f-40c5-b83f-4fe0c5ee1652",
@@ -39835,7 +40108,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "562cb35c-504f-40c5-b83f-4fe0c5ee1652"
+      "_id": "562cb35c-504f-40c5-b83f-4fe0c5ee1652",
+      "available": true
     },
     {
       "id": "a0af2a98-8ac6-479a-a176-d50e4fe6b9c9",
@@ -39854,7 +40128,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "a0af2a98-8ac6-479a-a176-d50e4fe6b9c9"
+      "_id": "a0af2a98-8ac6-479a-a176-d50e4fe6b9c9",
+      "available": true
     },
     {
       "id": "f0b2cff9-9bfd-4115-8ae2-cde74d6804ef",
@@ -39873,7 +40148,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "f0b2cff9-9bfd-4115-8ae2-cde74d6804ef"
+      "_id": "f0b2cff9-9bfd-4115-8ae2-cde74d6804ef",
+      "available": true
     },
     {
       "id": "9b0805b8-bde3-427e-b974-6c7adabbaf7b",
@@ -39892,7 +40168,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "9b0805b8-bde3-427e-b974-6c7adabbaf7b"
+      "_id": "9b0805b8-bde3-427e-b974-6c7adabbaf7b",
+      "available": true
     },
     {
       "id": "49350dc6-4b21-4bb4-9793-0bb507acc70d",
@@ -39911,7 +40188,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "49350dc6-4b21-4bb4-9793-0bb507acc70d"
+      "_id": "49350dc6-4b21-4bb4-9793-0bb507acc70d",
+      "available": true
     },
     {
       "id": "f593df4b-bd71-4306-9d16-5de0a4e456c6",
@@ -39930,7 +40208,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "f593df4b-bd71-4306-9d16-5de0a4e456c6"
+      "_id": "f593df4b-bd71-4306-9d16-5de0a4e456c6",
+      "available": true
     },
     {
       "id": "5488f635-7458-4c76-bfb7-e9c7e5a16fd0",
@@ -39949,7 +40228,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5488f635-7458-4c76-bfb7-e9c7e5a16fd0"
+      "_id": "5488f635-7458-4c76-bfb7-e9c7e5a16fd0",
+      "available": true
     },
     {
       "id": "9f34c40d-12c9-42b1-ad5f-f75b1822b644",
@@ -39968,7 +40248,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "9f34c40d-12c9-42b1-ad5f-f75b1822b644"
+      "_id": "9f34c40d-12c9-42b1-ad5f-f75b1822b644",
+      "available": true
     },
     {
       "id": "56209792-1918-4f39-a302-bc43ac3d6ade",
@@ -39987,7 +40268,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "56209792-1918-4f39-a302-bc43ac3d6ade"
+      "_id": "56209792-1918-4f39-a302-bc43ac3d6ade",
+      "available": true
     },
     {
       "id": "fa9fd45a-189f-4231-b5ad-71237bb69882",
@@ -40006,7 +40288,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "fa9fd45a-189f-4231-b5ad-71237bb69882"
+      "_id": "fa9fd45a-189f-4231-b5ad-71237bb69882",
+      "available": true
     },
     {
       "id": "5af40468-0b94-4dfc-8bbe-b15ee9df72e8",
@@ -40025,7 +40308,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5af40468-0b94-4dfc-8bbe-b15ee9df72e8"
+      "_id": "5af40468-0b94-4dfc-8bbe-b15ee9df72e8",
+      "available": true
     },
     {
       "id": "0af168bc-3dce-462b-ad32-8c586bc811d9",
@@ -40044,7 +40328,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "0af168bc-3dce-462b-ad32-8c586bc811d9"
+      "_id": "0af168bc-3dce-462b-ad32-8c586bc811d9",
+      "available": true
     },
     {
       "id": "478700c9-695d-4b88-ac93-87baf4caef0e",
@@ -40063,7 +40348,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "478700c9-695d-4b88-ac93-87baf4caef0e"
+      "_id": "478700c9-695d-4b88-ac93-87baf4caef0e",
+      "available": true
     },
     {
       "id": "7c797401-4d63-4a89-aae9-e811e1d113a5",
@@ -40082,7 +40368,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "7c797401-4d63-4a89-aae9-e811e1d113a5"
+      "_id": "7c797401-4d63-4a89-aae9-e811e1d113a5",
+      "available": true
     },
     {
       "id": "927df0ec-73b3-4a70-a569-b1121d3e4da5",
@@ -40101,7 +40388,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "927df0ec-73b3-4a70-a569-b1121d3e4da5"
+      "_id": "927df0ec-73b3-4a70-a569-b1121d3e4da5",
+      "available": true
     },
     {
       "id": "26d5f70d-fc37-4103-b4f4-1d227907f94e",
@@ -40120,7 +40408,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "26d5f70d-fc37-4103-b4f4-1d227907f94e"
+      "_id": "26d5f70d-fc37-4103-b4f4-1d227907f94e",
+      "available": true
     },
     {
       "id": "d24cd8bd-ec59-492c-b990-05885df8fb95",
@@ -40139,7 +40428,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "d24cd8bd-ec59-492c-b990-05885df8fb95"
+      "_id": "d24cd8bd-ec59-492c-b990-05885df8fb95",
+      "available": true
     },
     {
       "id": "8c4e43d4-3e4d-4b8a-89a8-86dfeea2d1f5",
@@ -40158,7 +40448,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "8c4e43d4-3e4d-4b8a-89a8-86dfeea2d1f5"
+      "_id": "8c4e43d4-3e4d-4b8a-89a8-86dfeea2d1f5",
+      "available": true
     },
     {
       "id": "d60d15f0-7e36-4134-842d-2dee7ce7e7ee",
@@ -40177,7 +40468,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d60d15f0-7e36-4134-842d-2dee7ce7e7ee"
+      "_id": "d60d15f0-7e36-4134-842d-2dee7ce7e7ee",
+      "available": true
     },
     {
       "id": "70dd8143-c40a-4c93-bf05-d0e99b88bbd9",
@@ -40196,7 +40488,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "70dd8143-c40a-4c93-bf05-d0e99b88bbd9"
+      "_id": "70dd8143-c40a-4c93-bf05-d0e99b88bbd9",
+      "available": true
     },
     {
       "id": "5ce88880-d909-43ff-a8aa-e43d90359c72",
@@ -40215,7 +40508,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "5ce88880-d909-43ff-a8aa-e43d90359c72"
+      "_id": "5ce88880-d909-43ff-a8aa-e43d90359c72",
+      "available": true
     },
     {
       "id": "bc71cdee-0b4a-46ee-adec-0f505e10ede6",
@@ -40234,7 +40528,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "bc71cdee-0b4a-46ee-adec-0f505e10ede6"
+      "_id": "bc71cdee-0b4a-46ee-adec-0f505e10ede6",
+      "available": true
     },
     {
       "id": "d94605bc-031b-472f-bc38-0afb62a18b99",
@@ -40253,7 +40548,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "d94605bc-031b-472f-bc38-0afb62a18b99"
+      "_id": "d94605bc-031b-472f-bc38-0afb62a18b99",
+      "available": true
     },
     {
       "id": "5afa353a-7004-4d6b-8ce8-803c6264a7ba",
@@ -40272,7 +40568,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "5afa353a-7004-4d6b-8ce8-803c6264a7ba"
+      "_id": "5afa353a-7004-4d6b-8ce8-803c6264a7ba",
+      "available": true
     },
     {
       "id": "a851fe3f-8475-40ff-9dde-cbfb36f2edb7",
@@ -40291,7 +40588,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "a851fe3f-8475-40ff-9dde-cbfb36f2edb7"
+      "_id": "a851fe3f-8475-40ff-9dde-cbfb36f2edb7",
+      "available": true
     },
     {
       "id": "6b25b5e7-ec49-418c-b66d-0569d020f7f0",
@@ -40310,7 +40608,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "6b25b5e7-ec49-418c-b66d-0569d020f7f0"
+      "_id": "6b25b5e7-ec49-418c-b66d-0569d020f7f0",
+      "available": true
     },
     {
       "id": "3148f12f-de7f-46ef-8daf-369560940ee1",
@@ -40329,7 +40628,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "3148f12f-de7f-46ef-8daf-369560940ee1"
+      "_id": "3148f12f-de7f-46ef-8daf-369560940ee1",
+      "available": true
     },
     {
       "id": "521b849c-11be-41fc-a1ef-6a97654af906",
@@ -40348,7 +40648,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "521b849c-11be-41fc-a1ef-6a97654af906"
+      "_id": "521b849c-11be-41fc-a1ef-6a97654af906",
+      "available": true
     },
     {
       "id": "0662893d-eb96-4160-8d68-f7c99a5ec5ce",
@@ -40367,7 +40668,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "0662893d-eb96-4160-8d68-f7c99a5ec5ce"
+      "_id": "0662893d-eb96-4160-8d68-f7c99a5ec5ce",
+      "available": true
     },
     {
       "id": "754ec36f-de4a-4edd-a929-b0a6c3b636e9",
@@ -40386,7 +40688,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "754ec36f-de4a-4edd-a929-b0a6c3b636e9"
+      "_id": "754ec36f-de4a-4edd-a929-b0a6c3b636e9",
+      "available": true
     },
     {
       "id": "d9b32001-6d71-41cb-863c-a0824f6f7c2b",
@@ -40405,7 +40708,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d9b32001-6d71-41cb-863c-a0824f6f7c2b"
+      "_id": "d9b32001-6d71-41cb-863c-a0824f6f7c2b",
+      "available": true
     },
     {
       "id": "42b2f066-bbc4-4c56-a85d-d3526c426c4a",
@@ -40424,7 +40728,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "42b2f066-bbc4-4c56-a85d-d3526c426c4a"
+      "_id": "42b2f066-bbc4-4c56-a85d-d3526c426c4a",
+      "available": true
     },
     {
       "id": "1d34652a-dbed-43d3-a499-34dfe0f1d9b4",
@@ -40443,7 +40748,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "1d34652a-dbed-43d3-a499-34dfe0f1d9b4"
+      "_id": "1d34652a-dbed-43d3-a499-34dfe0f1d9b4",
+      "available": true
     },
     {
       "id": "10bfb6a7-6e1d-469b-9ce4-f60440445d88",
@@ -40462,7 +40768,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "10bfb6a7-6e1d-469b-9ce4-f60440445d88"
+      "_id": "10bfb6a7-6e1d-469b-9ce4-f60440445d88",
+      "available": true
     },
     {
       "id": "8ccfedb3-4a53-4d80-a96c-d27347fe4174",
@@ -40481,7 +40788,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "8ccfedb3-4a53-4d80-a96c-d27347fe4174"
+      "_id": "8ccfedb3-4a53-4d80-a96c-d27347fe4174",
+      "available": true
     },
     {
       "id": "443fcb02-6cbb-42b4-91b9-13f2bb486ffb",
@@ -40500,7 +40808,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "443fcb02-6cbb-42b4-91b9-13f2bb486ffb"
+      "_id": "443fcb02-6cbb-42b4-91b9-13f2bb486ffb",
+      "available": true
     },
     {
       "id": "682d1a06-05fd-4ceb-8796-0fde47010807",
@@ -40519,7 +40828,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "682d1a06-05fd-4ceb-8796-0fde47010807"
+      "_id": "682d1a06-05fd-4ceb-8796-0fde47010807",
+      "available": true
     },
     {
       "id": "15055ad0-8779-4c61-97e5-30adec766d9c",
@@ -40538,7 +40848,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "15055ad0-8779-4c61-97e5-30adec766d9c"
+      "_id": "15055ad0-8779-4c61-97e5-30adec766d9c",
+      "available": true
     },
     {
       "id": "9c120c97-0a07-4828-9c76-0bda4a3287c6",
@@ -40557,7 +40868,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "9c120c97-0a07-4828-9c76-0bda4a3287c6"
+      "_id": "9c120c97-0a07-4828-9c76-0bda4a3287c6",
+      "available": true
     },
     {
       "id": "aac72295-d4b1-450a-adc3-bd70232fa68a",
@@ -40576,7 +40888,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "aac72295-d4b1-450a-adc3-bd70232fa68a"
+      "_id": "aac72295-d4b1-450a-adc3-bd70232fa68a",
+      "available": true
     },
     {
       "id": "63b76d1b-c0ec-481a-9bc8-bf96675c45dc",
@@ -40595,7 +40908,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "63b76d1b-c0ec-481a-9bc8-bf96675c45dc"
+      "_id": "63b76d1b-c0ec-481a-9bc8-bf96675c45dc",
+      "available": true
     },
     {
       "id": "d3924145-6506-411b-9c82-030b156ebcde",
@@ -40614,7 +40928,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "d3924145-6506-411b-9c82-030b156ebcde"
+      "_id": "d3924145-6506-411b-9c82-030b156ebcde",
+      "available": true
     },
     {
       "id": "c9c8e24c-0afc-429d-a677-d2fe481566d9",
@@ -40633,7 +40948,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c9c8e24c-0afc-429d-a677-d2fe481566d9"
+      "_id": "c9c8e24c-0afc-429d-a677-d2fe481566d9",
+      "available": true
     },
     {
       "id": "69d4068e-394d-407b-a149-f5dd4374e065",
@@ -40652,7 +40968,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "69d4068e-394d-407b-a149-f5dd4374e065"
+      "_id": "69d4068e-394d-407b-a149-f5dd4374e065",
+      "available": true
     },
     {
       "id": "53987539-1639-42d9-97ff-3162f58d2fdf",
@@ -40671,7 +40988,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "53987539-1639-42d9-97ff-3162f58d2fdf"
+      "_id": "53987539-1639-42d9-97ff-3162f58d2fdf",
+      "available": true
     },
     {
       "id": "e80e3ed4-0a1e-444a-b1df-985114b9644a",
@@ -40690,7 +41008,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "e80e3ed4-0a1e-444a-b1df-985114b9644a"
+      "_id": "e80e3ed4-0a1e-444a-b1df-985114b9644a",
+      "available": true
     },
     {
       "id": "c239ba20-7053-495e-acff-d0a6b840e4e7",
@@ -40709,7 +41028,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "c239ba20-7053-495e-acff-d0a6b840e4e7"
+      "_id": "c239ba20-7053-495e-acff-d0a6b840e4e7",
+      "available": true
     },
     {
       "id": "38f9d852-6eec-46a0-8e3a-31bfa5feecff",
@@ -40728,7 +41048,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "38f9d852-6eec-46a0-8e3a-31bfa5feecff"
+      "_id": "38f9d852-6eec-46a0-8e3a-31bfa5feecff",
+      "available": true
     },
     {
       "id": "a1fbe5fc-46d7-4ac5-aff6-4639ee4d6e61",
@@ -40747,7 +41068,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "a1fbe5fc-46d7-4ac5-aff6-4639ee4d6e61"
+      "_id": "a1fbe5fc-46d7-4ac5-aff6-4639ee4d6e61",
+      "available": true
     },
     {
       "id": "d88153c8-2882-4c0e-bb0a-59808b8c5430",
@@ -40766,7 +41088,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d88153c8-2882-4c0e-bb0a-59808b8c5430"
+      "_id": "d88153c8-2882-4c0e-bb0a-59808b8c5430",
+      "available": true
     },
     {
       "id": "ee78cf64-822d-49b4-90d9-f34be9849e0e",
@@ -40785,7 +41108,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "ee78cf64-822d-49b4-90d9-f34be9849e0e"
+      "_id": "ee78cf64-822d-49b4-90d9-f34be9849e0e",
+      "available": true
     },
     {
       "id": "24d12985-dcb4-41b5-9d1c-2c30f7457c28",
@@ -40804,7 +41128,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "24d12985-dcb4-41b5-9d1c-2c30f7457c28"
+      "_id": "24d12985-dcb4-41b5-9d1c-2c30f7457c28",
+      "available": true
     },
     {
       "id": "5f1f924a-da3f-4970-80d5-0881a69a9bb6",
@@ -40823,7 +41148,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5f1f924a-da3f-4970-80d5-0881a69a9bb6"
+      "_id": "5f1f924a-da3f-4970-80d5-0881a69a9bb6",
+      "available": true
     },
     {
       "id": "95a95764-5acb-4c65-81b0-6df63dfbba42",
@@ -40842,7 +41168,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "95a95764-5acb-4c65-81b0-6df63dfbba42"
+      "_id": "95a95764-5acb-4c65-81b0-6df63dfbba42",
+      "available": true
     },
     {
       "id": "77f7b8cb-c9f6-457a-ab19-2f666e9c0d2e",
@@ -40861,7 +41188,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "77f7b8cb-c9f6-457a-ab19-2f666e9c0d2e"
+      "_id": "77f7b8cb-c9f6-457a-ab19-2f666e9c0d2e",
+      "available": true
     },
     {
       "id": "714e784c-96f3-4392-95c2-36d4a3e2a866",
@@ -40880,7 +41208,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "714e784c-96f3-4392-95c2-36d4a3e2a866"
+      "_id": "714e784c-96f3-4392-95c2-36d4a3e2a866",
+      "available": true
     },
     {
       "id": "c70b0c9b-1d3f-48e9-838a-9a5bbda0dfd0",
@@ -40899,7 +41228,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "c70b0c9b-1d3f-48e9-838a-9a5bbda0dfd0"
+      "_id": "c70b0c9b-1d3f-48e9-838a-9a5bbda0dfd0",
+      "available": true
     },
     {
       "id": "6b8b3661-a3c7-409a-b21b-440aad71194b",
@@ -40918,7 +41248,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "6b8b3661-a3c7-409a-b21b-440aad71194b"
+      "_id": "6b8b3661-a3c7-409a-b21b-440aad71194b",
+      "available": true
     },
     {
       "id": "ca2e2963-40ae-4379-b825-bd58789b40f8",
@@ -40937,7 +41268,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "ca2e2963-40ae-4379-b825-bd58789b40f8"
+      "_id": "ca2e2963-40ae-4379-b825-bd58789b40f8",
+      "available": true
     },
     {
       "id": "31a3f366-75cf-4247-a587-7a4d52d26308",
@@ -40956,7 +41288,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "31a3f366-75cf-4247-a587-7a4d52d26308"
+      "_id": "31a3f366-75cf-4247-a587-7a4d52d26308",
+      "available": true
     },
     {
       "id": "8564e484-bf46-44e5-8ba6-e16a640e1711",
@@ -40975,7 +41308,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "8564e484-bf46-44e5-8ba6-e16a640e1711"
+      "_id": "8564e484-bf46-44e5-8ba6-e16a640e1711",
+      "available": true
     },
     {
       "id": "a7dda45f-46f3-4d41-a125-55995fc51c51",
@@ -40994,7 +41328,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "a7dda45f-46f3-4d41-a125-55995fc51c51"
+      "_id": "a7dda45f-46f3-4d41-a125-55995fc51c51",
+      "available": true
     },
     {
       "id": "4fa3ce20-e329-4cbc-b972-67c1f67e19ea",
@@ -41013,7 +41348,8 @@
         "half": 24,
         "full": 40.0
       },
-      "_id": "4fa3ce20-e329-4cbc-b972-67c1f67e19ea"
+      "_id": "4fa3ce20-e329-4cbc-b972-67c1f67e19ea",
+      "available": true
     },
     {
       "id": "57192870-be02-4bf8-8a2d-25ecf2269fa2",
@@ -41032,7 +41368,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "57192870-be02-4bf8-8a2d-25ecf2269fa2"
+      "_id": "57192870-be02-4bf8-8a2d-25ecf2269fa2",
+      "available": true
     },
     {
       "id": "66523abf-13e6-46df-a447-b933780ff25a",
@@ -41051,7 +41388,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "66523abf-13e6-46df-a447-b933780ff25a"
+      "_id": "66523abf-13e6-46df-a447-b933780ff25a",
+      "available": true
     },
     {
       "id": "0ef528a8-9e16-4bd3-b793-86eb874f9b4a",
@@ -41070,7 +41408,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "0ef528a8-9e16-4bd3-b793-86eb874f9b4a"
+      "_id": "0ef528a8-9e16-4bd3-b793-86eb874f9b4a",
+      "available": true
     },
     {
       "id": "d432d7f7-02a0-4e6b-8470-db1cb699ad94",
@@ -41089,7 +41428,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "d432d7f7-02a0-4e6b-8470-db1cb699ad94"
+      "_id": "d432d7f7-02a0-4e6b-8470-db1cb699ad94",
+      "available": true
     },
     {
       "id": "85a040d2-966b-429c-ba88-5d8911a9b1c9",
@@ -41108,7 +41448,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "85a040d2-966b-429c-ba88-5d8911a9b1c9"
+      "_id": "85a040d2-966b-429c-ba88-5d8911a9b1c9",
+      "available": true
     },
     {
       "id": "ac95f7b5-aa07-4cfd-90cd-bf0eb09ccaec",
@@ -41127,7 +41468,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "ac95f7b5-aa07-4cfd-90cd-bf0eb09ccaec"
+      "_id": "ac95f7b5-aa07-4cfd-90cd-bf0eb09ccaec",
+      "available": true
     },
     {
       "id": "782c18c9-459e-4a08-bc85-2eff1a2ec48b",
@@ -41146,7 +41488,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "782c18c9-459e-4a08-bc85-2eff1a2ec48b"
+      "_id": "782c18c9-459e-4a08-bc85-2eff1a2ec48b",
+      "available": true
     },
     {
       "id": "299090d1-e03b-4ff6-9235-607f606b986e",
@@ -41165,7 +41508,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "299090d1-e03b-4ff6-9235-607f606b986e"
+      "_id": "299090d1-e03b-4ff6-9235-607f606b986e",
+      "available": true
     },
     {
       "id": "743dd4b8-ae72-4eb2-a8c9-e0de5c9b1289",
@@ -41184,7 +41528,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "743dd4b8-ae72-4eb2-a8c9-e0de5c9b1289"
+      "_id": "743dd4b8-ae72-4eb2-a8c9-e0de5c9b1289",
+      "available": true
     },
     {
       "id": "d80ce2cb-3943-412f-934a-f48b129e97c3",
@@ -41203,7 +41548,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "d80ce2cb-3943-412f-934a-f48b129e97c3"
+      "_id": "d80ce2cb-3943-412f-934a-f48b129e97c3",
+      "available": true
     },
     {
       "id": "f20d7a2c-c864-4efd-bea2-e00ae20c2be1",
@@ -41222,7 +41568,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "f20d7a2c-c864-4efd-bea2-e00ae20c2be1"
+      "_id": "f20d7a2c-c864-4efd-bea2-e00ae20c2be1",
+      "available": true
     },
     {
       "id": "9a4c78df-40c4-44b6-a508-2d5f31bf3130",
@@ -41241,7 +41588,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "9a4c78df-40c4-44b6-a508-2d5f31bf3130"
+      "_id": "9a4c78df-40c4-44b6-a508-2d5f31bf3130",
+      "available": true
     },
     {
       "id": "1cf280bc-4e41-41d8-8060-924e424e76ec",
@@ -41260,7 +41608,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "1cf280bc-4e41-41d8-8060-924e424e76ec"
+      "_id": "1cf280bc-4e41-41d8-8060-924e424e76ec",
+      "available": true
     },
     {
       "id": "f69cdf98-ff4d-4232-8c2a-9f557621520a",
@@ -41279,7 +41628,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "f69cdf98-ff4d-4232-8c2a-9f557621520a"
+      "_id": "f69cdf98-ff4d-4232-8c2a-9f557621520a",
+      "available": true
     },
     {
       "id": "d196b670-c5ed-48d0-a905-6ef08dcc1980",
@@ -41298,7 +41648,8 @@
         "half": 18,
         "full": 30.0
       },
-      "_id": "d196b670-c5ed-48d0-a905-6ef08dcc1980"
+      "_id": "d196b670-c5ed-48d0-a905-6ef08dcc1980",
+      "available": true
     },
     {
       "id": "38ee3445-3c9f-4b90-891a-70f7cd172d96",
@@ -41317,7 +41668,8 @@
         "half": 18,
         "full": 30.0
       },
-      "_id": "38ee3445-3c9f-4b90-891a-70f7cd172d96"
+      "_id": "38ee3445-3c9f-4b90-891a-70f7cd172d96",
+      "available": true
     },
     {
       "id": "d5d3e306-bb88-4683-90d6-fde6d00aff3a",
@@ -41336,7 +41688,8 @@
         "half": 15.0,
         "full": 25.0
       },
-      "_id": "d5d3e306-bb88-4683-90d6-fde6d00aff3a"
+      "_id": "d5d3e306-bb88-4683-90d6-fde6d00aff3a",
+      "available": true
     },
     {
       "id": "807f3ab9-e042-4d40-9091-00499b1eab9e",
@@ -41355,7 +41708,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "807f3ab9-e042-4d40-9091-00499b1eab9e"
+      "_id": "807f3ab9-e042-4d40-9091-00499b1eab9e",
+      "available": true
     },
     {
       "id": "56e3b82e-830f-4fb0-9760-1290fed2501e",
@@ -41374,7 +41728,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "56e3b82e-830f-4fb0-9760-1290fed2501e"
+      "_id": "56e3b82e-830f-4fb0-9760-1290fed2501e",
+      "available": true
     },
     {
       "id": "5a73fffe-1580-4b79-aef4-1555b6cd9ccf",
@@ -41393,7 +41748,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "5a73fffe-1580-4b79-aef4-1555b6cd9ccf"
+      "_id": "5a73fffe-1580-4b79-aef4-1555b6cd9ccf",
+      "available": true
     },
     {
       "id": "d50375d6-892f-4a1e-98d7-e05582af190c",
@@ -41412,7 +41768,8 @@
         "half": 168,
         "full": 280.0
       },
-      "_id": "d50375d6-892f-4a1e-98d7-e05582af190c"
+      "_id": "d50375d6-892f-4a1e-98d7-e05582af190c",
+      "available": true
     },
     {
       "id": "75df6d5e-3e1a-4442-815a-5e155a721796",
@@ -41431,7 +41788,8 @@
         "half": 204,
         "full": 340.0
       },
-      "_id": "75df6d5e-3e1a-4442-815a-5e155a721796"
+      "_id": "75df6d5e-3e1a-4442-815a-5e155a721796",
+      "available": true
     },
     {
       "id": "e23e3d84-0b5c-4dd3-ab4b-86b25fc31302",
@@ -41450,7 +41808,8 @@
         "half": 210,
         "full": 350.0
       },
-      "_id": "e23e3d84-0b5c-4dd3-ab4b-86b25fc31302"
+      "_id": "e23e3d84-0b5c-4dd3-ab4b-86b25fc31302",
+      "available": true
     },
     {
       "id": "edcada6d-e487-4c5f-a0ec-1cee5ff9cd1f",
@@ -41469,7 +41828,8 @@
         "half": 204,
         "full": 340.0
       },
-      "_id": "edcada6d-e487-4c5f-a0ec-1cee5ff9cd1f"
+      "_id": "edcada6d-e487-4c5f-a0ec-1cee5ff9cd1f",
+      "available": true
     },
     {
       "id": "6a5bafe8-d5dc-4124-94f1-c23eb0b57174",
@@ -41488,7 +41848,8 @@
         "half": 204,
         "full": 340.0
       },
-      "_id": "6a5bafe8-d5dc-4124-94f1-c23eb0b57174"
+      "_id": "6a5bafe8-d5dc-4124-94f1-c23eb0b57174",
+      "available": true
     },
     {
       "id": "173ea4eb-b5fd-49c1-987d-3d5024444893",
@@ -41507,7 +41868,8 @@
         "half": 168,
         "full": 280.0
       },
-      "_id": "173ea4eb-b5fd-49c1-987d-3d5024444893"
+      "_id": "173ea4eb-b5fd-49c1-987d-3d5024444893",
+      "available": true
     },
     {
       "id": "6c3c9e8e-94b3-4fd9-ad07-2194f51e77af",
@@ -41526,7 +41888,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "6c3c9e8e-94b3-4fd9-ad07-2194f51e77af"
+      "_id": "6c3c9e8e-94b3-4fd9-ad07-2194f51e77af",
+      "available": true
     },
     {
       "id": "137ee1a1-3c37-47f8-8973-4850a3d1f9da",
@@ -41545,7 +41908,8 @@
         "half": 42,
         "full": 70.0
       },
-      "_id": "137ee1a1-3c37-47f8-8973-4850a3d1f9da"
+      "_id": "137ee1a1-3c37-47f8-8973-4850a3d1f9da",
+      "available": true
     },
     {
       "id": "3d8911c7-f67a-4964-a816-8e44c94af4ea",
@@ -41564,7 +41928,8 @@
         "half": 48,
         "full": 80.0
       },
-      "_id": "3d8911c7-f67a-4964-a816-8e44c94af4ea"
+      "_id": "3d8911c7-f67a-4964-a816-8e44c94af4ea",
+      "available": true
     },
     {
       "id": "01dc5a41-2ba7-4c7d-b0ef-22dc975e0dc4",
@@ -41583,7 +41948,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "01dc5a41-2ba7-4c7d-b0ef-22dc975e0dc4"
+      "_id": "01dc5a41-2ba7-4c7d-b0ef-22dc975e0dc4",
+      "available": true
     },
     {
       "id": "ada11b33-061d-43c7-9dba-ffc2f68087a2",
@@ -41602,7 +41968,8 @@
         "half": 54,
         "full": 90.0
       },
-      "_id": "ada11b33-061d-43c7-9dba-ffc2f68087a2"
+      "_id": "ada11b33-061d-43c7-9dba-ffc2f68087a2",
+      "available": true
     },
     {
       "id": "10a2f53e-8229-4860-9447-c056586339c7",
@@ -41621,7 +41988,8 @@
         "half": 60,
         "full": 100.0
       },
-      "_id": "10a2f53e-8229-4860-9447-c056586339c7"
+      "_id": "10a2f53e-8229-4860-9447-c056586339c7",
+      "available": true
     },
     {
       "id": "4581172b-6905-4ef9-923c-e6f42762d5fc",
@@ -41640,7 +42008,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "4581172b-6905-4ef9-923c-e6f42762d5fc"
+      "_id": "4581172b-6905-4ef9-923c-e6f42762d5fc",
+      "available": true
     },
     {
       "id": "264442c6-9011-4ff5-b9f3-64c9d448577b",
@@ -41659,7 +42028,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "264442c6-9011-4ff5-b9f3-64c9d448577b"
+      "_id": "264442c6-9011-4ff5-b9f3-64c9d448577b",
+      "available": true
     },
     {
       "id": "9e3cf3bd-6efb-4e4a-80f2-9ba83d56d659",
@@ -41678,7 +42048,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "9e3cf3bd-6efb-4e4a-80f2-9ba83d56d659"
+      "_id": "9e3cf3bd-6efb-4e4a-80f2-9ba83d56d659",
+      "available": true
     },
     {
       "id": "123b60bc-e599-42a0-a472-5e572fa102e5",
@@ -41697,7 +42068,8 @@
         "half": 78,
         "full": 130.0
       },
-      "_id": "123b60bc-e599-42a0-a472-5e572fa102e5"
+      "_id": "123b60bc-e599-42a0-a472-5e572fa102e5",
+      "available": true
     },
     {
       "id": "77abbbe1-1292-4619-ab8a-86394e97892c",
@@ -41716,7 +42088,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "77abbbe1-1292-4619-ab8a-86394e97892c"
+      "_id": "77abbbe1-1292-4619-ab8a-86394e97892c",
+      "available": true
     },
     {
       "id": "0d18ff29-409d-4f63-af07-0ea71b0d4b97",
@@ -41735,7 +42108,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "0d18ff29-409d-4f63-af07-0ea71b0d4b97"
+      "_id": "0d18ff29-409d-4f63-af07-0ea71b0d4b97",
+      "available": true
     },
     {
       "id": "9217f0ef-4c3f-4e62-8965-88ee6c2c8504",
@@ -41754,7 +42128,8 @@
         "half": 21,
         "full": 35.0
       },
-      "_id": "9217f0ef-4c3f-4e62-8965-88ee6c2c8504"
+      "_id": "9217f0ef-4c3f-4e62-8965-88ee6c2c8504",
+      "available": true
     },
     {
       "id": "82dcaf04-d3be-48cd-aff7-78ebc6fa4856",
@@ -41773,7 +42148,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "82dcaf04-d3be-48cd-aff7-78ebc6fa4856"
+      "_id": "82dcaf04-d3be-48cd-aff7-78ebc6fa4856",
+      "available": true
     },
     {
       "id": "a277d46f-f1a8-41ec-a8ee-17835db4baf6",
@@ -41792,7 +42168,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "a277d46f-f1a8-41ec-a8ee-17835db4baf6"
+      "_id": "a277d46f-f1a8-41ec-a8ee-17835db4baf6",
+      "available": true
     },
     {
       "id": "69fa39bc-d977-44dd-8964-689a043cb862",
@@ -41811,7 +42188,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "69fa39bc-d977-44dd-8964-689a043cb862"
+      "_id": "69fa39bc-d977-44dd-8964-689a043cb862",
+      "available": true
     },
     {
       "id": "749a4d31-8488-4e95-96cb-9516ab8cd022",
@@ -41830,7 +42208,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "749a4d31-8488-4e95-96cb-9516ab8cd022"
+      "_id": "749a4d31-8488-4e95-96cb-9516ab8cd022",
+      "available": true
     },
     {
       "id": "b6e3e830-57ae-4bb3-abc0-fc5a3378dd4f",
@@ -41849,7 +42228,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "b6e3e830-57ae-4bb3-abc0-fc5a3378dd4f"
+      "_id": "b6e3e830-57ae-4bb3-abc0-fc5a3378dd4f",
+      "available": true
     },
     {
       "id": "4213f8a8-fcd9-41dc-9e4e-300077a4ac2d",
@@ -41868,7 +42248,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "4213f8a8-fcd9-41dc-9e4e-300077a4ac2d"
+      "_id": "4213f8a8-fcd9-41dc-9e4e-300077a4ac2d",
+      "available": true
     },
     {
       "id": "da5bc3c3-1b67-4dd0-88bb-1f7479967291",
@@ -41887,7 +42268,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "da5bc3c3-1b67-4dd0-88bb-1f7479967291"
+      "_id": "da5bc3c3-1b67-4dd0-88bb-1f7479967291",
+      "available": true
     },
     {
       "id": "90a3624d-5a36-497a-8218-1e188de03d15",
@@ -41906,7 +42288,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "90a3624d-5a36-497a-8218-1e188de03d15"
+      "_id": "90a3624d-5a36-497a-8218-1e188de03d15",
+      "available": true
     },
     {
       "id": "addc73b6-ce2e-4e68-bac3-a63a616e11e7",
@@ -41925,7 +42308,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "addc73b6-ce2e-4e68-bac3-a63a616e11e7"
+      "_id": "addc73b6-ce2e-4e68-bac3-a63a616e11e7",
+      "available": true
     },
     {
       "id": "4e913735-93ed-4052-a2fc-d01e4554975b",
@@ -41944,7 +42328,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "4e913735-93ed-4052-a2fc-d01e4554975b"
+      "_id": "4e913735-93ed-4052-a2fc-d01e4554975b",
+      "available": true
     },
     {
       "id": "260a5fb9-eb41-4cb5-b57a-f60f1c3b474f",
@@ -41963,7 +42348,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "260a5fb9-eb41-4cb5-b57a-f60f1c3b474f"
+      "_id": "260a5fb9-eb41-4cb5-b57a-f60f1c3b474f",
+      "available": true
     },
     {
       "id": "711103b7-9b81-4d68-b232-6129285bf48e",
@@ -41982,7 +42368,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "711103b7-9b81-4d68-b232-6129285bf48e"
+      "_id": "711103b7-9b81-4d68-b232-6129285bf48e",
+      "available": true
     },
     {
       "id": "d7359607-d609-4bbd-a0c8-321b34d8ea16",
@@ -42001,7 +42388,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "d7359607-d609-4bbd-a0c8-321b34d8ea16"
+      "_id": "d7359607-d609-4bbd-a0c8-321b34d8ea16",
+      "available": true
     },
     {
       "id": "62a5bdc2-dca3-4e17-92c9-20b44200808c",
@@ -42020,7 +42408,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "62a5bdc2-dca3-4e17-92c9-20b44200808c"
+      "_id": "62a5bdc2-dca3-4e17-92c9-20b44200808c",
+      "available": true
     },
     {
       "id": "b9187ff3-cc19-434a-8042-a28f086d50f7",
@@ -42039,7 +42428,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "b9187ff3-cc19-434a-8042-a28f086d50f7"
+      "_id": "b9187ff3-cc19-434a-8042-a28f086d50f7",
+      "available": true
     },
     {
       "id": "57166bfa-f339-46e5-8123-717ba7244bd9",
@@ -42058,7 +42448,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "57166bfa-f339-46e5-8123-717ba7244bd9"
+      "_id": "57166bfa-f339-46e5-8123-717ba7244bd9",
+      "available": true
     },
     {
       "id": "8de8ff2d-8e34-47d6-b601-ad2d01cdbcb3",
@@ -42077,7 +42468,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "8de8ff2d-8e34-47d6-b601-ad2d01cdbcb3"
+      "_id": "8de8ff2d-8e34-47d6-b601-ad2d01cdbcb3",
+      "available": true
     },
     {
       "id": "62bf835a-818d-47e3-8e1e-ed1363171590",
@@ -42096,7 +42488,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "62bf835a-818d-47e3-8e1e-ed1363171590"
+      "_id": "62bf835a-818d-47e3-8e1e-ed1363171590",
+      "available": true
     },
     {
       "id": "c9d0f9a3-573b-43b9-afab-949b75e0dc55",
@@ -42115,7 +42508,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c9d0f9a3-573b-43b9-afab-949b75e0dc55"
+      "_id": "c9d0f9a3-573b-43b9-afab-949b75e0dc55",
+      "available": true
     },
     {
       "id": "de612265-1159-4e30-bf41-5ae3fb980eb6",
@@ -42134,7 +42528,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "de612265-1159-4e30-bf41-5ae3fb980eb6"
+      "_id": "de612265-1159-4e30-bf41-5ae3fb980eb6",
+      "available": true
     },
     {
       "id": "b8a5e20b-77b1-4607-ad38-b3de6dd94a46",
@@ -42153,7 +42548,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "b8a5e20b-77b1-4607-ad38-b3de6dd94a46"
+      "_id": "b8a5e20b-77b1-4607-ad38-b3de6dd94a46",
+      "available": true
     },
     {
       "id": "128c5355-38d3-4e24-990d-05a83587940a",
@@ -42172,7 +42568,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "128c5355-38d3-4e24-990d-05a83587940a"
+      "_id": "128c5355-38d3-4e24-990d-05a83587940a",
+      "available": true
     },
     {
       "id": "5c2769d5-0c82-4946-be09-4d2fcd999f63",
@@ -42191,7 +42588,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "5c2769d5-0c82-4946-be09-4d2fcd999f63"
+      "_id": "5c2769d5-0c82-4946-be09-4d2fcd999f63",
+      "available": true
     },
     {
       "id": "85f1f495-416d-46f1-a02a-209644f47ce3",
@@ -42210,7 +42608,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "85f1f495-416d-46f1-a02a-209644f47ce3"
+      "_id": "85f1f495-416d-46f1-a02a-209644f47ce3",
+      "available": true
     },
     {
       "id": "328c7324-6d2f-46a6-b4a1-126c7eda8697",
@@ -42229,7 +42628,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "328c7324-6d2f-46a6-b4a1-126c7eda8697"
+      "_id": "328c7324-6d2f-46a6-b4a1-126c7eda8697",
+      "available": true
     },
     {
       "id": "17ecd84d-6226-4c05-94b9-ff0fd4c3828b",
@@ -42248,7 +42648,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "17ecd84d-6226-4c05-94b9-ff0fd4c3828b"
+      "_id": "17ecd84d-6226-4c05-94b9-ff0fd4c3828b",
+      "available": true
     },
     {
       "id": "db794bd8-84bc-48a3-888b-31be64d1f693",
@@ -42267,7 +42668,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "db794bd8-84bc-48a3-888b-31be64d1f693"
+      "_id": "db794bd8-84bc-48a3-888b-31be64d1f693",
+      "available": true
     },
     {
       "id": "cdfcafc5-d83e-444d-a203-75de7950bacb",
@@ -42286,7 +42688,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "cdfcafc5-d83e-444d-a203-75de7950bacb"
+      "_id": "cdfcafc5-d83e-444d-a203-75de7950bacb",
+      "available": true
     },
     {
       "id": "2cc41cd2-101b-4572-9383-4bca00f3946f",
@@ -42305,7 +42708,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "2cc41cd2-101b-4572-9383-4bca00f3946f"
+      "_id": "2cc41cd2-101b-4572-9383-4bca00f3946f",
+      "available": true
     },
     {
       "id": "5cb81a07-7551-4dd2-b298-7f652ad2830d",
@@ -42324,7 +42728,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "5cb81a07-7551-4dd2-b298-7f652ad2830d"
+      "_id": "5cb81a07-7551-4dd2-b298-7f652ad2830d",
+      "available": true
     },
     {
       "id": "5c015a4e-6531-4520-a908-a5dff7ff26f7",
@@ -42343,7 +42748,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "5c015a4e-6531-4520-a908-a5dff7ff26f7"
+      "_id": "5c015a4e-6531-4520-a908-a5dff7ff26f7",
+      "available": true
     },
     {
       "id": "60519cb7-4202-4cec-bd59-7c668440265d",
@@ -42362,7 +42768,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "60519cb7-4202-4cec-bd59-7c668440265d"
+      "_id": "60519cb7-4202-4cec-bd59-7c668440265d",
+      "available": true
     },
     {
       "id": "79186f95-1579-431d-a827-1eecf8f2d6cc",
@@ -42381,7 +42788,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "79186f95-1579-431d-a827-1eecf8f2d6cc"
+      "_id": "79186f95-1579-431d-a827-1eecf8f2d6cc",
+      "available": true
     },
     {
       "id": "bae99694-e199-4fe6-93de-3cac31768096",
@@ -42400,7 +42808,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "bae99694-e199-4fe6-93de-3cac31768096"
+      "_id": "bae99694-e199-4fe6-93de-3cac31768096",
+      "available": true
     },
     {
       "id": "39691ba2-3bd3-4861-940f-153fb086ed54",
@@ -42419,7 +42828,8 @@
         "half": 72,
         "full": 120.0
       },
-      "_id": "39691ba2-3bd3-4861-940f-153fb086ed54"
+      "_id": "39691ba2-3bd3-4861-940f-153fb086ed54",
+      "available": true
     },
     {
       "id": "c26d02c3-8261-4c20-8e7f-de3eddd39c5a",
@@ -42438,7 +42848,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "c26d02c3-8261-4c20-8e7f-de3eddd39c5a"
+      "_id": "c26d02c3-8261-4c20-8e7f-de3eddd39c5a",
+      "available": true
     },
     {
       "id": "6fd4c4f6-93fc-450c-a0e1-70a740e95f6e",
@@ -42457,7 +42868,8 @@
         "half": 15.0,
         "full": 20.0
       },
-      "_id": "6fd4c4f6-93fc-450c-a0e1-70a740e95f6e"
+      "_id": "6fd4c4f6-93fc-450c-a0e1-70a740e95f6e",
+      "available": true
     },
     {
       "id": "5fd70295-86a2-4b33-b057-cdd1aa9b9a7f",
@@ -42476,7 +42888,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "5fd70295-86a2-4b33-b057-cdd1aa9b9a7f"
+      "_id": "5fd70295-86a2-4b33-b057-cdd1aa9b9a7f",
+      "available": true
     },
     {
       "id": "cbd740b8-7a36-4777-a2b5-4ccd48e41cf3",
@@ -42495,7 +42908,8 @@
         "half": 15.0,
         "full": 25.0
       },
-      "_id": "cbd740b8-7a36-4777-a2b5-4ccd48e41cf3"
+      "_id": "cbd740b8-7a36-4777-a2b5-4ccd48e41cf3",
+      "available": true
     },
     {
       "id": "13f42d37-d04b-44c2-842f-8b3fe3d34ba4",
@@ -42514,7 +42928,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "13f42d37-d04b-44c2-842f-8b3fe3d34ba4"
+      "_id": "13f42d37-d04b-44c2-842f-8b3fe3d34ba4",
+      "available": true
     },
     {
       "id": "de5e28de-c5fc-4e3c-8279-35fb03eb400c",
@@ -42533,7 +42948,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "de5e28de-c5fc-4e3c-8279-35fb03eb400c"
+      "_id": "de5e28de-c5fc-4e3c-8279-35fb03eb400c",
+      "available": true
     },
     {
       "id": "8ed7e577-ecd1-4f6f-acd0-68c47b0cf2e8",
@@ -42552,7 +42968,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "8ed7e577-ecd1-4f6f-acd0-68c47b0cf2e8"
+      "_id": "8ed7e577-ecd1-4f6f-acd0-68c47b0cf2e8",
+      "available": true
     },
     {
       "id": "cc244a5b-8ae9-40f2-881c-4274975eeb8d",
@@ -42571,7 +42988,8 @@
         "half": 36,
         "full": 60.0
       },
-      "_id": "cc244a5b-8ae9-40f2-881c-4274975eeb8d"
+      "_id": "cc244a5b-8ae9-40f2-881c-4274975eeb8d",
+      "available": true
     },
     {
       "id": "d4138537-dc3d-4dfb-970b-7ee9d98799fa",
@@ -42590,7 +43008,8 @@
         "half": 30,
         "full": 50.0
       },
-      "_id": "d4138537-dc3d-4dfb-970b-7ee9d98799fa"
+      "_id": "d4138537-dc3d-4dfb-970b-7ee9d98799fa",
+      "available": true
     }
   ],
   "orders": [
@@ -42659,7 +43078,7 @@
       "paymentStatus": "Fully Paid",
       "dueStatus": "Fully Paid",
       "splitPaymentType": "online_split",
-      "splitStatus": "Instant Split Settled (\u20b92.50 Admin + Vendor Net Credit)",
+      "splitStatus": "Instant Split Settled (₹2.50 Admin + Vendor Net Credit)",
       "cashCommissionDue": 0.0,
       "adminSettled": true,
       "vendorSettled": true,
@@ -42743,7 +43162,7 @@
       "paymentStatus": "Fully Paid",
       "dueStatus": "Fully Paid",
       "splitPaymentType": "online_split",
-      "splitStatus": "Instant Split Settled (\u20b92.50 Admin + Vendor Net Credit)",
+      "splitStatus": "Instant Split Settled (₹2.50 Admin + Vendor Net Credit)",
       "cashCommissionDue": 0.0,
       "adminSettled": true,
       "vendorSettled": true,
@@ -42895,7 +43314,7 @@
       "phone": "+91 98765 43205",
       "location": "Near Gate No. 2 Lawn, Counter #5",
       "timing": "8:30 AM - 5:30 PM",
-      "description": "Aromatic dum biryani with soya chaap, paneer chunks, spicy gravy & fresh raita (\u20b940 / \u20b950 / \u20b960).",
+      "description": "Aromatic dum biryani with soya chaap, paneer chunks, spicy gravy & fresh raita (₹40 / ₹50 / ₹60).",
       "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&auto=format&fit=crop&q=80",
       "isOpen": true,
       "rating": 4.9,
@@ -43295,7 +43714,7 @@
       "specialInstructions": "Call me once you collect from Gate 2 courier boy.",
       "runnerFee": 10,
       "paymentMethod": "Campus Digital Wallet",
-      "paymentStatus": "Paid (\u20b910)",
+      "paymentStatus": "Paid (₹10)",
       "status": "Out for Delivery",
       "runnerName": "Vikas (Mart Runner #3)",
       "runnerPhone": "+91 98765 00112",
@@ -43324,7 +43743,7 @@
       "specialInstructions": "Leave with security desk if I am in class.",
       "runnerFee": 20,
       "paymentMethod": "Instant UPI & QR Pay",
-      "paymentStatus": "Paid (\u20b920)",
+      "paymentStatus": "Paid (₹20)",
       "status": "Collected at Gate 2",
       "runnerName": "Deepak (Runner #1)",
       "runnerPhone": "+91 63953 22813",
