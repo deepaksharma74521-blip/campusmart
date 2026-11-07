@@ -258,14 +258,40 @@ function loadCart() {
 
     updateSplitCalculation(totalAmount);
 
-    // Update Customer Identity Badge
+    // Update Customer Identity Badge & Checkout Button
     const user = api.getCurrentUser();
     const identityEl = document.getElementById('cart-user-identity');
-    if (identityEl && user) {
-        const isFaculty = user.userType === 'Faculty';
-        identityEl.innerHTML = isFaculty 
-            ? `<span style="color: #6d28d9; background: #ede9fe; padding: 2px 8px; border-radius: 4px; border: 1px solid #ddd6fe; font-size: 0.82rem;"><i class="fa-solid fa-chalkboard-user"></i> Faculty (${user.name} &bull; ${user.cabinNumber || user.department || 'Faculty'})</span>`
-            : `<span style="color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px; border: 1px solid #bbf7d0; font-size: 0.82rem;"><i class="fa-solid fa-graduation-cap"></i> Student (${user.name} &bull; ${user.rollNo || 'BCA'})</span>`;
+    const placeBtn = document.getElementById('place-order-btn');
+
+    if (identityEl) {
+        if (user) {
+            const isFaculty = user.userType === 'Faculty';
+            identityEl.innerHTML = isFaculty 
+                ? `<span style="color: #6d28d9; background: #ede9fe; padding: 3px 8px; border-radius: 6px; border: 1px solid #ddd6fe; font-size: 0.82rem; font-weight: 700;"><i class="fa-solid fa-chalkboard-user"></i> Faculty (${user.name} &bull; ${user.cabinNumber || user.department || 'Faculty'})</span>`
+                : `<span style="color: #15803d; background: #dcfce7; padding: 3px 8px; border-radius: 6px; border: 1px solid #bbf7d0; font-size: 0.82rem; font-weight: 700;"><i class="fa-solid fa-graduation-cap"></i> Student (${user.name} &bull; ${user.rollNo || 'Verified'})</span>`;
+        } else {
+            identityEl.innerHTML = `
+                <span style="color: #ea580c; background: #fff7ed; padding: 3px 8px; border-radius: 6px; border: 1px solid #fed7aa; font-size: 0.82rem; font-weight: 600;">
+                    <i class="fa-solid fa-user-clock"></i> Guest User (Login at checkout)
+                </span>
+            `;
+        }
+    }
+
+    if (placeBtn) {
+        if (!user) {
+            placeBtn.innerHTML = `<i class="fa-solid fa-lock" style="margin-right: 6px;"></i> Sign In to Place Pre-Order (₹${totalAmount})`;
+            placeBtn.onclick = function(e) {
+                e.preventDefault();
+                showToast('Please sign in with your student/faculty account to place order.', 'info', 'Sign In Required');
+                setTimeout(() => {
+                    window.location.href = 'login.html?redirect=cart.html';
+                }, 600);
+            };
+        } else {
+            placeBtn.innerHTML = `<i class="fa-solid fa-circle-check" style="margin-right: 6px;"></i> Place Pre-Order Now (₹${totalAmount})`;
+            placeBtn.onclick = null;
+        }
     }
 
     if (user && user.department) {
@@ -315,9 +341,16 @@ function clearCart() {
 
 function checkAuth() {
     const user = api.getCurrentUser();
-    if (!user) {
-        window.location.href = 'login.html?redirect=cart.html';
+    if (user) {
+        if (typeof updateNavForUser === 'function') {
+            updateNavForUser(user);
+        }
+    } else {
+        if (typeof updateNavForGuest === 'function') {
+            updateNavForGuest();
+        }
     }
+    return user;
 }
 
 let currentFulfillmentType = 'pickup'; // 'pickup' | 'delivery'
@@ -556,7 +589,10 @@ async function handlePlaceOrder(event) {
     
     const user = api.getCurrentUser();
     if (!user) {
-        window.location.href = 'login.html?redirect=cart.html';
+        showToast('Please sign in with your student/faculty account to place order.', 'info', 'Sign In Required');
+        setTimeout(() => {
+            window.location.href = 'login.html?redirect=cart.html';
+        }, 600);
         return;
     }
 

@@ -717,7 +717,9 @@ async function handleVerifyOtpSubmit(event) {
                 if (isShopOwner) {
                     window.location.href = 'admin.html';
                 } else {
-                    window.location.href = 'menu.html';
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirectTarget = urlParams.get('redirect');
+                    window.location.href = redirectTarget || 'menu.html';
                 }
             }, 1200);
         } else {
