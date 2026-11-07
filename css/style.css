@@ -3409,22 +3409,35 @@ button {
 }
 
 /* ==========================================================================
-   Campus Mart – Apple VisionOS 3D Spatial Computing UI Design System
+   Campus Mart – 120 FPS High-Performance Sunset Mesh UI System
    ========================================================================== */
 
-/* 1. Atmospheric Vibrant Warm Sunset Mesh Canvas */
+/* 1. Hardware-Accelerated Sunset Canvas (Zero Scroll Repaint) */
 body {
     background-color: #fdf6f0 !important;
-    background-image: 
-        radial-gradient(circle at 10% 8%, rgba(254, 215, 170, 0.85) 0%, rgba(251, 146, 60, 0.45) 30%, transparent 60%),
-        radial-gradient(circle at 92% 12%, rgba(254, 205, 211, 0.8) 0%, rgba(251, 113, 133, 0.4) 35%, transparent 65%),
-        radial-gradient(circle at 50% 45%, rgba(254, 240, 138, 0.7) 0%, rgba(252, 211, 77, 0.35) 30%, transparent 60%),
-        radial-gradient(circle at 8% 65%, rgba(253, 186, 116, 0.75) 0%, rgba(249, 115, 22, 0.35) 35%, transparent 65%),
-        radial-gradient(circle at 88% 85%, rgba(186, 230, 253, 0.75) 0%, rgba(147, 197, 253, 0.3) 35%, transparent 65%),
-        radial-gradient(circle at 30% 95%, rgba(254, 215, 170, 0.75) 0%, rgba(234, 88, 12, 0.3) 40%, transparent 65%) !important;
-    background-attachment: fixed !important;
     padding-bottom: 96px !important;
-    perspective: 1400px;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: #fdf6f0;
+    background-image: 
+        radial-gradient(circle at 10% 8%, rgba(254, 215, 170, 0.85) 0%, rgba(251, 146, 60, 0.35) 30%, transparent 60%),
+        radial-gradient(circle at 92% 12%, rgba(254, 205, 211, 0.8) 0%, rgba(251, 113, 133, 0.3) 35%, transparent 65%),
+        radial-gradient(circle at 50% 45%, rgba(254, 240, 138, 0.65) 0%, rgba(252, 211, 77, 0.25) 30%, transparent 60%),
+        radial-gradient(circle at 8% 65%, rgba(253, 186, 116, 0.7) 0%, rgba(249, 115, 22, 0.25) 35%, transparent 65%),
+        radial-gradient(circle at 88% 85%, rgba(186, 230, 253, 0.7) 0%, rgba(147, 197, 253, 0.25) 35%, transparent 65%),
+        radial-gradient(circle at 30% 95%, rgba(254, 215, 170, 0.7) 0%, rgba(234, 88, 12, 0.25) 40%, transparent 65%);
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 @media (min-width: 768px) {
@@ -3433,92 +3446,70 @@ body {
     }
 }
 
-/* 2. Spatial 3D Card Architecture (VisionOS Floating Panels) */
+/* 2. 120 FPS Ultra-Fast Cards (No Heavy GPU Backdrop Blur on Grid Items) */
 .food-card, .shop-card, .product-card, .card, .auth-card, .order-summary-card, .cart-items-card, .order-card {
-    transform-style: preserve-3d !important;
-    perspective: 1200px !important;
-    background: radial-gradient(circle at var(--spatial-light-x, 50%) var(--spatial-light-y, 0%), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.75) 80%) !important;
-    backdrop-filter: blur(28px) saturate(210%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.92) !important;
-    border-radius: 22px !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.85) !important;
+    border-radius: 20px !important;
     box-shadow: 
-        0 20px 45px -10px rgba(234, 88, 12, 0.12),
-        0 4px 14px rgba(0, 0, 0, 0.03),
-        0 0 0 1px rgba(255, 255, 255, 0.8),
-        inset 0 2px 2px rgba(255, 255, 255, 1),
-        inset 0 -1.5px 2px rgba(0, 0, 0, 0.03) !important;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+        0 8px 24px -4px rgba(234, 88, 12, 0.08),
+        0 2px 8px rgba(15, 23, 42, 0.03) !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease !important;
     position: relative !important;
     will-change: transform;
-}
-    position: relative !important;
-    will-change: transform;
+    content-visibility: auto;
+    contain-intrinsic-size: 320px;
 }
 
-/* 3. 3D Hover & Spatial Light Reflection */
+/* 3. Smooth Hardware-Accelerated 120 FPS Hover Lift */
 .food-card:hover, .shop-card:hover, .product-card:hover, .card-hover:hover {
+    transform: translateY(-5px) !important;
     box-shadow: 
-        0 30px 60px -12px rgba(15, 23, 42, 0.18),
-        0 0 35px rgba(234, 88, 12, 0.2),
-        0 0 0 1.5px rgba(255, 255, 255, 0.95),
-        inset 0 2.5px 2.5px rgba(255, 255, 255, 1) !important;
-    border-color: rgba(234, 88, 12, 0.5) !important;
+        0 18px 36px -8px rgba(234, 88, 12, 0.16),
+        0 4px 14px rgba(15, 23, 42, 0.05) !important;
+    border-color: rgba(251, 146, 60, 0.5) !important;
 }
 
-/* 4. Z-Axis Holographic Elevation for Inner Elements (Pop-out 3D Effect) */
+/* 4. Card Media & Micro-Interactions */
 .food-card .food-img-wrap, .shop-card img, .food-card-img-wrap {
-    transform: translateZ(14px) !important;
     border-radius: 14px !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.food-card:hover .food-img-wrap, .food-card:hover .food-card-img-wrap {
-    transform: translateZ(24px) scale(1.03) !important;
+.food-card:hover .food-img-wrap img {
+    transform: scale(1.04);
 }
 
 .food-card .food-price, .product-price {
-    transform: translateZ(20px) !important;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.food-card:hover .food-price, .food-card:hover .product-price {
-    transform: translateZ(30px) !important;
-    text-shadow: 0 4px 15px rgba(234, 88, 12, 0.4) !important;
+    transition: color 0.2s ease !important;
 }
 
 .food-card .add-cart-btn {
-    transform: translateZ(22px) !important;
-    box-shadow: 0 6px 16px rgba(234, 88, 12, 0.35) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3) !important;
+    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease !important;
 }
 
-.food-card:hover .add-cart-btn {
-    transform: translateZ(34px) scale(1.06) !important;
-    box-shadow: 0 12px 28px rgba(234, 88, 12, 0.55), 0 0 15px rgba(249, 115, 22, 0.4) !important;
+.food-card .add-cart-btn:hover {
+    transform: scale(1.04) !important;
+    box-shadow: 0 6px 18px rgba(234, 88, 12, 0.42) !important;
 }
 
 .food-type-tag, .badge-bestseller, .shop-pill-status {
-    transform: translateZ(28px) !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* 5. Spatial VisionOS Floating Navigation Bar (Desktop & Top) */
+/* 5. GPU-Accelerated Floating Top Navigation Bar */
 .navbar {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.72) 100%) !important;
-    backdrop-filter: blur(28px) saturate(210%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.8) !important;
-    box-shadow: 
-        0 8px 30px -4px rgba(15, 23, 42, 0.08),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.03),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
 }
 
-/* 6. VisionOS Floating Spatial Capsule (Mobile Bottom Navigation) */
+/* 6. Floating Capsule (Mobile Bottom Navigation) */
 @media screen and (max-width: 767px) {
     .mobile-bottom-nav {
         display: flex !important;
@@ -3529,36 +3520,31 @@ body {
         max-width: 480px !important;
         margin: 0 auto !important;
         height: 64px !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.74) 100%) !important;
-        backdrop-filter: blur(32px) saturate(220%) !important;
-        -webkit-backdrop-filter: blur(32px) saturate(220%) !important;
-        border: 1.5px solid rgba(255, 255, 255, 0.92) !important;
+        background: rgba(255, 255, 255, 0.94) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.95) !important;
         border-radius: 40px !important;
-        box-shadow: 
-            0 20px 50px rgba(15, 23, 42, 0.16),
-            0 4px 12px rgba(0, 0, 0, 0.05),
-            0 0 0 1px rgba(255, 255, 255, 0.7),
-            inset 0 2px 2px rgba(255, 255, 255, 1) !important;
+        box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12) !important;
         z-index: 10000 !important;
         justify-content: space-around !important;
         align-items: center !important;
         padding: 0 10px !important;
         padding-bottom: env(safe-area-inset-bottom, 0) !important;
-        transform: translateZ(40px) !important;
-        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
+        transform: translateZ(0) !important;
+        will-change: transform;
     }
 
     .mobile-nav-item {
         border-radius: 24px !important;
         padding: 7px 14px !important;
-        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition: transform 0.2s ease, background-color 0.2s ease !important;
     }
 
     .mobile-nav-item.active {
         color: var(--primary) !important;
-        background: rgba(234, 88, 12, 0.14) !important;
-        box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25), inset 0 1px 1.5px rgba(255, 255, 255, 0.9) !important;
-        transform: scale(1.06) translateZ(12px) !important;
+        background: rgba(234, 88, 12, 0.12) !important;
+        transform: scale(1.05) !important;
     }
 
     .mobile-nav-item:active {
@@ -3566,139 +3552,103 @@ body {
     }
 }
 
-/* 7. Floating Spatial Cart Pill (Luminous Emerald Capsule) */
+/* 7. Floating Quick Cart Pill */
 .floating-cart-pill {
-    background: linear-gradient(135deg, rgba(22, 163, 74, 0.95) 0%, rgba(15, 118, 54, 0.95) 100%) !important;
-    backdrop-filter: blur(24px) saturate(210%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(210%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
     border-radius: 30px !important;
-    box-shadow: 
-        0 20px 50px -5px rgba(22, 163, 74, 0.52),
-        0 0 30px rgba(74, 222, 128, 0.3),
-        inset 0 2px 2px rgba(255, 255, 255, 0.75) !important;
-    transform: translateX(-50%) translateZ(45px) !important;
+    box-shadow: 0 12px 30px rgba(22, 163, 74, 0.4) !important;
+    transform: translateX(-50%) translateZ(0) !important;
+    will-change: transform;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .floating-cart-pill:active {
-    transform: translateX(-50%) scale(0.96) translateZ(30px) !important;
+    transform: translateX(-50%) scale(0.95) !important;
 }
 
-/* 8. VisionOS Spatial Search & Capsule Filter Pills */
+/* 8. Search & Capsule Filter Pills */
 .search-box-wrap .search-input {
-    background: rgba(255, 255, 255, 0.8) !important;
-    backdrop-filter: blur(18px) saturate(190%) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(190%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 
-        0 4px 16px rgba(15, 23, 42, 0.05),
-        inset 0 1.5px 2px rgba(255, 255, 255, 1) !important;
+    background: #ffffff !important;
+    border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
     border-radius: var(--radius-full) !important;
-    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .search-box-wrap .search-input:focus {
-    background: rgba(255, 255, 255, 0.98) !important;
     border-color: var(--primary) !important;
-    box-shadow: 
-        0 8px 25px rgba(234, 88, 12, 0.22),
-        0 0 0 3px rgba(234, 88, 12, 0.15),
-        inset 0 1px 1px rgba(255, 255, 255, 1) !important;
-    transform: scale(1.01) !important;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.18) !important;
 }
 
 .filter-pill, .category-pill, .shop-filter-pill, .admin-food-filter-pill, .user-type-filter-pill {
-    background: rgba(255, 255, 255, 0.75) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
-    box-shadow: 
-        0 4px 12px rgba(15, 23, 42, 0.03),
-        inset 0 1px 1.5px rgba(255, 255, 255, 0.9) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.85) !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03) !important;
     border-radius: var(--radius-full) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease !important;
 }
 
 .filter-pill.active, .category-pill.active, .shop-filter-pill.active, .admin-food-filter-pill.active, .user-type-filter-pill.active {
-    background: linear-gradient(135deg, rgba(234, 88, 12, 0.96), rgba(249, 115, 22, 0.92)) !important;
-    backdrop-filter: blur(20px) !important;
-    color: white !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
-    box-shadow: 
-        0 8px 20px rgba(234, 88, 12, 0.42),
-        0 0 15px rgba(249, 115, 22, 0.3),
-        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.6) !important;
-    transform: scale(1.04) translateZ(8px) !important;
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%) !important;
+    color: #ffffff !important;
+    border-color: #ea580c !important;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35) !important;
+    transform: scale(1.03) !important;
 }
 
-/* 9. Spatial VisionOS Modals & Cinematic Overlays */
+/* 9. Clean Modals & Overlays */
 .modal-backdrop {
-    background: rgba(15, 23, 42, 0.5) !important;
-    backdrop-filter: blur(20px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
-    perspective: 1400px !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
 }
 
 .modal-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%) !important;
-    backdrop-filter: blur(35px) saturate(220%) !important;
-    -webkit-backdrop-filter: blur(35px) saturate(220%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
-    border-radius: 28px !important;
-    box-shadow: 
-        0 35px 80px -15px rgba(0, 0, 0, 0.35),
-        0 0 40px rgba(255, 255, 255, 0.3),
-        inset 0 2px 2px rgba(255, 255, 255, 1) !important;
-    transform: scale(0.96) translateZ(60px) !important;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.85) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.25) !important;
+    transform: scale(0.96) !important;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
 }
 
 .modal-backdrop.active .modal-card {
-    transform: scale(1) translateZ(60px) !important;
+    transform: scale(1) !important;
 }
 
-/* 10. Spatial Neon Status Indicators */
+/* 10. Status Indicators */
 .status-open {
-    background: rgba(22, 163, 74, 0.92) !important;
-    box-shadow: 0 0 16px rgba(34, 197, 94, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    background: rgba(22, 163, 74, 0.95) !important;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.4) !important;
     color: white !important;
 }
 
 .status-closed {
-    background: rgba(220, 38, 38, 0.88) !important;
-    box-shadow: 0 0 14px rgba(239, 68, 68, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    background: rgba(220, 38, 38, 0.9) !important;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.35) !important;
     color: white !important;
 }
 
-/* 11. Spatial Reusable Utility Classes */
+/* 11. Reusable Utility Classes */
 .spatial-panel {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.72) 100%) !important;
-    backdrop-filter: blur(28px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.88) !important;
-    border-radius: 24px !important;
-    box-shadow: 
-        0 18px 45px rgba(15, 23, 42, 0.09),
-        inset 0 2px 2px rgba(255, 255, 255, 1) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.85) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
 }
 
 .spatial-capsule {
     border-radius: var(--radius-full) !important;
-    background: rgba(255, 255, 255, 0.8) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06), inset 0 1px 1.5px rgba(255, 255, 255, 0.95) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.85) !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
 }
 
-/* 12. Tactile 3D Button Depth */
+/* 12. Tactile Fast Buttons */
 .btn, .add-cart-btn, .cart-icon-btn, .modal-close-btn {
-    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, background 0.18s ease !important;
-    transform: translateZ(10px);
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background-color 0.15s ease !important;
 }
 
 .btn:active, .add-cart-btn:active, .cart-icon-btn:active {
-    transform: scale(0.94) translateZ(-5px) !important;
+    transform: scale(0.95) !important;
 }
