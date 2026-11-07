@@ -3409,19 +3409,20 @@ button {
 }
 
 /* ==========================================================================
-   Campus Mart – Apple VisionOS 3D Spatial Computing UI Design System
+   Campus Mart – Apple VisionOS 3D Deep Spatial Dark UI Design System
    ========================================================================== */
 
-/* 1. Atmospheric Spatial Mesh Canvas (3D Space Depth) */
+/* 1. Deep Spatial Midnight Canvas (3D Space Depth) */
 body {
-    background-color: #f1f5f9 !important;
+    background-color: #080c14 !important;
     background-image: 
-        radial-gradient(circle at 12% 15%, rgba(251, 146, 60, 0.28) 0%, transparent 45%),
-        radial-gradient(circle at 88% 12%, rgba(99, 102, 241, 0.22) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(248, 250, 252, 0.7) 0%, transparent 60%),
-        radial-gradient(circle at 82% 85%, rgba(16, 185, 129, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 18% 90%, rgba(245, 158, 11, 0.22) 0%, transparent 45%) !important;
+        radial-gradient(circle at 10% 12%, rgba(234, 88, 12, 0.26) 0%, transparent 45%),
+        radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.9) 0%, transparent 65%),
+        radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 15% 90%, rgba(245, 158, 11, 0.24) 0%, transparent 45%) !important;
     background-attachment: fixed !important;
+    color: #f1f5f9 !important;
     padding-bottom: 96px !important;
     perspective: 1400px;
 }
@@ -3432,41 +3433,55 @@ body {
     }
 }
 
-/* 2. Spatial 3D Card Architecture (VisionOS Floating Panels) */
+/* 2. Global Text & Headings in Spatial Dark */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+}
+
+p, .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Sections transparency */
+section, .hero-section, .features-section, .container {
+    background: transparent !important;
+}
+
+/* 3. Spatial 3D Dark Glass Cards (VisionOS Floating Panels) */
 .food-card, .shop-card, .product-card, .card, .auth-card, .order-summary-card, .cart-items-card, .order-card {
     transform-style: preserve-3d !important;
     perspective: 1200px !important;
-    background: radial-gradient(circle at var(--spatial-light-x, 50%) var(--spatial-light-y, 0%), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.72) 80%) !important;
-    backdrop-filter: blur(28px) saturate(210%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.88) !important;
+    background: radial-gradient(circle at var(--spatial-light-x, 50%) var(--spatial-light-y, 0%), rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.88) 85%) !important;
+    backdrop-filter: blur(30px) saturate(220%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(220%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
     border-radius: 22px !important;
+    color: #f8fafc !important;
     box-shadow: 
-        0 20px 45px -10px rgba(15, 23, 42, 0.1),
-        0 4px 12px rgba(0, 0, 0, 0.03),
-        0 0 0 1px rgba(255, 255, 255, 0.75),
-        inset 0 2px 2px rgba(255, 255, 255, 1),
-        inset 0 -1.5px 2px rgba(0, 0, 0, 0.04) !important;
+        0 20px 50px -10px rgba(0, 0, 0, 0.7),
+        0 4px 14px rgba(0, 0, 0, 0.5),
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.22),
+        inset 0 -1.5px 2px rgba(0, 0, 0, 0.5) !important;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
     position: relative !important;
     will-change: transform;
 }
 
-/* 3. 3D Hover & Spatial Light Reflection */
+/* 4. 3D Hover & Spatial Neon Glare */
 .food-card:hover, .shop-card:hover, .product-card:hover, .card-hover:hover {
     box-shadow: 
-        0 30px 60px -12px rgba(15, 23, 42, 0.18),
-        0 0 35px rgba(234, 88, 12, 0.2),
-        0 0 0 1.5px rgba(255, 255, 255, 0.95),
-        inset 0 2.5px 2.5px rgba(255, 255, 255, 1) !important;
-    border-color: rgba(234, 88, 12, 0.5) !important;
+        0 35px 70px -12px rgba(0, 0, 0, 0.85),
+        0 0 35px rgba(234, 88, 12, 0.35),
+        inset 0 2px 2px rgba(255, 255, 255, 0.4) !important;
+    border-color: rgba(249, 115, 22, 0.65) !important;
+    background: radial-gradient(circle at var(--spatial-light-x, 50%) var(--spatial-light-y, 0%), rgba(51, 65, 85, 0.9), rgba(15, 23, 42, 0.92) 85%) !important;
 }
 
-/* 4. Z-Axis Holographic Elevation for Inner Elements (Pop-out 3D Effect) */
+/* 5. Z-Axis Holographic Elevation for Inner Elements */
 .food-card .food-img-wrap, .shop-card img, .food-card-img-wrap {
     transform: translateZ(14px) !important;
     border-radius: 14px !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
@@ -3476,45 +3491,69 @@ body {
 
 .food-card .food-price, .product-price {
     transform: translateZ(20px) !important;
+    color: #fb923c !important;
+    text-shadow: 0 0 16px rgba(251, 146, 60, 0.5) !important;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .food-card:hover .food-price, .food-card:hover .product-price {
     transform: translateZ(30px) !important;
-    text-shadow: 0 4px 15px rgba(234, 88, 12, 0.4) !important;
+    text-shadow: 0 0 22px rgba(251, 146, 60, 0.8) !important;
+}
+
+.food-card .food-title, .food-card h4, .food-card-title, .product-title {
+    color: #ffffff !important;
+}
+
+.food-card .food-desc, .food-card p {
+    color: #94a3b8 !important;
 }
 
 .food-card .add-cart-btn {
     transform: translateZ(22px) !important;
-    box-shadow: 0 6px 16px rgba(234, 88, 12, 0.35) !important;
+    background: linear-gradient(135deg, #ea580c, #f97316) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 18px rgba(234, 88, 12, 0.45) !important;
+    border: none !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .food-card:hover .add-cart-btn {
     transform: translateZ(34px) scale(1.06) !important;
-    box-shadow: 0 12px 28px rgba(234, 88, 12, 0.55), 0 0 15px rgba(249, 115, 22, 0.4) !important;
+    box-shadow: 0 12px 30px rgba(234, 88, 12, 0.65), 0 0 15px rgba(249, 115, 22, 0.5) !important;
 }
 
 .food-type-tag, .badge-bestseller, .shop-pill-status {
     transform: translateZ(28px) !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
 }
 
-/* 5. Spatial VisionOS Floating Navigation Bar (Desktop & Top) */
+/* 6. Spatial VisionOS Floating Navigation Bar (Dark Glass) */
 .navbar {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.72) 100%) !important;
-    backdrop-filter: blur(28px) saturate(210%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.8) !important;
+    background: rgba(10, 14, 23, 0.85) !important;
+    backdrop-filter: blur(30px) saturate(220%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(220%) !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.12) !important;
     box-shadow: 
-        0 8px 30px -4px rgba(15, 23, 42, 0.08),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.03),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+        0 12px 35px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
 }
 
-/* 6. VisionOS Floating Spatial Capsule (Mobile Bottom Navigation) */
+.brand-logo {
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #94a3b8 !important;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #fb923c !important;
+}
+
+/* 7. VisionOS Floating Spatial Capsule (Mobile Bottom Navigation) */
 @media screen and (max-width: 767px) {
     .mobile-bottom-nav {
         display: flex !important;
@@ -3525,16 +3564,15 @@ body {
         max-width: 480px !important;
         margin: 0 auto !important;
         height: 64px !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.74) 100%) !important;
-        backdrop-filter: blur(32px) saturate(220%) !important;
-        -webkit-backdrop-filter: blur(32px) saturate(220%) !important;
-        border: 1.5px solid rgba(255, 255, 255, 0.92) !important;
+        background: linear-gradient(135deg, rgba(20, 28, 46, 0.94) 0%, rgba(10, 14, 23, 0.94) 100%) !important;
+        backdrop-filter: blur(35px) saturate(230%) !important;
+        -webkit-backdrop-filter: blur(35px) saturate(230%) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
         border-radius: 40px !important;
         box-shadow: 
-            0 20px 50px rgba(15, 23, 42, 0.16),
-            0 4px 12px rgba(0, 0, 0, 0.05),
-            0 0 0 1px rgba(255, 255, 255, 0.7),
-            inset 0 2px 2px rgba(255, 255, 255, 1) !important;
+            0 25px 60px rgba(0, 0, 0, 0.85),
+            0 0 25px rgba(234, 88, 12, 0.15),
+            inset 0 1.5px 2px rgba(255, 255, 255, 0.25) !important;
         z-index: 10000 !important;
         justify-content: space-around !important;
         align-items: center !important;
@@ -3545,15 +3583,16 @@ body {
     }
 
     .mobile-nav-item {
+        color: #94a3b8 !important;
         border-radius: 24px !important;
         padding: 7px 14px !important;
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
     .mobile-nav-item.active {
-        color: var(--primary) !important;
-        background: rgba(234, 88, 12, 0.14) !important;
-        box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25), inset 0 1px 1.5px rgba(255, 255, 255, 0.9) !important;
+        color: #fb923c !important;
+        background: rgba(234, 88, 12, 0.2) !important;
+        box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
         transform: scale(1.06) translateZ(12px) !important;
     }
 
@@ -3562,17 +3601,17 @@ body {
     }
 }
 
-/* 7. Floating Spatial Cart Pill (Luminous Emerald Capsule) */
+/* 8. Floating Spatial Cart Pill (Luminous Emerald Capsule) */
 .floating-cart-pill {
     background: linear-gradient(135deg, rgba(22, 163, 74, 0.95) 0%, rgba(15, 118, 54, 0.95) 100%) !important;
     backdrop-filter: blur(24px) saturate(210%) !important;
     -webkit-backdrop-filter: blur(24px) saturate(210%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
     border-radius: 30px !important;
     box-shadow: 
-        0 20px 50px -5px rgba(22, 163, 74, 0.52),
-        0 0 30px rgba(74, 222, 128, 0.3),
-        inset 0 2px 2px rgba(255, 255, 255, 0.75) !important;
+        0 20px 50px -5px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(34, 197, 94, 0.4),
+        inset 0 1.5px 2px rgba(255, 255, 255, 0.6) !important;
     transform: translateX(-50%) translateZ(45px) !important;
 }
 
@@ -3580,116 +3619,151 @@ body {
     transform: translateX(-50%) scale(0.96) translateZ(30px) !important;
 }
 
-/* 8. VisionOS Spatial Search & Capsule Filter Pills */
+/* 9. VisionOS Spatial Search & Capsule Filter Pills */
 .search-box-wrap .search-input {
-    background: rgba(255, 255, 255, 0.8) !important;
-    backdrop-filter: blur(18px) saturate(190%) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(190%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+    background: rgba(20, 28, 46, 0.82) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(20px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
     box-shadow: 
-        0 4px 16px rgba(15, 23, 42, 0.05),
-        inset 0 1.5px 2px rgba(255, 255, 255, 1) !important;
+        0 6px 20px rgba(0, 0, 0, 0.5),
+        inset 0 1.5px 2px rgba(255, 255, 255, 0.12) !important;
     border-radius: var(--radius-full) !important;
     transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+.search-box-wrap .search-input::placeholder {
+    color: #64748b !important;
+}
+
+.search-box-wrap .search-icon {
+    color: #94a3b8 !important;
+}
+
 .search-box-wrap .search-input:focus {
-    background: rgba(255, 255, 255, 0.98) !important;
-    border-color: var(--primary) !important;
+    background: rgba(26, 36, 60, 0.95) !important;
+    border-color: #f97316 !important;
     box-shadow: 
-        0 8px 25px rgba(234, 88, 12, 0.22),
-        0 0 0 3px rgba(234, 88, 12, 0.15),
-        inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+        0 10px 30px rgba(234, 88, 12, 0.35),
+        0 0 0 3px rgba(234, 88, 12, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
     transform: scale(1.01) !important;
 }
 
 .filter-pill, .category-pill, .shop-filter-pill, .admin-food-filter-pill, .user-type-filter-pill {
-    background: rgba(255, 255, 255, 0.75) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+    background: rgba(20, 28, 46, 0.8) !important;
+    color: #cbd5e1 !important;
+    backdrop-filter: blur(18px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(190%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
     box-shadow: 
-        0 4px 12px rgba(15, 23, 42, 0.03),
-        inset 0 1px 1.5px rgba(255, 255, 255, 0.9) !important;
+        0 4px 14px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
     border-radius: var(--radius-full) !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .filter-pill.active, .category-pill.active, .shop-filter-pill.active, .admin-food-filter-pill.active, .user-type-filter-pill.active {
-    background: linear-gradient(135deg, rgba(234, 88, 12, 0.96), rgba(249, 115, 22, 0.92)) !important;
+    background: linear-gradient(135deg, #ea580c, #f97316) !important;
     backdrop-filter: blur(20px) !important;
-    color: white !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
     box-shadow: 
-        0 8px 20px rgba(234, 88, 12, 0.42),
-        0 0 15px rgba(249, 115, 22, 0.3),
-        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.6) !important;
+        0 8px 24px rgba(234, 88, 12, 0.5),
+        0 0 18px rgba(249, 115, 22, 0.35),
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.4) !important;
     transform: scale(1.04) translateZ(8px) !important;
 }
 
-/* 9. Spatial VisionOS Modals & Cinematic Overlays */
+/* 10. Spatial VisionOS Modals & Overlays */
 .modal-backdrop {
-    background: rgba(15, 23, 42, 0.5) !important;
-    backdrop-filter: blur(20px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+    background: rgba(5, 8, 15, 0.75) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
     perspective: 1400px !important;
 }
 
 .modal-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%) !important;
-    backdrop-filter: blur(35px) saturate(220%) !important;
-    -webkit-backdrop-filter: blur(35px) saturate(220%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+    background: linear-gradient(135deg, rgba(20, 28, 48, 0.96) 0%, rgba(10, 14, 25, 0.96) 100%) !important;
+    backdrop-filter: blur(40px) saturate(230%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(230%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 28px !important;
+    color: #f8fafc !important;
     box-shadow: 
-        0 35px 80px -15px rgba(0, 0, 0, 0.35),
-        0 0 40px rgba(255, 255, 255, 0.3),
-        inset 0 2px 2px rgba(255, 255, 255, 1) !important;
+        0 40px 100px -15px rgba(0, 0, 0, 0.9),
+        0 0 50px rgba(234, 88, 12, 0.15),
+        inset 0 2px 2px rgba(255, 255, 255, 0.25) !important;
     transform: scale(0.96) translateZ(60px) !important;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
 }
 
-.modal-backdrop.active .modal-card {
-    transform: scale(1) translateZ(60px) !important;
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 10. Spatial Neon Status Indicators */
+.modal-footer {
+    background: rgba(10, 14, 25, 0.7) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 11. Spatial Holographic Neon Status Indicators */
 .status-open {
     background: rgba(22, 163, 74, 0.92) !important;
-    box-shadow: 0 0 16px rgba(34, 197, 94, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
+    box-shadow: 0 0 16px rgba(34, 197, 94, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
     border: 1px solid rgba(255, 255, 255, 0.5) !important;
     color: white !important;
 }
 
 .status-closed {
     background: rgba(220, 38, 38, 0.88) !important;
-    box-shadow: 0 0 14px rgba(239, 68, 68, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 0 14px rgba(239, 68, 68, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
     border: 1px solid rgba(255, 255, 255, 0.4) !important;
     color: white !important;
 }
 
-/* 11. Spatial Reusable Utility Classes */
+.food-type-tag {
+    background: rgba(15, 23, 42, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #f8fafc !important;
+}
+
+/* 12. Inputs & Forms in Dark Glass */
+.form-input, .form-select, .form-textarea {
+    background: rgba(20, 28, 46, 0.8) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: #f97316 !important;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25) !important;
+}
+
+/* 13. Reusable Spatial Utility Classes */
 .spatial-panel {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.72) 100%) !important;
-    backdrop-filter: blur(28px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.88) !important;
+    background: linear-gradient(135deg, rgba(20, 28, 48, 0.9) 0%, rgba(10, 14, 25, 0.9) 100%) !important;
+    backdrop-filter: blur(30px) saturate(220%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(220%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
     border-radius: 24px !important;
     box-shadow: 
-        0 18px 45px rgba(15, 23, 42, 0.09),
-        inset 0 2px 2px rgba(255, 255, 255, 1) !important;
+        0 25px 60px rgba(0, 0, 0, 0.7),
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.2) !important;
 }
 
 .spatial-capsule {
     border-radius: var(--radius-full) !important;
-    background: rgba(255, 255, 255, 0.8) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06), inset 0 1px 1.5px rgba(255, 255, 255, 0.95) !important;
+    background: rgba(20, 28, 46, 0.85) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1.5px rgba(255, 255, 255, 0.2) !important;
 }
 
-/* 12. Tactile 3D Button Depth */
+/* 14. Tactile 3D Buttons */
 .btn, .add-cart-btn, .cart-icon-btn, .modal-close-btn {
     transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, background 0.18s ease !important;
     transform: translateZ(10px);
