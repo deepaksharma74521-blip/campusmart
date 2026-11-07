@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v9.0-spatial-dark';
+const CACHE_NAME = 'campus-mart-v9.5-sunset-mesh';
 const CORE_ASSETS = [
   '/',
   '/index.html',
