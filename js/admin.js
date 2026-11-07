@@ -3291,6 +3291,7 @@ function switchAdminTab(tabName) {
 
     const ordersSection = document.getElementById('admin-orders-section');
     const menuSection = document.getElementById('admin-menu-section');
+    const priceManagerSection = document.getElementById('admin-price-manager-section');
     const shopSection = document.getElementById('admin-shop-section');
     const staffSection = document.getElementById('admin-staff-section');
     const feedbacksSection = document.getElementById('admin-feedbacks-section');
@@ -3300,6 +3301,7 @@ function switchAdminTab(tabName) {
 
     if (ordersSection) ordersSection.style.display = (tabName === 'orders' ? 'block' : 'none');
     if (menuSection) menuSection.style.display = (tabName === 'menu' ? 'block' : 'none');
+    if (priceManagerSection) priceManagerSection.style.display = (tabName === 'price-manager' ? 'block' : 'none');
     if (shopSection) shopSection.style.display = (tabName === 'shop' ? 'block' : 'none');
     if (staffSection) staffSection.style.display = (tabName === 'staff' ? 'block' : 'none');
     if (feedbacksSection) feedbacksSection.style.display = (tabName === 'feedbacks' ? 'block' : 'none');
@@ -3307,7 +3309,9 @@ function switchAdminTab(tabName) {
     if (commissionsSection) commissionsSection.style.display = (tabName === 'commissions' ? 'block' : 'none');
     if (deliverySection) deliverySection.style.display = (tabName === 'delivery' ? 'block' : 'none');
 
-    if (tabName === 'shop') {
+    if (tabName === 'price-manager') {
+        loadPriceManagerTable();
+    } else if (tabName === 'shop') {
         populateShopProfileForm();
     } else if (tabName === 'staff') {
         loadStaffData();
@@ -4239,4 +4243,382 @@ function printKotReceipt(orderId) {
     setTimeout(() => {
         window.print();
     }, 150);
+}
+
+// ==============================================================================
+// 10. QUICK RATE LIST & BULK PRICE MANAGER
+// ==============================================================================
+
+let dirtyPrices = new Map();
+let priceManagerSearchQuery = '';
+let priceManagerSelectedShop = 'all';
+let priceManagerSelectedCategory = 'all';
+
+function populatePriceManagerFilters() {
+    const shopSelect = document.getElementById('price-mgr-shop-select');
+    const catSelect = document.getElementById('price-mgr-category-select');
+    if (!shopSelect || !catSelect) return;
+
+    const shopSet = new Set();
+    const catSet = new Set();
+    
+    (adminFoodItems || []).forEach(itm => {
+        if (itm.shopName) shopSet.add(itm.shopName.trim());
+        if (itm.category) catSet.add(itm.category.trim());
+    });
+
+    const currentShop = priceManagerSelectedShop;
+    const currentCat = priceManagerSelectedCategory;
+
+    shopSelect.innerHTML = `<option value="all">🏢 All Shops & Counters (${(adminFoodItems || []).length} Dishes)</option>`;
+    Array.from(shopSet).sort().forEach(s => {
+        const count = adminFoodItems.filter(i => (i.shopName || '').trim() === s).length;
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = `${s} (${count} items)`;
+        if (s === currentShop) opt.selected = true;
+        shopSelect.appendChild(opt);
+    });
+
+    catSelect.innerHTML = `<option value="all">All Categories</option>`;
+    Array.from(catSet).sort().forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        if (c === currentCat) opt.selected = true;
+        catSelect.appendChild(opt);
+    });
+}
+
+function handlePriceManagerFilterChange() {
+    const shopSelect = document.getElementById('price-mgr-shop-select');
+    const catSelect = document.getElementById('price-mgr-category-select');
+    if (shopSelect) priceManagerSelectedShop = shopSelect.value;
+    if (catSelect) priceManagerSelectedCategory = catSelect.value;
+    renderPriceManagerRows();
+}
+
+function handlePriceManagerSearch(val) {
+    priceManagerSearchQuery = (val || '').toLowerCase().trim();
+    renderPriceManagerRows();
+}
+
+function updateDirtyPriceUI() {
+    const dirtyCount = dirtyPrices.size;
+    const badge = document.getElementById('price-mgr-dirty-count');
+    const stickyBar = document.getElementById('price-mgr-sticky-bar');
+    const stickyText = document.getElementById('price-mgr-sticky-text');
+
+    if (badge) {
+        if (dirtyCount > 0) {
+            badge.style.display = 'inline-block';
+            badge.textContent = `${dirtyCount} item${dirtyCount > 1 ? 's' : ''} edited`;
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    if (stickyBar) {
+        if (dirtyCount > 0) {
+            stickyBar.style.display = 'flex';
+            if (stickyText) {
+                stickyText.textContent = `${dirtyCount} price change${dirtyCount > 1 ? 's' : ''} unsaved!`;
+            }
+        } else {
+            stickyBar.style.display = 'none';
+        }
+    }
+}
+
+function markPriceDirty(itemId) {
+    const row = document.getElementById(`pm-row-${itemId}`);
+    if (!row) return;
+
+    const priceInput = row.querySelector('.pm-price-input');
+    const halfInput = row.querySelector('.pm-half-input');
+    const fullInput = row.querySelector('.pm-full-input');
+    const availInput = row.querySelector('.pm-avail-input');
+
+    const originalItem = (adminFoodItems || []).find(i => (i._id || i.id) === itemId);
+    if (!originalItem) return;
+
+    const newPrice = priceInput ? parseFloat(priceInput.value) : originalItem.price;
+    const newHalf = (halfInput && halfInput.value !== '') ? parseFloat(halfInput.value) : null;
+    const newFull = (fullInput && fullInput.value !== '') ? parseFloat(fullInput.value) : null;
+    const newAvail = availInput ? availInput.checked : (originalItem.available !== false);
+
+    const isChanged = (
+        newPrice !== originalItem.price ||
+        newHalf !== originalItem.priceHalf ||
+        newFull !== originalItem.priceFull ||
+        newAvail !== (originalItem.available !== false)
+    );
+
+    if (isChanged) {
+        dirtyPrices.set(itemId, {
+            id: itemId,
+            price: newPrice,
+            hasHalfFull: originalItem.hasHalfFull || (newHalf !== null || newFull !== null),
+            priceHalf: newHalf,
+            priceFull: newFull,
+            available: newAvail
+        });
+        row.style.background = '#fef9c3';
+        row.style.borderLeft = '3px solid #eab308';
+    } else {
+        dirtyPrices.delete(itemId);
+        row.style.background = '';
+        row.style.borderLeft = '';
+    }
+
+    updateDirtyPriceUI();
+}
+
+function renderPriceManagerRows() {
+    const tbody = document.getElementById('price-mgr-table-body');
+    const countEl = document.getElementById('price-mgr-item-count');
+    if (!tbody) return;
+
+    let items = (adminFoodItems || []).slice();
+
+    // 1. Shop filter
+    if (priceManagerSelectedShop !== 'all') {
+        items = items.filter(i => (i.shopName || '').trim() === priceManagerSelectedShop);
+    }
+
+    // 2. Category filter
+    if (priceManagerSelectedCategory !== 'all') {
+        items = items.filter(i => (i.category || '').trim() === priceManagerSelectedCategory);
+    }
+
+    // 3. Search query
+    if (priceManagerSearchQuery) {
+        items = items.filter(i => {
+            const name = (i.name || '').toLowerCase();
+            const shop = (i.shopName || '').toLowerCase();
+            const cat = (i.category || '').toLowerCase();
+            return name.includes(priceManagerSearchQuery) || shop.includes(priceManagerSearchQuery) || cat.includes(priceManagerSearchQuery);
+        });
+    }
+
+    if (countEl) countEl.textContent = items.length;
+
+    if (items.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 3rem; color: #64748b;">
+                    <i class="fa-solid fa-utensils" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 0.5rem; display: block;"></i>
+                    No dishes found matching your current filter. Try changing counter or clearing search.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    let html = '';
+    items.forEach((itm, idx) => {
+        const id = itm._id || itm.id;
+        const dirtyData = dirtyPrices.get(id);
+        const currentPrice = dirtyData ? dirtyData.price : (itm.price ?? 0);
+        const currentHalf = dirtyData ? (dirtyData.priceHalf ?? '') : (itm.priceHalf ?? '');
+        const currentFull = dirtyData ? (dirtyData.priceFull ?? '') : (itm.priceFull ?? '');
+        const isAvail = dirtyData ? dirtyData.available : (itm.available !== false && itm.isAvailable !== false);
+        const isDirty = !!dirtyData;
+
+        const isVeg = itm.type === 'veg' || itm.isVeg !== false;
+        const vegIcon = isVeg 
+            ? '<span style="border: 1px solid #16a34a; padding: 1px 3px; border-radius: 3px; font-size: 9px; color: #16a34a; font-weight: 800;">🟢 VEG</span>'
+            : '<span style="border: 1px solid #dc2626; padding: 1px 3px; border-radius: 3px; font-size: 9px; color: #dc2626; font-weight: 800;">🔴 NON-VEG</span>';
+
+        const rowBg = isDirty ? 'background: #fef9c3; border-left: 3px solid #eab308;' : '';
+
+        html += `
+            <tr id="pm-row-${id}" style="${rowBg}">
+                <td style="text-align: center; font-weight: 700; color: #94a3b8; font-size: 0.8rem;">${idx + 1}</td>
+                <td>
+                    <div style="font-weight: 700; color: #0f172a; font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
+                        ${itm.name}
+                        ${vegIcon}
+                    </div>
+                    <div style="font-size: 0.76rem; color: #64748b; margin-top: 2px;">
+                        <span style="background: #f1f5f9; padding: 1px 6px; border-radius: 4px; font-weight: 600;">${itm.category || 'General'}</span>
+                    </div>
+                </td>
+                <td>
+                    <span style="font-weight: 600; font-size: 0.85rem; color: #334155; display: inline-flex; align-items: center; gap: 4px;">
+                        <i class="fa-solid fa-store" style="font-size: 0.75rem; color: #94a3b8;"></i> ${itm.shopName || 'Canteen'}
+                    </span>
+                </td>
+                <td style="text-align: center;">
+                    <div style="display: inline-flex; align-items: center; background: white; border: 1.5px solid ${isDirty ? '#eab308' : '#cbd5e1'}; border-radius: 8px; padding: 2px 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);">
+                        <span style="font-weight: 800; color: #059669; font-size: 0.9rem; margin-right: 2px;">₹</span>
+                        <input type="number" step="0.5" min="0" 
+                            class="pm-price-input" 
+                            value="${currentPrice}" 
+                            oninput="markPriceDirty('${id}')"
+                            style="width: 70px; border: none; outline: none; font-weight: 700; font-size: 0.95rem; color: #0f172a; text-align: left; padding: 4px 2px; background: transparent;">
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    ${itm.hasHalfFull ? `
+                        <div style="display: inline-flex; gap: 6px; align-items: center;">
+                            <div style="display: flex; align-items: center; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px 4px;">
+                                <span style="font-size: 0.68rem; font-weight: 700; color: #64748b; margin-right: 2px;">H:₹</span>
+                                <input type="number" step="0.5" min="0" class="pm-half-input" value="${currentHalf}" placeholder="Half" oninput="markPriceDirty('${id}')" style="width: 50px; border: none; outline: none; font-size: 0.82rem; font-weight: 600; background: transparent;">
+                            </div>
+                            <div style="display: flex; align-items: center; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px 4px;">
+                                <span style="font-size: 0.68rem; font-weight: 700; color: #64748b; margin-right: 2px;">F:₹</span>
+                                <input type="number" step="0.5" min="0" class="pm-full-input" value="${currentFull}" placeholder="Full" oninput="markPriceDirty('${id}')" style="width: 50px; border: none; outline: none; font-size: 0.82rem; font-weight: 600; background: transparent;">
+                            </div>
+                        </div>
+                    ` : `
+                        <span style="font-size: 0.78rem; color: #94a3b8; font-style: italic;">Standard Single</span>
+                    `}
+                </td>
+                <td style="text-align: center;">
+                    <label style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-size: 0.82rem; font-weight: 600;">
+                        <input type="checkbox" class="pm-avail-input" ${isAvail ? 'checked' : ''} onchange="markPriceDirty('${id}')" style="accent-color: #10b981; width: 16px; height: 16px; cursor: pointer;">
+                        <span style="color: ${isAvail ? '#16a34a' : '#ef4444'};">${isAvail ? 'In Stock' : 'Out'}</span>
+                    </label>
+                </td>
+                <td style="text-align: center;">
+                    <button onclick="handleSinglePriceSave('${id}')" class="btn btn-sm" style="background: ${isDirty ? '#10b981' : '#f1f5f9'}; color: ${isDirty ? 'white' : '#475569'}; border: 1px solid ${isDirty ? '#10b981' : '#cbd5e1'}; font-weight: 700; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer;" title="Save this item">
+                        <i class="fa-solid fa-floppy-disk"></i> Save
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+
+    tbody.innerHTML = html;
+}
+
+async function loadPriceManagerTable() {
+    dirtyPrices.clear();
+    updateDirtyPriceUI();
+
+    if (!adminFoodItems || adminFoodItems.length === 0) {
+        try {
+            const res = await api.getMenu();
+            if (res.success && res.items) {
+                adminFoodItems = res.items;
+            }
+        } catch (e) {
+            console.error('Failed to load menu for price manager:', e);
+        }
+    }
+
+    populatePriceManagerFilters();
+    renderPriceManagerRows();
+}
+
+async function handleBulkPriceSave() {
+    if (dirtyPrices.size === 0) {
+        showToast('ℹ️ No price changes detected. Type a new price to save.', 'info');
+        return;
+    }
+
+    const saveBtn = document.getElementById('price-mgr-save-all-btn');
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving & Syncing Live...';
+    }
+
+    const updates = Array.from(dirtyPrices.values());
+    try {
+        const res = await api.bulkUpdatePrices(updates, true);
+        if (res.success) {
+            showToast(`🎉 ${res.message || 'Prices updated successfully!'}`, 'success', 'Saved Live!');
+            
+            updates.forEach(u => {
+                const target = (adminFoodItems || []).find(i => (i._id || i.id) === u.id);
+                if (target) {
+                    target.price = u.price;
+                    if (u.priceHalf !== undefined) target.priceHalf = u.priceHalf;
+                    if (u.priceFull !== undefined) target.priceFull = u.priceFull;
+                    if (u.available !== undefined) {
+                        target.available = u.available;
+                        target.isAvailable = u.available;
+                    }
+                }
+            });
+
+            dirtyPrices.clear();
+            updateDirtyPriceUI();
+            renderPriceManagerRows();
+            if (typeof renderAdminFoodTable === 'function') renderAdminFoodTable();
+        } else {
+            showToast(`⚠️ Failed to save: ${res.message || 'Server error'}`, 'error');
+        }
+    } catch (err) {
+        console.error('handleBulkPriceSave error:', err);
+        showToast('⚠️ Network connection error while saving prices.', 'error');
+    } finally {
+        if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> 💾 Save All Changes & Push Live';
+        }
+    }
+}
+
+async function handleSinglePriceSave(itemId) {
+    const row = document.getElementById(`pm-row-${itemId}`);
+    if (!row) return;
+
+    const priceInput = row.querySelector('.pm-price-input');
+    const halfInput = row.querySelector('.pm-half-input');
+    const fullInput = row.querySelector('.pm-full-input');
+    const availInput = row.querySelector('.pm-avail-input');
+
+    const itm = (adminFoodItems || []).find(i => (i._id || i.id) === itemId);
+    if (!itm) return;
+
+    const newPrice = priceInput ? parseFloat(priceInput.value) : itm.price;
+    const newHalf = (halfInput && halfInput.value !== '') ? parseFloat(halfInput.value) : null;
+    const newFull = (fullInput && fullInput.value !== '') ? parseFloat(fullInput.value) : null;
+    const newAvail = availInput ? availInput.checked : (itm.available !== false);
+
+    const updateObj = {
+        id: itemId,
+        price: newPrice,
+        hasHalfFull: itm.hasHalfFull || (newHalf !== null || newFull !== null),
+        priceHalf: newHalf,
+        priceFull: newFull,
+        available: newAvail
+    };
+
+    try {
+        const res = await api.bulkUpdatePrices([updateObj], true);
+        if (res.success) {
+            showToast(`✅ "${itm.name}" updated to ₹${newPrice}!`, 'success');
+            itm.price = newPrice;
+            itm.priceHalf = newHalf;
+            itm.priceFull = newFull;
+            itm.available = newAvail;
+            itm.isAvailable = newAvail;
+
+            dirtyPrices.delete(itemId);
+            updateDirtyPriceUI();
+            row.style.background = '#dcfce7';
+            setTimeout(() => { row.style.background = ''; }, 1200);
+        } else {
+            showToast(res.message || 'Failed to update item.', 'error');
+        }
+    } catch (e) {
+        showToast('Network error while saving item.', 'error');
+    }
+}
+
+async function handleDeployLive() {
+    showToast('🚀 Deploying database to GitHub & Render...', 'info');
+    try {
+        const res = await api.deployLive();
+        if (res.success) {
+            showToast(`🎉 ${res.message}`, 'success', 'Live Sync Complete');
+        } else {
+            showToast(`⚠️ ${res.message}`, 'warning');
+        }
+    } catch (e) {
+        showToast('Error syncing with live server.', 'error');
+    }
 }

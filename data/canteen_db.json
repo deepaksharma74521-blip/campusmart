@@ -492,7 +492,8 @@
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.222737",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "updatedAt": "2026-11-07T14:34:29.734867"
     },
     {
       "_id": "dish-793bab74",

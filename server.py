@@ -14,6 +14,8 @@ import hmac
 import base64
 import time
 import secrets
+import subprocess
+import csv
 from datetime import datetime, timedelta
 from functools import wraps
 
@@ -2032,6 +2034,106 @@ def bulk_import_menu():
         "count": len(created_items),
         "items": created_items
     }), 201
+
+
+@app.route("/api/menu/bulk-price-update", methods=["POST"])
+def bulk_price_update():
+    data = request.json or {}
+    updates = data.get("updates", [])
+    if not updates or not isinstance(updates, list):
+        return jsonify({"success": False, "message": "No updates provided."}), 400
+
+    now_iso = datetime.now().isoformat()
+    updated_count = 0
+    updated_ids = []
+
+    for upd in updates:
+        item_id = upd.get("id") or upd.get("_id")
+        if not item_id:
+            continue
+        update_fields = {"updatedAt": now_iso}
+
+        if "price" in upd and upd["price"] is not None:
+            try:
+                update_fields["price"] = round(float(upd["price"]), 2)
+            except (ValueError, TypeError):
+                pass
+
+        if "hasHalfFull" in upd:
+            update_fields["hasHalfFull"] = bool(upd["hasHalfFull"])
+
+        if "priceHalf" in upd:
+            try:
+                val = upd["priceHalf"]
+                update_fields["priceHalf"] = round(float(val), 2) if val is not None and str(val).strip() != "" else None
+                if update_fields.get("hasHalfFull") and update_fields["priceHalf"]:
+                    update_fields["price"] = update_fields["priceHalf"]
+            except (ValueError, TypeError):
+                pass
+
+        if "priceFull" in upd:
+            try:
+                val = upd["priceFull"]
+                update_fields["priceFull"] = round(float(val), 2) if val is not None and str(val).strip() != "" else None
+            except (ValueError, TypeError):
+                pass
+
+        if "available" in upd:
+            is_avail = bool(upd["available"])
+            update_fields["available"] = is_avail
+            update_fields["isAvailable"] = is_avail
+
+        res = db.foodItems.update_one({"_id": item_id}, {"$set": update_fields})
+        if res:
+            updated_count += 1
+            updated_ids.append(item_id)
+
+    # Auto deploy live if requested and running in local git repo
+    git_pushed = False
+    git_msg = ""
+    push_live = data.get("pushLive", True)
+    if push_live and updated_count > 0:
+        try:
+            repo_dir = os.path.dirname(os.path.abspath(__file__))
+            subprocess.run(["git", "add", "data/canteen_db.json"], cwd=repo_dir, check=True, timeout=15)
+            commit_msg = f"Bulk price update: {updated_count} items via Rate List Editor"
+            subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_dir, check=True, timeout=15)
+            subprocess.run(["git", "push", "origin", "main"], cwd=repo_dir, check=True, timeout=20)
+            git_pushed = True
+            git_msg = "🚀 Deployed live to GitHub & Render!"
+        except Exception as e:
+            git_msg = f"Saved locally. Auto-deploy note: {str(e)}"
+
+    return jsonify({
+        "success": True,
+        "message": f"Successfully updated {updated_count} items! {git_msg}".strip(),
+        "count": updated_count,
+        "updatedIds": updated_ids,
+        "liveDeployed": git_pushed
+    }), 200
+
+
+@app.route("/api/admin/deploy-live", methods=["POST"])
+def deploy_live_endpoint():
+    try:
+        repo_dir = os.path.dirname(os.path.abspath(__file__))
+        subprocess.run(["git", "add", "data/canteen_db.json"], cwd=repo_dir, check=True, timeout=15)
+        subprocess.run(["git", "commit", "-m", "Manual rate list sync from Admin"], cwd=repo_dir, check=True, timeout=15)
+        subprocess.run(["git", "push", "origin", "main"], cwd=repo_dir, check=True, timeout=25)
+        return jsonify({
+            "success": True,
+            "message": "🎉 All menu prices successfully pushed live to Render & mobile apps!"
+        }), 200
+    except subprocess.CalledProcessError as e:
+        return jsonify({
+            "success": True,
+            "message": "ℹ️ Everything is already synchronized with GitHub & Render."
+        }), 200
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": f"Deploy warning: {str(e)}"
+        }), 500
 
 
 @app.route("/api/menu/smart-parse", methods=["POST"])

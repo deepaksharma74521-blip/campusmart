@@ -186,6 +186,9 @@
             <button class="admin-tab-btn" data-tab="menu" id="tab-btn-menu">
                 <i class="fa-solid fa-boxes-stacked"></i> Products & Menu Items (CRUD)
             </button>
+            <button class="admin-tab-btn" data-tab="price-manager" id="tab-btn-price-manager" style="background: rgba(16, 185, 129, 0.08); border-color: #10b981; color: #059669; font-weight: 700;">
+                <i class="fa-solid fa-tags" style="color: #10b981;"></i> ⚡ Rate List Editor
+            </button>
             <button class="admin-tab-btn" data-tab="shop" id="tab-btn-shop">
                 <i class="fa-solid fa-store"></i> My Shop Profile
             </button>
@@ -320,6 +323,103 @@
                         <!-- Populated by admin.js -->
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <!-- TAB: QUICK RATE LIST & PRICE MANAGER -->
+        <section id="admin-price-manager-section" style="display: none;">
+            <div class="card" style="margin-bottom: 1.5rem; border-left: 4px solid #10b981;">
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+                    <div>
+                        <h2 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0 0 0.25rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-tags" style="color: #10b981;"></i> Quick Rate List & Price Manager
+                            <span id="price-mgr-dirty-count" style="display: none; background: #ef4444; color: white; padding: 2px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700;">0 changes pending</span>
+                        </h2>
+                        <p style="margin: 0; font-size: 0.85rem; color: #64748b;">
+                            Change dish prices quickly across counters. Press <b>Save All Changes & Push Live</b> to instantly deploy to the website & mobile app.
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                        <button id="price-mgr-save-all-btn" onclick="handleBulkPriceSave()" class="btn btn-sm" style="background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; font-weight: 800; padding: 0.55rem 1.25rem; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35); font-size: 0.9rem;">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> 💾 Save All Changes & Push Live
+                        </button>
+                        <button onclick="handleDeployLive()" class="btn btn-sm" style="background: #0284c7; color: white; border: none; font-weight: 700;">
+                            <i class="fa-solid fa-rocket"></i> 🚀 Force Sync Render
+                        </button>
+                        <button onclick="loadPriceManagerTable()" class="btn btn-sm btn-outline" style="border-color: #cbd5e1; color: #475569;">
+                            <i class="fa-solid fa-arrows-rotate"></i> Reload
+                        </button>
+                    </div>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 1rem 0;">
+
+                <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center; flex: 1; min-width: 280px;">
+                        <!-- Shop Selector -->
+                        <div style="min-width: 240px;">
+                            <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #64748b; margin-bottom: 0.2rem;">
+                                <i class="fa-solid fa-store"></i> Counter / Shop:
+                            </label>
+                            <select id="price-mgr-shop-select" class="form-input" style="padding: 0.45rem 0.75rem; font-size: 0.88rem; font-weight: 600; border-radius: 8px;" onchange="handlePriceManagerFilterChange()">
+                                <option value="all">🏢 All Shops & Counters (1,963 Dishes)</option>
+                            </select>
+                        </div>
+
+                        <!-- Search Box -->
+                        <div class="search-box-wrap" style="flex: 1; max-width: 320px; margin-top: 1rem;">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="price-mgr-search" class="search-input" placeholder="Search dish name (e.g. Chai, Maggi, Kulcha)..." oninput="handlePriceManagerSearch(this.value)">
+                        </div>
+
+                        <!-- Quick Category Filter -->
+                        <div style="margin-top: 1rem;">
+                            <select id="price-mgr-category-select" class="form-input" style="padding: 0.45rem 0.75rem; font-size: 0.85rem; border-radius: 8px;" onchange="handlePriceManagerFilterChange()">
+                                <option value="all">All Categories</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.82rem; color: #64748b; margin-top: 0.5rem;">
+                        Showing: <b id="price-mgr-item-count" style="color: #0f172a;">0</b> dishes
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive" style="max-height: 72vh; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 12px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <table class="data-table" style="margin-bottom: 0;">
+                    <thead style="position: sticky; top: 0; background: #f8fafc; z-index: 5; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                        <tr>
+                            <th style="width: 50px; text-align: center;">#</th>
+                            <th style="min-width: 240px;">Dish / Product</th>
+                            <th style="min-width: 140px;">Shop / Counter</th>
+                            <th style="min-width: 130px; text-align: center;">Price (₹)</th>
+                            <th style="min-width: 160px; text-align: center;">Portions (Half / Full)</th>
+                            <th style="min-width: 110px; text-align: center;">Stock Status</th>
+                            <th style="width: 100px; text-align: center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="price-mgr-table-body">
+                        <!-- Populated by admin.js -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sticky Bottom Save Reminder Bar -->
+            <div id="price-mgr-sticky-bar" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #0f172a; color: white; padding: 0.85rem 1.5rem; border-radius: 9999px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); z-index: 1000; align-items: center; gap: 1.25rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+                    <span style="background: #ef4444; width: 10px; height: 10px; border-radius: 50%; display: inline-block;"></span>
+                    <span id="price-mgr-sticky-text">You have unsaved price changes</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button onclick="handleBulkPriceSave()" class="btn btn-sm" style="background: #10b981; color: white; border: none; font-weight: 700; border-radius: 9999px; padding: 0.4rem 1rem;">
+                        <i class="fa-solid fa-check"></i> Save & Push Live
+                    </button>
+                    <button onclick="loadPriceManagerTable()" class="btn btn-sm" style="background: rgba(255,255,255,0.15); color: white; border: none; border-radius: 9999px; padding: 0.4rem 0.8rem;">
+                        Discard
+                    </button>
+                </div>
             </div>
         </section>
 

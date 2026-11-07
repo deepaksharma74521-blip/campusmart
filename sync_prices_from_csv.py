@@ -28,11 +28,14 @@ def read_csv_file(path):
             with open(path, 'r', encoding=enc) as f:
                 reader = csv.DictReader(f)
                 return list(reader)
+        except PermissionError:
+            print(f"⚠️ [EXCEL OPEN] '{os.path.basename(path)}' is open in Excel! Please close it to allow reading.")
+            return []
         except Exception:
             continue
     return []
 
-# Collect all files to read
+# Collect all files to read and sort by modification time (oldest first, newest last so recent edits win)
 csv_files_to_read = []
 if os.path.exists(ALL_CSV):
     csv_files_to_read.append(ALL_CSV)
@@ -47,7 +50,10 @@ if not csv_files_to_read:
     print(f"Please check that '{ALL_CSV}' or '{SHOP_DIR}/' exists.")
     sys.exit(1)
 
-print(f"[INFO] Scanning {len(csv_files_to_read)} CSV files (Master sheet + Shop sheets)...")
+# Sort files by modification time so whichever file was touched most recently by user has final say!
+csv_files_to_read.sort(key=lambda p: os.path.getmtime(p))
+
+print(f"[INFO] Scanning {len(csv_files_to_read)} CSV files (ordered by recent edit time)...")
 
 by_id = {}
 by_name_shop = {}
@@ -154,6 +160,15 @@ else:
     with open(DB_FILE, 'w', encoding='utf-8') as f:
         json.dump(db, f, indent=2, ensure_ascii=False)
     print(f"\n[SAVED] Database '{DB_FILE}' updated with new prices.")
+
+    # Re-sync CSV sheets so both master and shop sheets reflect fresh values
+    try:
+        if os.path.exists("scratch/generate_csv.py"):
+            subprocess.run([sys.executable, "scratch/generate_csv.py"], check=False)
+        if os.path.exists("scratch/export_shop_sheets.py"):
+            subprocess.run([sys.executable, "scratch/export_shop_sheets.py"], check=False)
+    except Exception:
+        pass
 
     # Auto Git Commit & Push
     print("\n[DEPLOY] Pushing changes to GitHub & Live Website (Render)...")

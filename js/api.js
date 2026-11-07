@@ -187,6 +187,33 @@ const api = {
         return await res.json();
     },
 
+    async bulkUpdatePrices(updates, pushLive = true) {
+        try {
+            const res = await fetch(`${API_BASE}/api/menu/bulk-price-update`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ updates, pushLive })
+            });
+            return await res.json();
+        } catch (err) {
+            console.error('bulkUpdatePrices error:', err);
+            return { success: false, message: 'Network error updating prices.' };
+        }
+    },
+
+    async deployLive() {
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/deploy-live`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            return await res.json();
+        } catch (err) {
+            console.error('deployLive error:', err);
+            return { success: false, message: 'Network error triggering live deployment.' };
+        }
+    },
+
     // 2.5 Shops & Vendors Methods
     async getShops() {
         const res = await fetch(`${API_BASE}/api/shops`);
