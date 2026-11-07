@@ -1,5 +1,5 @@
-// Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, Stale-While-Revalidate for Assets)
-const CACHE_NAME = 'campus-mart-v8.0-spatial-ui';
+// Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
+const CACHE_NAME = 'campus-mart-v9.0-spatial-ui-force';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -71,7 +71,21 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 3. Stale-While-Revalidate Strategy for CSS, JS, Images & Fonts
+  // 3. Network-First strategy for CSS & JS so style and script updates apply IMMEDIATELY
+  if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
+    event.respondWith(
+      fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        }
+        return networkResponse;
+      }).catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // 4. Stale-While-Revalidate Strategy for Images, Media & Fonts
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
