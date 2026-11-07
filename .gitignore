@@ -19,6 +19,7 @@ recovery-codes.txt
 # Executables & large binaries
 cloudflared.exe
 *.exe
+*.apk
 
 # Deployment zips & archives
 *.zip
