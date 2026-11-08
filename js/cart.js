@@ -312,6 +312,10 @@ function updateItemQuantity(index, delta) {
 
     cart[index].quantity = (cart[index].quantity || 1) + delta;
 
+    if (window.soundEngine) {
+        window.soundEngine.playTick();
+    }
+
     if (cart[index].quantity <= 0) {
         cart.splice(index, 1);
         showToast('Item removed from cart.', 'info');
@@ -735,6 +739,21 @@ async function handlePlaceOrder(event) {
         if (res.success) {
             localStorage.removeItem('canteen_cart');
             updateGlobalCartBadge();
+
+            // Next-Gen Sensory: Celebration Chime & Dynamic Island Tracking
+            if (window.soundEngine) {
+                window.soundEngine.playCelebration();
+            }
+            if (window.dynamicIsland) {
+                window.dynamicIsland.setActiveOrder({
+                    orderId: orderId,
+                    pickupOtp: pickupOtp,
+                    shopName: orderPayload.items[0]?.shopName || 'Canteen Counter',
+                    items: orderPayload.items,
+                    totalAmount: totalAmount
+                });
+            }
+
             showOrderSuccessModal(orderId, totalAmount, pickupSlot, advanceAmount, dueAmount, pickupOtp);
         } else {
             showToast(res.message || 'Failed to place order.', 'error');

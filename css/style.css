@@ -3652,3 +3652,343 @@ body::before {
 .btn:active, .add-cart-btn:active, .cart-icon-btn:active {
     transform: scale(0.95) !important;
 }
+
+/* ==========================================================================
+   Campus Mart – Smart Ambient Time-of-Day Canvas
+   ========================================================================== */
+
+/* Morning Theme (5 AM - 11 AM): Fresh Golden Honey Dew & Warm Chai */
+body.theme-morning {
+    background-color: #fffbeb !important;
+}
+body.theme-morning::before {
+    background-color: #fffbeb;
+    background-image: 
+        radial-gradient(circle at 12% 10%, rgba(254, 240, 138, 0.85) 0%, rgba(253, 224, 71, 0.35) 30%, transparent 60%),
+        radial-gradient(circle at 90% 15%, rgba(254, 215, 170, 0.8) 0%, rgba(251, 146, 60, 0.3) 35%, transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(224, 242, 254, 0.7) 0%, rgba(186, 230, 253, 0.3) 30%, transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(254, 243, 199, 0.8) 0%, rgba(252, 211, 77, 0.25) 35%, transparent 65%);
+}
+
+/* Afternoon Theme (11 AM - 5 PM): Vibrant Warm Sunset Mesh (Default) */
+body.theme-afternoon {
+    background-color: #fdf6f0 !important;
+}
+
+/* Night Theme (5 PM - 5 AM): Midnight Cyber Space with Warm Amber Accents */
+body.theme-night {
+    background-color: #0b1120 !important;
+    color: #f1f5f9;
+}
+body.theme-night::before {
+    background-color: #0b1120;
+    background-image: 
+        radial-gradient(circle at 10% 12%, rgba(234, 88, 12, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 50% 55%, rgba(15, 23, 42, 0.95) 0%, transparent 70%),
+        radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 15% 90%, rgba(245, 158, 11, 0.25) 0%, transparent 45%);
+}
+
+body.theme-night h1, body.theme-night h2, body.theme-night h3, body.theme-night h4, body.theme-night .food-title {
+    color: #f8fafc !important;
+}
+body.theme-night .food-card, body.theme-night .shop-card, body.theme-night .card, body.theme-night .spatial-panel {
+    background: rgba(30, 41, 59, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #f1f5f9 !important;
+}
+body.theme-night .navbar {
+    background: rgba(15, 23, 42, 0.92) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+}
+body.theme-night .mobile-bottom-nav {
+    background: rgba(15, 23, 42, 0.94) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+body.theme-night .mobile-nav-item {
+    color: #94a3b8 !important;
+}
+body.theme-night .mobile-nav-item.active {
+    color: var(--primary) !important;
+    background: rgba(234, 88, 12, 0.2) !important;
+}
+
+/* ==========================================================================
+   Campus Mart – Apple Dynamic Island / Live Activity Pill
+   ========================================================================== */
+
+#dynamic-island-root {
+    position: fixed;
+    top: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 100000;
+    pointer-events: none;
+}
+
+.dynamic-island-pill {
+    pointer-events: auto;
+    position: relative;
+    background: rgba(15, 23, 42, 0.94);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: 9999px;
+    box-shadow: 
+        0 20px 45px rgba(0, 0, 0, 0.45),
+        0 4px 14px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+    will-change: width, height, transform, border-radius;
+    transform: translateZ(0);
+    transition: 
+        width 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        max-width 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        border-radius 0.35s ease,
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.25s ease;
+}
+
+/* Collapsed State */
+.dynamic-island-pill:not(.expanded) {
+    width: auto;
+    max-width: 92vw;
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+}
+
+.dynamic-island-pill.hidden {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+    pointer-events: none;
+}
+
+.island-collapsed-view {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+}
+
+.island-left-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.island-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+    animation: islandDotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes islandDotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+.island-emoji {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.island-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.island-right-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.island-timer {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #fb923c;
+    background: rgba(234, 88, 12, 0.16);
+    padding: 2px 7px;
+    border-radius: 6px;
+    border: 1px solid rgba(251, 146, 60, 0.3);
+}
+
+.island-pin-pill {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    color: #ffffff;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.4);
+    white-space: nowrap;
+}
+
+/* Expanded State */
+.dynamic-island-pill.expanded {
+    width: 360px;
+    max-width: 92vw;
+    border-radius: 26px;
+    padding: 1.1rem 1.25rem;
+}
+
+.dynamic-island-pill.expanded .island-collapsed-view {
+    display: none;
+}
+
+.dynamic-island-pill:not(.expanded) .island-expanded-view {
+    display: none;
+}
+
+.island-expanded-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.island-exp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.island-exp-shop {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+}
+
+.island-exp-close {
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: #94a3b8;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.island-exp-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.island-pin-showcase {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.15) 0%, rgba(249, 115, 22, 0.08) 100%);
+    border: 1.5px dashed rgba(251, 146, 60, 0.5);
+    border-radius: 16px;
+    padding: 0.85rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.island-pin-subtitle {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fb923c;
+    text-transform: uppercase;
+}
+
+.island-pin-digits {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #fef08a;
+    text-shadow: 0 0 20px rgba(254, 240, 138, 0.4);
+    line-height: 1.1;
+    margin: 4px 0;
+}
+
+.island-pin-helper {
+    font-size: 0.74rem;
+    color: #cbd5e1;
+}
+
+.island-status-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.island-status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.island-bar-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.island-bar-fill {
+    height: 100%;
+    width: 25%;
+    background: linear-gradient(90deg, #ea580c, #22c55e);
+    border-radius: 9999px;
+    transition: width 1s linear;
+}
+
+.island-exp-footer {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.island-exp-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.6rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.2s ease;
+}
+
+.island-exp-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+}

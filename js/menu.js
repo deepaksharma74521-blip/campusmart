@@ -611,9 +611,15 @@ function addToCart(itemId) {
     }
 
     localStorage.setItem('canteen_cart', JSON.stringify(cart));
-    if ('vibrate' in navigator) {
-        try { navigator.vibrate(40); } catch(e) {}
+    
+    // Trigger Next-Gen Sensory Engine (Pop Chime + Dynamic Island Flash)
+    if (window.soundEngine) {
+        window.soundEngine.playPop();
     }
+    if (window.dynamicIsland) {
+        window.dynamicIsland.notifyCartAdded(cartItemName, finalPrice);
+    }
+
     updateGlobalCartBadge();
     showToast(`${cartItemName} added to cart! (${currentTotalQuantity + 1} items in cart)`, 'success', 'Cart Updated');
 }
