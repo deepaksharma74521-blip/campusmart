@@ -794,6 +794,13 @@ function showOrderSuccessModal(orderId, amount, pickupSlot, advanceAmount = amou
     try { localStorage.setItem('last_order_pin_' + orderId, pickupOtp); } catch(e) {}
 
     modal.classList.add('active');
+
+    // Step 3 Gamification: Digital Scratch Card Reward
+    if (window.scratchCard) {
+        setTimeout(() => {
+            window.scratchCard.open();
+        }, 900);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
