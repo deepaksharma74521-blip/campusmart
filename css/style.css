@@ -3994,105 +3994,204 @@ body.theme-night .mobile-nav-item.active {
 }
 
 /* ==========================================================================
-   Campus Mart – Live Counter Rush Radar & Squad Order System
+   Roommate & Class "Squad Order" (Shared Group Cart Engine) Styles
    ========================================================================== */
 
-/* Rush Radar Pills */
-.rush-badge {
+/* Top Floating Squad Strip */
+.squad-active-strip {
+    position: sticky;
+    top: 0;
+    z-index: 9998;
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(234, 88, 12, 0.35);
+    padding: 0.55rem 1rem;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.squad-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.squad-strip-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.squad-badge-tag {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: 9999px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    letter-spacing: -0.2px;
+    gap: 5px;
 }
 
-.rush-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    display: inline-block;
-    animation: rushDotPulse 1.8s infinite ease-in-out;
+.squad-members-text {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #ffedd5;
 }
 
-@keyframes rushDotPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
+.squad-strip-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.rush-green {
-    background: #dcfce7;
-    color: #15803d;
-    border: 1px solid #bbf7d0;
+.squad-strip-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.rush-yellow {
-    background: #fef3c7;
-    color: #b45309;
-    border: 1px solid #fde68a;
+.squad-strip-btn:active {
+    transform: scale(0.96);
 }
 
-.rush-red {
-    background: #fee2e2;
-    color: #b91c1c;
-    border: 1px solid #fca5a5;
+.squad-strip-btn.btn-share {
+    background: #16a34a;
+    color: #ffffff;
 }
 
-/* Squad Order Banners */
-.squad-active-banner {
+.squad-strip-btn.btn-view {
+    background: #ffffff;
+    color: #ea580c;
+}
+
+.squad-strip-btn.btn-leave {
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 3px 10px;
+    line-height: 1;
+}
+
+/* Cart Hub Card */
+.squad-cart-hub-card {
     background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
     border: 1.5px solid #fed7aa;
-    border-radius: 14px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1.25rem;
-    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.08);
-}
-
-.squad-invite-banner {
-    background: #ffffff;
-    border: 1.5px dashed #cbd5e1;
-    border-radius: 14px;
-    padding: 0.75rem 1rem;
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
     margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.08);
 }
 
-.squad-invite-banner:hover {
-    border-color: var(--primary);
-    background: #fffaf5;
+.squad-hub-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
 }
 
-.squad-icon-badge {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: #ffedd5;
-    color: #ea580c;
+.squad-hub-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #ea580c;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 1.25rem;
     flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
 }
 
-.squad-member-tag {
+.squad-hub-info h4 {
+    margin: 0 0 2px 0;
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: #9a3412;
+}
+
+.squad-hub-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #c2410c;
+    line-height: 1.35;
+}
+
+.squad-hub-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Squad Member Pill on Cart Item */
+.squad-member-badge {
+    background: #ffedd5;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #0284c7;
-    background: #e0f2fe;
-    border: 1px solid #bae6fd;
-    padding: 1px 6px;
-    border-radius: 4px;
-    margin-top: 3px;
+    margin-top: 4px;
 }
+
+/* Squad Roommate Split Breakdown Box */
+.squad-split-box {
+    background: #fff7ed;
+    border: 1px dashed #fb923c;
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.squad-split-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #9a3412;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.squad-split-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    padding: 3px 0;
+    color: #475569;
+}
+
+.squad-split-row.strong {
+    font-weight: 700;
+    color: #0f172a;
+}
+

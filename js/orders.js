@@ -282,6 +282,13 @@ function renderOrders(orders) {
                             <i class="fa-solid fa-receipt" style="color: ${isReady ? '#16a34a' : 'var(--primary)'};"></i>
                             ${order.orderId || 'ORD-#'}
                         </div>
+                        ${order.squadCode ? `
+                            <div style="margin-top: 4px;">
+                                <span style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: 2px 7px; font-size: 0.72rem; color: #ea580c; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;">
+                                    <i class="fa-solid fa-users"></i> Squad: ${order.squadCode}
+                                </span>
+                            </div>
+                        ` : ''}
                         <div class="order-date">
                             <i class="fa-regular fa-clock"></i> ${formattedDate}
                         </div>
@@ -395,6 +402,7 @@ function renderOrders(orders) {
                             <span>
                                 <i class="fa-solid fa-circle" style="font-size: 0.45rem; color: ${item.type === 'nonveg' ? '#dc2626' : '#16a34a'};"></i>
                                 ${item.name} &times; ${item.quantity}
+                                ${item.addedBy ? `<span style="font-size: 0.72rem; color: #ea580c; font-weight: 600; margin-left: 4px;">(${item.addedBy})</span>` : ''}
                             </span>
                             <span style="font-weight: 600;">₹${Number(item.price) * Number(item.quantity)}</span>
                         </div>

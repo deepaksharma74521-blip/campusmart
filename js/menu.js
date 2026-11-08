@@ -119,9 +119,8 @@ function updateActiveShopBanner() {
     const ownerEl = document.getElementById('banner-shop-owner');
 
     const isOpen = (shop.isOpen !== false);
-    const rushHtml = (window.rushRadar && isOpen) ? ` <span style="display: inline-block; vertical-align: middle; margin-left: 8px;">${window.rushRadar.renderBadgeHTML(shop)}</span>` : '';
 
-    if (nameEl) nameEl.innerHTML = `${getShopEmoji(shop.category)} ${shop.name}${rushHtml}`;
+    if (nameEl) nameEl.innerHTML = `${getShopEmoji(shop.category)} ${shop.name}`;
     if (statusEl) {
         statusEl.textContent = isOpen ? '● Accepting Orders Now' : '● Currently Closed';
         statusEl.style.background = isOpen ? '#dcfce7' : '#fee2e2';
@@ -581,6 +580,32 @@ function addToCart(itemId) {
     const cartItemId = hasHalfFull ? `${itemId}-${portion.toLowerCase()}` : (item._id || item.id);
     const cartItemName = hasHalfFull ? `${item.name} (${portion})` : item.name;
 
+    const shopName = item.shopName || (shop ? shop.name : (item.category || 'Campus Outlet'));
+    const shopId = item.shopId || (shop ? (shop.shopId || shop._id) : 'shop-1');
+
+    // If Roommate & Class "Squad Order" is active, send directly to shared group cart
+    if (window.squadEngine && window.squadEngine.isSquadActive()) {
+        const squadItem = {
+            id: cartItemId,
+            _id: cartItemId,
+            baseId: item._id || item.id,
+            name: cartItemName,
+            portion: portion,
+            price: finalPrice,
+            category: item.category || 'General',
+            shopId: shopId,
+            shopName: shopName,
+            image: item.image || item.imageUrl || '',
+            type: item.type || 'veg',
+            quantity: 1
+        };
+        window.squadEngine.addItemToSquad(squadItem);
+        if (window.dynamicIsland) {
+            window.dynamicIsland.notifyCartAdded(cartItemName, finalPrice);
+        }
+        return;
+    }
+
     let cart = JSON.parse(localStorage.getItem('canteen_cart') || '[]');
     
     // Cart Limit Removed - Unlimited Items Allowed
@@ -590,15 +615,6 @@ function addToCart(itemId) {
 
     const shopName = item.shopName || (shop ? shop.name : (item.category || 'Campus Outlet'));
     const shopId = item.shopId || (shop ? (shop.shopId || shop._id) : 'shop-1');
-
-    const activeSquad = window.squadOrder ? window.squadOrder.getActiveSquad() : null;
-    const currentUser = window.api ? window.api.getCurrentUser() : null;
-    let addedByName = '';
-    if (currentUser && currentUser.name) {
-        addedByName = currentUser.name.split(' ')[0];
-    } else if (activeSquad) {
-        addedByName = 'Roommate';
-    }
 
     if (existingIndex > -1) {
         cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
@@ -616,9 +632,7 @@ function addToCart(itemId) {
             image: item.image || item.imageUrl || '',
             imageUrl: item.image || item.imageUrl || '',
             type: item.type || 'veg',
-            quantity: 1,
-            addedBy: addedByName,
-            squadCode: activeSquad || null
+            quantity: 1
         });
     }
 

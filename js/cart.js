@@ -185,8 +185,168 @@ function copyCheckoutUpiId(btn) {
     });
 }
 
+// ------------------------------------------------------------------------------
+// Squad Order Group Cart Loader (Roommate & Class Shared Order)
+// ------------------------------------------------------------------------------
+window.loadSquadCart = function(squad) {
+    if (!squad) return;
+    if (window.squadEngine) window.squadEngine.renderSquadHub();
+
+    const cartContainer = document.getElementById('cart-items-list');
+    const emptyContainer = document.getElementById('cart-empty-view');
+    const layoutContainer = document.getElementById('cart-content-layout');
+    const squadSplitEl = document.getElementById('squad-split-container');
+    
+    if (!cartContainer) return;
+
+    const items = squad.items || [];
+
+    if (items.length === 0) {
+        if (layoutContainer) layoutContainer.style.display = 'none';
+        if (emptyContainer) {
+            emptyContainer.style.display = 'block';
+            emptyContainer.innerHTML = `
+                <i class="fa-solid fa-users empty-icon" style="color: #ea580c;"></i>
+                <h3>Squad Cart (${squad.squadCode}) is Empty</h3>
+                <p>No food added yet! Share the code with roommates and start adding snacks from the menu.</p>
+                <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+                    <a href="menu.html" class="btn btn-primary btn-lg">
+                        <i class="fa-solid fa-utensils"></i> Browse Mart & Menu
+                    </a>
+                    <button type="button" class="btn btn-outline btn-lg" onclick="window.squadEngine.openInviteModal()">
+                        <i class="fa-brands fa-whatsapp"></i> Invite Roommates
+                    </button>
+                </div>
+            `;
+        }
+        if (squadSplitEl) squadSplitEl.style.display = 'none';
+        updateGlobalCartBadge();
+        return;
+    }
+
+    if (layoutContainer) layoutContainer.style.display = 'grid';
+    if (emptyContainer) emptyContainer.style.display = 'none';
+
+    let subtotal = 0;
+    const fallbackImg = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop&q=80';
+    const splitMap = {};
+
+    cartContainer.innerHTML = items.map((item, index) => {
+        const itemTotal = Number(item.price) * Number(item.quantity || 1);
+        subtotal += itemTotal;
+        const imgUrl = item.image || item.imageUrl || fallbackImg;
+        const member = item.addedBy || 'Roommate';
+
+        splitMap[member] = (splitMap[member] || 0) + itemTotal;
+
+        return `
+            <div class="cart-item">
+                <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">₹${item.price} each</div>
+                    <span class="squad-member-badge"><i class="fa-solid fa-user"></i> Added by ${member}</span>
+                </div>
+                <div class="qty-control">
+                    <span class="qty-val" style="min-width: 32px; text-align: center; font-weight: 700;">x${item.quantity || 1}</span>
+                </div>
+                <div class="cart-item-total">₹${itemTotal}</div>
+                <button class="cart-item-remove" onclick="window.squadEngine.removeItemFromSquad('${item.id}', '${member}')" title="Remove item">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        `;
+    }).join('');
+
+    const fee = getCartPackagingFee(items, subtotal);
+    const hasSalon = (fee === 20);
+    const totalAmount = subtotal + fee;
+
+    document.getElementById('summary-subtotal').textContent = `₹${subtotal}`;
+    const packLabel = document.getElementById('summary-packaging-label');
+    if (packLabel) {
+        if (hasSalon) {
+            packLabel.innerHTML = '💈 Salon Booking &amp; Disposable Kit Fee';
+        } else if (subtotal > 100) {
+            const extra = Math.floor(subtotal / 100) * 5;
+            packLabel.innerHTML = `Packaging &amp; Service Fee <span style="font-size: 0.72rem; color: #ea580c; font-weight: 700; display: block;">(₹5 base + ₹${extra} extra on ₹${subtotal})</span>`;
+        } else {
+            packLabel.innerHTML = 'Packaging &amp; Service Fee';
+        }
+    }
+    document.getElementById('summary-packaging').textContent = `₹${fee}`;
+    document.getElementById('summary-total').textContent = `₹${totalAmount}`;
+
+    // Render Roommate Split Breakdown Box
+    if (squadSplitEl) {
+        const rows = Object.entries(splitMap).map(([mName, mAmt]) => `
+            <div class="squad-split-row">
+                <span><i class="fa-solid fa-user-check" style="color: #ea580c; font-size: 0.75rem;"></i> ${mName}</span>
+                <span style="font-weight: 700; color: #0f172a;">₹${mAmt}</span>
+            </div>
+        `).join('');
+
+        squadSplitEl.style.display = 'block';
+        squadSplitEl.innerHTML = `
+            <div class="squad-split-box">
+                <div class="squad-split-title">
+                    <span><i class="fa-solid fa-calculator"></i> Roommate UPI Split Breakdown</span>
+                    <span style="font-size: 0.72rem; color: #ea580c; text-transform: none;">Items share</span>
+                </div>
+                ${rows}
+                <div class="squad-split-row strong" style="border-top: 1px dashed #fed7aa; margin-top: 5px; padding-top: 5px;">
+                    <span>Packaging fee (+₹${fee})</span>
+                    <span>Total: ₹${totalAmount}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    updateSplitCalculation(totalAmount);
+
+    // Update Customer Identity Badge & Checkout Button
+    const user = api.getCurrentUser();
+    const identityEl = document.getElementById('cart-user-identity');
+    const placeBtn = document.getElementById('place-order-btn');
+
+    if (identityEl) {
+        identityEl.innerHTML = `
+            <span style="color: #c2410c; background: #fff7ed; padding: 3px 8px; border-radius: 6px; border: 1px solid #fed7aa; font-size: 0.82rem; font-weight: 700;">
+                <i class="fa-solid fa-users"></i> Squad Order: ${squad.squadCode} (Host: ${squad.hostName})
+            </span>
+        `;
+    }
+
+    if (placeBtn) {
+        if (!user) {
+            placeBtn.innerHTML = `<i class="fa-solid fa-lock" style="margin-right: 6px;"></i> Sign In to Place Squad Order (₹${totalAmount})`;
+            placeBtn.onclick = function(e) {
+                e.preventDefault();
+                showToast('Please sign in with your student/faculty account to place order.', 'info', 'Sign In Required');
+                setTimeout(() => {
+                    window.location.href = 'login.html?redirect=cart.html';
+                }, 600);
+            };
+        } else {
+            placeBtn.innerHTML = `<i class="fa-solid fa-users" style="margin-right: 6px;"></i> Place Squad Order Now (₹${totalAmount})`;
+            placeBtn.onclick = null;
+        }
+    }
+};
+
 // Load Cart Items & Calculate Totals
 function loadCart() {
+    if (window.squadEngine && window.squadEngine.isSquadActive()) {
+        const squad = window.squadEngine.getCurrentSquad();
+        if (squad) {
+            window.loadSquadCart(squad);
+            return;
+        }
+    }
+    if (window.squadEngine) window.squadEngine.renderSquadHub();
+    const squadSplitEl = document.getElementById('squad-split-container');
+    if (squadSplitEl) squadSplitEl.style.display = 'none';
+
     const cartContainer = document.getElementById('cart-items-list');
     const emptyContainer = document.getElementById('cart-empty-view');
     const layoutContainer = document.getElementById('cart-content-layout');
@@ -218,7 +378,6 @@ function loadCart() {
                 <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'">
                 <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
-                    ${item.addedBy ? `<div class="squad-member-tag"><i class="fa-solid fa-user-group"></i> Added by ${item.addedBy}</div>` : ''}
                     <div class="cart-item-price">₹${item.price} each</div>
                 </div>
                 <div class="qty-control">
@@ -337,6 +496,19 @@ function removeCartItem(index) {
 }
 
 function clearCart() {
+    const isSquad = window.squadEngine && window.squadEngine.isSquadActive();
+    if (isSquad) {
+        if (confirm('Are you sure you want to clear all items in this shared Squad Cart?')) {
+            const squadCode = window.squadEngine.getActiveSquadCode();
+            if (squadCode && window.api) {
+                window.api.clearSquad(squadCode).then(() => {
+                    window.squadEngine.refreshSquad(squadCode);
+                    showToast('Squad cart cleared.', 'info');
+                });
+            }
+        }
+        return;
+    }
     if (confirm('Are you sure you want to clear your cart?')) {
         localStorage.removeItem('canteen_cart');
         loadCart();
@@ -601,11 +773,13 @@ async function handlePlaceOrder(event) {
         return;
     }
 
-    const cart = JSON.parse(localStorage.getItem('canteen_cart') || '[]');
+    const isSquad = window.squadEngine && window.squadEngine.isSquadActive();
+    const activeSquad = isSquad ? window.squadEngine.getCurrentSquad() : null;
+    const cart = (isSquad && activeSquad) ? (activeSquad.items || []) : JSON.parse(localStorage.getItem('canteen_cart') || '[]');
     const placeBtn = document.getElementById('place-order-btn');
 
     if (cart.length === 0) {
-        showToast('Your cart is empty. Please add items first.', 'warning');
+        showToast(isSquad ? 'Squad cart is empty. Please add items from menu first.' : 'Your cart is empty. Please add items first.', 'warning');
         return;
     }
 
@@ -704,6 +878,9 @@ async function handlePlaceOrder(event) {
             department: selectedDept,
             studentPhone: user.phone || 'N/A',
             studentEmail: user.email || '',
+            squadCode: (isSquad && activeSquad) ? activeSquad.squadCode : null,
+            squadMembers: (isSquad && activeSquad) ? activeSquad.members : null,
+            isSquadOrder: !!(isSquad && activeSquad),
             items: cart.map(item => ({
                 id: item.id || item._id,
                 name: item.name,
@@ -712,7 +889,8 @@ async function handlePlaceOrder(event) {
                 portion: item.portion || null,
                 shopId: item.shopId || (isSalon ? 'shop-24' : 'shop-1'),
                 shopName: item.shopName || (isSalon ? "New look MENS' PERSONAL CARE SALON" : ''),
-                type: item.type || 'veg'
+                type: item.type || 'veg',
+                addedBy: item.addedBy || user.name || 'Student'
             })),
             subtotal: subtotal,
             packagingFee: fee,
@@ -738,7 +916,14 @@ async function handlePlaceOrder(event) {
         const res = await api.placeOrder(orderPayload);
 
         if (res.success) {
-            localStorage.removeItem('canteen_cart');
+            if (isSquad && activeSquad) {
+                if (window.api && typeof window.api.clearSquad === 'function') {
+                    await window.api.clearSquad(activeSquad.squadCode);
+                }
+                localStorage.removeItem('cm_active_squad_code');
+            } else {
+                localStorage.removeItem('canteen_cart');
+            }
             updateGlobalCartBadge();
 
             // Next-Gen Sensory: Celebration Chime & Dynamic Island Tracking
@@ -794,13 +979,6 @@ function showOrderSuccessModal(orderId, amount, pickupSlot, advanceAmount = amou
     try { localStorage.setItem('last_order_pin_' + orderId, pickupOtp); } catch(e) {}
 
     modal.classList.add('active');
-
-    // Step 3 Gamification: Digital Scratch Card Reward
-    if (window.scratchCard) {
-        setTimeout(() => {
-            window.scratchCard.open();
-        }, 900);
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

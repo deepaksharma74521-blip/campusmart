@@ -84,6 +84,25 @@
             </button>
         </div>
 
+        <!-- Roommate & Class "Squad Order" (Shared Group Cart) Hub -->
+        <div id="squad-cart-hub" class="squad-cart-hub-card">
+            <div class="squad-hub-left">
+                <div class="squad-hub-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="squad-hub-info">
+                    <h4>👥 Order with Roommates &amp; Class?</h4>
+                    <p>Create a group cart, share the WhatsApp link, and everyone can add their own food!</p>
+                </div>
+            </div>
+            <div class="squad-hub-actions">
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.squadEngine.promptJoinSquad()">
+                    <i class="fa-solid fa-right-to-bracket"></i> Enter Squad Code
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="window.squadEngine.startNewSquad()">
+                    <i class="fa-solid fa-plus"></i> Start Squad Order
+                </button>
+            </div>
+        </div>
+
         <!-- Empty Cart View -->
         <div id="cart-empty-view" class="empty-state" style="display: none;">
             <i class="fa-solid fa-bag-shopping empty-icon"></i>
@@ -93,9 +112,6 @@
                 <i class="fa-solid fa-bag-shopping"></i> Browse Mart & Menu
             </a>
         </div>
-
-        <!-- Squad Order Banner Container -->
-        <div id="squad-cart-banner" style="display: none;"></div>
 
         <!-- Cart Grid Layout -->
         <div id="cart-content-layout" class="cart-layout">
@@ -123,6 +139,9 @@
                     <span>Grand Total</span>
                     <span id="summary-total" class="total-amount">₹0</span>
                 </div>
+
+                <!-- Squad Order Roommate Cost Split Breakdown -->
+                <div id="squad-split-container" style="display: none;"></div>
 
                 <!-- Checkout Form Inputs -->
                 <form id="checkout-form" onsubmit="handlePlaceOrder(event)" style="margin-top: 1.5rem;">
@@ -548,14 +567,11 @@
     <!-- Backend API & Cart Scripts -->
     <script src="js/api.js?v=3.5"></script>
     <script src="js/auth.js?v=3.5"></script>
-    <script src="js/rush-radar.js?v=1.0"></script>
-    <script src="js/squad-order.js?v=1.0"></script>
+    <script src="js/squad.js?v=1.0"></script>
     <script src="js/cart.js"></script>
     <!-- Sensory Audio Engine & Apple Dynamic Island Controller -->
     <script src="js/sound-engine.js?v=1.0"></script>
     <script src="js/dynamic-island.js?v=1.0"></script>
-    <!-- Gamified Digital Scratch Card -->
-    <script src="js/scratch-card.js?v=1.0"></script>
     <!-- PWA 1-Click Mobile App Installer -->
     <script src="js/pwa-install.js?v=3.5"></script>
     <!-- Apple VisionOS 3D Spatial Interactive Engine -->

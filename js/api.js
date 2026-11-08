@@ -243,6 +243,67 @@ const api = {
         return await res.json();
     },
 
+    // 2.7 Squad Order / Shared Group Cart Methods
+    async createSquad(hostName, hostPhone = '', hostId = '') {
+        try {
+            const res = await fetch(`${API_BASE}/api/squad/create`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ hostName, hostPhone, hostId })
+            });
+            return await res.json();
+        } catch (err) {
+            console.error('createSquad error:', err);
+            return { success: false, message: 'Could not connect to Squad server.' };
+        }
+    },
+
+    async getSquad(squadCode) {
+        try {
+            const res = await fetch(`${API_BASE}/api/squad/${encodeURIComponent(squadCode)}`);
+            return await res.json();
+        } catch (err) {
+            return { success: false, message: 'Squad not reachable.' };
+        }
+    },
+
+    async addToSquad(squadCode, item, memberName) {
+        try {
+            const res = await fetch(`${API_BASE}/api/squad/${encodeURIComponent(squadCode)}/add`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ item, memberName })
+            });
+            return await res.json();
+        } catch (err) {
+            return { success: false, message: 'Could not add to squad.' };
+        }
+    },
+
+    async removeFromSquad(squadCode, itemId, memberName = '') {
+        try {
+            const res = await fetch(`${API_BASE}/api/squad/${encodeURIComponent(squadCode)}/remove`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ itemId, memberName })
+            });
+            return await res.json();
+        } catch (err) {
+            return { success: false, message: 'Could not remove from squad.' };
+        }
+    },
+
+    async clearSquad(squadCode) {
+        try {
+            const res = await fetch(`${API_BASE}/api/squad/${encodeURIComponent(squadCode)}/clear`, {
+                method: 'POST'
+            });
+            return await res.json();
+        } catch (err) {
+            return { success: false };
+        }
+    },
+
     async seedDishes() {
         const res = await fetch(`${API_BASE}/api/menu/seed`, {
             method: 'POST'

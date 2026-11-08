@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v13.0-gamification-voice';
+const CACHE_NAME = 'campus-mart-v12.0-squad-order';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -18,14 +18,10 @@ const CORE_ASSETS = [
   '/js/menu.js',
   '/js/orders.js',
   '/js/cart.js',
+  '/js/squad.js',
   '/js/spatial.js',
   '/js/sound-engine.js',
   '/js/dynamic-island.js',
-  '/js/rush-radar.js',
-  '/js/squad-order.js',
-  '/js/scratch-card.js',
-  '/js/badges.js',
-  '/js/voice-assistant.js',
   '/manifest.json',
   '/assets/icons/icon-192.png',
   '/assets/icons/icon-512.png',

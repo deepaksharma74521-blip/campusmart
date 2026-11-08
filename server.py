@@ -343,6 +343,12 @@ class LocalMongoDB:
         self.shops = LocalMongoCollection("shops")
         self.parcels = LocalMongoCollection("parcels")
         self.otps = LocalMongoCollection("otps")
+        self.squadOrders = LocalMongoCollection("squadOrders")
+
+    def __getattr__(self, name):
+        col = LocalMongoCollection(name)
+        setattr(self, name, col)
+        return col
 
 if not use_real_mongo:
     db = LocalMongoDB()
@@ -2397,6 +2403,120 @@ def update_order_prep_time(order_id):
         
     db.orders.update_one({"_id": order["_id"]}, {"$set": update_set})
     return jsonify({"success": True, "message": "Kitchen prep time updated successfully!"}), 200
+
+
+# ------------------------------------------------------------------------------
+# 5.5 SQUAD ORDER / SHARED GROUP CART REST API
+# ------------------------------------------------------------------------------
+
+@app.route("/api/squad/create", methods=["POST"])
+def create_squad():
+    import random
+    data = request.json or {}
+    host_name = data.get("hostName", "Host").strip() or "Squad Host"
+    host_phone = data.get("hostPhone", "").strip()
+    host_id = data.get("hostId", "").strip()
+    
+    code = f"TMU-{random.randint(100, 999)}"
+    
+    squad_doc = {
+        "squadCode": code,
+        "hostName": host_name,
+        "hostPhone": host_phone,
+        "hostId": host_id,
+        "items": [],
+        "members": [host_name],
+        "status": "active",
+        "createdAt": datetime.now().isoformat(),
+        "updatedAt": datetime.now().isoformat()
+    }
+    
+    db.squadOrders.insert_one(squad_doc)
+    return jsonify({"success": True, "squadCode": code, "squad": format_doc(squad_doc)}), 201
+
+
+@app.route("/api/squad/<code>", methods=["GET"])
+def get_squad(code):
+    code = code.upper().strip()
+    squad = db.squadOrders.find_one({"squadCode": code})
+    if not squad:
+        return jsonify({"success": False, "message": "Squad order not found or expired."}), 404
+    return jsonify({"success": True, "squad": format_doc(squad)}), 200
+
+
+@app.route("/api/squad/<code>/add", methods=["POST"])
+def add_to_squad(code):
+    code = code.upper().strip()
+    squad = db.squadOrders.find_one({"squadCode": code})
+    if not squad:
+        return jsonify({"success": False, "message": "Squad not found."}), 404
+    
+    data = request.json or {}
+    item = data.get("item")
+    member_name = data.get("memberName", "Roommate").strip() or "Squad Member"
+    
+    if not item:
+        return jsonify({"success": False, "message": "Item details required."}), 400
+    
+    item_entry = {
+        "id": item.get("id") or item.get("_id") or f"sq-{int(datetime.now().timestamp()*1000)}",
+        "name": item.get("name"),
+        "price": float(item.get("price", 0)),
+        "quantity": int(item.get("quantity", 1)),
+        "portion": item.get("portion"),
+        "shopName": item.get("shopName", "TMU Canteen"),
+        "shopId": item.get("shopId", "shop-1"),
+        "image": item.get("image") or item.get("imageUrl") or "",
+        "addedBy": member_name,
+        "addedAt": datetime.now().isoformat()
+    }
+    
+    items = squad.get("items", [])
+    existing = False
+    for it in items:
+        if it.get("id") == item_entry["id"] and it.get("addedBy") == member_name and it.get("portion") == item_entry["portion"]:
+            it["quantity"] += item_entry["quantity"]
+            existing = True
+            break
+    if not existing:
+        items.append(item_entry)
+        
+    members = list(set(squad.get("members", []) + [member_name]))
+    
+    db.squadOrders.update_one(
+        {"_id": squad["_id"]},
+        {"$set": {"items": items, "members": members, "updatedAt": datetime.now().isoformat()}}
+    )
+    return jsonify({"success": True, "message": f"{item_entry['name']} added by {member_name}!", "itemsCount": len(items)}), 200
+
+
+@app.route("/api/squad/<code>/remove", methods=["POST"])
+def remove_from_squad(code):
+    code = code.upper().strip()
+    squad = db.squadOrders.find_one({"squadCode": code})
+    if not squad:
+        return jsonify({"success": False, "message": "Squad not found."}), 404
+    
+    data = request.json or {}
+    item_id = data.get("itemId")
+    member_name = data.get("memberName")
+    
+    items = [it for it in squad.get("items", []) if not (it.get("id") == item_id and (not member_name or it.get("addedBy") == member_name))]
+    db.squadOrders.update_one(
+        {"_id": squad["_id"]},
+        {"$set": {"items": items, "updatedAt": datetime.now().isoformat()}}
+    )
+    return jsonify({"success": True, "message": "Item removed from squad cart.", "items": items}), 200
+
+
+@app.route("/api/squad/<code>/clear", methods=["POST"])
+def clear_squad(code):
+    code = code.upper().strip()
+    db.squadOrders.update_one(
+        {"squadCode": code},
+        {"$set": {"items": [], "updatedAt": datetime.now().isoformat()}}
+    )
+    return jsonify({"success": True, "message": "Squad cart cleared."}), 200
 
 
 # ------------------------------------------------------------------------------
