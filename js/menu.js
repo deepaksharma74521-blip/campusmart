@@ -119,8 +119,9 @@ function updateActiveShopBanner() {
     const ownerEl = document.getElementById('banner-shop-owner');
 
     const isOpen = (shop.isOpen !== false);
+    const rushHtml = (window.rushRadar && isOpen) ? ` <span style="display: inline-block; vertical-align: middle; margin-left: 8px;">${window.rushRadar.renderBadgeHTML(shop)}</span>` : '';
 
-    if (nameEl) nameEl.innerHTML = `${getShopEmoji(shop.category)} ${shop.name}`;
+    if (nameEl) nameEl.innerHTML = `${getShopEmoji(shop.category)} ${shop.name}${rushHtml}`;
     if (statusEl) {
         statusEl.textContent = isOpen ? '● Accepting Orders Now' : '● Currently Closed';
         statusEl.style.background = isOpen ? '#dcfce7' : '#fee2e2';
@@ -590,6 +591,15 @@ function addToCart(itemId) {
     const shopName = item.shopName || (shop ? shop.name : (item.category || 'Campus Outlet'));
     const shopId = item.shopId || (shop ? (shop.shopId || shop._id) : 'shop-1');
 
+    const activeSquad = window.squadOrder ? window.squadOrder.getActiveSquad() : null;
+    const currentUser = window.api ? window.api.getCurrentUser() : null;
+    let addedByName = '';
+    if (currentUser && currentUser.name) {
+        addedByName = currentUser.name.split(' ')[0];
+    } else if (activeSquad) {
+        addedByName = 'Roommate';
+    }
+
     if (existingIndex > -1) {
         cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
     } else {
@@ -606,7 +616,9 @@ function addToCart(itemId) {
             image: item.image || item.imageUrl || '',
             imageUrl: item.image || item.imageUrl || '',
             type: item.type || 'veg',
-            quantity: 1
+            quantity: 1,
+            addedBy: addedByName,
+            squadCode: activeSquad || null
         });
     }
 

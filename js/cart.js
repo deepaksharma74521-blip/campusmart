@@ -218,6 +218,7 @@ function loadCart() {
                 <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'">
                 <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
+                    ${item.addedBy ? `<div class="squad-member-tag"><i class="fa-solid fa-user-group"></i> Added by ${item.addedBy}</div>` : ''}
                     <div class="cart-item-price">₹${item.price} each</div>
                 </div>
                 <div class="qty-control">
