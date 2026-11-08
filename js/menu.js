@@ -613,9 +613,6 @@ function addToCart(itemId) {
 
     const existingIndex = cart.findIndex(i => (i.id === cartItemId || i._id === cartItemId));
 
-    const shopName = item.shopName || (shop ? shop.name : (item.category || 'Campus Outlet'));
-    const shopId = item.shopId || (shop ? (shop.shopId || shop._id) : 'shop-1');
-
     if (existingIndex > -1) {
         cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
     } else {

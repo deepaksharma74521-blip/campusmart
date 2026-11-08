@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v12.0-squad-order';
+const CACHE_NAME = 'campus-mart-v12.1-squad-fix';
 const CORE_ASSETS = [
   '/',
   '/index.html',
