@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v12.1-squad-fix';
+const CACHE_NAME = 'campus-mart-v13.0-foodie-badges';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -19,6 +19,7 @@ const CORE_ASSETS = [
   '/js/orders.js',
   '/js/cart.js',
   '/js/squad.js',
+  '/js/badges.js',
   '/js/spatial.js',
   '/js/sound-engine.js',
   '/js/dynamic-island.js',

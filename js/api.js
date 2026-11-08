@@ -304,6 +304,17 @@ const api = {
         }
     },
 
+    // 2.8 Campus Foodie Leaderboard
+    async getLeaderboard() {
+        try {
+            const res = await fetch(`${API_BASE}/api/leaderboard`);
+            return await res.json();
+        } catch (err) {
+            console.error('getLeaderboard error:', err);
+            return { success: false, leaderboard: [] };
+        }
+    },
+
     async seedDishes() {
         const res = await fetch(`${API_BASE}/api/menu/seed`, {
             method: 'POST'

@@ -76,6 +76,12 @@ async function loadStudentStats(uid) {
         if (activeEl) activeEl.textContent = pendingOrders;
         if (completedEl) completedEl.textContent = completedOrders;
 
+        // Initialize Campus Foodie Badges & Leaderboard Engine
+        if (window.foodieBadges) {
+            const user = api.getCurrentUser();
+            window.foodieBadges.initProfileBadges(user, res.orders);
+        }
+
     } catch (e) {
         console.warn('Could not load student stats:', e);
     }

@@ -2571,6 +2571,86 @@ def get_admin_stats():
     }), 200
 
 
+@app.route("/api/leaderboard", methods=["GET"])
+def get_leaderboard():
+    try:
+        all_orders = db.orders.find({})
+    except Exception:
+        all_orders = []
+        
+    user_stats = {}
+    for o in all_orders:
+        uid = str(o.get("userId") or o.get("uid") or o.get("customerEmail") or "unknown")
+        if uid == "unknown":
+            continue
+        c_name = o.get("customerName") or o.get("studentName") or "TMU Student"
+        c_dept = o.get("department") or o.get("studentDept") or "CCSIT"
+        
+        if uid not in user_stats:
+            user_stats[uid] = {
+                "name": c_name,
+                "department": c_dept,
+                "totalOrders": 0,
+                "chaiCount": 0,
+                "maggiCount": 0,
+                "squadCount": 0
+            }
+        user_stats[uid]["totalOrders"] += 1
+        if o.get("squadCode"):
+            user_stats[uid]["squadCount"] += 1
+            
+        for it in (o.get("items") or []):
+            i_name = (it.get("name") or "").lower()
+            if "chai" in i_name or "tea" in i_name:
+                user_stats[uid]["chaiCount"] += 1
+            if "maggi" in i_name or "noodle" in i_name:
+                user_stats[uid]["maggiCount"] += 1
+
+    leaderboard = []
+    for uid, data in user_stats.items():
+        parts = data["name"].split()
+        masked_name = parts[0] + (f" {parts[1][0]}." if len(parts) > 1 else "")
+        
+        badges = []
+        if data["chaiCount"] >= 2:
+            badges.append("☕ Chai Addict")
+        if data["maggiCount"] >= 1:
+            badges.append("🌙 Night Owl Maggi")
+        if data["totalOrders"] >= 3:
+            badges.append("👑 Canteen VIP")
+        if data["squadCount"] >= 1:
+            badges.append("👥 Squad Master")
+
+        score = data["totalOrders"] * 10 + len(badges) * 25
+        leaderboard.append({
+            "name": masked_name,
+            "department": data["department"],
+            "totalOrders": data["totalOrders"],
+            "badgesCount": len(badges),
+            "badges": badges,
+            "score": score
+        })
+        
+    leaderboard.sort(key=lambda x: x["score"], reverse=True)
+    
+    # Campus default samples so leaderboard is always vibrant
+    if len(leaderboard) < 5:
+        sample_foodies = [
+            {"name": "Aman K.", "department": "College of Computing Sciences & IT (CCSIT)", "totalOrders": 18, "badgesCount": 4, "badges": ["👑 Canteen VIP", "☕ Chai Addict", "🌙 Night Owl Maggi", "👥 Squad Master"], "score": 280},
+            {"name": "Priya V.", "department": "Medical College & Research Centre", "totalOrders": 14, "badgesCount": 3, "badges": ["☕ Chai Addict", "👑 Canteen VIP", "🌙 Night Owl Maggi"], "score": 215},
+            {"name": "Rohan D.", "department": "Dental College & Research Centre", "totalOrders": 11, "badgesCount": 2, "badges": ["👑 Canteen VIP", "☕ Chai Addict"], "score": 160},
+            {"name": "Sneha M.", "department": "College of Nursing", "totalOrders": 8, "badgesCount": 2, "badges": ["☕ Chai Addict", "🌙 Night Owl Maggi"], "score": 130},
+            {"name": "Deepak S.", "department": "College of Computing Sciences & IT (CCSIT)", "totalOrders": 7, "badgesCount": 3, "badges": ["👑 Canteen VIP", "☕ Chai Addict", "👥 Squad Master"], "score": 145}
+        ]
+        existing_names = {x["name"] for x in leaderboard}
+        for s in sample_foodies:
+            if s["name"] not in existing_names:
+                leaderboard.append(s)
+        leaderboard.sort(key=lambda x: x["score"], reverse=True)
+
+    return jsonify({"success": True, "leaderboard": leaderboard[:10]}), 200
+
+
 @app.route("/api/admin/staff", methods=["GET"])
 def get_staff_list():
     all_users = [format_doc(u) for u in db.users.find({})]

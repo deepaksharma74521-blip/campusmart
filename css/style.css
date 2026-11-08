@@ -4195,3 +4195,243 @@ body.theme-night .mobile-nav-item.active {
     color: #0f172a;
 }
 
+/* ==========================================================================
+   Campus Foodie Badges & Leaderboard 🏆 Styles
+   ========================================================================== */
+
+.badges-showcase-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.badges-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.badges-title-group h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.badges-title-group p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #64748b;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.badge-item-card {
+    border-radius: 14px;
+    padding: 1.1rem;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.badge-item-card:hover {
+    transform: translateY(-3px) translateZ(0);
+}
+
+.badge-item-card.unlocked {
+    background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+    border: 1.5px solid #fcd34d;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);
+}
+
+.badge-item-card.locked {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    opacity: 0.85;
+}
+
+.badge-top-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.badge-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #ffffff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.badge-info h4 {
+    margin: 0 0 2px 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-tag.unlocked-tag {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.badge-tag.locked-tag {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.badge-desc {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.badge-progress-container {
+    width: 100%;
+    background: #e2e8f0;
+    height: 6px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.badge-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+.badge-progress-text {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Leaderboard Modal Styles */
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.leaderboard-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.15s ease;
+}
+
+.leaderboard-row:hover {
+    transform: translateX(4px);
+}
+
+.leaderboard-row.rank-1 {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 1.5px solid #f59e0b;
+}
+
+.leaderboard-row.rank-2 {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1.5px solid #cbd5e1;
+}
+
+.leaderboard-row.rank-3 {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border: 1.5px solid #fdba74;
+}
+
+.leaderboard-rank-col {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.leaderboard-medal {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.leaderboard-user-name {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.leaderboard-user-dept {
+    font-size: 0.75rem;
+    color: #64748b;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.leaderboard-score-badge {
+    text-align: right;
+}
+
+.leaderboard-score-val {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #ea580c;
+}
+
+.leaderboard-score-lbl {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+
