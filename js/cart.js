@@ -4,30 +4,51 @@
 // Description: Shopping Cart Management, Calculations & Pre-Order Placement
 // ==========================================================================
 
-function getCartPackagingFee(cart, subtotal = null) {
-    if (!cart || cart.length === 0) return 0;
-    const hasSalon = cart.some(it => 
+function checkIsSalonOrder(cart) {
+    if (!cart || cart.length === 0) return false;
+    return cart.some(it => 
         it.category === 'Salon & Grooming' || 
         it.shopId === 'shop-24' || 
         (it.shopName && it.shopName.toLowerCase().includes('salon')) ||
         it.packagingFee === 20 ||
         it.isService === true
     );
-    if (hasSalon) return 20;
+}
 
-    const currentSubtotal = (subtotal !== null) 
-        ? Number(subtotal) 
+function calculateCartBreakdown(cart, customSubtotal = null) {
+    if (!cart || cart.length === 0) {
+        return { subtotal: 0, packagingFee: 0, platformFee: 0, totalFee: 0, totalAmount: 0, isSalon: false };
+    }
+    const subtotal = (customSubtotal !== null) 
+        ? Number(customSubtotal) 
         : cart.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
 
-    // Base packaging fee: ₹5
-    let fee = 5;
+    const isSalon = checkIsSalonOrder(cart);
 
-    // Rule: For orders above ₹100, add ₹5 per ₹100 slab
-    if (currentSubtotal > 100) {
-        const extraSlabs = Math.floor(currentSubtotal / 100);
-        fee = 5 + (extraSlabs * 5);
+    // 1. Base Packaging & Prep Charge (₹20 for salon disposable kit; ₹5 fixed flat for food prep & packaging)
+    const packagingFee = isSalon ? 20 : 5;
+
+    // 2. Campus Platform Fee: ₹5 per ₹100 slab (when subtotal >= 100 and not salon)
+    let platformFee = 0;
+    if (subtotal >= 100 && !isSalon) {
+        platformFee = Math.floor(subtotal / 100) * 5;
     }
-    return fee;
+
+    const totalFee = packagingFee + platformFee;
+    const totalAmount = subtotal + totalFee;
+
+    return {
+        subtotal,
+        packagingFee,
+        platformFee,
+        totalFee,
+        totalAmount,
+        isSalon
+    };
+}
+
+function getCartPackagingFee(cart, subtotal = null) {
+    return calculateCartBreakdown(cart, subtotal).totalFee;
 }
 
 let currentSelectedSplit = 100;
@@ -55,10 +76,8 @@ function selectPaymentSplit(percent) {
     });
 
     const cart = JSON.parse(localStorage.getItem('canteen_cart') || '[]');
-    const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
-    const fee = getCartPackagingFee(cart, subtotal);
-    const totalAmount = subtotal > 0 ? subtotal + fee : 0;
-    updateSplitCalculation(totalAmount);
+    const breakdown = calculateCartBreakdown(cart);
+    updateSplitCalculation(breakdown.totalAmount);
 }
 
 let currentShopPaymentInfo = null;
@@ -258,23 +277,32 @@ window.loadSquadCart = function(squad) {
         `;
     }).join('');
 
-    const fee = getCartPackagingFee(items, subtotal);
-    const hasSalon = (fee === 20);
-    const totalAmount = subtotal + fee;
+    const b = calculateCartBreakdown(items, subtotal);
+    const totalAmount = b.totalAmount;
 
     document.getElementById('summary-subtotal').textContent = `₹${subtotal}`;
     const packLabel = document.getElementById('summary-packaging-label');
+    const packVal = document.getElementById('summary-packaging');
     if (packLabel) {
-        if (hasSalon) {
-            packLabel.innerHTML = '💈 Salon Booking &amp; Disposable Kit Fee';
-        } else if (subtotal > 100) {
-            const extra = Math.floor(subtotal / 100) * 5;
-            packLabel.innerHTML = `Packaging &amp; Service Fee <span style="font-size: 0.72rem; color: #ea580c; font-weight: 700; display: block;">(₹5 base + ₹${extra} extra on ₹${subtotal})</span>`;
+        packLabel.innerHTML = b.isSalon 
+            ? '💈 Salon Booking &amp; Disposable Kit Fee' 
+            : 'Packaging &amp; Prep Fee';
+    }
+    if (packVal) {
+        packVal.textContent = `₹${b.packagingFee}`;
+    }
+
+    const platformRow = document.getElementById('summary-platform-row');
+    const platformVal = document.getElementById('summary-platform-fee');
+    if (platformRow) {
+        if (b.platformFee > 0) {
+            platformRow.style.display = 'flex';
+            if (platformVal) platformVal.textContent = `₹${b.platformFee}`;
         } else {
-            packLabel.innerHTML = 'Packaging &amp; Service Fee';
+            platformRow.style.display = 'none';
         }
     }
-    document.getElementById('summary-packaging').textContent = `₹${fee}`;
+
     document.getElementById('summary-total').textContent = `₹${totalAmount}`;
 
     // Render Roommate Split Breakdown Box
@@ -295,7 +323,7 @@ window.loadSquadCart = function(squad) {
                 </div>
                 ${rows}
                 <div class="squad-split-row strong" style="border-top: 1px dashed #fed7aa; margin-top: 5px; padding-top: 5px;">
-                    <span>Packaging fee (+₹${fee})</span>
+                    <span>Fees: Prep ₹${b.packagingFee}${b.platformFee > 0 ? ` + Platform ₹${b.platformFee}` : ''}</span>
                     <span>Total: ₹${totalAmount}</span>
                 </div>
             </div>
@@ -397,23 +425,33 @@ function loadCart() {
         `;
     }).join('');
 
-    const fee = getCartPackagingFee(cart, subtotal);
-    const hasSalon = (fee === 20);
-    const totalAmount = subtotal + fee;
+    const b = calculateCartBreakdown(cart, subtotal);
+    const totalAmount = b.totalAmount;
     
     document.getElementById('summary-subtotal').textContent = `₹${subtotal}`;
+    
     const packLabel = document.getElementById('summary-packaging-label');
+    const packVal = document.getElementById('summary-packaging');
     if (packLabel) {
-        if (hasSalon) {
-            packLabel.innerHTML = '💈 Salon Booking &amp; Disposable Kit Fee';
-        } else if (subtotal > 100) {
-            const extra = Math.floor(subtotal / 100) * 5;
-            packLabel.innerHTML = `Packaging &amp; Service Fee <span style="font-size: 0.72rem; color: #ea580c; font-weight: 700; display: block;">(₹5 base + ₹${extra} extra on ₹${subtotal})</span>`;
+        packLabel.innerHTML = b.isSalon 
+            ? '💈 Salon Booking &amp; Disposable Kit Fee' 
+            : 'Packaging &amp; Prep Fee';
+    }
+    if (packVal) {
+        packVal.textContent = `₹${b.packagingFee}`;
+    }
+
+    const platformRow = document.getElementById('summary-platform-row');
+    const platformVal = document.getElementById('summary-platform-fee');
+    if (platformRow) {
+        if (b.platformFee > 0) {
+            platformRow.style.display = 'flex';
+            if (platformVal) platformVal.textContent = `₹${b.platformFee}`;
         } else {
-            packLabel.innerHTML = 'Packaging &amp; Service Fee';
+            platformRow.style.display = 'none';
         }
     }
-    document.getElementById('summary-packaging').textContent = `₹${fee}`;
+
     document.getElementById('summary-total').textContent = `₹${totalAmount}`;
 
     updateSplitCalculation(totalAmount);
@@ -818,10 +856,12 @@ async function handlePlaceOrder(event) {
 
     try {
         const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
-        const fee = getCartPackagingFee(cart, subtotal);
-        const isSalon = (fee === 20);
-        const totalAmount = subtotal + fee;
-        const adminCommission = isSalon ? 10.0 : 2.5;
+        const b = calculateCartBreakdown(cart, subtotal);
+        const isSalon = b.isSalon;
+        const packagingFee = b.packagingFee;
+        const platformFee = b.platformFee;
+        const totalAmount = b.totalAmount;
+        const adminCommission = isSalon ? 10.0 : (2.5 + platformFee);
         const vendorPackagingShare = isSalon ? 10.0 : 2.5;
         
         const randomDigits = Math.floor(100000 + Math.random() * 900000);
@@ -893,7 +933,8 @@ async function handlePlaceOrder(event) {
                 addedBy: item.addedBy || user.name || 'Student'
             })),
             subtotal: subtotal,
-            packagingFee: fee,
+            packagingFee: packagingFee,
+            platformFee: platformFee,
             adminCommission: adminCommission,
             vendorPackagingShare: vendorPackagingShare,
             totalAmount: totalAmount,
