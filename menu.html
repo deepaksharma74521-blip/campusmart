@@ -118,10 +118,13 @@
     <section class="menu-header-bar">
         <div class="container">
             <div class="menu-search-filter">
-                <!-- Search Input -->
-                <div class="search-box-wrap">
+                <!-- Search Input with Hinglish Voice Assistant Mic -->
+                <div class="search-box-wrap" style="position: relative; display: flex; align-items: center;">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="menu-search" class="search-input" placeholder="Search dishes, snacks, shakes, tea, stationery...">
+                    <input type="text" id="menu-search" class="search-input" placeholder="Search dishes, snacks, shakes, tea, stationery..." style="padding-right: 48px;">
+                    <button type="button" id="search-mic-btn" onclick="if(window.voiceOrder) window.voiceOrder.startListening()" title="Hinglish Voice Order (Bolo: '2 Chai aur 1 Sandwich')" style="position: absolute; right: 8px; background: none; border: none; font-size: 1.2rem; color: #ea580c; cursor: pointer; padding: 6px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
                 </div>
 
                 <!-- Category Filter Pills -->
@@ -227,6 +230,8 @@
     <script src="js/auth.js?v=3.5"></script>
     <script src="js/squad.js?v=1.0"></script>
     <script src="js/menu.js?v=3.6"></script>
+    <!-- Hinglish AI Voice Ordering Assistant -->
+    <script src="js/voice-assistant.js?v=1.0"></script>
     <!-- Sensory Audio Engine & Apple Dynamic Island Controller -->
     <script src="js/sound-engine.js?v=1.0"></script>
     <script src="js/dynamic-island.js?v=1.0"></script>

@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v14.0-fee-split';
+const CACHE_NAME = 'campus-mart-v15.0-voice-order';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -20,6 +20,7 @@ const CORE_ASSETS = [
   '/js/cart.js',
   '/js/squad.js',
   '/js/badges.js',
+  '/js/voice-assistant.js',
   '/js/spatial.js',
   '/js/sound-engine.js',
   '/js/dynamic-island.js',
