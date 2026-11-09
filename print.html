@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Express Printouts & Assignment Hub | Campus Mart TMU</title>
+    <meta name="description" content="Skip the stationery queue at TMU! Pre-order assignment and lab manual printouts, color prints, and spiral binding for instant pickup.">
+    <!-- Google Fonts Preconnect & Inter/Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-blocking Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+    <!-- Custom Core CSS -->
+    <link rel="stylesheet" href="css/style.css?v=11.0-dynamic-island">
+    <!-- PWA & 1-Click Mobile App Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ea580c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Campus Mart">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="assets/icons/logo.png" alt="Campus Mart Logo" class="brand-img">
+                <span>Campus<span>Mart</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="menu.html" class="nav-link"><i class="fa-solid fa-burger"></i> Menu</a></li>
+                <li><a href="print.html" class="nav-link active"><i class="fa-solid fa-print"></i> Express Printouts</a></li>
+                <li><a href="orders.html" class="nav-link"><i class="fa-solid fa-receipt"></i> My Orders</a></li>
+                <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="/download/apk" download="CampusMart.apk" class="btn btn-outline btn-sm apk-download-badge" style="border-color: #10b981; color: #047857; background: #ecfdf5; font-weight: 700; padding: 0.4rem 0.75rem; display: inline-flex; align-items: center; gap: 0.35rem;" title="Download Android App APK" onclick="triggerApkDownloadFeedback()">
+                    <i class="fa-brands fa-android"></i> App APK
+                </a>
+
+                <div class="cart-btn-wrap">
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
+
+                <div id="nav-auth-actions">
+                    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container" style="padding-top: 1.5rem; padding-bottom: 5rem;">
+        
+        <!-- Hero Banner Card -->
+        <div class="print-hero-card" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border-radius: 18px; padding: 1.5rem 1.75rem; margin-bottom: 1.75rem; box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <span style="background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 20px; font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
+                    ⚡ 0-Minute Queue Pickup
+                </span>
+                <h1 style="font-size: 1.6rem; margin: 0.4rem 0 0.3rem 0; font-weight: 800; color: #ffffff;">Campus Express Printouts 🖨️</h1>
+                <p style="margin: 0; font-size: 0.88rem; opacity: 0.92; max-width: 650px;">
+                    Upload assignment PDFs or Lab manuals, select your custom print settings, and collect stapled or spiral copies in 5 seconds from the Stationery counter!
+                </p>
+            </div>
+            <div style="display: flex; gap: 0.65rem;">
+                <button type="button" class="btn btn-sm" onclick="document.getElementById('my-print-jobs-section').scrollIntoView({behavior: 'smooth'})" style="background: rgba(255,255,255,0.95); color: #0369a1; font-weight: 700; border: none; border-radius: 10px;">
+                    <i class="fa-solid fa-clock-rotate-left"></i> My Print Jobs
+                </button>
+            </div>
+        </div>
+
+        <!-- Print Grid Layout -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;" class="print-layout-grid">
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                
+                <!-- 1. Document Upload Dropzone -->
+                <div class="card" style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-cloud-arrow-up" style="color: #0284c7;"></i> Step 1: Upload Assignment or Notes
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 1.25rem;">Supports PDF, DOC, DOCX, and PPTX up to 50MB.</p>
+
+                    <div id="print-dropzone" class="print-upload-box" onclick="document.getElementById('print-file-input').click()" style="border: 2px dashed #93c5fd; background: #f0f9ff; border-radius: 14px; padding: 2rem 1.25rem; text-align: center; cursor: pointer; transition: all 0.2s ease;">
+                        <input type="file" id="print-file-input" accept=".pdf,.doc,.docx,.pptx" style="display: none;" onchange="handlePrintFileSelect(event)">
+                        
+                        <div id="dropzone-idle">
+                            <div style="width: 58px; height: 58px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 0.75rem;">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </div>
+                            <h4 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem;">Tap or Drag Document Here</h4>
+                            <p style="font-size: 0.8rem; color: #64748b; margin: 0;">PDF, Word or Assignment Files</p>
+                        </div>
+
+                        <div id="dropzone-active" style="display: none; align-items: center; justify-content: center; gap: 1rem;">
+                            <div style="width: 48px; height: 48px; border-radius: 12px; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <div style="text-align: left;">
+                                <h4 id="selected-file-name" style="font-size: 0.96rem; font-weight: 700; color: #0f172a; margin: 0; word-break: break-all;">document.pdf</h4>
+                                <div id="selected-file-meta" style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">2.4 MB &bull; PDF File</div>
+                            </div>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="resetPrintFile(event)" style="margin-left: auto; color: #ef4444; border-color: #fca5a5;">
+                                Change
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Page Count Override -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem 1rem;">
+                        <div>
+                            <div style="font-size: 0.86rem; font-weight: 700; color: #0f172a;">Number of Pages:</div>
+                            <div style="font-size: 0.74rem; color: #64748b;">Auto-detected from file or specify manually</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <button type="button" class="btn btn-outline btn-sm" onclick="adjustPages(-1)" style="padding: 2px 10px; font-weight: 800;">-</button>
+                            <input type="number" id="print-page-count" value="1" min="1" max="500" oninput="calculatePrintCost()" style="width: 60px; text-align: center; font-weight: 800; font-size: 1rem; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px;">
+                            <button type="button" class="btn btn-outline btn-sm" onclick="adjustPages(1)" style="padding: 2px 10px; font-weight: 800;">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Print Specifications -->
+                <div class="card" style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-sliders" style="color: #0284c7;"></i> Step 2: Custom Print Specifications
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 1.25rem;">Choose print color, paper side, copies, and spiral binding.</p>
+
+                    <!-- Option 1: Color Mode -->
+                    <div style="margin-bottom: 1.25rem;">
+                        <label style="font-size: 0.84rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; display: block;">Color Specification:</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                            <div id="opt-color-bw" class="print-opt-card active" onclick="selectColorMode('bw')" style="border: 2px solid #0284c7; background: #f0f9ff; border-radius: 12px; padding: 0.85rem; cursor: pointer; text-align: center; transition: all 0.15s ease;">
+                                <div style="font-size: 1.2rem; margin-bottom: 2px;">📄</div>
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #0f172a;">Black &amp; White</div>
+                                <div style="font-size: 0.75rem; color: #0284c7; font-weight: 700;">₹2.00 / page</div>
+                            </div>
+                            <div id="opt-color-full" class="print-opt-card" onclick="selectColorMode('color')" style="border: 1.5px solid #e2e8f0; background: #ffffff; border-radius: 12px; padding: 0.85rem; cursor: pointer; text-align: center; transition: all 0.15s ease;">
+                                <div style="font-size: 1.2rem; margin-bottom: 2px;">🌈</div>
+                                <div style="font-weight: 800; font-size: 0.92rem; color: #0f172a;">Full Color</div>
+                                <div style="font-size: 0.75rem; color: #059669; font-weight: 700;">₹10.00 / page</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: Print Sides -->
+                    <div style="margin-bottom: 1.25rem;">
+                        <label style="font-size: 0.84rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; display: block;">Printing Sides:</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                            <div id="opt-side-double" class="print-opt-card active" onclick="selectPrintSide('double')" style="border: 2px solid #0284c7; background: #f0f9ff; border-radius: 12px; padding: 0.85rem; cursor: pointer; text-align: center; transition: all 0.15s ease;">
+                                <div style="font-weight: 800; font-size: 0.9rem; color: #0f172a;">Both Sides (Back-to-Back)</div>
+                                <div style="font-size: 0.72rem; color: #0284c7; font-weight: 600;">Eco-friendly &bull; Saves paper</div>
+                            </div>
+                            <div id="opt-side-single" class="print-opt-card" onclick="selectPrintSide('single')" style="border: 1.5px solid #e2e8f0; background: #ffffff; border-radius: 12px; padding: 0.85rem; cursor: pointer; text-align: center; transition: all 0.15s ease;">
+                                <div style="font-weight: 800; font-size: 0.9rem; color: #0f172a;">Single Sided Only</div>
+                                <div style="font-size: 0.72rem; color: #64748b; font-weight: 600;">One page per sheet</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 3: Copies & Binding -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                        <div>
+                            <label style="font-size: 0.84rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; display: block;">Number of Copies:</label>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <button type="button" class="btn btn-outline btn-sm" onclick="adjustCopies(-1)" style="padding: 4px 12px; font-weight: 800;">-</button>
+                                <input type="number" id="print-copies" value="1" min="1" max="20" oninput="calculatePrintCost()" style="width: 60px; text-align: center; font-weight: 800; font-size: 1rem; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px;">
+                                <button type="button" class="btn btn-outline btn-sm" onclick="adjustCopies(1)" style="padding: 4px 12px; font-weight: 800;">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="font-size: 0.84rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; display: block;">Binding / Finishing:</label>
+                            <select id="print-binding" class="form-select no-icon" onchange="calculatePrintCost()" style="font-size: 0.85rem; font-weight: 600;">
+                                <option value="staple">Corner Stapled (Free)</option>
+                                <option value="spiral">Spiral Binding (+₹25)</option>
+                                <option value="hardcover">Project Hardcover (+₹120)</option>
+                                <option value="none">Loose Sheets (No Staple)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Option 4: Preferred Pickup Slot -->
+                    <div style="margin-bottom: 1.25rem;">
+                        <label style="font-size: 0.84rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; display: block;">
+                            <i class="fa-regular fa-clock" style="color: #0284c7;"></i> Collect From Stationery Counter:
+                        </label>
+                        <select id="print-pickup-slot" class="form-select no-icon" style="font-size: 0.85rem; font-weight: 600;">
+                            <option value="Immediate / In 15 Mins">⚡ Express (Ready in 10-15 Mins)</option>
+                            <option value="1:15 PM Lunch Break">🍱 At 1:15 PM Lunch Break</option>
+                            <option value="3:00 PM Recess">🕒 At 3:00 PM Afternoon Recess</option>
+                            <option value="4:45 PM Evening Packup">🎒 At 4:45 PM Evening Packup</option>
+                        </select>
+                    </div>
+
+                    <!-- Option 5: Special Notes -->
+                    <div>
+                        <label style="font-size: 0.84rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem; display: block;">Special Instructions / Page Range (Optional):</label>
+                        <input type="text" id="print-notes" class="form-input no-icon" placeholder="e.g. Page 1-3 color, rest black &amp; white" style="font-size: 0.85rem;">
+                    </div>
+                </div>
+
+                <!-- 3. Student Identification Card -->
+                <div class="card" style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-id-card-clip" style="color: #0284c7;"></i> Step 3: Student Details
+                    </h3>
+                    <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 1.25rem;">Stationery shopkeeper will call this name on counter.</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="print-student-name">Your Full Name:</label>
+                            <input type="text" id="print-student-name" class="form-input no-icon" placeholder="e.g. Rahul Sharma" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="print-student-phone">Phone Number (WhatsApp):</label>
+                            <input type="tel" id="print-student-phone" class="form-input no-icon" placeholder="e.g. 9876543210" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="print-student-dept">College / Department:</label>
+                            <select id="print-student-dept" class="form-select no-icon">
+                                <option value="College of Computing Sciences & IT (CCSIT)">CCSIT (Computer Science &amp; IT)</option>
+                                <option value="Medical College & Research Centre">Medical College</option>
+                                <option value="Dental College & Research Centre">Dental College</option>
+                                <option value="College of Pharmacy">College of Pharmacy</option>
+                                <option value="College of Nursing">College of Nursing</option>
+                                <option value="Faculty of Engineering">Faculty of Engineering</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="print-student-roll">Roll No / Student ID:</label>
+                            <input type="text" id="print-student-roll" class="form-input no-icon" placeholder="e.g. 21BCA042">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Order Summary & Checkout Card -->
+            <div>
+                <div class="card" style="padding: 1.5rem; position: sticky; top: 80px;">
+                    <h3 style="font-size: 1.2rem; color: var(--secondary); margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+                        <span><i class="fa-solid fa-receipt" style="color: #0284c7;"></i> Print Summary</span>
+                        <span style="font-size: 0.74rem; background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 6px; font-weight: 700;">Stationery Shop</span>
+                    </h3>
+
+                    <div class="summary-row">
+                        <span>Pages &bull; Color:</span>
+                        <span id="sum-pages-label" style="font-weight: 600;">1 page (B&amp;W)</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Paper Sheets:</span>
+                        <span id="sum-sheets-label" style="font-weight: 600;">1 sheet (Both sided)</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Copies:</span>
+                        <span id="sum-copies-label" style="font-weight: 600;">&times; 1</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Finishing / Binding:</span>
+                        <span id="sum-binding-label" style="font-weight: 600;">Corner Stapled (Free)</span>
+                    </div>
+
+                    <div style="border-top: 1px dashed #cbd5e1; margin: 1rem 0;"></div>
+
+                    <div class="summary-row total" style="margin-bottom: 1.5rem;">
+                        <span>Grand Total:</span>
+                        <span id="sum-total-amount" class="total-amount" style="color: #0284c7;">₹2</span>
+                    </div>
+
+                    <button type="button" id="submit-print-btn" onclick="submitPrintOrder()" class="btn btn-primary btn-block btn-lg" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border: none; font-weight: 800; font-size: 1.05rem; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+                        <i class="fa-solid fa-print"></i> Send Printout Order (₹2)
+                    </button>
+
+                    <div style="margin-top: 1rem; text-align: center; font-size: 0.76rem; color: #64748b; line-height: 1.4;">
+                        <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Collect at <strong>Gate 1 Stationery Counter</strong> using your 4-digit Pickup PIN.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- My Active Print Jobs Section -->
+        <section id="my-print-jobs-section" style="margin-top: 3rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                <div>
+                    <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--secondary); margin: 0 0 2px 0;">
+                        <i class="fa-solid fa-clock-rotate-left" style="color: #0284c7;"></i> My Printout Orders
+                    </h2>
+                    <p style="font-size: 0.82rem; color: #64748b; margin: 0;">Live queue and pickup PINs for your assignments</p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="loadMyPrintJobs()" style="font-weight: 700;">
+                    <i class="fa-solid fa-rotate-right"></i> Refresh
+                </button>
+            </div>
+
+            <div id="print-jobs-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;">
+                <div style="text-align: center; padding: 2rem; color: #94a3b8; background: white; border-radius: 14px; border: 1px dashed #cbd5e1; grid-column: 1 / -1;">
+                    <i class="fa-solid fa-print" style="font-size: 2rem; margin-bottom: 0.5rem; color: #cbd5e1;"></i>
+                    <p style="margin: 0;">No active print jobs yet. Upload your assignment above to get started!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="menu.html" class="mobile-nav-item">
+            <i class="fa-solid fa-burger"></i>
+            <span>Menu</span>
+        </a>
+        <a href="print.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-print"></i>
+            <span>Printouts</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="mobile-cart-badge cart-badge">0</span>
+            <span>Cart</span>
+        </a>
+        <a href="orders.html" class="mobile-nav-item">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Orders</span>
+        </a>
+    </nav>
+
+    <!-- Success Modal -->
+    <div id="print-success-modal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 420px; text-align: center; padding: 1.75rem;">
+            <div style="width: 65px; height: 65px; border-radius: 50%; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin-bottom: 0.35rem;">Print Job Sent to Counter!</h3>
+            <p style="font-size: 0.84rem; color: #64748b; margin-bottom: 1.25rem;">Stationery shop is preparing your assignment. Show this 4-digit PIN at the counter to collect.</p>
+
+            <div style="background: #f0fdf4; border: 2px dashed #86efac; border-radius: 14px; padding: 1.1rem; margin-bottom: 1.25rem;">
+                <div style="font-size: 0.74rem; font-weight: 800; color: #166534; text-transform: uppercase; letter-spacing: 1px;">COUNTER PICKUP PIN</div>
+                <div id="modal-print-otp" style="font-family: monospace; font-size: 2.2rem; font-weight: 900; letter-spacing: 6px; color: #15803d; margin: 4px 0;">1234</div>
+                <div id="modal-print-job-id" style="font-size: 0.8rem; font-weight: 700; color: #166534;">Token #PRNT-101</div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block btn-lg" onclick="closePrintSuccessModal()">
+                Done &bull; View Status
+            </button>
+        </div>
+    </div>
+
+    <!-- Backend API & Core Scripts -->
+    <script src="js/api.js?v=3.8"></script>
+    <script src="js/auth.js?v=3.5"></script>
+    <script src="js/print.js?v=1.0"></script>
+    <!-- Sensory Audio Engine & Apple Dynamic Island Controller -->
+    <script src="js/sound-engine.js?v=1.0"></script>
+    <script src="js/dynamic-island.js?v=1.0"></script>
+    <!-- PWA 1-Click Mobile App Installer -->
+    <script src="js/pwa-install.js?v=3.5"></script>
+    <!-- Apple VisionOS 3D Spatial Interactive Engine -->
+    <script src="js/spatial.js?v=8.0"></script>
+</body>
+</html>

@@ -212,6 +212,10 @@
                 <i class="fa-solid fa-person-biking" style="color: #0284c7;"></i> Delivery Partners & Fleet
                 <span id="admin-delivery-badge" style="display: none; background: #0284c7; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
             </button>
+            <button class="admin-tab-btn" data-tab="printouts" id="tab-btn-printouts" style="background: rgba(2, 132, 199, 0.08); border-color: #0284c7; color: #0284c7; font-weight: 700;">
+                <i class="fa-solid fa-print" style="color: #0284c7;"></i> 🖨️ Express Printouts
+                <span id="admin-printouts-badge" style="display: none; background: #0284c7; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
+            </button>
         </div>
 
         <!-- TAB 1: LIVE ORDERS SECTION -->
@@ -1125,6 +1129,56 @@
                             </tr>
                         </thead>
                         <tbody id="admin-delivery-logs-tbody">
+                            <!-- Populated dynamically by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 10: EXPRESS PRINTOUTS QUEUE SECTION -->
+        <section id="admin-printouts-section" style="display: none;">
+            <div class="card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 1.5rem; border-radius: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="font-size: 1.35rem; font-weight: 800; color: white; margin: 0 0 4px 0;">
+                            <i class="fa-solid fa-print"></i> Campus Express Printout & Assignment Orders
+                        </h2>
+                        <p style="margin: 0; opacity: 0.9; font-size: 0.85rem;">
+                            Stationery Counter live queue. Download student assignment files and update printing progress in real-time.
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-sm" onclick="loadAdminPrintouts()" style="background: white; color: #0284c7; font-weight: 700; border: none;">
+                        <i class="fa-solid fa-rotate-right"></i> Refresh Jobs
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+                    <h3 style="font-size: 1.1rem; color: #0f172a; margin: 0; font-weight: 800;">
+                        Active Print Requests
+                    </h3>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                        <input type="text" id="admin-print-search" class="search-input" placeholder="Search by PIN, Student Name, Roll No..." oninput="renderAdminPrintoutsTable()" style="max-width: 280px; font-size: 0.82rem; padding: 0.4rem 0.75rem;">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Token / PIN</th>
+                                <th>Student Details</th>
+                                <th>Document</th>
+                                <th>Specs</th>
+                                <th>Slot</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-printouts-tbody">
                             <!-- Populated dynamically by admin.js -->
                         </tbody>
                     </table>

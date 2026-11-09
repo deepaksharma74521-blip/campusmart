@@ -315,6 +315,43 @@ const api = {
         }
     },
 
+    // 2.9 Campus Express Printouts & Assignment Hub
+    async submitPrintOrder(formData) {
+        try {
+            const res = await fetch(`${API_BASE}/api/print/order`, {
+                method: 'POST',
+                body: formData
+            });
+            return await res.json();
+        } catch (err) {
+            console.error('submitPrintOrder error:', err);
+            return { success: false, message: 'Could not connect to stationery print server.' };
+        }
+    },
+
+    async getPrintJobs(userId = '') {
+        try {
+            const url = userId ? `${API_BASE}/api/print/jobs?userId=${encodeURIComponent(userId)}` : `${API_BASE}/api/print/jobs`;
+            const res = await fetch(url);
+            return await res.json();
+        } catch (err) {
+            return { success: false, jobs: [] };
+        }
+    },
+
+    async updatePrintJobStatus(jobId, status) {
+        try {
+            const res = await fetch(`${API_BASE}/api/print/jobs/${encodeURIComponent(jobId)}/status`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+            });
+            return await res.json();
+        } catch (err) {
+            return { success: false };
+        }
+    },
+
     async seedDishes() {
         const res = await fetch(`${API_BASE}/api/menu/seed`, {
             method: 'POST'

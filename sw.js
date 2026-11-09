@@ -1,11 +1,12 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v15.0-voice-removed';
+const CACHE_NAME = 'campus-mart-v16.0-printouts';
 const CORE_ASSETS = [
   '/',
   '/index.html',
   '/menu.html',
   '/cart.html',
   '/orders.html',
+  '/print.html',
   '/tokens.html',
   '/marketing_kit.html',
   '/delivery.html',
@@ -15,6 +16,7 @@ const CORE_ASSETS = [
   '/profile.html',
   '/css/style.css',
   '/js/api.js',
+  '/js/print.js',
   '/js/menu.js',
   '/js/orders.js',
   '/js/cart.js',

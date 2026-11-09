@@ -610,6 +610,9 @@ async function loadAdminDashboardData() {
 
         // 7. Fetch Delivery Fleet Dashboard
         await loadAdminDeliveryDashboard();
+
+        // 8. Fetch Express Printout Jobs
+        await loadAdminPrintouts();
     } catch (err) {
         console.error('Error fetching admin data:', err);
     }
@@ -3298,6 +3301,7 @@ function switchAdminTab(tabName) {
     const parcelsSection = document.getElementById('admin-parcels-section');
     const commissionsSection = document.getElementById('admin-commissions-section');
     const deliverySection = document.getElementById('admin-delivery-section');
+    const printoutsSection = document.getElementById('admin-printouts-section');
 
     if (ordersSection) ordersSection.style.display = (tabName === 'orders' ? 'block' : 'none');
     if (menuSection) menuSection.style.display = (tabName === 'menu' ? 'block' : 'none');
@@ -3308,6 +3312,7 @@ function switchAdminTab(tabName) {
     if (parcelsSection) parcelsSection.style.display = (tabName === 'parcels' ? 'block' : 'none');
     if (commissionsSection) commissionsSection.style.display = (tabName === 'commissions' ? 'block' : 'none');
     if (deliverySection) deliverySection.style.display = (tabName === 'delivery' ? 'block' : 'none');
+    if (printoutsSection) printoutsSection.style.display = (tabName === 'printouts' ? 'block' : 'none');
 
     if (tabName === 'price-manager') {
         loadPriceManagerTable();
@@ -3323,6 +3328,8 @@ function switchAdminTab(tabName) {
         loadCommissionsLedger();
     } else if (tabName === 'delivery') {
         loadAdminDeliveryDashboard();
+    } else if (tabName === 'printouts') {
+        loadAdminPrintouts();
     }
 }
 
@@ -4622,3 +4629,143 @@ async function handleDeployLive() {
         showToast('Error syncing with live server.', 'error');
     }
 }
+
+// ==========================================================================
+// 11. CAMPUS EXPRESS PRINTOUTS MANAGEMENT
+// ==========================================================================
+
+let adminPrintJobs = [];
+
+async function loadAdminPrintouts() {
+    try {
+        const res = await api.getPrintJobs();
+        if (res && res.success && Array.isArray(res.jobs)) {
+            adminPrintJobs = res.jobs;
+            const activeJobs = adminPrintJobs.filter(j => j.status !== 'Completed');
+            const badge = document.getElementById('admin-printouts-badge');
+            if (badge) {
+                badge.textContent = activeJobs.length;
+                badge.style.display = activeJobs.length > 0 ? 'inline-block' : 'none';
+            }
+            renderAdminPrintoutsTable();
+        }
+    } catch (e) {
+        console.error('Error loading admin printouts:', e);
+    }
+}
+
+function renderAdminPrintoutsTable() {
+    const tbody = document.getElementById('admin-printouts-tbody');
+    if (!tbody) return;
+
+    const searchTerm = (document.getElementById('admin-print-search')?.value || '').toLowerCase().trim();
+
+    const filteredJobs = adminPrintJobs.filter(j => {
+        if (!searchTerm) return true;
+        const pin = String(j.pickupOtp || '').toLowerCase();
+        const jobId = String(j.jobId || '').toLowerCase();
+        const student = String(j.studentName || '').toLowerCase();
+        const roll = String(j.studentRoll || '').toLowerCase();
+        const phone = String(j.studentPhone || '').toLowerCase();
+        const doc = String(j.originalFilename || j.filename || '').toLowerCase();
+        return pin.includes(searchTerm) || jobId.includes(searchTerm) || student.includes(searchTerm) || roll.includes(searchTerm) || phone.includes(searchTerm) || doc.includes(searchTerm);
+    });
+
+    if (filteredJobs.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="8" style="text-align: center; padding: 2.5rem; color: #94a3b8;">
+                    <i class="fa-solid fa-print" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 0.5rem; display: block;"></i>
+                    No printout orders found matching your search.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tbody.innerHTML = filteredJobs.map(job => {
+        const status = job.status || 'Received';
+        const docName = job.originalFilename || job.filename || 'Document.pdf';
+        const bindingName = job.binding === 'spiral' ? 'Spiral' : (job.binding === 'hardcover' ? 'Hardcover' : (job.binding === 'none' ? 'Loose' : 'Stapled'));
+        const colorBadge = job.colorMode === 'color' 
+            ? '<span style="background: #ecfdf5; color: #059669; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 0.72rem;">Color</span>'
+            : '<span style="background: #f1f5f9; color: #475569; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 0.72rem;">B&W</span>';
+        const sideBadge = job.printSide === 'single' ? 'Single sided' : 'Double sided';
+        const downloadUrl = `${API_BASE}/api/print/download/${job.jobId || job._id}`;
+
+        return `
+            <tr>
+                <td>
+                    <div style="font-weight: 800; color: #0284c7; font-size: 0.92rem;">#${job.jobId || 'PRNT'}</div>
+                    <div style="font-family: monospace; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; color: #15803d; background: #f0fdf4; padding: 2px 6px; border-radius: 6px; display: inline-block; margin-top: 3px;">
+                        PIN: ${job.pickupOtp || '----'}
+                    </div>
+                </td>
+                <td>
+                    <div style="font-weight: 700; color: #0f172a;">${job.studentName || 'Student'}</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">
+                        <a href="tel:${job.studentPhone}" style="color: #0284c7; text-decoration: none;"><i class="fa-solid fa-phone"></i> ${job.studentPhone || 'N/A'}</a>
+                    </div>
+                    <div style="font-size: 0.72rem; color: #94a3b8;">${job.studentDept || 'CCSIT'} • Roll: ${job.studentRoll || 'N/A'}</div>
+                </td>
+                <td>
+                    <div style="font-weight: 600; font-size: 0.85rem; max-width: 220px; word-break: break-all;">
+                        📄 ${docName}
+                    </div>
+                    <div style="margin-top: 6px;">
+                        <a href="${downloadUrl}" target="_blank" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 3px 8px; color: #0284c7; border-color: #93c5fd; display: inline-flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Download File
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #334155;">
+                        ${job.pageCount || 1} pages &bull; ${colorBadge}
+                    </div>
+                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">
+                        ${sideBadge} &bull; ${job.copies || 1} copy (${bindingName})
+                    </div>
+                    ${job.notes ? `<div style="font-size: 0.72rem; color: #d97706; background: #fffbeb; padding: 2px 6px; border-radius: 4px; margin-top: 4px;">Note: ${job.notes}</div>` : ''}
+                </td>
+                <td>
+                    <span style="font-size: 0.78rem; font-weight: 600; color: #475569;">
+                        ${job.pickupSlot || 'Immediate'}
+                    </span>
+                </td>
+                <td>
+                    <div style="font-weight: 800; font-size: 1rem; color: #0f172a;">
+                        ₹${job.totalAmount || 0}
+                    </div>
+                </td>
+                <td>
+                    <select onchange="handlePrintJobStatusChange('${job.jobId || job._id}', this.value)" class="form-select no-icon" style="font-size: 0.78rem; padding: 4px 8px; font-weight: 700; border-radius: 6px;">
+                        <option value="Received" ${status === 'Received' ? 'selected' : ''}>⏳ Received</option>
+                        <option value="Printing" ${status === 'Printing' ? 'selected' : ''}>🖨️ Printing</option>
+                        <option value="Ready" ${(status === 'Ready' || status === 'Ready for Pickup') ? 'selected' : ''}>✅ Ready for Pickup</option>
+                        <option value="Completed" ${status === 'Completed' ? 'selected' : ''}>📦 Completed</option>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-outline" onclick="handlePrintJobStatusChange('${job.jobId || job._id}', 'Completed')" style="font-size: 0.75rem; padding: 4px 8px; border-color: #10b981; color: #047857;" title="Mark as Delivered">
+                        <i class="fa-solid fa-check"></i> Done
+                    </button>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+async function handlePrintJobStatusChange(jobId, newStatus) {
+    try {
+        const res = await api.updatePrintJobStatus(jobId, newStatus);
+        if (res && res.success) {
+            showToast(`Print job #${jobId} status updated to "${newStatus}"!`, 'success');
+            loadAdminPrintouts();
+        } else {
+            showToast(res.message || 'Failed to update job status.', 'error');
+        }
+    } catch(err) {
+        showToast('Network error while updating job.', 'error');
+    }
+}
+

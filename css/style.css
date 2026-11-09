@@ -4434,4 +4434,32 @@ body.theme-night .mobile-nav-item.active {
     font-weight: 600;
 }
 
+/* --- Campus Express Printouts & Assignment Hub --- */
+@media screen and (min-width: 992px) {
+    .print-layout-grid {
+        grid-template-columns: 1fr 380px !important;
+        align-items: start;
+    }
+}
+
+.print-upload-box:hover {
+    border-color: #0284c7 !important;
+    background: #e0f2fe !important;
+}
+
+.print-opt-card {
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.print-opt-card:active {
+    transform: scale(0.97);
+}
+
+.print-opt-card.active {
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+
 

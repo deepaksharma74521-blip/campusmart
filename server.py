@@ -344,6 +344,7 @@ class LocalMongoDB:
         self.parcels = LocalMongoCollection("parcels")
         self.otps = LocalMongoCollection("otps")
         self.squadOrders = LocalMongoCollection("squadOrders")
+        self.printJobs = LocalMongoCollection("printJobs")
 
     def __getattr__(self, name):
         col = LocalMongoCollection(name)
@@ -2649,6 +2650,154 @@ def get_leaderboard():
         leaderboard.sort(key=lambda x: x["score"], reverse=True)
 
     return jsonify({"success": True, "leaderboard": leaderboard[:10]}), 200
+
+
+# ------------------------------------------------------------------------------
+# 7. CAMPUS EXPRESS PRINTOUT & ASSIGNMENT HUB REST API
+# ------------------------------------------------------------------------------
+UPLOAD_PRINT_DIR = os.path.join(os.path.dirname(__file__), "uploads", "printouts")
+os.makedirs(UPLOAD_PRINT_DIR, exist_ok=True)
+
+@app.route("/api/print/order", methods=["POST"])
+def create_print_order():
+    try:
+        import random
+        from werkzeug.utils import secure_filename
+        
+        file = request.files.get("file")
+        form_data = request.form if request.form else (request.json or {})
+        
+        filename = ""
+        file_path = ""
+        original_filename = ""
+        
+        if file and file.filename:
+            original_filename = file.filename
+            clean_name = secure_filename(file.filename)
+            unique_prefix = f"doc_{int(datetime.now().timestamp())}_{random.randint(100, 999)}"
+            filename = f"{unique_prefix}_{clean_name}"
+            file_path = os.path.join(UPLOAD_PRINT_DIR, filename)
+            file.save(file_path)
+        else:
+            original_filename = form_data.get("filename", "assignment_document.pdf")
+            filename = original_filename
+            
+        random_digits = random.randint(1000, 9999)
+        job_id = f"PRNT-{random.randint(100, 999)}"
+        pickup_otp = str(random_digits)
+        
+        page_count = int(form_data.get("pageCount", 1))
+        color_mode = form_data.get("colorMode", "bw")
+        print_side = form_data.get("printSide", "double")
+        copies = int(form_data.get("copies", 1))
+        binding = form_data.get("binding", "staple")
+        notes = form_data.get("notes", "").strip()
+        pickup_slot = form_data.get("pickupSlot", "Immediate / In 15 Mins")
+        
+        price_per_page = 10.0 if color_mode == "color" else 2.0
+        sheets = page_count if print_side == "single" else ((page_count + 1) // 2)
+        base_print_cost = page_count * price_per_page * copies
+        
+        binding_cost = 0.0
+        if binding == "spiral":
+            binding_cost = 25.0 * copies
+        elif binding == "hardcover":
+            binding_cost = 120.0 * copies
+            
+        total_amount = round(base_print_cost + binding_cost, 2)
+        
+        user_id = form_data.get("userId", "")
+        student_name = form_data.get("studentName", "Student").strip()
+        student_phone = form_data.get("studentPhone", "").strip()
+        student_dept = form_data.get("studentDept", "CCSIT").strip()
+        student_roll = form_data.get("studentRoll", "N/A").strip()
+        
+        print_doc = {
+            "jobId": job_id,
+            "pickupOtp": pickup_otp,
+            "userId": user_id,
+            "studentName": student_name,
+            "studentPhone": student_phone,
+            "studentDept": student_dept,
+            "studentRoll": student_roll,
+            "originalFilename": original_filename,
+            "filename": filename,
+            "pageCount": page_count,
+            "sheetsCount": sheets,
+            "colorMode": color_mode,
+            "printSide": print_side,
+            "copies": copies,
+            "binding": binding,
+            "notes": notes,
+            "pickupSlot": pickup_slot,
+            "basePrintCost": base_print_cost,
+            "bindingCost": binding_cost,
+            "totalAmount": total_amount,
+            "status": "Received",
+            "createdAt": datetime.now().isoformat(),
+            "updatedAt": datetime.now().isoformat()
+        }
+        
+        db.printJobs.insert_one(print_doc)
+        
+        return jsonify({
+            "success": True,
+            "message": "Assignment print job queued successfully!",
+            "jobId": job_id,
+            "pickupOtp": pickup_otp,
+            "totalAmount": total_amount,
+            "job": format_doc(print_doc)
+        }), 201
+    except Exception as e:
+        print("[ERROR] print order failed:", e)
+        return jsonify({"success": False, "message": str(e)}), 500
+
+
+@app.route("/api/print/jobs", methods=["GET"])
+def get_print_jobs():
+    user_id = request.args.get("userId")
+    all_jobs = db.printJobs.find({})
+    if user_id:
+        user_jobs = [j for j in all_jobs if str(j.get("userId")) == str(user_id)]
+        user_jobs.sort(key=lambda x: x.get("createdAt", ""), reverse=True)
+        return jsonify({"success": True, "jobs": [format_doc(j) for j in user_jobs]}), 200
+        
+    all_jobs.sort(key=lambda x: x.get("createdAt", ""), reverse=True)
+    return jsonify({"success": True, "jobs": [format_doc(j) for j in all_jobs]}), 200
+
+
+@app.route("/api/print/jobs/<job_id>/status", methods=["POST"])
+def update_print_job_status(job_id):
+    data = request.json or {}
+    new_status = data.get("status", "Printing")
+    
+    job = db.printJobs.find_one({"jobId": job_id}) or db.printJobs.find_one({"_id": job_id})
+    if not job:
+        return jsonify({"success": False, "message": "Job not found."}), 404
+        
+    db.printJobs.update_one(
+        {"_id": job["_id"]},
+        {"$set": {"status": new_status, "updatedAt": datetime.now().isoformat()}}
+    )
+    return jsonify({"success": True, "message": f"Job status updated to {new_status}."}), 200
+
+
+@app.route("/api/print/download/<job_id>", methods=["GET"])
+def download_print_file(job_id):
+    job = db.printJobs.find_one({"jobId": job_id}) or db.printJobs.find_one({"_id": job_id})
+    if not job:
+        return jsonify({"success": False, "message": "Job not found."}), 404
+    
+    filename = job.get("filename")
+    if not filename:
+        return jsonify({"success": False, "message": "File not associated with this job."}), 404
+        
+    file_path = os.path.join(UPLOAD_PRINT_DIR, filename)
+    if not os.path.exists(file_path):
+        return jsonify({"success": False, "message": "File expired or not found on server."}), 404
+        
+    from flask import send_file
+    return send_file(file_path, as_attachment=True, download_name=job.get("originalFilename", filename))
 
 
 @app.route("/api/admin/staff", methods=["GET"])
