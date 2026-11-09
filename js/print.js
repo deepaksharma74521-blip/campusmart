@@ -13,11 +13,19 @@ let printConfig = {
     binding: 'staple' // 'staple', 'spiral', 'hardcover', 'none'
 };
 
+let knownPrintStatuses = {};
+let printPollInterval = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     initPrintDropzone();
     initPrintUserData();
     calculatePrintCost();
     loadMyPrintJobs();
+
+    // Auto-poll printout statuses every 5 seconds
+    if (!printPollInterval) {
+        printPollInterval = setInterval(loadMyPrintJobs, 5000);
+    }
 });
 
 // 1. User Profile Auto-fill
@@ -471,6 +479,31 @@ async function loadMyPrintJobs() {
         `;
         return;
     }
+
+    // Check status transitions and trigger audio
+    jobs.forEach(job => {
+        const jid = job.jobId || job._id;
+        const currentSt = job.status || 'Received';
+        const prevSt = knownPrintStatuses[jid];
+
+        if (prevSt && prevSt !== currentSt) {
+            if (window.soundEngine) {
+                if (currentSt === 'Ready' || currentSt === 'Ready for Pickup') {
+                    window.soundEngine.playIncomingOrderBell();
+                } else {
+                    window.soundEngine.playStatusUpdated();
+                }
+            }
+            if (window.dynamicIsland && typeof window.dynamicIsland.triggerNotification === 'function') {
+                window.dynamicIsland.triggerNotification({
+                    title: `🖨️ Order #${jid} is ${currentSt}!`,
+                    subtitle: `PIN: ${job.pickupOtp || ''} • ${job.shopName || 'Stationery'}`,
+                    icon: 'fa-solid fa-print'
+                });
+            }
+        }
+        knownPrintStatuses[jid] = currentSt;
+    });
 
     container.innerHTML = jobs.map(job => {
         const status = job.status || 'Received';

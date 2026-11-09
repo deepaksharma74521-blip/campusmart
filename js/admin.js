@@ -1307,6 +1307,13 @@ async function updateOrderStatus(orderId, newStatus) {
         const res = await api.updateOrderStatus(orderId, newStatus);
         if (res.success) {
             const shortCode = String(orderId).slice(-4);
+            if (window.soundEngine) {
+                if (newStatus === 'Ready') {
+                    window.soundEngine.playIncomingOrderBell();
+                } else {
+                    window.soundEngine.playStatusUpdated();
+                }
+            }
             if (newStatus === 'Ready') {
                 if (typeof playOrderReadyChime === 'function') {
                     playOrderReadyChime();
@@ -4635,11 +4642,17 @@ async function handleDeployLive() {
 // ==========================================================================
 
 let adminPrintJobs = [];
+let isPrintFirstLoad = true;
 
 async function loadAdminPrintouts() {
     try {
         const res = await api.getPrintJobs();
         if (res && res.success && Array.isArray(res.jobs)) {
+            if (!isPrintFirstLoad && res.jobs.length > adminPrintJobs.length) {
+                if (window.soundEngine) window.soundEngine.playIncomingOrderBell();
+                showToast(`🖨️ New Printout Order Received! (#${res.jobs[0]?.jobId || 'PRNT'})`, 'info', 'New Print Job');
+            }
+            isPrintFirstLoad = false;
             adminPrintJobs = res.jobs;
             const activeJobs = adminPrintJobs.filter(j => j.status !== 'Completed');
             
@@ -4781,6 +4794,13 @@ async function handlePrintJobStatusChange(jobId, newStatus) {
     try {
         const res = await api.updatePrintJobStatus(jobId, newStatus);
         if (res && res.success) {
+            if (window.soundEngine) {
+                if (newStatus === 'Ready' || newStatus === 'Ready for Pickup') {
+                    window.soundEngine.playIncomingOrderBell();
+                } else {
+                    window.soundEngine.playStatusUpdated();
+                }
+            }
             showToast(`Print job #${jobId} status updated to "${newStatus}"!`, 'success');
             loadAdminPrintouts();
         } else {

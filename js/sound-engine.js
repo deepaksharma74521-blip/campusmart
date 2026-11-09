@@ -146,6 +146,89 @@
 
                 this.vibrate([40, 60, 50, 40, 80]);
             } catch (e) {}
+        },
+
+        playOrderSuccessSound() {
+            this.playCelebration();
+        },
+
+        playOrderPlaced() {
+            this.playCelebration();
+        },
+
+        playItemAddedSound() {
+            this.playPop();
+        },
+
+        // 4. Harmonic Rising Chime on Status Update (Received -> Preparing -> Ready)
+        playStatusUpdated() {
+            if (isMuted) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            try {
+                const now = ctx.currentTime;
+                // Harmonic 3-tone: F5 (698Hz) -> A5 (880Hz) -> C6 (1046Hz)
+                const notes = [
+                    { freq: 698.46, time: 0.00, dur: 0.20, vol: 0.25 },
+                    { freq: 880.00, time: 0.08, dur: 0.22, vol: 0.28 },
+                    { freq: 1046.50, time: 0.16, dur: 0.38, vol: 0.30 }
+                ];
+
+                notes.forEach(n => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(n.freq, now + n.time);
+
+                    gain.gain.setValueAtTime(n.vol, now + n.time);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + n.time + n.dur);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    osc.start(now + n.time);
+                    osc.stop(now + n.time + n.dur);
+                });
+
+                this.vibrate([30, 40, 60]);
+            } catch (e) {}
+        },
+
+        // 5. Dual Bell Chime on New Incoming Order at Shopkeeper Counter
+        playIncomingOrderBell() {
+            if (isMuted) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            try {
+                const now = ctx.currentTime;
+                // Dual Counter Bell: 987Hz (B5) -> 1318Hz (High E6)
+                const bells = [
+                    { freq: 987.77, time: 0.00, dur: 0.32, vol: 0.32 },
+                    { freq: 1318.51, time: 0.16, dur: 0.55, vol: 0.36 }
+                ];
+
+                bells.forEach(b => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(b.freq, now + b.time);
+
+                    gain.gain.setValueAtTime(b.vol, now + b.time);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + b.time + b.dur);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    osc.start(now + b.time);
+                    osc.stop(now + b.time + b.dur);
+                });
+
+                this.vibrate([40, 80, 60]);
+            } catch (e) {}
         }
     };
 
