@@ -175,9 +175,10 @@ def admin_required(f):
 
 @app.before_request
 def security_firewall():
-    # Bypass static web assets and media files
+    # Bypass static web assets, admin routes, and media files from flood checks
     p = request.path
     if (p.startswith("/assets") or p.startswith("/css") or p.startswith("/js") or 
+        p.startswith("/api/admin") or p.startswith("/api/print") or
         p.endswith((".png", ".jpg", ".jpeg", ".mp4", ".apk", ".ico", ".json", ".svg", ".woff2"))):
         return None
 
@@ -186,7 +187,8 @@ def security_firewall():
     if "," in client_ip:
         client_ip = client_ip.split(",")[0].strip()
 
-    if security_limiter.is_ip_flooding(client_ip, max_requests=120, window_secs=60):
+    # Campus & Admin friendly rate limit: 1000 requests per minute
+    if security_limiter.is_ip_flooding(client_ip, max_requests=1000, window_secs=60):
         return jsonify({
             "success": False,
             "message": "⚠️ Security Alert: High request rate detected. Please slow down."
@@ -2711,11 +2713,15 @@ def create_print_order():
         student_phone = form_data.get("studentPhone", "").strip()
         student_dept = form_data.get("studentDept", "CCSIT").strip()
         student_roll = form_data.get("studentRoll", "N/A").strip()
+        shop_id = form_data.get("shopId", "shop-10").strip()
+        shop_name = form_data.get("shopName", "Ahuja Photo Shop").strip()
         
         print_doc = {
             "jobId": job_id,
             "pickupOtp": pickup_otp,
             "userId": user_id,
+            "shopId": shop_id,
+            "shopName": shop_name,
             "studentName": student_name,
             "studentPhone": student_phone,
             "studentDept": student_dept,
@@ -2745,6 +2751,8 @@ def create_print_order():
             "message": "Assignment print job queued successfully!",
             "jobId": job_id,
             "pickupOtp": pickup_otp,
+            "shopId": shop_id,
+            "shopName": shop_name,
             "totalAmount": total_amount,
             "job": format_doc(print_doc)
         }), 201
@@ -2756,11 +2764,13 @@ def create_print_order():
 @app.route("/api/print/jobs", methods=["GET"])
 def get_print_jobs():
     user_id = request.args.get("userId")
+    shop_id = request.args.get("shopId")
     all_jobs = db.printJobs.find({})
+    
     if user_id:
-        user_jobs = [j for j in all_jobs if str(j.get("userId")) == str(user_id)]
-        user_jobs.sort(key=lambda x: x.get("createdAt", ""), reverse=True)
-        return jsonify({"success": True, "jobs": [format_doc(j) for j in user_jobs]}), 200
+        all_jobs = [j for j in all_jobs if str(j.get("userId")) == str(user_id)]
+    elif shop_id and shop_id != "All":
+        all_jobs = [j for j in all_jobs if str(j.get("shopId")) == str(shop_id)]
         
     all_jobs.sort(key=lambda x: x.get("createdAt", ""), reverse=True)
     return jsonify({"success": True, "jobs": [format_doc(j) for j in all_jobs]}), 200

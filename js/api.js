@@ -329,9 +329,13 @@ const api = {
         }
     },
 
-    async getPrintJobs(userId = '') {
+    async getPrintJobs(userId = '', shopId = '') {
         try {
-            const url = userId ? `${API_BASE}/api/print/jobs?userId=${encodeURIComponent(userId)}` : `${API_BASE}/api/print/jobs`;
+            let url = `${API_BASE}/api/print/jobs`;
+            const params = [];
+            if (userId) params.push(`userId=${encodeURIComponent(userId)}`);
+            if (shopId && shopId !== 'All') params.push(`shopId=${encodeURIComponent(shopId)}`);
+            if (params.length > 0) url += `?${params.join('&')}`;
             const res = await fetch(url);
             return await res.json();
         } catch (err) {

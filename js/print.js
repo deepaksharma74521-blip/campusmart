@@ -210,6 +210,19 @@ function adjustCopies(delta) {
     calculatePrintCost();
 }
 
+function handlePrintShopChange() {
+    const select = document.getElementById('print-shop-select');
+    if (!select) return;
+    const selectedOpt = select.options[select.selectedIndex];
+    const shopName = selectedOpt?.getAttribute('data-name') || select.value;
+
+    const sumShop = document.getElementById('sum-shop-label');
+    if (sumShop) sumShop.textContent = shopName;
+
+    const counterNote = document.getElementById('sum-counter-pickup-text');
+    if (counterNote) counterNote.textContent = `${shopName}`;
+}
+
 // 4. Cost Calculation Matrix
 function calculatePrintCost() {
     const pages = Math.max(1, parseInt(document.getElementById('print-page-count')?.value) || 1);
@@ -307,9 +320,16 @@ async function submitPrintOrder() {
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending Order to Counter...`;
     }
 
+    const shopSelect = document.getElementById('print-shop-select');
+    const shopId = shopSelect ? shopSelect.value : 'shop-10';
+    const shopOpt = shopSelect ? shopSelect.options[shopSelect.selectedIndex] : null;
+    const shopName = shopOpt?.getAttribute('data-name') || 'Ahuja Photo Shop';
+
     const formData = new FormData();
     formData.append('file', printConfig.file);
     formData.append('filename', printConfig.file.name);
+    formData.append('shopId', shopId);
+    formData.append('shopName', shopName);
     formData.append('pageCount', printConfig.pages);
     formData.append('colorMode', printConfig.colorMode);
     formData.append('printSide', printConfig.printSide);
@@ -344,6 +364,8 @@ async function submitPrintOrder() {
             saveLocalPrintJob({
                 jobId: res.jobId,
                 pickupOtp: res.pickupOtp,
+                shopId: shopId,
+                shopName: shopName,
                 studentName: studentName,
                 filename: printConfig.file.name,
                 pages: printConfig.pages,
@@ -357,9 +379,11 @@ async function submitPrintOrder() {
             const modal = document.getElementById('print-success-modal');
             const otpEl = document.getElementById('modal-print-otp');
             const jobEl = document.getElementById('modal-print-job-id');
+            const shopModalEl = document.getElementById('modal-print-shop-name');
 
             if (otpEl) otpEl.textContent = res.pickupOtp;
             if (jobEl) jobEl.textContent = `Token #${res.jobId} • ₹${res.totalAmount}`;
+            if (shopModalEl) shopModalEl.textContent = `🏬 Collect at: ${res.shopName || shopName}`;
             if (modal) {
                 modal.classList.add('active');
                 modal.classList.add('show');
@@ -506,7 +530,7 @@ async function loadMyPrintJobs() {
 
                 <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 0.65rem;">
                     <span><i class="fa-regular fa-clock"></i> ${dateStr}</span>
-                    <span style="color: #10b981; font-weight: 700;"><i class="fa-solid fa-location-dot"></i> Gate 1 Stationery</span>
+                    <span style="color: #0284c7; font-weight: 700;"><i class="fa-solid fa-store"></i> ${job.shopName || 'Stationery Shop'}</span>
                 </div>
             </div>
         `;

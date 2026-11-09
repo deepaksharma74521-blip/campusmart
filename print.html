@@ -138,7 +138,19 @@
                     <h3 style="font-size: 1.15rem; color: var(--secondary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 8px;">
                         <i class="fa-solid fa-sliders" style="color: #0284c7;"></i> Step 2: Custom Print Specifications
                     </h3>
-                    <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 1.25rem;">Choose print color, paper side, copies, and spiral binding.</p>
+                    <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 1.25rem;">Choose stationery shop, print color, paper side, copies, and spiral binding.</p>
+
+                    <!-- Option 0: Choose Stationery Counter -->
+                    <div style="margin-bottom: 1.25rem;">
+                        <label style="font-size: 0.84rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; display: block;">
+                            <i class="fa-solid fa-store" style="color: #0284c7;"></i> Select Stationery / Xerox Shop for Pickup:
+                        </label>
+                        <select id="print-shop-select" class="form-select no-icon" onchange="handlePrintShopChange()" style="font-size: 0.88rem; font-weight: 700; border: 2px solid #93c5fd; background: #f0f9ff; color: #0f172a;">
+                            <option value="shop-10" data-name="Ahuja Photo Shop" selected>📚 Ahuja Photo Shop (Gate 1 Counter)</option>
+                            <option value="shop-11" data-name="Durga Photo Shop">📚 Durga Photo Shop (Central Canteen Complex)</option>
+                            <option value="shop-13" data-name="Gupta Photo Shop">📚 Gupta Photo Shop (Near CCSIT Block)</option>
+                        </select>
+                    </div>
 
                     <!-- Option 1: Color Mode -->
                     <div style="margin-bottom: 1.25rem;">
@@ -262,6 +274,10 @@
                     </h3>
 
                     <div class="summary-row">
+                        <span>Pickup Counter:</span>
+                        <span id="sum-shop-label" style="font-weight: 700; color: #0284c7;">Ahuja Photo Shop</span>
+                    </div>
+                    <div class="summary-row">
                         <span>Pages &bull; Color:</span>
                         <span id="sum-pages-label" style="font-weight: 600;">1 page (B&amp;W)</span>
                     </div>
@@ -290,7 +306,7 @@
                     </button>
 
                     <div style="margin-top: 1rem; text-align: center; font-size: 0.76rem; color: #64748b; line-height: 1.4;">
-                        <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Collect at <strong>Gate 1 Stationery Counter</strong> using your 4-digit Pickup PIN.
+                        <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Collect at <strong id="sum-counter-pickup-text">Ahuja Photo Shop (Gate 1)</strong> using your 4-digit Pickup PIN.
                     </div>
                 </div>
             </div>
@@ -359,6 +375,7 @@
                 <div style="font-size: 0.74rem; font-weight: 800; color: #166534; text-transform: uppercase; letter-spacing: 1px;">COUNTER PICKUP PIN</div>
                 <div id="modal-print-otp" style="font-family: monospace; font-size: 2.2rem; font-weight: 900; letter-spacing: 6px; color: #15803d; margin: 4px 0;">1234</div>
                 <div id="modal-print-job-id" style="font-size: 0.8rem; font-weight: 700; color: #166534;">Token #PRNT-101</div>
+                <div id="modal-print-shop-name" style="font-size: 0.82rem; font-weight: 800; color: #0284c7; margin-top: 6px;">🏬 Collect at: Ahuja Photo Shop</div>
             </div>
 
             <button type="button" class="btn btn-primary btn-block btn-lg" onclick="closePrintSuccessModal()">

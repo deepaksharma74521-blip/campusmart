@@ -4642,11 +4642,20 @@ async function loadAdminPrintouts() {
         if (res && res.success && Array.isArray(res.jobs)) {
             adminPrintJobs = res.jobs;
             const activeJobs = adminPrintJobs.filter(j => j.status !== 'Completed');
+            
+            // Tab Badge
             const badge = document.getElementById('admin-printouts-badge');
             if (badge) {
                 badge.textContent = activeJobs.length;
                 badge.style.display = activeJobs.length > 0 ? 'inline-block' : 'none';
             }
+
+            // Super Admin Overview KPI Stat Card
+            const statTotalPrintouts = document.getElementById('stat-total-printouts');
+            if (statTotalPrintouts) {
+                statTotalPrintouts.textContent = adminPrintJobs.length;
+            }
+
             renderAdminPrintoutsTable();
         }
     } catch (e) {
@@ -4659,22 +4668,27 @@ function renderAdminPrintoutsTable() {
     if (!tbody) return;
 
     const searchTerm = (document.getElementById('admin-print-search')?.value || '').toLowerCase().trim();
+    const shopFilter = document.getElementById('admin-print-shop-filter')?.value || 'All';
 
     const filteredJobs = adminPrintJobs.filter(j => {
+        if (shopFilter !== 'All' && String(j.shopId) !== shopFilter) {
+            return false;
+        }
         if (!searchTerm) return true;
         const pin = String(j.pickupOtp || '').toLowerCase();
         const jobId = String(j.jobId || '').toLowerCase();
         const student = String(j.studentName || '').toLowerCase();
         const roll = String(j.studentRoll || '').toLowerCase();
         const phone = String(j.studentPhone || '').toLowerCase();
+        const shop = String(j.shopName || '').toLowerCase();
         const doc = String(j.originalFilename || j.filename || '').toLowerCase();
-        return pin.includes(searchTerm) || jobId.includes(searchTerm) || student.includes(searchTerm) || roll.includes(searchTerm) || phone.includes(searchTerm) || doc.includes(searchTerm);
+        return pin.includes(searchTerm) || jobId.includes(searchTerm) || student.includes(searchTerm) || roll.includes(searchTerm) || phone.includes(searchTerm) || shop.includes(searchTerm) || doc.includes(searchTerm);
     });
 
     if (filteredJobs.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="8" style="text-align: center; padding: 2.5rem; color: #94a3b8;">
+                <td colspan="9" style="text-align: center; padding: 2.5rem; color: #94a3b8;">
                     <i class="fa-solid fa-print" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 0.5rem; display: block;"></i>
                     No printout orders found matching your search.
                 </td>
@@ -4702,6 +4716,14 @@ function renderAdminPrintoutsTable() {
                     </div>
                 </td>
                 <td>
+                    <div style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">
+                        🏬 ${job.shopName || 'Ahuja Photo Shop'}
+                    </div>
+                    <div style="font-size: 0.72rem; color: #0284c7; font-weight: 600;">
+                        ID: ${job.shopId || 'shop-10'}
+                    </div>
+                </td>
+                <td>
                     <div style="font-weight: 700; color: #0f172a;">${job.studentName || 'Student'}</div>
                     <div style="font-size: 0.75rem; color: #64748b;">
                         <a href="tel:${job.studentPhone}" style="color: #0284c7; text-decoration: none;"><i class="fa-solid fa-phone"></i> ${job.studentPhone || 'N/A'}</a>
@@ -4709,7 +4731,7 @@ function renderAdminPrintoutsTable() {
                     <div style="font-size: 0.72rem; color: #94a3b8;">${job.studentDept || 'CCSIT'} • Roll: ${job.studentRoll || 'N/A'}</div>
                 </td>
                 <td>
-                    <div style="font-weight: 600; font-size: 0.85rem; max-width: 220px; word-break: break-all;">
+                    <div style="font-weight: 600; font-size: 0.85rem; max-width: 200px; word-break: break-all;">
                         📄 ${docName}
                     </div>
                     <div style="margin-top: 6px;">

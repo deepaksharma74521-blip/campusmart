@@ -176,6 +176,14 @@
                     <div class="stat-label">Catalog Items</div>
                 </div>
             </div>
+
+            <div class="stat-card" onclick="switchAdminTab('printouts')" style="cursor: pointer;" title="View Express Printouts">
+                <div class="stat-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fa-solid fa-print"></i></div>
+                <div class="stat-info">
+                    <div class="stat-val" id="stat-total-printouts">0</div>
+                    <div class="stat-label">Printout Orders 🖨️</div>
+                </div>
+            </div>
         </div>
 
         <!-- Admin Navigation Tabs -->
@@ -1159,8 +1167,14 @@
                     <h3 style="font-size: 1.1rem; color: #0f172a; margin: 0; font-weight: 800;">
                         Active Print Requests
                     </h3>
-                    <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <input type="text" id="admin-print-search" class="search-input" placeholder="Search by PIN, Student Name, Roll No..." oninput="renderAdminPrintoutsTable()" style="max-width: 280px; font-size: 0.82rem; padding: 0.4rem 0.75rem;">
+                    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                        <select id="admin-print-shop-filter" class="form-select no-icon" onchange="renderAdminPrintoutsTable()" style="max-width: 240px; font-size: 0.82rem; padding: 0.4rem 0.75rem; font-weight: 700;">
+                            <option value="All">🏪 All Stationery Counters (Master View)</option>
+                            <option value="shop-10">📚 Ahuja Photo Shop</option>
+                            <option value="shop-11">📚 Durga Photo Shop</option>
+                            <option value="shop-13">📚 Gupta Photo Shop</option>
+                        </select>
+                        <input type="text" id="admin-print-search" class="search-input" placeholder="Search by PIN, Student Name, Roll No..." oninput="renderAdminPrintoutsTable()" style="max-width: 250px; font-size: 0.82rem; padding: 0.4rem 0.75rem;">
                     </div>
                 </div>
 
@@ -1169,6 +1183,7 @@
                         <thead>
                             <tr>
                                 <th>Token / PIN</th>
+                                <th>Pickup Counter</th>
                                 <th>Student Details</th>
                                 <th>Document</th>
                                 <th>Specs</th>
