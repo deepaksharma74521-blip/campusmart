@@ -174,15 +174,23 @@ function renderShopUpiQrPreview(amount = 0) {
     if (noteEl) noteEl.textContent = `💡 ${currentShopPaymentInfo.qrNote || 'Scan with Google Pay / PhonePe / Paytm. Keep screenshot ready for pickup.'}`;
     if (amountBadge) amountBadge.textContent = `₹${amount}`;
 
+    const upiUrl = `upi://pay?pa=${currentShopPaymentInfo.upiId || 'campusmart@upi'}&pn=${encodeURIComponent(currentShopPaymentInfo.payeeName || currentShopPaymentInfo.shopName || 'Campus Counter')}&am=${amount}&cu=INR`;
+
     if (qrImgEl) {
         if (currentShopPaymentInfo.qrCodeImage && currentShopPaymentInfo.qrCodeImage.trim()) {
             qrImgEl.src = currentShopPaymentInfo.qrCodeImage;
         } else {
             // Dynamic UPI QR code with amount pre-filled
-            const upiUrl = `upi://pay?pa=${currentShopPaymentInfo.upiId || 'campusmart@upi'}&pn=${encodeURIComponent(currentShopPaymentInfo.payeeName || currentShopPaymentInfo.shopName || 'Campus Counter')}&am=${amount}&cu=INR`;
             qrImgEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
         }
     }
+
+    const phonepeBtn = document.getElementById('checkout-phonepe-btn');
+    const gpayBtn = document.getElementById('checkout-gpay-btn');
+    const paytmBtn = document.getElementById('checkout-paytm-btn');
+    if (phonepeBtn) phonepeBtn.href = upiUrl;
+    if (gpayBtn) gpayBtn.href = upiUrl;
+    if (paytmBtn) paytmBtn.href = upiUrl;
 }
 
 function copyCheckoutUpiId(btn) {
@@ -849,6 +857,23 @@ async function handlePlaceOrder(event) {
     const selectedDept = document.getElementById('cart-order-dept')?.value || user.department || 'College of Computing Sciences & IT (CCSIT)';
     const paymentUtr = document.getElementById('checkout-utr-input')?.value.trim() || '';
 
+    const isFaculty = user.userType === 'Faculty';
+
+    // Mandatory UPI Payment Verification Check (Zero unpaid orders allowed)
+    if (!isFaculty || paymentMethod.includes('UPI') || paymentMethod.includes('Instant') || paymentMethod.includes('Gateway') || paymentMethod.includes('Split')) {
+        if (!paymentUtr || paymentUtr.length < 6) {
+            alert('⚠️ Payment Verification Required!\n\nPlease scan the Shop UPI QR code or tap PhonePe / GPay / Paytm to pay, then enter your 12-digit UPI UTR / Transaction ID before placing the order.');
+            const utrEl = document.getElementById('checkout-utr-input');
+            if (utrEl) {
+                utrEl.focus();
+                utrEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                utrEl.style.borderColor = '#ef4444';
+                utrEl.style.backgroundColor = '#fef2f2';
+            }
+            return;
+        }
+    }
+
     if (placeBtn) {
         placeBtn.disabled = true;
         placeBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Pre-Order...';
@@ -1025,6 +1050,7 @@ function showOrderSuccessModal(orderId, amount, pickupSlot, advanceAmount = amou
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     loadCart();
+    loadCheckoutShopPaymentInfo();
     initCollegeClockInCart();
     detectLiveGpsLocation(false);
 });

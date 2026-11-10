@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v18.0-audio-engine';
+const CACHE_NAME = 'campus-mart-v19.0-mandatory-upi';
 const CORE_ASSETS = [
   '/',
   '/index.html',

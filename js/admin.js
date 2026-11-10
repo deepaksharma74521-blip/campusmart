@@ -4771,6 +4771,15 @@ function renderAdminPrintoutsTable() {
                     <div style="font-weight: 800; font-size: 1rem; color: #0f172a;">
                         ₹${job.totalAmount || 0}
                     </div>
+                    ${job.paymentUtr ? `
+                        <div class="badge" style="background: #ecfdf5; color: #047857; font-weight: 800; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; border: 1px solid #a7f3d0;" title="Verified UPI UTR">
+                            <i class="fa-solid fa-receipt"></i> UTR: ${job.paymentUtr}
+                        </div>
+                    ` : `
+                        <div class="badge" style="background: #f1f5f9; color: #64748b; font-weight: 700; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block;">
+                            ${job.paymentStatus || 'Paid via UPI'}
+                        </div>
+                    `}
                 </td>
                 <td>
                     <select onchange="handlePrintJobStatusChange('${job.jobId || job._id}', this.value)" class="form-select no-icon" style="font-size: 0.78rem; padding: 4px 8px; font-weight: 700; border-radius: 6px;">

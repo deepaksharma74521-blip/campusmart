@@ -2715,6 +2715,9 @@ def create_print_order():
         student_roll = form_data.get("studentRoll", "N/A").strip()
         shop_id = form_data.get("shopId", "shop-10").strip()
         shop_name = form_data.get("shopName", "Ahuja Photo Shop").strip()
+        payment_utr = form_data.get("paymentUtr", "").strip()
+        payment_status = form_data.get("paymentStatus", f"Paid via UPI (UTR: {payment_utr})" if payment_utr else "Paid via UPI")
+        payment_method = form_data.get("paymentMethod", "Instant UPI")
         
         print_doc = {
             "jobId": job_id,
@@ -2739,6 +2742,9 @@ def create_print_order():
             "basePrintCost": base_print_cost,
             "bindingCost": binding_cost,
             "totalAmount": total_amount,
+            "paymentUtr": payment_utr,
+            "paymentStatus": payment_status,
+            "paymentMethod": payment_method,
             "status": "Received",
             "createdAt": datetime.now().isoformat(),
             "updatedAt": datetime.now().isoformat()

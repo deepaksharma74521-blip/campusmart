@@ -218,6 +218,41 @@ function adjustCopies(delta) {
     calculatePrintCost();
 }
 
+const PRINT_SHOP_UPI_MAP = {
+    'shop-10': { upiId: 'ahujaphotoshop@upi', name: 'Ahuja Photo Shop' },
+    'shop-11': { upiId: 'durgaphotoshop@upi', name: 'Durga Photo Shop' },
+    'shop-13': { upiId: 'guptaphotoshop@upi', name: 'Gupta Photo Shop' }
+};
+
+function updatePrintUpiInfo(totalAmount) {
+    const shopSelect = document.getElementById('print-shop-select');
+    const shopId = shopSelect ? shopSelect.value : 'shop-10';
+    const shopOpt = shopSelect ? shopSelect.options[shopSelect.selectedIndex] : null;
+    const shopName = shopOpt?.getAttribute('data-name') || (PRINT_SHOP_UPI_MAP[shopId]?.name || 'Ahuja Photo Shop');
+    const upiId = PRINT_SHOP_UPI_MAP[shopId]?.upiId || 'campusmart@upi';
+
+    const amt = typeof totalAmount === 'number' ? totalAmount : (parseInt(document.getElementById('sum-total-amount')?.textContent?.replace(/[^0-9]/g, '')) || 2);
+
+    const payeeLabel = document.getElementById('print-upi-payee-name');
+    const badgeEl = document.getElementById('print-upi-amount-badge');
+    const qrImgEl = document.getElementById('print-upi-qr-img');
+    const phonepeBtn = document.getElementById('print-phonepe-btn');
+    const gpayBtn = document.getElementById('print-gpay-btn');
+    const paytmBtn = document.getElementById('print-paytm-btn');
+
+    if (payeeLabel) payeeLabel.textContent = shopName;
+    if (badgeEl) badgeEl.textContent = `₹${amt}`;
+
+    const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(shopName)}&am=${amt}&cu=INR&tn=${encodeURIComponent('Printout_' + shopName.replace(/\s+/g, ''))}`;
+
+    if (qrImgEl) {
+        qrImgEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+    }
+    if (phonepeBtn) phonepeBtn.href = upiUrl;
+    if (gpayBtn) gpayBtn.href = upiUrl;
+    if (paytmBtn) paytmBtn.href = upiUrl;
+}
+
 function handlePrintShopChange() {
     const select = document.getElementById('print-shop-select');
     if (!select) return;
@@ -229,6 +264,8 @@ function handlePrintShopChange() {
 
     const counterNote = document.getElementById('sum-counter-pickup-text');
     if (counterNote) counterNote.textContent = `${shopName}`;
+
+    calculatePrintCost();
 }
 
 // 4. Cost Calculation Matrix
@@ -282,6 +319,9 @@ function calculatePrintCost() {
         submitBtn.innerHTML = `<i class="fa-solid fa-print"></i> Send Printout Order (₹${totalAmount})`;
     }
 
+    // Dynamic Stationer UPI QR & 1-Tap Links Sync
+    updatePrintUpiInfo(totalAmount);
+
     return { totalAmount, basePrintCost, bindingCost, sheets };
 }
 
@@ -293,6 +333,7 @@ async function submitPrintOrder() {
     const studentRoll = document.getElementById('print-student-roll')?.value.trim() || 'N/A';
     const pickupSlot = document.getElementById('print-pickup-slot')?.value;
     const notes = document.getElementById('print-notes')?.value.trim() || '';
+    const paymentUtr = document.getElementById('print-utr-input')?.value.trim() || '';
 
     if (!printConfig.file) {
         alert('⚠️ Please select or drop your assignment document first!');
@@ -309,6 +350,19 @@ async function submitPrintOrder() {
     if (!studentPhone || studentPhone.length < 10) {
         alert('⚠️ Please enter a valid 10-digit mobile number for order verification.');
         document.getElementById('print-student-phone')?.focus();
+        return;
+    }
+
+    // Mandatory UPI Payment Verification Check (Option 1 - Zero Unpaid Orders)
+    if (!paymentUtr || paymentUtr.length < 6) {
+        alert('⚠️ Payment Verification Required!\n\nPlease scan the Stationery Shop UPI QR code or tap PhonePe/GPay to pay ₹' + (document.getElementById('sum-total-amount')?.textContent?.replace(/[^0-9]/g, '') || '2') + ', then enter your 12-digit UPI UTR / Ref No to submit your print job.');
+        const utrEl = document.getElementById('print-utr-input');
+        if (utrEl) {
+            utrEl.focus();
+            utrEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            utrEl.style.borderColor = '#ef4444';
+            utrEl.style.backgroundColor = '#fef2f2';
+        }
         return;
     }
 
@@ -350,6 +404,9 @@ async function submitPrintOrder() {
     formData.append('studentDept', studentDept);
     formData.append('studentRoll', studentRoll);
     formData.append('userId', userId);
+    formData.append('paymentUtr', paymentUtr);
+    formData.append('paymentStatus', 'Paid via UPI (UTR: ' + paymentUtr + ')');
+    formData.append('paymentMethod', 'Instant UPI');
 
     try {
         const res = await api.submitPrintOrder(formData);
@@ -380,6 +437,9 @@ async function submitPrintOrder() {
                 copies: printConfig.copies,
                 binding: printConfig.binding,
                 totalAmount: res.totalAmount,
+                paymentUtr: paymentUtr,
+                paymentStatus: 'Paid via UPI (UTR: ' + paymentUtr + ')',
+                paymentMethod: 'Instant UPI',
                 createdAt: new Date().toISOString()
             });
 
@@ -397,7 +457,13 @@ async function submitPrintOrder() {
                 modal.classList.add('show');
             }
 
-            // Reset File Form
+            // Reset File Form & UTR field
+            const utrEl = document.getElementById('print-utr-input');
+            if (utrEl) {
+                utrEl.value = '';
+                utrEl.style.borderColor = '#0284c7';
+                utrEl.style.backgroundColor = '#ffffff';
+            }
             resetPrintFile();
             loadMyPrintJobs();
         } else {

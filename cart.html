@@ -410,20 +410,20 @@
                         <div style="display: flex; flex-direction: column; gap: 0.5rem; background: var(--bg-main); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
                             <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
                                 <input type="radio" name="payment_method" value="Instant UPI & Gateway Split" checked style="accent-color: var(--primary);" onchange="toggleUpiPaymentBox(true)">
-                                <span><i class="fa-solid fa-bolt" style="color: #eab308;"></i> <strong>Instant UPI & Online Split</strong> (GPay / PhonePe / Paytm / Cards)</span>
+                                <span><i class="fa-solid fa-bolt" style="color: #eab308;"></i> <strong>Instant UPI Pay & Split</strong> (PhonePe / GPay / Paytm / BHIM) <span style="background: #dcfce7; color: #15803d; font-size: 0.72rem; font-weight: 800; padding: 1px 6px; border-radius: 4px; margin-left: 4px;">Verified</span></span>
                             </label>
                             <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
                                 <input type="radio" name="payment_method" value="Campus Digital Wallet" style="accent-color: var(--primary);" onchange="toggleUpiPaymentBox(false)">
                                 <span><i class="fa-solid fa-id-card-clip" style="color: var(--primary);"></i> Campus Student/Faculty Digital Wallet</span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem;">
-                                <input type="radio" name="payment_method" value="Pay Cash on Pickup Counter" style="accent-color: var(--primary);" onchange="toggleUpiPaymentBox(false)">
-                                <span><i class="fa-solid fa-hand-holding-dollar" style="color: var(--veg-color);"></i> <strong>Pay Cash at Counter</strong> (Auto-tracked in ledger)</span>
+                            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: not-allowed; font-size: 0.88rem; opacity: 0.65;">
+                                <input type="radio" name="payment_method" value="Pay Cash on Pickup Counter" disabled style="accent-color: var(--primary);">
+                                <span><i class="fa-solid fa-ban" style="color: #ef4444;"></i> <strong style="text-decoration: line-through; color: #64748b;">Pay Cash at Counter</strong> <small style="color: #ef4444; font-weight: 700;">(Disabled: Online UPI Advance Mandatory)</small></span>
                             </label>
                         </div>
 
-                        <!-- Dynamic Shop Owner UPI QR Container (Shows when UPI is chosen) -->
-                        <div id="checkout-upi-box" style="display: none; background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border: 2px solid #7dd3fc; border-radius: 12px; padding: 1.25rem; margin-top: 0.85rem; text-align: center; box-shadow: var(--shadow-sm);">
+                        <!-- Dynamic Shop Owner UPI QR Container (Shows by default for verified pre-payment) -->
+                        <div id="checkout-upi-box" style="display: block; background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border: 2px solid #7dd3fc; border-radius: 12px; padding: 1.25rem; margin-top: 0.85rem; text-align: center; box-shadow: var(--shadow-sm);">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 0.4rem;">
                                 <i class="fa-solid fa-store" style="color: #0284c7; font-size: 1.1rem;"></i>
                                 <span style="font-size: 0.82rem; font-weight: 700; color: #0369a1; text-transform: uppercase; letter-spacing: 0.5px;">Paying Directly To:</span>
@@ -439,6 +439,19 @@
                                 <span id="checkout-upi-amount-badge" style="background: #15803d; color: white; padding: 2px 10px; border-radius: 9999px; font-weight: 800; font-size: 1rem;">₹0</span>
                             </div>
 
+                            <!-- 1-Tap Direct UPI App Launch -->
+                            <div style="display: flex; gap: 0.45rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                                <a id="checkout-phonepe-btn" href="#" class="btn btn-sm" style="background: #5f259f; color: white; font-size: 0.78rem; font-weight: 700; border-radius: 8px; padding: 5px 12px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;">
+                                    <i class="fa-solid fa-mobile-screen"></i> PhonePe
+                                </a>
+                                <a id="checkout-gpay-btn" href="#" class="btn btn-sm" style="background: #1a73e8; color: white; font-size: 0.78rem; font-weight: 700; border-radius: 8px; padding: 5px 12px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;">
+                                    <i class="fa-brands fa-google"></i> GPay
+                                </a>
+                                <a id="checkout-paytm-btn" href="#" class="btn btn-sm" style="background: #00b9f5; color: white; font-size: 0.78rem; font-weight: 700; border-radius: 8px; padding: 5px 12px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;">
+                                    <i class="fa-solid fa-wallet"></i> Paytm
+                                </a>
+                            </div>
+
                             <div style="background: white; border: 1px dashed #93c5fd; border-radius: 8px; padding: 0.5rem 0.75rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
                                 <div style="text-align: left;">
                                     <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Shop UPI ID:</div>
@@ -450,14 +463,14 @@
                             </div>
 
                             <div id="checkout-upi-note" style="font-size: 0.78rem; color: #0369a1; font-weight: 500; margin-bottom: 0.75rem; background: #e0f2fe; padding: 4px 8px; border-radius: 6px;">
-                                💡 Scan with Google Pay / PhonePe / Paytm. Keep screenshot ready for pickup.
+                                💡 Scan with Google Pay / PhonePe / Paytm. Then enter the 12-digit UTR below to confirm.
                             </div>
 
                             <div style="text-align: left;">
-                                <label for="checkout-utr-input" style="font-size: 0.8rem; font-weight: 700; color: #1e3a8a; display: block; margin-bottom: 3px;">
-                                    <i class="fa-solid fa-receipt"></i> UPI UTR / Transaction ID (Optional for fast verification):
+                                <label for="checkout-utr-input" style="font-size: 0.82rem; font-weight: 700; color: #1e3a8a; display: block; margin-bottom: 4px;">
+                                    <i class="fa-solid fa-receipt"></i> 12-Digit UPI UTR / Transaction ID <span style="color: #ef4444;">* (Required to Confirm)</span>:
                                 </label>
-                                <input type="text" id="checkout-utr-input" class="form-input no-icon" placeholder="e.g. 423819284712 or Last 4 digits" maxlength="25" style="background: white; border-color: #93c5fd; font-size: 0.85rem; font-weight: 600;">
+                                <input type="text" id="checkout-utr-input" class="form-input no-icon" placeholder="e.g. 423819284712 (from PhonePe / GPay receipt)" maxlength="25" required style="background: white; border: 2px solid #0284c7; font-size: 0.92rem; font-weight: 800; letter-spacing: 0.5px; color: #0284c7;">
                             </div>
                         </div>
                     </div>

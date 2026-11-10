@@ -296,9 +296,41 @@
 
                     <div style="border-top: 1px dashed #cbd5e1; margin: 1rem 0;"></div>
 
-                    <div class="summary-row total" style="margin-bottom: 1.5rem;">
+                    <div class="summary-row total" style="margin-bottom: 1.25rem;">
                         <span>Grand Total:</span>
                         <span id="sum-total-amount" class="total-amount" style="color: #0284c7;">₹2</span>
+                    </div>
+
+                    <!-- Instant Stationery UPI Payment & Verification Box -->
+                    <div id="print-upi-box" style="background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border: 2px solid #7dd3fc; border-radius: 14px; padding: 1.15rem; margin-bottom: 1.25rem; text-align: center;">
+                        <div style="font-size: 0.8rem; font-weight: 800; color: #0369a1; text-transform: uppercase; margin-bottom: 0.4rem;">
+                            <i class="fa-solid fa-qrcode"></i> Scan or 1-Tap to Pay <span id="print-upi-amount-badge" style="background: #15803d; color: white; padding: 2px 8px; border-radius: 9999px; font-size: 0.88rem;">₹2</span>
+                        </div>
+                        <div style="margin: 0.5rem 0;">
+                            <img id="print-upi-qr-img" src="" alt="Stationery Shop UPI QR" style="width: 145px; height: 145px; object-fit: contain; background: white; border-radius: 10px; border: 2px solid #bae6fd; padding: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: inline-block;">
+                        </div>
+                        <div style="font-size: 0.75rem; color: #0284c7; font-weight: 700; margin-bottom: 0.6rem;">
+                            Direct Pay to: <span id="print-upi-payee-name">Ahuja Photo Shop</span>
+                        </div>
+                        <!-- 1-Tap Mobile UPI Launch -->
+                        <div style="display: flex; gap: 0.4rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                            <a id="print-phonepe-btn" href="#" class="btn btn-sm" style="background: #5f259f; color: white; font-size: 0.76rem; font-weight: 700; border-radius: 8px; padding: 4px 10px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;">
+                                <i class="fa-solid fa-mobile-screen"></i> PhonePe
+                            </a>
+                            <a id="print-gpay-btn" href="#" class="btn btn-sm" style="background: #1a73e8; color: white; font-size: 0.76rem; font-weight: 700; border-radius: 8px; padding: 4px 10px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;">
+                                <i class="fa-brands fa-google"></i> GPay
+                            </a>
+                            <a id="print-paytm-btn" href="#" class="btn btn-sm" style="background: #00b9f5; color: white; font-size: 0.76rem; font-weight: 700; border-radius: 8px; padding: 4px 10px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;">
+                                <i class="fa-solid fa-wallet"></i> Paytm
+                            </a>
+                        </div>
+                        <!-- Mandatory 12-Digit UTR -->
+                        <div style="text-align: left;">
+                            <label for="print-utr-input" style="font-size: 0.78rem; font-weight: 700; color: #1e3a8a; display: block; margin-bottom: 4px;">
+                                <i class="fa-solid fa-receipt"></i> 12-Digit UPI UTR / Ref No <span style="color: #ef4444;">* (Required to Print)</span>:
+                            </label>
+                            <input type="text" id="print-utr-input" class="form-input no-icon" placeholder="Enter 12-digit UTR from GPay / PhonePe" maxlength="25" required style="background: white; border: 2px solid #0284c7; font-size: 0.88rem; font-weight: 800; letter-spacing: 0.5px; color: #0284c7; padding: 6px 10px;">
+                        </div>
                     </div>
 
                     <button type="button" id="submit-print-btn" onclick="submitPrintOrder()" class="btn btn-primary btn-block btn-lg" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border: none; font-weight: 800; font-size: 1.05rem; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
