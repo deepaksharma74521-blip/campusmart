@@ -153,7 +153,8 @@ async function loadCheckoutShopPaymentInfo() {
     }
 
     const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
-    const totalAmount = subtotal + PACKAGING_FEE;
+    const b = calculateCartBreakdown(cart, subtotal);
+    const totalAmount = b.totalAmount;
     const advancePercentage = currentSelectedSplit || 100;
     const advanceAmount = Math.round(totalAmount * (advancePercentage / 100));
 
