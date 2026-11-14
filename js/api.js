@@ -4,9 +4,13 @@
 // Description: Centralized REST API client for MongoDB Backend
 // ==========================================================================
 
-const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? '' 
-    : 'https://campusmart-api-75rg.onrender.com';
+const isLocalHost = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.hostname.startsWith('192.168.') || 
+                    window.location.hostname.startsWith('10.') || 
+                    window.location.hostname.endsWith('.local') ||
+                    window.location.port === '5000';
+const API_BASE = isLocalHost ? '' : 'https://campusmart-api-75rg.onrender.com';
 
 const api = {
     // 1. Auth & Mobile OTP Methods
@@ -139,7 +143,11 @@ const api = {
     // 2. Menu Methods
     async getMenu() {
         const res = await fetch(`${API_BASE}/api/menu`);
-        return await res.json();
+        const data = await res.json();
+        if (Array.isArray(data)) {
+            return { success: true, items: data, count: data.length };
+        }
+        return data;
     },
 
     async saveFoodItem(itemData, itemId = null) {
