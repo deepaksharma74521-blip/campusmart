@@ -89,10 +89,92 @@ function renderShopCarousel() {
     updateActiveShopBanner();
 }
 
+function getCategoryEmoji(catName) {
+    const c = (catName || '').toLowerCase();
+    if (c.includes('pizza')) return '🍕';
+    if (c.includes('burger') || c.includes('sandwich')) return '🍔';
+    if (c.includes('chinese') || c.includes('pasta') || c.includes('noodle') || c.includes('momo')) return '🍜';
+    if (c.includes('south indian') || c.includes('dosa')) return '🥞';
+    if (c.includes('roll') || c.includes('wrap')) return '🌯';
+    if (c.includes('drink') || c.includes('shake') || c.includes('juice') || c.includes('tea') || c.includes('coffee')) return '🥤';
+    if (c.includes('curry') || c.includes('curries') || c.includes('main course') || c.includes('paneer') || c.includes('dal')) return '🍲';
+    if (c.includes('bread') || c.includes('roti') || c.includes('naan') || c.includes('paratha')) return '🫓';
+    if (c.includes('thali') || c.includes('rice') || c.includes('biryani')) return '🍛';
+    if (c.includes('snack') || c.includes('maggi') || c.includes('chaat') || c.includes('fries')) return '🍿';
+    if (c.includes('dessert') || c.includes('sweet') || c.includes('waffle') || c.includes('cake') || c.includes('ice cream')) return '🍰';
+    if (c.includes('stationery') || c.includes('essential')) return '📚';
+    if (c.includes('salon')) return '✂️';
+    return '🍽️';
+}
+
+function renderDynamicCategoryPills() {
+    const container = document.getElementById('category-filter-container');
+    if (!container) return;
+
+    let shopItems = allFoodItems;
+    if (selectedShopId !== 'all') {
+        const targetShop = allShops.find(s => (s.shopId === selectedShopId || s._id === selectedShopId || s.name === selectedShopId));
+        const targetSid = targetShop ? (targetShop.shopId || targetShop._id) : selectedShopId;
+        const targetSname = targetShop ? targetShop.name : selectedShopId;
+
+        shopItems = allFoodItems.filter(item => 
+            item.shopId === targetSid || 
+            item.shopId === selectedShopId || 
+            item.shopName === targetSname || 
+            item.shopName === selectedShopId
+        );
+    }
+
+    const catCounts = {};
+    shopItems.forEach(item => {
+        const cat = item.category || 'Main Course Curries';
+        catCounts[cat] = (catCounts[cat] || 0) + 1;
+    });
+
+    const categories = Object.keys(catCounts).sort((a, b) => catCounts[b] - catCounts[a]);
+
+    let html = `
+        <button class="filter-pill ${currentCategory === 'all' ? 'active' : ''}" onclick="selectCategoryFilter('all')">
+            <i class="fa-solid fa-border-all"></i> All Items (${shopItems.length})
+        </button>
+    `;
+
+    categories.forEach(cat => {
+        const isActive = (currentCategory === cat || currentCategory.toLowerCase() === cat.toLowerCase());
+        const emoji = getCategoryEmoji(cat);
+        const count = catCounts[cat];
+
+        html += `
+            <button class="filter-pill ${isActive ? 'active' : ''}" onclick="selectCategoryFilter('${cat.replace(/'/g, "\\'")}')">
+                <span>${emoji}</span> ${cat} (${count})
+            </button>
+        `;
+    });
+
+    html += `
+        <a href="parcel.html" class="filter-pill" style="background: #fffbeb; border-color: #fde68a; color: #b45309; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <i class="fa-solid fa-box-open"></i> Gate 2 Parcel <span class="badge-soon">Coming Soon</span>
+        </a>
+        <button type="button" class="filter-pill" onclick="openSalonComingSoonModal()" style="background: #f0f9ff; border-color: #bae6fd; color: #0369a1; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <i class="fa-solid fa-scissors"></i> Men's Salon <span class="badge-soon">Coming Soon</span>
+        </button>
+    `;
+
+    container.innerHTML = html;
+}
+
+function selectCategoryFilter(cat) {
+    currentCategory = cat;
+    renderDynamicCategoryPills();
+    renderFoodGrid(true);
+}
+
 function selectShopFilter(shopId) {
     selectedShopId = shopId;
+    currentCategory = 'all';
     renderShopCarousel();
-    renderFoodGrid();
+    renderDynamicCategoryPills();
+    renderFoodGrid(true);
 }
 
 function updateActiveShopBanner() {
@@ -169,7 +251,8 @@ async function loadMenuItems() {
             } else {
                 // Check URL params for initial filters
                 checkUrlParams();
-                renderFoodGrid();
+                renderDynamicCategoryPills();
+                renderFoodGrid(true);
             }
         } else {
             renderEmptyMenu();
@@ -255,64 +338,91 @@ function setCardPortion(itemId, portion, price) {
 
 function matchSmartCategory(item, catKey) {
     if (!catKey || catKey === 'all') return true;
+    
+    // Direct match against clean category
     const catLower = (item.category || '').toLowerCase();
+    const targetKey = catKey.toLowerCase();
+    
+    if (catLower === targetKey) return true;
+
     const nameLower = (item.name || '').toLowerCase();
     const descLower = (item.description || '').toLowerCase();
     const fullText = `${nameLower} ${catLower} ${descLower}`;
 
-    switch (catKey.toLowerCase()) {
+    switch (targetKey) {
+        case 'pizzas & garlic breads':
+        case 'pizzas':
+        case 'pizzas & breads':
+            return catLower.includes('pizza') || /\b(pizza|garlic bread)\b/i.test(fullText);
+
+        case 'burgers & sandwiches':
+        case 'sandwiches':
+        case 'burgers':
+            return catLower.includes('burger') || catLower.includes('sandwich') || /\b(burger|sandwich|sub|toast|panini)\b/i.test(fullText);
+
+        case 'chinese, pastas & momos':
+        case 'chinese':
+        case 'pastas & chinese':
+        case 'momos':
+            return catLower.includes('chinese') || catLower.includes('pasta') || catLower.includes('momo') ||
+                   /\b(pasta|noodle|noodles|chowmein|manchurian|fried rice|singapuri|schezwan|chilli paneer|chilli mushroom|chilli potato|chopsuey|momo|momos|spring roll)\b/i.test(fullText);
+
+        case 'south indian':
+        case 'south_indian':
+            return catLower.includes('south indian') || /\b(dosa|uttapam|uttappam|idli|sambhar|sambar|vada|curd rice)\b/i.test(fullText);
+
+        case 'rolls & wraps':
+        case 'rolls':
+            return catLower.includes('roll') || catLower.includes('wrap') || /\b(roll|wrap|kathi|frankie)\b/i.test(fullText);
+
+        case 'drinks, shakes & juices':
         case 'drinks':
         case 'drinks & juices':
         case 'drinks & shakes':
-            return catLower.includes('drink') || catLower.includes('juice') ||
+            return catLower.includes('drink') || catLower.includes('juice') || catLower.includes('shake') ||
                    /\b(shake|tea|chai|coffee|mojito|soda|shikanji|lassi|frappe|water|lemonade|frooti|maaza|pepsi|sprite|coke|dew|tropicana|red bull)\b/i.test(fullText);
-        case 'rolls':
-        case 'rolls & wraps':
-            return /\b(roll|wrap|kathi)\b/i.test(fullText);
-        case 'sandwiches':
-        case 'burgers & sandwiches':
-            return /\b(sandwich|burger|sub|toast)\b/i.test(fullText);
-        case 'pizzas':
-        case 'pizzas & breads':
-            return /\b(pizza|garlic bread)\b/i.test(fullText);
-        case 'chinese':
-        case 'pastas & chinese':
-            return /\b(pasta|noodle|noodles|chowmein|manchurian|fried rice|singapuri|schezwan|chilli paneer|chilli mushroom|chilli potato|chopsuey|sizzler|bhel|ting ming)\b/i.test(fullText);
-        case 'momos':
-        case 'momos & starters':
-            return /\b(momo|momos|spring roll|kurkure spring roll|crispy corn|satay)\b/i.test(fullText);
-        case 'curries':
+
         case 'main course curries':
-            return (catLower === 'canteen food' || catLower.includes('main course')) &&
-                   /\b(paneer|chaap|dal|makhani|tadka|kofta|mushroom|aloo jeera|dum aloo|sev bhaji|chana masala|mix veg|bhurji|handi|kadhai|shahi|lababdar|mughlai|changezi|rogan josh)\b/i.test(fullText) &&
-                   !/\b(roll|wrap|dosa|burger|sandwich|pizza|momo|pasta|noodle|biryani|pulao|thali|naan|roti|paratha|kulcha)\b/i.test(fullText);
+        case 'curries':
+            return (catLower.includes('curry') || catLower.includes('curries') || catLower.includes('main course') || catLower === 'canteen food') &&
+                   /\b(paneer|chaap|dal|makhani|tadka|kofta|mushroom|aloo jeera|dum aloo|sev bhaji|chana masala|mix veg|bhurji|handi|kadhai|shahi|lababdar|mughlai|changezi|rogan josh|chole)\b/i.test(fullText);
+
+        case 'naans, rotis & parathas':
         case 'breads':
         case 'naans, rotis & kulchas':
         case 'breads & paranthas':
-            return /\b(roti|naan|paratha|kulcha|rumali|missi|laccha)\b/i.test(fullText);
+            return catLower.includes('roti') || catLower.includes('naan') || catLower.includes('paratha') || catLower.includes('kulcha') ||
+                   /\b(roti|naan|paratha|kulcha|rumali|missi|laccha|tandoori)\b/i.test(fullText);
+
+        case 'thalis, rice & biryanis':
         case 'thalis':
         case 'thalis & biryanis':
         case 'thalis & combos':
-            return /\b(thali|biryani|pulao|khichdi|combo|chawal combo|jeera rice|plain rice)\b/i.test(fullText);
+            return catLower.includes('thali') || catLower.includes('biryani') || catLower.includes('rice') ||
+                   /\b(thali|biryani|pulao|khichdi|combo|chawal|jeera rice|plain rice)\b/i.test(fullText);
+
+        case 'desserts, sweets & waffles':
         case 'desserts':
         case 'waffles & sweets':
-            return catLower.includes('chocolate') || catLower.includes('sweet') ||
+            return catLower.includes('chocolate') || catLower.includes('sweet') || catLower.includes('waffle') || catLower.includes('dessert') ||
                    /\b(waffle|brownie|cake|ice cream|gulab jamun|kheer|rasgulla|kulfi|halwa|ras malai|chhena poda|lava cake|sweet)\b/i.test(fullText);
-        case 'south_indian':
-        case 'south indian':
-            return /\b(dosa|uttapam|uttappam|idli|sambhar|sambar|vada|curd rice)\b/i.test(fullText);
+
+        case 'snacks, maggi & chaat':
         case 'snacks':
         case 'snacks & maggi':
         case 'snacks & chips':
-            return catLower.includes('snack') || catLower.includes('chip') ||
-                   /\b(maggi|fries|nachos|pakoda|pakodi|chilla|vada pav|cutlet|moonglet|pav bhaji|chole bhature|aloo puri|corn|finger|chips|kurkure|lays)\b/i.test(fullText);
+            return catLower.includes('snack') || catLower.includes('chip') || catLower.includes('maggi') ||
+                   /\b(maggi|fries|nachos|pakoda|pakodi|chilla|vada pav|cutlet|moonglet|pav bhaji|chole bhature|aloo puri|corn|finger|chips|kurkure|lays|chaat|pani puri)\b/i.test(fullText);
+
+        case 'stationery & essentials':
         case 'stationery':
         case 'stationery & mart':
         case 'hostel essentials':
             return catLower.includes('stationery') || catLower.includes('essential') || catLower.includes('hostel') ||
                    /\b(pen|pencil|register|notebook|copy|file|folder|sheet|paper|soap|shampoo|paste|brush|sanitizer)\b/i.test(fullText);
+
         default:
-            return catLower === catKey.toLowerCase() || fullText.includes(catKey.toLowerCase());
+            return catLower === targetKey || fullText.includes(targetKey);
     }
 }
 
@@ -679,16 +789,8 @@ function resetFilters() {
     const searchInput = document.getElementById('menu-search');
     if (searchInput) searchInput.value = '';
 
-    const filterPills = document.querySelectorAll('.filter-pill');
-    filterPills.forEach(p => {
-        if (p.getAttribute('data-category') === 'all') {
-            p.classList.add('active');
-        } else {
-            p.classList.remove('active');
-        }
-    });
-
     renderShopCarousel();
+    renderDynamicCategoryPills();
     renderFoodGrid(true);
 }
 
