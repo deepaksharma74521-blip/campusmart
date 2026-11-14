@@ -2708,7 +2708,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.625127"
+      "updatedAt": "2026-11-14T01:18:22.625127",
+      "hasSizes": true,
+      "sizes": {
+        "S": 100.0,
+        "M": 160.0,
+        "L": 220.0
+      },
+      "priceS": 100.0,
+      "priceM": 160.0,
+      "priceL": 220.0
     },
     {
       "_id": "dish-3e53b02c",
@@ -2730,7 +2739,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.626345"
+      "updatedAt": "2026-11-14T01:18:22.626345",
+      "hasSizes": true,
+      "sizes": {
+        "S": 150.0,
+        "M": 220.0,
+        "L": 310.0
+      },
+      "priceS": 150.0,
+      "priceM": 220.0,
+      "priceL": 310.0
     },
     {
       "_id": "dish-d2ef1fc2",
@@ -2752,7 +2770,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.631701"
+      "updatedAt": "2026-11-14T01:18:22.631701",
+      "hasSizes": true,
+      "sizes": {
+        "S": 170.0,
+        "M": 260.0,
+        "L": 350.0
+      },
+      "priceS": 170.0,
+      "priceM": 260.0,
+      "priceL": 350.0
     },
     {
       "_id": "dish-4177cb28",
@@ -2772,7 +2799,16 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 120.0,
+        "M": 190.0,
+        "L": 260.0
+      },
+      "priceS": 120.0,
+      "priceM": 190.0,
+      "priceL": 260.0
     },
     {
       "_id": "dish-4589bf08",
@@ -2792,7 +2828,16 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 120.0,
+        "M": 190.0,
+        "L": 260.0
+      },
+      "priceS": 120.0,
+      "priceM": 190.0,
+      "priceL": 260.0
     },
     {
       "_id": "dish-7253466e",
@@ -2814,7 +2859,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.631701"
+      "updatedAt": "2026-11-14T01:18:22.631701",
+      "hasSizes": true,
+      "sizes": {
+        "S": 200.0,
+        "M": 300.0,
+        "L": 400.0
+      },
+      "priceS": 200.0,
+      "priceM": 300.0,
+      "priceL": 400.0
     },
     {
       "_id": "dish-ac3f5562",
@@ -2836,7 +2890,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.632750"
+      "updatedAt": "2026-11-14T01:18:22.632750",
+      "hasSizes": true,
+      "sizes": {
+        "S": 180.0,
+        "M": 270.0,
+        "L": 370.0
+      },
+      "priceS": 180.0,
+      "priceM": 270.0,
+      "priceL": 370.0
     },
     {
       "_id": "dish-b812775b",
@@ -2858,7 +2921,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.632750"
+      "updatedAt": "2026-11-14T01:18:22.632750",
+      "hasSizes": true,
+      "sizes": {
+        "S": 190.0,
+        "M": 280.0,
+        "L": 380.0
+      },
+      "priceS": 190.0,
+      "priceM": 280.0,
+      "priceL": 380.0
     },
     {
       "_id": "dish-4f1c446d",
@@ -2878,7 +2950,16 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 140.0,
+        "M": 210.0,
+        "L": 290.0
+      },
+      "priceS": 140.0,
+      "priceM": 210.0,
+      "priceL": 290.0
     },
     {
       "_id": "dish-36e552b3",
@@ -2898,7 +2979,16 @@
       "shopId": "shop-20",
       "shopName": "Rainbow",
       "createdAt": "2026-09-27T19:18:23.226746",
-      "isVeg": true
+      "isVeg": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 120.0,
+        "M": 190.0,
+        "L": 260.0
+      },
+      "priceS": 120.0,
+      "priceM": 190.0,
+      "priceL": 260.0
     },
     {
       "_id": "dish-688ff972",
@@ -2920,7 +3010,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.633761"
+      "updatedAt": "2026-11-14T01:18:22.633761",
+      "hasSizes": true,
+      "sizes": {
+        "S": 220.0,
+        "M": 330.0,
+        "L": 440.0
+      },
+      "priceS": 220.0,
+      "priceM": 330.0,
+      "priceL": 440.0
     },
     {
       "_id": "dish-3d544c82",
@@ -2942,7 +3041,16 @@
       "createdAt": "2026-09-27T19:18:23.226746",
       "isVeg": true,
       "portions": null,
-      "updatedAt": "2026-11-14T01:18:22.633761"
+      "updatedAt": "2026-11-14T01:18:22.633761",
+      "hasSizes": true,
+      "sizes": {
+        "S": 200.0,
+        "M": 300.0,
+        "L": 400.0
+      },
+      "priceS": 200.0,
+      "priceM": 300.0,
+      "priceL": 400.0
     },
     {
       "_id": "dish-65992c3c",
@@ -7843,7 +7951,16 @@
       "isVeg": true,
       "isRealPhoto": true,
       "updatedAt": "2026-11-14T01:18:20.245816",
-      "portions": null
+      "portions": null,
+      "hasSizes": true,
+      "sizes": {
+        "S": 80.0,
+        "M": 130.0,
+        "L": 180.0
+      },
+      "priceS": 80.0,
+      "priceM": 130.0,
+      "priceL": 180.0
     },
     {
       "_id": "dish-ae3be16c",
@@ -10675,7 +10792,16 @@
       "shopName": "Foodo Holic",
       "createdAt": "2026-09-27T23:57:25.711988",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-0725d140",
@@ -10696,7 +10822,16 @@
       "shopName": "Foodo Holic",
       "createdAt": "2026-09-27T23:57:25.713283",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-29c38869",
@@ -10717,7 +10852,16 @@
       "shopName": "Foodo Holic",
       "createdAt": "2026-09-27T23:57:25.714286",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-c8c4b5fd",
@@ -10738,7 +10882,16 @@
       "shopName": "Foodo Holic",
       "createdAt": "2026-09-27T23:57:25.714286",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-80360e42",
@@ -11776,7 +11929,16 @@
       "shopName": "Foodo Holic",
       "createdAt": "2026-09-27T23:57:25.753065",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-e380559d",
@@ -13495,7 +13657,16 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.873621",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-b4def716",
@@ -13516,7 +13687,16 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.875130",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-a66eaf19",
@@ -13537,7 +13717,16 @@
       "shopName": "Sardar Ji Hub",
       "createdAt": "2026-09-27T23:57:25.876691",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 139.0,
+        "M": 209.0,
+        "L": 279.0
+      },
+      "priceS": 139.0,
+      "priceM": 209.0,
+      "priceL": 279.0
     },
     {
       "_id": "dish-88de676c",
@@ -20313,8 +20502,8 @@
       "_id": "dish-58b78727",
       "id": "dish-58b78727",
       "name": "Farmhouse Pizza",
-      "price": 459.0,
-      "hasHalfFull": true,
+      "price": 179.0,
+      "hasHalfFull": false,
       "priceHalf": 179.0,
       "priceFull": 459.0,
       "category": "Pizzas & Garlic Breads",
@@ -20334,7 +20523,16 @@
         "Medium": 349.0,
         "Large": 459.0
       },
-      "updatedAt": "2026-11-14T01:18:22.373667"
+      "updatedAt": "2026-11-14T01:18:22.373667",
+      "hasSizes": true,
+      "sizes": {
+        "S": 179.0,
+        "M": 319.0,
+        "L": 459.0
+      },
+      "priceS": 179.0,
+      "priceM": 319.0,
+      "priceL": 459.0
     },
     {
       "_id": "dish-12fdce0b",
@@ -21587,7 +21785,16 @@
       "shopName": "Caffelera",
       "createdAt": "2026-09-27T23:57:26.374930",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-d92429b2",
@@ -21790,7 +21997,16 @@
       "shopName": "Pani Puri Restaurant",
       "createdAt": "2026-09-27T23:57:26.383319",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-75114546",
@@ -21811,7 +22027,16 @@
       "shopName": "Pani Puri Restaurant",
       "createdAt": "2026-09-27T23:57:26.383319",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-873ca7a5",
@@ -21832,7 +22057,16 @@
       "shopName": "Pani Puri Restaurant",
       "createdAt": "2026-09-27T23:57:26.384569",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-aa3f9c53",
@@ -22884,7 +23118,16 @@
       "shopName": "Pani Puri Restaurant",
       "createdAt": "2026-09-27T23:57:26.429554",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-0bcbbe0c",
@@ -26272,7 +26515,16 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.620677",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-a4c2ffcb",
@@ -26455,7 +26707,7 @@
       "id": "dish-a66f30b0",
       "name": "Paneer Calzone",
       "price": 100.0,
-      "hasHalfFull": true,
+      "hasHalfFull": false,
       "priceHalf": 100.0,
       "priceFull": 180.0,
       "category": "Pizzas & Garlic Breads",
@@ -26469,7 +26721,16 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.633267",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 100.0,
+        "M": 140.0,
+        "L": 180.0
+      },
+      "priceS": 100.0,
+      "priceM": 140.0,
+      "priceL": 180.0
     },
     {
       "_id": "dish-15d8de87",
@@ -26626,7 +26887,16 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:26.642713",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 189.0,
+        "L": 259.0
+      },
+      "priceS": 119.0,
+      "priceM": 189.0,
+      "priceL": 259.0
     },
     {
       "_id": "dish-98dd53af",
@@ -27663,7 +27933,16 @@
       "portions": {
         "half": 90,
         "full": 150.0
-      }
+      },
+      "hasSizes": true,
+      "sizes": {
+        "S": 150.0,
+        "M": 220.0,
+        "L": 310.0
+      },
+      "priceS": 150.0,
+      "priceM": 220.0,
+      "priceL": 310.0
     },
     {
       "_id": "dish-9fa13722",
@@ -34358,7 +34637,16 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:27.028200",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 139.0,
+        "M": 209.0,
+        "L": 279.0
+      },
+      "priceS": 139.0,
+      "priceM": 209.0,
+      "priceL": 279.0
     },
     {
       "_id": "dish-a023cc74",
@@ -34379,7 +34667,16 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:27.029390",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 139.0,
+        "M": 209.0,
+        "L": 279.0
+      },
+      "priceS": 139.0,
+      "priceM": 209.0,
+      "priceL": 279.0
     },
     {
       "_id": "dish-16f49f10",
@@ -34400,7 +34697,16 @@
       "shopName": "Yummy Express",
       "createdAt": "2026-09-27T23:57:27.030394",
       "isVeg": true,
-      "isRealPhoto": true
+      "isRealPhoto": true,
+      "hasSizes": true,
+      "sizes": {
+        "S": 139.0,
+        "M": 209.0,
+        "L": 279.0
+      },
+      "priceS": 139.0,
+      "priceM": 209.0,
+      "priceL": 279.0
     },
     {
       "_id": "item-real-f639a95e",
@@ -37031,7 +37337,17 @@
         "full": 120.0
       },
       "_id": "5c3d815a-48b0-4a1c-9ca8-a8a414e44c3d",
-      "available": true
+      "available": true,
+      "hasSizes": true,
+      "hasHalfFull": false,
+      "sizes": {
+        "S": 120.0,
+        "M": 190.0,
+        "L": 260.0
+      },
+      "priceS": 120.0,
+      "priceM": 190.0,
+      "priceL": 260.0
     },
     {
       "id": "170cbe78-8052-4e2a-9695-e032aeb769ae",
@@ -41415,7 +41731,17 @@
         "full": 60.0
       },
       "_id": "c239ba20-7053-495e-acff-d0a6b840e4e7",
-      "available": true
+      "available": true,
+      "hasSizes": true,
+      "hasHalfFull": false,
+      "sizes": {
+        "S": 60.0,
+        "M": 110.0,
+        "L": 160.0
+      },
+      "priceS": 60.0,
+      "priceM": 110.0,
+      "priceL": 160.0
     },
     {
       "id": "38f9d852-6eec-46a0-8e3a-31bfa5feecff",
@@ -42607,7 +42933,17 @@
         "full": 120.0
       },
       "_id": "749a4d31-8488-4e95-96cb-9516ab8cd022",
-      "available": true
+      "available": true,
+      "hasSizes": true,
+      "hasHalfFull": false,
+      "sizes": {
+        "S": 120.0,
+        "M": 190.0,
+        "L": 260.0
+      },
+      "priceS": 120.0,
+      "priceM": 190.0,
+      "priceL": 260.0
     },
     {
       "id": "b6e3e830-57ae-4bb3-abc0-fc5a3378dd4f",
@@ -43227,7 +43563,17 @@
         "full": 120.0
       },
       "_id": "39691ba2-3bd3-4861-940f-153fb086ed54",
-      "available": true
+      "available": true,
+      "hasSizes": true,
+      "hasHalfFull": false,
+      "sizes": {
+        "S": 120.0,
+        "M": 190.0,
+        "L": 260.0
+      },
+      "priceS": 120.0,
+      "priceM": 190.0,
+      "priceL": 260.0
     },
     {
       "id": "c26d02c3-8261-4c20-8e7f-de3eddd39c5a",
@@ -48955,7 +49301,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.629460",
-      "updatedAt": "2026-11-14T01:18:20.629460"
+      "updatedAt": "2026-11-14T01:18:20.629460",
+      "hasSizes": true,
+      "sizes": {
+        "S": 100.0,
+        "M": 160.0,
+        "L": 220.0
+      },
+      "priceS": 100.0,
+      "priceM": 160.0,
+      "priceL": 220.0
     },
     {
       "_id": "dish-e01fc2ee",
@@ -48978,7 +49333,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.631007",
-      "updatedAt": "2026-11-14T01:18:20.631007"
+      "updatedAt": "2026-11-14T01:18:20.631007",
+      "hasSizes": true,
+      "sizes": {
+        "S": 160.0,
+        "M": 240.0,
+        "L": 330.0
+      },
+      "priceS": 160.0,
+      "priceM": 240.0,
+      "priceL": 330.0
     },
     {
       "_id": "dish-932ffca1",
@@ -49001,7 +49365,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.632051",
-      "updatedAt": "2026-11-14T01:18:20.632051"
+      "updatedAt": "2026-11-14T01:18:20.632051",
+      "hasSizes": true,
+      "sizes": {
+        "S": 180.0,
+        "M": 270.0,
+        "L": 370.0
+      },
+      "priceS": 180.0,
+      "priceM": 270.0,
+      "priceL": 370.0
     },
     {
       "_id": "dish-e475ed06",
@@ -49024,7 +49397,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.634136",
-      "updatedAt": "2026-11-14T01:18:20.634136"
+      "updatedAt": "2026-11-14T01:18:20.634136",
+      "hasSizes": true,
+      "sizes": {
+        "S": 180.0,
+        "M": 270.0,
+        "L": 370.0
+      },
+      "priceS": 180.0,
+      "priceM": 270.0,
+      "priceL": 370.0
     },
     {
       "_id": "dish-93f9fbe6",
@@ -49047,7 +49429,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.637125",
-      "updatedAt": "2026-11-14T01:18:20.637125"
+      "updatedAt": "2026-11-14T01:18:20.637125",
+      "hasSizes": true,
+      "sizes": {
+        "S": 180.0,
+        "M": 270.0,
+        "L": 370.0
+      },
+      "priceS": 180.0,
+      "priceM": 270.0,
+      "priceL": 370.0
     },
     {
       "_id": "dish-e12d9efa",
@@ -49070,7 +49461,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.639118",
-      "updatedAt": "2026-11-14T01:18:20.639118"
+      "updatedAt": "2026-11-14T01:18:20.639118",
+      "hasSizes": true,
+      "sizes": {
+        "S": 180.0,
+        "M": 270.0,
+        "L": 370.0
+      },
+      "priceS": 180.0,
+      "priceM": 270.0,
+      "priceL": 370.0
     },
     {
       "_id": "dish-20560b9d",
@@ -49093,7 +49493,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.641619",
-      "updatedAt": "2026-11-14T01:18:20.641619"
+      "updatedAt": "2026-11-14T01:18:20.641619",
+      "hasSizes": true,
+      "sizes": {
+        "S": 190.0,
+        "M": 280.0,
+        "L": 380.0
+      },
+      "priceS": 190.0,
+      "priceM": 280.0,
+      "priceL": 380.0
     },
     {
       "_id": "dish-766fda7b",
@@ -49116,7 +49525,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.643702",
-      "updatedAt": "2026-11-14T01:18:20.643702"
+      "updatedAt": "2026-11-14T01:18:20.643702",
+      "hasSizes": true,
+      "sizes": {
+        "S": 200.0,
+        "M": 300.0,
+        "L": 400.0
+      },
+      "priceS": 200.0,
+      "priceM": 300.0,
+      "priceL": 400.0
     },
     {
       "_id": "dish-b8526365",
@@ -49139,7 +49557,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.645218",
-      "updatedAt": "2026-11-14T01:18:20.645218"
+      "updatedAt": "2026-11-14T01:18:20.645218",
+      "hasSizes": true,
+      "sizes": {
+        "S": 200.0,
+        "M": 300.0,
+        "L": 400.0
+      },
+      "priceS": 200.0,
+      "priceM": 300.0,
+      "priceL": 400.0
     },
     {
       "_id": "dish-0645235e",
@@ -49162,7 +49589,16 @@
       "shopName": "Foodo Holic",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:20.648269",
-      "updatedAt": "2026-11-14T01:18:20.648269"
+      "updatedAt": "2026-11-14T01:18:20.648269",
+      "hasSizes": true,
+      "sizes": {
+        "S": 240.0,
+        "M": 360.0,
+        "L": 480.0
+      },
+      "priceS": 240.0,
+      "priceM": 360.0,
+      "priceL": 480.0
     },
     {
       "_id": "dish-dbf2335c",
@@ -58429,7 +58865,16 @@
       "shopName": "Chai Nagri",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.198439",
-      "updatedAt": "2026-11-14T01:18:22.198439"
+      "updatedAt": "2026-11-14T01:18:22.198439",
+      "hasSizes": true,
+      "sizes": {
+        "S": 160.0,
+        "M": 240.0,
+        "L": 330.0
+      },
+      "priceS": 160.0,
+      "priceM": 240.0,
+      "priceL": 330.0
     },
     {
       "_id": "dish-db91d810",
@@ -58843,7 +59288,16 @@
       "shopName": "Chai Nagri",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.216907",
-      "updatedAt": "2026-11-14T01:18:22.216907"
+      "updatedAt": "2026-11-14T01:18:22.216907",
+      "hasSizes": true,
+      "sizes": {
+        "S": 150.0,
+        "M": 220.0,
+        "L": 310.0
+      },
+      "priceS": 150.0,
+      "priceM": 220.0,
+      "priceL": 310.0
     },
     {
       "_id": "dish-b6a2056c",
@@ -59631,8 +60085,8 @@
       "_id": "dish-0109347e",
       "id": "dish-0109347e",
       "name": "Margherita Pizza",
-      "price": 220.0,
-      "hasHalfFull": true,
+      "price": 120.0,
+      "hasHalfFull": false,
       "priceHalf": 120.0,
       "priceFull": 220.0,
       "portions": {
@@ -59651,14 +60105,23 @@
       "shopName": "Royal Cafe",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.329226",
-      "updatedAt": "2026-11-14T01:18:22.329226"
+      "updatedAt": "2026-11-14T01:18:22.329226",
+      "hasSizes": true,
+      "sizes": {
+        "S": 120.0,
+        "M": 170.0,
+        "L": 220.0
+      },
+      "priceS": 120.0,
+      "priceM": 170.0,
+      "priceL": 220.0
     },
     {
       "_id": "dish-b2cb1628",
       "id": "dish-b2cb1628",
       "name": "Farm Fresh Veggie Pizza",
-      "price": 270.0,
-      "hasHalfFull": true,
+      "price": 150.0,
+      "hasHalfFull": false,
       "priceHalf": 150.0,
       "priceFull": 270.0,
       "portions": {
@@ -59677,14 +60140,23 @@
       "shopName": "Royal Cafe",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.332501",
-      "updatedAt": "2026-11-14T01:18:22.332501"
+      "updatedAt": "2026-11-14T01:18:22.332501",
+      "hasSizes": true,
+      "sizes": {
+        "S": 150.0,
+        "M": 210.0,
+        "L": 270.0
+      },
+      "priceS": 150.0,
+      "priceM": 210.0,
+      "priceL": 270.0
     },
     {
       "_id": "dish-585b8ec5",
       "id": "dish-585b8ec5",
       "name": "Paneer Tikka Pizza",
-      "price": 280.0,
-      "hasHalfFull": true,
+      "price": 160.0,
+      "hasHalfFull": false,
       "priceHalf": 160.0,
       "priceFull": 280.0,
       "portions": {
@@ -59703,14 +60175,23 @@
       "shopName": "Royal Cafe",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.334771",
-      "updatedAt": "2026-11-14T01:18:22.334771"
+      "updatedAt": "2026-11-14T01:18:22.334771",
+      "hasSizes": true,
+      "sizes": {
+        "S": 160.0,
+        "M": 220.0,
+        "L": 280.0
+      },
+      "priceS": 160.0,
+      "priceM": 220.0,
+      "priceL": 280.0
     },
     {
       "_id": "dish-538eb0f0",
       "id": "dish-538eb0f0",
       "name": "Corn & Cheese Pizza",
-      "price": 250.0,
-      "hasHalfFull": true,
+      "price": 140.0,
+      "hasHalfFull": false,
       "priceHalf": 140.0,
       "priceFull": 250.0,
       "portions": {
@@ -59729,14 +60210,23 @@
       "shopName": "Royal Cafe",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.335767",
-      "updatedAt": "2026-11-14T01:18:22.335767"
+      "updatedAt": "2026-11-14T01:18:22.335767",
+      "hasSizes": true,
+      "sizes": {
+        "S": 140.0,
+        "M": 200.0,
+        "L": 250.0
+      },
+      "priceS": 140.0,
+      "priceM": 200.0,
+      "priceL": 250.0
     },
     {
       "_id": "dish-752eb179",
       "id": "dish-752eb179",
       "name": "Veg Exotic Pizza",
-      "price": 280.0,
-      "hasHalfFull": true,
+      "price": 160.0,
+      "hasHalfFull": false,
       "priceHalf": 160.0,
       "priceFull": 280.0,
       "portions": {
@@ -59755,7 +60245,16 @@
       "shopName": "Royal Cafe",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.338756",
-      "updatedAt": "2026-11-14T01:18:22.338756"
+      "updatedAt": "2026-11-14T01:18:22.338756",
+      "hasSizes": true,
+      "sizes": {
+        "S": 160.0,
+        "M": 220.0,
+        "L": 280.0
+      },
+      "priceS": 160.0,
+      "priceM": 220.0,
+      "priceL": 280.0
     },
     {
       "_id": "dish-7365b6b5",
@@ -59893,7 +60392,16 @@
       "shopName": "Royal Cafe",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.356399",
-      "updatedAt": "2026-11-14T01:18:22.356399"
+      "updatedAt": "2026-11-14T01:18:22.356399",
+      "hasSizes": true,
+      "sizes": {
+        "S": 180.0,
+        "M": 270.0,
+        "L": 370.0
+      },
+      "priceS": 180.0,
+      "priceM": 270.0,
+      "priceL": 370.0
     },
     {
       "_id": "dish-05e0c60f",
@@ -59991,8 +60499,8 @@
       "_id": "dish-48d560f4",
       "id": "dish-48d560f4",
       "name": "Veggie Paradise Pizza",
-      "price": 459.0,
-      "hasHalfFull": true,
+      "price": 189.0,
+      "hasHalfFull": false,
       "priceHalf": 189.0,
       "priceFull": 459.0,
       "portions": {
@@ -60012,14 +60520,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.375200",
-      "updatedAt": "2026-11-14T01:18:22.375200"
+      "updatedAt": "2026-11-14T01:18:22.375200",
+      "hasSizes": true,
+      "sizes": {
+        "S": 189.0,
+        "M": 329.0,
+        "L": 459.0
+      },
+      "priceS": 189.0,
+      "priceM": 329.0,
+      "priceL": 459.0
     },
     {
       "_id": "dish-30442e72",
       "id": "dish-30442e72",
       "name": "Paneer Tikka Pizza",
-      "price": 459.0,
-      "hasHalfFull": true,
+      "price": 189.0,
+      "hasHalfFull": false,
       "priceHalf": 189.0,
       "priceFull": 459.0,
       "portions": {
@@ -60039,14 +60556,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.376215",
-      "updatedAt": "2026-11-14T01:18:22.376215"
+      "updatedAt": "2026-11-14T01:18:22.376215",
+      "hasSizes": true,
+      "sizes": {
+        "S": 189.0,
+        "M": 329.0,
+        "L": 459.0
+      },
+      "priceS": 189.0,
+      "priceM": 329.0,
+      "priceL": 459.0
     },
     {
       "_id": "dish-4bfc563a",
       "id": "dish-4bfc563a",
       "name": "Miss Paprika Pizza",
-      "price": 499.0,
-      "hasHalfFull": true,
+      "price": 199.0,
+      "hasHalfFull": false,
       "priceHalf": 199.0,
       "priceFull": 499.0,
       "portions": {
@@ -60066,14 +60592,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.377726",
-      "updatedAt": "2026-11-14T01:18:22.377726"
+      "updatedAt": "2026-11-14T01:18:22.377726",
+      "hasSizes": true,
+      "sizes": {
+        "S": 199.0,
+        "M": 359.0,
+        "L": 499.0
+      },
+      "priceS": 199.0,
+      "priceM": 359.0,
+      "priceL": 499.0
     },
     {
       "_id": "dish-ab55b861",
       "id": "dish-ab55b861",
       "name": "Caffelara Blast Pizza",
-      "price": 599.0,
-      "hasHalfFull": true,
+      "price": 249.0,
+      "hasHalfFull": false,
       "priceHalf": 249.0,
       "priceFull": 599.0,
       "portions": {
@@ -60093,14 +60628,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.379840",
-      "updatedAt": "2026-11-14T01:18:22.379840"
+      "updatedAt": "2026-11-14T01:18:22.379840",
+      "hasSizes": true,
+      "sizes": {
+        "S": 249.0,
+        "M": 429.0,
+        "L": 599.0
+      },
+      "priceS": 249.0,
+      "priceM": 429.0,
+      "priceL": 599.0
     },
     {
       "_id": "dish-c1355ea7",
       "id": "dish-c1355ea7",
       "name": "Margherita Pizza",
-      "price": 319.0,
-      "hasHalfFull": true,
+      "price": 119.0,
+      "hasHalfFull": false,
       "priceHalf": 119.0,
       "priceFull": 319.0,
       "portions": {
@@ -60120,14 +60664,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.381437",
-      "updatedAt": "2026-11-14T01:18:22.381437"
+      "updatedAt": "2026-11-14T01:18:22.381437",
+      "hasSizes": true,
+      "sizes": {
+        "S": 119.0,
+        "M": 219.0,
+        "L": 319.0
+      },
+      "priceS": 119.0,
+      "priceM": 219.0,
+      "priceL": 319.0
     },
     {
       "_id": "dish-8ad27aa5",
       "id": "dish-8ad27aa5",
       "name": "Double Cheese Margherita Pizza",
-      "price": 369.0,
-      "hasHalfFull": true,
+      "price": 169.0,
+      "hasHalfFull": false,
       "priceHalf": 169.0,
       "priceFull": 369.0,
       "portions": {
@@ -60147,14 +60700,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.383227",
-      "updatedAt": "2026-11-14T01:18:22.383227"
+      "updatedAt": "2026-11-14T01:18:22.383227",
+      "hasSizes": true,
+      "sizes": {
+        "S": 169.0,
+        "M": 269.0,
+        "L": 369.0
+      },
+      "priceS": 169.0,
+      "priceM": 269.0,
+      "priceL": 369.0
     },
     {
       "_id": "dish-63481474",
       "id": "dish-63481474",
       "name": "Fresh Veggie Pizza",
-      "price": 349.0,
-      "hasHalfFull": true,
+      "price": 149.0,
+      "hasHalfFull": false,
       "priceHalf": 149.0,
       "priceFull": 349.0,
       "portions": {
@@ -60174,14 +60736,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.384313",
-      "updatedAt": "2026-11-14T01:18:22.384313"
+      "updatedAt": "2026-11-14T01:18:22.384313",
+      "hasSizes": true,
+      "sizes": {
+        "S": 149.0,
+        "M": 249.0,
+        "L": 349.0
+      },
+      "priceS": 149.0,
+      "priceM": 249.0,
+      "priceL": 349.0
     },
     {
       "_id": "dish-8d923e45",
       "id": "dish-8d923e45",
       "name": "Cheese N Corn Pizza",
-      "price": 349.0,
-      "hasHalfFull": true,
+      "price": 149.0,
+      "hasHalfFull": false,
       "priceHalf": 149.0,
       "priceFull": 349.0,
       "portions": {
@@ -60201,14 +60772,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.386382",
-      "updatedAt": "2026-11-14T01:18:22.386382"
+      "updatedAt": "2026-11-14T01:18:22.386382",
+      "hasSizes": true,
+      "sizes": {
+        "S": 149.0,
+        "M": 249.0,
+        "L": 349.0
+      },
+      "priceS": 149.0,
+      "priceM": 249.0,
+      "priceL": 349.0
     },
     {
       "_id": "dish-804c7424",
       "id": "dish-804c7424",
       "name": "Peppy Paneer Pizza",
-      "price": 399.0,
-      "hasHalfFull": true,
+      "price": 179.0,
+      "hasHalfFull": false,
       "priceHalf": 179.0,
       "priceFull": 399.0,
       "portions": {
@@ -60228,14 +60808,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.387396",
-      "updatedAt": "2026-11-14T01:18:22.387396"
+      "updatedAt": "2026-11-14T01:18:22.387396",
+      "hasSizes": true,
+      "sizes": {
+        "S": 179.0,
+        "M": 289.0,
+        "L": 399.0
+      },
+      "priceS": 179.0,
+      "priceM": 289.0,
+      "priceL": 399.0
     },
     {
       "_id": "dish-a3ffa827",
       "id": "dish-a3ffa827",
       "name": "Mexican Veggie Pizza",
-      "price": 399.0,
-      "hasHalfFull": true,
+      "price": 179.0,
+      "hasHalfFull": false,
       "priceHalf": 179.0,
       "priceFull": 399.0,
       "portions": {
@@ -60255,14 +60844,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.389424",
-      "updatedAt": "2026-11-14T01:18:22.389424"
+      "updatedAt": "2026-11-14T01:18:22.389424",
+      "hasSizes": true,
+      "sizes": {
+        "S": 179.0,
+        "M": 289.0,
+        "L": 399.0
+      },
+      "priceS": 179.0,
+      "priceM": 289.0,
+      "priceL": 399.0
     },
     {
       "_id": "dish-7ccb0ef4",
       "id": "dish-7ccb0ef4",
       "name": "Garden Fresh Pizza",
-      "price": 399.0,
-      "hasHalfFull": true,
+      "price": 179.0,
+      "hasHalfFull": false,
       "priceHalf": 179.0,
       "priceFull": 399.0,
       "portions": {
@@ -60282,14 +60880,23 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.390438",
-      "updatedAt": "2026-11-14T01:18:22.390438"
+      "updatedAt": "2026-11-14T01:18:22.390438",
+      "hasSizes": true,
+      "sizes": {
+        "S": 179.0,
+        "M": 289.0,
+        "L": 399.0
+      },
+      "priceS": 179.0,
+      "priceM": 289.0,
+      "priceL": 399.0
     },
     {
       "_id": "dish-b4c3d920",
       "id": "dish-b4c3d920",
       "name": "Spicy Tango Pizza",
-      "price": 490.0,
-      "hasHalfFull": true,
+      "price": 180.0,
+      "hasHalfFull": false,
       "priceHalf": 180.0,
       "priceFull": 490.0,
       "portions": {
@@ -60309,7 +60916,16 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.392568",
-      "updatedAt": "2026-11-14T01:18:22.392568"
+      "updatedAt": "2026-11-14T01:18:22.392568",
+      "hasSizes": true,
+      "sizes": {
+        "S": 180.0,
+        "M": 340.0,
+        "L": 490.0
+      },
+      "priceS": 180.0,
+      "priceM": 340.0,
+      "priceL": 490.0
     },
     {
       "_id": "dish-ee8fa4e9",
@@ -61413,7 +62029,16 @@
       "shopName": "Caffelera",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.527881",
-      "updatedAt": "2026-11-14T01:18:22.527881"
+      "updatedAt": "2026-11-14T01:18:22.527881",
+      "hasSizes": true,
+      "sizes": {
+        "S": 140.0,
+        "M": 210.0,
+        "L": 290.0
+      },
+      "priceS": 140.0,
+      "priceM": 210.0,
+      "priceL": 290.0
     },
     {
       "_id": "dish-4e395d05",
@@ -61873,7 +62498,16 @@
       "shopName": "Rainbow",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:22.631115",
-      "updatedAt": "2026-11-14T01:18:22.631115"
+      "updatedAt": "2026-11-14T01:18:22.631115",
+      "hasSizes": true,
+      "sizes": {
+        "S": 160.0,
+        "M": 240.0,
+        "L": 330.0
+      },
+      "priceS": 160.0,
+      "priceM": 240.0,
+      "priceL": 330.0
     },
     {
       "_id": "dish-3323cfcb",
@@ -63906,7 +64540,16 @@
       "shopName": "Mahinder Food Junction",
       "isRealPhoto": true,
       "createdAt": "2026-11-14T01:18:23.112568",
-      "updatedAt": "2026-11-14T01:18:23.112568"
+      "updatedAt": "2026-11-14T01:18:23.112568",
+      "hasSizes": true,
+      "sizes": {
+        "S": 150.0,
+        "M": 220.0,
+        "L": 310.0
+      },
+      "priceS": 150.0,
+      "priceM": 220.0,
+      "priceL": 310.0
     },
     {
       "_id": "dish-a6133de1",

@@ -308,6 +308,30 @@ function renderEmptyMenu() {
 }
 
 let selectedPortions = {};
+let selectedPizzaSizes = {};
+
+function setCardPizzaSize(itemId, size, price) {
+    selectedPizzaSizes[itemId] = { size, price };
+    const priceEl = document.getElementById(`food-card-price-${itemId}`);
+    if (priceEl) priceEl.textContent = `₹${price}`;
+
+    ['s', 'm', 'l'].forEach(s => {
+        const btn = document.getElementById(`size-btn-${s}-${itemId}`);
+        if (btn) {
+            if (s.toUpperCase() === size) {
+                btn.style.background = '#ea580c';
+                btn.style.color = '#ffffff';
+                btn.style.boxShadow = '0 2px 5px rgba(234, 88, 12, 0.4)';
+                btn.style.fontWeight = '800';
+            } else {
+                btn.style.background = 'transparent';
+                btn.style.color = '#9a3412';
+                btn.style.boxShadow = 'none';
+                btn.style.fontWeight = '700';
+            }
+        }
+    });
+}
 
 function setCardPortion(itemId, portion, price) {
     selectedPortions[itemId] = { portion, price };
@@ -462,13 +486,28 @@ function buildFoodCardHTML(item) {
     const isShopOpen = shop ? (shop.isOpen !== false) : true;
     const canOrder = isAvailable && isShopOpen;
 
-    const hasHalfFull = !!item.hasHalfFull;
-    const currentSelected = selectedPortions[itemId] || {
-        portion: 'Half',
-        price: (hasHalfFull ? (item.priceHalf || item.price) : item.price)
-    };
-    const currentPortion = currentSelected.portion;
-    const displayPrice = hasHalfFull ? currentSelected.price : item.price;
+    const hasSizes = !!(item.hasSizes && item.sizes);
+    const hasHalfFull = !hasSizes && !!item.hasHalfFull;
+
+    let displayPrice = item.price;
+    let currentPortion = 'Half';
+    let currentPizzaSize = 'S';
+
+    if (hasSizes) {
+        const currentSelectedSize = selectedPizzaSizes[itemId] || {
+            size: 'S',
+            price: (item.sizes && item.sizes.S) || item.priceS || item.price
+        };
+        currentPizzaSize = currentSelectedSize.size;
+        displayPrice = currentSelectedSize.price;
+    } else if (hasHalfFull) {
+        const currentSelected = selectedPortions[itemId] || {
+            portion: 'Half',
+            price: (item.priceHalf || item.price)
+        };
+        currentPortion = currentSelected.portion;
+        displayPrice = currentSelected.price;
+    }
 
     return `
         <div class="food-card ${!canOrder ? 'out-of-stock' : ''}" id="card-${itemId}">
@@ -497,7 +536,26 @@ function buildFoodCardHTML(item) {
                 <h3 class="food-title">${item.name}</h3>
                 <p class="food-desc">${item.description || 'Freshly prepared item available at campus counter.'}</p>
                 
-                ${hasHalfFull ? `
+                ${hasSizes ? `
+                    <!-- 3-Size (S / M / L) Pizza Selector Bar -->
+                    <div class="pizza-size-selector-bar" style="display: flex; gap: 4px; margin: 0.5rem 0 0.35rem 0; background: #fff7ed; padding: 3px; border-radius: 8px; border: 1.5px solid #fed7aa;">
+                        <button type="button" id="size-btn-s-${itemId}" 
+                                onclick="setCardPizzaSize('${itemId}', 'S', ${(item.sizes && item.sizes.S) || item.priceS || item.price})" 
+                                style="flex: 1; padding: 4px 2px; border-radius: 6px; border: none; font-size: 0.74rem; font-weight: 700; cursor: pointer; transition: all 0.2s; ${currentPizzaSize === 'S' ? 'background: #ea580c; color: #ffffff; box-shadow: 0 2px 5px rgba(234, 88, 12, 0.4); font-weight: 800;' : 'background: transparent; color: #9a3412;'}">
+                            🍕 S: ₹${(item.sizes && item.sizes.S) || item.priceS || item.price}
+                        </button>
+                        <button type="button" id="size-btn-m-${itemId}" 
+                                onclick="setCardPizzaSize('${itemId}', 'M', ${(item.sizes && item.sizes.M) || item.priceM || Math.round(item.price * 1.5)})" 
+                                style="flex: 1; padding: 4px 2px; border-radius: 6px; border: none; font-size: 0.74rem; font-weight: 700; cursor: pointer; transition: all 0.2s; ${currentPizzaSize === 'M' ? 'background: #ea580c; color: #ffffff; box-shadow: 0 2px 5px rgba(234, 88, 12, 0.4); font-weight: 800;' : 'background: transparent; color: #9a3412;'}">
+                            🍕 M: ₹${(item.sizes && item.sizes.M) || item.priceM || Math.round(item.price * 1.5)}
+                        </button>
+                        <button type="button" id="size-btn-l-${itemId}" 
+                                onclick="setCardPizzaSize('${itemId}', 'L', ${(item.sizes && item.sizes.L) || item.priceL || Math.round(item.price * 2.1)})" 
+                                style="flex: 1; padding: 4px 2px; border-radius: 6px; border: none; font-size: 0.74rem; font-weight: 700; cursor: pointer; transition: all 0.2s; ${currentPizzaSize === 'L' ? 'background: #ea580c; color: #ffffff; box-shadow: 0 2px 5px rgba(234, 88, 12, 0.4); font-weight: 800;' : 'background: transparent; color: #9a3412;'}">
+                            🍕 L: ₹${(item.sizes && item.sizes.L) || item.priceL || Math.round(item.price * 2.1)}
+                        </button>
+                    </div>
+                ` : (hasHalfFull ? `
                     <!-- Half & Full Portion Switcher -->
                     <div class="portion-selector-bar" style="display: flex; gap: 4px; margin: 0.5rem 0 0.35rem 0; background: #f1f5f9; padding: 3px; border-radius: 8px; border: 1px solid #e2e8f0;">
                         <button type="button" id="portion-btn-half-${itemId}" 
@@ -511,7 +569,7 @@ function buildFoodCardHTML(item) {
                             🍲 Full: ₹${item.priceFull || item.price}
                         </button>
                     </div>
-                ` : ''}
+                ` : '')}
 
                 <div class="food-footer" style="margin-top: 0.5rem;">
                     <div class="food-price" id="food-card-price-${itemId}">₹${displayPrice}</div>
@@ -679,16 +737,34 @@ function addToCart(itemId) {
         return;
     }
 
-    const hasHalfFull = !!item.hasHalfFull;
-    let selectedPortionInfo = selectedPortions[itemId];
-    if (!selectedPortionInfo && hasHalfFull) {
-        selectedPortionInfo = { portion: 'Half', price: (item.priceHalf || item.price) };
-    }
+    const hasSizes = !!(item.hasSizes && item.sizes);
+    const hasHalfFull = !hasSizes && !!item.hasHalfFull;
+    
+    let selectedSize = null;
+    let portion = null;
+    let finalPrice = Number(item.price);
+    let cartItemId = item._id || item.id;
+    let cartItemName = item.name;
 
-    const portion = hasHalfFull ? selectedPortionInfo.portion : null;
-    const finalPrice = hasHalfFull ? Number(selectedPortionInfo.price) : Number(item.price);
-    const cartItemId = hasHalfFull ? `${itemId}-${portion.toLowerCase()}` : (item._id || item.id);
-    const cartItemName = hasHalfFull ? `${item.name} (${portion})` : item.name;
+    if (hasSizes) {
+        let selectedSizeInfo = selectedPizzaSizes[itemId];
+        if (!selectedSizeInfo) {
+            selectedSizeInfo = { size: 'S', price: (item.sizes && item.sizes.S) || item.priceS || item.price };
+        }
+        selectedSize = selectedSizeInfo.size;
+        finalPrice = Number(selectedSizeInfo.price);
+        cartItemId = `${itemId}-size-${selectedSize.toLowerCase()}`;
+        cartItemName = `${item.name} (${selectedSize})`;
+    } else if (hasHalfFull) {
+        let selectedPortionInfo = selectedPortions[itemId];
+        if (!selectedPortionInfo) {
+            selectedPortionInfo = { portion: 'Half', price: (item.priceHalf || item.price) };
+        }
+        portion = selectedPortionInfo.portion;
+        finalPrice = Number(selectedPortionInfo.price);
+        cartItemId = `${itemId}-${portion.toLowerCase()}`;
+        cartItemName = `${item.name} (${portion})`;
+    }
 
     const shopName = item.shopName || (shop ? shop.name : (item.category || 'Campus Outlet'));
     const shopId = item.shopId || (shop ? (shop.shopId || shop._id) : 'shop-1');
@@ -701,6 +777,8 @@ function addToCart(itemId) {
             baseId: item._id || item.id,
             name: cartItemName,
             portion: portion,
+            size: selectedSize,
+            selectedSize: selectedSize,
             price: finalPrice,
             category: item.category || 'General',
             shopId: shopId,
@@ -732,6 +810,8 @@ function addToCart(itemId) {
             baseId: item._id || item.id,
             name: cartItemName,
             portion: portion,
+            size: selectedSize,
+            selectedSize: selectedSize,
             price: finalPrice,
             category: item.category || 'General',
             shopId: shopId,

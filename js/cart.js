@@ -271,7 +271,7 @@ window.loadSquadCart = function(squad) {
             <div class="cart-item">
                 <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'">
                 <div class="cart-item-info">
-                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-name">${item.name} ${(item.selectedSize || item.size) ? `<span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; margin-left: 6px;">Size: ${item.selectedSize || item.size}</span>` : ''}</div>
                     <div class="cart-item-price">₹${item.price} each</div>
                     <span class="squad-member-badge"><i class="fa-solid fa-user"></i> Added by ${member}</span>
                 </div>
@@ -414,7 +414,7 @@ function loadCart() {
             <div class="cart-item">
                 <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'">
                 <div class="cart-item-info">
-                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-name">${item.name} ${(item.selectedSize || item.size) ? `<span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; margin-left: 6px;">Size: ${item.selectedSize || item.size}</span>` : ''}</div>
                     <div class="cart-item-price">₹${item.price} each</div>
                 </div>
                 <div class="qty-control">
@@ -953,6 +953,8 @@ async function handlePlaceOrder(event) {
                 price: item.price,
                 quantity: item.quantity,
                 portion: item.portion || null,
+                size: item.selectedSize || item.size || null,
+                selectedSize: item.selectedSize || item.size || null,
                 shopId: item.shopId || (isSalon ? 'shop-24' : 'shop-1'),
                 shopName: item.shopName || (isSalon ? "New look MENS' PERSONAL CARE SALON" : ''),
                 type: item.type || 'veg',
