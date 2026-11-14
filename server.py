@@ -1075,110 +1075,290 @@ def get_shop_name_by_id(shop_id):
         return shop.get("name", "Campus Mart Outlet")
     return "TMU Central Food Court"
 
+import io
 import re
 
-def parse_raw_menu_text(raw_text, target_shop="shop-1", target_category=""):
-    lines = raw_text.splitlines()
-    parsed_items = []
-    # Pattern for 2 prices (Half / Full): e.g. "Dal Tadka 120 180" or "Dal Tadka 120/180" or "120/- 180/-"
-    two_price_pattern = re.compile(r'(?:(?:rs\.?|inr|₹|@)?\s*(\d{1,4})\s*(?:\/[-=]?)?)\s*(?:[\/\|\-–\s]+)\s*(?:(?:rs\.?|inr|₹|@)?\s*(\d{1,4})\s*(?:\/[-=]?)?)\s*$', re.IGNORECASE)
-    # Pattern for single price: e.g. "Samosa 25" or "Samosa - Rs 25/-"
-    single_price_pattern = re.compile(r'(\b(?:rs\.?|inr|₹|@)?\s*(\d{1,4})\s*(?:\/[-=]?)?|\b(\d{1,4})\s*(?:\/[-=]?))\s*$', re.IGNORECASE)
+PHOTO_CACHE = {}
+
+def get_matching_dish_photo(dish_name, shop_id=None, category=None):
+    clean_name = re.sub(r'[^a-zA-Z0-9\s]', '', dish_name).lower().strip()
+    cache_key = f"{clean_name}:{shop_id or ''}"
+    if cache_key in PHOTO_CACHE:
+        return PHOTO_CACHE[cache_key]
+
+    name_tokens = [w for w in clean_name.split() if len(w) > 2]
     
+    # 1. Shop-specific folder
+    if shop_id:
+        cand1 = os.path.join("assets", "shops", str(shop_id))
+        if os.path.exists(cand1):
+            for f in os.listdir(cand1):
+                if f.lower().endswith(('.jpg', '.png', '.jpeg', '.webp')):
+                    f_clean = re.sub(r'[^a-zA-Z0-9\s]', ' ', f).lower()
+                    if clean_name in f_clean or (len(name_tokens) > 0 and all(tok in f_clean for tok in name_tokens)):
+                        path = f"{cand1}/{f}".replace("\\", "/")
+                        PHOTO_CACHE[cache_key] = path
+                        return path
+
+    # 2. Real food photos repository
+    real_dir = os.path.join("assets", "real_food_photos")
+    if os.path.exists(real_dir):
+        for root, dirs, files in os.walk(real_dir):
+            for f in files:
+                if f.lower().endswith(('.jpg', '.png', '.jpeg', '.webp')):
+                    f_clean = re.sub(r'[^a-zA-Z0-9\s]', ' ', f).lower()
+                    if clean_name in f_clean or (len(name_tokens) > 0 and all(tok in f_clean for tok in name_tokens)):
+                        path = os.path.join(root, f).replace("\\", "/")
+                        PHOTO_CACHE[cache_key] = path
+                        return path
+
+    # 3. Default aesthetic category photo
+    cat_lower = (category or "").lower()
+    if any(k in cat_lower for k in ["drink", "chai", "coffee", "juice", "shake"]):
+        return "assets/shops/shop-1/001_Nimbu_Pani.png"
+    elif any(k in cat_lower for k in ["snack", "burger", "fast"]):
+        return "assets/shops/shop-1/003_Pav_Bhaji.png"
+    return "assets/shops/shop-3/001_Shahi_Paneer.jpg"
+
+def clean_ocr_currency_text(t):
+    if not t:
+        return ""
+    t = re.sub(r'(\d{2,3})[1ilI]\s*[\.\-–]', r'\1/- ', t)
+    t = re.sub(r'(\d{2,3})[\'\"]\s*[\.\-–•]?', r'\1/- ', t)
+    t = re.sub(r'(\d{2,3})\s*[\/\.]{1,2}[\-–•]', r'\1/- ', t)
+    t = re.sub(r'(\d{2,3})\s*[\/•]', r'\1/- ', t)
+    return t
+
+def extract_text_from_pil(img):
+    try:
+        import winocr
+        res = winocr.recognize_pil_sync(img)
+        words = []
+        for l in res.get('lines', []):
+            for w in l.get('words', []):
+                rect = w.get('bounding_rect', {})
+                if rect:
+                    words.append({
+                        'text': w.get('text', ''),
+                        'x': float(rect.get('x', 0)),
+                        'y': float(rect.get('y', 0)),
+                        'h': float(rect.get('height', 0)),
+                        'w': float(rect.get('width', 0))
+                    })
+        if words:
+            words.sort(key=lambda item: (item['y'], item['x']))
+            rows = []
+            for w in words:
+                matched_row = None
+                for r in rows:
+                    avg_y = sum(item['y'] for item in r) / len(r)
+                    avg_h = sum(item['h'] for item in r) / len(r)
+                    if abs(w['y'] - avg_y) < (avg_h * 0.75):
+                        matched_row = r
+                        break
+                if matched_row is not None:
+                    matched_row.append(w)
+                else:
+                    rows.append([w])
+            reconstructed = []
+            for r in rows:
+                r.sort(key=lambda item: item['x'])
+                reconstructed.append(" ".join(item['text'] for item in r))
+            return "\n".join(reconstructed)
+        return res.get('text', '')
+    except Exception as e:
+        print("[OCR Note] WinOCR unavailable or error:", e)
+        return ""
+
+def extract_text_from_image_or_pdf(file_bytes, filename=""):
+    if not file_bytes:
+        return ""
+    if filename.lower().endswith('.pdf'):
+        try:
+            import fitz
+            from PIL import Image
+            doc = fitz.open(stream=file_bytes, filetype="pdf")
+            all_text = []
+            for i in range(min(len(doc), 10)):
+                page = doc[i]
+                t = page.get_text()
+                if len(t.strip()) > 30:
+                    all_text.append(t)
+                else:
+                    pix = page.get_pixmap(dpi=150)
+                    page_img = Image.open(io.BytesIO(pix.tobytes('png')))
+                    ocr_t = extract_text_from_pil(page_img)
+                    if ocr_t:
+                        all_text.append(ocr_t)
+            return "\n".join(all_text)
+        except Exception as e:
+            print("[PDF Note] PDF parsing error:", e)
+
+    try:
+        from PIL import Image
+        img = Image.open(io.BytesIO(file_bytes))
+        return extract_text_from_pil(img)
+    except Exception as e:
+        print("[Image Note] Image parsing error:", e)
+        return ""
+
+def parse_raw_menu_text(raw_text, target_shop="shop-1", target_category=""):
+    cleaned = clean_ocr_currency_text(raw_text)
+    lines = cleaned.splitlines()
+    parsed_items = []
+    seen_names = set()
+
+    two_price_pattern = re.compile(r'(?:(?:rs\.?|inr|₹|@)?\s*(\d{1,4})\s*(?:\/[-=]?)?)\s*(?:[\/\|\-–\s]+)\s*(?:(?:rs\.?|inr|₹|@)?\s*(\d{1,4})\s*(?:\/[-=]?)?)\s*$', re.IGNORECASE)
+    single_price_pattern = re.compile(r'(?:(?:rs\.?|inr|₹|@|price|rate)?\s*[:\-–]?\s*(\d{1,4})\s*(?:\/[-=\.\'•]*)?)\s*$', re.IGNORECASE)
+    pair_pattern = re.compile(r'([A-Za-z\.\'\-]+(?:\s+[A-Za-z\.\'\-]+)*)\s*[:\-–]?\s*[\.]?\s*(\d{1,4})(?:\s*[\/\-\.\'•]{1,3})?', re.IGNORECASE)
+
+    noise_words = ['order', 'orders', 'contact', 'party', 'parties', 'birthday', 'phone', 'call', 'timing', 'menu', 'rate card', 'gst', 'welcome', 'counter', 'booked', 'whatsapp', 'delivery', 'scan', 'mrp']
+
     for raw_line in lines:
         line = raw_line.strip()
         if not line or len(line) < 3:
             continue
-        line = re.sub(r'^[\d\.\)\-\*\#\s]+', '', line).strip()
-        
-        price = None
-        price_half = None
-        price_full = None
-        has_half_full = False
-        item_name = ""
-        
+        line = re.sub(r'^[\d\.\)\-\*\#\•\s]+', '', line).strip()
+        if any(w in line.lower() for w in noise_words) and not re.search(r'\d{2,3}', line):
+            continue
+
+        # Try multi-pair extraction if line has multiple items
+        pairs = list(pair_pattern.finditer(line))
+        if len(pairs) >= 2:
+            for m in pairs:
+                name = m.group(1).strip()
+                try:
+                    price = float(m.group(2))
+                except Exception:
+                    continue
+                name = re.sub(r'^[\.\-\:\_\|\/\=\*\(\)\{\}\[\]\s]+', '', name)
+                name = re.sub(r'[\.\-\:\_\|\/\=\*\(\)\{\}\[\]\s]+$', '', name)
+                if len(name) >= 2 and 5 <= price <= 2500 and not any(w in name.lower() for w in noise_words):
+                    clean_name = " ".join(w.capitalize() for w in name.split())
+                    if clean_name.lower() not in seen_names:
+                        seen_names.add(clean_name.lower())
+                        cat = target_category or ("Drinks & Juices" if any(k in clean_name.lower() for k in ["tea", "chai", "coffee", "juice", "shake", "soda", "shikanji"]) else "Canteen Food")
+                        img = get_matching_dish_photo(clean_name, target_shop, cat)
+                        parsed_items.append({
+                            "name": clean_name,
+                            "price": price,
+                            "hasHalfFull": False,
+                            "priceHalf": None,
+                            "priceFull": None,
+                            "category": cat,
+                            "type": "veg",
+                            "image": img,
+                            "imageUrl": img,
+                            "description": f"Fresh & delicious {clean_name} prepared to order.",
+                            "available": True,
+                            "isAvailable": True,
+                            "shopId": target_shop,
+                            "shopName": get_shop_name_by_id(target_shop)
+                        })
+            continue
+
         # 1. Try 2-price match (Half & Full)
         two_match = two_price_pattern.search(line)
         if two_match:
             try:
                 p1 = float(two_match.group(1))
                 p2 = float(two_match.group(2))
-                if p1 > 0 and p2 > 0:
-                    price_half = min(p1, p2)
-                    price_full = max(p1, p2)
-                    price = price_half
-                    has_half_full = True
-                    item_name = line[:two_match.start()].strip()
+                if 5 <= p1 <= 2500 and 5 <= p2 <= 2500:
+                    name = line[:two_match.start()].strip()
+                    name = re.sub(r'[\:\-–\.\•]+$', '', name).strip()
+                    if len(name) >= 2 and not any(w in name.lower() for w in noise_words):
+                        clean_name = " ".join(w.capitalize() for w in name.split())
+                        if clean_name.lower() not in seen_names:
+                            seen_names.add(clean_name.lower())
+                            cat = target_category or "Canteen Food"
+                            img = get_matching_dish_photo(clean_name, target_shop, cat)
+                            parsed_items.append({
+                                "name": clean_name,
+                                "price": min(p1, p2),
+                                "hasHalfFull": True,
+                                "priceHalf": min(p1, p2),
+                                "priceFull": max(p1, p2),
+                                "category": cat,
+                                "type": "veg",
+                                "image": img,
+                                "imageUrl": img,
+                                "description": f"Fresh & authentic {clean_name} prepared to order (Half & Full portions available).",
+                                "available": True,
+                                "isAvailable": True,
+                                "shopId": target_shop,
+                                "shopName": get_shop_name_by_id(target_shop)
+                            })
+                            continue
             except Exception:
-                has_half_full = False
-        
+                pass
+
         # 2. Try single price match
-        if not price:
-            match = single_price_pattern.search(line)
-            if match:
-                price_val = match.group(2) or match.group(3)
-                if price_val:
-                    try:
-                        price = float(price_val)
-                        item_name = line[:match.start()].strip()
-                    except Exception:
-                        price = None
-        
+        single_match = single_price_pattern.search(line)
+        if single_match:
+            try:
+                price = float(single_match.group(1))
+                if 5 <= price <= 2500:
+                    name = line[:single_match.start()].strip()
+                    name = re.sub(r'[\:\-–\.\•]+$', '', name).strip()
+                    name = re.sub(r'^(drink items|beverages|snacks|items)\s*[:\-–]?\s*', '', name, flags=re.IGNORECASE).strip()
+                    if len(name) >= 2 and not any(w in name.lower() for w in noise_words):
+                        clean_name = " ".join(w.capitalize() for w in name.split())
+                        if clean_name.lower() not in seen_names:
+                            seen_names.add(clean_name.lower())
+                            cat = target_category or ("Drinks & Juices" if any(k in clean_name.lower() for k in ["tea", "chai", "coffee", "juice", "shake", "soda", "shikanji"]) else "Canteen Food")
+                            img = get_matching_dish_photo(clean_name, target_shop, cat)
+                            parsed_items.append({
+                                "name": clean_name,
+                                "price": price,
+                                "hasHalfFull": False,
+                                "priceHalf": None,
+                                "priceFull": None,
+                                "category": cat,
+                                "type": "veg",
+                                "image": img,
+                                "imageUrl": img,
+                                "description": f"Fresh & delicious {clean_name} prepared to order.",
+                                "available": True,
+                                "isAvailable": True,
+                                "shopId": target_shop,
+                                "shopName": get_shop_name_by_id(target_shop)
+                            })
+                            continue
+            except Exception:
+                pass
+
         # 3. Fallback prefix price: e.g. "50 - Masala Dosa"
-        if not price:
-            alt_match = re.match(r'^(?:rs\.?|inr|₹|@)?\s*(\d{1,4})\s*[\:\-\.]?\s+(.*)$', line, re.IGNORECASE)
-            if alt_match:
-                try:
-                    price = float(alt_match.group(1))
-                    item_name = alt_match.group(2).strip()
-                except Exception:
-                    pass
-        
-        if item_name and price and price > 0:
-            item_name = re.sub(r'[\.\-\:\_\|\/\=\*\(\)\{\}\[\]]+$', '', item_name).strip()
-            item_name = re.sub(r'^[\.\-\:\_\|\/\=\*\(\)\{\}\[\]]+', '', item_name).strip()
-            item_name = re.sub(r'\s+(?:half|full|plate|h\/f|h|f)\s*$', '', item_name, flags=re.IGNORECASE).strip()
-            
-            if len(item_name) >= 2:
-                clean_name = " ".join([w.capitalize() for w in item_name.split()])
-                name_lower = clean_name.lower()
-                is_nonveg = any(w in name_lower for w in ["chicken", "egg", "fish", "mutton", "meat", "non-veg", "nonveg"])
-                item_type = "nonveg" if is_nonveg else "veg"
-                
-                cat = target_category
-                if not cat or cat == "all":
-                    if any(w in name_lower for w in ["tea", "chai", "coffee", "juice", "shake", "drink", "pepsi", "coke", "water"]):
-                        cat = "Drinks & Juices"
-                    elif any(w in name_lower for w in ["register", "copy", "notebook", "pen", "pencil", "stapler", "file", "folder", "paper", "sheet"]):
-                        cat = "Stationery"
-                    elif any(w in name_lower for w in ["chocolate", "candy", "silk", "kitkat", "5star", "munch", "sweet", "bar"]):
-                        cat = "Chocolates & Candies"
-                    elif any(w in name_lower for w in ["chips", "lays", "kurkure", "patty", "patties", "pastry", "puff", "biscuit", "toast", "namkeen"]):
-                        cat = "Snacks & Chips"
-                    elif any(w in name_lower for w in ["soap", "shampoo", "sanitizer", "brush", "paste", "surf", "towel", "lock"]):
-                        cat = "Hostel Essentials"
-                    else:
-                        cat = "Canteen Food"
-                
-                img = get_default_item_image(clean_name, cat)
-                
-                parsed_items.append({
-                    "name": clean_name,
-                    "price": price,
-                    "hasHalfFull": has_half_full,
-                    "priceHalf": price_half if has_half_full else None,
-                    "priceFull": price_full if has_half_full else None,
-                    "category": cat,
-                    "type": item_type,
-                    "image": img,
-                    "imageUrl": img,
-                    "description": f"Fresh & delicious {clean_name} prepared to order.",
-                    "available": True,
-                    "isAvailable": True,
-                    "shopId": target_shop,
-                    "shopName": get_shop_name_by_id(target_shop)
-                })
-                
+        alt_match = re.match(r'^(?:rs\.?|inr|₹|@)?\s*(\d{1,4})\s*[\:\-\.]?\s+(.*)$', line, re.IGNORECASE)
+        if alt_match:
+            try:
+                price = float(alt_match.group(1))
+                name = alt_match.group(2).strip()
+                name = re.sub(r'[\:\-–\.\•]+$', '', name).strip()
+                if len(name) >= 2 and 5 <= price <= 2500 and not any(w in name.lower() for w in noise_words):
+                    clean_name = " ".join(w.capitalize() for w in name.split())
+                    if clean_name.lower() not in seen_names:
+                        seen_names.add(clean_name.lower())
+                        cat = target_category or "Canteen Food"
+                        img = get_matching_dish_photo(clean_name, target_shop, cat)
+                        parsed_items.append({
+                            "name": clean_name,
+                            "price": price,
+                            "hasHalfFull": False,
+                            "priceHalf": None,
+                            "priceFull": None,
+                            "category": cat,
+                            "type": "veg",
+                            "image": img,
+                            "imageUrl": img,
+                            "description": f"Fresh & delicious {clean_name} prepared to order.",
+                            "available": True,
+                            "isAvailable": True,
+                            "shopId": target_shop,
+                            "shopName": get_shop_name_by_id(target_shop)
+                        })
+            except Exception:
+                pass
+
     return parsed_items
 
 def init_db_defaults():
@@ -2229,6 +2409,67 @@ def deploy_live_endpoint():
         return jsonify({
             "success": False,
             "message": f"Deploy warning: {str(e)}"
+        }), 500
+
+
+@app.route("/api/menu/scan-photo", methods=["POST"])
+def scan_menu_photo_endpoint():
+    try:
+        raw_text = ""
+        target_shop = request.form.get("shopId") or "shop-1"
+        target_category = request.form.get("category") or ""
+        
+        # 1. File Upload (Image or PDF)
+        uploaded_file = request.files.get("file") or request.files.get("image")
+        if uploaded_file and uploaded_file.filename:
+            file_bytes = uploaded_file.read()
+            raw_text = extract_text_from_image_or_pdf(file_bytes, uploaded_file.filename)
+            
+        # 2. JSON Base64 or Text Payload
+        if not raw_text and request.is_json:
+            json_data = request.json or {}
+            target_shop = json_data.get("shopId") or target_shop
+            target_category = json_data.get("category") or target_category
+            raw_text = json_data.get("text", "")
+            
+            base64_data = json_data.get("base64") or json_data.get("image")
+            if base64_data and "," in base64_data:
+                base64_data = base64_data.split(",", 1)[1]
+            if base64_data:
+                try:
+                    img_bytes = base64.b64decode(base64_data)
+                    raw_text = extract_text_from_image_or_pdf(img_bytes, "upload.jpg")
+                except Exception as e:
+                    print("[Scan Note] Base64 decode error:", e)
+
+        # 3. Fallback to raw text from form
+        if not raw_text:
+            raw_text = request.form.get("text", "")
+
+        if not raw_text or len(raw_text.strip()) < 3:
+            return jsonify({
+                "success": False,
+                "message": "No legible text could be extracted from the uploaded photo. Please try a clearer picture or paste the menu text.",
+                "items": [],
+                "count": 0
+            }), 200
+
+        # Parse text into dishes
+        parsed_items = parse_raw_menu_text(raw_text, target_shop, target_category)
+        return jsonify({
+            "success": True,
+            "count": len(parsed_items),
+            "items": parsed_items,
+            "rawText": raw_text,
+            "shopId": target_shop,
+            "shopName": get_shop_name_by_id(target_shop)
+        }), 200
+    except Exception as e:
+        print("[Scan Error]:", e)
+        return jsonify({
+            "success": False,
+            "message": f"Error scanning menu photo: {str(e)}",
+            "items": []
         }), 500
 
 

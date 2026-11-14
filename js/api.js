@@ -186,6 +186,19 @@ const api = {
         return await res.json();
     },
 
+    async scanMenuPhoto(formData) {
+        try {
+            const res = await fetch(`${API_BASE}/api/menu/scan-photo`, {
+                method: 'POST',
+                body: formData
+            });
+            return await res.json();
+        } catch (err) {
+            console.warn('api.scanMenuPhoto error:', err);
+            return { success: false, message: 'Network connection error while uploading photo.' };
+        }
+    },
+
     async smartParseMenu(text, shopId = 'shop-1', category = '') {
         const res = await fetch(`${API_BASE}/api/menu/smart-parse`, {
             method: 'POST',

@@ -317,7 +317,7 @@
                             <i class="fa-solid fa-layer-group"></i> 📦 Bulk Add Items (+ Photos)
                         </button>
                         <button onclick="openMenuScannerModal()" class="btn btn-sm" style="background: linear-gradient(135deg, #7c3aed, #ec4899); color: white; border: none; font-weight: 700; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);">
-                            <i class="fa-solid fa-camera"></i> 📸 Smart Scan Menu Card (AI / OCR)
+                            <i class="fa-solid fa-camera"></i> 📷 Scan Menu Photo to Add Items
                         </button>
                         <button onclick="openAddFoodModal()" class="btn btn-primary btn-sm">
                             <i class="fa-solid fa-plus"></i> Add Single Item
@@ -1658,7 +1658,7 @@
                             <div style="font-size: 0.82rem; color: #6366f1; margin-top: 0.35rem;">
                                 Supports JPG, PNG, WebP photo of rate list board, printed menu, or handwritten card
                             </div>
-                            <input type="file" id="scanner-file-input" accept="image/*" style="display: none;" onchange="handleMenuPhotoUploaded(event)">
+                            <input type="file" id="scanner-file-input" accept="image/*,application/pdf" capture="environment" style="display: none;" onchange="handleMenuPhotoUploaded(event)">
                         </div>
                     </div>
 
@@ -1730,9 +1730,14 @@ Chai 15"></textarea>
                                 Review the extracted items below. You can tweak names, categories or prices before importing.
                             </p>
                         </div>
-                        <button type="button" onclick="resetScannerModal()" class="btn btn-outline btn-sm">
-                            <i class="fa-solid fa-arrow-rotate-left"></i> Scan Another Photo
-                        </button>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <button type="button" onclick="addCustomRowToScanner()" class="btn btn-outline btn-sm" style="color: #4f46e5; border-color: #c7d2fe; font-weight: 700;">
+                                <i class="fa-solid fa-plus"></i> + Add Item Row
+                            </button>
+                            <button type="button" onclick="resetScannerModal()" class="btn btn-outline btn-sm">
+                                <i class="fa-solid fa-arrow-rotate-left"></i> Scan Another Photo
+                            </button>
+                        </div>
                     </div>
 
                     <div style="max-height: 340px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 1.25rem;">

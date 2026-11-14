@@ -2584,50 +2584,95 @@ async function handleMenuPhotoUploaded(event) {
     const progressBar = document.getElementById('scanner-progress-bar');
     const statusText = document.getElementById('scanner-status-text');
 
-    if (statusText) statusText.textContent = '📸 Pre-processing menu photo & initializing AI OCR...';
-    if (progressBar) progressBar.style.width = '25%';
+    if (statusText) statusText.textContent = '📸 Uploading menu image & running High-Precision AI OCR...';
+    if (progressBar) progressBar.style.width = '35%';
 
     try {
-        let extractedText = '';
+        let items = [];
 
-        if (window.Tesseract) {
-            if (statusText) statusText.textContent = '🔍 Reading dish names, prices & categories from photo...';
-            if (progressBar) progressBar.style.width = '60%';
+        // 1. Try High-Performance Backend Python OCR (WinOCR + Spatial Clustering)
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('shopId', targetShopId);
+        formData.append('category', targetShop.category || 'Canteen Food');
 
-            const result = await Tesseract.recognize(file, 'eng', {
-                logger: m => {
-                    if (m.status === 'recognizing text' && progressBar) {
-                        const pct = Math.round(50 + (m.progress * 40));
-                        progressBar.style.width = `${pct}%`;
+        if (progressBar) progressBar.style.width = '65%';
+        const scanRes = await api.scanMenuPhoto(formData);
+
+        if (scanRes && scanRes.success && scanRes.items && scanRes.items.length > 0) {
+            items = scanRes.items;
+        } else {
+            // 2. Client-side Tesseract Fallback if backend OCR returned empty or had network issue
+            if (window.Tesseract) {
+                if (statusText) statusText.textContent = '🔍 Reading dish names & prices via client OCR engine...';
+                if (progressBar) progressBar.style.width = '80%';
+
+                const result = await Tesseract.recognize(file, 'eng', {
+                    logger: m => {
+                        if (m.status === 'recognizing text' && progressBar) {
+                            const pct = Math.round(70 + (m.progress * 25));
+                            progressBar.style.width = `${pct}%`;
+                        }
+                    }
+                });
+                const extractedText = result.data.text || '';
+                if (extractedText.trim().length > 5) {
+                    const parseRes = await api.smartParseMenu(extractedText, targetShopId, targetShop.category);
+                    if (parseRes.success && parseRes.items && parseRes.items.length > 0) {
+                        items = parseRes.items;
                     }
                 }
-            });
-            extractedText = result.data.text || '';
-        }
-
-        if (statusText) statusText.textContent = '✨ Parsing items, formatting clean text & matching HD photos...';
-        if (progressBar) progressBar.style.width = '95%';
-
-        let items = [];
-        if (extractedText.trim().length > 5) {
-            const parseRes = await api.smartParseMenu(extractedText, targetShopId, targetShop.category);
-            if (parseRes.success && parseRes.items && parseRes.items.length > 0) {
-                items = parseRes.items;
             }
         }
 
+        if (progressBar) progressBar.style.width = '100%';
+
         if (items.length === 0) {
-            items = parseFallbackSample(targetShop.category || 'Canteen Food', targetShopId, targetShop.name);
+            showToast('⚠️ No items recognized automatically. You can add items manually below or paste menu text.', 'warning');
+            items = [
+                {
+                    name: 'New Menu Item',
+                    price: 50,
+                    hasHalfFull: false,
+                    priceHalf: null,
+                    priceFull: null,
+                    category: targetShop.category || 'Canteen Food',
+                    type: 'veg',
+                    image: 'assets/shops/shop-1/003_Pav_Bhaji.png',
+                    shopId: targetShopId,
+                    shopName: targetShop.name
+                }
+            ];
         }
 
         scannedItemsCache = items;
         renderScannerPreviewTable(items, targetShop.name);
     } catch (err) {
         console.error('OCR Error:', err);
-        const fallbackItems = parseFallbackSample(targetShop.category || 'Canteen Food', targetShopId, targetShop.name);
-        scannedItemsCache = fallbackItems;
-        renderScannerPreviewTable(fallbackItems, targetShop.name);
+        showToast('Error reading menu photo. Please try again or paste text.', 'error');
+        resetScannerModal();
     }
+}
+
+function addCustomRowToScanner() {
+    const targetShopSelect = document.getElementById('scanner-target-shop');
+    const targetShopId = targetShopSelect?.value || 'shop-1';
+    const targetShop = adminShops.find(s => (s.shopId === targetShopId || s._id === targetShopId)) || { name: 'TMU Central Food Court', category: 'Canteen Food' };
+    
+    if (!scannedItemsCache) scannedItemsCache = [];
+    scannedItemsCache.push({
+        name: 'New Item',
+        price: 50,
+        hasHalfFull: false,
+        priceHalf: null,
+        priceFull: null,
+        category: targetShop.category || 'Canteen Food',
+        type: 'veg',
+        image: 'assets/shops/shop-1/003_Pav_Bhaji.png',
+        shopId: targetShopId,
+        shopName: targetShop.name
+    });
+    renderScannerPreviewTable(scannedItemsCache, targetShop.name);
 }
 
 function testScannerSample(sampleType) {
