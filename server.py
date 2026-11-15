@@ -4173,7 +4173,7 @@ def _start_keep_alive_daemon():
 
     def _keeper_worker():
         time.sleep(45)  # Let server boot completely
-        target = "https://campusmart-api-75rg.onrender.com/api/health"
+        target = os.environ.get("SELF_PING_URL", "http://127.0.0.1:5000/api/health")
         while True:
             try:
                 req = urllib.request.Request(
