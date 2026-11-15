@@ -1,5 +1,5 @@
 // Campus Mart - Ultra-Fast Service Worker (Network-First for HTML, CSS & JS so updates are instant)
-const CACHE_NAME = 'campus-mart-v23.0-pizza-sizes';
+const CACHE_NAME = 'campus-mart-v24.0-manual-menu-persistence';
 const CORE_ASSETS = [
   '/',
   '/index.html',

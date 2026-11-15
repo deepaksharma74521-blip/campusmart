@@ -247,8 +247,27 @@ class LocalMongoCollection:
             except Exception:
                 data = {}
         data[self.name] = items
-        with open(DATA_FILE, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, default=str)
+        
+        # Atomic Write via temp file to eliminate file corruption/interruption on Windows
+        temp_file = DATA_FILE + ".tmp"
+        try:
+            with open(temp_file, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False, default=str)
+            os.replace(temp_file, DATA_FILE)
+            
+            # Periodic Safety Backup
+            if self.name == "foodItems" and len(items) > 10:
+                try:
+                    backup_file = os.path.join(DATA_DIR, "canteen_db_backup.json")
+                    with open(backup_file, "w", encoding="utf-8") as bf:
+                        json.dump(data, bf, indent=2, ensure_ascii=False, default=str)
+                except Exception:
+                    pass
+        except Exception as err:
+            print(f"[ERROR] Failed writing to {DATA_FILE}: {err}")
+            # Direct fallback write
+            with open(DATA_FILE, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False, default=str)
 
     def find(self, query=None):
         items = self._read_all()
@@ -276,6 +295,17 @@ class LocalMongoCollection:
         items.append(document)
         self._write_all(items)
         return document
+
+    def insert_many(self, documents):
+        if not documents:
+            return []
+        items = self._read_all()
+        for doc in documents:
+            if "_id" not in doc:
+                doc["_id"] = str(uuid.uuid4())
+            items.append(doc)
+        self._write_all(items)
+        return documents
 
     def update_one(self, query, update):
         items = self._read_all()
@@ -2151,6 +2181,47 @@ def add_food_item():
         except (ValueError, TypeError):
             has_half_full = False
 
+    # Check 3-Size Pizza Variants (S / M / L)
+    has_sizes = bool(data.get("hasSizes", False))
+    sizes = data.get("sizes")
+    price_s = None
+    price_m = None
+    price_l = None
+
+    if has_sizes or (sizes and isinstance(sizes, dict)):
+        try:
+            has_sizes = True
+            has_half_full = False  # Pizza uses S/M/L
+            s_val = float(sizes.get("S", price) if sizes else (data.get("priceS") or price))
+            m_val = float(sizes.get("M", round(s_val * 1.5)) if sizes else (data.get("priceM") or round(s_val * 1.5)))
+            l_val = float(sizes.get("L", round(s_val * 2.1)) if sizes else (data.get("priceL") or round(s_val * 2.1)))
+            sizes = {"S": s_val, "M": m_val, "L": l_val}
+            price_s = s_val
+            price_m = m_val
+            price_l = l_val
+            price = s_val
+        except Exception:
+            has_sizes = False
+    elif any(k in name.lower() for k in ["pizza", "calzone"]) and not has_half_full:
+        # Auto-configure clean S/M/L for pizza if added manually
+        try:
+            p_val = float(price) if price else 120.0
+            if p_val > 0:
+                has_sizes = True
+                s_val = p_val
+                m_val = round((p_val * 1.5) / 10) * 10
+                l_val = round((p_val * 2.05) / 10) * 10
+                if int(s_val) % 10 == 9:
+                    if int(m_val) % 10 == 0: m_val -= 1
+                    if int(l_val) % 10 == 0: l_val -= 1
+                sizes = {"S": float(s_val), "M": float(m_val), "L": float(l_val)}
+                price_s = float(s_val)
+                price_m = float(m_val)
+                price_l = float(l_val)
+                price = float(s_val)
+        except Exception:
+            pass
+
     if not name or float(price) <= 0:
         return jsonify({"success": False, "message": "Valid name and price are required."}), 400
 
@@ -2161,6 +2232,11 @@ def add_food_item():
         "hasHalfFull": has_half_full,
         "priceHalf": price_half if has_half_full else None,
         "priceFull": price_full if has_half_full else None,
+        "hasSizes": has_sizes,
+        "sizes": sizes if has_sizes else None,
+        "priceS": price_s if has_sizes else None,
+        "priceM": price_m if has_sizes else None,
+        "priceL": price_l if has_sizes else None,
         "category": category,
         "type": item_type,
         "image": image,
@@ -2170,12 +2246,14 @@ def add_food_item():
         "isAvailable": bool(available),
         "shopId": shop_id,
         "shopName": shop_name,
+        "manualAdded": True,
+        "isManual": True,
         "createdAt": datetime.now().isoformat()
     }
     db.foodItems.insert_one(item_doc)
     redis_invalidate("cm:menu:*")
     redis_invalidate("cm:shops:*")
-    return jsonify({"success": True, "message": "Food item added successfully!", "item": format_doc(item_doc)}), 201
+    return jsonify({"success": True, "message": f"'{name}' saved successfully in {shop_name}!", "item": format_doc(item_doc)}), 201
 
 
 @app.route("/api/menu/<item_id>", methods=["PUT"])
@@ -2183,7 +2261,7 @@ def update_food_item(item_id):
     data = request.json or {}
     update_data = {}
     
-    for key in ["name", "price", "hasHalfFull", "priceHalf", "priceFull", "category", "type", "description", "available", "isAvailable", "shopId", "shopName"]:
+    for key in ["name", "price", "hasHalfFull", "priceHalf", "priceFull", "hasSizes", "sizes", "priceS", "priceM", "priceL", "category", "type", "description", "available", "isAvailable", "shopId", "shopName", "manualAdded", "isManual"]:
         if key in data:
             update_data[key] = data[key]
     
@@ -2200,7 +2278,21 @@ def update_food_item(item_id):
             update_data["priceHalf"] = None
             update_data["priceFull"] = None
 
-    if "price" in data and not update_data.get("hasHalfFull"):
+    if "hasSizes" in data:
+        update_data["hasSizes"] = bool(data["hasSizes"])
+        if update_data["hasSizes"]:
+            sizes = data.get("sizes") or {}
+            s_val = float(sizes.get("S") or data.get("priceS") or data.get("price") or 100)
+            m_val = float(sizes.get("M") or data.get("priceM") or round(s_val * 1.5))
+            l_val = float(sizes.get("L") or data.get("priceL") or round(s_val * 2.1))
+            update_data["sizes"] = {"S": s_val, "M": m_val, "L": l_val}
+            update_data["priceS"] = s_val
+            update_data["priceM"] = m_val
+            update_data["priceL"] = l_val
+            update_data["price"] = s_val
+            update_data["hasHalfFull"] = False
+
+    if "price" in data and not update_data.get("hasHalfFull") and not update_data.get("hasSizes"):
         update_data["price"] = float(data["price"])
         
     if "shopId" in data and not data.get("shopName"):
@@ -2216,6 +2308,8 @@ def update_food_item(item_id):
     if "isAvailable" in data:
         update_data["available"] = data["isAvailable"]
 
+    update_data["manualAdded"] = True
+    update_data["isManual"] = True
     update_data["updatedAt"] = datetime.now().isoformat()
 
     db.foodItems.update_one({"_id": item_id}, {"$set": update_data})
@@ -2277,6 +2371,45 @@ def bulk_import_menu():
         cat = itm.get("category") or "Canteen Food"
         img = itm.get("image") or itm.get("imageUrl") or get_default_item_image(name, cat)
         
+        has_sizes = bool(itm.get("hasSizes", False))
+        sizes = itm.get("sizes")
+        price_s = None
+        price_m = None
+        price_l = None
+
+        if has_sizes or (sizes and isinstance(sizes, dict)):
+            try:
+                has_sizes = True
+                has_half_full = False
+                s_val = float(sizes.get("S", price) if sizes else (itm.get("priceS") or price))
+                m_val = float(sizes.get("M", round(s_val * 1.5)) if sizes else (itm.get("priceM") or round(s_val * 1.5)))
+                l_val = float(sizes.get("L", round(s_val * 2.1)) if sizes else (itm.get("priceL") or round(s_val * 2.1)))
+                sizes = {"S": s_val, "M": m_val, "L": l_val}
+                price_s = s_val
+                price_m = m_val
+                price_l = l_val
+                price = s_val
+            except Exception:
+                has_sizes = False
+        elif any(k in name.lower() for k in ["pizza", "calzone"]) and not has_half_full:
+            try:
+                p_val = float(price) if price else 120.0
+                if p_val > 0:
+                    has_sizes = True
+                    s_val = p_val
+                    m_val = round((p_val * 1.5) / 10) * 10
+                    l_val = round((p_val * 2.05) / 10) * 10
+                    if int(s_val) % 10 == 9:
+                        if int(m_val) % 10 == 0: m_val -= 1
+                        if int(l_val) % 10 == 0: l_val -= 1
+                    sizes = {"S": float(s_val), "M": float(m_val), "L": float(l_val)}
+                    price_s = float(s_val)
+                    price_m = float(m_val)
+                    price_l = float(l_val)
+                    price = float(s_val)
+            except Exception:
+                pass
+
         item_doc = {
             "_id": str(uuid.uuid4()),
             "name": name,
@@ -2284,6 +2417,11 @@ def bulk_import_menu():
             "hasHalfFull": has_half_full,
             "priceHalf": price_half if has_half_full else None,
             "priceFull": price_full if has_half_full else None,
+            "hasSizes": has_sizes,
+            "sizes": sizes if has_sizes else None,
+            "priceS": price_s if has_sizes else None,
+            "priceM": price_m if has_sizes else None,
+            "priceL": price_l if has_sizes else None,
             "category": cat,
             "type": itm.get("type", "veg"),
             "image": img,
@@ -2293,10 +2431,18 @@ def bulk_import_menu():
             "isAvailable": bool(itm.get("available", True)),
             "shopId": shop_id,
             "shopName": shop_name,
+            "manualAdded": True,
+            "isManual": True,
             "createdAt": datetime.now().isoformat()
         }
-        db.foodItems.insert_one(item_doc)
-        created_items.append(format_doc(item_doc))
+        created_items.append(item_doc)
+        
+    if created_items:
+        if hasattr(db.foodItems, 'insert_many'):
+            db.foodItems.insert_many(created_items)
+        else:
+            for ci in created_items:
+                db.foodItems.insert_one(ci)
         
     redis_invalidate("cm:menu:*")
     redis_invalidate("cm:shops:*")
@@ -2304,7 +2450,7 @@ def bulk_import_menu():
         "success": True,
         "message": f"Successfully imported {len(created_items)} items into {shop_name}!",
         "count": len(created_items),
-        "items": created_items
+        "items": [format_doc(x) for x in created_items]
     }), 201
 
 

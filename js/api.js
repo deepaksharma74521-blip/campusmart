@@ -4,13 +4,17 @@
 // Description: Centralized REST API client for MongoDB Backend
 // ==========================================================================
 
-const isLocalHost = window.location.hostname === 'localhost' || 
-                    window.location.hostname === '127.0.0.1' || 
-                    window.location.hostname.startsWith('192.168.') || 
-                    window.location.hostname.startsWith('10.') || 
-                    window.location.hostname.endsWith('.local') ||
-                    window.location.port === '5000';
-const API_BASE = isLocalHost ? '' : 'https://campusmart-api-75rg.onrender.com';
+const isFileProtocol = typeof window !== 'undefined' && window.location && window.location.protocol === 'file:';
+const isLocalHost = isFileProtocol ||
+                    (typeof window !== 'undefined' && window.location && (
+                        window.location.hostname === 'localhost' || 
+                        window.location.hostname === '127.0.0.1' || 
+                        window.location.hostname.startsWith('192.168.') || 
+                        window.location.hostname.startsWith('10.') || 
+                        window.location.hostname.endsWith('.local') ||
+                        window.location.port === '5000'
+                    ));
+const API_BASE = isFileProtocol ? 'http://127.0.0.1:5000' : (isLocalHost ? '' : 'https://campusmart-api-75rg.onrender.com');
 
 const api = {
     // 1. Auth & Mobile OTP Methods

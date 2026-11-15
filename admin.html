@@ -1369,27 +1369,45 @@
                         <input type="text" id="food-form-name" class="form-input no-icon" placeholder="e.g. Masala Dosa, Dairy Milk Silk, Classmate Notebook..." required>
                     </div>
 
-                    <!-- Half & Full Pricing Option Toggle -->
-                    <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
-                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                            <label for="food-form-has-halffull" style="cursor: pointer; font-weight: 700; color: #166534; display: flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; margin-bottom: 0;">
-                                <input type="checkbox" id="food-form-has-halffull" onchange="toggleFoodFormHalfFull(this.checked)" style="width: 18px; height: 18px; accent-color: #16a34a;">
-                                <span>🍲 Has Half & Full Options? (Half / Full Rate)</span>
+                    <!-- Portion & Size Options Toggles -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+                        <!-- Half & Full Option -->
+                        <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 8px; padding: 0.65rem 0.85rem;">
+                            <label for="food-form-has-halffull" style="cursor: pointer; font-weight: 700; color: #166534; display: flex; align-items: center; gap: 0.4rem; font-size: 0.86rem; margin-bottom: 0;">
+                                <input type="checkbox" id="food-form-has-halffull" onchange="toggleFoodFormHalfFull(this.checked)" style="width: 17px; height: 17px; accent-color: #16a34a;">
+                                <span>🍲 Half / Full Rates</span>
                             </label>
-                            <span style="font-size: 0.75rem; background: #dcfce7; color: #15803d; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Optional</span>
+                        </div>
+                        <!-- Pizza 3-Sizes (S / M / L) Option -->
+                        <div style="background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 8px; padding: 0.65rem 0.85rem;">
+                            <label for="food-form-has-sizes" style="cursor: pointer; font-weight: 700; color: #c2410c; display: flex; align-items: center; gap: 0.4rem; font-size: 0.86rem; margin-bottom: 0;">
+                                <input type="checkbox" id="food-form-has-sizes" onchange="toggleFoodFormSizes(this.checked)" style="width: 17px; height: 17px; accent-color: #ea580c;">
+                                <span>🍕 Pizza S / M / L Rates</span>
+                            </label>
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1rem;">
                         <div class="form-group">
-                            <label class="form-label" for="food-form-category">Category *</label>
+                            <label class="form-label" for="food-form-category">Exact Category *</label>
                             <select id="food-form-category" class="form-select no-icon" required>
-                                <option value="Canteen Food" selected>🍔 Canteen Food & Meals</option>
+                                <option value="Main Course Curries" selected>🍛 Main Course Curries</option>
+                                <option value="Chinese, Pastas & Momos">🍜 Chinese, Pastas & Momos</option>
+                                <option value="Pizzas & Garlic Breads">🍕 Pizzas & Garlic Breads</option>
+                                <option value="Burgers & Sandwiches">🍔 Burgers & Sandwiches</option>
+                                <option value="South Indian">🥞 South Indian</option>
+                                <option value="Naans, Rotis & Parathas">🫓 Naans, Rotis & Parathas</option>
+                                <option value="Thalis, Rice & Biryanis">🍚 Thalis, Rice & Biryanis</option>
+                                <option value="Rolls & Wraps">🌯 Rolls & Wraps</option>
+                                <option value="Snacks, Maggi & Chaat">🍟 Snacks, Maggi & Chaat</option>
+                                <option value="Desserts, Sweets & Waffles">🍨 Desserts, Sweets & Waffles</option>
+                                <option value="Drinks, Shakes & Juices">🥤 Drinks, Shakes & Juices</option>
                                 <option value="Chocolates & Candies">🍫 Chocolates & Candies</option>
-                                <option value="Snacks & Chips">🍿 Packaged Snacks & Chips</option>
-                                <option value="Drinks & Juices">🥤 Drinks & Juices</option>
-                                <option value="Stationery">📚 Stationery & Study Items</option>
-                                <option value="Hostel Essentials">🧴 Daily / Hostel Essentials</option>
+                                <option value="Snacks & Chips">🍿 Snacks & Chips</option>
+                                <option value="Stationery">📚 Stationery & Xerox</option>
+                                <option value="Hostel Essentials">🧴 Hostel & Daily Essentials</option>
+                                <option value="Salon & Grooming">💇 Men's Hair & Grooming</option>
+                                <option value="Canteen Food">🍱 General Canteen Food</option>
                             </select>
                         </div>
 
@@ -1399,6 +1417,7 @@
                         </div>
                     </div>
 
+                    <!-- Half & Full Price Fields -->
                     <div id="food-form-halffull-price-group" style="display: none; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                         <div class="form-group" style="margin-bottom: 0;">
                             <label class="form-label" for="food-form-price-half" style="color: #0369a1; font-weight: 700;">
@@ -1411,6 +1430,28 @@
                                 🍲 Full Price (₹) *
                             </label>
                             <input type="number" id="food-form-price-full" class="form-input no-icon" min="1" step="1" placeholder="180" style="border-color: #86efac;">
+                        </div>
+                    </div>
+
+                    <!-- Pizza 3-Sizes (S / M / L) Price Fields -->
+                    <div id="food-form-sizes-price-group" style="display: none; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; background: #fff7ed; padding: 0.75rem; border-radius: 8px; border: 1.5px solid #fed7aa;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="food-form-price-s" style="color: #ea580c; font-weight: 700; font-size: 0.8rem;">
+                                🍕 S (Small) ₹ *
+                            </label>
+                            <input type="number" id="food-form-price-s" class="form-input no-icon" min="1" step="1" placeholder="100" style="border-color: #fed7aa; font-weight: 700;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="food-form-price-m" style="color: #ea580c; font-weight: 700; font-size: 0.8rem;">
+                                🍕 M (Medium) ₹ *
+                            </label>
+                            <input type="number" id="food-form-price-m" class="form-input no-icon" min="1" step="1" placeholder="160" style="border-color: #fed7aa; font-weight: 700;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="food-form-price-l" style="color: #ea580c; font-weight: 700; font-size: 0.8rem;">
+                                🍕 L (Large) ₹ *
+                            </label>
+                            <input type="number" id="food-form-price-l" class="form-input no-icon" min="1" step="1" placeholder="220" style="border-color: #fed7aa; font-weight: 700;">
                         </div>
                     </div>
 
@@ -1817,7 +1858,7 @@ Chai 15"></textarea>
     <script src="js/api.js?v=3.7"></script>
     <script src="js/auth.js?v=3.7"></script>
     <script src="js/sound-engine.js?v=2.0"></script>
-    <script src="js/admin.js?v=3.7"></script>
+    <script src="js/admin.js?v=3.8"></script>
     <!-- PWA 1-Click Mobile App Installer -->
     <script src="js/pwa-install.js?v=3.5"></script>
     <!-- Apple VisionOS 3D Spatial Interactive Engine -->

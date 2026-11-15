@@ -1695,22 +1695,66 @@ function renderAdminFoodTable() {
 function toggleFoodFormHalfFull(isHalfFull) {
     const singleGroup = document.getElementById('food-form-single-price-group');
     const halfFullGroup = document.getElementById('food-form-halffull-price-group');
+    const sizesGroup = document.getElementById('food-form-sizes-price-group');
+    const sizesCheck = document.getElementById('food-form-has-sizes');
     const singleInput = document.getElementById('food-form-price');
     const halfInput = document.getElementById('food-form-price-half');
     const fullInput = document.getElementById('food-form-price-full');
 
     if (isHalfFull) {
+        if (sizesCheck) sizesCheck.checked = false;
+        if (sizesGroup) sizesGroup.style.display = 'none';
         if (singleGroup) singleGroup.style.display = 'none';
         if (halfFullGroup) halfFullGroup.style.display = 'grid';
         if (singleInput) singleInput.required = false;
         if (halfInput) halfInput.required = true;
         if (fullInput) fullInput.required = true;
     } else {
-        if (singleGroup) singleGroup.style.display = 'block';
         if (halfFullGroup) halfFullGroup.style.display = 'none';
-        if (singleInput) singleInput.required = true;
+        if (sizesCheck && sizesCheck.checked) {
+            if (sizesGroup) sizesGroup.style.display = 'grid';
+            if (singleGroup) singleGroup.style.display = 'none';
+        } else {
+            if (singleGroup) singleGroup.style.display = 'block';
+            if (singleInput) singleInput.required = true;
+        }
         if (halfInput) halfInput.required = false;
         if (fullInput) fullInput.required = false;
+    }
+}
+
+function toggleFoodFormSizes(isSizes) {
+    const singleGroup = document.getElementById('food-form-single-price-group');
+    const halfFullGroup = document.getElementById('food-form-halffull-price-group');
+    const sizesGroup = document.getElementById('food-form-sizes-price-group');
+    const halfFullCheck = document.getElementById('food-form-has-halffull');
+    const sizesCheck = document.getElementById('food-form-has-sizes');
+    const singleInput = document.getElementById('food-form-price');
+    const sInput = document.getElementById('food-form-price-s');
+    const mInput = document.getElementById('food-form-price-m');
+    const lInput = document.getElementById('food-form-price-l');
+
+    if (isSizes) {
+        if (halfFullCheck) halfFullCheck.checked = false;
+        if (halfFullGroup) halfFullGroup.style.display = 'none';
+        if (singleGroup) singleGroup.style.display = 'none';
+        if (sizesGroup) sizesGroup.style.display = 'grid';
+        if (singleInput) singleInput.required = false;
+        if (sInput) sInput.required = true;
+        if (mInput) mInput.required = true;
+        if (lInput) lInput.required = true;
+    } else {
+        if (sizesGroup) sizesGroup.style.display = 'none';
+        if (sInput) sInput.required = false;
+        if (mInput) mInput.required = false;
+        if (lInput) lInput.required = false;
+        if (halfFullCheck && halfFullCheck.checked) {
+            if (halfFullGroup) halfFullGroup.style.display = 'grid';
+            if (singleGroup) singleGroup.style.display = 'none';
+        } else {
+            if (singleGroup) singleGroup.style.display = 'block';
+            if (singleInput) singleInput.required = true;
+        }
     }
 }
 
@@ -1854,6 +1898,14 @@ function resetFoodForm() {
     if (priceHalfInput) priceHalfInput.value = '';
     if (priceFullInput) priceFullInput.value = '';
     if (halfFullCheck) halfFullCheck.checked = false;
+    const sizesCheck = document.getElementById('food-form-has-sizes');
+    if (sizesCheck) sizesCheck.checked = false;
+    const priceSInput = document.getElementById('food-form-price-s');
+    const priceMInput = document.getElementById('food-form-price-m');
+    const priceLInput = document.getElementById('food-form-price-l');
+    if (priceSInput) priceSInput.value = '';
+    if (priceMInput) priceMInput.value = '';
+    if (priceLInput) priceLInput.value = '';
     if (typeSelect) typeSelect.value = 'veg';
     if (imgInput) imgInput.value = '';
     if (imgUrlInput) imgUrlInput.value = '';
@@ -1861,6 +1913,7 @@ function resetFoodForm() {
     if (descInput) descInput.value = '';
     if (availCheck) availCheck.checked = true;
 
+    toggleFoodFormSizes(false);
     toggleFoodFormHalfFull(false);
     switchImageTab('upload');
     updateImagePreview(DEFAULT_FOOD_IMG, 'Preview: Default Product Photo');
@@ -1991,9 +2044,41 @@ function openEditFoodModal(itemId) {
     }
 
     const hasHalfFull = !!item.hasHalfFull;
+    const hasSizes = !!(item.hasSizes && item.sizes);
     const hasHalfFullCheck = document.getElementById('food-form-has-halffull');
-    if (hasHalfFullCheck) hasHalfFullCheck.checked = hasHalfFull;
-    toggleFoodFormHalfFull(hasHalfFull);
+    const hasSizesCheck = document.getElementById('food-form-has-sizes');
+    
+    if (categorySelect && item.category) {
+        let exists = Array.from(categorySelect.options).some(opt => opt.value.toLowerCase() === item.category.toLowerCase());
+        if (!exists) {
+            const opt = document.createElement('option');
+            opt.value = item.category;
+            opt.textContent = `✨ ${item.category}`;
+            categorySelect.appendChild(opt);
+        }
+        categorySelect.value = item.category;
+    }
+
+    if (hasSizes) {
+        if (hasSizesCheck) hasSizesCheck.checked = true;
+        if (hasHalfFullCheck) hasHalfFullCheck.checked = false;
+        toggleFoodFormSizes(true);
+        const sEl = document.getElementById('food-form-price-s');
+        const mEl = document.getElementById('food-form-price-m');
+        const lEl = document.getElementById('food-form-price-l');
+        if (sEl) sEl.value = (item.sizes && item.sizes.S) || item.priceS || item.price || '';
+        if (mEl) mEl.value = (item.sizes && item.sizes.M) || item.priceM || Math.round(item.price * 1.5) || '';
+        if (lEl) lEl.value = (item.sizes && item.sizes.L) || item.priceL || Math.round(item.price * 2.1) || '';
+    } else if (hasHalfFull) {
+        if (hasSizesCheck) hasSizesCheck.checked = false;
+        if (hasHalfFullCheck) hasHalfFullCheck.checked = true;
+        toggleFoodFormHalfFull(true);
+    } else {
+        if (hasSizesCheck) hasSizesCheck.checked = false;
+        if (hasHalfFullCheck) hasHalfFullCheck.checked = false;
+        toggleFoodFormSizes(false);
+        toggleFoodFormHalfFull(false);
+    }
 
     document.getElementById('food-form-price').value = item.price || '';
     document.getElementById('food-form-price-half').value = item.priceHalf || item.price || '';
@@ -2022,20 +2107,35 @@ async function handleSaveFoodItem(event) {
     const shopName = targetShop ? targetShop.name : 'TMU Central Food Court';
 
     const hasHalfFull = document.getElementById('food-form-has-halffull')?.checked || false;
+    const hasSizes = document.getElementById('food-form-has-sizes')?.checked || false;
     let price = 0;
     let priceHalf = null;
     let priceFull = null;
+    let sizes = null;
+    let priceS = null;
+    let priceM = null;
+    let priceL = null;
 
-    if (hasHalfFull) {
-        priceHalf = Number(document.getElementById('food-form-price-half').value);
-        priceFull = Number(document.getElementById('food-form-price-full').value);
+    if (hasSizes) {
+        priceS = Number(document.getElementById('food-form-price-s')?.value);
+        priceM = Number(document.getElementById('food-form-price-m')?.value);
+        priceL = Number(document.getElementById('food-form-price-l')?.value);
+        if (isNaN(priceS) || isNaN(priceM) || isNaN(priceL) || priceS <= 0 || priceM <= 0 || priceL <= 0) {
+            showToast('Please provide valid positive rates for all 3 sizes (S, M, L).', 'warning');
+            return;
+        }
+        price = priceS;
+        sizes = { S: priceS, M: priceM, L: priceL };
+    } else if (hasHalfFull) {
+        priceHalf = Number(document.getElementById('food-form-price-half')?.value);
+        priceFull = Number(document.getElementById('food-form-price-full')?.value);
         if (isNaN(priceHalf) || isNaN(priceFull) || priceHalf <= 0 || priceFull <= 0) {
             showToast('Please provide valid positive rates for both Half and Full portions.', 'warning');
             return;
         }
         price = priceHalf;
     } else {
-        price = Number(document.getElementById('food-form-price').value);
+        price = Number(document.getElementById('food-form-price')?.value);
         if (isNaN(price) || price <= 0) {
             showToast('Please provide a valid positive price.', 'warning');
             return;
@@ -2063,15 +2163,22 @@ async function handleSaveFoodItem(event) {
         shopId,
         shopName,
         price,
-        hasHalfFull,
-        priceHalf: hasHalfFull ? priceHalf : null,
-        priceFull: hasHalfFull ? priceFull : null,
+        hasHalfFull: hasSizes ? false : hasHalfFull,
+        priceHalf: (hasHalfFull && !hasSizes) ? priceHalf : null,
+        priceFull: (hasHalfFull && !hasSizes) ? priceFull : null,
+        hasSizes: hasSizes,
+        sizes: hasSizes ? sizes : null,
+        priceS: hasSizes ? priceS : null,
+        priceM: hasSizes ? priceM : null,
+        priceL: hasSizes ? priceL : null,
         type,
         image: finalImg,
         imageUrl: finalImg,
         description: description || `Fresh ${name} available at ${shopName}.`,
         available: isAvailable,
-        isAvailable: isAvailable
+        isAvailable: isAvailable,
+        manualAdded: true,
+        isManual: true
     };
 
     try {
@@ -2337,12 +2444,23 @@ function renderBulkTable() {
                 </td>
                 <td>
                     <select class="form-select no-icon" onchange="updateBulkRowField(${idx}, 'category', this.value)" style="padding: 0.35rem 0.45rem; font-size: 0.8rem; font-weight: 600;">
-                        <option value="Canteen Food" ${item.category === 'Canteen Food' ? 'selected' : ''}>🍔 Food</option>
-                        <option value="Drinks & Juices" ${item.category === 'Drinks & Juices' ? 'selected' : ''}>🥤 Drinks</option>
-                        <option value="Snacks & Chips" ${item.category === 'Snacks & Chips' ? 'selected' : ''}>🍿 Snacks</option>
+                        <option value="Main Course Curries" ${item.category === 'Main Course Curries' ? 'selected' : ''}>🍛 Curries</option>
+                        <option value="Chinese, Pastas & Momos" ${item.category === 'Chinese, Pastas & Momos' ? 'selected' : ''}>🍜 Chinese & Momos</option>
+                        <option value="Pizzas & Garlic Breads" ${item.category === 'Pizzas & Garlic Breads' ? 'selected' : ''}>🍕 Pizzas</option>
+                        <option value="Burgers & Sandwiches" ${item.category === 'Burgers & Sandwiches' ? 'selected' : ''}>🍔 Burgers & Sandwiches</option>
+                        <option value="South Indian" ${item.category === 'South Indian' ? 'selected' : ''}>🥞 South Indian</option>
+                        <option value="Naans, Rotis & Parathas" ${item.category === 'Naans, Rotis & Parathas' ? 'selected' : ''}>🫓 Rotis & Parathas</option>
+                        <option value="Thalis, Rice & Biryanis" ${item.category === 'Thalis, Rice & Biryanis' ? 'selected' : ''}>🍚 Thalis & Biryani</option>
+                        <option value="Rolls & Wraps" ${item.category === 'Rolls & Wraps' ? 'selected' : ''}>🌯 Rolls & Wraps</option>
+                        <option value="Snacks, Maggi & Chaat" ${item.category === 'Snacks, Maggi & Chaat' ? 'selected' : ''}>🍟 Snacks & Chaat</option>
+                        <option value="Desserts, Sweets & Waffles" ${item.category === 'Desserts, Sweets & Waffles' ? 'selected' : ''}>🍨 Sweets & Waffles</option>
+                        <option value="Drinks, Shakes & Juices" ${item.category === 'Drinks, Shakes & Juices' ? 'selected' : ''}>🥤 Drinks & Shakes</option>
                         <option value="Chocolates & Candies" ${item.category === 'Chocolates & Candies' ? 'selected' : ''}>🍫 Chocolates</option>
+                        <option value="Snacks & Chips" ${item.category === 'Snacks & Chips' ? 'selected' : ''}>🍿 Packaged Snacks</option>
                         <option value="Stationery" ${item.category === 'Stationery' ? 'selected' : ''}>📚 Stationery</option>
                         <option value="Hostel Essentials" ${item.category === 'Hostel Essentials' ? 'selected' : ''}>🧴 Essentials</option>
+                        <option value="Salon & Grooming" ${item.category === 'Salon & Grooming' ? 'selected' : ''}>💇 Salon</option>
+                        <option value="Canteen Food" ${item.category === 'Canteen Food' ? 'selected' : ''}>🍱 General Food</option>
                     </select>
                 </td>
                 <td>
@@ -2429,21 +2547,46 @@ async function submitBulkAddItems() {
         }
 
         const finalImg = itm.image || DEFAULT_FOOD_IMG;
+        const isPizza = (name.toLowerCase().includes('pizza') || name.toLowerCase().includes('calzone')) && !hasHalfFull;
+        let hasSizes = !!itm.hasSizes || isPizza;
+        let sizes = null;
+        let priceS = null;
+        let priceM = null;
+        let priceL = null;
+
+        if (hasSizes) {
+            priceS = price;
+            priceM = Math.round((price * 1.5) / 10) * 10;
+            priceL = Math.round((price * 2.05) / 10) * 10;
+            if (price % 10 === 9) {
+                if (priceM % 10 === 0) priceM -= 1;
+                if (priceL % 10 === 0) priceL -= 1;
+            }
+            sizes = { S: priceS, M: priceM, L: priceL };
+        }
+
         validItems.push({
             name,
             category: itm.category || targetShop.category || 'Canteen Food',
             type: itm.type || 'veg',
             price,
-            hasHalfFull,
-            priceHalf: hasHalfFull ? priceHalf : null,
-            priceFull: hasHalfFull ? priceFull : null,
+            hasHalfFull: hasSizes ? false : hasHalfFull,
+            priceHalf: (hasHalfFull && !hasSizes) ? priceHalf : null,
+            priceFull: (hasHalfFull && !hasSizes) ? priceFull : null,
+            hasSizes: hasSizes,
+            sizes: hasSizes ? sizes : null,
+            priceS: hasSizes ? priceS : null,
+            priceM: hasSizes ? priceM : null,
+            priceL: hasSizes ? priceL : null,
             image: finalImg,
             imageUrl: finalImg,
             description: itm.description || `Fresh ${name} available at ${targetShop.name}.`,
             shopId: targetShopId,
             shopName: targetShop.name,
             available: true,
-            isAvailable: true
+            isAvailable: true,
+            manualAdded: true,
+            isManual: true
         });
     }
 

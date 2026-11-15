@@ -53,6 +53,9 @@ items = db.get('foodItems', [])
 pizza_count = 0
 
 for it in items:
+    # NEVER touch items added manually by user or shopkeepers
+    if it.get('manualAdded') or it.get('isManual'):
+        continue
     name_lower = it.get('name', '').lower()
     cat_lower = (it.get('category') or '').lower()
     
