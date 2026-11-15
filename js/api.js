@@ -5,16 +5,8 @@
 // ==========================================================================
 
 const isFileProtocol = typeof window !== 'undefined' && window.location && window.location.protocol === 'file:';
-const isLocalHost = isFileProtocol ||
-                    (typeof window !== 'undefined' && window.location && (
-                        window.location.hostname === 'localhost' || 
-                        window.location.hostname === '127.0.0.1' || 
-                        window.location.hostname.startsWith('192.168.') || 
-                        window.location.hostname.startsWith('10.') || 
-                        window.location.hostname.endsWith('.local') ||
-                        window.location.port === '5000'
-                    ));
-const API_BASE = isFileProtocol ? 'http://127.0.0.1:5000' : (isLocalHost ? '' : 'https://campusmart-api-75rg.onrender.com');
+// Direct relative API so it automatically routes to current host (localhost, LAN IP, or live tunnel)
+const API_BASE = isFileProtocol ? 'http://127.0.0.1:5000' : '';
 
 const api = {
     // 1. Auth & Mobile OTP Methods
@@ -146,12 +138,31 @@ const api = {
 
     // 2. Menu Methods
     async getMenu() {
-        const res = await fetch(`${API_BASE}/api/menu`);
-        const data = await res.json();
-        if (Array.isArray(data)) {
-            return { success: true, items: data, count: data.length };
+        try {
+            const res = await fetch(`${API_BASE}/api/menu`);
+            if (res.ok) {
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    return { success: true, items: data, count: data.length };
+                }
+                if (data && data.success && data.items) return data;
+            }
+        } catch (e) {
+            console.warn('Backend API /api/menu unreachable, checking fallback database...', e);
         }
-        return data;
+
+        // 🛡️ High-Reliability Fallback: Load directly from local data/canteen_db.json
+        try {
+            const staticRes = await fetch('data/canteen_db.json');
+            if (staticRes.ok) {
+                const staticData = await staticRes.json();
+                const items = staticData.foodItems || [];
+                return { success: true, items: items, count: items.length, source: 'fallback_static' };
+            }
+        } catch (e2) {
+            console.warn('Static data fallback failed:', e2);
+        }
+        return { success: false, items: [], message: 'Unable to load menu' };
     },
 
     async saveFoodItem(itemData, itemId = null) {
@@ -241,8 +252,28 @@ const api = {
 
     // 2.5 Shops & Vendors Methods
     async getShops() {
-        const res = await fetch(`${API_BASE}/api/shops`);
-        return await res.json();
+        try {
+            const res = await fetch(`${API_BASE}/api/shops`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data && (data.shops || Array.isArray(data))) return data;
+            }
+        } catch (e) {
+            console.warn('API /api/shops unreachable, checking fallback database...', e);
+        }
+
+        // 🛡️ High-Reliability Fallback: Load shops from local data/canteen_db.json
+        try {
+            const staticRes = await fetch('data/canteen_db.json');
+            if (staticRes.ok) {
+                const staticData = await staticRes.json();
+                const shops = staticData.shops || [];
+                return { success: true, shops: shops, count: shops.length, source: 'fallback_static' };
+            }
+        } catch (e2) {
+            console.warn('Static shops fallback failed:', e2);
+        }
+        return { success: false, shops: [] };
     },
 
     async getShop(shopId) {
