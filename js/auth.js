@@ -787,7 +787,7 @@ async function handleLogin(event) {
         }
     } catch (error) {
         console.error('Login Error:', error);
-        showToast('Could not connect to backend server. Make sure server.py is running.', 'error', 'Connection Error');
+        showToast('Login request failed. Please check your credentials or network.', 'error', 'Login Failed');
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Sign In';
     }

@@ -51,6 +51,12 @@
             </div>
 
             <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <!-- Live Backend Server Connection Status Indicator Pill -->
+                <div id="backend-status-pill" style="background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10b981; color: #a7f3d0; font-weight: 700; border-radius: 20px; padding: 0.35rem 0.8rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer;" title="Checking backend status..." onclick="updateServerConnectionStatus()">
+                    <span id="backend-status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; box-shadow: 0 0 6px #10b981;"></span>
+                    <span id="backend-status-text">Server: Live 🟢</span>
+                </div>
+
                 <!-- Live Order Sound & Popup Alert Controls -->
                 <button id="admin-sound-toggle-btn" type="button" onclick="toggleAdminOrderSound()" class="btn btn-sm" style="background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10b981; color: #a7f3d0; font-weight: 700; border-radius: 20px; padding: 0.35rem 0.8rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem;" title="Toggle Order Chime & Voice Alert">
                     <i class="fa-solid fa-bell fa-shake"></i> <span id="admin-sound-status-text">Alerts: ON 🔊</span>

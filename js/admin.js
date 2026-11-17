@@ -517,6 +517,7 @@ async function initAdminPage() {
     updateShopScopeUI();
     updateAdminSoundUI();
     document.getElementById('admin-user-name').textContent = user.name || 'Admin';
+    updateServerConnectionStatus();
 
     loadAdminDashboardData();
 
@@ -545,9 +546,50 @@ function updateShopScopeUI() {
     if (iconEl) iconEl.className = `fa-solid ${meta.icon}`;
 }
 
+let lastServerCheckTime = 0;
+async function updateServerConnectionStatus() {
+    const pill = document.getElementById('backend-status-pill');
+    const dot = document.getElementById('backend-status-dot');
+    const text = document.getElementById('backend-status-text');
+    if (!pill || !text) return;
+
+    try {
+        const status = await api.checkServerStatus();
+        if (status.online) {
+            pill.style.background = 'rgba(16, 185, 129, 0.2)';
+            pill.style.borderColor = '#10b981';
+            pill.style.color = '#a7f3d0';
+            if (dot) {
+                dot.style.background = '#10b981';
+                dot.style.boxShadow = '0 0 8px #10b981';
+            }
+            text.innerHTML = 'Server: Live 🟢';
+            pill.title = 'Python Flask backend is actively running and connected!';
+        } else {
+            pill.style.background = 'rgba(59, 130, 246, 0.2)';
+            pill.style.borderColor = '#3b82f6';
+            pill.style.color = '#bfdbfe';
+            if (dot) {
+                dot.style.background = '#60a5fa';
+                dot.style.boxShadow = '0 0 8px #60a5fa';
+            }
+            text.innerHTML = 'Edge Database Active ⚡';
+            pill.title = 'Cloudflare Edge mode with instant local database fallback.';
+        }
+    } catch (e) {
+        if (text) text.innerHTML = 'Edge Database Active ⚡';
+    }
+}
+
 // Fetch Shops, Orders, Stats & Menu Dishes from MongoDB
 async function loadAdminDashboardData() {
     try {
+        // Periodically verify server connection status (~every 30s)
+        const now = Date.now();
+        if (now - lastServerCheckTime > 30000) {
+            lastServerCheckTime = now;
+            updateServerConnectionStatus();
+        }
         // 1. Fetch Shops
         await loadAdminShops();
 
@@ -3784,8 +3826,7 @@ let adminCommissionsData = null;
 
 async function loadCommissionsLedger() {
     try {
-        const res = await fetch('/api/admin/commissions-ledger');
-        const data = await res.json();
+        const data = await api.getCommissionsLedger();
         if (data && data.success) {
             adminCommissionsData = data;
             renderCommissionsSummary(data.summary);
@@ -3918,9 +3959,8 @@ function renderCommissionsLedgerTable() {
 
 async function openGatewaySettingsModal() {
     try {
-        const res = await fetch('/api/admin/gateway-settings');
-        const data = await res.json();
-        if (data.success && data.settings) {
+        const data = await api.getGatewaySettings();
+        if (data && data.success && data.settings) {
             const s = data.settings;
             if (document.getElementById('gw-admin-commission')) document.getElementById('gw-admin-commission').value = s.adminCommissionPerOrder || 2.50;
             if (document.getElementById('gw-vendor-packaging')) document.getElementById('gw-vendor-packaging').value = s.vendorPackagingSharePerOrder || 2.50;
@@ -3957,12 +3997,7 @@ async function handleSaveGatewaySettings(event) {
             razorpayKeySecret: document.getElementById('gw-rzp-secret')?.value.trim() || ''
         };
 
-        const res = await fetch('/api/admin/gateway-settings', {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        const data = await res.json();
+        const data = await api.updateGatewaySettings(payload);
         if (data.success) {
             showToast('✅ Instant Split Gateway & Account Settings Saved!', 'success');
             closeModal('gateway-settings-modal');
@@ -3985,14 +4020,9 @@ async function settleShopCashLedger(shopId, shopName) {
         return;
     }
     try {
-        const res = await fetch('/api/admin/settle-cash-ledger', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ shopId, note: `Settled by Super Admin for ${shopName}` })
-        });
-        const data = await res.json();
+        const data = await api.settleCashLedger(shopId, `Settled by Super Admin for ${shopName}`);
         if (data.success) {
-            showToast(`✅ ${shopName} cash ledger settled successfully! (${data.settledCount} records)`, 'success');
+            showToast(`✅ ${shopName} cash ledger settled successfully!`, 'success');
             loadCommissionsLedger();
         } else {
             showToast(data.message || 'Error settling ledger.', 'error');
