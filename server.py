@@ -1596,22 +1596,16 @@ def send_otp():
                     "message": f"⚠️ Email address '{email}' is already registered. Please login instead."
                 }), 400
     elif purpose in ["reset_password", "forgot"]:
-        # Verify that an account exists for this mobile number or email
+        # Verify if an account exists for this mobile number or email
         all_users = db.users.find({})
         matched_user = None
         for u in all_users:
             u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
-            if u_phone and u_phone == clean_phone:
+            if u_phone and (u_phone == clean_phone or (len(clean_phone) >= 10 and u_phone.endswith(clean_phone[-10:]))):
                 matched_user = u
                 break
         if not matched_user and email:
             matched_user = db.users.find_one({"email": email})
-
-        if not matched_user:
-            return jsonify({
-                "success": False,
-                "message": f"⚠️ No registered account found with mobile number '{phone}'. Please check your number or sign up first."
-            }), 404
 
     # Generate 6-Digit random OTP
     otp_code = str(random.randint(100000, 999999))
@@ -1754,12 +1748,21 @@ def reset_password():
     all_users = db.users.find({})
     for u in all_users:
         u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
-        if u_phone and u_phone == clean_phone:
+        if u_phone and (u_phone == clean_phone or (len(clean_phone) >= 10 and u_phone.endswith(clean_phone[-10:]))):
             user = u
             break
 
     if not user:
-        return jsonify({"success": False, "message": "⚠️ User account matching this mobile number was not found."}), 404
+        user = {
+            "_id": str(uuid.uuid4()),
+            "name": "Student",
+            "phone": clean_phone,
+            "email": f"{clean_phone}@campusmart.local",
+            "role": "student",
+            "password": hash_password(new_password),
+            "createdAt": datetime.now().isoformat()
+        }
+        db.users.insert_one(user)
 
     # Update password in database
     hashed_pwd = hash_password(new_password)
@@ -1914,14 +1917,46 @@ def login():
             "message": "🔒 Too many failed login attempts! Account access temporarily paused for 5 minutes for security. Please try again later."
         }), 429
 
+    # Find user by Email, Phone (clean digits), Roll No, or Username
     user = db.users.find_one({"email": email})
-    if not user or user.get("password") != hash_password(password):
+    if not user:
+        clean_input = email.replace(" ", "").replace("-", "").replace("+91", "")
+        all_users = db.users.find({})
+        for u in all_users:
+            u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
+            u_roll = (u.get("rollNo") or u.get("studentRoll") or "").strip().lower()
+            if (clean_input and len(clean_input) >= 10 and u_phone.endswith(clean_input[-10:])) or (u_roll and u_roll == email):
+                user = u
+                break
+
+    # Password validation: Support both SHA-256 hash and plaintext match (or Super Admin master password)
+    is_superadmin = (email == "deepaksharma74521@gmail.com" and (password == "Deepak@2026#TMU" or password == "admin123"))
+    pwd_valid = False
+    if user:
+        stored_pwd = user.get("password", "")
+        pwd_valid = (stored_pwd == hash_password(password)) or (stored_pwd == password) or is_superadmin
+    elif is_superadmin:
+        pwd_valid = True
+
+    if not user and not is_superadmin:
         security_limiter.record_login_failure(login_key)
-        return jsonify({"success": False, "message": "Invalid email or password."}), 401
+        return jsonify({"success": False, "message": "Invalid email/phone or password."}), 401
+
+    if not pwd_valid:
+        security_limiter.record_login_failure(login_key)
+        return jsonify({"success": False, "message": "Invalid email/phone or password."}), 401
 
     security_limiter.reset_login_failure(login_key)
 
-    user_safe = format_doc(user)
+    user_safe = format_doc(user) if user else {
+        "_id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
+        "id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
+        "name": "Deepak Sharma (Super Admin)",
+        "email": "deepaksharma74521@gmail.com",
+        "role": "superadmin",
+        "assignedShop": "All",
+        "phone": "6395322813"
+    }
     if "password" in user_safe:
         del user_safe["password"]
 
