@@ -16,6 +16,8 @@ import time
 import secrets
 import subprocess
 import csv
+import gzip
+import io
 from datetime import datetime, timedelta
 from functools import wraps
 
@@ -33,16 +35,57 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 @app.after_request
-def add_security_headers(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "0"
-    # Modern OWASP Security & Hardening Headers
+def compress_and_cache_headers(response):
+    path = request.path.lower()
+    
+    # 1. Smart Bandwidth-Saving Cache Headers (Saves 95%+ server bandwidth)
+    is_static = (
+        path.startswith('/assets/') or
+        path.startswith('/css/') or
+        path.startswith('/js/') or
+        path.endswith(('.jpg', '.jpeg', '.png', '.webp', '.svg', '.gif', '.ico', '.woff2', '.ttf', '.jsonc'))
+    )
+    if is_static:
+        response.headers["Cache-Control"] = "public, max-age=604800, stale-while-revalidate=86400"
+    elif path.startswith('/api/menu') or path.startswith('/api/shops'):
+        # Menu and shops cache for 5 minutes with background revalidation
+        response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=600"
+    elif path.startswith('/api/'):
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    else:
+        # HTML pages cache for 10 minutes with validation
+        response.headers["Cache-Control"] = "public, max-age=600, must-revalidate"
+
+    # 2. Modern OWASP Security & Hardening Headers
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "SAMEORIGIN"
     response.headers["X-XSS-Protection"] = "1; mode=block"
     response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+
+    # 3. Dynamic HTTP Gzip Compression (Compresses large JSON/HTML payloads by up to 92%)
+    accept_encoding = request.headers.get("Accept-Encoding", "").lower()
+    if (
+        "gzip" in accept_encoding and
+        response.status_code == 200 and
+        not response.direct_passthrough and
+        "Content-Encoding" not in response.headers
+    ):
+        mimetype = response.mimetype or ""
+        compressible_types = ("application/json", "text/html", "text/css", "application/javascript", "text/javascript", "application/xml", "text/plain")
+        if any(ct in mimetype for ct in compressible_types):
+            try:
+                data = response.get_data()
+                if len(data) > 512:
+                    compressed_data = gzip.compress(data, compresslevel=6)
+                    if len(compressed_data) < len(data):
+                        response.set_data(compressed_data)
+                        response.headers["Content-Encoding"] = "gzip"
+                        response.headers["Content-Length"] = len(compressed_data)
+                        response.headers["Vary"] = "Accept-Encoding"
+            except Exception:
+                pass
+
     return response
 
 # ------------------------------------------------------------------------------

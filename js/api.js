@@ -136,16 +136,43 @@ const api = {
         }
     },
 
-    // 2. Menu Methods
+    // 2. Menu Methods (0ms Cache-First + Stale-While-Revalidate Engine)
     async getMenu() {
+        const CACHE_KEY = 'cm_cached_menu_v2';
+        const CACHE_TIME_KEY = 'cm_cached_menu_time_v2';
+        const cachedRaw = localStorage.getItem(CACHE_KEY);
+        const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
+        const now = Date.now();
+        let cachedItems = null;
+
+        if (cachedRaw) {
+            try {
+                cachedItems = JSON.parse(cachedRaw);
+            } catch (e) {
+                cachedItems = null;
+            }
+        }
+
+        // Return immediately if cache is recent (< 15 mins) for 0ms instant startup
+        if (cachedItems && cachedItems.length > 0 && cachedTime && (now - parseInt(cachedTime)) < 15 * 60 * 1000) {
+            // Background revalidate silently to keep fresh
+            setTimeout(() => this._revalidateMenuInBackground(), 1200);
+            return { success: true, items: cachedItems, count: cachedItems.length, source: 'cache_instant' };
+        }
+
+        // Live API Fetch
         try {
             const res = await fetch(`${API_BASE}/api/menu`);
             if (res.ok) {
                 const data = await res.json();
-                if (Array.isArray(data)) {
-                    return { success: true, items: data, count: data.length };
+                const items = Array.isArray(data) ? data : (data && data.items ? data.items : null);
+                if (items && items.length > 0) {
+                    try {
+                        localStorage.setItem(CACHE_KEY, JSON.stringify(items));
+                        localStorage.setItem(CACHE_TIME_KEY, String(now));
+                    } catch(e){}
+                    return { success: true, items, count: items.length, source: 'api_live' };
                 }
-                if (data && data.success && data.items) return data;
             }
         } catch (e) {
             console.warn('Backend API /api/menu unreachable, checking fallback database...', e);
@@ -157,12 +184,37 @@ const api = {
             if (staticRes.ok) {
                 const staticData = await staticRes.json();
                 const items = staticData.foodItems || [];
-                return { success: true, items: items, count: items.length, source: 'fallback_static' };
+                if (items.length > 0) {
+                    try {
+                        localStorage.setItem(CACHE_KEY, JSON.stringify(items));
+                        localStorage.setItem(CACHE_TIME_KEY, String(now));
+                    } catch(e){}
+                    return { success: true, items: items, count: items.length, source: 'fallback_static' };
+                }
             }
         } catch (e2) {
             console.warn('Static data fallback failed:', e2);
         }
+
+        // Fallback to Stale Cache if available
+        if (cachedItems && cachedItems.length > 0) {
+            return { success: true, items: cachedItems, count: cachedItems.length, source: 'cache_stale' };
+        }
         return { success: false, items: [], message: 'Unable to load menu' };
+    },
+
+    async _revalidateMenuInBackground() {
+        try {
+            const res = await fetch(`${API_BASE}/api/menu`);
+            if (res.ok) {
+                const data = await res.json();
+                const items = Array.isArray(data) ? data : (data && data.items ? data.items : null);
+                if (items && items.length > 0) {
+                    localStorage.setItem('cm_cached_menu_v2', JSON.stringify(items));
+                    localStorage.setItem('cm_cached_menu_time_v2', String(Date.now()));
+                }
+            }
+        } catch(e) {}
     },
 
     async saveFoodItem(itemData, itemId = null) {
@@ -250,13 +302,42 @@ const api = {
         }
     },
 
-    // 2.5 Shops & Vendors Methods
+    // 2.5 Shops & Vendors Methods (0ms Cache-First + Stale-While-Revalidate Engine)
     async getShops() {
+        const CACHE_KEY = 'cm_cached_shops_v2';
+        const CACHE_TIME_KEY = 'cm_cached_shops_time_v2';
+        const cachedRaw = localStorage.getItem(CACHE_KEY);
+        const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
+        const now = Date.now();
+        let cachedShops = null;
+
+        if (cachedRaw) {
+            try {
+                cachedShops = JSON.parse(cachedRaw);
+            } catch (e) {
+                cachedShops = null;
+            }
+        }
+
+        // Return immediately if cache is recent (< 15 mins)
+        if (cachedShops && cachedShops.length > 0 && cachedTime && (now - parseInt(cachedTime)) < 15 * 60 * 1000) {
+            setTimeout(() => this._revalidateShopsInBackground(), 1500);
+            return { success: true, shops: cachedShops, count: cachedShops.length, source: 'cache_instant' };
+        }
+
+        // Live API Fetch
         try {
             const res = await fetch(`${API_BASE}/api/shops`);
             if (res.ok) {
                 const data = await res.json();
-                if (data && (data.shops || Array.isArray(data))) return data;
+                const shops = Array.isArray(data) ? data : (data && data.shops ? data.shops : null);
+                if (shops && shops.length > 0) {
+                    try {
+                        localStorage.setItem(CACHE_KEY, JSON.stringify(shops));
+                        localStorage.setItem(CACHE_TIME_KEY, String(now));
+                    } catch(e){}
+                    return { success: true, shops, count: shops.length, source: 'api_live' };
+                }
             }
         } catch (e) {
             console.warn('API /api/shops unreachable, checking fallback database...', e);
@@ -268,12 +349,37 @@ const api = {
             if (staticRes.ok) {
                 const staticData = await staticRes.json();
                 const shops = staticData.shops || [];
-                return { success: true, shops: shops, count: shops.length, source: 'fallback_static' };
+                if (shops.length > 0) {
+                    try {
+                        localStorage.setItem(CACHE_KEY, JSON.stringify(shops));
+                        localStorage.setItem(CACHE_TIME_KEY, String(now));
+                    } catch(e){}
+                    return { success: true, shops: shops, count: shops.length, source: 'fallback_static' };
+                }
             }
         } catch (e2) {
             console.warn('Static shops fallback failed:', e2);
         }
+
+        // Stale cache fallback
+        if (cachedShops && cachedShops.length > 0) {
+            return { success: true, shops: cachedShops, count: cachedShops.length, source: 'cache_stale' };
+        }
         return { success: false, shops: [] };
+    },
+
+    async _revalidateShopsInBackground() {
+        try {
+            const res = await fetch(`${API_BASE}/api/shops`);
+            if (res.ok) {
+                const data = await res.json();
+                const shops = Array.isArray(data) ? data : (data && data.shops ? data.shops : null);
+                if (shops && shops.length > 0) {
+                    localStorage.setItem('cm_cached_shops_v2', JSON.stringify(shops));
+                    localStorage.setItem('cm_cached_shops_time_v2', String(Date.now()));
+                }
+            }
+        } catch(e) {}
     },
 
     async getShop(shopId) {
