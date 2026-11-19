@@ -1930,7 +1930,7 @@ def login():
                 break
 
     # Password validation: Support both SHA-256 hash and plaintext match (or Super Admin master password)
-    is_superadmin = (email == "deepaksharma74521@gmail.com" and (password == "Deepak@2026#TMU" or password == "admin123"))
+    is_superadmin = (email == "deepaksharma74521@gmail.com" and (password == "deepaksharma74521" or password == "Deepak@2026#TMU" or password == "admin123"))
     pwd_valid = False
     if user:
         stored_pwd = user.get("password", "")
@@ -4287,6 +4287,6 @@ if __name__ == "__main__":
     print(f"  [SERVER] 💻 Laptop Browser: http://localhost:{port}/index.html")
     print(f"  [SERVER] 💻 Local Loopback: http://127.0.0.1:{port}/index.html")
     print(f"  [SERVER] 📱 Mobile / Wi-Fi: http://{local_ip}:{port}/index.html")
-    print(f"  [SERVER] 👑 Super Admin: deepaksharma74521@gmail.com / Deepak@2026#TMU")
+    print(f"  [SERVER] 👑 Super Admin: deepaksharma74521@gmail.com / deepaksharma74521")
     print("=" * 70)
     app.run(host="0.0.0.0", port=port, debug=False, threaded=True)

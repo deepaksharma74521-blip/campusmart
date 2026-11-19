@@ -241,7 +241,7 @@ const api = {
                        (uRoll && uRoll === cleanEmail);
             });
 
-            const isSuperAdmin = (cleanEmail === 'deepaksharma74521@gmail.com' && (cleanPassword === 'Deepak@2026#TMU' || cleanPassword === 'admin123'));
+            const isSuperAdmin = (cleanEmail === 'deepaksharma74521@gmail.com' && (cleanPassword === 'deepaksharma74521' || cleanPassword === 'Deepak@2026#TMU' || cleanPassword === 'admin123'));
 
             if (foundUser) {
                 const storedPwd = foundUser.password || '';

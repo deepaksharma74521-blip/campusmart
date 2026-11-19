@@ -61,7 +61,7 @@ You will see:
 ======================================================================
   [SERVER] Campus Mart - MongoDB Backend Server Running
   [SERVER] Local Web App URL: http://localhost:5000/index.html
-  [SERVER] Super Admin: deepaksharma74521@gmail.com / deepak123
+  [SERVER] Super Admin: deepaksharma74521@gmail.com / deepaksharma74521
 ======================================================================
 ```
 
@@ -75,7 +75,7 @@ Open your web browser and go to:
 
 | Role | Email | Password | Access Page |
 |---|---|---|---|
-| **Super Admin (Owner)** | `deepaksharma74521@gmail.com` | `deepak123` | [admin.html](http://localhost:5000/admin.html) |
+| **Super Admin (Owner)** | `deepaksharma74521@gmail.com` | `deepaksharma74521` | [admin.html](http://localhost:5000/admin.html) |
 | **Mart Admin** | `admin@canteen.edu` | `admin123` | [admin.html](http://localhost:5000/admin.html) |
 | **New Student** | *(Self-register via register page)* | *(Your password)* | [menu.html](http://localhost:5000/menu.html) |
 

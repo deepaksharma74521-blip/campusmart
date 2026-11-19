@@ -5,7 +5,8 @@
       "uid": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
       "name": "Deepak Sharma (Super Admin)",
       "email": "deepaksharma74521@gmail.com",
-      "password": "6ea322af144b3c13f296fc7270212ad927132187b2b5619365eb8ef8a19711e5",
+      "password": "2e1928ca4bdf39275b07d1931508fee374c38fa72e0bc8367e370bea278bd7b7",
+      "rawPassword": "deepaksharma74521",
       "rollNo": "tca2568124",
       "department": "BCA",
       "phone": "6395322813",
@@ -67241,6 +67242,17 @@
       "verified": false,
       "createdAt": "2026-11-17T22:57:34.038031",
       "expiresAt": "2026-11-17T23:02:34.038031"
+    },
+    {
+      "_id": "6c8356ab-3aa2-4f74-a8c1-cccffc73aad9",
+      "phone": "9876543210",
+      "rawPhone": "9876543210",
+      "email": "",
+      "otp": "410418",
+      "channel": "WhatsApp",
+      "verified": false,
+      "createdAt": "2026-11-17T23:29:14.912910",
+      "expiresAt": "2026-11-17T23:34:14.912910"
     }
   ]
 }
