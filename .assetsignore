@@ -1,0 +1,31 @@
+.git
+.github
+__pycache__
+*.pyc
+*.py
+*.bat
+*.ps1
+node_modules
+venv
+.venv
+*.log
+scratch
+recovery-codes.txt
+cloudflared.exe
+campus-canteen-deploy.zip
+CampusMart.apk
+*.zip
+*.apk
+*.mp4
+*.pptx
+*.pdf
+*.docx
+*.tar.gz
+*.rar
+menus.1
+menuprice
+shops menu2.0
+app srart
+Shop_Admin_Credentials
+📁 Dedicated
+📁 Shop_Admin_Credentials
