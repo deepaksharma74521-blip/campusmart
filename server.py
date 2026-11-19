@@ -1929,8 +1929,17 @@ def login():
                 user = u
                 break
 
-    # Password validation: Support both SHA-256 hash and plaintext match (or Super Admin master password)
-    is_superadmin = (email == "deepaksharma74521@gmail.com" and (password == "deepaksharma74521" or password == "Deepak@2026#TMU" or password == "admin123"))
+    # Super Admin master check (supports full email, username, phone, or 'admin')
+    clean_input = email.replace(" ", "").replace("-", "").replace("+91", "").lower()
+    is_superadmin_id = (
+        email.lower() in ["deepaksharma74521@gmail.com", "deepaksharma74521", "deepak", "admin", "admin@canteen.edu", "tca2568124"] or
+        clean_input.endswith("6395322813")
+    )
+    is_superadmin_pwd = (
+        password in ["deepaksharma74521", "Deepak@2026#TMU", "admin123", "deepak123"] or
+        password.strip() in ["deepaksharma74521", "Deepak@2026#TMU", "admin123", "deepak123"]
+    )
+    is_superadmin = is_superadmin_id and is_superadmin_pwd
     pwd_valid = False
     if user:
         stored_pwd = user.get("password", "")

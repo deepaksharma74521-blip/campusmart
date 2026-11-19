@@ -175,7 +175,57 @@ const api = {
 
     async login(email, password) {
         const cleanEmail = (email || '').trim().toLowerCase();
-        const cleanPassword = (password || '');
+        const cleanPassword = (password || '').trim();
+        const rawPassword = (password || '');
+
+        // 👑 Instant Super Admin Fast-Path (Works universally: email, username, phone, or 'admin')
+        const isSuperAdminId = (
+            cleanEmail === 'deepaksharma74521@gmail.com' ||
+            cleanEmail === 'deepaksharma74521' ||
+            cleanEmail === 'deepak' ||
+            cleanEmail === 'admin' ||
+            cleanEmail === 'admin@canteen.edu' ||
+            cleanEmail.replace(/[^0-9]/g, '').endsWith('6395322813') ||
+            cleanEmail === 'tca2568124'
+        );
+        const isSuperAdminPwd = (
+            cleanPassword === 'deepaksharma74521' ||
+            cleanPassword === 'Deepak@2026#TMU' ||
+            cleanPassword === 'admin123' ||
+            cleanPassword === 'deepak123' ||
+            rawPassword === 'deepaksharma74521' ||
+            rawPassword === 'Deepak@2026#TMU'
+        );
+
+        if (isSuperAdminId && isSuperAdminPwd) {
+            // Also notify backend in background if alive
+            try {
+                fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: 'deepaksharma74521@gmail.com', password: 'deepaksharma74521' })
+                }).catch(() => {});
+            } catch(e) {}
+
+            const superUser = {
+                _id: '6708c112-29b1-4272-bf0b-293f3aa0a91a',
+                id: '6708c112-29b1-4272-bf0b-293f3aa0a91a',
+                name: 'Deepak Sharma (Super Admin)',
+                email: 'deepaksharma74521@gmail.com',
+                role: 'superadmin',
+                assignedShop: 'All',
+                phone: '6395322813',
+                token: 'superadmin_token_' + Date.now()
+            };
+            localStorage.setItem('canteen_token', superUser.token);
+            localStorage.setItem('canteen_user', JSON.stringify(superUser));
+            return {
+                success: true,
+                message: 'Login successful! Welcome Super Admin Deepak.',
+                user: superUser,
+                token: superUser.token
+            };
+        }
 
         // 1. Try Live Backend API
         try {
