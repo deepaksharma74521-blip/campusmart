@@ -178,19 +178,19 @@
                 <!-- STEP 1: Enter Phone Number -->
                 <div id="forgot-step-1">
                     <p style="font-size: 0.88rem; color: #475569; margin-bottom: 1.1rem; line-height: 1.45;">
-                        Apna registered <strong>10-digit mobile number</strong> enter karein. Hum aapko instant 6-digit OTP verification code bhejenge.
+                        Apna registered <strong>Mobile Number ya Email</strong> enter karein. Hum aapke registered email par instant 6-digit verification code bhejenge.
                     </p>
 
                     <div class="form-group" style="margin-bottom: 1.25rem;">
                         <label class="form-label" for="forgot-phone-input" style="font-size: 0.82rem; font-weight: 700; color: #334155;">
-                            Registered Mobile Phone Number
+                            Registered Mobile Number or Email
                         </label>
                         <div class="input-group">
-                            <i class="fa-solid fa-phone input-icon" style="color: #ea580c;"></i>
-                            <input type="tel" id="forgot-phone-input" class="form-input" placeholder="e.g. 9876543210" maxlength="14" autocomplete="tel">
+                            <i class="fa-solid fa-envelope input-icon" style="color: #ea580c;"></i>
+                            <input type="text" id="forgot-phone-input" class="form-input" placeholder="e.g. 9876543210 or user@gmail.com" autocomplete="username">
                         </div>
                         <div style="font-size: 0.72rem; color: #64748b; margin-top: 4px;">
-                            <i class="fa-solid fa-circle-info"></i> Jo number aapne account register karte waqt diya tha
+                            <i class="fa-solid fa-circle-info"></i> Jo number ya email aapne register karte waqt diya tha
                         </div>
                     </div>
 
@@ -204,7 +204,7 @@
                     
                     <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 1.15rem; display: flex; align-items: center; justify-content: space-between;">
                         <div style="font-size: 0.8rem; color: #1e40af;">
-                            OTP sent to: <strong id="forgot-target-phone-display">+91 ----------</strong>
+                            OTP sent to: <strong id="forgot-target-phone-display">Registered Email</strong>
                         </div>
                         <button type="button" onclick="changeForgotPhone()" style="background: transparent; border: none; color: #2563eb; font-weight: 700; font-size: 0.76rem; cursor: pointer; text-decoration: underline;">
                             Change

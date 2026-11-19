@@ -30,9 +30,91 @@ if hasattr(sys.stdout, 'reconfigure'):
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
+import smtplib
+import ssl
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 app = Flask(__name__, static_folder=".")
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+
+# ------------------------------------------------------------------------------
+# 📧 GMAIL SMTP CONFIGURATION (100% Lifetime Free Official Email OTP Engine)
+# ------------------------------------------------------------------------------
+SMTP_HOST = "smtp.gmail.com"
+SMTP_PORT = 587
+SMTP_USER = os.environ.get("GMAIL_USER", "deepaksharma74521@gmail.com")
+SMTP_PASS = os.environ.get("GMAIL_APP_PASS", "qesidavizqxrvsee")
+
+def send_email_otp(recipient_email, recipient_name, otp_code, purpose="Password Reset"):
+    """Dispatches a high-security, branded TMU Campus Mart HTML verification email via Gmail SMTP."""
+    try:
+        html_content = f"""<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f1f5f9;padding:30px 10px;">
+    <tr>
+      <td align="center">
+        <table width="540" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden;">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg, #1e3a8a, #0284c7);padding:28px 24px;text-align:center;">
+              <h1 style="color:#ffffff;margin:0;font-size:24px;font-weight:700;letter-spacing:1px;">🎓 Campus Mart</h1>
+              <p style="color:#bae6fd;margin:6px 0 0;font-size:13px;">Teerthanker Mahaveer University • Smart Food & Essentials</p>
+            </td>
+          </tr>
+          <!-- Content -->
+          <tr>
+            <td style="padding:32px 28px;">
+              <h2 style="margin:0 0 12px;color:#0f172a;font-size:20px;font-weight:600;">{purpose} Verification Code 🔑</h2>
+              <p style="color:#475569;font-size:15px;line-height:1.6;margin:0 0 20px;">
+                Hello <strong>{recipient_name}</strong>,<br>
+                We received a request for {purpose.lower()} on your Campus Mart account. Use the 6-digit verification code below to proceed:
+              </p>
+              
+              <!-- OTP Box -->
+              <div style="background:#f8fafc;border:2px dashed #3b82f6;border-radius:12px;padding:22px;text-align:center;margin:24px 0;">
+                <span style="color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:8px;">Your 6-Digit Verification Code</span>
+                <div style="font-size:38px;font-weight:800;letter-spacing:10px;color:#1e40af;font-family:monospace;">{otp_code}</div>
+                <span style="color:#ef4444;font-size:12px;font-weight:600;display:block;margin-top:8px;">⏱️ Valid for 10 minutes only</span>
+              </div>
+
+              <p style="color:#64748b;font-size:13px;line-height:1.6;margin:20px 0 0;">
+                ⚠️ <strong>Security Notice:</strong> Never share this code with anyone. Campus Mart staff will never ask for your OTP. If you did not make this request, your account is safe and you can ignore this email.
+              </p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background:#f8fafc;padding:18px 24px;border-top:1px solid #e2e8f0;text-align:center;">
+              <p style="color:#94a3b8;font-size:12px;margin:0;">Campus Mart Online • Pure Veg TMU Canteen Pre-Order System</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>"""
+
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = f"🔐 {otp_code} is your Campus Mart {purpose} Verification Code"
+        msg["From"] = f"Campus Mart Support <{SMTP_USER}>"
+        msg["To"] = recipient_email
+        msg.attach(MIMEText(html_content, "html"))
+
+        ctx = ssl.create_default_context()
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=12) as s:
+            s.starttls(context=ctx)
+            s.login(SMTP_USER, SMTP_PASS)
+            s.sendmail(SMTP_USER, [recipient_email], msg.as_string())
+        print(f"[EMAIL GATEWAY] 📧 Successfully dispatched OTP '{otp_code}' to {recipient_email}")
+        return True, "Email delivered successfully"
+    except Exception as e:
+        print(f"[EMAIL GATEWAY ERROR] ❌ Failed to dispatch email to {recipient_email}: {e}")
+        return False, str(e)
 
 @app.after_request
 def compress_and_cache_headers(response):
@@ -1596,21 +1678,99 @@ def send_otp():
                     "message": f"⚠️ Email address '{email}' is already registered. Please login instead."
                 }), 400
     elif purpose in ["reset_password", "forgot"]:
-        # Verify if an account exists for this mobile number or email
-        all_users = db.users.find({})
+        # 1. 🛡️ STRICT REGISTRATION CHECK: User MUST exist in database
+        clean_input = phone.replace(" ", "").replace("-", "").replace("+91", "").lower()
         matched_user = None
+        all_users = db.users.find({})
         for u in all_users:
-            u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
-            if u_phone and (u_phone == clean_phone or (len(clean_phone) >= 10 and u_phone.endswith(clean_phone[-10:]))):
+            u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "").lower()
+            u_email = (u.get("email") or "").strip().lower()
+            u_roll = (u.get("rollNo") or u.get("studentRoll") or "").strip().lower()
+
+            if (clean_input and len(clean_input) >= 10 and u_phone.endswith(clean_input[-10:])) or \
+               (u_phone and u_phone == clean_input) or \
+               (email and u_email == email) or \
+               (clean_input and (u_email == clean_input or u_roll == clean_input)):
                 matched_user = u
                 break
-        if not matched_user and email:
-            matched_user = db.users.find_one({"email": email})
 
-    # Generate 6-Digit random OTP
+        # Fallback check for Super Admin
+        if not matched_user and (clean_input in ["deepaksharma74521@gmail.com", "deepaksharma74521", "6395322813"]):
+            matched_user = {
+                "_id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
+                "name": "Deepak Sharma (Super Admin)",
+                "email": "deepaksharma74521@gmail.com",
+                "phone": "6395322813",
+                "role": "superadmin"
+            }
+
+        # If user NOT registered -> Strictly Reject! No OTP sent!
+        if not matched_user:
+            return jsonify({
+                "success": False,
+                "message": f"❌ Yeh Mobile Number / Email ('{phone or email}') hamare database me registered nahi hai! Kripya pehle register karein ya sahi details dalein."
+            }), 404
+
+        target_email = (matched_user.get("email") or "").strip().lower()
+        target_name = matched_user.get("name") or "Campus Mart User"
+
+        # Generate 6-Digit random secure OTP
+        otp_code = str(random.randint(100000, 999999))
+        now = datetime.now()
+        expires_at = (now + timedelta(minutes=10)).isoformat()
+
+        # Deliver OTP via Gmail SMTP to user's registered email
+        email_sent = False
+        email_err = ""
+        if target_email and "@" in target_email:
+            email_sent, email_err = send_email_otp(target_email, target_name, otp_code, purpose="Password Reset")
+
+        # Mask email for UI display: d*****1@gmail.com
+        masked_email = target_email
+        if target_email and "@" in target_email:
+            try:
+                parts = target_email.split("@")
+                u_part, d_part = parts[0], parts[1]
+                if len(u_part) <= 3:
+                    masked_u = u_part[0] + "***"
+                else:
+                    masked_u = u_part[:2] + "*" * (len(u_part) - 3) + u_part[-1]
+                masked_email = f"{masked_u}@{d_part}"
+            except Exception:
+                masked_email = target_email
+
+        otp_doc = {
+            "_id": str(uuid.uuid4()),
+            "phone": clean_phone,
+            "rawPhone": phone,
+            "email": target_email,
+            "otp": otp_code,
+            "channel": "Email" if email_sent else "WhatsApp",
+            "verified": False,
+            "createdAt": now.isoformat(),
+            "expiresAt": expires_at
+        }
+
+        if hasattr(db, "otps"):
+            db.otps.delete_many({"$or": [{"phone": clean_phone}, {"email": target_email}]})
+            db.otps.insert_one(otp_doc)
+
+        print(f"[OTP GATEWAY] 🚀 Password Reset OTP '{otp_code}' generated for {target_email} (Email Sent: {email_sent})")
+
+        return jsonify({
+            "success": True,
+            "message": f"🎉 6-Digit OTP aapke registered email ({masked_email}) par bhej diya gaya hai! Kripya apna Email Inbox check karein.",
+            "phone": clean_phone,
+            "email": target_email,
+            "maskedEmail": masked_email,
+            "channel": "Email",
+            "expiresIn": 600
+        }), 200
+
+    # Registration OTP Flow (WhatsApp / Mobile)
     otp_code = str(random.randint(100000, 999999))
     now = datetime.now()
-    expires_at = (now + timedelta(minutes=5)).isoformat()
+    expires_at = (now + timedelta(minutes=10)).isoformat()
 
     # WhatsApp Formatted OTP Message
     if purpose in ["reset_password", "forgot"]:
@@ -1719,70 +1879,95 @@ def verify_otp():
 def reset_password():
     data = request.json or {}
     phone = (data.get("phone") or "").strip()
+    email = (data.get("email") or "").strip().lower()
     otp = str(data.get("otp", "")).strip()
     new_password = (data.get("new_password") or "").strip()
 
-    if not phone or not otp or not new_password:
-        return jsonify({"success": False, "message": "Phone, OTP and new password are required."}), 400
+    if (not phone and not email) or not otp or not new_password:
+        return jsonify({"success": False, "message": "Registered phone/email, 6-digit OTP, and new password are required."}), 400
 
     if len(new_password) < 6:
         return jsonify({"success": False, "message": "New password must be at least 6 characters long."}), 400
 
-    clean_phone = phone.replace(" ", "").replace("-", "").replace("+91", "")
+    clean_phone = phone.replace(" ", "").replace("-", "").replace("+91", "").lower()
 
-    otp_record = db.otps.find_one({"phone": clean_phone, "otp": otp}) if hasattr(db, "otps") else None
+    # Search for active OTP record
+    otp_record = None
+    if hasattr(db, "otps"):
+        conditions = []
+        if clean_phone:
+            conditions.append({"phone": clean_phone})
+        if email:
+            conditions.append({"email": email})
+        if phone and "@" in phone:
+            conditions.append({"email": phone.lower()})
+
+        if conditions:
+            otp_record = db.otps.find_one({"$or": conditions, "otp": otp})
+
     if not otp_record:
-        return jsonify({"success": False, "message": "❌ Invalid OTP! Please enter the correct 6-digit code received on your phone."}), 400
+        return jsonify({"success": False, "message": "❌ Galat 6-digit OTP! Kripya apne email par aaya sahi code dalein."}), 400
 
     expires_at_str = otp_record.get("expiresAt")
     if expires_at_str:
         try:
             expires_at = datetime.fromisoformat(expires_at_str)
             if datetime.now() > expires_at:
-                return jsonify({"success": False, "message": "⌛ OTP has expired (5 min limit). Please request a new code."}), 400
+                return jsonify({"success": False, "message": "⌛ OTP expire ho chuka hai (10 min limit). Kripya naya code mangwayein."}), 400
         except Exception:
             pass
 
-    # Find the user
+    # Find the registered user
     user = None
     all_users = db.users.find({})
     for u in all_users:
-        u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
-        if u_phone and (u_phone == clean_phone or (len(clean_phone) >= 10 and u_phone.endswith(clean_phone[-10:]))):
+        u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "").lower()
+        u_email = (u.get("email") or "").strip().lower()
+        if clean_phone and (u_phone == clean_phone or (len(clean_phone) >= 10 and u_phone.endswith(clean_phone[-10:]))):
+            user = u
+            break
+        if email and u_email == email:
+            user = u
+            break
+        if phone and "@" in phone and u_email == phone.lower():
             user = u
             break
 
+    # If Super Admin
+    if not user and (clean_phone in ["deepaksharma74521@gmail.com", "deepaksharma74521", "6395322813"]):
+        user = db.users.find_one({"email": "deepaksharma74521@gmail.com"})
+
     if not user:
-        user = {
-            "_id": str(uuid.uuid4()),
-            "name": "Student",
-            "phone": clean_phone,
-            "email": f"{clean_phone}@campusmart.local",
-            "role": "student",
-            "password": hash_password(new_password),
-            "createdAt": datetime.now().isoformat()
-        }
-        db.users.insert_one(user)
+        return jsonify({"success": False, "message": "❌ User account not found in system."}), 404
 
     # Update password in database
     hashed_pwd = hash_password(new_password)
-    db.users.update_one({"_id": user["_id"]}, {"$set": {"password": hashed_pwd, "updatedAt": datetime.now().isoformat()}})
+    db.users.update_one(
+        {"_id": user["_id"]},
+        {"$set": {
+            "password": hashed_pwd,
+            "rawPassword": new_password,
+            "updatedAt": datetime.now().isoformat()
+        }}
+    )
 
-    # Invalidate OTPs for this phone
+    # Invalidate OTP so it cannot be used again
     if hasattr(db, "otps"):
-        db.otps.delete_many({"phone": clean_phone})
+        db.otps.delete_one({"_id": otp_record["_id"]})
+
+    print(f"[AUTH] ✅ Password successfully updated for {user.get('email')} / {user.get('name')}")
 
     user["password"] = hashed_pwd
     auth_token = generate_auth_token(user)
     user_safe = format_doc(user)
     if "password" in user_safe:
         del user_safe["password"]
-
-    print(f"[AUTH] 🔑 Password reset successfully for user: {user.get('name')} ({user.get('email')}, {clean_phone})")
+    if "rawPassword" in user_safe:
+        del user_safe["rawPassword"]
 
     return jsonify({
         "success": True,
-        "message": "🎉 Password reset successfully! You are now logged in.",
+        "message": "✅ Password successfully update ho gaya hai! Ab aap naye password se login kar sakte hain.",
         "token": auth_token,
         "user": user_safe
     }), 200

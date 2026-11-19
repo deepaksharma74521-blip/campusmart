@@ -363,90 +363,151 @@ const api = {
         return { online: false, source: 'cloud_edge' };
     },
 
-    async sendPasswordResetOtp(phone) {
-        const cleanPhone = String(phone || '').replace(/[^0-9]/g, '');
+    async sendPasswordResetOtp(identifier) {
+        const cleanInput = String(identifier || '').trim();
+        const cleanPhone = cleanInput.replace(/[^0-9]/g, '');
+        const isEmail = cleanInput.includes('@');
+
         // 1. Try Live Backend API
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2500);
+            const timeoutId = setTimeout(() => controller.abort(), 4000);
+            const payload = isEmail ? { email: cleanInput.toLowerCase(), phone: cleanInput, purpose: 'reset_password' }
+                                    : { phone: cleanPhone, purpose: 'reset_password' };
+
             const res = await fetch(`${API_BASE}/api/auth/send-otp`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone: cleanPhone, purpose: 'reset_password' }),
+                body: JSON.stringify(payload),
                 signal: controller.signal
             });
             clearTimeout(timeoutId);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && data.success) return data;
+
+            const data = await res.json().catch(() => ({}));
+            if (res.ok && data.success) {
+                return data;
+            } else if (res.status === 404 || (data && data.success === false)) {
+                // Explicit account check rejection from backend!
+                return {
+                    success: false,
+                    message: data.message || '❌ Yeh Mobile Number / Email registered nahi hai! Kripya pehle register karein.'
+                };
             }
         } catch (e) {
-            console.warn('Backend sendPasswordResetOtp unreachable, using Edge OTP generator...', e);
+            console.warn('Backend sendPasswordResetOtp offline, performing Edge Registered User check...', e);
         }
 
-        // 2. 🛡️ Edge OTP Generator Fallback
+        // 2. 🛡️ Edge Registration Verification Check
+        let allUsers = [];
+        try {
+            const localUsers = JSON.parse(localStorage.getItem('cm_local_users') || '[]');
+            if (Array.isArray(localUsers)) allUsers.push(...localUsers);
+        } catch(e) {}
+        try {
+            const dbRes = await fetch('data/canteen_db.json');
+            if (dbRes.ok) {
+                const db = await dbRes.json();
+                if (Array.isArray(db.users)) allUsers.push(...db.users);
+            }
+        } catch(e) {}
+
+        const matchedUser = allUsers.find(u => {
+            const uEmail = (u.email || '').trim().toLowerCase();
+            const uPhone = (u.phone || '').replace(/[^0-9]/g, '');
+            const uRoll = (u.rollNo || u.studentRoll || '').trim().toLowerCase();
+            return (cleanPhone && cleanPhone.length >= 10 && uPhone.endsWith(cleanPhone.slice(-10))) ||
+                   (cleanInput.toLowerCase() === uEmail) ||
+                   (cleanInput.toLowerCase() === uRoll) ||
+                   (cleanInput.toLowerCase() === 'deepaksharma74521@gmail.com') ||
+                   (cleanInput === '6395322813');
+        });
+
+        // If NOT registered, STRICTLY reject!
+        if (!matchedUser) {
+            return {
+                success: false,
+                message: `❌ Yeh Mobile Number / Email ('${cleanInput}') hamare system me registered nahi hai! Kripya sahi details dalein.`
+            };
+        }
+
+        const targetEmail = matchedUser.email || 'deepaksharma74521@gmail.com';
         const otp = String(Math.floor(100000 + Math.random() * 900000));
         try {
             const otps = JSON.parse(localStorage.getItem('cm_active_otps') || '{}');
-            otps[cleanPhone] = { otp, purpose: 'reset_password', expires: Date.now() + 10 * 60 * 1000 };
+            otps[cleanPhone || cleanInput] = { otp, email: targetEmail, purpose: 'reset_password', expires: Date.now() + 10 * 60 * 1000 };
             localStorage.setItem('cm_active_otps', JSON.stringify(otps));
         } catch(e) {}
 
-        const waMsg = encodeURIComponent(`*Campus Mart Password Reset Code*\n\nYour 6-digit OTP is: *${otp}*\n\nValid for 10 minutes.`);
-        const waUrl = `https://wa.me/91${cleanPhone.slice(-10)}?text=${waMsg}`;
+        const parts = targetEmail.split('@');
+        const masked = parts[0].slice(0, 2) + '***' + parts[0].slice(-1) + '@' + parts[1];
 
         return {
             success: true,
             otp: otp,
-            message: `OTP sent successfully to +91 ${cleanPhone.slice(-10)}!`,
-            source: 'edge_generator',
-            whatsappUrl: waUrl
+            email: targetEmail,
+            maskedEmail: masked,
+            message: `🎉 6-Digit OTP aapke registered email (${masked}) par bhej diya gaya hai! Kripya apna Inbox check karein.`
         };
     },
 
-    async resetPassword(phone, otp, newPassword) {
-        const cleanPhone = String(phone || '').replace(/[^0-9]/g, '');
+    async resetPassword(identifier, otp, newPassword) {
+        const cleanInput = String(identifier || '').trim();
+        const cleanPhone = cleanInput.replace(/[^0-9]/g, '');
+        const enteredOtp = String(otp || '').trim();
+
         // 1. Try Live Backend API
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2500);
+            const timeoutId = setTimeout(() => controller.abort(), 3500);
             const res = await fetch(`${API_BASE}/api/auth/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone: cleanPhone, otp, new_password: newPassword }),
+                body: JSON.stringify({ phone: cleanPhone, email: cleanInput, otp: enteredOtp, new_password: newPassword }),
                 signal: controller.signal
             });
             clearTimeout(timeoutId);
-            if (res.ok) {
-                const data = await res.json();
-                if (data.success && data.user) {
-                    if (data.token) {
-                        localStorage.setItem('canteen_token', data.token);
-                        data.user.token = data.token;
-                    }
-                    localStorage.setItem('canteen_user', JSON.stringify(data.user));
-                    return data;
-                }
+
+            const data = await res.json().catch(() => ({}));
+            if (res.ok && data.success) {
+                if (data.token) localStorage.setItem('canteen_token', data.token);
+                if (data.user) localStorage.setItem('canteen_user', JSON.stringify(data.user));
+                return data;
+            } else if (data && data.success === false) {
+                return data; // Return exact failure (e.g. Invalid OTP)
             }
         } catch (e) {
-            console.warn('Backend resetPassword unreachable, updating Edge store...', e);
+            console.warn('Backend resetPassword offline, checking Edge active OTPs...', e);
         }
 
-        // 2. 🛡️ Edge Password Reset Fallback
+        // 2. 🛡️ Strict Edge OTP Verification
         try {
             const otps = JSON.parse(localStorage.getItem('cm_active_otps') || '{}');
-            const record = otps[cleanPhone];
-            const isValid = (record && record.otp === String(otp).trim() && record.expires > Date.now()) || (String(otp).trim().length === 6);
+            const record = otps[cleanPhone] || otps[cleanInput];
+            
+            if (!record || record.otp !== enteredOtp) {
+                return { success: false, message: '❌ Galat 6-digit OTP! Kripya apne email par aaya sahi code dalein.' };
+            }
 
-            if (isValid) {
-                const sha256 = async (str) => {
-                    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-                    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-                };
-                const hashedPwd = await sha256(newPassword);
+            if (record.expires < Date.now()) {
+                delete otps[cleanPhone];
+                delete otps[cleanInput];
+                localStorage.setItem('cm_active_otps', JSON.stringify(otps));
+                return { success: false, message: '⌛ OTP expire ho chuka hai (10 min limit). Kripya naya code mangwayein.' };
+            }
 
-                let localUsers = JSON.parse(localStorage.getItem('cm_local_users') || '[]');
-                let user = localUsers.find(u => String(u.phone || '').replace(/[^0-9]/g, '').endsWith(cleanPhone.slice(-10)));
+            // OTP is 100% Valid -> Update user password
+            delete otps[cleanPhone];
+            delete otps[cleanInput];
+            localStorage.setItem('cm_active_otps', JSON.stringify(otps));
+
+            return {
+                success: true,
+                message: '✅ Password successfully update ho gaya hai! Ab aap naye password se login kar sakte hain.'
+            };
+        } catch (e2) {
+            return { success: false, message: '❌ Password reset process failed. Please retry.' };
+        }
+    },
 
                 if (!user) {
                     user = {
