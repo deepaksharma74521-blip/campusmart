@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
     <!-- Custom Core CSS -->
-    <link rel="stylesheet" href="css/style.css?v=11.0-dynamic-island">
+    <link rel="stylesheet" href="css/style.css?v=12.0-mobile-cart">
     <!-- PWA & 1-Click Mobile App Meta Tags -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ea580c">
@@ -487,6 +487,21 @@
         </div>
     </main>
 
+    <!-- Mobile Sticky Quick Checkout Bar (Shows on mobile <= 768px when cart has items) -->
+    <div id="mobile-sticky-checkout-bar" class="mobile-sticky-checkout-bar" style="display: none;">
+        <div class="sticky-checkout-info">
+            <span class="sticky-checkout-count" id="mobile-sticky-count">0 Items</span>
+            <div class="sticky-checkout-price">
+                <span class="sticky-price-label">Total:</span>
+                <strong class="sticky-price-val" id="mobile-sticky-total">₹0</strong>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary sticky-checkout-btn" onclick="scrollToCheckoutOrSubmit()">
+            <span>Proceed to Pay</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
     <!-- Order Success Modal -->
     <div id="order-success-modal" class="modal-backdrop">
         <div class="modal-card" style="text-align: center;">
@@ -585,7 +600,7 @@
     <script src="js/api.js?v=12.0-resilient"></script>
     <script src="js/auth.js?v=12.0-resilient"></script>
     <script src="js/squad.js?v=2.0"></script>
-    <script src="js/cart.js?v=4.0"></script>
+    <script src="js/cart.js?v=12.0-mobile-cart"></script>
     <!-- Sensory Audio Engine & Apple Dynamic Island Controller -->
     <script src="js/sound-engine.js?v=1.0"></script>
     <script src="js/dynamic-island.js?v=1.0"></script>

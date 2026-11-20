@@ -395,6 +395,8 @@ function loadCart() {
     if (cart.length === 0) {
         if (layoutContainer) layoutContainer.style.display = 'none';
         if (emptyContainer) emptyContainer.style.display = 'block';
+        const stickyBar = document.getElementById('mobile-sticky-checkout-bar');
+        if (stickyBar) stickyBar.style.display = 'none';
         updateGlobalCartBadge();
         return;
     }
@@ -403,33 +405,43 @@ function loadCart() {
     if (emptyContainer) emptyContainer.style.display = 'none';
 
     let subtotal = 0;
+    let totalQty = 0;
     const fallbackImg = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop&q=80';
 
     cartContainer.innerHTML = cart.map((item, index) => {
-        const itemTotal = Number(item.price) * Number(item.quantity);
+        const itemQty = Number(item.quantity) || 1;
+        const itemTotal = Number(item.price) * itemQty;
         subtotal += itemTotal;
+        totalQty += itemQty;
         const imgUrl = item.image || item.imageUrl || fallbackImg;
+        const sizeBadge = (item.selectedSize || item.size) 
+            ? `<span class="cart-item-size-badge">Size: ${item.selectedSize || item.size}</span>` 
+            : '';
 
         return `
             <div class="cart-item">
-                <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'">
-                <div class="cart-item-info">
-                    <div class="cart-item-name">${item.name} ${(item.selectedSize || item.size) ? `<span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; margin-left: 6px;">Size: ${item.selectedSize || item.size}</span>` : ''}</div>
-                    <div class="cart-item-price">₹${item.price} each</div>
-                </div>
-                <div class="qty-control">
-                    <button class="qty-btn" onclick="updateItemQuantity(${index}, -1)" title="Decrease">
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
-                    <span class="qty-val">${item.quantity}</span>
-                    <button class="qty-btn" onclick="updateItemQuantity(${index}, 1)" title="Increase">
-                        <i class="fa-solid fa-plus"></i>
+                <div class="cart-item-main">
+                    <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name} ${sizeBadge}</div>
+                        <div class="cart-item-price">₹${item.price} each</div>
+                    </div>
+                    <button type="button" class="cart-item-remove" onclick="removeCartItem(${index})" title="Remove item" aria-label="Remove item">
+                        <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </div>
-                <div class="cart-item-total">₹${itemTotal}</div>
-                <button class="cart-item-remove" onclick="removeCartItem(${index})" title="Remove item">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
+                <div class="cart-item-actions">
+                    <div class="qty-control">
+                        <button type="button" class="qty-btn" onclick="updateItemQuantity(${index}, -1)" title="Decrease" aria-label="Decrease quantity">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <span class="qty-val">${itemQty}</span>
+                        <button type="button" class="qty-btn" onclick="updateItemQuantity(${index}, 1)" title="Increase" aria-label="Increase quantity">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="cart-item-total">₹${itemTotal}</div>
+                </div>
             </div>
         `;
     }).join('');
@@ -438,6 +450,16 @@ function loadCart() {
     const totalAmount = b.totalAmount;
     
     document.getElementById('summary-subtotal').textContent = `₹${subtotal}`;
+
+    // Update Mobile Sticky Checkout Bar
+    const stickyBar = document.getElementById('mobile-sticky-checkout-bar');
+    const stickyCount = document.getElementById('mobile-sticky-count');
+    const stickyTotal = document.getElementById('mobile-sticky-total');
+    if (stickyBar) {
+        stickyBar.style.display = 'flex';
+        if (stickyCount) stickyCount.textContent = `${totalQty} Item${totalQty > 1 ? 's' : ''}`;
+        if (stickyTotal) stickyTotal.textContent = `₹${totalAmount}`;
+    }
     
     const packLabel = document.getElementById('summary-packaging-label');
     const packVal = document.getElementById('summary-packaging');
@@ -1058,6 +1080,25 @@ document.addEventListener('DOMContentLoaded', () => {
     detectLiveGpsLocation(false);
 });
 
+
+function scrollToCheckoutOrSubmit() {
+    const checkoutCard = document.querySelector('.order-summary-card');
+    const submitBtn = document.getElementById('place-order-btn');
+
+    if (checkoutCard) {
+        const rect = checkoutCard.getBoundingClientRect();
+        // If checkout is below visible viewport, smooth scroll to it
+        if (rect.top > window.innerHeight - 140) {
+            checkoutCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+        }
+    }
+
+    // If already in view, trigger order submission
+    if (submitBtn) {
+        submitBtn.click();
+    }
+}
 
 function initCollegeClockInCart() {
     function tick() {
