@@ -785,8 +785,15 @@ function addToCart(itemId) {
             quantity: 1
         };
         window.squadEngine.addItemToSquad(squadItem);
+        if (window.soundEngine) {
+            window.soundEngine.playPop();
+        }
         if (window.dynamicIsland) {
             window.dynamicIsland.notifyCartAdded(cartItemName, finalPrice);
+        }
+        if (window.motionEngine && window.motionEngine.flyToCart) {
+            const evt = (typeof event !== 'undefined' ? event : null);
+            window.motionEngine.flyToCart(evt ? evt.target : null, item.image || item.imageUrl);
         }
         return;
     }
@@ -828,6 +835,10 @@ function addToCart(itemId) {
     }
     if (window.dynamicIsland) {
         window.dynamicIsland.notifyCartAdded(cartItemName, finalPrice);
+    }
+    if (window.motionEngine && window.motionEngine.flyToCart) {
+        const evt = (typeof event !== 'undefined' ? event : null);
+        window.motionEngine.flyToCart(evt ? evt.target : null, item.image || item.imageUrl);
     }
 
     updateGlobalCartBadge();

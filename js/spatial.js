@@ -1,221 +1,206 @@
 // ==============================================================================
-// Campus Mart – 3D Spatial & GPU-Accelerated Interactive Motion Engine
-// File: js/spatial.js
-// Description: Multi-layer 3D tilt, holographic lighting sheen & gyroscope parallax
+// Campus Mart – Tactile Spring & Flying Add-to-Cart Animation Engine
+// File: js/spatial.js (v12.0 - Ultra-Fast & Lag-Free)
+// Description: Replaces heavy 3D tilt with Apple-style tactile spring press and Swiggy-style flying dish cart animation
 // ==============================================================================
 
 (function() {
     'use strict';
 
-    // Respect user's accessibility preferences
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
+    // 1. Tactile Spring Touch & Badge Bounce CSS Injection
+    function injectTactileStyles() {
+        if (document.getElementById('cm-tactile-motion-styles')) return;
+
+        const style = document.createElement('style');
+        style.id = 'cm-tactile-motion-styles';
+        style.textContent = `
+            /* Apple iOS Spring Touch Feel (Lightweight GPU-friendly) */
+            .food-card, .btn, .filter-pill, .shop-filter-pill, .cart-item-remove, .qty-btn, .time-slot-pill {
+                transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease !important;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .food-card:active {
+                transform: scale(0.97) !important;
+            }
+
+            .btn:active, .filter-pill:active, .shop-filter-pill:active, .qty-btn:active, .time-slot-pill:active {
+                transform: scale(0.93) !important;
+            }
+
+            /* Cart Badge Juicy Pop Animation */
+            @keyframes cartBadgePop {
+                0% { transform: scale(1); }
+                30% { transform: scale(1.65); background: #22c55e !important; }
+                65% { transform: scale(0.88); }
+                100% { transform: scale(1); }
+            }
+
+            .cart-badge-pop {
+                animation: cartBadgePop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+            }
+
+            /* Flying Dish Ball Container */
+            .flying-dish-particle {
+                position: fixed;
+                width: 52px;
+                height: 52px;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 100000;
+                overflow: hidden;
+                border: 2.5px solid #ffffff;
+                box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4), 0 0 16px rgba(255, 255, 255, 0.8);
+                background: #ea580c;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform-origin: center center;
+                will-change: transform, opacity;
+            }
+
+            .flying-dish-particle img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            .flying-dish-sparkle {
+                position: fixed;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #ea580c;
+                pointer-events: none;
+                z-index: 99999;
+                box-shadow: 0 0 8px #ea580c;
+            }
+        `;
+        document.head.appendChild(style);
     }
 
-    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-
-    // --------------------------------------------------------------------------
-    // 1. Desktop 3D Cursor Tilt with Dynamic Specular Glare
-    // --------------------------------------------------------------------------
-    function initCard3DTilt(card) {
-        if (!card || card._has3DInit) return;
-        card._has3DInit = true;
-
-        // Ensure glare element exists
-        let glare = card.querySelector('.spatial-glare');
-        if (!glare) {
-            glare = document.createElement('div');
-            glare.className = 'spatial-glare';
-            card.appendChild(glare);
+    // 2. Flying Add-to-Cart Animation Engine
+    function flyToCart(originElement, imageUrl) {
+        let trigger = originElement;
+        if (!trigger && typeof window !== 'undefined' && window.event && window.event.target) {
+            trigger = window.event.target;
         }
 
-        let rafId = null;
-        let bounds = null;
+        // Find origin card or button bounds
+        let startX = window.innerWidth / 2 - 26;
+        let startY = window.innerHeight / 2 - 26;
 
-        function onPointerEnter() {
-            bounds = card.getBoundingClientRect();
-            card.style.transition = 'transform 0.15s ease-out, box-shadow 0.15s ease-out';
-            if (glare) glare.style.opacity = '1';
-        }
-
-        function onPointerMove(e) {
-            if (!bounds) bounds = card.getBoundingClientRect();
-            const mouseX = e.clientX - bounds.left;
-            const mouseY = e.clientY - bounds.top;
-
-            const xPercent = ((mouseX / bounds.width) - 0.5) * 2; // -1 to 1
-            const yPercent = ((mouseY / bounds.height) - 0.5) * 2; // -1 to 1
-
-            if (rafId) cancelAnimationFrame(rafId);
-            rafId = requestAnimationFrame(() => {
-                const maxAngle = 14;
-                const rotX = (-yPercent * maxAngle).toFixed(2);
-                const rotY = (xPercent * maxAngle).toFixed(2);
-
-                card.style.transform = `perspective(1100px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(12px) scale3d(1.02, 1.02, 1.02)`;
-
-                // Dynamic realistic shadow cast opposite to tilt angle
-                const shadowX = (-xPercent * 16).toFixed(1);
-                const shadowY = (-yPercent * 16 + 18).toFixed(1);
-                card.style.boxShadow = `${shadowX}px ${shadowY}px 32px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(234, 88, 12, 0.18)`;
-
-                // Dynamic holographic sheen position
-                if (glare) {
-                    const lightX = ((xPercent + 1) * 50).toFixed(1);
-                    const lightY = ((yPercent + 1) * 50).toFixed(1);
-                    glare.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 65%)`;
-                }
-            });
-        }
-
-        function onPointerLeave() {
-            if (rafId) cancelAnimationFrame(rafId);
-            bounds = null;
-            card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-            card.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)';
-            card.style.boxShadow = '';
-            if (glare) {
-                glare.style.opacity = '0';
+        if (trigger) {
+            const cardElem = trigger.closest ? (trigger.closest('.food-card') || trigger) : trigger;
+            if (cardElem && cardElem.getBoundingClientRect) {
+                const startRect = cardElem.getBoundingClientRect();
+                startX = startRect.left + startRect.width / 2 - 26;
+                startY = startRect.top + startRect.height / 2 - 26;
             }
         }
 
-        card.addEventListener('pointerenter', onPointerEnter, { passive: true });
-        card.addEventListener('pointermove', onPointerMove, { passive: true });
-        card.addEventListener('pointerleave', onPointerLeave, { passive: true });
-    }
+        // Target Cart Icon: check desktop header cart or mobile bottom nav cart
+        let targetCart = null;
 
-    // --------------------------------------------------------------------------
-    // 2. Mobile Gyroscope 3D Parallax Tilt (iOS Safari & Android Chrome)
-    // --------------------------------------------------------------------------
-    let currentGamma = 0;
-    let currentBeta = 0;
-    let targetGamma = 0;
-    let targetBeta = 0;
-    let gyroRunning = false;
-
-    function handleDeviceOrientation(e) {
-        if (e.gamma === null || e.beta === null) return;
-        // Gamma is left/right (-90 to 90), Beta is front/back (-180 to 180)
-        targetGamma = Math.max(-25, Math.min(25, e.gamma || 0));
-        targetBeta = Math.max(-20, Math.min(20, (e.beta || 45) - 45)); // Centered around 45 deg reading angle
-
-        if (!gyroRunning) {
-            gyroRunning = true;
-            requestAnimationFrame(updateGyroTilt);
-        }
-    }
-
-    function updateGyroTilt() {
-        // Smooth interpolation (lerp)
-        currentGamma += (targetGamma - currentGamma) * 0.08;
-        currentBeta += (targetBeta - currentBeta) * 0.08;
-
-        const tiltX = (-currentBeta * 0.4).toFixed(2);
-        const tiltY = (currentGamma * 0.4).toFixed(2);
-
-        // Apply gentle 3D tilt to visible cards in viewport on mobile
-        const cards = document.querySelectorAll('.food-card, .shop-card, .hero-card-preview');
-        const viewH = window.innerHeight;
-
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top < viewH && rect.bottom > 0) {
-                card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(6px)`;
-            }
-        });
-
-        if (Math.abs(targetGamma - currentGamma) > 0.05 || Math.abs(targetBeta - currentBeta) > 0.05) {
-            requestAnimationFrame(updateGyroTilt);
+        // Check mobile bottom nav first if visible
+        const mobileNavCart = document.querySelector('.mobile-bottom-nav a[href*="cart.html"]');
+        if (mobileNavCart && mobileNavCart.offsetParent !== null) {
+            targetCart = mobileNavCart;
         } else {
-            gyroRunning = false;
+            // Header desktop cart icon
+            targetCart = document.querySelector('.cart-btn-wrap .cart-icon-btn') || 
+                         document.querySelector('.cart-icon-btn') || 
+                         document.querySelector('a[href*="cart.html"]');
         }
-    }
 
-    // --------------------------------------------------------------------------
-    // 3. Staggered 3D Scroll Reveal Animation (IntersectionObserver)
-    // --------------------------------------------------------------------------
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('spatial-revealed');
-                observer.unobserve(entry.target);
+        let endX = window.innerWidth - 60;
+        let endY = 30;
+
+        if (targetCart && targetCart.getBoundingClientRect) {
+            const endRect = targetCart.getBoundingClientRect();
+            endX = endRect.left + endRect.width / 2 - 26;
+            endY = endRect.top + endRect.height / 2 - 26;
+        }
+
+        // Create flying clone particle
+        const flying = document.createElement('div');
+        flying.className = 'flying-dish-particle';
+        flying.style.left = `${startX}px`;
+        flying.style.top = `${startY}px`;
+
+        const fallbackImg = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&auto=format&fit=crop&q=80';
+        const displayImg = imageUrl || fallbackImg;
+        flying.innerHTML = `<img src="${displayImg}" onerror="this.src='${fallbackImg}'" alt="dish">`;
+
+        document.body.appendChild(flying);
+
+        // Haptic feedback if available on device
+        if (navigator.vibrate) {
+            try { navigator.vibrate([15]); } catch(e){}
+        }
+
+        // Animate along curved parabola
+        const duration = 520; // ms
+        const startTime = performance.now();
+        const midY = Math.min(startY, endY) - 75; // Arch peak
+
+        function step(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            // Ease-in-out quadratic curve for X
+            const easeX = progress * progress * (3 - 2 * progress);
+            const currentX = startX + (endX - startX) * easeX;
+
+            // Parabolic arch for Y
+            const currentY = (1 - progress) * (1 - progress) * startY +
+                             2 * (1 - progress) * progress * midY +
+                             progress * progress * endY;
+
+            // Scale down from 1.0 to 0.35 as it reaches cart
+            const currentScale = 1.0 - (progress * 0.65);
+            const currentOpacity = progress > 0.85 ? 1.0 - ((progress - 0.85) / 0.15) : 1.0;
+
+            flying.style.transform = `translate3d(${currentX - startX}px, ${currentY - startY}px, 0) scale(${currentScale})`;
+            flying.style.opacity = String(currentOpacity);
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                flying.remove();
+                // Pop the cart badge
+                triggerCartBadgePop();
             }
-        });
-    }, {
-        root: null,
-        rootMargin: '0px 0px -40px 0px',
-        threshold: 0.12
-    });
-
-    function observeCardsForReveal() {
-        const targets = document.querySelectorAll('.food-card:not(.spatial-reveal-ready), .shop-card:not(.spatial-reveal-ready), .feature-card:not(.spatial-reveal-ready)');
-        targets.forEach((el, index) => {
-            el.classList.add('spatial-reveal-ready');
-            el.style.transitionDelay = `${(index % 6) * 0.06}s`;
-            revealObserver.observe(el);
-
-            if (!isTouchDevice) {
-                initCard3DTilt(el);
-            }
-        });
-    }
-
-    // --------------------------------------------------------------------------
-    // 4. Hero Section Ambient 3D Glowing Orbs
-    // --------------------------------------------------------------------------
-    function injectHero3DOrbs() {
-        const hero = document.querySelector('.hero-section');
-        if (!hero || hero.querySelector('.hero-3d-orb')) return;
-
-        hero.style.position = 'relative';
-        hero.style.overflow = 'hidden';
-
-        const orb1 = document.createElement('div');
-        orb1.className = 'hero-3d-orb hero-3d-orb-1';
-        const orb2 = document.createElement('div');
-        orb2.className = 'hero-3d-orb hero-3d-orb-2';
-
-        hero.insertBefore(orb2, hero.firstChild);
-        hero.insertBefore(orb1, hero.firstChild);
-    }
-
-    // --------------------------------------------------------------------------
-    // 5. Automatic Dynamic Observer for Menu & Filter Updates
-    // --------------------------------------------------------------------------
-    function setupEngine() {
-        injectHero3DOrbs();
-        observeCardsForReveal();
-
-        // Attach 3D tilt to static preview elements
-        const previewCards = document.querySelectorAll('.hero-card-preview, .feature-card, .stat-card-modern');
-        previewCards.forEach(c => {
-            if (!isTouchDevice) initCard3DTilt(c);
-        });
-
-        // Monitor dynamic insertions (e.g. food items rendered by search/filters)
-        const container = document.getElementById('food-items-container') || document.getElementById('shops-container');
-        if (container) {
-            const mutObserver = new MutationObserver(() => {
-                requestAnimationFrame(observeCardsForReveal);
-            });
-            mutObserver.observe(container, { childList: true, subtree: false });
         }
 
-        // Listen for mobile orientation
-        if (isTouchDevice && window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', handleDeviceOrientation, { passive: true });
+        requestAnimationFrame(step);
+    }
+
+    // 3. Cart Badge Bounce Animation
+    function triggerCartBadgePop() {
+        const badges = document.querySelectorAll('.cart-badge, .mobile-cart-badge');
+        badges.forEach(b => {
+            b.classList.remove('cart-badge-pop');
+            void b.offsetWidth; // trigger reflow
+            b.classList.add('cart-badge-pop');
+            setTimeout(() => b.classList.remove('cart-badge-pop'), 500);
+        });
+
+        // Trigger light vibration
+        if (navigator.vibrate) {
+            try { navigator.vibrate([25, 30, 20]); } catch(e){}
         }
     }
 
+    // Initialize
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupEngine);
+        document.addEventListener('DOMContentLoaded', injectTactileStyles);
     } else {
-        setupEngine();
+        injectTactileStyles();
     }
 
-    // Export global trigger for dynamic re-init
-    window.CampusSpatial = {
-        refresh: observeCardsForReveal,
-        initCard: initCard3DTilt
+    // Global export
+    window.motionEngine = {
+        flyToCart,
+        triggerCartBadgePop
     };
 })();
