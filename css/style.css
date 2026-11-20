@@ -97,7 +97,6 @@ html {
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    touch-action: pan-y;
     overflow-x: hidden;
 }
 
@@ -112,11 +111,10 @@ body {
     padding-bottom: 70px; /* Space for mobile bottom bar */
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: none;
 }
 
-/* Eliminate 300ms mobile touch delay across all interactive elements (Instant 0ms Tap Reaction) */
-a, button, input, select, textarea, .food-card, .filter-pill, .shop-filter-pill, .cart-item, .qty-btn {
+/* Eliminate 300ms mobile touch delay across buttons and action links */
+a, button, input, select, textarea, .filter-pill, .shop-filter-pill, .qty-btn {
     touch-action: manipulation;
 }
 
@@ -872,15 +870,10 @@ button {
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
     box-shadow: var(--shadow-xs);
     position: relative;
-    contain: content;
-    content-visibility: auto;
-    contain-intrinsic-size: 340px;
-    transform: translateZ(0);
-    will-change: transform;
 }
 
 .food-card:hover {
-    transform: translateY(-4px) translateZ(0);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
     border-color: var(--border-hover);
 }
@@ -1057,10 +1050,6 @@ button {
     gap: 1.25rem;
     padding: 1.1rem 0;
     border-bottom: 1px solid var(--border-color);
-    content-visibility: auto;
-    contain-intrinsic-size: 85px;
-    contain: layout style paint;
-    transform: translateZ(0);
 }
 
 .cart-item:last-child {
@@ -3599,7 +3588,6 @@ body::before {
         radial-gradient(circle at 88% 85%, rgba(186, 230, 253, 0.7) 0%, rgba(147, 197, 253, 0.25) 35%, transparent 65%),
         radial-gradient(circle at 30% 95%, rgba(254, 215, 170, 0.7) 0%, rgba(234, 88, 12, 0.25) 40%, transparent 65%);
     transform: translateZ(0);
-    will-change: transform;
 }
 
 @media (min-width: 768px) {
@@ -3608,7 +3596,7 @@ body::before {
     }
 }
 
-/* 2. 120 FPS Ultra-Fast Cards (No Heavy GPU Backdrop Blur on Grid Items) */
+/* 2. 120 FPS Ultra-Fast Cards (Lightweight Native Rendering) */
 .food-card, .shop-card, .product-card, .card, .auth-card, .order-summary-card, .cart-items-card, .order-card {
     background: #ffffff !important;
     border: 1px solid rgba(226, 232, 240, 0.85) !important;
@@ -3618,9 +3606,6 @@ body::before {
         0 2px 8px rgba(15, 23, 42, 0.03) !important;
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease !important;
     position: relative !important;
-    will-change: transform;
-    content-visibility: auto;
-    contain-intrinsic-size: 320px;
 }
 
 /* 3. Smooth Hardware-Accelerated 120 FPS Hover Lift */
@@ -4628,121 +4613,31 @@ body.theme-night .mobile-nav-item.active {
 
 
 /* ==============================================================================
-   CAMPUS MART – 3D SPATIAL & HARDWARE-ACCELERATED ANIMATION SUITE
+   CAMPUS MART – ULTRA-SMOOTH NATIVE MOBILE MOTION SUITE
    ============================================================================== */
 
-/* 1. Global 3D Perspective Context */
-.container, .food-grid, .shops-grid, .features-grid, .hero-section {
-    perspective: 1200px;
-}
-
-/* 2. Interactive 3D Card Base */
+/* Fast Tactile Response */
 .food-card, .shop-card, .feature-card, .hero-card-preview, .stat-card-modern, .order-card {
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
-    will-change: transform, box-shadow;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
     position: relative;
 }
 
-/* 3. Multi-Layer 3D Depth Pop-Outs */
-.food-card .food-img-wrap,
-.shop-card .shop-banner-wrap,
-.hero-card-preview .hero-image-wrap {
-    transform: translateZ(18px);
-    transform-style: preserve-3d;
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+.food-card:hover, .shop-card:hover {
+    transform: translateY(-4px);
 }
 
-.food-card .food-type-tag,
-.food-card .badge-bestseller,
-.shop-card .shop-pill-status,
-.hero-floating-badge {
-    transform: translateZ(36px);
-    transform-style: preserve-3d;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16) !important;
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.food-card .food-price,
-.food-card .add-cart-btn,
-.food-card .variant-badge,
-.shop-card .btn {
-    transform: translateZ(28px);
-    transform-style: preserve-3d;
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
-}
-
-/* 4. Active 3D Button Press Reaction */
 .btn:active, .add-cart-btn:active, .filter-pill:active {
-    transform: translateY(2px) translateZ(-6px) scale(0.96) !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+    transform: scale(0.96) !important;
 }
 
-/* 5. 3D Glare Lighting Sheen Overlay */
-.spatial-glare {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    z-index: 20;
-    opacity: 0;
-    mix-blend-mode: overlay;
-    transition: opacity 0.3s ease;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
-}
-
-.food-card:hover .spatial-glare,
-.shop-card:hover .spatial-glare,
-.hero-card-preview:hover .spatial-glare {
-    opacity: 1;
-}
-
-/* 6. 3D Floating Animations for Badges & Accents */
-@keyframes float3D {
-    0%, 100% {
-        transform: translateY(0) translateZ(32px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-8px) translateZ(42px) rotate(1.5deg);
-    }
-}
-
-@keyframes pulseGlow3D {
-    0%, 100% {
-        box-shadow: 0 8px 24px -4px rgba(234, 88, 12, 0.35), 0 0 0 1px rgba(234, 88, 12, 0.2);
-    }
-    50% {
-        box-shadow: 0 16px 36px -4px rgba(234, 88, 12, 0.55), 0 0 0 3px rgba(234, 88, 12, 0.35);
-    }
-}
-
-.hero-floating-badge {
-    animation: float3D 4.5s ease-in-out infinite, pulseGlow3D 3.2s ease-in-out infinite;
-}
-
-/* 7. 3D Scroll Reveal State */
-.spatial-reveal-ready {
-    opacity: 0;
-    transform: perspective(1000px) rotateX(18deg) translateY(32px) scale(0.96);
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-}
-
-.spatial-revealed {
-    opacity: 1 !important;
-    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1) !important;
-}
-
-/* 8. 3D Ambient Glowing Blur Spheres (Hero Section) */
+/* Ambient Subtle Blur Spheres (Hero Section) */
 .hero-3d-orb {
     position: absolute;
     border-radius: 50%;
     filter: blur(60px);
     pointer-events: none;
     z-index: 0;
-    opacity: 0.45;
-    animation: orbFloat 8s ease-in-out infinite alternate;
+    opacity: 0.35;
 }
 
 .hero-3d-orb-1 {
