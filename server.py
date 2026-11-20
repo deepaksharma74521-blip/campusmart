@@ -4393,17 +4393,21 @@ def serve_index():
 def serve_static(path):
     clean_p = path.lower().replace("\\", "/").strip()
 
+    # Allow essential app assets
+    if clean_p == "data/canteen_db.json" or clean_p.endswith("manifest.json"):
+        if os.path.exists(path):
+            return send_from_directory(".", path)
+
     # Block sensitive directories from public web access
-    blocked_dirs = ("data", "scripts", "scratch", "shop_admin_credentials", ".git", ".wrangler", "__pycache__")
+    blocked_dirs = ("scripts", "scratch", "shop_admin_credentials", ".git", ".wrangler", "__pycache__")
     for b_dir in blocked_dirs:
         if clean_p.startswith(b_dir + "/") or clean_p == b_dir:
             return jsonify({"error": "Not Found"}), 404
 
     # Block sensitive file extensions
-    blocked_exts = (".py", ".json", ".bat", ".cmd", ".vbs", ".csv", ".env", ".git", ".sql", ".db", ".yml", ".yaml", ".txt", ".log", ".md")
+    blocked_exts = (".py", ".bat", ".cmd", ".vbs", ".csv", ".env", ".git", ".sql", ".db", ".yml", ".yaml", ".txt", ".log", ".md")
     if any(clean_p.endswith(ext) for ext in blocked_exts):
-        if not clean_p.endswith("manifest.json"):
-            return jsonify({"error": "Not Found"}), 404
+        return jsonify({"error": "Not Found"}), 404
 
     # If someone tries to open admin.html, serve the 404 decoy page
     if clean_p in ["admin.html", "admin"]:

@@ -316,16 +316,12 @@ const api = {
                 message: 'Invalid email/phone or password.'
             };
         } catch (e2) {
+            console.error('Local auth fallback error:', e2);
             return {
                 success: false,
                 message: 'Could not connect to authentication server. Please check your internet.'
             };
         }
-    }
-            console.error('Local auth fallback error:', e2);
-        }
-
-        return { success: false, message: 'Invalid email/phone or password. Please recheck your credentials.' };
     },
 
     async checkServerStatus() {
@@ -486,47 +482,6 @@ const api = {
         } catch (e2) {
             return { success: false, message: '❌ Password reset process failed. Please retry.' };
         }
-    },
-
-                if (!user) {
-                    user = {
-                        _id: 'user_' + Date.now(),
-                        id: 'user_' + Date.now(),
-                        phone: cleanPhone,
-                        name: 'Campus Student',
-                        email: `${cleanPhone}@campusmart.local`,
-                        role: 'student',
-                        password: hashedPwd,
-                        token: 'local_token_' + Date.now()
-                    };
-                    localUsers.push(user);
-                } else {
-                    user.password = hashedPwd;
-                }
-                localStorage.setItem('cm_local_users', JSON.stringify(localUsers));
-
-                const safeUser = { ...user };
-                delete safeUser.password;
-                delete safeUser.rawPassword;
-                safeUser.token = 'local_token_' + Date.now();
-                localStorage.setItem('canteen_token', safeUser.token);
-                localStorage.setItem('canteen_user', JSON.stringify(safeUser));
-
-                delete otps[cleanPhone];
-                localStorage.setItem('cm_active_otps', JSON.stringify(otps));
-
-                return {
-                    success: true,
-                    message: 'Password reset successfully (Edge Database Mode)!',
-                    user: safeUser,
-                    token: safeUser.token
-                };
-            }
-        } catch(e2) {
-            console.error('Edge resetPassword error:', e2);
-        }
-
-        return { success: false, message: 'Invalid or expired OTP code.' };
     },
 
     logout() {
