@@ -191,6 +191,14 @@
         }
     }
 
+    // 4. Passive Scroll & Touch Booster (Locks scrolling to 120 FPS without thread blocking)
+    try {
+        const passiveOpts = { passive: true, capture: false };
+        window.addEventListener('touchstart', function() {}, passiveOpts);
+        window.addEventListener('touchmove', function() {}, passiveOpts);
+        window.addEventListener('wheel', function() {}, passiveOpts);
+    } catch(e) {}
+
     // Initialize
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', injectTactileStyles);

@@ -94,6 +94,11 @@ html.desktop-device .apk-download-badge,
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: pan-y;
+    overflow-x: hidden;
 }
 
 body {
@@ -105,6 +110,14 @@ body {
     display: flex;
     flex-direction: column;
     padding-bottom: 70px; /* Space for mobile bottom bar */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+}
+
+/* Eliminate 300ms mobile touch delay across all interactive elements (Instant 0ms Tap Reaction) */
+a, button, input, select, textarea, .food-card, .filter-pill, .shop-filter-pill, .cart-item, .qty-btn {
+    touch-action: manipulation;
 }
 
 @media (min-width: 768px) {
@@ -1044,6 +1057,10 @@ button {
     gap: 1.25rem;
     padding: 1.1rem 0;
     border-bottom: 1px solid var(--border-color);
+    content-visibility: auto;
+    contain-intrinsic-size: 85px;
+    contain: layout style paint;
+    transform: translateZ(0);
 }
 
 .cart-item:last-child {
