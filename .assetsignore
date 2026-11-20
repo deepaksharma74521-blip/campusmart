@@ -26,6 +26,11 @@ menus.1
 menuprice
 shops menu2.0
 app srart
+*.csv
+*.txt
+scripts
+data/canteen_db_backup.json
+data/canteen_db_pre_cleanup.json
 Shop_Admin_Credentials
 📁 Dedicated
 📁 Shop_Admin_Credentials

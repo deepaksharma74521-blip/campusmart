@@ -1,0 +1,13 @@
+# robots.txt for Campus Mart (TMU Pre-Order System)
+User-agent: *
+Disallow: /portal-ds.html
+Disallow: /admin.html
+Disallow: /data/
+Disallow: /api/
+Disallow: /Shop_Admin_Credentials/
+
+Allow: /
+Allow: /index.html
+Allow: /menu.html
+Allow: /print.html
+Allow: /parcel.html

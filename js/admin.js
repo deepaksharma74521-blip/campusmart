@@ -473,18 +473,20 @@ async function initAdminPage() {
     }
 
     if (!user) {
-        window.location.href = 'login.html?redirect=admin.html';
+        window.location.href = 'login.html?redirect=portal-ds.html';
         return;
     }
 
-    if (user.role !== 'admin' && user.role !== 'superadmin') {
-        // Student session detected -> redirect to Admin login with message
-        window.location.href = 'login.html?redirect=admin.html';
+    const phoneDigits = user.phone ? String(user.phone).replace(/[^0-9]/g, '') : '';
+    const isSuperAdmin = (user.role === 'superadmin' || user.email === 'deepaksharma74521@gmail.com' || phoneDigits.endsWith('6395322813') || user.username === 'deepaksharma74521');
+
+    if (!isSuperAdmin && user.role !== 'admin') {
+        // Unauthorized session detected -> redirect away
+        window.location.href = 'login.html';
         return;
     }
 
     currentUserProfile = user;
-    const isSuperAdmin = (user.role === 'superadmin' || user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu');
 
     // Super Admin Exclusivity: Staff Approvals Tab Visibility
     const staffTabBtn = document.getElementById('tab-btn-staff');
@@ -3252,14 +3254,15 @@ function renderStaffTables() {
         } else {
             activeBody.innerHTML = activeStaffList.map(staff => {
                 const staffId = staff._id || staff.uid;
-                const isMainSuper = staff.email === 'deepaksharma74521@gmail.com' || staff.email === 'admin@canteen.edu' || staff.role === 'superadmin';
+                const isMainSuper = staff.email === 'deepaksharma74521@gmail.com' || staff.role === 'superadmin';
                 const assignedShopLabel = staff.assignedShop || (isMainSuper ? 'All Shops (Master)' : 'All Shops');
+                const isLocked = (staff.status === 'locked' || staff.account_status === 'locked');
 
                 return `
                     <tr>
                         <td>
                             <div style="font-weight: 700; color: var(--secondary);">${staff.name}</div>
-                            ${isMainSuper ? '<span style="font-size: 0.72rem; background: #ede9fe; color: #6d28d9; padding: 2px 6px; border-radius: 4px; font-weight: 700;">SUPER ADMIN (OWNER)</span>' : ''}
+                            ${isMainSuper ? '<span style="font-size: 0.72rem; background: #ede9fe; color: #6d28d9; padding: 2px 6px; border-radius: 4px; font-weight: 700;">MASTER ADMIN (OWNER)</span>' : ''}
                         </td>
                         <td>
                             <span style="font-weight: 700; color: #0f766e; background: #ccfbf1; padding: 3px 8px; border-radius: 6px; font-size: 0.8rem; border: 1px solid #99f6e4; display: inline-block;">
@@ -3269,19 +3272,31 @@ function renderStaffTables() {
                         <td>${staff.email}</td>
                         <td>${staff.phone || 'N/A'}</td>
                         <td>
-                            <span style="font-weight: 600; color: #334155;">${staff.staffDesignation || (isMainSuper ? 'System Super Admin' : 'Canteen Admin')}</span>
+                            <span style="font-weight: 600; color: #334155;">${staff.staffDesignation || (isMainSuper ? 'System Master Admin' : 'Canteen Admin')}</span>
                         </td>
                         <td>
-                            <span class="status-badge status-ready" style="font-size: 0.75rem;">Active &bull; Authorized</span>
+                            ${isLocked ? `
+                                <span style="background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 4px;">
+                                    <i class="fa-solid fa-lock"></i> Locked by Deepak
+                                </span>
+                            ` : `
+                                <span class="status-badge status-ready" style="font-size: 0.75rem;">
+                                    <i class="fa-solid fa-circle-check"></i> Active &bull; Authorized
+                                </span>
+                            `}
                         </td>
                         <td>
                             ${isMainSuper ? `
                                 <span style="font-size: 0.78rem; color: var(--text-muted); font-style: italic;">Protected Account</span>
-                            ` : `
-                                <button class="btn btn-outline btn-sm" style="color: #ef4444; border-color: #fca5a5;" onclick="handleStaffApproval('${staffId}', 'revoke', '${staff.name}')">
-                                    <i class="fa-solid fa-user-minus"></i> Revoke Access
+                            ` : (isLocked ? `
+                                <button class="btn btn-sm" style="background: #10b981; color: white; border: none; font-weight: 700; border-radius: 6px; padding: 0.35rem 0.75rem;" onclick="handleStaffApproval('${staffId}', 'unlock', '${staff.name}')">
+                                    <i class="fa-solid fa-lock-open"></i> Unlock Access
                                 </button>
-                            `}
+                            ` : `
+                                <button class="btn btn-sm" style="background: #ef4444; color: white; border: none; font-weight: 700; border-radius: 6px; padding: 0.35rem 0.75rem;" onclick="handleStaffApproval('${staffId}', 'lock', '${staff.name}')">
+                                    <i class="fa-solid fa-lock"></i> Lock Access
+                                </button>
+                            `)}
                         </td>
                     </tr>
                 `;

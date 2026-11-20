@@ -299,10 +299,7 @@ function renderEmptyMenu() {
         <div class="empty-state" style="grid-column: 1 / -1;">
             <i class="fa-solid fa-store empty-icon"></i>
             <h3>No Products Available</h3>
-            <p>The catalog has not been uploaded yet. Please ask the administrator to add or scan menu items.</p>
-            <a href="admin.html" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-plus"></i> Go to Admin to Add Items
-            </a>
+            <p>Menu is currently being refreshed. Please check back shortly!</p>
         </div>
     `;
 }

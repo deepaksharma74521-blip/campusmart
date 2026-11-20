@@ -176,61 +176,11 @@ const api = {
     async login(email, password) {
         const cleanEmail = (email || '').trim().toLowerCase();
         const cleanPassword = (password || '').trim();
-        const rawPassword = (password || '');
 
-        // 👑 Instant Super Admin Fast-Path (Works universally: email, username, phone, or 'admin')
-        const isSuperAdminId = (
-            cleanEmail === 'deepaksharma74521@gmail.com' ||
-            cleanEmail === 'deepaksharma74521' ||
-            cleanEmail === 'deepak' ||
-            cleanEmail === 'admin' ||
-            cleanEmail === 'admin@canteen.edu' ||
-            cleanEmail.replace(/[^0-9]/g, '').endsWith('6395322813') ||
-            cleanEmail === 'tca2568124'
-        );
-        const isSuperAdminPwd = (
-            cleanPassword === 'deepaksharma74521' ||
-            cleanPassword === 'Deepak@2026#TMU' ||
-            cleanPassword === 'admin123' ||
-            cleanPassword === 'deepak123' ||
-            rawPassword === 'deepaksharma74521' ||
-            rawPassword === 'Deepak@2026#TMU'
-        );
-
-        if (isSuperAdminId && isSuperAdminPwd) {
-            // Also notify backend in background if alive
-            try {
-                fetch(`${API_BASE}/api/auth/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: 'deepaksharma74521@gmail.com', password: 'deepaksharma74521' })
-                }).catch(() => {});
-            } catch(e) {}
-
-            const superUser = {
-                _id: '6708c112-29b1-4272-bf0b-293f3aa0a91a',
-                id: '6708c112-29b1-4272-bf0b-293f3aa0a91a',
-                name: 'Deepak Sharma (Super Admin)',
-                email: 'deepaksharma74521@gmail.com',
-                role: 'superadmin',
-                assignedShop: 'All',
-                phone: '6395322813',
-                token: 'superadmin_token_' + Date.now()
-            };
-            localStorage.setItem('canteen_token', superUser.token);
-            localStorage.setItem('canteen_user', JSON.stringify(superUser));
-            return {
-                success: true,
-                message: 'Login successful! Welcome Super Admin Deepak.',
-                user: superUser,
-                token: superUser.token
-            };
-        }
-
-        // 1. Try Live Backend API
+        // 1. Authenticate with Live Backend Server (Strict Password Hash & Role Verification)
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2500);
+            const timeoutId = setTimeout(() => controller.abort(), 3500);
             const res = await fetch(`${API_BASE}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -248,12 +198,18 @@ const api = {
                     localStorage.setItem('canteen_user', JSON.stringify(data.user));
                     return data;
                 }
+            } else {
+                const errData = await res.json().catch(() => ({}));
+                return {
+                    success: false,
+                    message: errData.message || 'Invalid email/phone or password.'
+                };
             }
         } catch (e) {
             console.warn('Backend login endpoint unreachable, attempting Local Secure Auth...', e);
         }
 
-        // 2. 🛡️ Client-Side Resilient Auth Fallback (Offline / Cloudflare Edge Mode)
+        // 2. 🛡️ Resilient Auth Fallback (Offline / Edge Mode)
         try {
             const sha256 = async (str) => {
                 const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -261,17 +217,15 @@ const api = {
             };
 
             const hashedPwd = await sha256(cleanPassword);
+            const MASTER_HASH = '2e1928ca4bdf39275b07d1931508fee374c38fa72e0bc8367e370bea278bd7b7';
 
-            // Collect all known users: local storage users + static canteen_db.json
+            // Collect known users
             let allUsers = [];
-
-            // A. Check local users registered in browser
             try {
                 const localUsers = JSON.parse(localStorage.getItem('cm_local_users') || '[]');
                 if (Array.isArray(localUsers)) allUsers.push(...localUsers);
             } catch(e) {}
 
-            // B. Check static database users
             try {
                 const staticRes = await fetch('data/canteen_db.json');
                 if (staticRes.ok) {
@@ -291,14 +245,29 @@ const api = {
                        (uRoll && uRoll === cleanEmail);
             });
 
-            const isSuperAdmin = (cleanEmail === 'deepaksharma74521@gmail.com' && (cleanPassword === 'deepaksharma74521' || cleanPassword === 'Deepak@2026#TMU' || cleanPassword === 'admin123'));
+            const isMasterId = (
+                cleanEmail === 'deepaksharma74521@gmail.com' ||
+                cleanEmail === 'deepaksharma74521' ||
+                cleanPhoneDigits.endsWith('6395322813')
+            );
+            const isMasterLogin = isMasterId && (hashedPwd === MASTER_HASH);
 
             if (foundUser) {
+                // If it's a shop staff/admin, check if approved by Deepak Sharma
+                if (foundUser.role === 'admin' || foundUser.role === 'canteen' || foundUser.role === 'vendor') {
+                    if (foundUser.email !== 'deepaksharma74521@gmail.com') {
+                        const accStatus = (foundUser.status || foundUser.account_status || 'locked').toLowerCase();
+                        if (accStatus !== 'approved') {
+                            return {
+                                success: false,
+                                message: '🔒 Yeh account abhi Master Admin dwara Lock hai. Kripya Deepak Sharma se permission lein.'
+                            };
+                        }
+                    }
+                }
+
                 const storedPwd = foundUser.password || '';
-                const pwdMatch = (storedPwd === hashedPwd) || 
-                                 (storedPwd === cleanPassword) || 
-                                 (foundUser.rawPassword === cleanPassword) ||
-                                 isSuperAdmin;
+                const pwdMatch = (storedPwd === hashedPwd) || isMasterLogin;
 
                 if (pwdMatch) {
                     const userSafe = Object.assign({}, foundUser);
@@ -306,27 +275,26 @@ const api = {
                     delete userSafe.rawPassword;
                     userSafe.token = 'local_session_' + Date.now();
 
-                    if (isSuperAdmin) {
+                    if (isMasterLogin) {
                         userSafe.role = 'superadmin';
                         userSafe.assignedShop = 'All';
-                        userSafe.name = 'Deepak Sharma (Super Admin)';
+                        userSafe.name = 'Deepak Sharma (Master Admin)';
                     }
 
                     localStorage.setItem('canteen_token', userSafe.token);
                     localStorage.setItem('canteen_user', JSON.stringify(userSafe));
                     return {
                         success: true,
-                        message: 'Login successful! (Edge Database Mode)',
+                        message: 'Login successful!',
                         user: userSafe,
                         token: userSafe.token
                     };
                 }
-            } else if (isSuperAdmin) {
-                // Fail-safe Super Admin recovery
+            } else if (isMasterLogin) {
                 const superUser = {
                     _id: '6708c112-29b1-4272-bf0b-293f3aa0a91a',
                     id: '6708c112-29b1-4272-bf0b-293f3aa0a91a',
-                    name: 'Deepak Sharma (Super Admin)',
+                    name: 'Deepak Sharma (Master Admin)',
                     email: 'deepaksharma74521@gmail.com',
                     role: 'superadmin',
                     assignedShop: 'All',
@@ -337,12 +305,23 @@ const api = {
                 localStorage.setItem('canteen_user', JSON.stringify(superUser));
                 return {
                     success: true,
-                    message: 'Welcome back, Super Admin Deepak!',
+                    message: 'Welcome back, Master Admin Deepak!',
                     user: superUser,
                     token: superUser.token
                 };
             }
+
+            return {
+                success: false,
+                message: 'Invalid email/phone or password.'
+            };
         } catch (e2) {
+            return {
+                success: false,
+                message: 'Could not connect to authentication server. Please check your internet.'
+            };
+        }
+    }
             console.error('Local auth fallback error:', e2);
         }
 
@@ -1695,9 +1674,9 @@ function updateGlobalCartBadge() {
             b.style.display = totalItems > 0 ? 'inline-flex' : 'none';
         });
 
-        // Don't show floating cart bar on cart.html, admin.html, or delivery.html
+        // Don't show floating cart bar on cart.html, admin.html, portal-ds.html, or delivery.html
         const p = window.location.pathname.toLowerCase();
-        if (p.includes('cart.html') || p.includes('admin.html') || p.includes('delivery.html')) return;
+        if (p.includes('cart.html') || p.includes('admin.html') || p.includes('portal-ds.html') || p.includes('delivery.html')) return;
 
         let pill = document.getElementById('global-floating-cart-pill');
         if (!pill) {
@@ -2125,8 +2104,8 @@ function speakOrderReadyAnnouncement(order) {
 }
 
 async function checkStudentActiveOrders() {
-    // If on admin.html, admin.js handles its own sound alerts
-    if (window.location.pathname.includes('admin.html')) return;
+    // If on admin or master portal, admin.js handles its own sound alerts
+    if (window.location.pathname.includes('admin.html') || window.location.pathname.includes('portal-ds.html')) return;
 
     const user = api.getCurrentUser();
     if (!user) return;
@@ -2159,7 +2138,7 @@ async function checkStudentActiveOrders() {
 }
 
 function startGlobalOrderMonitor() {
-    if (window.location.pathname.includes('admin.html') || window.location.pathname.includes('delivery.html')) return;
+    if (window.location.pathname.includes('admin.html') || window.location.pathname.includes('portal-ds.html') || window.location.pathname.includes('delivery.html')) return;
 
     const user = api.getCurrentUser();
     if (!user) return;

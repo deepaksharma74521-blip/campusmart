@@ -714,12 +714,16 @@ async function handleVerifyOtpSubmit(event) {
             } catch (lErr) {}
             
             setTimeout(() => {
-                if (isShopOwner) {
-                    window.location.href = 'admin.html';
+                const isMasterAdmin = pendingRegistrationData && (
+                    pendingRegistrationData.email === 'deepaksharma74521@gmail.com' ||
+                    String(pendingRegistrationData.phone || '').endsWith('6395322813')
+                );
+                if (isMasterAdmin) {
+                    window.location.href = 'portal-ds.html';
                 } else {
                     const urlParams = new URLSearchParams(window.location.search);
                     const redirectTarget = urlParams.get('redirect');
-                    window.location.href = redirectTarget || 'menu.html';
+                    window.location.href = (redirectTarget && redirectTarget !== 'admin.html') ? redirectTarget : 'menu.html';
                 }
             }, 1200);
         } else {
@@ -767,14 +771,20 @@ async function handleLogin(event) {
                 const urlParams = new URLSearchParams(window.location.search);
                 const redirectTarget = urlParams.get('redirect');
 
-                if (redirectTarget) {
+                const isMasterAdmin = (
+                    userData.role === 'superadmin' ||
+                    userData.email === 'deepaksharma74521@gmail.com' ||
+                    (userData.phone && String(userData.phone).replace(/[^0-9]/g, '').endsWith('6395322813'))
+                );
+
+                if (redirectTarget && redirectTarget !== 'admin.html') {
                     window.location.href = redirectTarget;
+                } else if (isMasterAdmin) {
+                    window.location.href = 'portal-ds.html';
                 } else if (userData.role === 'delivery_partner' || userData.role === 'delivery' || selectedRole === 'Delivery') {
                     window.location.href = 'delivery.html';
-                } else if (userData.role === 'admin' || userData.role === 'superadmin' || selectedRole === 'ShopOwner' || userData.userType === 'ShopOwner') {
-                    window.location.href = 'admin.html';
                 } else if (userData.role === 'pending_admin') {
-                    showToast('Your Staff request is currently pending Super Admin Deepak approval.', 'info', 'Pending Review');
+                    showToast('Your Staff request is currently pending Master Admin Deepak approval.', 'info', 'Pending Review');
                     window.location.href = 'menu.html';
                 } else {
                     window.location.href = 'menu.html';
@@ -830,11 +840,16 @@ function updateNavForUser(userData) {
     if (!authActionsContainer) return;
 
     const shortName = userData.name ? userData.name.split(' ')[0] : 'User';
-    const isAdmin = (userData.role === 'admin' || userData.role === 'superadmin');
+    const isMasterAdmin = (
+        userData.role === 'superadmin' ||
+        userData.email === 'deepaksharma74521@gmail.com' ||
+        (userData.phone && String(userData.phone).replace(/[^0-9]/g, '').endsWith('6395322813'))
+    );
+    const profileLink = isMasterAdmin ? 'portal-ds.html' : 'profile.html';
 
     authActionsContainer.innerHTML = `
         <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <a href="${isAdmin ? 'admin.html' : 'profile.html'}" class="btn btn-outline btn-sm" style="display: flex; align-items: center; gap: 0.4rem;">
+            <a href="${profileLink}" class="btn btn-outline btn-sm" style="display: flex; align-items: center; gap: 0.4rem;">
                 <i class="fa-solid fa-user-circle"></i>
                 <span>${shortName}</span>
             </a>
@@ -1245,8 +1260,13 @@ async function handleResetPasswordSubmit() {
             showToast('🎉 Password reset successfully! Redirecting...', 'success', 'Password Updated');
             setTimeout(() => {
                 closeForgotPasswordModal();
-                if (res.user && (res.user.role === 'superadmin' || res.user.role === 'admin')) {
-                    window.location.href = 'admin.html';
+                const isMasterAdmin = res.user && (
+                    res.user.role === 'superadmin' ||
+                    res.user.email === 'deepaksharma74521@gmail.com' ||
+                    (res.user.phone && String(res.user.phone).endsWith('6395322813'))
+                );
+                if (isMasterAdmin) {
+                    window.location.href = 'portal-ds.html';
                 } else {
                     window.location.href = 'login.html';
                 }

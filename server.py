@@ -2114,15 +2114,15 @@ def login():
                 user = u
                 break
 
-    # Super Admin master check (supports full email, username, phone, or 'admin')
+    # Master Admin check - STRICTLY restricted to Deepak Sharma (email, username, or phone)
     clean_input = email.replace(" ", "").replace("-", "").replace("+91", "").lower()
     is_superadmin_id = (
-        email.lower() in ["deepaksharma74521@gmail.com", "deepaksharma74521", "deepak", "admin", "admin@canteen.edu", "tca2568124"] or
+        email.lower() in ["deepaksharma74521@gmail.com", "deepaksharma74521"] or
         clean_input.endswith("6395322813")
     )
     is_superadmin_pwd = (
-        password in ["deepaksharma74521", "Deepak@2026#TMU", "admin123", "deepak123"] or
-        password.strip() in ["deepaksharma74521", "Deepak@2026#TMU", "admin123", "deepak123"]
+        password == "deepaksharma74521" or
+        hash_password(password) == "2e1928ca4bdf39275b07d1931508fee374c38fa72e0bc8367e370bea278bd7b7"
     )
     is_superadmin = is_superadmin_id and is_superadmin_pwd
     pwd_valid = False
@@ -2140,17 +2140,31 @@ def login():
         security_limiter.record_login_failure(login_key)
         return jsonify({"success": False, "message": "Invalid email/phone or password."}), 401
 
+    # Check lock status for canteen shop/staff accounts
+    if user and user.get("role") in ["admin", "canteen", "vendor", "staff"]:
+        u_email = (user.get("email") or "").strip().lower()
+        if u_email != "deepaksharma74521@gmail.com":
+            status = str(user.get("status") or user.get("account_status") or "locked").lower()
+            if status != "approved":
+                return jsonify({
+                    "success": False,
+                    "message": "🔒 Yeh account abhi Master Admin dwara Lock hai. Kripya Deepak Sharma se permission lein."
+                }), 403
+
     security_limiter.reset_login_failure(login_key)
 
     user_safe = format_doc(user) if user else {
         "_id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
         "id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
-        "name": "Deepak Sharma (Super Admin)",
+        "name": "Deepak Sharma (Master Admin)",
         "email": "deepaksharma74521@gmail.com",
         "role": "superadmin",
         "assignedShop": "All",
         "phone": "6395322813"
     }
+    if is_superadmin:
+        user_safe["role"] = "superadmin"
+        user_safe["name"] = "Deepak Sharma (Master Admin)"
     if "password" in user_safe:
         del user_safe["password"]
 
@@ -3595,16 +3609,15 @@ def manage_staff(user_id):
     requester_id = data.get("requesterId")
     requester_email = data.get("requesterEmail", "").strip().lower()
 
-    # Verify that the requester is Super Admin (Deepak Sharma / System Super Admin)
+    # Verify that the requester is Master Admin Deepak Sharma
     is_super_admin = False
-    if requester_email in ["deepaksharma74521@gmail.com", "admin@canteen.edu"]:
+    if requester_email == "deepaksharma74521@gmail.com":
         is_super_admin = True
     elif requester_id:
         req_user = db.users.find_one({"_id": requester_id}) or db.users.find_one({"uid": requester_id})
-        if req_user and (req_user.get("role") == "superadmin" or req_user.get("email") in ["deepaksharma74521@gmail.com", "admin@canteen.edu"]):
+        if req_user and (req_user.get("role") == "superadmin" or req_user.get("email") == "deepaksharma74521@gmail.com"):
             is_super_admin = True
     else:
-        # Fallback: Check if request has authorization from superadmin email in header or data
         is_super_admin = True
 
     user = db.users.find_one({"_id": user_id}) or db.users.find_one({"uid": user_id})
@@ -3613,22 +3626,33 @@ def manage_staff(user_id):
 
     target_id = user["_id"]
 
-    # Security: Protect Super Admin account from being revoked or altered by anyone
-    if user.get("role") == "superadmin" or user.get("email") in ["deepaksharma74521@gmail.com", "admin@canteen.edu"]:
-        if action in ["reject", "revoke"]:
-            return jsonify({"success": False, "message": "Action Denied: System Super Admin (Owner) account cannot be revoked."}), 403
+    # Security: Protect Master Admin account from being revoked or altered by anyone
+    if user.get("role") == "superadmin" or user.get("email") == "deepaksharma74521@gmail.com":
+        if action in ["reject", "revoke", "lock"]:
+            return jsonify({"success": False, "message": "Action Denied: System Master Admin (Owner) account cannot be revoked or locked."}), 403
 
-    if action == "approve":
+    if action in ["approve", "unlock"]:
         final_shop = assigned_shop or user.get("assignedShop", "All")
         db.users.update_one({"_id": target_id}, {"$set": {
-            "role": "admin", 
+            "role": "admin",
+            "status": "approved",
+            "account_status": "approved",
             "assignedShop": final_shop,
             "approvedAt": datetime.now().isoformat()
         }})
-        return jsonify({"success": True, "message": f"Successfully approved {user.get('name')} as Admin for {final_shop}!"}), 200
+        return jsonify({"success": True, "message": f"Successfully approved/unlocked {user.get('name')} as Admin for {final_shop}!"}), 200
+    elif action == "lock":
+        db.users.update_one({"_id": target_id}, {"$set": {
+            "status": "locked",
+            "account_status": "locked",
+            "lockedAt": datetime.now().isoformat()
+        }})
+        return jsonify({"success": True, "message": f"Account locked for {user.get('name')}. Login access suspended."}), 200
     elif action in ["reject", "revoke"]:
         db.users.update_one({"_id": target_id}, {"$set": {
-            "role": "student", 
+            "role": "student",
+            "status": "revoked",
+            "account_status": "revoked",
             "staffDesignation": None, 
             "assignedShop": None,
             "revokedAt": datetime.now().isoformat()
@@ -4367,6 +4391,24 @@ def serve_index():
 
 @app.route("/<path:path>")
 def serve_static(path):
+    clean_p = path.lower().replace("\\", "/").strip()
+
+    # Block sensitive directories from public web access
+    blocked_dirs = ("data", "scripts", "scratch", "shop_admin_credentials", ".git", ".wrangler", "__pycache__")
+    for b_dir in blocked_dirs:
+        if clean_p.startswith(b_dir + "/") or clean_p == b_dir:
+            return jsonify({"error": "Not Found"}), 404
+
+    # Block sensitive file extensions
+    blocked_exts = (".py", ".json", ".bat", ".cmd", ".vbs", ".csv", ".env", ".git", ".sql", ".db", ".yml", ".yaml", ".txt", ".log", ".md")
+    if any(clean_p.endswith(ext) for ext in blocked_exts):
+        if not clean_p.endswith("manifest.json"):
+            return jsonify({"error": "Not Found"}), 404
+
+    # If someone tries to open admin.html, serve the 404 decoy page
+    if clean_p in ["admin.html", "admin"]:
+        return send_from_directory(".", "admin.html")
+
     if os.path.exists(path):
         return send_from_directory(".", path)
     return send_from_directory(".", "index.html")
