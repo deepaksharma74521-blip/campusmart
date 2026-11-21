@@ -1185,7 +1185,10 @@ async function handleForgotSendOtp() {
             currentForgotPhone = inputVal;
             currentForgotOtp = String(res.otp || '');
 
-            showToast(res.message || 'OTP sent successfully to your email!', 'success', 'Email OTP Dispatched');
+            showToast(res.message || 'OTP sent successfully!', 'success', 'OTP Dispatched');
+            if (res.otp) {
+                showForgotPushNotification(res.otp);
+            }
 
             // Switch to Step 2
             const step1 = document.getElementById('forgot-step-1');
@@ -1230,7 +1233,15 @@ async function handleForgotSendOtp() {
 }
 
 function showForgotPushNotification(otp) {
-    // Disabled in secure email mode so OTP remains private in user's email
+    const notif = document.getElementById('forgot-push-notification');
+    const display = document.getElementById('forgot-push-otp-display');
+    if (notif && display && otp) {
+        display.textContent = otp;
+        notif.style.top = '16px';
+        setTimeout(() => {
+            notif.style.top = '-160px';
+        }, 15000);
+    }
 }
 
 function dismissForgotPushNotification() {
