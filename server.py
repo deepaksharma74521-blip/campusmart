@@ -116,6 +116,66 @@ def send_email_otp(recipient_email, recipient_name, otp_code, purpose="Password 
         print(f"[EMAIL GATEWAY ERROR] ❌ Failed to dispatch email to {recipient_email}: {e}")
         return False, str(e)
 
+
+# ------------------------------------------------------------------------------
+# 📲 FAST2SMS GATEWAY CONFIGURATION (Real Mobile SMS OTP Engine)
+# ------------------------------------------------------------------------------
+FAST2SMS_API_KEY = os.environ.get("FAST2SMS_API_KEY", "5sWjpyC6kDcQIOcQmykVlUekItAKnFZMzYLMWcE1xAdkcoExFngGFf5TuSXNu1d4ma6hBPAfcj5O1QQi")
+
+def send_fast2sms_otp(phone_number, otp_code):
+    """
+    Dispatches 6-digit real SMS OTP to Indian mobile numbers (+91) via Fast2SMS Gateway.
+    Falls back gracefully if website verification or balance limit occurs.
+    """
+    if not FAST2SMS_API_KEY:
+        return {"success": False, "message": "Fast2SMS API Key not configured."}
+    
+    import re
+    import urllib.request
+    
+    clean = re.sub(r"[^0-9]", "", str(phone_number))
+    if len(clean) > 10:
+        clean = clean[-10:]
+    if len(clean) != 10:
+        return {"success": False, "message": "Invalid 10-digit mobile number."}
+    
+    url = "https://www.fast2sms.com/dev/bulkV2"
+    payload = {
+        "variables_values": str(otp_code),
+        "route": "otp",
+        "numbers": clean
+    }
+    headers = {
+        "authorization": FAST2SMS_API_KEY,
+        "Content-Type": "application/json"
+    }
+    
+    try:
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers=headers
+        )
+        with urllib.request.urlopen(req, timeout=8) as response:
+            res_data = json.loads(response.read().decode("utf-8"))
+            if res_data.get("return") is True:
+                print(f"[FAST2SMS GATEWAY] ✅ Successfully delivered real SMS OTP '{otp_code}' to +91{clean}")
+                return {"success": True, "data": res_data, "message": "Real SMS delivered"}
+            else:
+                err_msg = res_data.get("message", "Fast2SMS dispatch failed.")
+                print(f"[FAST2SMS GATEWAY] ⚠️ API response notice: {err_msg}")
+                return {"success": False, "message": err_msg}
+    except Exception as e:
+        err_msg = str(e)
+        if hasattr(e, "read"):
+            try:
+                err_body = json.loads(e.read().decode("utf-8"))
+                err_msg = err_body.get("message", err_msg)
+            except Exception:
+                pass
+        print(f"[FAST2SMS GATEWAY] ⚠️ API dispatch status: {err_msg}")
+        return {"success": False, "message": err_msg}
+
 @app.after_request
 def compress_and_cache_headers(response):
     path = request.path.lower()
@@ -1767,12 +1827,16 @@ def send_otp():
             "expiresIn": 600
         }), 200
 
-    # Registration OTP Flow (WhatsApp / Mobile)
+    # Registration / Mobile OTP Flow (Fast2SMS Real SMS Gateway with WhatsApp Fallback)
     otp_code = str(random.randint(100000, 999999))
     now = datetime.now()
     expires_at = (now + timedelta(minutes=10)).isoformat()
 
-    # WhatsApp Formatted OTP Message
+    # Try Real SMS Delivery via Fast2SMS
+    fast2sms_res = send_fast2sms_otp(clean_phone, otp_code)
+    real_sms_delivered = fast2sms_res.get("success", False)
+
+    # WhatsApp Formatted OTP Message (Used for Fallback / Direct Link)
     if purpose in ["reset_password", "forgot"]:
         wa_header = "🔑 *CAMPUS MART - PASSWORD RESET CODE*"
         wa_label = "Your 6-Digit Password Reset OTP is:"
@@ -1795,13 +1859,16 @@ def send_otp():
     encoded_text = urllib.parse.quote(wa_message)
     wa_url = f"https://api.whatsapp.com/send?phone=91{clean_phone}&text={encoded_text}"
 
+    channel_name = "Fast2SMS" if real_sms_delivered else "WhatsApp"
+
     otp_doc = {
         "_id": str(uuid.uuid4()),
         "phone": clean_phone,
         "rawPhone": phone,
         "email": email,
         "otp": otp_code,
-        "channel": "WhatsApp",
+        "channel": channel_name,
+        "realSms": real_sms_delivered,
         "verified": False,
         "createdAt": now.isoformat(),
         "expiresAt": expires_at
@@ -1811,19 +1878,33 @@ def send_otp():
         db.otps.delete_many({"phone": clean_phone})
         db.otps.insert_one(otp_doc)
 
-    print(f"[WHATSAPP GATEWAY] 📲 Dispatched OTP '{otp_code}' to WhatsApp +91{clean_phone}")
-
-    return jsonify({
-        "success": True,
-        "message": f"🎉 6-Digit WhatsApp OTP sent successfully to +91 {clean_phone}!",
-        "phone": phone,
-        "cleanPhone": clean_phone,
-        "otp": otp_code,
-        "whatsappUrl": wa_url,
-        "whatsappMessage": wa_message,
-        "channel": "WhatsApp",
-        "expiresIn": 300
-    }), 200
+    if real_sms_delivered:
+        print(f"[FAST2SMS GATEWAY] 📲 REAL SMS OTP '{otp_code}' delivered to +91{clean_phone}")
+        return jsonify({
+            "success": True,
+            "message": f"🎉 6-Digit Real SMS OTP delivered directly to your mobile (+91 {clean_phone}) via Fast2SMS!",
+            "phone": phone,
+            "cleanPhone": clean_phone,
+            "otp": otp_code,
+            "channel": "Fast2SMS",
+            "realSms": True,
+            "expiresIn": 300
+        }), 200
+    else:
+        print(f"[WHATSAPP GATEWAY] 📲 Fallback: Dispatched OTP '{otp_code}' for +91{clean_phone} (Fast2SMS Note: {fast2sms_res.get('message')})")
+        return jsonify({
+            "success": True,
+            "message": f"🎉 6-Digit OTP dispatched for mobile +91 {clean_phone}!",
+            "phone": phone,
+            "cleanPhone": clean_phone,
+            "otp": otp_code,
+            "whatsappUrl": wa_url,
+            "whatsappMessage": wa_message,
+            "channel": "WhatsApp",
+            "realSms": False,
+            "fast2smsStatus": fast2sms_res.get("message"),
+            "expiresIn": 300
+        }), 200
 
 
 @app.route("/api/auth/verify-otp", methods=["POST"])

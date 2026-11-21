@@ -405,10 +405,16 @@ async function handleRegister(event) {
             ? String(otpRes.otp) 
             : String(Math.floor(100000 + Math.random() * 900000));
 
+        const isRealSms = !!(otpRes && otpRes.realSms);
         currentGeneratedOtp = otpCode;
-        openOtpModal(cleanPhone, otpCode);
-        showPushNotification(otpCode);
-        showToast(`📲 6-Digit SMS Verification code sent to +91 ${cleanPhone.slice(-10)}!`, 'success', 'SMS OTP Dispatched');
+        openOtpModal(cleanPhone, otpCode, isRealSms);
+
+        if (isRealSms) {
+            showToast(`📲 Real SMS OTP sent directly to your phone (+91 ${cleanPhone.slice(-10)}) via Fast2SMS! Check your Messages app.`, 'success', 'Real SMS Dispatched');
+        } else {
+            showPushNotification(otpCode);
+            showToast(`📲 6-Digit SMS Verification code sent to +91 ${cleanPhone.slice(-10)}!`, 'success', 'SMS OTP Dispatched');
+        }
 
     } catch (err) {
         console.error('Send OTP error:', err);
@@ -469,7 +475,7 @@ async function triggerDirectMobileOtp() {
 // OTP Modal Controls & Input Digit Auto-Advancement
 // ==========================================================================
 
-function openOtpModal(phone, otpCode) {
+function openOtpModal(phone, otpCode, isRealSms = false) {
     const modal = document.getElementById('otp-modal');
     const phoneDisplay = document.getElementById('otp-phone-display');
     const smsBanner = document.getElementById('simulated-sms-banner');
@@ -482,7 +488,25 @@ function openOtpModal(phone, otpCode) {
 
     if (phoneDisplay) phoneDisplay.textContent = `+91 ${phone}`;
     if (smsCode && otpCode) smsCode.textContent = otpCode;
-    if (smsBanner) smsBanner.style.display = 'block';
+    
+    if (smsBanner) {
+        if (isRealSms) {
+            smsBanner.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 0.8rem; font-weight: 700; color: #15803d; display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-tower-broadcast" style="color: #22c55e;"></i> Real SMS Sent via Fast2SMS
+                    </span>
+                    <span style="font-size: 0.72rem; color: #16a34a; font-weight: 700; background: #dcfce7; padding: 2px 8px; border-radius: 10px;">
+                        <i class="fa-solid fa-circle-check"></i> Delivered
+                    </span>
+                </div>
+                <div style="font-size: 0.76rem; color: #64748b; margin-top: 4px;">
+                    Please check the Messages app on your phone for the 6-digit verification code.
+                </div>
+            `;
+        }
+        smsBanner.style.display = 'block';
+    }
 
     // Clear previous inputs
     for (let i = 1; i <= 6; i++) {
