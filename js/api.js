@@ -363,13 +363,14 @@ const api = {
             const data = await res.json().catch(() => ({}));
             if (res.ok && data.success) {
                 return data;
-            } else if (res.status === 404 || (data && data.success === false)) {
-                // Explicit account check rejection from backend!
+            } else if (data && data.success === false && data.message) {
+                // Explicit rejection from active backend
                 return {
                     success: false,
-                    message: data.message || '❌ Yeh Mobile Number / Email registered nahi hai! Kripya pehle register karein.'
+                    message: data.message
                 };
             }
+            // If backend is not available on this domain (e.g. 404 on Cloudflare static host), proceed to Edge Check below!
         } catch (e) {
             console.warn('Backend sendPasswordResetOtp offline, performing Edge Registered User check...', e);
         }
