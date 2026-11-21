@@ -198,13 +198,15 @@ const api = {
                     localStorage.setItem('canteen_user', JSON.stringify(data.user));
                     return data;
                 }
-            } else {
+            } else if (res.status === 401 || res.status === 403 || res.status === 429) {
+                // Legitimate error from active backend (e.g. wrong password or locked account)
                 const errData = await res.json().catch(() => ({}));
                 return {
                     success: false,
                     message: errData.message || 'Invalid email/phone or password.'
                 };
             }
+            // If status is 404/502 (static edge / Cloudflare), proceed to Edge Local Auth Fallback below!
         } catch (e) {
             console.warn('Backend login endpoint unreachable, attempting Local Secure Auth...', e);
         }
