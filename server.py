@@ -21,6 +21,29 @@ import io
 from datetime import datetime, timedelta
 from functools import wraps
 
+# ------------------------------------------------------------------------------
+# 🔒 SECURE .ENV LOADER (Protects secrets & loads configuration safely)
+# ------------------------------------------------------------------------------
+def load_env_file():
+    env_path = os.path.join(os.path.dirname(__file__), ".env")
+    if os.path.exists(env_path):
+        try:
+            with open(env_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    k = k.strip()
+                    v = v.strip().strip("'\"")
+                    if k:
+                        os.environ.setdefault(k, v)
+            print("[OK] Successfully loaded environment variables from .env")
+        except Exception as e:
+            print("[WARN] Error loading .env file:", e)
+
+load_env_file()
+
 if hasattr(sys.stdout, 'reconfigure'):
     try:
         sys.stdout.reconfigure(encoding='utf-8')
@@ -360,8 +383,12 @@ def admin_required(f):
 
 @app.before_request
 def security_firewall():
-    # Bypass static web assets, admin routes, and media files from flood checks
+    # 🔒 Block any direct attempts to read .env or sensitive secrets via HTTP
     p = request.path
+    if ".env" in p or p.startswith("/.env") or "recovery-codes" in p:
+        return jsonify({"success": False, "message": "⛔ Access Forbidden"}), 403
+
+    # Bypass static web assets, admin routes, and media files from flood checks
     if (p.startswith("/assets") or p.startswith("/css") or p.startswith("/js") or 
         p.startswith("/api/admin") or p.startswith("/api/print") or
         p.endswith((".png", ".jpg", ".jpeg", ".mp4", ".apk", ".ico", ".json", ".svg", ".woff2"))):
@@ -2084,46 +2111,16 @@ def register():
                 "message": f"⚠️ Mobile number '{phone}' is already registered with an existing account. Only 1 account per mobile number is permitted. Please log in."
             }), 400
 
-    # Check if user is applying for staff permission or registering as a Shop Owner
+    # Strict Role Enforcement: Public registration ONLY allows Student or Faculty.
+    # Admin and staff privileges are strictly created/managed by Master Admin Deepak Sharma.
     user_type = data.get("userType", "Student")
-    is_shop_owner = (user_type == "ShopOwner") or bool(data.get("isShopOwner"))
-    apply_for_staff = (data.get("applyForStaff", False) or (data.get("role") == "pending_admin")) and not is_shop_owner
-    
-    if is_shop_owner:
-        role = "admin"
-        staff_designation = "Shop Owner / Vendor"
-        shop_name = data.get("shopName", "").strip() or f"{name}'s Counter"
-        assigned_shop = shop_name
-        shop_location = data.get("location", "Campus Food Court").strip()
-        shop_cat = data.get("shopCategory", "Canteen Food").strip()
-
-        # Check if shop already exists or auto-create it
-        existing_shop = db.shops.find_one({"name": shop_name})
-        if not existing_shop:
-            shop_id = f"shop-{uuid.uuid4().hex[:6]}"
-            new_shop = {
-                "_id": shop_id,
-                "shopId": shop_id,
-                "name": shop_name,
-                "shortName": shop_name,
-                "category": shop_cat,
-                "ownerName": name,
-                "ownerEmail": email,
-                "phone": phone,
-                "location": shop_location or "Campus Center",
-                "timing": "8:00 AM - 8:30 PM",
-                "description": f"Official {shop_name} outlet on campus.",
-                "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80",
-                "isOpen": True,
-                "rating": 4.8,
-                "totalOrders": 0,
-                "createdAt": datetime.now().isoformat()
-            }
-            db.shops.insert_one(new_shop)
-    else:
-        role = "pending_admin" if apply_for_staff else "student"
-        staff_designation = data.get("staffDesignation", "Counter / Kitchen Staff").strip() if apply_for_staff else None
-        assigned_shop = data.get("assignedShop", "All").strip() if apply_for_staff else "All"
+    if user_type not in ["Student", "Faculty"]:
+        user_type = "Student"
+    role = "faculty" if user_type == "Faculty" else "student"
+    is_shop_owner = False
+    apply_for_staff = False
+    staff_designation = None
+    assigned_shop = "All"
 
     cabin_number = data.get("cabinNumber", "").strip()
 
@@ -2152,12 +2149,7 @@ def register():
     token = generate_auth_token(user_safe)
     user_safe["token"] = token
 
-    if is_shop_owner:
-        msg = f"🎉 Shop Owner account & '{assigned_shop}' registered successfully!"
-    elif apply_for_staff:
-        msg = "Staff Admin request submitted! It is pending approval by Super Admin Deepak."
-    else:
-        msg = "🎉 Account verified & registered successfully!"
+    msg = f"🎉 {user_type} account verified & registered successfully!"
         
     return jsonify({"success": True, "message": msg, "user": user_safe, "token": token}), 201
 
@@ -4485,10 +4477,9 @@ def serve_static(path):
         if clean_p.startswith(b_dir + "/") or clean_p == b_dir:
             return jsonify({"error": "Not Found"}), 404
 
-    # Block sensitive file extensions
-    blocked_exts = (".py", ".bat", ".cmd", ".vbs", ".csv", ".env", ".git", ".sql", ".db", ".yml", ".yaml", ".txt", ".log", ".md")
-    if any(clean_p.endswith(ext) for ext in blocked_exts):
-        return jsonify({"error": "Not Found"}), 404
+    # Block sensitive file extensions & hidden files
+    if clean_p.startswith(".env") or ".env" in clean_p or any(clean_p.endswith(ext) for ext in blocked_exts):
+        return jsonify({"error": "Forbidden", "message": "Access Denied"}), 403
 
     # If someone tries to open admin.html, serve the 404 decoy page
     if clean_p in ["admin.html", "admin"]:

@@ -26,3 +26,7 @@ menuprice/
 Shop_Admin_Credentials/
 "📁 Dedicated/"
 "📁 Shop_Admin_Credentials/"
+.env
+.env.*
+.env.local
+

@@ -34,3 +34,7 @@ data/canteen_db_pre_cleanup.json
 Shop_Admin_Credentials
 📁 Dedicated
 📁 Shop_Admin_Credentials
+.env
+.env.*
+.env.local
+

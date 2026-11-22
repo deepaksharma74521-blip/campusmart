@@ -15,6 +15,10 @@ venv.bak/
 .env.local
 .env.*
 recovery-codes.txt
+Shop_Admin_Credentials/
+"📁 Shop_Admin_Credentials/"
+"📁 Dedicated/"
+
 
 # Executables & large binaries
 cloudflared.exe

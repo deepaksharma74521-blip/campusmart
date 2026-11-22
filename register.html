@@ -51,24 +51,19 @@
             </div>
 
             <form onsubmit="handleRegister(event)">
-                <!-- User Type Selector: Student vs Faculty vs Shop Owner -->
+                <!-- User Type Selector: Student vs Faculty (Normal Users Only) -->
                 <div class="form-group" style="margin-bottom: 1.25rem;">
                     <label class="form-label" style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; display: block;">I am registering as:</label>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem;">
-                        <label id="label-type-student" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.6rem 0.3rem; border: 2px solid var(--primary); background: #fff7ed; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.82rem; color: var(--primary); text-align: center; transition: all 0.2s ease;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                        <label id="label-type-student" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.7rem 0.5rem; border: 2px solid var(--primary); background: #fff7ed; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.88rem; color: var(--primary); text-align: center; transition: all 0.2s ease;">
                             <input type="radio" name="account-type" id="type-student" value="Student" checked onchange="handleUserTypeChange(this.value)" style="display: none;">
-                            <i class="fa-solid fa-graduation-cap" style="font-size: 1.1rem;"></i>
+                            <i class="fa-solid fa-graduation-cap" style="font-size: 1.25rem;"></i>
                             <span>Student</span>
                         </label>
-                        <label id="label-type-faculty" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.6rem 0.3rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; color: #475569; text-align: center; transition: all 0.2s ease;">
+                        <label id="label-type-faculty" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.7rem 0.5rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.88rem; color: #475569; text-align: center; transition: all 0.2s ease;">
                             <input type="radio" name="account-type" id="type-faculty" value="Faculty" onchange="handleUserTypeChange(this.value)" style="display: none;">
-                            <i class="fa-solid fa-chalkboard-user" style="font-size: 1.1rem;"></i>
+                            <i class="fa-solid fa-chalkboard-user" style="font-size: 1.25rem;"></i>
                             <span>Faculty</span>
-                        </label>
-                        <label id="label-type-shop" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.6rem 0.3rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; color: #475569; text-align: center; transition: all 0.2s ease;">
-                            <input type="radio" name="account-type" id="type-shop" value="ShopOwner" onchange="handleUserTypeChange(this.value)" style="display: none;">
-                            <i class="fa-solid fa-store" style="font-size: 1.1rem;"></i>
-                            <span>Shop Owner</span>
                         </label>
                     </div>
                 </div>
@@ -116,14 +111,7 @@
                     </div>
                 </div>
 
-                <!-- Shop Owner Specific Location Field -->
-                <div class="form-group" id="shop-location-group" style="display: none;">
-                    <label class="form-label" for="reg-shop-loc"><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Counter / Shop Campus Location</label>
-                    <div class="input-group">
-                        <i class="fa-solid fa-location-dot input-icon"></i>
-                        <input type="text" id="reg-shop-loc" class="form-input" placeholder="e.g. Central Food Court, Counter #3 / Block B">
-                    </div>
-                </div>
+
 
                 <!-- Optional Faculty Cabin Field (Shown only for Faculty) -->
                 <div class="form-group" id="faculty-cabin-group" style="display: none;">
@@ -213,64 +201,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Admin / Staff Application Toggle -->
-                <div style="margin: 0.85rem 0; padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #1e293b;">
-                        <input type="checkbox" id="is-admin-checkbox" onchange="toggleAdminKeyField(this)" style="accent-color: var(--primary);">
-                        <span><i class="fa-solid fa-user-shield" style="color: var(--primary);"></i> Apply for Campus Mart Staff / Admin Access</span>
-                    </label>
-                    <div id="admin-key-container" style="display: none; margin-top: 0.75rem; background: #fffbeb; border: 1px solid #fef3c7; padding: 0.75rem; border-radius: 6px;">
-                        <div style="font-size: 0.8rem; color: #92400e; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
-                            <i class="fa-solid fa-shield-halved"></i> 
-                            <strong>Approval Protected:</strong> Requires Super Admin Deepak's approval.
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0.6rem;">
-                            <label class="form-label" for="reg-staff-shop" style="font-size: 0.82rem; color: #475569;">Assigned Shop / Counter:</label>
-                            <div class="input-group">
-                                <i class="fa-solid fa-store input-icon"></i>
-                                <select id="reg-staff-shop" class="form-select">
-                                    <option value="All" selected>🏪 All Shops & Counters (General Admin Staff)</option>
-                                    <option value="TMU Special Chole Kulcha">Shop 1 - TMU Special Chole Kulcha</option>
-                                    <option value="Food & Friends">Shop 2 - Food & Friends</option>
-                                    <option value="Chandrakanta Canteen">Shop 3 - Chandrakanta Canteen</option>
-                                    <option value="Super Food Corner">Shop 4 - Super Food Corner</option>
-                                    <option value="Shiv Shudh Veg Biryani">Shop 5 - Shiv Shudh Veg Biryani</option>
-                                    <option value="Foodo Holic">Shop 6 - Foodo Holic</option>
-                                    <option value="Sardar Ji Hub">Shop 7 - Sardar Ji Hub</option>
-                                    <option value="Jiven Canteen">Shop 8 - Jiven Canteen</option>
-                                    <option value="Shree Balaji Chai Bhandar">Shop 9 - Shree Balaji Chai Bhandar</option>
-                                    <option value="Ahuja Photo Shop">Shop 10 - Ahuja Photo Shop</option>
-                                    <option value="Durga Photo Shop">Shop 11 - Durga Photo Shop</option>
-                                    <option value="Royal Cafe">Shop 12 - Royal Cafe</option>
-                                    <option value="Gupta Photo Shop">Shop 13 - Gupta Photo Shop</option>
-                                    <option value="Rapid Food Corner (South Indian)">Shop 14 - Rapid Food Corner (South Indian)</option>
-                                    <option value="Ahuja Mart">Shop 15 - Ahuja Mart</option>
-                                    <option value="Mahinder Food Junction">Shop 16 - Mahinder Food Junction</option>
-                                    <option value="Vardhaman Juice Corner">Shop 17 - Vardhaman Juice Corner</option>
-                                    <option value="Patanjali Mart">Shop 18 - Patanjali Mart</option>
-                                    <option value="Caffelera">Shop 19 - Caffelera</option>
-                                    <option value="Rainbow">Shop 20 - Rainbow</option>
-                                    <option value="Chai Nagri">Shop 21 - Chai Nagri</option>
-                                    <option value="Pani Puri Restaurant">Shop 22 - Pani Puri Restaurant</option>
-                                    <option value="Yummy Express">Shop 23 - Yummy Express</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <label class="form-label" for="reg-staff-role" style="font-size: 0.82rem; color: #475569;">Staff Designation / Role:</label>
-                        <div class="input-group">
-                            <i class="fa-solid fa-id-badge input-icon"></i>
-                            <select id="reg-staff-role" class="form-select">
-                                <option value="Counter & Billing Manager" selected>Counter & Billing Manager</option>
-                                <option value="Shopkeeper / Order Packer">Shopkeeper / Order Packer</option>
-                                <option value="Mart & Inventory Manager">Mart & Inventory Manager</option>
-                                <option value="Mart Supervisor">Mart Supervisor</option>
-                                <option value="Kitchen Head Chef">Kitchen Head Chef</option>
-                                <option value="Order Dispatch Staff">Order Dispatch Staff</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
 
                 <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">
                     <i class="fa-solid fa-shield-halved"></i> Verify Mobile & Create Account

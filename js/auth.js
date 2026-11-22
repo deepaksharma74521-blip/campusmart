@@ -7,16 +7,13 @@
 function handleLoginRoleChange(selectedRole) {
     const labelStudent = document.getElementById('login-label-student');
     const labelFaculty = document.getElementById('login-label-faculty');
-    const labelShop = document.getElementById('login-label-shop');
-    const labelDelivery = document.getElementById('login-label-delivery');
 
     const headerIcon = document.getElementById('login-header-icon');
     const headerTitle = document.getElementById('login-header-title');
     const headerSubtitle = document.getElementById('login-header-subtitle');
     const emailInput = document.getElementById('login-email');
-    const passwordInput = document.getElementById('login-password');
 
-    const allLabels = [labelStudent, labelFaculty, labelShop, labelDelivery];
+    const allLabels = [labelStudent, labelFaculty];
     allLabels.forEach(lbl => {
         if (lbl) {
             lbl.style.border = '1.5px solid #cbd5e1';
@@ -26,30 +23,7 @@ function handleLoginRoleChange(selectedRole) {
         }
     });
 
-    if (selectedRole === 'Delivery') {
-        if (labelDelivery) {
-            labelDelivery.style.border = '2px solid #0284c7';
-            labelDelivery.style.background = '#f0f9ff';
-            labelDelivery.style.color = '#0284c7';
-            labelDelivery.style.fontWeight = '700';
-        }
-        if (headerIcon) headerIcon.className = 'fa-solid fa-person-biking';
-        if (headerTitle) headerTitle.textContent = 'Delivery Partner & Fleet Login';
-        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to deliver hostel & cabin orders and collect payments';
-        if (emailInput) emailInput.placeholder = 'delivery@campusmart.in';
-        if (passwordInput && !passwordInput.value) passwordInput.value = 'delivery123';
-    } else if (selectedRole === 'ShopOwner') {
-        if (labelShop) {
-            labelShop.style.border = '2px solid var(--primary)';
-            labelShop.style.background = '#fff7ed';
-            labelShop.style.color = 'var(--primary)';
-            labelShop.style.fontWeight = '700';
-        }
-        if (headerIcon) headerIcon.className = 'fa-solid fa-store';
-        if (headerTitle) headerTitle.textContent = 'Shop Owner & Vendor Login';
-        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to manage your counter orders, food menu & profile';
-        if (emailInput) emailInput.placeholder = 'vendor@tmu.ac.in or deepaksharma74521@gmail.com';
-    } else if (selectedRole === 'Faculty') {
+    if (selectedRole === 'Faculty') {
         if (labelFaculty) {
             labelFaculty.style.border = '2px solid var(--primary)';
             labelFaculty.style.background = '#fff7ed';
@@ -58,8 +32,8 @@ function handleLoginRoleChange(selectedRole) {
         }
         if (headerIcon) headerIcon.className = 'fa-solid fa-chalkboard-user';
         if (headerTitle) headerTitle.textContent = 'Faculty & Teacher Login';
-        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to order tea, lunch & snacks to your department';
-        if (emailInput) emailInput.placeholder = 'faculty@college.edu';
+        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to order tea, lunch & snacks to your department / cabin';
+        if (emailInput) emailInput.placeholder = 'faculty@college.edu or 10-digit mobile';
     } else {
         if (labelStudent) {
             labelStudent.style.border = '2px solid var(--primary)';
@@ -69,8 +43,8 @@ function handleLoginRoleChange(selectedRole) {
         }
         if (headerIcon) headerIcon.className = 'fa-solid fa-graduation-cap';
         if (headerTitle) headerTitle.textContent = 'Student Login';
-        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to your account';
-        if (emailInput) emailInput.placeholder = 'student@college.edu';
+        if (headerSubtitle) headerSubtitle.textContent = 'Sign in to your student account for queue-free pre-orders';
+        if (emailInput) emailInput.placeholder = 'student@college.edu or 10-digit mobile';
     }
 }
 
@@ -84,11 +58,9 @@ function quickFillVendor() {
 
 function handleUserTypeChange(selectedType) {
     const isFaculty = (selectedType === 'Faculty');
-    const isShopOwner = (selectedType === 'ShopOwner');
 
     const labelStudent = document.getElementById('label-type-student');
     const labelFaculty = document.getElementById('label-type-faculty');
-    const labelShop = document.getElementById('label-type-shop');
 
     const nameLabel = document.getElementById('reg-name-label');
     const nameInput = document.getElementById('reg-name');
@@ -100,12 +72,11 @@ function handleUserTypeChange(selectedType) {
     const deptIcon = document.getElementById('reg-dept-icon');
 
     const cabinGroup = document.getElementById('faculty-cabin-group');
-    const shopLocGroup = document.getElementById('shop-location-group');
     const headerIcon = document.getElementById('reg-header-icon');
     const headerTitle = document.getElementById('reg-header-title');
     const headerSubtitle = document.getElementById('reg-header-subtitle');
 
-    const allLabels = [labelStudent, labelFaculty, labelShop];
+    const allLabels = [labelStudent, labelFaculty];
     allLabels.forEach(lbl => {
         if (lbl) {
             lbl.style.border = '1.5px solid #cbd5e1';
@@ -115,39 +86,7 @@ function handleUserTypeChange(selectedType) {
         }
     });
 
-    if (isShopOwner) {
-        if (labelShop) {
-            labelShop.style.border = '2px solid var(--primary)';
-            labelShop.style.background = '#fff7ed';
-            labelShop.style.color = 'var(--primary)';
-            labelShop.style.fontWeight = '700';
-        }
-        if (headerIcon) headerIcon.className = 'fa-solid fa-store';
-        if (headerTitle) headerTitle.textContent = 'Register Campus Shop / Outlet';
-        if (headerSubtitle) headerSubtitle.textContent = 'Create your counter profile to sell food, drinks & daily supplies';
-
-        if (nameLabel) nameLabel.textContent = 'Shop Owner / Manager Full Name';
-        if (nameInput) nameInput.placeholder = 'e.g. Mr. Ramesh Sharma';
-        if (idLabel) idLabel.textContent = 'Shop / Counter Name *';
-        if (idInput) idInput.placeholder = 'e.g. TMU Central Food Court / Juice Bar';
-        if (idIcon) idIcon.className = 'fa-solid fa-store input-icon';
-
-        if (deptLabel) deptLabel.textContent = 'Primary Shop Category *';
-        if (deptIcon) deptIcon.className = 'fa-solid fa-tags input-icon';
-        if (deptSelect) {
-            deptSelect.innerHTML = `
-                <option value="Canteen Food" selected>🍔 Canteen Food & Meals</option>
-                <option value="Drinks & Juices">🥤 Drinks, Juices & Shakes</option>
-                <option value="Snacks & Chips">🍿 Bakery & Packaged Snacks</option>
-                <option value="Chocolates & Candies">🍫 Chocolates & Sweets</option>
-                <option value="Stationery">📚 Stationery & Xerox Supplies</option>
-                <option value="Hostel Essentials">🧴 Daily / Hostel Essentials</option>
-            `;
-        }
-
-        if (shopLocGroup) shopLocGroup.style.display = 'block';
-        if (cabinGroup) cabinGroup.style.display = 'none';
-    } else if (isFaculty) {
+    if (isFaculty) {
         if (labelFaculty) {
             labelFaculty.style.border = '2px solid var(--primary)';
             labelFaculty.style.background = '#fff7ed';
@@ -168,7 +107,6 @@ function handleUserTypeChange(selectedType) {
         if (deptIcon) deptIcon.className = 'fa-solid fa-building-columns input-icon';
         resetCollegeDepartments();
 
-        if (shopLocGroup) shopLocGroup.style.display = 'none';
         if (cabinGroup) cabinGroup.style.display = 'block';
     } else {
         if (labelStudent) {
@@ -191,7 +129,6 @@ function handleUserTypeChange(selectedType) {
         if (deptIcon) deptIcon.className = 'fa-solid fa-building-columns input-icon';
         resetCollegeDepartments();
 
-        if (shopLocGroup) shopLocGroup.style.display = 'none';
         if (cabinGroup) cabinGroup.style.display = 'none';
     }
 }
@@ -321,13 +258,7 @@ async function handleRegister(event) {
     const submitBtn = document.getElementById('reg-submit-btn');
 
     const userType = document.querySelector('input[name="account-type"]:checked')?.value || 'Student';
-    const isShopOwner = (userType === 'ShopOwner');
     const cabinNumber = document.getElementById('reg-cabin')?.value.trim() || '';
-    const shopLocation = document.getElementById('reg-shop-loc')?.value.trim() || 'Campus Food Court';
-
-    const isStaffChecked = document.getElementById('is-admin-checkbox')?.checked;
-    const staffRole = document.getElementById('reg-staff-role')?.value;
-    const staffShop = document.getElementById('reg-staff-shop')?.value || 'All';
 
     if (!name || !rollNo || !dept || !phone || !email || !password) {
         showToast('Please fill in all required fields.', 'warning', 'Missing Details');
@@ -351,7 +282,7 @@ async function handleRegister(event) {
         return;
     }
 
-    // Save pending registration payload
+    // Save pending registration payload (strictly Student or Faculty)
     pendingRegistrationData = {
         name,
         rollNo,
@@ -360,20 +291,9 @@ async function handleRegister(event) {
         email,
         password,
         userType,
+        role: userType === 'Faculty' ? 'faculty' : 'student',
         cabinNumber
     };
-
-    if (isShopOwner) {
-        pendingRegistrationData.isShopOwner = true;
-        pendingRegistrationData.role = 'admin';
-        pendingRegistrationData.shopName = rollNo;
-        pendingRegistrationData.shopCategory = dept;
-        pendingRegistrationData.location = shopLocation;
-    } else if (isStaffChecked) {
-        pendingRegistrationData.applyForStaff = true;
-        pendingRegistrationData.staffDesignation = staffRole;
-        pendingRegistrationData.assignedShop = staffShop;
-    }
 
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating SMS OTP...';
@@ -801,15 +721,11 @@ async function handleLogin(event) {
                     (userData.phone && String(userData.phone).replace(/[^0-9]/g, '').endsWith('6395322813'))
                 );
 
-                if (redirectTarget && redirectTarget !== 'admin.html') {
-                    window.location.href = redirectTarget;
-                } else if (isMasterAdmin) {
+                if (isMasterAdmin) {
+                    showToast('👑 Master Admin recognized! Opening Master Control Portal...', 'info', 'Admin Redirect');
                     window.location.href = 'portal-ds.html';
-                } else if (userData.role === 'delivery_partner' || userData.role === 'delivery' || selectedRole === 'Delivery') {
-                    window.location.href = 'delivery.html';
-                } else if (userData.role === 'pending_admin') {
-                    showToast('Your Staff request is currently pending Master Admin Deepak approval.', 'info', 'Pending Review');
-                    window.location.href = 'menu.html';
+                } else if (redirectTarget && redirectTarget !== 'admin.html' && redirectTarget !== 'portal-ds.html') {
+                    window.location.href = redirectTarget;
                 } else {
                     window.location.href = 'menu.html';
                 }

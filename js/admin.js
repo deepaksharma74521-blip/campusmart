@@ -463,28 +463,35 @@ function feedbackBelongsToShop(fb, shopScope) {
 }
 
 async function initAdminPage() {
+    const dashboardContainer = document.getElementById('master-dashboard-container');
+    const gatewayCard = document.getElementById('admin-login-gateway-card');
+
     let user = api.getCurrentUser();
     
     // Auto-recognize Deepak Sharma Super Admin account
-    if (user && (user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu')) {
+    if (user && (user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu' || (user.phone && String(user.phone).replace(/[^0-9]/g, '').endsWith('6395322813')))) {
         user.role = 'superadmin';
         user.assignedShop = 'All';
         localStorage.setItem('canteen_user', JSON.stringify(user));
     }
 
-    if (!user) {
-        window.location.href = 'login.html?redirect=portal-ds.html';
+    const phoneDigits = user && user.phone ? String(user.phone).replace(/[^0-9]/g, '') : '';
+    const isSuperAdmin = !!(user && (user.role === 'superadmin' || user.email === 'deepaksharma74521@gmail.com' || phoneDigits.endsWith('6395322813') || user.username === 'deepaksharma74521'));
+
+    if (!isSuperAdmin && (!user || user.role !== 'admin')) {
+        // Show in-page Master Admin Login Gateway card on portal-ds.html without redirecting to login.html
+        if (dashboardContainer) dashboardContainer.style.display = 'none';
+        if (gatewayCard) {
+            gatewayCard.style.display = 'flex';
+            const idInput = document.getElementById('admin-gateway-identifier');
+            if (idInput && !idInput.value) idInput.focus();
+        }
         return;
     }
 
-    const phoneDigits = user.phone ? String(user.phone).replace(/[^0-9]/g, '') : '';
-    const isSuperAdmin = (user.role === 'superadmin' || user.email === 'deepaksharma74521@gmail.com' || phoneDigits.endsWith('6395322813') || user.username === 'deepaksharma74521');
-
-    if (!isSuperAdmin && user.role !== 'admin') {
-        // Unauthorized session detected -> redirect away
-        window.location.href = 'login.html';
-        return;
-    }
+    // Authenticated! Show master dashboard and hide login card
+    if (gatewayCard) gatewayCard.style.display = 'none';
+    if (dashboardContainer) dashboardContainer.style.display = 'block';
 
     currentUserProfile = user;
 
@@ -1996,6 +2003,15 @@ function onFoodShopSelectChange(selectedShopId) {
 
 function handleLogout() {
     api.logout();
+    const dashboardContainer = document.getElementById('master-dashboard-container');
+    const gatewayCard = document.getElementById('admin-login-gateway-card');
+    if (dashboardContainer && gatewayCard) {
+        dashboardContainer.style.display = 'none';
+        gatewayCard.style.display = 'flex';
+        showToast('🔒 Master Admin session ended.', 'info', 'Logged Out');
+        return;
+    }
+    window.location.href = 'login.html';
 }
 
 function openAddFoodModal() {

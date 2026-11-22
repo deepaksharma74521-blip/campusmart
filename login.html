@@ -62,32 +62,20 @@
             </div>
 
             <form onsubmit="handleLogin(event)">
-                <!-- Role Selector: Student vs Faculty vs Shop Owner -->
+                <!-- Role Selector: Student vs Faculty Only (Completely Separated from Admin) -->
                 <div class="form-group" style="margin-bottom: 1.25rem;">
                     <label class="form-label" style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; display: block;">Login as:</label>
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem;">
-                        <label id="login-label-student" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.55rem 0.2rem; border: 2px solid var(--primary); background: #fff7ed; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.78rem; color: var(--primary); text-align: center; transition: all 0.2s ease;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                        <label id="login-label-student" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.7rem 0.5rem; border: 2px solid var(--primary); background: #fff7ed; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.88rem; color: var(--primary); text-align: center; transition: all 0.2s ease;">
                             <input type="radio" name="login-role" id="login-role-student" value="Student" checked onchange="handleLoginRoleChange(this.value)" style="display: none;">
-                            <i class="fa-solid fa-graduation-cap" style="font-size: 1.05rem;"></i>
+                            <i class="fa-solid fa-graduation-cap" style="font-size: 1.25rem;"></i>
                             <span>Student</span>
                         </label>
 
-                        <label id="login-label-faculty" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.55rem 0.2rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.78rem; color: #475569; text-align: center; transition: all 0.2s ease;">
+                        <label id="login-label-faculty" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.7rem 0.5rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.88rem; color: #475569; text-align: center; transition: all 0.2s ease;">
                             <input type="radio" name="login-role" id="login-role-faculty" value="Faculty" onchange="handleLoginRoleChange(this.value)" style="display: none;">
-                            <i class="fa-solid fa-chalkboard-user" style="font-size: 1.05rem;"></i>
+                            <i class="fa-solid fa-chalkboard-user" style="font-size: 1.25rem;"></i>
                             <span>Faculty</span>
-                        </label>
-
-                        <label id="login-label-shop" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.55rem 0.2rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.78rem; color: #475569; text-align: center; transition: all 0.2s ease;">
-                            <input type="radio" name="login-role" id="login-role-shop" value="ShopOwner" onchange="handleLoginRoleChange(this.value)" style="display: none;">
-                            <i class="fa-solid fa-store" style="font-size: 1.05rem;"></i>
-                            <span>Shop</span>
-                        </label>
-
-                        <label id="login-label-delivery" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; padding: 0.55rem 0.2rem; border: 1.5px solid #cbd5e1; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.78rem; color: #475569; text-align: center; transition: all 0.2s ease;">
-                            <input type="radio" name="login-role" id="login-role-delivery" value="Delivery" onchange="handleLoginRoleChange(this.value)" style="display: none;">
-                            <i class="fa-solid fa-person-biking" style="font-size: 1.05rem;"></i>
-                            <span>Delivery</span>
                         </label>
                     </div>
                 </div>
@@ -124,6 +112,11 @@
 
             <div class="auth-footer">
                 Don't have an account yet? <a href="register.html" id="link-to-register">Sign Up Here</a>
+            </div>
+
+            <div style="margin-top: 1.25rem; padding: 0.8rem 1rem; background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 12px; text-align: center; font-size: 0.82rem; color: #64748b;">
+                <i class="fa-solid fa-shield-halved" style="color: #ea580c;"></i> Master Admin Deepak Sharma?
+                <a href="portal-ds.html" style="color: #ea580c; font-weight: 700; text-decoration: none; margin-left: 0.35rem;">Go to Master Control Portal &rarr;</a>
             </div>
         </div>
     </main>
