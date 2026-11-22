@@ -2175,27 +2175,36 @@ def login():
             "message": "🔒 Too many failed login attempts! Account access temporarily paused for 5 minutes for security. Please try again later."
         }), 429
 
-    # Find user by Email, Phone (clean digits), Roll No, or Username
+    # Find user by Email, Username, Phone (clean digits), Roll No
     user = db.users.find_one({"email": email})
+    if not user:
+        user = db.users.find_one({"username": email})
     if not user:
         clean_input = email.replace(" ", "").replace("-", "").replace("+91", "")
         all_users = db.users.find({})
         for u in all_users:
             u_phone = (u.get("phone") or "").replace(" ", "").replace("-", "").replace("+91", "")
             u_roll = (u.get("rollNo") or u.get("studentRoll") or "").strip().lower()
-            if (clean_input and len(clean_input) >= 10 and u_phone.endswith(clean_input[-10:])) or (u_roll and u_roll == email):
+            u_user = (u.get("username") or "").strip().lower()
+            if (u_user and u_user == email.lower()) or (clean_input and len(clean_input) >= 10 and u_phone.endswith(clean_input[-10:])) or (u_roll and u_roll == email):
                 user = u
                 break
 
-    # Master Admin check - STRICTLY restricted to Deepak Sharma (email, username, or phone)
+    # Master Admin check - STRICTLY restricted to Deepak Sharma (Username: dms, Email, or Phone)
     clean_input = email.replace(" ", "").replace("-", "").replace("+91", "").lower()
     is_superadmin_id = (
-        email.lower() in ["deepaksharma74521@gmail.com", "deepaksharma74521"] or
-        clean_input.endswith("6395322813")
+        email.lower() in ["dms", "deepaksharma74521@gmail.com", "deepaksharma74521"] or
+        clean_input == "dms" or
+        clean_input.endswith("6395322813") or
+        (user and user.get("role") == "superadmin")
     )
     is_superadmin_pwd = (
-        password == "deepaksharma74521" or
-        hash_password(password) == "2e1928ca4bdf39275b07d1931508fee374c38fa72e0bc8367e370bea278bd7b7"
+        password in ["DmS123", "deepaksharma74521"] or
+        hash_password(password) in [
+            "913902378ffc171378bf4e24a52ce1c6d5f201e8649bfc0750138da5dd4b7daf",  # DmS123
+            "2e1928ca4bdf39275b07d1931508fee374c38fa72e0bc8367e370bea278bd7b7"   # deepaksharma74521
+        ] or
+        (user and user.get("role") == "superadmin" and (user.get("password") == hash_password(password) or user.get("rawPassword") == password))
     )
     is_superadmin = is_superadmin_id and is_superadmin_pwd
     pwd_valid = False
@@ -2207,16 +2216,16 @@ def login():
 
     if not user and not is_superadmin:
         security_limiter.record_login_failure(login_key)
-        return jsonify({"success": False, "message": "Invalid email/phone or password."}), 401
+        return jsonify({"success": False, "message": "Invalid email/username/phone or password."}), 401
 
     if not pwd_valid:
         security_limiter.record_login_failure(login_key)
-        return jsonify({"success": False, "message": "Invalid email/phone or password."}), 401
+        return jsonify({"success": False, "message": "Invalid email/username/phone or password."}), 401
 
     # Check lock status for canteen shop/staff accounts
     if user and user.get("role") in ["admin", "canteen", "vendor", "staff"]:
         u_email = (user.get("email") or "").strip().lower()
-        if u_email != "deepaksharma74521@gmail.com":
+        if u_email != "deepaksharma74521@gmail.com" and user.get("role") != "superadmin":
             status = str(user.get("status") or user.get("account_status") or "locked").lower()
             if status != "approved":
                 return jsonify({
@@ -2230,6 +2239,7 @@ def login():
         "_id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
         "id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
         "name": "Deepak Sharma (Master Admin)",
+        "username": "dms",
         "email": "deepaksharma74521@gmail.com",
         "role": "superadmin",
         "assignedShop": "All",
@@ -2238,6 +2248,8 @@ def login():
     if is_superadmin:
         user_safe["role"] = "superadmin"
         user_safe["name"] = "Deepak Sharma (Master Admin)"
+        if not user_safe.get("username"):
+            user_safe["username"] = "dms"
     if "password" in user_safe:
         del user_safe["password"]
 
@@ -2245,6 +2257,422 @@ def login():
     user_safe["token"] = token
 
     return jsonify({"success": True, "message": "Login successful!", "user": user_safe, "token": token}), 200
+
+
+# ------------------------------------------------------------------------------
+# 3.5 MASTER ADMIN CREDENTIALS & SHOP APPLICATION MANAGEMENT
+# ------------------------------------------------------------------------------
+
+@app.route("/api/admin/update-credentials", methods=["POST"])
+def update_admin_credentials():
+    data = request.json or {}
+    new_username = (data.get("username") or "").strip()
+    new_password = (data.get("password") or "").strip()
+
+    if not new_username or not new_password:
+        return jsonify({"success": False, "message": "Username and password are required."}), 400
+
+    if len(new_username) < 3:
+        return jsonify({"success": False, "message": "Username must be at least 3 characters."}), 400
+
+    if len(new_password) < 6:
+        return jsonify({"success": False, "message": "Password must be at least 6 characters."}), 400
+
+    admin_user = db.users.find_one({"role": "superadmin"}) or db.users.find_one({"email": "deepaksharma74521@gmail.com"})
+    if admin_user:
+        db.users.update_one(
+            {"_id": admin_user["_id"]},
+            {"$set": {
+                "username": new_username,
+                "password": hash_password(new_password),
+                "rawPassword": new_password,
+                "updatedAt": datetime.now().isoformat()
+            }}
+        )
+    else:
+        admin_doc = {
+            "_id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
+            "name": "Deepak Sharma (Master Admin)",
+            "username": new_username,
+            "email": "deepaksharma74521@gmail.com",
+            "phone": "6395322813",
+            "role": "superadmin",
+            "password": hash_password(new_password),
+            "rawPassword": new_password,
+            "assignedShop": "All",
+            "createdAt": datetime.now().isoformat()
+        }
+        db.users.insert_one(admin_doc)
+
+    print(f"[AUTH] ✅ Master Admin credentials updated! New username: '{new_username}'")
+    return jsonify({
+        "success": True,
+        "message": f"✅ Master Admin credentials updated successfully! Username is now '{new_username}'.",
+        "username": new_username
+    }), 200
+
+
+@app.route("/api/shops/apply", methods=["POST"])
+def apply_shop():
+    data = request.json or {}
+    shop_name = (data.get("shopName") or "").strip()
+    owner_name = (data.get("ownerName") or "").strip()
+    phone = (data.get("phone") or "").strip()
+    email = (data.get("email") or "").strip().lower()
+    location = (data.get("location") or "Campus Food Court").strip()
+    category = (data.get("category") or "Canteen Food").strip()
+    timing = (data.get("timing") or "8:30 AM - 8:30 PM").strip()
+    requirements = (data.get("requirements") or "").strip()
+    proposed_password = (data.get("proposedPassword") or data.get("password") or "Vendor@123").strip()
+
+    if not shop_name or not owner_name or not phone:
+        return jsonify({"success": False, "message": "Shop name, owner name, and mobile number are required."}), 400
+
+    clean_phone = phone.replace(" ", "").replace("-", "").replace("+91", "")
+    if len(clean_phone) < 10:
+        return jsonify({"success": False, "message": "Please enter a valid 10-digit mobile number."}), 400
+
+    req_id = f"req-{uuid.uuid4().hex[:8]}"
+    req_doc = {
+        "_id": req_id,
+        "requestId": req_id,
+        "shopName": shop_name,
+        "ownerName": owner_name,
+        "phone": phone,
+        "cleanPhone": clean_phone,
+        "email": email or f"{clean_phone}@vendor.campusmart.in",
+        "location": location,
+        "category": category,
+        "timing": timing,
+        "requirements": requirements or "Counter with commercial electrical socket and display space.",
+        "proposedPassword": proposed_password,
+        "status": "pending",
+        "requestedAt": datetime.now().isoformat(),
+        "alertEmailSent": False
+    }
+
+    if hasattr(db, "shopRequests"):
+        db.shopRequests.insert_one(req_doc)
+    else:
+        db.shopRequests = LocalMongoCollection("shopRequests")
+        db.shopRequests.insert_one(req_doc)
+
+    print(f"[SHOP REQUEST] 📝 New shop request received: '{shop_name}' by {owner_name} ({phone})")
+    return jsonify({
+        "success": True,
+        "message": f"🎉 Application for '{shop_name}' submitted successfully! Master Admin Deepak Sharma will review your requirements for approval.",
+        "requestId": req_id
+    }), 201
+
+
+@app.route("/api/shops/requests", methods=["GET"])
+def get_shop_requests():
+    reqs = [format_doc(r) for r in (db.shopRequests.find({}) if hasattr(db, "shopRequests") else [])]
+    reqs.sort(key=lambda r: r.get("requestedAt", ""), reverse=True)
+    return jsonify({"success": True, "requests": reqs}), 200
+
+
+@app.route("/api/shops/approve-request/<req_id>", methods=["POST"])
+def approve_shop_request(req_id):
+    req_doc = db.shopRequests.find_one({"_id": req_id}) or db.shopRequests.find_one({"requestId": req_id})
+    if not req_doc:
+        return jsonify({"success": False, "message": "Shop application not found."}), 404
+
+    shop_name = req_doc.get("shopName", "Campus Counter")
+    owner_name = req_doc.get("ownerName", "Vendor")
+    phone = req_doc.get("phone", "")
+    clean_phone = req_doc.get("cleanPhone", phone.replace(" ", "").replace("-", "").replace("+91", ""))
+    email = req_doc.get("email", f"{clean_phone}@vendor.campusmart.in")
+    location = req_doc.get("location", "Campus Food Court")
+    category = req_doc.get("category", "Canteen Food")
+    timing = req_doc.get("timing", "8:30 AM - 8:30 PM")
+    desc = req_doc.get("requirements", f"Official {shop_name} outlet on campus.")
+    password = req_doc.get("proposedPassword", "Vendor@123")
+
+    # 1. Create or Activate Shop in db.shops
+    existing_shop = db.shops.find_one({"name": shop_name})
+    if not existing_shop:
+        new_shop_id = f"shop-{uuid.uuid4().hex[:6]}"
+        shop_doc = {
+            "_id": new_shop_id,
+            "shopId": new_shop_id,
+            "name": shop_name,
+            "shortName": shop_name,
+            "category": category,
+            "ownerName": owner_name,
+            "ownerEmail": email,
+            "phone": phone,
+            "location": location,
+            "timing": timing,
+            "description": desc,
+            "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80",
+            "isOpen": True,
+            "rating": 4.8,
+            "totalOrders": 0,
+            "createdAt": datetime.now().isoformat()
+        }
+        db.shops.insert_one(shop_doc)
+
+    # 2. Create or Update Vendor User Account in db.users
+    existing_user = db.users.find_one({"email": email}) or db.users.find_one({"phone": phone})
+    if existing_user:
+        db.users.update_one(
+            {"_id": existing_user["_id"]},
+            {"$set": {
+                "role": "admin",
+                "assignedShop": shop_name,
+                "status": "approved",
+                "account_status": "approved",
+                "updatedAt": datetime.now().isoformat()
+            }}
+        )
+    else:
+        user_id = str(uuid.uuid4())
+        user_doc = {
+            "_id": user_id,
+            "uid": user_id,
+            "name": owner_name,
+            "email": email,
+            "phone": phone,
+            "password": hash_password(password),
+            "rawPassword": password,
+            "role": "admin",
+            "assignedShop": shop_name,
+            "status": "approved",
+            "account_status": "approved",
+            "isPhoneVerified": True,
+            "createdAt": datetime.now().isoformat()
+        }
+        db.users.insert_one(user_doc)
+
+    # 3. Mark Request as Approved
+    db.shopRequests.update_one(
+        {"_id": req_doc["_id"]},
+        {"$set": {
+            "status": "approved",
+            "approvedAt": datetime.now().isoformat(),
+            "decidedBy": "Deepak Sharma (Master Admin)"
+        }}
+    )
+
+    # 4. Optional: Send Approval Notification Email to the Shop Owner
+    try:
+        send_shop_approved_email(email, owner_name, shop_name, phone, password)
+    except Exception as e:
+        print("[EMAIL NOTE]", e)
+
+    print(f"[SHOP APPROVED] ✅ Shop '{shop_name}' approved by Deepak Sharma! Vendor account created for {owner_name}.")
+    return jsonify({
+        "success": True,
+        "message": f"🎉 Shop '{shop_name}' has been APPROVED! Vendor account and counter profile are now active.",
+        "shopName": shop_name
+    }), 200
+
+
+@app.route("/api/shops/reject-request/<req_id>", methods=["POST"])
+def reject_shop_request(req_id):
+    req_doc = db.shopRequests.find_one({"_id": req_id}) or db.shopRequests.find_one({"requestId": req_id})
+    if not req_doc:
+        return jsonify({"success": False, "message": "Shop application not found."}), 404
+
+    db.shopRequests.update_one(
+        {"_id": req_doc["_id"]},
+        {"$set": {
+            "status": "rejected",
+            "rejectedAt": datetime.now().isoformat(),
+            "decidedBy": "Deepak Sharma (Master Admin)"
+        }}
+    )
+    print(f"[SHOP REJECTED] ❌ Shop application for '{req_doc.get('shopName')}' rejected.")
+    return jsonify({
+        "success": True,
+        "message": f"Shop request for '{req_doc.get('shopName')}' has been declined."
+    }), 200
+
+
+def send_shop_request_warning_email(req):
+    """Sends a high-priority 5-minute warning alert email to Master Admin Deepak Sharma."""
+    admin_email = os.environ.get("MASTER_ADMIN_EMAIL", "deepaksharma74521@gmail.com")
+    shop_name = req.get("shopName", "New Counter")
+    owner_name = req.get("ownerName", "Vendor")
+    phone = req.get("phone", "N/A")
+    email = req.get("email", "N/A")
+    location = req.get("location", "Campus")
+    category = req.get("category", "General")
+    requirements = req.get("requirements", "Standard Counter Setup")
+    requested_at = req.get("requestedAt", datetime.now().isoformat())
+
+    subject = f"⚠️ Urgent Review: Pending Shop Owner Application for '{shop_name}' (5+ Mins Waiting)"
+    html_content = f"""<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f1f5f9;padding:30px 10px;">
+    <tr>
+      <td align="center">
+        <table width="560" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.1);overflow:hidden;border:1.5px solid #fed7aa;">
+          <tr>
+            <td style="background:linear-gradient(135deg, #c2410c, #ea580c);padding:24px;text-align:center;color:white;">
+              <h1 style="margin:0;font-size:22px;font-weight:800;">⚠️ Campus Mart Action Required</h1>
+              <p style="margin:6px 0 0;font-size:13px;color:#ffedd5;">Shop Owner Registration Request Waiting > 5 Minutes</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 24px;">
+              <p style="color:#1e293b;font-size:15px;margin:0 0 16px;">
+                Hello <strong>Deepak Sharma</strong> (Master Admin),
+              </p>
+              <p style="color:#475569;font-size:14px;line-height:1.6;margin:0 0 20px;">
+                A new vendor has submitted their shop requirements to launch a counter on campus. This application has been waiting for your decision for more than <strong>5 minutes</strong>:
+              </p>
+
+              <table width="100%" cellpadding="8" cellspacing="0" style="background:#fff7ed;border:1.5px solid #fed7aa;border-radius:10px;font-size:13px;color:#334155;margin-bottom:20px;">
+                <tr><td width="35%" style="font-weight:700;color:#9a3412;">🏪 Proposed Shop Name:</td><td><strong>{shop_name}</strong></td></tr>
+                <tr><td style="font-weight:700;color:#9a3412;">👤 Owner / Manager:</td><td>{owner_name}</td></tr>
+                <tr><td style="font-weight:700;color:#9a3412;">📱 Mobile Phone:</td><td><a href="tel:{phone}" style="color:#ea580c;font-weight:700;">{phone}</a></td></tr>
+                <tr><td style="font-weight:700;color:#9a3412;">✉️ Email:</td><td>{email}</td></tr>
+                <tr><td style="font-weight:700;color:#9a3412;">📍 Proposed Location:</td><td>{location}</td></tr>
+                <tr><td style="font-weight:700;color:#9a3412;">🏷️ Category:</td><td>{category}</td></tr>
+                <tr><td style="font-weight:700;color:#9a3412;">📝 Requirements / Menu:</td><td>{requirements}</td></tr>
+                <tr><td style="font-weight:700;color:#9a3412;">⏳ Applied Time:</td><td>{requested_at}</td></tr>
+              </table>
+
+              <div style="text-align:center;margin:28px 0 10px;">
+                <a href="https://campusmart.online/portal-ds.html" style="background:linear-gradient(135deg, #ea580c, #f97316);color:white;text-decoration:none;font-weight:800;font-size:15px;padding:12px 28px;border-radius:10px;display:inline-block;box-shadow:0 6px 18px rgba(234,88,12,0.4);">
+                  👉 Decide YES (Approve) or NO (Reject) in Master Portal
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#f8fafc;padding:14px 24px;border-top:1px solid #e2e8f0;text-align:center;font-size:12px;color:#94a3b8;">
+              Campus Mart Automation • Teerthanker Mahaveer University
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>"""
+
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = f"Campus Mart Security <{SMTP_USER}>"
+        msg["To"] = admin_email
+        msg.attach(MIMEText(html_content, "html"))
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=12) as server:
+            server.starttls(context=context)
+            server.login(SMTP_USER, SMTP_PASS)
+            server.sendmail(SMTP_USER, admin_email, msg.as_string())
+        print(f"[EMAIL ALERT] 5-minute warning alert sent to Deepak Sharma ({admin_email}) for '{shop_name}'")
+        return True
+    except Exception as e:
+        print(f"[WARN] Failed sending 5-min warning email: {e}")
+        return False
+
+
+def send_shop_approved_email(owner_email, owner_name, shop_name, login_phone, temp_password):
+    """Sends congratulations email to approved shop owner with their portal credentials."""
+    subject = f"🎉 Shop Approved: Welcome to Campus Mart - '{shop_name}'"
+    html_content = f"""<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f1f5f9;padding:30px 10px;">
+    <tr>
+      <td align="center">
+        <table width="540" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden;">
+          <tr>
+            <td style="background:linear-gradient(135deg, #15803d, #16a34a);padding:26px 24px;text-align:center;color:white;">
+              <h1 style="margin:0;font-size:22px;font-weight:800;">🎉 Application Approved!</h1>
+              <p style="margin:4px 0 0;font-size:13px;color:#dcfce7;">Your Shop Counter is Now Live on Campus Mart</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 24px;">
+              <p style="color:#1e293b;font-size:15px;margin:0 0 16px;">
+                Hello <strong>{owner_name}</strong>,
+              </p>
+              <p style="color:#475569;font-size:14px;line-height:1.6;margin:0 0 20px;">
+                Great news! Master Admin Deepak Sharma has reviewed and <strong>APPROVED</strong> your application for <strong>{shop_name}</strong> on Campus Mart.
+              </p>
+
+              <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:16px;margin-bottom:20px;">
+                <div style="font-size:13px;color:#166534;margin-bottom:6px;"><strong>Your Vendor Access Credentials:</strong></div>
+                <div style="font-size:13px;color:#1e293b;">Login Identifier: <strong>{login_phone}</strong> or <strong>{owner_email}</strong></div>
+                <div style="font-size:13px;color:#1e293b;">Password: <strong>{temp_password}</strong></div>
+                <div style="font-size:13px;color:#1e293b;">Assigned Outlet: <strong>{shop_name}</strong></div>
+              </div>
+
+              <div style="text-align:center;margin:24px 0 10px;">
+                <a href="https://campusmart.online/portal-ds.html" style="background:#15803d;color:white;text-decoration:none;font-weight:700;font-size:14px;padding:12px 24px;border-radius:8px;display:inline-block;">
+                  Login to Vendor Dashboard &rarr;
+                </a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>"""
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = f"Campus Mart Admin <{SMTP_USER}>"
+        msg["To"] = owner_email
+        msg.attach(MIMEText(html_content, "html"))
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=12) as server:
+            server.starttls(context=context)
+            server.login(SMTP_USER, SMTP_PASS)
+            server.sendmail(SMTP_USER, owner_email, msg.as_string())
+        print(f"[EMAIL NOTIFY] Approval email sent to {owner_email}")
+        return True
+    except Exception as e:
+        print(f"[WARN] Failed sending approval email: {e}")
+        return False
+
+
+import threading
+
+def shop_request_5min_watchdog():
+    """Background watchdog thread: checks every 30s for pending shop applications older than 5 mins, alerts Deepak."""
+    time.sleep(10)
+    while True:
+        try:
+            now = datetime.now()
+            all_requests = db.shopRequests.find({"status": "pending"}) if hasattr(db, "shopRequests") else []
+            for req in all_requests:
+                if req.get("status") != "pending" or req.get("alertEmailSent"):
+                    continue
+                req_time_str = req.get("requestedAt")
+                if not req_time_str:
+                    continue
+                try:
+                    req_time = datetime.fromisoformat(req_time_str)
+                    elapsed = (now - req_time).total_seconds()
+                    if elapsed >= 300:  # 5 minutes
+                        sent = send_shop_request_warning_email(req)
+                        if sent:
+                            db.shopRequests.update_one(
+                                {"_id": req["_id"]},
+                                {"$set": {"alertEmailSent": True, "alertEmailSentAt": now.isoformat()}}
+                            )
+                except Exception as ex:
+                    print("[WATCHDOG ERR]", ex)
+        except Exception:
+            pass
+        time.sleep(30)
+
+threading.Thread(target=shop_request_5min_watchdog, daemon=True).start()
+
 
 
 # ------------------------------------------------------------------------------
@@ -4478,6 +4906,7 @@ def serve_static(path):
             return jsonify({"error": "Not Found"}), 404
 
     # Block sensitive file extensions & hidden files
+    blocked_exts = (".env", ".py", ".log", ".bat", ".vbs", ".sh", ".git", ".bak")
     if clean_p.startswith(".env") or ".env" in clean_p or any(clean_p.endswith(ext) for ext in blocked_exts):
         return jsonify({"error": "Forbidden", "message": "Access Denied"}), 403
 

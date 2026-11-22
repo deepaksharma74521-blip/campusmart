@@ -118,6 +118,15 @@
                 <i class="fa-solid fa-shield-halved" style="color: #ea580c;"></i> Master Admin Deepak Sharma?
                 <a href="portal-ds.html" style="color: #ea580c; font-weight: 700; text-decoration: none; margin-left: 0.35rem;">Go to Master Control Portal &rarr;</a>
             </div>
+
+            <div style="margin-top: 0.75rem; padding: 0.85rem 1rem; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 12px; text-align: center; font-size: 0.82rem; color: #9a3412;">
+                <div style="font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+                    <i class="fa-solid fa-store" style="color: #ea580c;"></i> Want to open a Food Counter or Shop?
+                </div>
+                <button type="button" onclick="openShopApplicationModal()" style="background: linear-gradient(135deg, #ea580c, #c2410c); color: white; border: none; padding: 0.45rem 1.1rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 0 4px 10px rgba(234, 88, 12, 0.25);">
+                    <i class="fa-solid fa-file-signature"></i> Apply for Shop Partnership &rarr;
+                </button>
+            </div>
         </div>
     </main>
 
@@ -262,10 +271,206 @@
         </div>
     </div>
 
+    <!-- Modal: Apply for Shop Counter Partnership -->
+    <div id="shop-apply-modal" class="modal-backdrop" style="display: none; opacity: 0; pointer-events: none; align-items: center; justify-content: center; position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100000; padding: 1rem; transition: opacity 0.25s ease;">
+        <div class="modal-card" style="background: white; border-radius: 20px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); border: 1.5px solid #fed7aa; animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #ea580c, #c2410c); color: white; padding: 1.15rem 1.35rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: white;">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 1.05rem; letter-spacing: 0.2px;">Shop Counter Partnership</div>
+                        <div style="font-size: 0.74rem; color: #ffedd5; font-weight: 600;">Submit Your Requirements &bull; Reviewed by Admin</div>
+                    </div>
+                </div>
+                <button type="button" onclick="closeShopApplicationModal()" style="background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+            </div>
+
+            <div style="padding: 1.35rem 1.45rem;">
+                <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1.15rem; font-size: 0.82rem; color: #1e40af; line-height: 1.45;">
+                    <i class="fa-solid fa-circle-info"></i> Fill out your food counter or retail shop details below. Your proposal will be sent directly to <strong>Master Admin Deepak Sharma</strong> for YES/NO approval.
+                </div>
+
+                <form id="shop-apply-form" onsubmit="handleShopApplicationSubmit(event)">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 0.85rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-shop-name" style="font-size: 0.82rem; font-weight: 700;">Proposed Shop Name *</label>
+                            <input type="text" id="apply-shop-name" class="form-input no-icon" placeholder="e.g. Hot Meals &amp; Rolls" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-owner-name" style="font-size: 0.82rem; font-weight: 700;">Owner / Vendor Name *</label>
+                            <input type="text" id="apply-owner-name" class="form-input no-icon" placeholder="e.g. Ramesh Kumar" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 0.85rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-phone" style="font-size: 0.82rem; font-weight: 700;">Mobile Number *</label>
+                            <input type="tel" id="apply-phone" class="form-input no-icon" placeholder="10-digit mobile" maxlength="10" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-email" style="font-size: 0.82rem; font-weight: 700;">Official Email *</label>
+                            <input type="email" id="apply-email" class="form-input no-icon" placeholder="vendor@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 0.85rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-location" style="font-size: 0.82rem; font-weight: 700;">Campus Counter Location *</label>
+                            <input type="text" id="apply-location" class="form-input no-icon" placeholder="e.g. Canteen Block A, Ground Floor" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-category" style="font-size: 0.82rem; font-weight: 700;">Business Category *</label>
+                            <select id="apply-category" class="form-input no-icon" required style="padding: 0.65rem 0.8rem;">
+                                <option value="Fast Food &amp; Meals">🍔 Fast Food &amp; Meals</option>
+                                <option value="Cold Drinks &amp; Shakes">🥤 Cold Drinks &amp; Shakes</option>
+                                <option value="Bakery &amp; Snacks">🥐 Bakery &amp; Snacks</option>
+                                <option value="Chocolates &amp; Sweets">🍫 Chocolates &amp; Sweets</option>
+                                <option value="Stationery &amp; Printing">📚 Stationery &amp; Printing</option>
+                                <option value="Hostel &amp; Daily Essentials">🧴 Hostel &amp; Daily Essentials</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 0.85rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-timing" style="font-size: 0.82rem; font-weight: 700;">Operating Hours</label>
+                            <input type="text" id="apply-timing" class="form-input no-icon" placeholder="e.g. 9:00 AM - 10:00 PM" value="9:00 AM - 10:00 PM">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="apply-password" style="font-size: 0.82rem; font-weight: 700;">Proposed Login Password *</label>
+                            <input type="text" id="apply-password" class="form-input no-icon" placeholder="e.g. Shop123!" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label class="form-label" for="apply-requirements" style="font-size: 0.82rem; font-weight: 700;">Shop Requirements &amp; Equipment Notes *</label>
+                        <textarea id="apply-requirements" class="form-input no-icon" rows="3" placeholder="Describe required counter space, power plugs (e.g. 15A), gas/induction, refrigerators, water inlet, or special food menu items you plan to serve..." required style="resize: vertical;"></textarea>
+                    </div>
+
+                    <div id="shop-apply-alert" style="display: none; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.84rem;"></div>
+
+                    <button type="submit" id="shop-apply-btn" class="btn btn-primary btn-block btn-lg" style="box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Application to Master Admin
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Backend API & Auth Scripts -->
     <script src="js/api.js?v=12.0-resilient"></script>
     <script src="js/auth.js?v=12.0-resilient"></script>
     <script>
+        function openShopApplicationModal() {
+            const modal = document.getElementById('shop-apply-modal');
+            if (!modal) return;
+            modal.style.display = 'flex';
+            requestAnimationFrame(() => {
+                modal.style.opacity = '1';
+                modal.style.pointerEvents = 'auto';
+            });
+        }
+
+        function closeShopApplicationModal() {
+            const modal = document.getElementById('shop-apply-modal');
+            if (!modal) return;
+            modal.style.opacity = '0';
+            modal.style.pointerEvents = 'none';
+            setTimeout(() => { modal.style.display = 'none'; }, 250);
+        }
+
+        async function handleShopApplicationSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('shop-apply-btn');
+            const alertBox = document.getElementById('shop-apply-alert');
+
+            const shopName = (document.getElementById('apply-shop-name')?.value || '').trim();
+            const ownerName = (document.getElementById('apply-owner-name')?.value || '').trim();
+            const phone = (document.getElementById('apply-phone')?.value || '').replace(/[^0-9]/g, '');
+            const email = (document.getElementById('apply-email')?.value || '').trim().toLowerCase();
+            const location = (document.getElementById('apply-location')?.value || '').trim();
+            const category = document.getElementById('apply-category')?.value || 'Fast Food & Meals';
+            const timing = (document.getElementById('apply-timing')?.value || '').trim();
+            const proposedPassword = (document.getElementById('apply-password')?.value || '').trim();
+            const requirements = (document.getElementById('apply-requirements')?.value || '').trim();
+
+            if (phone.length < 10) {
+                if (alertBox) {
+                    alertBox.style.display = 'block';
+                    alertBox.style.background = '#fef2f2';
+                    alertBox.style.border = '1.5px solid #f87171';
+                    alertBox.style.color = '#b91c1c';
+                    alertBox.textContent = '❌ Please enter a valid 10-digit mobile number.';
+                }
+                return;
+            }
+
+            if (alertBox) alertBox.style.display = 'none';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting to Master Admin...';
+            }
+
+            const payload = {
+                shopName,
+                ownerName,
+                phone,
+                email,
+                location,
+                category,
+                timing,
+                proposedPassword,
+                requirements
+            };
+
+            try {
+                const res = await api.applyShop(payload);
+                if (res && res.success) {
+                    if (alertBox) {
+                        alertBox.style.display = 'block';
+                        alertBox.style.background = '#f0fdf4';
+                        alertBox.style.border = '1.5px solid #86efac';
+                        alertBox.style.color = '#166534';
+                        alertBox.innerHTML = `<strong>🎉 Application Submitted!</strong><br>Master Admin Deepak Sharma has been notified. If pending for &gt;5 minutes, an automatic reminder alert is emailed to the admin. You will receive login confirmation upon approval.`;
+                    }
+                    document.getElementById('shop-apply-form')?.reset();
+                    setTimeout(() => {
+                        closeShopApplicationModal();
+                        if (typeof showToast === 'function') {
+                            showToast('🎉 Shop application sent to Master Admin Deepak Sharma!', 'success');
+                        } else {
+                            alert('🎉 Shop application sent to Master Admin Deepak Sharma!');
+                        }
+                    }, 3000);
+                } else {
+                    if (alertBox) {
+                        alertBox.style.display = 'block';
+                        alertBox.style.background = '#fef2f2';
+                        alertBox.style.border = '1.5px solid #f87171';
+                        alertBox.style.color = '#b91c1c';
+                        alertBox.textContent = res.message || 'Submission failed. Please try again.';
+                    }
+                }
+            } catch(err) {
+                if (alertBox) {
+                    alertBox.style.display = 'block';
+                    alertBox.style.background = '#fef2f2';
+                    alertBox.style.border = '1.5px solid #f87171';
+                    alertBox.style.color = '#b91c1c';
+                    alertBox.textContent = 'Error: ' + err.message;
+                }
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Application to Master Admin';
+                }
+            }
+        }
+
         (function() {
             const redirectParam = new URLSearchParams(window.location.search).get('redirect');
             if (redirectParam) {

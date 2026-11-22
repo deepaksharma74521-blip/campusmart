@@ -469,14 +469,15 @@ async function initAdminPage() {
     let user = api.getCurrentUser();
     
     // Auto-recognize Deepak Sharma Super Admin account
-    if (user && (user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu' || (user.phone && String(user.phone).replace(/[^0-9]/g, '').endsWith('6395322813')))) {
+    if (user && (user.username === 'dms' || user.email === 'deepaksharma74521@gmail.com' || user.email === 'admin@canteen.edu' || (user.phone && String(user.phone).replace(/[^0-9]/g, '').endsWith('6395322813')))) {
         user.role = 'superadmin';
         user.assignedShop = 'All';
+        if (!user.username) user.username = 'dms';
         localStorage.setItem('canteen_user', JSON.stringify(user));
     }
 
     const phoneDigits = user && user.phone ? String(user.phone).replace(/[^0-9]/g, '') : '';
-    const isSuperAdmin = !!(user && (user.role === 'superadmin' || user.email === 'deepaksharma74521@gmail.com' || phoneDigits.endsWith('6395322813') || user.username === 'deepaksharma74521'));
+    const isSuperAdmin = !!(user && (user.role === 'superadmin' || user.username === 'dms' || user.email === 'deepaksharma74521@gmail.com' || phoneDigits.endsWith('6395322813') || user.username === 'deepaksharma74521'));
 
     if (!isSuperAdmin && (!user || user.role !== 'admin')) {
         // Show in-page Master Admin Login Gateway card on portal-ds.html without redirecting to login.html
@@ -495,10 +496,18 @@ async function initAdminPage() {
 
     currentUserProfile = user;
 
-    // Super Admin Exclusivity: Staff Approvals Tab Visibility
+    // Super Admin Exclusivity: Staff Approvals & Master Controls Tabs Visibility
     const staffTabBtn = document.getElementById('tab-btn-staff');
     if (staffTabBtn) {
         staffTabBtn.style.display = isSuperAdmin ? 'inline-flex' : 'none';
+    }
+    const shopReqTabBtn = document.getElementById('tab-btn-shop-requests');
+    if (shopReqTabBtn) {
+        shopReqTabBtn.style.display = isSuperAdmin ? 'inline-flex' : 'none';
+    }
+    const securityTabBtn = document.getElementById('tab-btn-security');
+    if (securityTabBtn) {
+        securityTabBtn.style.display = isSuperAdmin ? 'inline-flex' : 'none';
     }
 
     const assignedShop = user.assignedShop || 'All';
@@ -601,6 +610,11 @@ async function loadAdminDashboardData() {
         }
         // 1. Fetch Shops
         await loadAdminShops();
+
+        // 1.1 Periodically check shop requests if Super Admin
+        if (currentUserProfile && (currentUserProfile.role === 'superadmin' || currentUserProfile.username === 'dms')) {
+            checkShopRequestsBadge();
+        }
 
         // 2. Fetch Orders & Detect New Incoming Orders
         const ordersRes = await api.getOrders();
@@ -3547,10 +3561,10 @@ async function deleteFeedbackItem(feedbackId, studentName) {
 }
 
 function switchAdminTab(tabName) {
-    const isSuperAdmin = currentUserProfile && (currentUserProfile.role === 'superadmin' || currentUserProfile.email === 'deepaksharma74521@gmail.com' || currentUserProfile.email === 'admin@canteen.edu');
+    const isSuperAdmin = currentUserProfile && (currentUserProfile.role === 'superadmin' || currentUserProfile.username === 'dms' || currentUserProfile.email === 'deepaksharma74521@gmail.com' || currentUserProfile.email === 'admin@canteen.edu');
 
-    if (tabName === 'staff' && !isSuperAdmin) {
-        showToast('Access Restricted: Only Super Admin Deepak Sharma can view Staff Approvals & Permissions.', 'warning', 'Permission Required');
+    if ((tabName === 'staff' || tabName === 'shop-requests' || tabName === 'security') && !isSuperAdmin) {
+        showToast('Access Restricted: Only Super Admin Deepak Sharma can access this section.', 'warning', 'Permission Required');
         tabName = 'orders';
     }
 
@@ -3570,6 +3584,8 @@ function switchAdminTab(tabName) {
     const commissionsSection = document.getElementById('admin-commissions-section');
     const deliverySection = document.getElementById('admin-delivery-section');
     const printoutsSection = document.getElementById('admin-printouts-section');
+    const shopRequestsSection = document.getElementById('admin-shop-requests-section');
+    const securitySection = document.getElementById('admin-security-section');
 
     if (ordersSection) ordersSection.style.display = (tabName === 'orders' ? 'block' : 'none');
     if (menuSection) menuSection.style.display = (tabName === 'menu' ? 'block' : 'none');
@@ -3581,6 +3597,8 @@ function switchAdminTab(tabName) {
     if (commissionsSection) commissionsSection.style.display = (tabName === 'commissions' ? 'block' : 'none');
     if (deliverySection) deliverySection.style.display = (tabName === 'delivery' ? 'block' : 'none');
     if (printoutsSection) printoutsSection.style.display = (tabName === 'printouts' ? 'block' : 'none');
+    if (shopRequestsSection) shopRequestsSection.style.display = (tabName === 'shop-requests' ? 'block' : 'none');
+    if (securitySection) securitySection.style.display = (tabName === 'security' ? 'block' : 'none');
 
     if (tabName === 'price-manager') {
         loadPriceManagerTable();
@@ -3598,6 +3616,10 @@ function switchAdminTab(tabName) {
         loadAdminDeliveryDashboard();
     } else if (tabName === 'printouts') {
         loadAdminPrintouts();
+    } else if (tabName === 'shop-requests') {
+        loadShopRequests();
+    } else if (tabName === 'security') {
+        loadAdminSecuritySettings();
     }
 }
 
@@ -5068,4 +5090,339 @@ async function handlePrintJobStatusChange(jobId, newStatus) {
         showToast('Network error while updating job.', 'error');
     }
 }
+
+// --------------------------------------------------------------------------
+// 10. SHOP PARTNERSHIP APPLICATIONS & MASTER CREDENTIALS MANAGEMENT
+// --------------------------------------------------------------------------
+
+let adminShopRequests = [];
+let currentShopReqFilter = 'all';
+
+async function checkShopRequestsBadge() {
+    try {
+        const res = await api.getShopRequests();
+        if (res && res.success && Array.isArray(res.requests)) {
+            adminShopRequests = res.requests;
+            const pendingCount = adminShopRequests.filter(r => (r.status || 'pending').toLowerCase() === 'pending').length;
+            const badge = document.getElementById('pending-shop-requests-badge');
+            if (badge) {
+                badge.textContent = pendingCount;
+                badge.style.display = pendingCount > 0 ? 'inline-block' : 'none';
+            }
+            const countAll = document.getElementById('count-all-shop-reqs');
+            const countPending = document.getElementById('count-pending-shop-reqs');
+            const countApproved = document.getElementById('count-approved-shop-reqs');
+            const countRejected = document.getElementById('count-rejected-shop-reqs');
+            if (countAll) countAll.textContent = adminShopRequests.length;
+            if (countPending) countPending.textContent = pendingCount;
+            if (countApproved) countApproved.textContent = adminShopRequests.filter(r => (r.status || '').toLowerCase() === 'approved').length;
+            if (countRejected) countRejected.textContent = adminShopRequests.filter(r => (r.status || '').toLowerCase() === 'rejected').length;
+
+            if (currentAdminTab === 'shop-requests') {
+                renderShopRequests();
+            }
+        }
+    } catch(err) {
+        console.warn('Error checking shop requests badge:', err);
+    }
+}
+
+async function loadShopRequests() {
+    const listContainer = document.getElementById('admin-shop-requests-list');
+    if (listContainer) {
+        listContainer.innerHTML = `
+            <div style="text-align: center; padding: 2.5rem 1rem; color: #64748b;">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size: 1.8rem; color: #ea580c; margin-bottom: 0.5rem;"></i>
+                <p style="margin: 0; font-weight: 600;">Fetching partner applications...</p>
+            </div>
+        `;
+    }
+    await checkShopRequestsBadge();
+    renderShopRequests();
+}
+
+function filterShopRequests(filter, btn) {
+    currentShopReqFilter = filter || 'all';
+    document.querySelectorAll('.shop-req-filter-pill').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderShopRequests();
+}
+
+function renderShopRequests() {
+    const listContainer = document.getElementById('admin-shop-requests-list');
+    if (!listContainer) return;
+
+    let filtered = adminShopRequests || [];
+    if (currentShopReqFilter !== 'all') {
+        filtered = filtered.filter(r => (r.status || 'pending').toLowerCase() === currentShopReqFilter);
+    }
+
+    if (filtered.length === 0) {
+        listContainer.innerHTML = `
+            <div style="text-align: center; padding: 3rem 1.5rem; background: white; border-radius: 14px; border: 1.5px dashed #cbd5e1; color: #64748b;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #fff7ed; color: #ea580c; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1rem;">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <h4 style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.35rem;">No Applications Found</h4>
+                <p style="font-size: 0.85rem; margin: 0; max-width: 380px; margin: 0 auto;">There are currently no shop partnership applications matching this filter.</p>
+            </div>
+        `;
+        return;
+    }
+
+    const now = Date.now();
+
+    listContainer.innerHTML = filtered.map(req => {
+        const id = req._id || req.requestId || 'req_unknown';
+        const status = (req.status || 'pending').toLowerCase();
+        const shopName = req.shopName || 'Food Counter';
+        const ownerName = req.ownerName || 'Vendor';
+        const phone = req.phone || 'N/A';
+        const email = req.email || 'N/A';
+        const location = req.location || 'Campus Canteen';
+        const category = req.category || 'Food & Dining';
+        const timing = req.timing || '9:00 AM - 9:00 PM';
+        const requirements = req.requirements || 'No specific equipment requirements specified.';
+        const proposedPwd = req.proposedPassword || 'Shop123!';
+
+        // Time elapsed calculation
+        let elapsedMins = 0;
+        let timeDisplay = 'Just now';
+        if (req.requestedAt) {
+            try {
+                const reqDate = new Date(req.requestedAt);
+                elapsedMins = Math.floor((now - reqDate.getTime()) / 60000);
+                if (elapsedMins < 1) timeDisplay = 'Just now';
+                else if (elapsedMins < 60) timeDisplay = `${elapsedMins} min${elapsedMins > 1 ? 's' : ''} ago`;
+                else {
+                    const hours = Math.floor(elapsedMins / 60);
+                    timeDisplay = `${hours} hour${hours > 1 ? 's' : ''} ago`;
+                }
+            } catch(e) {}
+        }
+
+        const isPending = status === 'pending';
+        const isWarning = isPending && elapsedMins >= 5;
+
+        let statusBadge = '';
+        if (status === 'pending') {
+            statusBadge = `<span style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-size: 0.76rem; font-weight: 800; padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-clock"></i> Pending Review</span>`;
+        } else if (status === 'approved') {
+            statusBadge = `<span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; font-size: 0.76rem; font-weight: 800; padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-circle-check"></i> Approved & Active</span>`;
+        } else {
+            statusBadge = `<span style="background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; font-size: 0.76rem; font-weight: 800; padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-ban"></i> Rejected</span>`;
+        }
+
+        return `
+            <div class="card" style="border: 1.5px solid ${isWarning ? '#f97316' : '#e2e8f0'}; box-shadow: ${isWarning ? '0 4px 18px rgba(234, 88, 12, 0.15)' : 'var(--shadow-sm)'}; margin-bottom: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.85rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+                            <span style="font-size: 1.25rem;">🏬</span>
+                            <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0;">${shopName}</h3>
+                            <span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">${category}</span>
+                            ${statusBadge}
+                        </div>
+                        <div style="font-size: 0.82rem; color: #64748b; margin-top: 4px;">
+                            Applicant: <strong>${ownerName}</strong> &bull; Submitted: <strong>${timeDisplay}</strong>
+                        </div>
+                    </div>
+
+                    ${isWarning ? `
+                        <div style="background: #fff7ed; border: 1.5px solid #ea580c; color: #9a3412; font-size: 0.78rem; font-weight: 800; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fa-solid fa-triangle-exclamation" style="color: #ea580c;"></i>
+                            <span>>5 Mins Waiting &bull; Warning Email Sent</span>
+                        </div>
+                    ` : ''}
+                </div>
+
+                <!-- Grid Details -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.1rem 0;">
+                    <div style="background: #f8fafc; padding: 0.75rem 0.9rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                        <div style="font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-phone"></i> Mobile Number</div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-top: 2px;">
+                            <a href="tel:${phone}" style="color: #ea580c; text-decoration: none;">${phone}</a>
+                        </div>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 0.75rem 0.9rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                        <div style="font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-envelope"></i> Vendor Email</div>
+                        <div style="font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-top: 2px; overflow: hidden; text-overflow: ellipsis;">
+                            <a href="mailto:${email}" style="color: #0284c7; text-decoration: none;">${email}</a>
+                        </div>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 0.75rem 0.9rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                        <div style="font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-location-dot"></i> Campus Location</div>
+                        <div style="font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-top: 2px;">${location}</div>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 0.75rem 0.9rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                        <div style="font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-clock"></i> Operating Hours</div>
+                        <div style="font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-top: 2px;">${timing}</div>
+                    </div>
+                </div>
+
+                <!-- Requirements Box -->
+                <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 10px; padding: 0.9rem 1rem; margin-bottom: 1.25rem;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: #92400e; margin-bottom: 4px; display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-solid fa-clipboard-list"></i> Proposed Shop Requirements & Details:
+                    </div>
+                    <div style="font-size: 0.86rem; color: #78350f; line-height: 1.5;">
+                        ${requirements}
+                    </div>
+                    <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed #fde68a; font-size: 0.78rem; color: #92400e; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Proposed Vendor Password: <code style="font-weight: 800; color: #b45309;">${proposedPwd}</code></span>
+                        <span style="font-size: 0.72rem; opacity: 0.85;">(Auto-assigned upon approval)</span>
+                    </div>
+                </div>
+
+                <!-- YES / NO Action Buttons -->
+                ${isPending ? `
+                    <div style="display: flex; gap: 0.75rem; justify-content: flex-end; align-items: center; flex-wrap: wrap;">
+                        <button type="button" onclick="rejectShopRequestAction('${id}', '${shopName.replace(/'/g, "\\'")}')" class="btn btn-outline btn-sm" style="border-color: #ef4444; color: #dc2626; font-weight: 700; padding: 0.55rem 1.15rem;">
+                            <i class="fa-solid fa-circle-xmark"></i> NO - Reject Application
+                        </button>
+                        <button type="button" onclick="approveShopRequestAction('${id}', '${shopName.replace(/'/g, "\\'")}')" class="btn btn-sm" style="background: linear-gradient(135deg, #15803d, #16a34a); color: white; border: none; font-weight: 800; padding: 0.55rem 1.35rem; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35); cursor: pointer;">
+                            <i class="fa-solid fa-circle-check"></i> YES - Approve & Activate Counter 🚀
+                        </button>
+                    </div>
+                ` : `
+                    <div style="font-size: 0.82rem; color: #64748b; text-align: right; font-style: italic;">
+                        ${status === 'approved' ? '✅ Counter activated and credentials emailed to vendor.' : '❌ Application declined.'}
+                    </div>
+                `}
+            </div>
+        `;
+    }).join('');
+}
+
+async function approveShopRequestAction(reqId, shopName) {
+    const confirmApprove = confirm(`YES - Approve Shop Application?\n\nAre you sure you want to approve "${shopName}"?\n\nThis will immediately:\n1. Create the new food counter in the live catalog.\n2. Create the shop owner vendor login account.\n3. Send confirmation & login credentials to the owner.`);
+    if (!confirmApprove) return;
+
+    try {
+        const res = await api.approveShopRequest(reqId);
+        if (res && res.success) {
+            if (window.soundEngine) window.soundEngine.playStatusUpdated();
+            showToast(`🎉 Application for "${shopName}" APPROVED! Counter is now active.`, 'success', 'Shop Activated');
+            await checkShopRequestsBadge();
+            await loadAdminShops();
+        } else {
+            showToast(res.message || 'Approval failed.', 'error');
+        }
+    } catch(err) {
+        showToast('Error approving shop request: ' + err.message, 'error');
+    }
+}
+
+async function rejectShopRequestAction(reqId, shopName) {
+    const confirmReject = confirm(`NO - Reject Shop Application?\n\nAre you sure you want to decline the request for "${shopName}"?`);
+    if (!confirmReject) return;
+
+    try {
+        const res = await api.rejectShopRequest(reqId);
+        if (res && res.success) {
+            showToast(`Application for "${shopName}" rejected.`, 'info');
+            await checkShopRequestsBadge();
+        } else {
+            showToast(res.message || 'Rejection failed.', 'error');
+        }
+    } catch(err) {
+        showToast('Error rejecting shop request: ' + err.message, 'error');
+    }
+}
+
+function loadAdminSecuritySettings() {
+    const user = currentUserProfile || api.getCurrentUser() || {};
+    const curDisplay = document.getElementById('current-admin-username-display');
+    const userInput = document.getElementById('admin-new-username');
+    const uName = user.username || 'dms';
+    if (curDisplay) curDisplay.textContent = uName;
+    if (userInput && !userInput.value) userInput.value = uName;
+}
+
+async function handleSaveAdminCredentials(event) {
+    event.preventDefault();
+    const userInput = document.getElementById('admin-new-username');
+    const pwdInput = document.getElementById('admin-new-password');
+    const confInput = document.getElementById('admin-confirm-password');
+    const btn = document.getElementById('admin-sec-save-btn');
+    const alertBox = document.getElementById('admin-sec-alert');
+
+    const newUsername = (userInput?.value || '').trim();
+    const newPassword = pwdInput?.value || '';
+    const confirmPassword = confInput?.value || '';
+
+    if (!newUsername) {
+        showToast('Please specify a valid Master Admin username.', 'warning');
+        return;
+    }
+
+    if (!newPassword || newPassword.length < 5) {
+        showToast('Password must be at least 5 characters long.', 'warning');
+        return;
+    }
+
+    if (newPassword !== confirmPassword) {
+        if (alertBox) {
+            alertBox.style.display = 'block';
+            alertBox.style.background = '#fef2f2';
+            alertBox.style.border = '1.5px solid #f87171';
+            alertBox.style.color = '#b91c1c';
+            alertBox.textContent = '❌ Passwords do not match! Please re-type.';
+        }
+        return;
+    }
+
+    if (alertBox) alertBox.style.display = 'none';
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Updating Root Credentials...';
+    }
+
+    try {
+        const res = await api.updateAdminCredentials(newUsername, newPassword);
+        if (res && res.success) {
+            if (currentUserProfile) {
+                currentUserProfile.username = newUsername;
+            }
+            const curDisplay = document.getElementById('current-admin-username-display');
+            if (curDisplay) curDisplay.textContent = newUsername;
+            if (pwdInput) pwdInput.value = '';
+            if (confInput) confInput.value = '';
+
+            if (alertBox) {
+                alertBox.style.display = 'block';
+                alertBox.style.background = '#f0fdf4';
+                alertBox.style.border = '1.5px solid #86efac';
+                alertBox.style.color = '#166534';
+                alertBox.innerHTML = `<strong>✅ Success!</strong> Master Admin credentials updated.<br>Username: <code>${newUsername}</code> (Active immediately).`;
+            }
+            showToast(`Master Admin credentials updated! Username: ${newUsername}`, 'success', 'Security Updated');
+        } else {
+            if (alertBox) {
+                alertBox.style.display = 'block';
+                alertBox.style.background = '#fef2f2';
+                alertBox.style.border = '1.5px solid #f87171';
+                alertBox.style.color = '#b91c1c';
+                alertBox.textContent = res.message || 'Failed to update credentials.';
+            }
+        }
+    } catch(err) {
+        if (alertBox) {
+            alertBox.style.display = 'block';
+            alertBox.style.background = '#fef2f2';
+            alertBox.style.border = '1.5px solid #f87171';
+            alertBox.style.color = '#b91c1c';
+            alertBox.textContent = 'Error: ' + err.message;
+        }
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Master Credentials';
+        }
+    }
+}
+
 

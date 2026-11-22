@@ -4,9 +4,10 @@
       "_id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
       "uid": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
       "name": "Deepak Sharma (Super Admin)",
+      "username": "dms",
       "email": "deepaksharma74521@gmail.com",
-      "password": "2e1928ca4bdf39275b07d1931508fee374c38fa72e0bc8367e370bea278bd7b7",
-      "rawPassword": "deepaksharma74521",
+      "password": "913902378ffc171378bf4e24a52ce1c6d5f201e8649bfc0750138da5dd4b7daf",
+      "rawPassword": "DmS123",
       "rollNo": "tca2568124",
       "department": "BCA",
       "phone": "6395322813",
@@ -14,7 +15,8 @@
       "createdAt": "2026-09-17T01:39:52.392302",
       "assignedShop": "All",
       "id": "6708c112-29b1-4272-bf0b-293f3aa0a91a",
-      "status": "approved"
+      "status": "approved",
+      "updatedAt": "2026-11-22T18:04:09.093899"
     },
     {
       "_id": "7a96b105-8078-444d-a44a-0b352c86cbf2",
@@ -48,8 +50,10 @@
       "role": "admin",
       "createdAt": "2026-09-26T10:13:52.887957",
       "id": "admin-1",
-      "status": "locked",
-      "account_status": "locked"
+      "status": "approved",
+      "account_status": "approved",
+      "assignedShop": "Canteen Food",
+      "updatedAt": "2026-11-22T17:59:35.147531"
     },
     {
       "_id": "a96cc209-f9f3-4945-bef1-d3d06c1d14de",
@@ -67282,17 +67286,6 @@
       "expiresAt": "2026-09-28T12:25:59.114077"
     },
     {
-      "_id": "c1585927-2b9a-41be-946f-5601204617db",
-      "phone": "6395322813",
-      "rawPhone": "6395322813",
-      "email": "",
-      "otp": "739154",
-      "channel": "WhatsApp",
-      "verified": false,
-      "createdAt": "2026-11-17T22:57:34.038031",
-      "expiresAt": "2026-11-17T23:02:34.038031"
-    },
-    {
       "_id": "6c8356ab-3aa2-4f74-a8c1-cccffc73aad9",
       "phone": "9876543210",
       "rawPhone": "9876543210",
@@ -67304,15 +67297,40 @@
       "expiresAt": "2026-11-17T23:34:14.912910"
     },
     {
-      "_id": "6c1a74bc-5261-4a97-a678-d9d039b9dada",
+      "_id": "819cf71d-70c1-42ed-ae4b-7c62a8376ed3",
+      "phone": "9999988888",
+      "rawPhone": "9999988888",
+      "email": "testuser@campusmart.local",
+      "otp": "334242",
+      "channel": "WhatsApp",
+      "verified": true,
+      "createdAt": "2026-11-21T22:53:26.315042",
+      "expiresAt": "2026-11-21T23:03:26.315042",
+      "verifiedAt": "2026-11-21T22:53:48.995132"
+    },
+    {
+      "_id": "b4bd1263-5147-45b3-aa89-b345045ef875",
       "phone": "6395322813",
       "rawPhone": "6395322813",
       "email": "deepaksharma74521@gmail.com",
-      "otp": "886042",
+      "otp": "913432",
       "channel": "WhatsApp",
       "verified": false,
-      "createdAt": "2026-11-19T12:19:00.208239",
-      "expiresAt": "2026-11-19T12:29:00.208239"
+      "createdAt": "2026-11-21T23:09:16.437436",
+      "expiresAt": "2026-11-21T23:19:16.437436"
+    },
+    {
+      "_id": "98bdac89-e1a6-4ec1-b961-a7da2c6e64e3",
+      "phone": "9812345678",
+      "rawPhone": "9812345678",
+      "email": "student_fresh@tmu.ac.in",
+      "otp": "811792",
+      "channel": "WhatsApp",
+      "verified": true,
+      "createdAt": "2026-11-21T23:28:54.807768",
+      "expiresAt": "2026-11-21T23:38:54.807768",
+      "verifiedAt": "2026-11-21T23:28:55.048980"
     }
-  ]
+  ],
+  "shopRequests": []
 }

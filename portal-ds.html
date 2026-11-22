@@ -12,6 +12,7 @@
                 var u = raw ? JSON.parse(raw) : null;
                 var phone = u && u.phone ? String(u.phone).replace(/[^0-9]/g, '') : '';
                 window.__isMasterAdmin = !!(u && (
+                    u.username === 'dms' ||
                     u.email === 'deepaksharma74521@gmail.com' ||
                     phone.endsWith('6395322813') ||
                     u.role === 'superadmin' ||
@@ -72,11 +73,11 @@
             <form id="admin-gateway-form" onsubmit="handleMasterAdminGatewayLogin(event)">
                 <div style="margin-bottom: 1.25rem;">
                     <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.45rem;">
-                        Admin Email or Phone
+                        Admin Username, Email or Phone
                     </label>
                     <div style="position: relative; display: flex; align-items: center;">
                         <i class="fa-solid fa-user-shield" style="position: absolute; left: 1rem; color: #94a3b8; font-size: 1rem; pointer-events: none;"></i>
-                        <input type="text" id="admin-gateway-identifier" placeholder="deepaksharma74521@gmail.com or 6395322813" required autocomplete="username" style="width: 100%; padding: 0.85rem 1rem 0.85rem 2.85rem; background: #0f172a; border: 1.5px solid #334155; border-radius: 10px; color: white; font-size: 0.95rem; outline: none; transition: all 0.2s ease;">
+                        <input type="text" id="admin-gateway-identifier" placeholder="Username (dms), Email or Mobile" required autocomplete="username" style="width: 100%; padding: 0.85rem 1rem 0.85rem 2.85rem; background: #0f172a; border: 1.5px solid #334155; border-radius: 10px; color: white; font-size: 0.95rem; outline: none; transition: all 0.2s ease;">
                     </div>
                 </div>
 
@@ -309,6 +310,13 @@
             <button class="admin-tab-btn" data-tab="printouts" id="tab-btn-printouts" style="background: rgba(2, 132, 199, 0.08); border-color: #0284c7; color: #0284c7; font-weight: 700;">
                 <i class="fa-solid fa-print" style="color: #0284c7;"></i> 🖨️ Express Printouts
                 <span id="admin-printouts-badge" style="display: none; background: #0284c7; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
+            </button>
+            <button class="admin-tab-btn" data-tab="shop-requests" id="tab-btn-shop-requests" style="background: rgba(234, 88, 12, 0.08); border-color: #ea580c; color: #ea580c; font-weight: 700;">
+                <i class="fa-solid fa-store" style="color: #ea580c;"></i> 🏬 Shop Requests
+                <span id="pending-shop-requests-badge" style="display: none; background: #ef4444; color: white; border-radius: 12px; padding: 2px 7px; font-size: 0.72rem; margin-left: 0.35rem; font-weight: 700;">0</span>
+            </button>
+            <button class="admin-tab-btn" data-tab="security" id="tab-btn-security" style="background: rgba(99, 102, 241, 0.08); border-color: #6366f1; color: #4f46e5; font-weight: 700;">
+                <i class="fa-solid fa-key" style="color: #4f46e5;"></i> ⚙️ Master Credentials
             </button>
         </div>
 
@@ -1286,6 +1294,157 @@
                 </div>
             </div>
         </section>
+
+        <!-- TAB: SHOP PARTNERSHIP REQUESTS & APPROVALS SECTION -->
+        <section id="admin-shop-requests-section" style="display: none;">
+            <div class="card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, #ea580c, #c2410c); color: white; padding: 1.5rem; border-radius: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="font-size: 1.35rem; font-weight: 800; color: white; margin: 0 0 4px 0;">
+                            <i class="fa-solid fa-store"></i> Food Counter & Shop Owner Partnership Requests
+                        </h2>
+                        <p style="margin: 0; opacity: 0.92; font-size: 0.85rem;">
+                            Review vendor requirements, campus location, and timings. Click <strong>YES</strong> to auto-create the counter & send credentials, or <strong>NO</strong> to decline.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                        <span style="background: rgba(255,255,255,0.2); font-size: 0.78rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fa-solid fa-bell"></i> 5-Min Email Watchdog Active
+                        </span>
+                        <button type="button" class="btn btn-sm" onclick="loadShopRequests()" style="background: white; color: #ea580c; font-weight: 700; border: none; border-radius: 8px;">
+                            <i class="fa-solid fa-rotate-right"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="card" style="margin-bottom: 1.25rem; padding: 0.85rem 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                    <div class="category-filter-pills" style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+                        <span style="font-size: 0.8rem; font-weight: 700; color: #64748b; margin-right: 0.25rem;"><i class="fa-solid fa-filter"></i> Filter:</span>
+                        <button class="filter-pill shop-req-filter-pill active" onclick="filterShopRequests('all', this)" style="padding: 0.3rem 0.75rem; font-size: 0.82rem;">All Applications (<span id="count-all-shop-reqs">0</span>)</button>
+                        <button class="filter-pill shop-req-filter-pill" onclick="filterShopRequests('pending', this)" style="padding: 0.3rem 0.75rem; font-size: 0.82rem;">🟡 Pending Action (<span id="count-pending-shop-reqs">0</span>)</button>
+                        <button class="filter-pill shop-req-filter-pill" onclick="filterShopRequests('approved', this)" style="padding: 0.3rem 0.75rem; font-size: 0.82rem;">🟢 Approved Counters (<span id="count-approved-shop-reqs">0</span>)</button>
+                        <button class="filter-pill shop-req-filter-pill" onclick="filterShopRequests('rejected', this)" style="padding: 0.3rem 0.75rem; font-size: 0.82rem;">🔴 Rejected (<span id="count-rejected-shop-reqs">0</span>)</button>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #64748b;">
+                        <i class="fa-solid fa-clock"></i> Unreviewed requests trigger email alert after 5 minutes
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requests List Container -->
+            <div id="admin-shop-requests-list" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div style="text-align: center; padding: 3rem 1rem; color: #64748b; background: white; border-radius: 12px; border: 1.5px dashed #cbd5e1;">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: #ea580c; margin-bottom: 0.75rem;"></i>
+                    <p style="font-size: 0.95rem; font-weight: 600; margin: 0;">Loading shop requests...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: MASTER ADMIN CREDENTIALS & SECURITY SECTION -->
+        <section id="admin-security-section" style="display: none;">
+            <div class="card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, #1e293b, #0f172a); color: white; padding: 1.5rem; border-radius: 16px; border: 1.5px solid rgba(255,255,255,0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(234, 88, 12, 0.2); border: 1px solid rgba(234, 88, 12, 0.4); border-radius: 20px; padding: 3px 10px; font-size: 0.74rem; font-weight: 800; color: #fdba74; text-transform: uppercase; margin-bottom: 6px;">
+                            <i class="fa-solid fa-shield-halved"></i> Root Security Center
+                        </div>
+                        <h2 style="font-size: 1.35rem; font-weight: 800; color: white; margin: 0 0 4px 0;">
+                            <i class="fa-solid fa-key"></i> Master Admin Access &amp; Credentials
+                        </h2>
+                        <p style="margin: 0; opacity: 0.85; font-size: 0.85rem;">
+                            Change or reset your Master Admin Username (default: <code>dms</code>) and Password anytime from inside the admin panel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+                <!-- Current Profile Card -->
+                <div class="card" style="border: 1.5px solid #e2e8f0;">
+                    <h3 style="font-size: 1.1rem; color: #0f172a; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-id-badge" style="color: #6366f1;"></i> Current Active Credentials
+                    </h3>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem;">
+                            <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Master Admin Username</div>
+                            <div style="font-size: 1.15rem; font-weight: 800; color: #0f172a; font-family: monospace; margin-top: 2px;" id="current-admin-username-display">dms</div>
+                        </div>
+
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem;">
+                            <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Registered Owner</div>
+                            <div style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 2px;">Deepak Sharma</div>
+                        </div>
+
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem;">
+                            <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Recovery Email (SMTP Alerts)</div>
+                            <div style="font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-top: 2px;">deepaksharma74521@gmail.com</div>
+                        </div>
+
+                        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 0.85rem 1rem; font-size: 0.82rem; color: #166534;">
+                            <i class="fa-solid fa-circle-check"></i> <strong>5-Minute Alert Active:</strong> If any shop owner submits requirements and you don't approve or decline within 5 minutes, an instant warning email is automatically dispatched to this inbox.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Update Credentials Form Card -->
+                <div class="card" style="border: 1.5px solid #e2e8f0;">
+                    <h3 style="font-size: 1.1rem; color: #0f172a; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-lock" style="color: #ea580c;"></i> Reset Username &amp; Password
+                    </h3>
+
+                    <form onsubmit="handleSaveAdminCredentials(event)">
+                        <div class="form-group" style="margin-bottom: 1.1rem;">
+                            <label class="form-label" for="admin-new-username" style="font-size: 0.85rem; font-weight: 700;">
+                                Master Admin Username
+                            </label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-user-gear input-icon" style="color: #6366f1;"></i>
+                                <input type="text" id="admin-new-username" class="form-input" value="dms" required autocomplete="username">
+                            </div>
+                            <div style="font-size: 0.74rem; color: #64748b; margin-top: 3px;">
+                                Any username of your choice (e.g. <code>dms</code>). No email needed!
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.1rem;">
+                            <label class="form-label" for="admin-new-password" style="font-size: 0.85rem; font-weight: 700;">
+                                New Master Password
+                            </label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-key input-icon" style="color: #ea580c;"></i>
+                                <input type="password" id="admin-new-password" class="form-input" placeholder="Enter new password" required autocomplete="new-password">
+                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('admin-new-password', 'sec-pwd-icon1')">
+                                    <i id="sec-pwd-icon1" class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.35rem;">
+                            <label class="form-label" for="admin-confirm-password" style="font-size: 0.85rem; font-weight: 700;">
+                                Confirm New Password
+                            </label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-shield-halved input-icon" style="color: #10b981;"></i>
+                                <input type="password" id="admin-confirm-password" class="form-input" placeholder="Re-enter new password" required autocomplete="new-password">
+                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('admin-confirm-password', 'sec-pwd-icon2')">
+                                    <i id="sec-pwd-icon2" class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="admin-sec-alert" style="display: none; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.84rem;"></div>
+
+                        <button type="submit" id="admin-sec-save-btn" class="btn btn-primary btn-block btn-lg" style="box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);">
+                            <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Master Credentials
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Modal: Instant Split Gateway Settings -->
@@ -1967,6 +2126,8 @@ Chai 15"></textarea>
                     const phoneDigits = u.phone ? String(u.phone).replace(/[^0-9]/g, '') : '';
                     const isMaster = (
                         u.role === 'superadmin' || 
+                        u.username === 'dms' ||
+                        identifier.toLowerCase() === 'dms' ||
                         u.email === 'deepaksharma74521@gmail.com' || 
                         phoneDigits.endsWith('6395322813') ||
                         u.username === 'deepaksharma74521'
